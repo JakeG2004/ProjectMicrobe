@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: m_VegiSmall6
-  m_Shader: {fileID: 4800000, guid: 8d693614ecb47984c8ae75ae7512ad35, type: 3}
+  m_Shader: {fileID: 4800000, guid: df06a1bc9563b904a8515b1fe4b792a3, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -81,7 +81,7 @@ Material:
         m_Scale: {x: 10, y: 10}
         m_Offset: {x: 0, y: 0}
     - _WindMask:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 88aac0f5a429f434abfc9f57e44c4d1e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
@@ -121,8 +121,8 @@ Material:
     - _WaveFrequency: 1
     - _WaveHeight: 0.1
     - _WaveSpeed: 2
-    - _WindSpeed: 1.02
-    - _WindStrength: 0.1061
+    - _WindSpeed: 1
+    - _WindStrength: 0.129
     - _ZWrite: 1
     - __dummy__: 0
     m_Colors:
@@ -136,5 +136,5 @@ Material:
     - _RimColor: {r: 0.8, g: 0.8, b: 0.8, a: 0.6}
     - _SColor: {r: 0, g: 0, b: 0, a: 1}
     - _ScanlinesTex_SC: {r: 1, g: 1, b: 0, a: 0}
-    - _WindDirection: {r: 1, g: 0.5, b: 1.17, a: 0}
+    - _WindDirection: {r: 1, g: 0.4, b: 0.8, a: 0}
   m_BuildTextureStacks: []
