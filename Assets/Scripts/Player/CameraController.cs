@@ -32,6 +32,8 @@ public class CameraController : MonoBehaviour {
 	Vector3 posSmooth;
 	Vector3 directionGoal;
 	Vector3 directionSmooth;
+
+	AudioLowPassFilter filter;
 	#endregion
 
 
@@ -39,6 +41,7 @@ public class CameraController : MonoBehaviour {
 		cam = Camera.main? Camera.main.transform : transform;
 		GM.cam = cam;
 		lookPos = character.position + Vector3.up * lookPosYOffest;
+		filter = GetComponent<AudioLowPassFilter>();
 	}
 	void Update() {
 		if (character == null) return;
@@ -46,6 +49,7 @@ public class CameraController : MonoBehaviour {
 		Zoom();
 		RotateCameraDirection();
 		PositionCamera();
+		LowPassFilterIfSubmerged();
 	}
 	
 
@@ -105,5 +109,9 @@ public class CameraController : MonoBehaviour {
 			if (angle > 360) angle -= 360;
 		} while (angle < -360 || angle > 360);
 		return Mathf.Clamp(angle, min, max);
+	}
+	void LowPassFilterIfSubmerged() {
+		if (cam.position.y < 0) filter.cutoffFrequency = 330f;
+		else filter.cutoffFrequency = 21000f;
 	}
 }
