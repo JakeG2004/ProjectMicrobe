@@ -31,6 +31,7 @@ public class MovementController : MonoBehaviour {
 		Jump();
 		Rotate();
 		Move();
+		Climb();
 		
 
 		//StepUp();
@@ -149,6 +150,13 @@ public class MovementController : MonoBehaviour {
 			// set velocity to target
 			rb.velocity = moveSmooth;
 		}
+	}
+
+	void Climb() {
+		if (!ic.climbing) return;
+
+		rb.velocity = new Vector3(rb.velocity.x, 8f, rb.velocity.z);
+		if (ic.submersion > 0f)  rb.position += Vector3.up * 0.1f; // for exiting the water
 	}
 
 	// Simple projection of a vector onto the xz-plane.
