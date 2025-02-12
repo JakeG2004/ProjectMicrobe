@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
-import math
+import random
 
 # Define our classes
 class Microbe:
@@ -29,9 +29,9 @@ class Microbe:
         self.safe_toxicity = safe_toxicity
 
     # Use the Lotka-Volterra model for this
-    def compute_growth(self):
+    def compute_growth(self, k_resources):
         # Determine the limiting resource
-        min_k = min(self.k_resources[res] for res in self.required_resources)
+        min_k = min(k_resources[res] for res in self.required_resources)
 
         # Avoid division by zero if resources are depleted
         if min_k == 0:
@@ -46,14 +46,17 @@ class Microbe:
 
         return max(growth, -self.population)  # Prevent overshooting negative population
     
+    # Linear probability of survival between lethal and safe toxicity
     def calculate_toxin_survival_chance(self):
-        if self.env_cleanliness >= self.safe_toxicity:
-            return 1.0  # 100% survival in a clean environment
-        if self.env_cleanliness <= self.lethal_toxicity:
-            return 0.0  # 0% survival in a toxic environment
+        if(self.env_cleanliness >= self.safe_toxicity):
+            return 1
+        if(self.env_cleanliness < self.lethal_toxicity):
+            return 0
+        
+        # Survival probability = normalized value between lethal and safe toxicity
+        survival_prob = (self.env_cleanliness - self.lethal_toxicity) / (self.safe_toxicity - self.lethal_toxicity)
 
-        # Linearly interpolate survival probability between lethal and safe toxicity
-        return (self.env_cleanliness - self.lethal_toxicity) / (self.safe_toxicity - self.lethal_toxicity)
+        return random.random() < survival_prob
 
     def calculate_environmental_cleanliness(self, env_resources):
         # Get sum of all resources
@@ -91,9 +94,9 @@ class Microbe:
             self.competitors[other_microbe] = other_microbe.population * sum(competition_coefficients) / len(competition_coefficients)
     
     # Calculate the net resource change from a microbe in one time step
-    def produce_consume_resources(self):
+    def produce_consume_resources(self, k_resources):
         # Determine the limiting resource
-        min_k = min(self.k_resources[res] for res in self.required_resources)
+        min_k = min(k_resources[res] for res in self.required_resources)
 
         resource_change = {}
 
@@ -109,29 +112,6 @@ class Microbe:
                 resource_change[res] = self.produced_resources[res] * min_k
 
         return resource_change
-    
-    # Calculate the carry capacity for a given microbe
-    def compute_carry_capacity(self, env_resources):
-        # Get environmental cleanliness
-        self.calculate_environmental_cleanliness(env_resources)
-
-        # Account for toxicity
-        survival_chance = self.calculate_toxin_survival_chance()
-
-        # Find the carry capacity
-        for res in env_resources:
-            resource_consumption = self.required_resources.get(res, 0)  # Per microbe consumption
-
-            if(self.population == 0): # If there is no population, report k = 0
-                self.k_resources[res] = 0
-            elif resource_consumption == 0:
-                self.k_resources[res] = float('inf')  # If the microbe doesn't use this resource, no limit
-            else:
-                self.k_resources[res] = (env_resources[res] / resource_consumption) * survival_chance
-        
-        # Append the minimum to the history
-        min_k = min(self.k_resources[res] for res in self.required_resources)
-        self.k_history.append(min_k)
 
 
 class Environment:
@@ -140,6 +120,25 @@ class Environment:
         self.resource_refresh_rate = resource_refresh_rate
 
         self.resource_history = {res: [] for res in initial_resources}
+
+    # Calculate the carry capacity for a given microbe
+    def compute_carry_capacity(self, microbe):
+        k_resources = {}
+
+        # Account for toxicity
+        survival_chance = microbe.calculate_toxin_survival_chance()
+
+        for res in self.resources:
+            resource_consumption = microbe.required_resources.get(res, 0)  # Per microbe consumption
+
+            if(microbe.population == 0): # If there is no population, report k = 0
+                k_resources[res] = 0
+            elif resource_consumption == 0:
+                k_resources[res] = float('inf')  # If the microbe doesn't use this resource, no limit
+            else:
+                k_resources[res] = (self.resources[res] / resource_consumption) * survival_chance
+
+        return k_resources
 
     # Record resource history
     def update_resource_history(self):
@@ -156,13 +155,12 @@ class Environment:
             self.resources[res] += added_resources[res]
 
 env = Environment(
-    initial_resources={"Oxygen": 100, "Glucose": 0, "Lead": 10},
+    initial_resources={"Oxygen": 100, "Glucose": 0, "Lead": 0},
     resource_refresh_rate={"Oxygen": 0, "Glucose": 0, "Lead": 1}
 )
 
 microbes = [
     Microbe("s1", 1, 1.01, {"Oxygen": 1}, {"Glucose": 1}, {}, .4, .6),
-    Microbe("s3", 1, 1.01, {"Lead": 1}, {}, {"Oxygen": 1}, .4, .6),
     Microbe("s2", 1, 1.01, {"Glucose": 1}, {"Oxygen": 1}, {"Lead": 1}, .4, .6)
 ]
 
@@ -172,7 +170,7 @@ for m1 in microbes:
         m1.add_competitor(m2)
 
 # Begin simulation
-time_steps = 175
+time_steps = 135
 
 for time in range(time_steps):
     # Recalculate competition coefficients at every time step because population is part of the calculations
@@ -182,15 +180,22 @@ for time in range(time_steps):
             m1.add_competitor(m2)
 
     for microbe in microbes:
-        # Get carry capacity of microbe
-        microbe.compute_carry_capacity(env.resources)
+        # Get the environmental cleanliness on a per microbe basis
+        microbe.calculate_environmental_cleanliness(env.resources)
+
+        # Calculate carrying capacity
+        k_resources = env.compute_carry_capacity(microbe)
+        min_k = min(k_resources[res] for res in microbe.required_resources)
+
+        # Log carrying capacity
+        microbe.k_history.append(min_k)
 
         # Get resource changes due to microbe
-        net_resource_usage = microbe.produce_consume_resources()
-        env.add_resources(net_resource_usage)
+        resource_usage = microbe.produce_consume_resources(k_resources)
+        env.add_resources(resource_usage)
 
         # Calculate new microbe population
-        pop_change = microbe.compute_growth()
+        pop_change = microbe.compute_growth(k_resources)
         microbe.update_population(pop_change)
 
     # Log resource history
@@ -205,7 +210,7 @@ def moving_average(data, window_size=5):
     return np.convolve(data, np.ones(window_size)/window_size, mode='valid')
 
 fig, ax = plt.subplots(1, 3, figsize=(18, 5))
-window_size=1
+window_size=3
 
 # Microbes
 for microbe in microbes:
