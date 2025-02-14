@@ -72,7 +72,7 @@ public class CameraController : MonoBehaviour {
 		angleVert = ClampAngle(angleVert - ic.look.y, angleVertBounds.x, angleVertBounds.y);
 		angleHoz += ic.look.x;
 		// also turn camera when player moves to the side 
-		angleHoz += Input.GetAxis("Horizontal") * 3f;
+		angleHoz += ic.move.x * 1.5f;
 		
 		Vector3 directionHoz = Quaternion.AngleAxis(angleHoz, Vector3.up) * Vector3.forward;
 		Vector3 directionHozLeft = Vector3.Cross(directionHoz, Vector3.up);
