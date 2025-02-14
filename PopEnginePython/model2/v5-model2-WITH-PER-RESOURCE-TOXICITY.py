@@ -4,7 +4,7 @@ import math
 
 # Define our classes
 class Microbe:
-    def __init__(self, name, initial_population, growth_rate, required_resources, produced_resources, toxins):
+    def __init__(self, name, initial_population, growth_rate, required_resources, produced_resources, toxins, lethal_toxicity, safe_toxicity):
         # Set up initial values
         self.name = name
         self.population = initial_population
@@ -22,6 +22,11 @@ class Microbe:
 
         # List of competitors to calculate competition coefficients
         self.competitors = {}
+
+        # Cleanliness variables
+        self.env_cleanliness = 1
+        self.lethal_toxicity = lethal_toxicity
+        self.safe_toxicity = safe_toxicity
 
     # Use the Lotka-Volterra model for this
     def compute_growth(self):
@@ -41,31 +46,28 @@ class Microbe:
 
         return max(growth, -self.population)  # Prevent overshooting negative population
     
-    def calculate_toxicity_multiplier(self, env_resources):
-        # Find total resources 
+    def calculate_toxin_survival_chance(self):
+        if self.env_cleanliness >= self.safe_toxicity:
+            return 1.0  # 100% survival in a clean environment
+        if self.env_cleanliness <= self.lethal_toxicity:
+            return 0.0  # 0% survival in a toxic environment
+
+        # Linearly interpolate survival probability between lethal and safe toxicity
+        return (self.env_cleanliness - self.lethal_toxicity) / (self.safe_toxicity - self.lethal_toxicity)
+
+    def calculate_environmental_cleanliness(self, env_resources):
+        # Get sum of all resources
         total_resources = sum(env_resources.values())
-        min_toxicity = 1.0
 
-        for res in self.toxins:
-            # Find weighted density of the current toxin
-            cur_toxin = self.toxins[res]
-            safe_toxicity = cur_toxin["safe"]
-            lethal_toxicity = cur_toxin["lethal"]
-            toxin_weighted_density = (cur_toxin["toxicity"] * env_resources[res]) / total_resources
+        # Early return to avoid div by 0
+        if(total_resources == 0):
+            return 1
 
-            # If density < safe, then continue to next toxin
-            if(toxin_weighted_density <= safe_toxicity):
-                continue
-            
-            # If density > lethal, return 0
-            if(toxin_weighted_density >= lethal_toxicity):
-                return 0.0
-            
-            # Lerp inbetween
-            cur_toxicity = (toxin_weighted_density - lethal_toxicity) / (safe_toxicity - lethal_toxicity)
-            min_toxicity = min(min_toxicity, cur_toxicity)
+        # Get sum of all toxic resources multiplied by their toxicity values
+        toxic_resources = sum(env_resources.get(t_res, 0) * self.toxins[t_res] for t_res in self.toxins)
 
-        return min_toxicity
+        # Cleanliness = toxic resources / total resources
+        self.env_cleanliness = max(0, 1 - (toxic_resources / total_resources))
 
     # Update the population and history
     def update_population(self, new_pop):
@@ -110,9 +112,11 @@ class Microbe:
     
     # Calculate the carry capacity for a given microbe
     def compute_carry_capacity(self, env_resources):
+        # Get environmental cleanliness
+        self.calculate_environmental_cleanliness(env_resources)
 
-        # Find minimum toxicity multiplier
-        toxicity_mult = self.calculate_toxicity_multiplier(env_resources)
+        # Account for toxicity
+        survival_chance = self.calculate_toxin_survival_chance()
 
         # Find the carry capacity
         for res in env_resources:
@@ -123,7 +127,7 @@ class Microbe:
             elif resource_consumption == 0:
                 self.k_resources[res] = float('inf')  # If the microbe doesn't use this resource, no limit
             else:
-                self.k_resources[res] = (env_resources[res] / resource_consumption) * toxicity_mult
+                self.k_resources[res] = (env_resources[res] / resource_consumption) * survival_chance
         
         # Append the minimum to the history
         min_k = min(self.k_resources[res] for res in self.required_resources)
@@ -152,20 +156,12 @@ class Environment:
             self.resources[res] += added_resources[res]
 
 env = Environment(
-    initial_resources={"Oxygen": 10, "Glucose": 0, "Lead": 0},
+    initial_resources={"Oxygen": 100, "Glucose": 0, "Lead": 0},
     resource_refresh_rate={"Oxygen": 10, "Glucose": 0, "Lead": 1}
 )
 
 microbes = [
-    Microbe(
-        name="m1", 
-        initial_population=1, 
-        growth_rate=1.01, 
-        required_resources={"Oxygen": 1}, 
-        produced_resources={}, 
-        toxins={
-            "Lead": {"toxicity": 1, "safe": .4, "lethal": 0.6}
-        }),
+    Microbe("s1", 1, 1.01, {"Oxygen": 1}, {}, {"Lead": 10}, .4, .6),
 ]
 
 # Calculate competition coefficients for microbes

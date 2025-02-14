@@ -1,3 +1,4 @@
 # TODO
-* Environmental Cleanliness
-* Per-element toxicity
+[x] Environmental Cleanliness
+[ ] Per-element toxicity
+[ ] Maximum of elements

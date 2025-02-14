@@ -158,7 +158,7 @@ env = Environment(
 
 microbes = [
     Microbe(
-        name="m1", 
+        name="s1", 
         initial_population=1, 
         growth_rate=1.01, 
         required_resources={"Oxygen": 1}, 
