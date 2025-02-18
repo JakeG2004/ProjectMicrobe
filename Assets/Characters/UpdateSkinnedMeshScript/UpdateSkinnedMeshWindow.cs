@@ -1,28 +1,21 @@
-//Copyright(c) 2016 Tim McDaniel (TrickyHandz on forum.unity3d.com)
-// Updated by Piotr Kosek 2019 (shelim on forum.unity3d.com)
-// Updated by Orochii Zouveleki 2020: Added a couple extra debug info.
+// Copyright (c) 2016 Tim McDaniel (TrickyHandz), updated by Piotr Kosek (2019, shelim)  
+// and Orochii Zouveleki (2020, added extra debug info).  
+// Based on code by Alima Studios (forum.unity.com).  
+// Source: http://forum.unity3d.com/threads/prefab-breaks-on-mesh-update.282184/#post-2661445  
 //
-// Adapted from code provided by Alima Studios on forum.unity.com
-// http://forum.unity3d.com/threads/prefab-breaks-on-mesh-update.282184/#post-2661445
-// Permission is hereby granted, free of charge, to any person obtaining a copy of this
-// software and associated documentation files (the "Software"), to deal in the Software without
-// restriction, including without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the
-// Software is furnished to do so, subject to
-// the following conditions:
-// The above copyright notice and this permission notice shall be included in all copies or
-// substantial portions of the Software.
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-// HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-// IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
-// IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
+// This software is provided under the MIT License:  
+// Permission is granted to use, copy, modify, distribute, and sell this software  
+// with attribution. Provided "as is" without warranty of any kind.
+
+
+
+
+/*
 using UnityEngine;
 using UnityEditor;
 public class UpdateSkinnedMeshWindow : EditorWindow {
+
+
 	[MenuItem("Window/Update Skinned Mesh Bones")]
 	public static void OpenWindow() {
 		var window = GetWindow<UpdateSkinnedMeshWindow>();
@@ -86,3 +79,5 @@ public class UpdateSkinnedMeshWindow : EditorWindow {
 		GUILayout.Label(statusContent);
 	}
 }
+
+*/

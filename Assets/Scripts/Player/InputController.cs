@@ -26,7 +26,7 @@ public class InputController : MonoBehaviour {
 	[HideInInspector] public bool sprintInvert = false;
 	[HideInInspector] public Vector2 mobileMoveInput = Vector2.zero;
 	[HideInInspector] public Vector2 mobileLookInput = Vector2.zero;
-	public bool mobileJumpInput;
+	bool mobileJumpInput;
 
 	Transform cam;
 	Transform player;
