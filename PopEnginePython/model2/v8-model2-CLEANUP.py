@@ -42,11 +42,9 @@ class Microbe:
         # Compute competition effect
         competition_effect = sum(self.competitors[m] for m in self.competitors)
 
-        # Compute the growth
         growth = self.growth_rate * self.population * (1 - (competition_effect / min_k))
 
-        # Prevent overshooting into negative population
-        return max(growth, -self.population)
+        return max(growth, -self.population)  # Prevent overshooting negative population
     
     def calculate_toxicity_multiplier(self, env_resources):
         """Calculate the impact of toxins on microbial growth"""
@@ -99,17 +97,15 @@ class Microbe:
         # Find the shared resources
         shared_resources = set(self.required_resources.keys()).intersection(set(other_microbe.required_resources.keys()))
 
-        # Calculate competition coefficient
+        # Calculate competition coefficient based on other consumption / self consumption
         for res in shared_resources:
             competition_coefficients.append(other_microbe.required_resources[res] / self.required_resources[res])
 
-        # If no competition coefficients, the master competition coefficient is determined to be zero
+        # Competition coefficient is determined to be the mean of all resources they are competing for
         if not competition_coefficients:
             self.competitors[other_microbe] = 0
-
-        # Otherwise, it's the max of the competition coefficients
         else:
-            self.competitors[other_microbe] = other_microbe.population * max(competition_coefficients)
+            self.competitors[other_microbe] = other_microbe.population * sum(competition_coefficients) / len(competition_coefficients)
     
     def produce_consume_resources(self):
         """Calculate net resource change per time step"""
@@ -124,11 +120,11 @@ class Microbe:
         for res in self.required_resources:
             resource_change[res] = self.required_resources[res] * min_k * -1
 
-        # Add the produced resources, adding to dict if necessary
+        # Add the produced resources
         for res in self.produced_resources:
             if res in resource_change:
                 resource_change[res] += self.produced_resources[res] * min_k
-            else:
+            else: # Add new element to dict if needed
                 resource_change[res] = self.produced_resources[res] * min_k
 
         return resource_change
@@ -166,25 +162,21 @@ class Microbe:
 class Environment:
     def __init__(self, initial_resources, resource_refresh_rate):
         """Initialize the environment with resources and refresh rates"""
-
         self.resources = initial_resources
         self.resource_refresh_rate = resource_refresh_rate
         self.resource_history = {res: [] for res in initial_resources}
 
     def update_resource_history(self):
         """Log and refresh resources over time"""
-
-        # For all resources
         for res in self.resources:
-            # Add current resource amount to history
+            # Log resources
             self.resource_history[res].append(self.resources[res])
 
-            # Get resources from refresh rate
+            # update resource usage
             self.resources[res] = max(0, self.resources[res] + self.resource_refresh_rate.get(res, 0))
 
     def add_resources(self, added_resources):
         """Add resources that come from outside sources (i.e. Microbes)"""
-
         for res in added_resources:
             self.resources[res] += added_resources[res]
 
@@ -193,8 +185,8 @@ class Environment:
 #
 
 env = Environment(
-    initial_resources={"Oxygen": 10, "Glucose": 0, "Lead": 0},
-    resource_refresh_rate={"Oxygen": 0, "Glucose": 0, "Lead": 0}
+    initial_resources={"Oxygen": 10, "Glucose": 2, "Lead": 0},
+    resource_refresh_rate={"Oxygen": 10, "Glucose": 1, "Lead": 1}
 )
 
 microbes = [
@@ -205,11 +197,16 @@ microbes = [
         required_resources={"Oxygen": 1,}, 
         produced_resources={}, 
         toxins={
-            #"Lead": {
-            #    "toxicity": 1, 
-            #    "min_safe_density": 0.0,
-            #    "max_safe_density": 0.4,
-            #    "lethal_density": 0.6},
+            "Lead": {
+                "toxicity": 1, 
+                "min_safe_density": 0.0,
+                "max_safe_density": 0.4,
+                "lethal_density": 0.6},
+            "Glucose": {
+                "toxicity": 1,
+                "min_safe_density": 0.2,
+                "max_safe_density": 0.4,
+                "lethal_density": 1.0},
         },),
 ]
 
@@ -222,7 +219,6 @@ time_steps = 10
 
 # Begin the simulation
 for time in range(time_steps):
-
     # Calculate competition coefficients at every time step because population is part of the calculations
     for m1 in microbes:
         m1.competitors = {}
@@ -244,6 +240,10 @@ for time in range(time_steps):
 
     # Log resource history
     env.update_resource_history()
+
+    # Stop if no more resources
+    if(all(val <= 0 for val in env.resources.values())):
+        break
 
 #
 # --- GRAPHING ---
