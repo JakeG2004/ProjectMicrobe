@@ -22,7 +22,7 @@ public class InputController : MonoBehaviour {
 	[HideInInspector] public bool climbing = false;
 	[HideInInspector] public bool sprinting = false;
 
-	public bool useMobileJoysticks = false;
+	[HideInInspector] public bool useMobileJoysticks = false;
 	[HideInInspector] public bool sprintInvert = false;
 	[HideInInspector] public Vector2 mobileMoveInput = Vector2.zero;
 	[HideInInspector] public Vector2 mobileLookInput = Vector2.zero;
@@ -90,6 +90,9 @@ public class InputController : MonoBehaviour {
 	public void Zoom(bool dir) {
 		float speed = dir ? -zoomSensitivity : zoomSensitivity;
 		zoom = Mathf.Clamp01(zoom + speed);
+	}
+	public void UseMobileControls(bool value) {
+		useMobileJoysticks = value;
 	}
 }
 

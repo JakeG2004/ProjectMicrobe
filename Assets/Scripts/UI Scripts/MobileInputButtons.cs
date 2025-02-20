@@ -7,7 +7,13 @@ public class MobileInputButtons : MonoBehaviour {
 	void Start() {
 		ic = GM.playerInput;
 	}
-    public void ToggleSprint() {
+	void OnEnable() {
+		ic.UseMobileControls(true);
+	}
+	void OnDisable() {
+		ic.UseMobileControls(false);
+	}
+	public void ToggleSprint() {
 		ic.sprintInvert = !ic.sprintInvert;
 	}
 	public void Jump() {
