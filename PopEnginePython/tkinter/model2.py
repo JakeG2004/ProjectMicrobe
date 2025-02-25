@@ -3,6 +3,7 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import numpy as np
 import tkinter as tk
 from tkinter import ttk
+import ast
 
 #
 # --- MICROBE CLASS
@@ -250,221 +251,13 @@ env = Environment(
     resource_refresh_rate={"Oxygen": 10, "Glucose": 0, "Lead": 0}
 )
 
-microbes = [
-    Microbe(
-        name="m1", 
-        initial_population=1, 
-        growth_rate=1.01, 
-        required_resources={"Oxygen": 1,}, 
-        produced_resources={}, 
-        toxins={
-            "Lead": {
-                "toxicity": 1, 
-                "min_safe_density": 0.0,
-                "max_safe_density": 0.4,
-                "lethal_density": 0.6},
-        },),
-]
-
-#
-# --- SIMULATION MENU ---
-#
-
-def get_user_input():
-    while True:
-        user_input = input("Press Enter to continue, 'menu' to see the menu, or type 'exit' to stop: ")
-
-        if user_input.lower() == "menu":
-            while True:  # Allows multiple menu interactions
-                print("\n--- MENU ---")
-                print("1) Add refreshing resource")
-                print("2) Insert x amount of resource")
-                print("3) Add a microbe")
-                print("4) Edit existing microbe")
-                print("5) Back to simulation")
-
-                user_input = input("> ")
-
-                match user_input:
-                    case "1":  # Add refreshing resource
-                        print("\nSelect a resource to increase refresh rate:")
-                        resource_list = list(env.resource_refresh_rate.keys())
-
-                        for index, resource in enumerate(resource_list):
-                            print(f"{index}: {resource} (Current rate: {env.resource_refresh_rate[resource]})")
-
-                        try:
-                            choice = int(input("(Enter number)> "))
-                            amount = int(input("Increase refresh rate by: "))
-
-                            if 0 <= choice < len(resource_list):
-                                resource_name = resource_list[choice]
-                                env.resource_refresh_rate[resource_name] += amount
-                                print(f"✅ {resource_name} refresh rate increased by {amount}")
-                            else:
-                                print("❌ Invalid selection.")
-
-                        except ValueError:
-                            print("❌ Please enter a valid number.")
-
-                    case "2":  # Insert x amount of resource
-                        print("\nSelect a resource to add:")
-                        resource_list = list(env.resources.keys())
-
-                        for index, resource in enumerate(resource_list):
-                            print(f"{index}: {resource} (Current: {env.resources[resource]})")
-
-                        try:
-                            choice = int(input("(Enter number)> "))
-                            amount = int(input("Amount to add: "))
-
-                            if 0 <= choice < len(resource_list):
-                                resource_name = resource_list[choice]
-                                env.resources[resource_name] += amount
-                                print(f"✅ Added {amount} {resource_name}.")
-                            else:
-                                print("❌ Invalid selection.")
-
-                        except ValueError:
-                            print("❌ Please enter a valid number.")
-
-                    case "3":  # Add a microbe
-                        print("\n--- ADD MICROBE ---")
-                        name = input("Enter microbe name: ")
-                        
-                        try:
-                            initial_population = int(input("Initial population: "))
-                            growth_rate = float(input("Growth rate (e.g., 1.01): "))
-
-                            required_resources = {}
-                            produced_resources = {}
-                            toxins = {}
-
-                            # Get required resources
-                            while True:
-                                print("\nRequired resources:")
-                                for idx, resource in enumerate(env.resources.keys()):
-                                    print(f"{idx}: {resource}")
-
-                                res_choice = input("Enter resource number to require (or 'done' to finish): ")
-                                if res_choice.lower() == "done":
-                                    break
-
-                                try:
-                                    res_idx = int(res_choice)
-                                    res_name = list(env.resources.keys())[res_idx]
-                                    res_amount = int(input(f"Amount of {res_name} required: "))
-                                    required_resources[res_name] = res_amount
-                                except (ValueError, IndexError):
-                                    print("❌ Invalid selection.")
-
-                            # Get produced resources
-                            while True:
-                                print("\nProduced resources:")
-                                for idx, resource in enumerate(env.resources.keys()):
-                                    print(f"{idx}: {resource}")
-
-                                res_choice = input("Enter resource number to produce (or 'done' to finish): ")
-                                if res_choice.lower() == "done":
-                                    break
-
-                                try:
-                                    res_idx = int(res_choice)
-                                    res_name = list(env.resources.keys())[res_idx]
-                                    res_amount = int(input(f"Amount of {res_name} produced: "))
-                                    produced_resources[res_name] = res_amount
-                                except (ValueError, IndexError):
-                                    print("❌ Invalid selection.")
-
-                            # Get toxins
-                            while True:
-                                print("\nToxins:")
-                                for idx, resource in enumerate(env.resources.keys()):
-                                    print(f"{idx}: {resource}")
-
-                                res_choice = input("Enter resource number to set as toxin (or 'done' to finish): ")
-                                if res_choice.lower() == "done":
-                                    break
-
-                                try:
-                                    res_idx = int(res_choice)
-                                    res_name = list(env.resources.keys())[res_idx]
-                                    
-                                    toxicity = float(input(f"Toxicity of {res_name}: "))
-                                    min_safe_density = float(input(f"Min safe density for {res_name}: "))
-                                    max_safe_density = float(input(f"Max safe density for {res_name}: "))
-                                    lethal_density = float(input(f"Lethal density for {res_name}: "))
-
-                                    toxins[res_name] = {
-                                        "toxicity": toxicity,
-                                        "min_safe_density": min_safe_density,
-                                        "max_safe_density": max_safe_density,
-                                        "lethal_density": lethal_density
-                                    }
-                                except (ValueError, IndexError):
-                                    print("❌ Invalid selection.")
-
-                            # Ensure new microbes start at the correct time
-                            new_microbe = Microbe(
-                                name=name,
-                                initial_population=initial_population,
-                                growth_rate=growth_rate,
-                                required_resources=required_resources,
-                                produced_resources=produced_resources,
-                                toxins=toxins
-                            )
-                            microbes.append(new_microbe)
-
-                            # Fill history with NaN until the current time step
-                            new_microbe.pop_history = [np.nan] * time + [initial_population]
-                            new_microbe.k_history = [np.nan] * time + [0]  # Assuming 0 initial carrying capacity
-
-                            # Immediately update the graph
-                            graph_info(ax, window_size)
-
-                        except ValueError:
-                            print("❌ Invalid input, microbe creation aborted.")
-
-                    case "4":  # Edit existing microbe
-                        print("\n--- EDIT EXISTING MICROBE ---")
-                        
-                        # List microbes
-                        if microbes:
-                            print("Select a microbe to edit:")
-                            for idx, microbe in enumerate(microbes):
-                                print(f"{idx}: {microbe.name}")
-                            try:
-                                microbe_idx = int(input("Enter number to select microbe: "))
-                                selected_microbe = microbes[microbe_idx]
-
-                                # Edit population
-                                print(f"Current population of {selected_microbe.name}: {selected_microbe.population}")
-                                new_population = int(input("Enter new population (or leave blank to keep current): ") or selected_microbe.population)
-                                selected_microbe.population = new_population
-
-                                print(f"✅ Microbe '{selected_microbe.name}' updated!")
-
-                            except (ValueError, IndexError):
-                                print("❌ Invalid microbe selection.")
-
-                        else:
-                            print("❌ No microbes available to edit.")
-
-                    case "5":  # Exit menu
-                        break
-
-                    case _:
-                        print("❌ Invalid option. Try again.")
-
-        elif user_input.lower() == "exit":
-            return "exit"
-
-        else:
-            return None  # Continue simulation
+microbes = []
 
 #
 # --- SIMULATION ---
 #
+
+print(microbes)
 
 def advance_simulation():
     global current_step
@@ -559,10 +352,25 @@ def add_microbe_popup():
 
     # Form submission
     def submit_microbe():
-        try:
-            name = name_entry.get()
-        except Exception as e:
-            print("Invalid")
+        name = name_entry.get()
+        population = initial_population_entry.get()
+        growth_rate = growth_rate_entry.get()
+        required_resources = {resource: float(quantity_entry[resource].get()) for resource, var in required_resource_vars.items() if var.get()}
+        produced_resources = {resource: float(quantity_entry.get(resource, 0)) for resource, var in produced_resource_vars.items() if var.get()}
+        toxins = toxins_entry.get("1.0", "end-1c")
+
+        new_microbe = Microbe (
+            name=name,
+            initial_population=float(population),
+            growth_rate=float(growth_rate),
+            required_resources=required_resources,
+            produced_resources=produced_resources,
+            toxins=ast.literal_eval(toxins)
+        )
+
+        microbes.append(new_microbe)
+        form.destroy()
+        print(microbes)
 
     # Get the name
     ttk.Label(form, text="Name:").pack(pady=5)
@@ -579,10 +387,63 @@ def add_microbe_popup():
     growth_rate_entry = ttk.Entry(form)
     growth_rate_entry.pack(pady=5)
 
-    # Get Required resources
-    ttk.Label(form, text="Required Resources (as dict):").pack(pady=5)
-    required_resources_entry = tk.Text(form, height=5, width=40)
-    required_resources_entry.pack(pady=5)
+    # Get Required Resources (with quantities)
+    ttk.Label(form, text="Required Resources:").pack(pady=5)
+
+    required_resource_vars = {}
+    quantity_entry = {}
+    
+    for resource in env.resources:
+        reqVar = tk.BooleanVar()
+        required_resource_vars[resource] = reqVar
+        
+        # Create a frame for the checkbox and quantity
+        resource_frame = ttk.Frame(form)
+        resource_frame.pack(pady=2, anchor='center')
+
+        # Checkbox for resource
+        checkbox = ttk.Checkbutton(resource_frame, text=resource, variable=reqVar)
+        checkbox.pack(side='left', padx=5)
+
+        # Entry for quantity
+        quantity_entry_field = ttk.Entry(resource_frame, width=5)
+        quantity_entry_field.pack(side='left', padx=5)
+        
+        quantity_entry[resource] = quantity_entry_field
+
+    # Get Produced Resources (with quantities)
+    ttk.Label(form, text="Produced Resources:").pack(pady=5)
+    
+    produced_resource_vars = {}
+    
+    for resource in env.resources:
+        prodVar = tk.BooleanVar()
+        produced_resource_vars[resource] = prodVar
+        
+        # Create a frame for the checkbox and quantity
+        resource_frame = ttk.Frame(form)
+        resource_frame.pack(pady=2, anchor='center')
+
+        # Checkbox for resource
+        checkbox = ttk.Checkbutton(resource_frame, text=resource, variable=prodVar)
+        checkbox.pack(side='left', padx=5)
+
+        # Entry for quantity
+        quantity_entry_field = ttk.Entry(resource_frame, width=5)
+        quantity_entry_field.pack(side='left', padx=5)
+        
+        quantity_entry[resource] = quantity_entry_field
+
+    # Get Toxins (with quantities)
+    ttk.Label(form, text="Toxins:").pack(pady=5)
+
+    # Get Toxins
+    ttk.Label(form, text="Toxins (as dict):").pack(pady=5)
+    toxins_entry = tk.Text(form, height=5, width=40)
+    toxins_entry.pack(pady=5)
+    
+    # Create Microbe button
+    submit_button = tk.Button(form, text="Create Microbe", command=submit_microbe).pack(pady=5)
 
 def fast_forward_pressed():
     for x in range(ff_amount):
