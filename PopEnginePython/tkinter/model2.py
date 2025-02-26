@@ -292,6 +292,49 @@ def advance_simulation():
 # --- GUI ---
 #
 
+class ResourceToxinWidget(ttk.Frame):
+    """Widget containing multiple entry fields for a resource's toxins."""
+
+    def __init__(self, parent, resource_name):
+        super().__init__(parent)
+
+        self.resource_name = resource_name
+        self.toxin_var = tk.BooleanVar()
+
+        # Checkbox to toggle the subfields
+        self.checkbox = ttk.Checkbutton(self, text=resource_name, variable=self.toxin_var,
+                                        command=self.toggle_fields)
+        self.checkbox.pack(padx=5)
+
+        # Frame for entry fields (initially hidden)
+        self.fields_frame = ttk.Frame(self)
+        
+        # Creating multiple entry fields
+        self.toxicity_field = ttk.Entry(self.fields_frame, width=5)
+        self.min_safe_density_field = ttk.Entry(self.fields_frame, width=5)
+        self.max_safe_density_field = ttk.Entry(self.fields_frame, width=5)
+        self.lethal_density_field = ttk.Entry(self.fields_frame, width=5)
+
+        ttk.Label(self.fields_frame, text="Toxicity:").pack(side="left", padx=2)
+        self.toxicity_field.pack(side="left", padx=2)
+
+        ttk.Label(self.fields_frame, text="Minimum Safe Density:").pack(side="left", padx=2)
+        self.min_safe_density_field.pack(side="left", padx=2)
+
+        ttk.Label(self.fields_frame, text="Maximum Safe Density:").pack(side="left", padx=2)
+        self.max_safe_density_field.pack(side="left", padx=2)
+
+        ttk.Label(self.fields_frame, text="Lethal Density:").pack(side="left", padx=2)
+        self.lethal_density_field.pack(side="left", padx=2)
+
+    def toggle_fields(self):
+        """Show or hide the entry fields when the checkbox is toggled."""
+        if self.toxin_var.get():
+            self.fields_frame.pack(padx=5)
+        else:
+            self.fields_frame.pack_forget()
+
+
 def display_dict(parent, data, prefix=""):
     for key, value in data.items():
         if isinstance(value, dict):
@@ -350,14 +393,47 @@ def add_microbe_popup():
     form = tk.Toplevel(root)
     form.title("Add Microbe")
 
+    canvas = tk.Canvas(form)
+    scrollbar = ttk.Scrollbar(form, orient="vertical", command=canvas.yview)
+    scroll_frame = ttk.Frame(canvas)
+
+    canvas.configure(yscrollcommand=scrollbar.set)
+    canvas.pack(fill="both", expand=True)
+    scrollbar.pack(side="right", fill="y")
+
+    canvas.create_window((0, 0), window=scroll_frame, anchor="nw")
+    scroll_frame.bind(
+        "<Configure>",
+        lambda e: canvas.configure(scrollregion=canvas.bbox("all"))
+    )
+
     # Form submission
     def submit_microbe():
         name = name_entry.get()
         population = initial_population_entry.get()
         growth_rate = growth_rate_entry.get()
-        required_resources = {resource: float(quantity_entry[resource].get()) for resource, var in required_resource_vars.items() if var.get()}
-        produced_resources = {resource: float(quantity_entry.get(resource, 0)) for resource, var in produced_resource_vars.items() if var.get()}
-        toxins = toxins_entry.get("1.0", "end-1c")
+        required_resources = {}
+        produced_resources = {}
+        toxins = {}
+
+        # Turn the checkboxes and vars into valid dict entries
+        for resource, var in required_resource_vars.items():
+            if(var.get()):
+                required_resources[resource] = int(req_quantity_entry[resource].get().strip())
+        
+        for resource, var in produced_resource_vars.items():
+            if(var.get()):
+                produced_resources[resource] = int(prod_quantity_entry[resource].get().strip())
+        
+        for toxin in toxin_widgets:
+            if(toxin.toxin_var.get()):
+                resource = toxin.resource_name
+                toxins[resource] = {}
+                toxins[resource]["toxicity"] = float(toxin.toxicity_field.get().strip())
+                toxins[resource]["min_safe_density"] = float(toxin.min_safe_density_field.get().strip())
+                toxins[resource]["max_safe_density"] = float(toxin.max_safe_density_field.get().strip())
+                toxins[resource]["lethal_density"] = float(toxin.lethal_density_field.get().strip())
+
 
         new_microbe = Microbe (
             name=name,
@@ -365,7 +441,7 @@ def add_microbe_popup():
             growth_rate=float(growth_rate),
             required_resources=required_resources,
             produced_resources=produced_resources,
-            toxins=ast.literal_eval(toxins)
+            toxins=toxins
         )
 
         microbes.append(new_microbe)
@@ -373,77 +449,79 @@ def add_microbe_popup():
         print(microbes)
 
     # Get the name
-    ttk.Label(form, text="Name:").pack(pady=5)
-    name_entry = ttk.Entry(form)
+    ttk.Label(scroll_frame, text="Name:").pack(pady=5)
+    name_entry = ttk.Entry(scroll_frame)
     name_entry.pack(pady=5)
 
     # Get the initial population
-    ttk.Label(form, text="Initial Population:").pack(pady=5)
-    initial_population_entry = ttk.Entry(form)
+    ttk.Label(scroll_frame, text="Initial Population:").pack(pady=5)
+    initial_population_entry = ttk.Entry(scroll_frame)
     initial_population_entry.pack(pady=5)
 
     # Get Growth Rate
-    ttk.Label(form, text="Growth Rate:").pack(pady=5)
-    growth_rate_entry = ttk.Entry(form)
+    ttk.Label(scroll_frame, text="Growth Rate:").pack(pady=5)
+    growth_rate_entry = ttk.Entry(scroll_frame)
     growth_rate_entry.pack(pady=5)
 
     # Get Required Resources (with quantities)
-    ttk.Label(form, text="Required Resources:").pack(pady=5)
+    ttk.Label(scroll_frame, text="Required Resources:").pack(pady=5)
 
     required_resource_vars = {}
-    quantity_entry = {}
+    req_quantity_entry = {}
     
     for resource in env.resources:
-        reqVar = tk.BooleanVar()
-        required_resource_vars[resource] = reqVar
+        req_var = tk.BooleanVar()
+        required_resource_vars[resource] = req_var
         
         # Create a frame for the checkbox and quantity
-        resource_frame = ttk.Frame(form)
+        resource_frame = ttk.Frame(scroll_frame)
         resource_frame.pack(pady=2, anchor='center')
 
         # Checkbox for resource
-        checkbox = ttk.Checkbutton(resource_frame, text=resource, variable=reqVar)
+        checkbox = ttk.Checkbutton(resource_frame, text=resource, variable=req_var)
         checkbox.pack(side='left', padx=5)
 
         # Entry for quantity
         quantity_entry_field = ttk.Entry(resource_frame, width=5)
         quantity_entry_field.pack(side='left', padx=5)
         
-        quantity_entry[resource] = quantity_entry_field
+        req_quantity_entry[resource] = quantity_entry_field
 
     # Get Produced Resources (with quantities)
-    ttk.Label(form, text="Produced Resources:").pack(pady=5)
+    ttk.Label(scroll_frame, text="Produced Resources:").pack(pady=5)
     
     produced_resource_vars = {}
+    prod_quantity_entry = {}
     
     for resource in env.resources:
-        prodVar = tk.BooleanVar()
-        produced_resource_vars[resource] = prodVar
+        prod_var = tk.BooleanVar()
+        produced_resource_vars[resource] = prod_var
         
         # Create a frame for the checkbox and quantity
-        resource_frame = ttk.Frame(form)
+        resource_frame = ttk.Frame(scroll_frame)
         resource_frame.pack(pady=2, anchor='center')
 
         # Checkbox for resource
-        checkbox = ttk.Checkbutton(resource_frame, text=resource, variable=prodVar)
+        checkbox = ttk.Checkbutton(resource_frame, text=resource, variable=prod_var)
         checkbox.pack(side='left', padx=5)
 
         # Entry for quantity
         quantity_entry_field = ttk.Entry(resource_frame, width=5)
         quantity_entry_field.pack(side='left', padx=5)
         
-        quantity_entry[resource] = quantity_entry_field
+        prod_quantity_entry[resource] = quantity_entry_field
 
-    # Get Toxins (with quantities)
-    ttk.Label(form, text="Toxins:").pack(pady=5)
-
-    # Get Toxins
-    ttk.Label(form, text="Toxins (as dict):").pack(pady=5)
-    toxins_entry = tk.Text(form, height=5, width=40)
-    toxins_entry.pack(pady=5)
+    # Get Produced Resources (with quantities)
+    ttk.Label(scroll_frame, text="Toxins:").pack(pady=5)
+    
+    toxin_widgets = []
+    for resource in env.resources:
+        toxin = ResourceToxinWidget(scroll_frame, resource)
+        toxin.pack(pady=2, anchor='center', fill='x')
+        toxin_widgets.append(toxin)
     
     # Create Microbe button
-    submit_button = tk.Button(form, text="Create Microbe", command=submit_microbe).pack(pady=5)
+    submit_button = tk.Button(scroll_frame, text="Create Microbe", command=submit_microbe).pack(pady=5)
 
 def fast_forward_pressed():
     for x in range(ff_amount):
