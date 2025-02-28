@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import numpy as np
 import tkinter as tk
-from tkinter import ttk
+from tkinter import ttk, messagebox
 import ast
 
 #
@@ -248,7 +248,7 @@ def graph_info(ax, window_size):
 
 env = Environment(
     initial_resources={"Oxygen": 10, "Glucose": 0, "Lead": 0},
-    resource_refresh_rate={"Oxygen": 10, "Glucose": 0, "Lead": 0}
+    resource_refresh_rate={"Oxygen": 0, "Glucose": 0, "Lead": 0}
 )
 
 microbes = []
@@ -332,7 +332,6 @@ class ResourceToxinWidget(ttk.Frame):
         else:
             self.fields_frame.pack_forget()
 
-
 def display_dict(parent, data, prefix=""):
     for key, value in data.items():
         if isinstance(value, dict):
@@ -363,34 +362,43 @@ def show_microbes_popup():
         lambda e: canvas.configure(scrollregion=canvas.bbox("all"))
     )
 
-    # Display no microbes
-    if(len(microbes) == 0):
-        microbe_label = ttk.Label(scrollable_frame, text="No microbes!", font=("Arial", 12, "bold"))
-        microbe_label.pack(anchor="w", padx=10, pady=10)
+    def update_microbes_GUI():
+        for widget in scrollable_frame.winfo_children():
+            widget.destroy()
 
-    for microbe in microbes:
-        # Create label for microbe name
-        microbe_label = ttk.Label(scrollable_frame, text=f"Microbe: {microbe.name}", font=("Arial", 12, "bold"))
-        microbe_label.pack(anchor="w", padx=10, pady=10)
+        # Display no microbes
+        if(len(microbes) == 0):
+            microbe_label = ttk.Label(scrollable_frame, text="No microbes!", font=("Arial", 12, "bold"))
+            microbe_label.pack(anchor="w", padx=10, pady=10)
 
-        # Display population and growth rate
-        ttk.Label(scrollable_frame, text=f"Population: {microbe.population}").pack(anchor="w", padx=10, pady=2)
-        ttk.Label(scrollable_frame, text=f"Growth Rate: {microbe.growth_rate}").pack(anchor="w", padx=10, pady=2)
+        for microbe in microbes:
+            # Create label for microbe name
+            microbe_label = ttk.Label(scrollable_frame, text=f"Microbe: {microbe.name}", font=("Arial", 12, "bold"))
+            microbe_label.pack(anchor="w", padx=10, pady=10)
 
-        # Display required resources
-        ttk.Label(scrollable_frame, text="Required Resources:", font=("Arial", 10, "bold")).pack(anchor="w", padx=10, pady=5)
-        display_dict(scrollable_frame, microbe.required_resources)
+            # Display population and growth rate
+            ttk.Label(scrollable_frame, text=f"Population: {microbe.population}").pack(anchor="w", padx=10, pady=2)
+            ttk.Label(scrollable_frame, text=f"Growth Rate: {microbe.growth_rate}").pack(anchor="w", padx=10, pady=2)
 
-        # Display produced resources
-        ttk.Label(scrollable_frame, text="Produced Resources:", font=("Arial", 10, "bold")).pack(anchor="w", padx=10, pady=5)
-        display_dict(scrollable_frame, microbe.produced_resources)
+            # Display required resources
+            ttk.Label(scrollable_frame, text="Required Resources:", font=("Arial", 10, "bold")).pack(anchor="w", padx=10, pady=5)
+            display_dict(scrollable_frame, microbe.required_resources)
 
-        # Display toxins
-        ttk.Label(scrollable_frame, text="Toxins:", font=("Arial", 10, "bold")).pack(anchor="w", padx=10, pady=5)
-        display_dict(scrollable_frame, microbe.toxins)
+            # Display produced resources
+            ttk.Label(scrollable_frame, text="Produced Resources:", font=("Arial", 10, "bold")).pack(anchor="w", padx=10, pady=5)
+            display_dict(scrollable_frame, microbe.produced_resources)
 
-        # Separator between microbes
-        ttk.Separator(scrollable_frame, orient="horizontal").pack(fill="x", padx=10, pady=10)
+            # Display toxins
+            ttk.Label(scrollable_frame, text="Toxins:", font=("Arial", 10, "bold")).pack(anchor="w", padx=10, pady=5)
+            display_dict(scrollable_frame, microbe.toxins)
+
+            # Separator between microbes
+            ttk.Separator(scrollable_frame, orient="horizontal").pack(fill="x", padx=10, pady=10)
+
+        refresh_button = ttk.Button(scrollable_frame, text="Refresh", command=update_microbes_GUI)
+        refresh_button.pack()
+    
+    update_microbes_GUI()
 
 def add_microbe_popup():
 
@@ -540,6 +548,128 @@ def add_microbe_popup():
     # Create Microbe button
     submit_button = tk.Button(scroll_frame, text="Create Microbe", command=submit_microbe).pack(pady=5)
 
+def view_environment_popup():
+    # Create window
+    popup = tk.Toplevel(root)
+    popup.geometry("400x600")
+    popup.title("Environment Info")
+
+    # Create canvas and scrollbar
+    canvas = tk.Canvas(popup)
+    scrollbar = ttk.Scrollbar(popup, orient="vertical", command=canvas.yview)
+    scrollable_frame = ttk.Frame(canvas)
+
+    # Configure the canvas
+    canvas.configure(yscrollcommand=scrollbar.set)
+    canvas.pack(side="left", fill="both", expand=True)
+    scrollbar.pack(side="right", fill="y")
+
+    # Add scrollable frame to canvas
+    canvas.create_window((0, 0), window=scrollable_frame, anchor="nw")
+    scrollable_frame.bind(
+        "<Configure>",
+        lambda e: canvas.configure(scrollregion=canvas.bbox("all"))
+    )
+
+    def update_env_view():
+        for widget in scrollable_frame.winfo_children():
+            widget.destroy()
+
+        # Handle no resources
+        if(len(env.resources) == 0):
+            no_resources_label = ttk.Label(scrollable_frame, text="No resources!", font=("Arial", 12, "bold"))
+            no_resources_label.pack(anchor="w", padx=10, pady=10)
+            return
+
+        # For each resource, print:
+        for resource in env.resources:
+            # Name
+            resource_label = ttk.Label(scrollable_frame, text=f"Resource: {resource}", font=("Arial", 12, "bold"))
+            resource_label.pack(anchor="w", padx=10, pady=10)
+
+            # Current amount
+            amount_label = ttk.Label(scrollable_frame, text=f"Amount: {env.resources[resource]}", font=("Arial", 12))
+            amount_label.pack(anchor="w", padx=10, pady=10)
+
+            # Refresh rate
+            refresh_label = ttk.Label(scrollable_frame, text=f"Refresh amount: {env.resource_refresh_rate[resource]}", font=("Arial", 12))
+            refresh_label.pack(anchor="w", padx=10, pady=10)
+
+            # Separator
+            ttk.Separator(scrollable_frame, orient="horizontal").pack(fill="x", padx=10, pady=10)
+
+        update_env_view_button = ttk.Button(scrollable_frame, text="Update info", command=update_env_view)
+        update_env_view_button.pack()
+
+    update_env_view()
+
+
+def edit_environment_popup():
+    # Create window
+    popup = tk.Toplevel(root)
+    popup.geometry("400x600")
+    popup.title("Edit Environment")
+
+    # Create canvas and scrollbar
+    canvas = tk.Canvas(popup)
+    scrollbar = ttk.Scrollbar(popup, orient="vertical", command=canvas.yview)
+    scrollable_frame = ttk.Frame(canvas)
+
+    # configure the canvas
+    canvas.configure(yscrollcommand=scrollbar.set)
+    canvas.pack(side="left", fill="both", expand=True)
+    scrollbar.pack(side="right", fill="y")
+
+    # add scrollable frame to canvas
+    canvas.create_window((0, 0), window=scrollable_frame, anchor="nw")
+    scrollable_frame.bind(
+        "<Configure>",
+        lambda e: canvas.configure(scrollregion=canvas.bbox("all"))
+    )
+
+    def update_env_resources_GUI():
+        for resource in env.resources:
+            env.resources[resource] = int(amount_entries[resource].get().strip())
+            env.resource_refresh_rate[resource] = int(refresh_entries[resource].get().strip())
+        popup.destroy()
+
+    amount_entries = {}
+    refresh_entries = {}
+
+    for resource in env.resources:
+        # Create frame
+        resource_frame = ttk.Frame(scrollable_frame)
+        resource_frame.pack(pady=2)
+
+        # Resource label
+        resource_label = ttk.Label(resource_frame, text=f"Resource: {resource}", font=("Arial", 12, "bold"))
+        resource_label.grid(row=0, column=0, columnspan=2, sticky="w", padx=10, pady=10)
+
+        # Resource amount
+        amount_label = ttk.Label(resource_frame, text="Current amount: ", font=("Arial", 12))
+        amount_label.grid(row=1, column=0, sticky="w", padx=10, pady=5)
+
+        # Amount entry
+        amount_entry_field = ttk.Entry(resource_frame, width = 5)
+        amount_entry_field.insert(0, env.resources[resource])
+        amount_entry_field.grid(row=1, column=1, padx=5, pady=5)
+        
+        amount_entries[resource] = amount_entry_field
+
+        # Refresh amount
+        refresh_label = ttk.Label(resource_frame, text="Current refresh amount: ", font=("Arial", 12))
+        refresh_label.grid(row=2, column=0, sticky="w", padx=10, pady=5)
+
+        # Refresh entry
+        refresh_entry_field = ttk.Entry(resource_frame, width = 5)
+        refresh_entry_field.insert(0, env.resource_refresh_rate[resource])
+        refresh_entry_field.grid(row=2, column=1, padx=5, pady=5)
+
+        refresh_entries[resource] = refresh_entry_field
+    
+    submit_button = ttk.Button(scrollable_frame, text="Submit", command=update_env_resources_GUI)
+    submit_button.pack()
+
 def fast_forward_pressed():
     for x in range(ff_amount):
         advance_simulation()
@@ -548,7 +678,6 @@ def fast_forward_pressed():
 def next_time_step_pressed():
     advance_simulation()
     graph_info(ax, window_size)
-    #canvas.draw()
 
 def quit_pressed():
     plt.close(fig)
@@ -560,6 +689,32 @@ def on_ff_amount_change(event=None):
         ff_amount = int(ff_amount_spinbox.get())
     except ValueError:
         print("Invalid")
+
+def microbes_button_pressed():
+    # Create window
+    form = tk.Toplevel(root)
+    form.geometry("400x300")
+    form.title("Microbe Options")
+
+    # Add microbes
+    add_microbe_button = tk.Button(form, text="Add microbes", command=add_microbe_popup)
+    add_microbe_button.pack()
+
+    # View microbes
+    show_microbes_button = tk.Button(form, text="Show microbes", command=show_microbes_popup)
+    show_microbes_button.pack()
+
+def environment_button_pressed():
+    form = tk.Toplevel(root)
+    form.geometry("400x300")
+    form.title("Environment Options")
+
+    # View environment stats
+    view_environment_button = tk.Button(form, text="View environment", command=view_environment_popup)
+    view_environment_button.pack()
+
+    edit_environment_button = tk.Button(form, text="Edit environment", command=edit_environment_popup)
+    edit_environment_button.pack()
 
 # Set how long the simulation will run for
 window_size = 3
@@ -591,13 +746,13 @@ ff_amount_spinbox = tk.Spinbox(root, from_=1, to=100, command=on_ff_amount_chang
 ff_amount_spinbox.pack()
 ff_amount_spinbox.bind("<KeyRelease>", on_ff_amount_change)
 
-# View Microbes button
-add_microbe_button = tk.Button(root, text="Add Microbe", command=add_microbe_popup)
-add_microbe_button.pack()
+# Microbes
+microbe_button = tk.Button(root, text="Microbe Options", command=microbes_button_pressed)
+microbe_button.pack()
 
-# View Microbes button
-show_microbes_button = tk.Button(root, text="Show Microbes", command=show_microbes_popup)
-show_microbes_button.pack()
+# Environment
+environment_button = tk.Button(root, text="Environment Options", command=environment_button_pressed)
+environment_button.pack()
 
 # Quit button
 quit_button = tk.Button(root, text="Quit", command=quit_pressed)
