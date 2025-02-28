@@ -257,8 +257,6 @@ microbes = []
 # --- SIMULATION ---
 #
 
-print(microbes)
-
 def advance_simulation():
     global current_step
     # Begin the simulation
@@ -345,6 +343,7 @@ def display_dict(parent, data, prefix=""):
 
 def show_microbes_popup():
     popup = tk.Toplevel(root)
+    popup.geometry("400x400")
     popup.title("Microbes list")
 
     # Create a canvas and scroll bar for scrollable content
@@ -363,6 +362,11 @@ def show_microbes_popup():
         "<Configure>",
         lambda e: canvas.configure(scrollregion=canvas.bbox("all"))
     )
+
+    # Display no microbes
+    if(len(microbes) == 0):
+        microbe_label = ttk.Label(scrollable_frame, text="No microbes!", font=("Arial", 12, "bold"))
+        microbe_label.pack(anchor="w", padx=10, pady=10)
 
     for microbe in microbes:
         # Create label for microbe name
@@ -389,19 +393,34 @@ def show_microbes_popup():
         ttk.Separator(scrollable_frame, orient="horizontal").pack(fill="x", padx=10, pady=10)
 
 def add_microbe_popup():
+
     # Create new window
     form = tk.Toplevel(root)
+    form.geometry("800x600")
     form.title("Add Microbe")
 
+    # Create canvas, scroll frame, and scrollbar
     canvas = tk.Canvas(form)
     scrollbar = ttk.Scrollbar(form, orient="vertical", command=canvas.yview)
     scroll_frame = ttk.Frame(canvas)
 
+    # Set the canvas and scrollbar so they will coexist
     canvas.configure(yscrollcommand=scrollbar.set)
-    canvas.pack(fill="both", expand=True)
+    canvas.pack(fill="both", side="left", expand=True)
     scrollbar.pack(side="right", fill="y")
 
-    canvas.create_window((0, 0), window=scroll_frame, anchor="nw")
+    # Get the id of the canvas window
+    window_id = canvas.create_window((canvas.winfo_width() / 2, 0), window=scroll_frame, anchor="n")
+
+    # Adjust centering when the canvas is resized
+    def update_scroll_window(event):
+        canvas.itemconfigure(window_id, width=canvas.winfo_width() - scrollbar.winfo_width())
+        canvas.coords(window_id, canvas.winfo_width() / 2, 0)
+
+    # Update window on resize
+    canvas.bind("<Configure>", update_scroll_window)
+
+    # Handle scroll
     scroll_frame.bind(
         "<Configure>",
         lambda e: canvas.configure(scrollregion=canvas.bbox("all"))
@@ -446,8 +465,6 @@ def add_microbe_popup():
 
         microbes.append(new_microbe)
         form.destroy()
-        print(microbes)
-
     # Get the name
     ttk.Label(scroll_frame, text="Name:").pack(pady=5)
     name_entry = ttk.Entry(scroll_frame)
