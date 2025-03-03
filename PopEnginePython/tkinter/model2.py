@@ -3,7 +3,7 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import numpy as np
 import tkinter as tk
 from tkinter import ttk, messagebox
-import ast
+import PIL.ImageTk
 
 #
 # --- MICROBE CLASS
