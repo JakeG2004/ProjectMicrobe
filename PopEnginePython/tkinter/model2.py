@@ -184,6 +184,17 @@ class Environment:
 
         # For all resources
         for res in self.resources:
+            # Add new resource
+            if res not in self.resource_history:
+                # Create entry
+                self.resource_history[res] = []
+
+                # Backlog history as 0
+                for x in range(hist_len):
+                    self.resource_history[res].append(0)
+
+            hist_len = len(self.resource_history[res])
+
             # Add current resource amount to history
             self.resource_history[res].append(self.resources[res])
 
@@ -471,6 +482,10 @@ def add_microbe_popup():
             toxins=toxins
         )
 
+        for x in range(current_step):
+            new_microbe.pop_history.append(0)
+            new_microbe.k_history.append(0)
+
         microbes.append(new_microbe)
         form.destroy()
     # Get the name
@@ -546,7 +561,72 @@ def add_microbe_popup():
         toxin_widgets.append(toxin)
     
     # Create Microbe button
-    submit_button = tk.Button(scroll_frame, text="Create Microbe", command=submit_microbe).pack(pady=5)
+    submit_button = tk.Button(scroll_frame, text="Create Microbe", command=submit_microbe)
+    submit_button.pack(pady=5)
+
+def remove_microbe_popup():
+    # Create the window
+    popup = tk.Toplevel(root)
+    popup.geometry("400x600")
+    popup.title("Remove Microbes")
+
+    # Create the canvas and scrollbar
+    canvas = tk.Canvas(popup)
+    scrollbar = ttk.Scrollbar(popup, orient="vertical", command=canvas.yview)
+    scrollable_frame = ttk.Frame(canvas)
+
+    # Configure the canvas
+    canvas.configure(yscrollcommand=scrollbar.set)
+    canvas.pack(side="left", fill="both", expand=True)
+    scrollbar.pack(side="right",fill="y")
+
+    # Add a scrollable frame to the canvas
+    canvas.create_window((0, 0), window=scrollable_frame, anchor="nw")
+    scrollable_frame.bind(
+        "<Configure>",
+        lambda e: canvas.configure(scrollregion=canvas.bbox("all"))
+    )
+
+    microbes_to_remove_vars = {}
+
+    def remove_microbes():
+        # Append microbes to remove to a list to avoid modifying as we iterate
+        remove_list = []
+        for microbe in microbes:
+            if (microbes_to_remove_vars[microbe].get()):
+                remove_list.append(microbe)
+
+        # Remove all the ones in the list
+        for microbe in remove_list:
+            microbes.remove(microbe)
+
+        # Update the GUI
+        update_remove_microbe_gui()
+
+    def update_remove_microbe_gui():
+        # Access the right dict
+        nonlocal microbes_to_remove_vars
+
+        # Destroy all the existing widgets
+        for widget in scrollable_frame.winfo_children():
+            widget.destroy()
+
+        for microbe in microbes:
+            # Set up our value to access later
+            var = tk.BooleanVar()
+            microbes_to_remove_vars[microbe] = var
+
+            # Checkbox
+            checkbox = ttk.Checkbutton(scrollable_frame, text=microbe.name, variable=var)
+            checkbox.pack(padx=5, pady=5)
+
+        # Button to remove
+        remove_button = tk.Button(scrollable_frame, text="Remove selected microbes", command=remove_microbes)
+        remove_button.pack(padx=5, pady=5)
+
+    # Update the gui on open
+    update_remove_microbe_gui()
+
 
 def view_environment_popup():
     # Create window
@@ -629,8 +709,8 @@ def edit_environment_popup():
 
     def update_env_resources_GUI():
         for resource in env.resources:
-            env.resources[resource] = int(amount_entries[resource].get().strip())
-            env.resource_refresh_rate[resource] = int(refresh_entries[resource].get().strip())
+            env.resources[resource] = int(float(amount_entries[resource].get().strip()))
+            env.resource_refresh_rate[resource] = int(float(refresh_entries[resource].get().strip()))
         popup.destroy()
 
     amount_entries = {}
@@ -670,6 +750,44 @@ def edit_environment_popup():
     submit_button = ttk.Button(scrollable_frame, text="Submit", command=update_env_resources_GUI)
     submit_button.pack()
 
+def add_resources_popup():
+    # Create the window
+    popup = tk.Toplevel(root)
+    popup.geometry("175x100")
+    popup.title("Remove Microbes")
+
+    # Create the canvas and scrollbar
+    canvas = tk.Canvas(popup)
+    scrollbar = ttk.Scrollbar(popup, orient="vertical", command=canvas.yview)
+    scrollable_frame = ttk.Frame(canvas)
+
+    # Configure the canvas
+    canvas.configure(yscrollcommand=scrollbar.set)
+    canvas.pack(side="left", fill="both", expand=True)
+    scrollbar.pack(side="right",fill="y")
+
+    # Add a scrollable frame to the canvas
+    canvas.create_window((0, 0), window=scrollable_frame, anchor="nw")
+    scrollable_frame.bind(
+        "<Configure>",
+        lambda e: canvas.configure(scrollregion=canvas.bbox("all"))
+    )
+
+    def submit_add_resource():
+        new_microbe_name = new_microbe_entry.get()
+        env.resources[new_microbe_name] = 0
+        env.resource_refresh_rate[new_microbe_name] = 0
+        popup.destroy()
+
+    new_microbe_label = tk.Label(scrollable_frame, text="Name of new resource")
+    new_microbe_label.pack(padx=5, pady=5)
+
+    new_microbe_entry = ttk.Entry(scrollable_frame)
+    new_microbe_entry.pack(padx=5, pady=5)
+
+    submit_button = tk.Button(scrollable_frame, text="Submit", command=submit_add_resource)
+    submit_button.pack(padx=5, pady=5)
+
 def fast_forward_pressed():
     for x in range(ff_amount):
         advance_simulation()
@@ -700,6 +818,10 @@ def microbes_button_pressed():
     add_microbe_button = tk.Button(form, text="Add microbes", command=add_microbe_popup)
     add_microbe_button.pack()
 
+    # Remove microbes
+    remove_microbes_button = tk.Button(form, text="Remove Microbes", command=remove_microbe_popup)
+    remove_microbes_button.pack()
+
     # View microbes
     show_microbes_button = tk.Button(form, text="Show microbes", command=show_microbes_popup)
     show_microbes_button.pack()
@@ -713,8 +835,13 @@ def environment_button_pressed():
     view_environment_button = tk.Button(form, text="View environment", command=view_environment_popup)
     view_environment_button.pack()
 
+    # Edit environment resources
     edit_environment_button = tk.Button(form, text="Edit environment", command=edit_environment_popup)
     edit_environment_button.pack()
+
+    # Add new resource
+    add_resource_button = tk.Button(form, text="Add Resource", command=add_resources_popup)
+    add_resource_button.pack()
 
 # Set how long the simulation will run for
 window_size = 3
