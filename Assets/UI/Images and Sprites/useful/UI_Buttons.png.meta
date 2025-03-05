@@ -156,7 +156,7 @@ TextureImporter:
       213: -6018848781966410445
     second: Icon_Check
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -173,11 +173,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
-  ignoreMasterTextureLimit: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -216,6 +217,8 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -227,6 +230,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -239,6 +243,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -251,6 +256,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -263,6 +269,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -275,6 +282,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -1297,7 +1305,7 @@ TextureImporter:
         width: 36
         height: 36
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1305,6 +1313,90 @@ TextureImporter:
       bones: []
       spriteID: 33d791a0ce0c87ca0800000000000000
       internalID: -6018848781966410445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Button_WhiteSmall_P
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 0
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 12, y: 12, z: 12, w: 12}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba0483cb8c3c3eb48a17b64c1c4ff2d4
+      internalID: 1415273526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Button_WhiteSmall_H
+      rect:
+        serializedVersion: 2
+        x: 318
+        y: 0
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 12, y: 12, z: 12, w: 12}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4497dd3c04e62349b2455901b68d87a
+      internalID: 2107844745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Button_WhiteSmall_D
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 0
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 12, y: 12, z: 12, w: 12}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc45a7736710ff14984ce9d7ec1857cc
+      internalID: -1608562602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_ScrollBarBackground
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 34
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 10, y: 10, z: 10, w: 10}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ba52f3db2573c04faa6e4f9f6054238
+      internalID: 461386569
       vertices: []
       indices: 
       edges: []
@@ -1320,58 +1412,61 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Button_GreenFront_P: 5213170071327885048
-      Button_BlueRound_H: -1901592130317097164
-      Button_OrangeSharp_H: 1002314541381079101
-      Button_OrangeBack_D: -3752086400668895170
-      Button_BlueRound_D: -416702877962891998
-      Button_WhiteFront_H: 5564345603053727375
-      Button_WhiteFront_P: -7425653772768166008
-      Button_WhiteSharp_H: -6674059747960205598
-      Button_WhiteSharp_D: 5987559647945176134
-      Button_BlueRound_P: -7603099807960986986
-      Button_BlueBack_H: -4389802297396944602
-      Button_DisabledFront: -4367795049968701439
-      Button_OrangeRound_H: -5942230873519039519
-      Button_TinyF_P: 5490665913258205530
-      Button_TinyB_N: 2341433135316301425
-      Button_WhiteFront_D: -3287239579664231656
-      Button_TinyB_P: 2408056092166032224
-      Button_OrangeBack_P: -7257974199788926244
-      Button_TinyF_H: -4745523842113685007
-      Button_BlueSharp_P: -1939118953878457694
-      Button_WhiteRound_D: -6060881456333826050
-      Button_GreenRound_P: -6187156380514981872
-      Button_TinyB_H: -3255805412120286
-      Button_BlueBack_P: -29870762031835003
-      Button_OrangeRound_P: -9075372253054032488
-      Button_OrangeRound_D: -8388676363910138018
-      Button_OrangeBack_H: 5443615423995280755
-      Button_WhiteRound_P: 3375412266171404303
-      Button_BlueSharp_H: -3516707813035802125
-      Button_DisabledSharp: 37834372265971893
       Button_BlueBack_D: 9101253921482926551
+      Button_BlueBack_H: -4389802297396944602
+      Button_BlueBack_P: -29870762031835003
+      Button_BlueRound_D: -416702877962891998
+      Button_BlueRound_H: -1901592130317097164
+      Button_BlueRound_P: -7603099807960986986
+      Button_BlueSharp_D: 5811623420353488977
+      Button_BlueSharp_H: -3516707813035802125
+      Button_BlueSharp_P: -1939118953878457694
+      Button_DisabledFront: -4367795049968701439
       Button_DisabledRound: -4793978554613580757
+      Button_DisabledSharp: 37834372265971893
+      Button_GreenFront_D: 3142690178943411350
       Button_GreenFront_H: 8169849489479417636
+      Button_GreenFront_P: 5213170071327885048
+      Button_GreenRound_D: 5802799835174370958
       Button_GreenRound_H: 9160267285729102424
-      Button_GreenSharp_P: -5501386671893047495
-      Button_OrangeSharp_P: -3302942199910501919
-      Button_TinyB_D: 5978220780559419393
-      Button_WhiteRound_H: 8243139709754048065
+      Button_GreenRound_P: -6187156380514981872
       Button_GreenSharp_D: 296944135989094092
       Button_GreenSharp_H: -6730508959240759184
-      Button_BlueSharp_D: 5811623420353488977
-      Button_TinyF_D: -4476365673438438008
-      Button_TinyF_N: -7442468070152875353
-      Icon_X: -7539574073701714695
+      Button_GreenSharp_P: -5501386671893047495
+      Button_OrangeBack_D: -3752086400668895170
+      Button_OrangeBack_H: 5443615423995280755
+      Button_OrangeBack_P: -7257974199788926244
+      Button_OrangeRound_D: -8388676363910138018
+      Button_OrangeRound_H: -5942230873519039519
+      Button_OrangeRound_P: -9075372253054032488
       Button_OrangeSharp_D: -349501769233167598
-      Button_GreenFront_D: 3142690178943411350
-      Icon_Check: -6018848781966410445
-      Button_GreenRound_D: 5802799835174370958
+      Button_OrangeSharp_H: 1002314541381079101
+      Button_OrangeSharp_P: -3302942199910501919
+      Button_TinyB_D: 5978220780559419393
+      Button_TinyB_H: -3255805412120286
+      Button_TinyB_N: 2341433135316301425
+      Button_TinyB_P: 2408056092166032224
+      Button_TinyF_D: -4476365673438438008
+      Button_TinyF_H: -4745523842113685007
+      Button_TinyF_N: -7442468070152875353
+      Button_TinyF_P: 5490665913258205530
+      Button_WhiteFront_D: -3287239579664231656
+      Button_WhiteFront_H: 5564345603053727375
+      Button_WhiteFront_P: -7425653772768166008
+      Button_WhiteRound_D: -6060881456333826050
+      Button_WhiteRound_H: 8243139709754048065
+      Button_WhiteRound_P: 3375412266171404303
+      Button_WhiteSharp_D: 5987559647945176134
+      Button_WhiteSharp_H: -6674059747960205598
       Button_WhiteSharp_P: 6029490960356256969
-  spritePackingTag: 
+      Button_WhiteSmall_D: -1608562602
+      Button_WhiteSmall_H: 2107844745
+      Button_WhiteSmall_P: 1415273526
+      Icon_Check: -6018848781966410445
+      Icon_X: -7539574073701714695
+      UI_ScrollBarBackground: 461386569
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
