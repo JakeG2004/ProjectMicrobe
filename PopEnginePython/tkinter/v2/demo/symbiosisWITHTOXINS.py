@@ -260,13 +260,13 @@ def graph_info(ax, window_size):
 #
 
 env = Environment(
-    initial_resources={"Oxygen": 2, "Glucose": 2, "Lead": 1},
+    initial_resources={"Oxygen": 2, "Glucose": 2, "Lead": 0},
     resource_refresh_rate={"Oxygen": 0, "Glucose": 0, "Lead": 1}
 )
 
 microbes = [
     Microbe(
-        name="O2Eater",
+        name="m1",
         initial_population=1,
         growth_rate=1.2,
         required_resources={"Oxygen": 1},
@@ -276,19 +276,11 @@ microbes = [
         }
     ),
     Microbe(
-        name="GlucoseEater",
+        name="m2",
         initial_population=1,
         growth_rate=1.2,
         required_resources={"Glucose": 1},
         produced_resources={"Oxygen": 1},
-        toxins={}
-    ),
-    Microbe(
-        name="LeadEater",
-        initial_population=1,
-        growth_rate=1.2,
-        required_resources={"Lead": 1},
-        produced_resources={},
         toxins={}
     ),
 ]
@@ -316,6 +308,7 @@ def advance_simulation():
 
             # Get resource changes due to microbe
             net_resource_usage = microbe.produce_consume_resources()
+            print(net_resource_usage)
             for resource in net_resource_usage:
                 if resource in total_resource_usage:
                     total_resource_usage[resource] += net_resource_usage[resource]
