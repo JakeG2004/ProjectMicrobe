@@ -1,7 +1,7 @@
-# Microbe
+# Microbe Class
 
 ## Overview
-The microbe class is used by the [Population Engine](./PopEngine.md) to simluate growth and interaction between several microbes and their environments.
+The microbe class is used by the [Population Engine](./PopEngine.md) to simluate growth and interaction between several microbes and the [Environment](./Environment.md).
 
 ## Fields
 * **String name**: Stores the name of the microbe
@@ -16,6 +16,9 @@ The microbe class is used by the [Population Engine](./PopEngine.md) to simluate
 * **List k_history**: A list which stores the carrying capacity of the microbe in each time step
 
 ## Methods
+### Constructor(name, initial_population, growth_rate, required_resources, produced_resources, toxins)
+Creates a new microbe with the data entered in the arguments.
+
 ### compute_growth()
 This function is responsible for calculating the growth of a microbe given the resources in its environment. It uses the [Lotka-Volterra Model](https://bio.libretexts.org/Courses/Gettysburg_College/01%3A_Ecology_for_All/15%3A_Competition/15.05%3A_Quantifying_Competition_Using_the_Lotka-Volterra_Model) as described on libretexts.org.
 
