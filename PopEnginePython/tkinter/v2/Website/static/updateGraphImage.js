@@ -11,15 +11,11 @@ function updateCanvas() {
     var canvas = document.getElementById("graphCanvas");
     var context = canvas.getContext("2d");
 
-    // Set canvas size
-    canvas.width = 900;
-    canvas.height = 250;
-
     // Clear and draw the image
     context.clearRect(0, 0, canvas.width, canvas.height);
     // Ensure image is fully loaded before drawing
     img.onload = function() {
-        context.drawImage(img, 0, 0, 900, 250);
+        context.drawImage(img, 0, 0);
     };
 
     // Error handling in case the image fails to load
@@ -82,6 +78,19 @@ document.getElementById("ffButton").addEventListener("click", function() {
     .finally(() => {
         // Hide the loading indicator
         loadingIndicator.style.display = "none";
+    });
+});
+
+document.getElementById("resetButton").addEventListener("click", function() {
+    // Send the AJAX request to fast forward
+    fetch('/reset', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+    })
+    .catch(error => {
+        console.error('Error:', error);
     });
 });
 

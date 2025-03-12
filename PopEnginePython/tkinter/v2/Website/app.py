@@ -298,6 +298,57 @@ def advance_simulation():
     current_step += 1
 
 #
+# --- GRAPHING ---
+#
+
+# Create the plot
+fig, ax = plt.subplots(1, 3, figsize=(18, 5))
+current_step = 0
+
+def reset_graph():
+    global current_step
+    current_step = 0
+    plt.cla()
+
+def graph_info(ax, window_size):
+    for a in ax:
+        a.clear()  # Clear previous plots
+
+    # Microbes
+    for microbe in microbes:
+        smoothed_pop = moving_average(microbe.pop_history, window_size)
+        ax[0].plot(range(len(smoothed_pop)), smoothed_pop, label=microbe.name)
+
+    ax[0].set_xlabel("Time")
+    ax[0].set_ylabel("Population")
+    ax[0].set_title("Smoothed Microbial Growth Over Time")
+    ax[0].legend()
+    ax[0].grid()
+
+    # Carrying capacity
+    for microbe in microbes:
+        smoothed_k = moving_average(microbe.k_history, window_size)
+        ax[1].plot(range(len(smoothed_k)), smoothed_k, label=microbe.name)
+
+    ax[1].set_xlabel("Time")
+    ax[1].set_ylabel("Carrying Capacity")
+    ax[1].set_title("Smoothed Carrying Capacity Over Time")
+    ax[1].legend()
+    ax[1].grid()
+
+    # Resource Levels Over Time
+    for resource, values in env.resource_history.items():
+        ax[2].plot(range(len(values)), values, label=resource)
+
+    ax[2].set_xlabel("Time")
+    ax[2].set_ylabel("Resource Level")
+    ax[2].set_title("Resource Levels Over Time")
+    ax[2].legend()
+    ax[2].grid()
+    
+    plt.savefig('./static/images/plot.png')
+
+#
 # --- WEBSITE ---
 #
 
@@ -486,45 +537,135 @@ def delete_microbes():
 
     return '', 204
 
-
-# Create the plot
-fig, ax = plt.subplots(1, 3, figsize=(18, 5))
-current_step = 0
-
-def graph_info(ax, window_size):
-    for a in ax:
-        a.clear()  # Clear previous plots
-
-    # Microbes
-    for microbe in microbes:
-        smoothed_pop = moving_average(microbe.pop_history, window_size)
-        ax[0].plot(range(len(smoothed_pop)), smoothed_pop, label=microbe.name)
-
-    ax[0].set_xlabel("Time")
-    ax[0].set_ylabel("Population")
-    ax[0].set_title("Smoothed Microbial Growth Over Time")
-    ax[0].legend()
-    ax[0].grid()
-
-    # Carrying capacity
-    for microbe in microbes:
-        smoothed_k = moving_average(microbe.k_history, window_size)
-        ax[1].plot(range(len(smoothed_k)), smoothed_k, label=microbe.name)
-
-    ax[1].set_xlabel("Time")
-    ax[1].set_ylabel("Carrying Capacity")
-    ax[1].set_title("Smoothed Carrying Capacity Over Time")
-    ax[1].legend()
-    ax[1].grid()
-
-    # Resource Levels Over Time
-    for resource, values in env.resource_history.items():
-        ax[2].plot(range(len(values)), values, label=resource)
-
-    ax[2].set_xlabel("Time")
-    ax[2].set_ylabel("Resource Level")
-    ax[2].set_title("Resource Levels Over Time")
-    ax[2].legend()
-    ax[2].grid()
+@app.route("/presets", methods=['GET', 'POST'])
+def presets():
+    if(request.method == 'GET'):
+        return render_template("presets.html")
     
-    plt.savefig('./static/images/plot.png')
+@app.route("/reset", methods=['POST'])
+def reset():
+    global microbes
+    global env
+
+    microbes = []
+    env = Environment(
+        initial_resources={},
+        resource_refresh_rate={}
+    )
+
+    reset_graph()
+    graph_info(ax, 3)
+    return '', 204
+    
+@app.route("/basic_symbiosis", methods=['POST'])
+def basic_symbiosis():
+    global env
+    global microbes
+
+    reset_graph()
+
+    env = Environment(
+        initial_resources={"Oxygen": 10, "Glucose": 10, "Lead": 0},
+        resource_refresh_rate={"Oxygen": 0, "Glucose": 0, "Lead": 0}
+    )
+
+    microbes = [
+        Microbe(
+            name="OxygenEater",
+            initial_population=1,
+            growth_rate=1.2,
+            required_resources={"Oxygen": 1},
+            produced_resources={"Glucose": 1},
+            toxins={
+                "Lead": {"toxicity": 1.0, "min_safe_density": 0.0, "max_safe_density": 0.4, "lethal_density": 0.6}
+            }
+        ),
+        Microbe(
+            name="GlucoseEater",
+            initial_population=1,
+            growth_rate=1.2,
+            required_resources={"Glucose": 1},
+            produced_resources={"Oxygen": 1},
+            toxins={}
+        ),
+    ]
+
+    advance_simulation()
+
+@app.route("/basic_with_lead", methods=['POST'])
+def basic_with_lead():
+    global env
+    global microbes
+
+    reset_graph()
+
+    env = Environment(
+        initial_resources={"Oxygen": 10, "Glucose": 10, "Lead": 0},
+        resource_refresh_rate={"Oxygen": 0, "Glucose": 0, "Lead": 1}
+    )
+
+    microbes = [
+        Microbe(
+            name="OxygenEater",
+            initial_population=1,
+            growth_rate=1.2,
+            required_resources={"Oxygen": 1},
+            produced_resources={"Glucose": 1},
+            toxins={
+                "Lead": {"toxicity": 1.0, "min_safe_density": 0.0, "max_safe_density": 0.4, "lethal_density": 0.6}
+            }
+        ),
+        Microbe(
+            name="GlucoseEater",
+            initial_population=1,
+            growth_rate=1.2,
+            required_resources={"Glucose": 1},
+            produced_resources={"Oxygen": 1},
+            toxins={}
+        ),
+    ]
+
+    advance_simulation()
+
+@app.route("/3_microbe_symbiosis", methods=['POST'])
+def three_microbe_symbiosis():
+    global env
+    global microbes
+
+    reset_graph()
+
+    env = Environment(
+        initial_resources={"Oxygen": 10, "Glucose": 10, "Lead": 1},
+        resource_refresh_rate={"Oxygen": 0, "Glucose": 0, "Lead": 1}
+    )
+
+    microbes = [
+        Microbe(
+            name="O2Eater",
+            initial_population=1,
+            growth_rate=1.2,
+            required_resources={"Oxygen": 1},
+            produced_resources={"Glucose": 1},
+            toxins={
+                "Lead": {"toxicity": 1.0, "min_safe_density": 0.0, "max_safe_density": 0.4, "lethal_density": 0.6}
+            }
+        ),
+        Microbe(
+            name="GlucoseEater",
+            initial_population=1,
+            growth_rate=1.2,
+            required_resources={"Glucose": 1},
+            produced_resources={"Oxygen": 1},
+            toxins={}
+        ),
+        Microbe(
+            name="LeadEater",
+            initial_population=1,
+            growth_rate=1.2,
+            required_resources={"Lead": 1},
+            produced_resources={},
+            toxins={}
+        ),
+    ]
+
+    advance_simulation()

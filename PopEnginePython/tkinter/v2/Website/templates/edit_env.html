@@ -7,7 +7,7 @@
         <title>Edit Environment</title>
     </head>
     <body>
-        <form method="POST" action="{{ url_for('edit_env') }}">
+        <form autocomplete="off" method="POST" action="{{ url_for('edit_env') }}">
             <!-- Add Resources -->
             {% for key, value in resources.items() %}
                 <h2>{{ key }}</h2>
@@ -19,7 +19,8 @@
             {% endfor %}
 
             <!-- Refresh page -->
-            <button type="submit" id="submitResources">Submit</button>
+            <button type="submit" id="submitResources" onclick="closeWindow()">Submit</button>
         </form>
+        <script src="static/openExternalWindow.js"></script>
     </body>
 </html>

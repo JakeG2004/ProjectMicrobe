@@ -7,13 +7,14 @@
         <title>Delete Microbes</title>
     </head>
     <body>
-        <form method="POST", action="{{ url_for('delete_microbes') }}">
+        <form autocomplete="off" method="POST", action="{{ url_for('delete_microbes') }}">
             {% for microbe in microbes %}
                 <input type="checkbox" name ="{{ microbe }}_checkbox">
                 {{ microbe.name }}
                 <br>
             {% endfor %}
-            <button type="submit" name="submitMicrobeDeletion">Delete Selected Microbes</button>
+            <button type="submit" name="submitMicrobeDeletion" onclick="closeWindow()">Delete Selected Microbes</button>
         </form>
+        <script src="static/openExternalWindow.js"></script>
     </body>
 </html>

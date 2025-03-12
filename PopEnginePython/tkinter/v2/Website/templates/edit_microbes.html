@@ -7,7 +7,7 @@
         <title>Edit Environment</title>
     </head>
     <body>
-        <form method="POST" action="{{ url_for('edit_microbes') }}">
+        <form autocomplete="off" method="POST" action="{{ url_for('edit_microbes') }}">
             <!-- Add Resources -->
             {% for microbe in microbes %}
                 <h2>{{ microbe.name }}</h2>
@@ -65,7 +65,8 @@
             {% endfor %}
 
             <!-- Refresh page -->
-            <button type="submit" id="submitResources">Submit</button>
+            <button type="submit" id="submitResources" onclick="closeWindow()">Submit</button>
         </form>
+        <script src="static/openExternalWindow.js"></script>
     </body>
 </html>

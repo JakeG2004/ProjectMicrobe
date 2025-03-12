@@ -7,13 +7,14 @@
         <title>Add Resource</title>
     </head>
     <body>
-        <form method="POST" action="{{ url_for('add_resource') }}">
+        <form autocomplete="off" method="POST" action="{{ url_for('add_resource') }}">
             <!-- Add Resource -->
             <input type="text" name="resourceName">
             <br>
 
             <!-- Refresh page -->
-            <button type="submit" id="addResourceButton">Add Resource</button>
+            <button type="submit" id="addResourceButton" onclick="closeWindow()">Add Resource</button>
         </form>
+        <script src="static/openExternalWindow.js"></script>
     </body>
 </html>
