@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Create Microbe</title>
+    </head>
+    <body>
+        <form method="POST" action="{{ url_for('create_microbe') }}">
+            <h2>General Information</h2>
+            <!-- Microbe name -->
+            Microbe Name: 
+            <input type="text" name="microbe_name"></input>
+            <br>
+
+            <!-- Population -->
+            Population: 
+            <input type="number" step="0.01" name="population"></input>
+            <br>
+
+            <!-- Growth rate -->
+            Growth Rate: 
+            <input type="number" step="0.01" name="growth_rate"></input>
+            <br>
+
+            <br>
+            <br>
+
+            <h2>Required Resources:</h1>
+            {% for key, value in resources.items() %}
+                {{ key }}: 
+                <input type="number" step="0.01" name="{{ key }}_required_amount">
+                <br>
+            {% endfor %}
+
+            <h2>Produced Resources:</h1>
+            {% for key, value in resources.items() %}
+                {{ key }}: 
+                <input type="number" step="0.01" name="{{ key }}_produced_amount">
+                <br>
+            {% endfor %}
+
+            <h2>Toxins:</h2>
+            {% for key, value in resources.items() %}
+            <label>
+                <input type="checkbox" id="{{ key }}_checkbox" onclick="toggleFields('{{ key }}_checkbox', '{{ key}}_fields')">
+                {{ key }}
+                <br>
+            </label>
+
+            <div id="{{ key }}_fields" style="display: none;">
+                Toxicity Level:
+                <input type="number" step="0.01" name="{{ key }}_toxicity">
+                <br>
+
+                Minimum Safe Toxicity:
+                <input type="number" step="0.01" name="{{ key }}_min_safe_toxicity">
+                <br>
+
+                Maximum Safe Toxicity:
+                <input type="number" step="0.01" name="{{ key }}_max_safe_toxicity">
+                <br>
+
+                Lethal Toxicity:
+                <input type="number" step="0.01" name="{{ key }}_lethal_toxicity">
+                <br>
+            </div>
+            {% endfor %}
+
+            <!-- Refresh page -->
+            <button type="submit" id="submitResources">Submit</button>
+        </form>
+        <script src="static/toggleContent.js"></script>
+    </body>
+</html>

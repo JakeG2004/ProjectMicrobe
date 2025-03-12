@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Population Engine</title>
+    </head>
+    <body>
+        <!-- The canvas which will be filled with the graph -->
+        <canvas id="graphCanvas" width="900" height="250"></canvas>
+        <br>
+
+        <!-- Next time step -->
+        <button type="button" id="nextTimeStepButton">Next Time Step</button>
+        <br>
+
+        <!-- Fast forward -->
+        <button type="button" id="ffButton">Fast Forward</button>
+        <input name="ffAmount" type="number" id="ffAmount">
+        <br>
+
+        <!-- Environment Options -->
+        <button type="button" id="envOptButton" onclick="openNewWindow('/envOptions')">Environment Options</button>
+        <br>
+
+        <!-- Microbe Options -->
+        <button type="button" id="microbeOptButton" onclick="openNewWindow('/microbeOptions')">Microbe Options</button>
+        <br>
+
+        <!-- Loading indicator (optional) -->
+        <div id="loadingIndicator" style="display:none;">Loading...</div>
+
+        <script src="static/updateGraphImage.js"></script>
+        <script src="static/openExternalWindow.js"></script>
+    </body>
+</html>

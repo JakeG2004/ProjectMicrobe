@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Microbe Options</title>
+    </head>
+    <body>
+        <!-- Add Microbe -->
+        <button type="button" id="addMicrobeButton" onclick="openNewWindow('/create_microbe')">Add Microbe</button>
+        <br>
+
+        <!-- Show Microbes -->
+        <button type="button" id="viewMicrobesButton" onclick="openNewWindow('/edit_microbes')">Edit Microbes</button>
+        <br>
+
+        <!-- Delete Microbes -->
+        <button type="button" id="deleteMicrobesButton" onclick="openNewWindow('/delete_microbes')">Delete Microbes</button>
+        <br>
+
+        <script src="static/openExternalWindow.js"></script>
+    </body>
+</html>
