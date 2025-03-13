@@ -264,6 +264,18 @@ microbes = [
 
 def advance_simulation():
     global current_step
+
+    if(len(env.resources) == 0):
+        return
+
+    resCounter = 0
+    for res in env.resources:
+        if env.resources[res] > 0:
+            resCounter += 1
+    
+    if(resCounter == 0):
+        return
+
     # Begin the simulation
     if(len(microbes) != 0):
         # Calculate competition coefficients at every time step because population is part of the calculations
@@ -362,12 +374,16 @@ def init():
 
 @app.route("/nextTimeStep", methods=['POST'])
 def next_time_step():
-    advance_simulation()
-    graph_info(ax, 3)
+    if(len(env.resouces > 0)):
+        advance_simulation()
+        graph_info(ax, 3)
     return '', 204
 
 @app.route("/fastForward", methods=["POST"])
 def fast_forward():
+    if(len(env.resources) <= 0):
+        return '', 204
+
     ff_amount = request.form.get("ffAmount")
     for x in range(int(ff_amount)):
         advance_simulation()
