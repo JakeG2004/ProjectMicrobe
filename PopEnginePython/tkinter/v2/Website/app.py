@@ -374,7 +374,7 @@ def init():
 
 @app.route("/nextTimeStep", methods=['POST'])
 def next_time_step():
-    if(len(env.resouces > 0)):
+    if(len(env.resources) > 0):
         advance_simulation()
         graph_info(ax, 3)
     return '', 204
