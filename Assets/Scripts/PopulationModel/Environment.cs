@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Environment : MonoBehaviour
+public class Environment
 {
     public Dictionary<string, float> resources;
     public Dictionary<string, float> resourceRefreshRate;
-    public Dictionary<string, List<float>> resourceHistory;
+    public Dictionary<string, List<float>> resourceHistory = new Dictionary<string, List<float>>();
     public int histLen = 0;
 
     public Environment(Dictionary<string, float> initResources, Dictionary<string, float> initResourceRefreshRate)
@@ -18,6 +18,8 @@ public class Environment : MonoBehaviour
     // Log and refresh resources
     public void UpdateResourceHistory()
     {
+        Dictionary<string, float> newResourceAmounts = new Dictionary<string, float>();
+
         foreach(var res in resources)
         {
             // If no entry found, create one
@@ -36,13 +38,18 @@ public class Environment : MonoBehaviour
             resourceHistory[res.Key].Add(res.Value);
 
             // Add resources from refresh rate
-            resources[res.Key] += resourceRefreshRate[res.Key];
+            newResourceAmounts.Add(res.Key, res.Value + resourceRefreshRate[res.Key]);
 
             // Prevent negative
             if(res.Value < 0)
             {
-                resources[res.Key] = 0;
+                newResourceAmounts[res.Key] = 0;
             }
+        }
+
+        foreach(var res in newResourceAmounts)
+        {
+            resources[res.Key] = res.Value;
         }
 
         // Update history lenth
@@ -50,7 +57,7 @@ public class Environment : MonoBehaviour
     }
 
     // Adds resources from external source
-    public void AddResourceS(Dictionary<string, float> addedResources)
+    public void AddResources(Dictionary<string, float> addedResources)
     {
         foreach(var res in addedResources)
         {

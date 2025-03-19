@@ -17,7 +17,7 @@ public class Microbe
     public Dictionary<string, Toxin> toxins;
 
     // Carry capacity
-    public Dictionary<string, float> kResources;
+    public Dictionary<string, float> kResources = new Dictionary<string, float>();
 
     // History tracking
     public List<float> popHistory = new List<float>();
@@ -130,13 +130,13 @@ public class Microbe
             }
 
             // If density is between max safe density and lethal density, normalize multiplier between the two
-            if(toxinWeightedDensity >= maxSafeDensity && toxinWeightedDensity <= lethalDensity)
+            else if(toxinWeightedDensity >= maxSafeDensity && toxinWeightedDensity <= lethalDensity)
             {
                 curMultiplier = (toxinWeightedDensity - lethalDensity) / (maxSafeDensity - lethalDensity);
             }
 
             // If density is less than min safe density, normalize
-            if(toxinWeightedDensity <= minSafeDensity)
+            else if(toxinWeightedDensity <= minSafeDensity)
             {
                 curMultiplier = (toxinWeightedDensity / minSafeDensity);
             }
@@ -266,10 +266,10 @@ public class Microbe
             float resourceConsumption = 0.0f;
             requiredResources.TryGetValue(res.Key, out resourceConsumption);
 
-            // Add the key to kResources if it doesnt already exist, init to 0
+            // Add the key to kResources if it doesnt already exist, init to inf
             if(!kResources.TryGetValue(res.Key, out float value))
             {
-                kResources.Add(res.Key, 0.0f);
+                kResources.Add(res.Key, float.MaxValue);
             }
 
             // If there is no population, k = 0
