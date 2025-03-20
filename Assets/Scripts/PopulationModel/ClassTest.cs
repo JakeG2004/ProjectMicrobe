@@ -16,24 +16,63 @@ public class ClassTest : MonoBehaviour
     {
         Dictionary<string, float> initialResources = new Dictionary<string, float>
         {
-            {"Oxygen", 2}
+            {"Oxygen", 10},
+            {"Glucose", 10},
+            {"Lead", 1}
         };
 
         Dictionary<string, float> resourceRefresh = new Dictionary<string, float>
         {
-            {"Oxygen", 3}
+            {"Oxygen", 0},
+            {"Glucose", 0},
+            {"Lead", 1}
         };
 
         env = new Environment(initialResources, resourceRefresh);
 
         microbes.Add(new Microbe(
-            initName:"m1",
-            initPop:1.0f,
+            initName:"OxygenEater",
+            initPop:2.0f,
             initGrowthRate:1.2f,
             initCompetitors:new Dictionary<string, float>(),
             initRequiredResources:new Dictionary<string, float>
             {
                 {"Oxygen", 1}
+            },
+            initProducedResources:new Dictionary<string, float>
+            {
+                {"Glucose", 1}
+            },
+            initToxins:new Dictionary<string, Toxin>
+            {
+                {"Lead", new Toxin(1.0f, 0.0f, 0.4f, 0.6f)}
+            }
+        ));
+
+        microbes.Add(new Microbe(
+            initName:"GlucoseEater",
+            initPop:2.0f,
+            initGrowthRate:1.2f,
+            initCompetitors:new Dictionary<string, float>(),
+            initRequiredResources:new Dictionary<string, float>
+            {
+                {"Glucose", 1}
+            },
+            initProducedResources:new Dictionary<string, float>
+            {
+                {"Oxygen", 1}
+            },
+            initToxins:new Dictionary<string, Toxin>()
+        ));
+
+        microbes.Add(new Microbe(
+            initName:"LeadEater",
+            initPop:1.0f,
+            initGrowthRate:1.2f,
+            initCompetitors:new Dictionary<string, float>(),
+            initRequiredResources:new Dictionary<string, float>
+            {
+                {"Lead", 1}
             },
             initProducedResources:new Dictionary<string, float>(),
             initToxins:new Dictionary<string, Toxin>()

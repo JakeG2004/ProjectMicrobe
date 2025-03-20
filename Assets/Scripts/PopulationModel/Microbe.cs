@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Microbe
+[CreateAssetMenu(fileName = "Microbe", menuName="SOs/PopEngine/Microbe")]
+public class Microbe : ScriptableObject
 {
     // Basics for growth equations
-    public string name;
+    public string microbeName;
     public float population;
     public float growthRate;
     public Dictionary<string, float> competitors;
@@ -31,7 +32,7 @@ public class Microbe
                     Dictionary<string, Toxin> initToxins)
     {
         // Basics for growth equation
-        name = initName;
+        microbeName = initName;
         population = initPop;
         growthRate = initGrowthRate;
         competitors = initCompetitors;
@@ -191,7 +192,7 @@ public class Microbe
         // If no competiition coefficients, then the whole thing is 0
         if(competitionCoefficients.Count == 0)
         {
-            competitors.Add(otherMicrobe.name, 0);
+            competitors.Add(otherMicrobe.microbeName, 0);
             return;
         }
 
@@ -206,7 +207,7 @@ public class Microbe
         }
 
         // Add the competition coefficient
-        competitors.Add(otherMicrobe.name, otherMicrobe.population * maxCoefficient);
+        competitors.Add(otherMicrobe.microbeName, otherMicrobe.population * maxCoefficient);
     }
 
     // Calculate net resource usage at every time step
