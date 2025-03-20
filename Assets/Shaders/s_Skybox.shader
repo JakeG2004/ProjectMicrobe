@@ -1,4 +1,4 @@
-Shader "Landon/Sky/Skybox, Rotation, Fog" {
+Shader "Landon/Sky/Skybox Rotation Fog" {
 	Properties {
 		[HideInInspector]_IsStandardPipeline("_IsStandardPipeline", Float) = 1
 		[Gamma]_TintColor("Tint Color", Color) = (0.5,0.5,0.5,1)
