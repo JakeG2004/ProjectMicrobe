@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Edit Environment</title>
+        <!-- Bootstrap CSS -->
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    </head>
+    <body class="d-flex justify-content-center align-items-center vh-100">
+        <div class="container">
+            <form autocomplete="off" method="POST" action="{{ url_for('edit_microbes') }}">
+                <!-- Add Resources -->
+                {% for microbe in microbes %}
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h2 class="card-title">{{ microbe.name }}</h2>
+                            <p>Current Population:</p>
+                            <input type="number" step="0.01" name="{{ microbe }}_population" value="{{ microbe.population }}" class="form-control mb-2">
+                            <p>Growth Rate: {{ microbe.growth_rate }}</p>
+
+                            <h4>Required Resources:</h4>
+                            {% if microbe.required_resources|length %}
+                                {% for res, value in microbe.required_resources.items() %}
+                                    <p>{{ res }}: {{ value }}</p>
+                                {% endfor %}
+                            {% else %}
+                                <p>No Required Resources</p>
+                            {% endif %}
+
+                            <h4>Produced Resources:</h4>
+                            {% if microbe.produced_resources|length %}
+                                {% for res, value in microbe.produced_resources.items() %}
+                                    <p>{{ res }}: {{ value }}</p>
+                                {% endfor %}
+                            {% else %}
+                                <p>No Produced Resources</p>
+                            {% endif %}
+
+                            <h4>Toxins:</h4>
+                            {% if microbe.toxins|length %}
+                                {% for toxin, data in microbe.toxins.items() %}
+                                    <h5>{{ toxin }}:</h5>
+                                    <p>Toxicity: {{ data['toxicity'] }}</p>
+                                    <p>Min Safe Density: {{ data['min_safe_density'] }}</p>
+                                    <p>Max Safe Density: {{ data['max_safe_density'] }}</p>
+                                    <p>Lethal Density: {{ data['lethal_density'] }}</p>
+                                    <hr>
+                                {% endfor %}
+                            {% else %}
+                                <p>No Toxins</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+
+                <!-- Refresh page -->
+                <button type="submit" id="submitResources" class="btn btn-primary" onclick="closeWindow()">Submit</button>
+            </form>
+        </div>
+
+        <!-- Bootstrap JS (Optional for additional functionality like tooltips, etc.) -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="static/openExternalWindow.js"></script>
+    </body>
+</html>

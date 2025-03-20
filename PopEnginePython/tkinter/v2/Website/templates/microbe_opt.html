@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Microbe Options</title>
+        <!-- Bootstrap CSS -->
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    </head>
+    <body class="d-flex justify-content-center align-items-center vh-100">
+        <div class="text-center">
+            <!-- Add Microbe -->
+            <button type="button" id="addMicrobeButton" class="btn btn-primary mb-3" onclick="openNewWindow('/create_microbe')">Add Microbe</button>
+            <br>
+
+            <!-- Show Microbes -->
+            <button type="button" id="viewMicrobesButton" class="btn btn-warning mb-3" onclick="openNewWindow('/edit_microbes')">Edit Microbes</button>
+            <br>
+
+            <!-- Delete Microbes -->
+            <button type="button" id="deleteMicrobesButton" class="btn btn-danger mb-3" onclick="openNewWindow('/delete_microbes')">Delete Microbes</button>
+        </div>
+
+        <!-- Bootstrap JS (Optional for additional functionality like tooltips, etc.) -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="static/openExternalWindow.js"></script>
+    </body>
+</html>

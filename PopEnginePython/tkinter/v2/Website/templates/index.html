@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Population Engine</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <style>
+            #graphCanvas {
+                display: block;
+                margin: auto;
+            }
+        </style>
+    </head>
+    <body class="d-flex flex-column align-items-center py-4">
+        <div class="container text-center">
+            <!-- The canvas which will be filled with the graph -->
+            <div class="d-flex justify-content-center">
+                <canvas id="graphCanvas" width="1800" height="500" class="border"></canvas>
+            </div>
+            <br>
+
+            <!-- Buttons -->
+            <div class="my-3">
+                <button type="button" id="nextTimeStepButton" class="btn btn-primary">Next Time Step</button>
+            </div>
+            <div class="my-3">
+                <button type="button" id="ffButton" class="btn btn-primary">Fast Forward</button>
+                <input name="ffAmount" type="number" id="ffAmount" class="form-control d-inline w-auto">
+            </div>
+            <div class="my-3">
+                <button type="button" id="envOptButton" class="btn btn-primary" onclick="openNewWindow('/envOptions')">Environment Options</button>
+            </div>
+            <div class="my-3">
+                <button type="button" id="microbeOptButton" class="btn btn-primary" onclick="openNewWindow('/microbeOptions')">Microbe Options</button>
+            </div>
+            <div class="my-3">
+                <button type="button" id="presetsButton" class="btn btn-primary" onclick="openNewWindow('/presets')">Presets</button>
+            </div>
+            <div class="my-3">
+                <button type="button" id="resetButton" class="btn btn-primary">Reset</button>
+            </div>
+
+            <!-- Loading indicator (optional) -->
+            <div id="loadingIndicator" class="mt-3 text-muted" style="display:none;">Loading...</div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="static/updateGraphImage.js"></script>
+        <script src="static/openExternalWindow.js"></script>
+    </body>
+    <footer class="text-center mt-4">
+        <p>Creator: Jake Gendreau</p>
+        <p><a href="mailto:gend0188@vandals.uidaho.edu">gend0188@vandals.uidaho.edu</a></p>
+    </footer>
+</html>

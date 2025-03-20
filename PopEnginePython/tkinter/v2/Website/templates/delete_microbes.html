@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Delete Microbes</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body class="d-flex align-items-center justify-content-center vh-100 bg-light">
+        <div class="container bg-white p-5 rounded shadow" style="max-width: 500px;">
+            <h2 class="text-center">Delete Microbes</h2>
+            <form autocomplete="off" method="POST" action="{{ url_for('delete_microbes') }}">
+                <div class="mb-3">
+                    {% for microbe in microbes %}
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" name="{{ microbe }}_checkbox" id="{{ microbe }}_checkbox">
+                            <label class="form-check-label" for="{{ microbe }}_checkbox">{{ microbe.name }}</label>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-danger" onclick="closeWindow()">Delete Selected Microbes</button>
+                </div>
+            </form>
+        </div>
+        
+        <script src="static/openExternalWindow.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+</html>

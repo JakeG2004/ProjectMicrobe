@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Add Resource</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body class="d-flex align-items-center justify-content-center vh-100 bg-light">
+        <div class="container bg-white p-5 rounded shadow" style="max-width: 400px;">
+            <h2 class="text-center">Add Resource</h2>
+            <form autocomplete="off" method="POST" action="{{ url_for('add_resource') }}">
+                <div class="mb-3">
+                    <label class="form-label">Resource Name:</label>
+                    <input type="text" class="form-control" name="resourceName">
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary" onclick="closeWindow()">Add Resource</button>
+                </div>
+            </form>
+        </div>
+        
+        <script src="static/openExternalWindow.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+</html>

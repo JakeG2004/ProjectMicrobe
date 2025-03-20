@@ -135,9 +135,9 @@ class Microbe:
         # Add the produced resources, adding to dict if necessary
         for res in self.produced_resources:
             if res in resource_change:
-                resource_change[res] += self.produced_resources[res] * min_k
+                resource_change[res] += self.produced_resources[res] * min(min_k, self.population)
             else:
-                resource_change[res] = self.produced_resources[res] * min_k
+                resource_change[res] = self.produced_resources[res] * min(min_k, self.population)
 
         return resource_change
     
@@ -260,11 +260,38 @@ def graph_info(ax, window_size):
 #
 
 env = Environment(
-    initial_resources={"Oxygen": 10, "Glucose": 0, "Lead": 0},
-    resource_refresh_rate={"Oxygen": 0, "Glucose": 0, "Lead": 0}
+    initial_resources={"Oxygen": 2, "Glucose": 2, "Lead": 1},
+    resource_refresh_rate={"Oxygen": 0, "Glucose": 0, "Lead": 1}
 )
 
-microbes = []
+microbes = [
+    Microbe(
+        name="O2Eater",
+        initial_population=1,
+        growth_rate=1.2,
+        required_resources={"Oxygen": 1},
+        produced_resources={"Glucose": 1},
+        toxins={
+            "Lead": {"toxicity": 1.0, "min_safe_density": 0.0, "max_safe_density": 0.4, "lethal_density": 0.6}
+        }
+    ),
+    Microbe(
+        name="GlucoseEater",
+        initial_population=1,
+        growth_rate=1.2,
+        required_resources={"Glucose": 1},
+        produced_resources={"Oxygen": 1},
+        toxins={}
+    ),
+    Microbe(
+        name="LeadEater",
+        initial_population=1,
+        growth_rate=1.2,
+        required_resources={"Lead": 1},
+        produced_resources={},
+        toxins={}
+    ),
+]
 
 #
 # --- SIMULATION ---
@@ -636,6 +663,59 @@ def remove_microbe_popup():
     # Update the gui on open
     update_remove_microbe_gui()
 
+def edit_microbes_popup():
+    # Create window
+    popup = tk.Toplevel(root)
+    popup.geometry("400x600")
+    popup.title("Edit Microbe Populations")
+
+    # Create canvas and scrollbar
+    canvas = tk.Canvas(popup)
+    scrollbar = ttk.Scrollbar(popup, orient="vertical", command=canvas.yview)
+    scrollable_frame = ttk.Frame(canvas)
+
+    # configure the canvas
+    canvas.configure(yscrollcommand=scrollbar.set)
+    canvas.pack(side="left", fill="both", expand=True)
+    scrollbar.pack(side="right", fill="y")
+
+    # add scrollable frame to canvas
+    canvas.create_window((0, 0), window=scrollable_frame, anchor="nw")
+    scrollable_frame.bind(
+        "<Configure>",
+        lambda e: canvas.configure(scrollregion=canvas.bbox("all"))
+    )
+
+    def update_microbe_pops_GUI():
+        for microbe in microbes:
+            microbe.population = float(amount_entries[microbe].get().strip())
+        popup.destroy()
+
+    amount_entries = {}
+
+    for microbe in microbes:
+        # Create frame
+        microbe_frame = ttk.Frame(scrollable_frame)
+        microbe_frame.pack(pady=2)
+
+        # Resource label
+        microbe_label = ttk.Label(microbe_frame, text=f"Microbe: {microbe.name}", font=("Arial", 12, "bold"))
+        microbe_label.grid(row=0, column=0, columnspan=2, sticky="w", padx=10, pady=10)
+
+        # Resource amount
+        amount_label = ttk.Label(microbe_frame, text="Current Population: ", font=("Arial", 12))
+        amount_label.grid(row=1, column=0, sticky="w", padx=10, pady=5)
+
+        # Amount entry
+        amount_entry_field = ttk.Entry(microbe_frame, width = 5)
+        amount_entry_field.insert(0, microbe.population)
+        amount_entry_field.grid(row=1, column=1, padx=5, pady=5)
+        
+        amount_entries[microbe] = amount_entry_field
+    
+    submit_button = ttk.Button(scrollable_frame, text="Submit", command=update_microbe_pops_GUI)
+    submit_button.pack()
+
 def view_environment_popup():
     # Create window
     popup = tk.Toplevel(root)
@@ -833,6 +913,10 @@ def microbes_button_pressed():
     show_microbes_button = tk.Button(form, text="Show microbes", command=show_microbes_popup)
     show_microbes_button.pack()
 
+    # Edit microbe populations
+    edit_microbes_button = tk.Button(form, text="Edit Microbe Populations", command=edit_microbes_popup)
+    edit_microbes_button.pack()
+
 def environment_button_pressed():
     form = tk.Toplevel(root)
     form.geometry("400x300")
@@ -849,6 +933,151 @@ def environment_button_pressed():
     # Add new resource
     add_resource_button = tk.Button(form, text="Add Resource", command=add_resources_popup)
     add_resource_button.pack()
+
+def reset_graph():
+    global current_step
+    current_step = 0
+    plt.cla()
+
+def presets_button_pressed():
+    form = tk.Toplevel(root)
+    form.geometry("400x300")
+    form.title("Presets")
+
+    def basic_symbiosis_button_pressed():
+        global microbes
+        global env
+
+        env = Environment(
+            initial_resources={"Oxygen": 10, "Glucose": 10, "Lead": 0},
+            resource_refresh_rate={"Oxygen": 0, "Glucose": 0, "Lead": 0}
+        )
+
+        microbes = [
+            Microbe(
+                name="OxygenEater",
+                initial_population=1,
+                growth_rate=1.2,
+                required_resources={"Oxygen": 1},
+                produced_resources={"Glucose": 1},
+                toxins={
+                    "Lead": {"toxicity": 1.0, "min_safe_density": 0.0, "max_safe_density": 0.4, "lethal_density": 0.6}
+                }
+            ),
+            Microbe(
+                name="GlucoseEater",
+                initial_population=1,
+                growth_rate=1.2,
+                required_resources={"Glucose": 1},
+                produced_resources={"Oxygen": 1},
+                toxins={}
+            ),
+        ]
+
+        reset_graph()
+        next_time_step_pressed()
+        form.destroy()
+
+    def lead_button_pressed():
+        global microbes
+        global env
+
+        env = Environment(
+            initial_resources={"Oxygen": 10, "Glucose": 10, "Lead": 0},
+            resource_refresh_rate={"Oxygen": 0, "Glucose": 0, "Lead": 1}
+        )
+
+        microbes = [
+            Microbe(
+                name="OxygenEater",
+                initial_population=1,
+                growth_rate=1.2,
+                required_resources={"Oxygen": 1},
+                produced_resources={"Glucose": 1},
+                toxins={
+                    "Lead": {"toxicity": 1.0, "min_safe_density": 0.0, "max_safe_density": 0.4, "lethal_density": 0.6}
+                }
+            ),
+            Microbe(
+                name="GlucoseEater",
+                initial_population=1,
+                growth_rate=1.2,
+                required_resources={"Glucose": 1},
+                produced_resources={"Oxygen": 1},
+                toxins={}
+            ),
+        ]
+
+        reset_graph()
+        next_time_step_pressed()
+        form.destroy()
+
+    def stable_with_lead_button_pressed():
+        global microbes
+        global env
+
+        env = Environment(
+            initial_resources={"Oxygen": 10, "Glucose": 10, "Lead": 1},
+            resource_refresh_rate={"Oxygen": 0, "Glucose": 0, "Lead": 1}
+        )
+
+        microbes = [
+            Microbe(
+                name="O2Eater",
+                initial_population=1,
+                growth_rate=1.2,
+                required_resources={"Oxygen": 1},
+                produced_resources={"Glucose": 1},
+                toxins={
+                    "Lead": {"toxicity": 1.0, "min_safe_density": 0.0, "max_safe_density": 0.4, "lethal_density": 0.6}
+                }
+            ),
+            Microbe(
+                name="GlucoseEater",
+                initial_population=1,
+                growth_rate=1.2,
+                required_resources={"Glucose": 1},
+                produced_resources={"Oxygen": 1},
+                toxins={}
+            ),
+            Microbe(
+                name="LeadEater",
+                initial_population=1,
+                growth_rate=1.2,
+                required_resources={"Lead": 1},
+                produced_resources={},
+                toxins={}
+            ),
+        ]
+
+        reset_graph()
+        next_time_step_pressed()
+        form.destroy()
+
+    # View environment stats
+    basic_symbiosis_button = tk.Button(form, text="Basic Symbiosis", command=basic_symbiosis_button_pressed)
+    basic_symbiosis_button.pack()
+
+    # Edit environment resources
+    lead_button = tk.Button(form, text="Unstable Symbiosis With Lead", command=lead_button_pressed)
+    lead_button.pack()
+
+    # Add new resource
+    stable_with_lead_button = tk.Button(form, text="Stable Symbiosis With Lead", command=stable_with_lead_button_pressed)
+    stable_with_lead_button.pack()
+
+def reset_pressed():
+    global microbes
+    global env
+
+    microbes = []
+    env = Environment(
+        initial_resources={},
+        resource_refresh_rate={}
+    )
+
+    reset_graph()
+    graph_info(ax, window_size)
 
 # Set how long the simulation will run for
 window_size = 3
@@ -887,6 +1116,14 @@ microbe_button.pack()
 # Environment
 environment_button = tk.Button(root, text="Environment Options", command=environment_button_pressed)
 environment_button.pack()
+
+# Presets
+presets_button = tk.Button(root, text="Presets", command=presets_button_pressed)
+presets_button.pack()
+
+# Reset
+reset_button = tk.Button(root, text="Reset", command=reset_pressed)
+reset_button.pack()
 
 # Quit button
 quit_button = tk.Button(root, text="Quit", command=quit_pressed)
