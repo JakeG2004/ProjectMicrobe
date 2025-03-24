@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-[CreateAssetMenu(fileName = "Microbe", menuName="SOs/PopEngine/Microbe")]
-public class Microbe : ScriptableObject
+public class Microbe
 {
     // Basics for growth equations
     public string microbeName;

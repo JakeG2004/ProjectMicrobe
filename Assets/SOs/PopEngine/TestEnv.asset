@@ -9,22 +9,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e21f121e1a197558691ed0c71a796a54, type: 3}
-  m_Name: OxygenEater
+  m_Script: {fileID: 11500000, guid: 80250b2c40646c109b295bcf5a928e3d, type: 3}
+  m_Name: TestEnv
   m_EditorClassIdentifier: 
-  microbeName: OxygenEater
-  population: 1
-  growthRate: 1.2
-  requiredResources:
+  initialResources:
   - resourceName: Oxygen
-    amount: 1
-  producedResources:
+    amount: 10
   - resourceName: Glucose
+    amount: 10
+  - resourceName: Lead
     amount: 1
-  toxins:
-  - toxinName: Lead
-    toxin:
-      toxicity: 1
-      minSafeDensity: 0
-      maxSafeDensity: 0.4
-      lethalDensity: 0.6
+  resourceRefresh:
+  - resourceName: Lead
+    amount: 1
+  - resourceName: Oxygen
+    amount: 0
+  - resourceName: Glucose
+    amount: 0

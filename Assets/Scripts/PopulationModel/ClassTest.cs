@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class ClassTest : MonoBehaviour
 {
+    public EnvironmentSO envSO;
     public Environment env;
+
+    public List<MicrobeSO> microbeSOs = new List<MicrobeSO>();
     public List<Microbe> microbes = new List<Microbe>();
 
     public int currentStep = 0;
@@ -14,69 +17,24 @@ public class ClassTest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Dictionary<string, float> initialResources = new Dictionary<string, float>
-        {
-            {"Oxygen", 10},
-            {"Glucose", 10},
-            {"Lead", 1}
-        };
+        Dictionary<string, float> initialResources = ResourceConverter.ConvertToDictionary(envSO.initialResources);
 
-        Dictionary<string, float> resourceRefresh = new Dictionary<string, float>
-        {
-            {"Oxygen", 0},
-            {"Glucose", 0},
-            {"Lead", 1}
-        };
+        Dictionary<string, float> resourceRefresh = ResourceConverter.ConvertToDictionary(envSO.resourceRefresh);
 
         env = new Environment(initialResources, resourceRefresh);
 
-        microbes.Add(new Microbe(
-            initName:"OxygenEater",
-            initPop:2.0f,
-            initGrowthRate:1.2f,
-            initCompetitors:new Dictionary<string, float>(),
-            initRequiredResources:new Dictionary<string, float>
-            {
-                {"Oxygen", 1}
-            },
-            initProducedResources:new Dictionary<string, float>
-            {
-                {"Glucose", 1}
-            },
-            initToxins:new Dictionary<string, Toxin>
-            {
-                {"Lead", new Toxin(1.0f, 0.0f, 0.4f, 0.6f)}
-            }
-        ));
-
-        microbes.Add(new Microbe(
-            initName:"GlucoseEater",
-            initPop:2.0f,
-            initGrowthRate:1.2f,
-            initCompetitors:new Dictionary<string, float>(),
-            initRequiredResources:new Dictionary<string, float>
-            {
-                {"Glucose", 1}
-            },
-            initProducedResources:new Dictionary<string, float>
-            {
-                {"Oxygen", 1}
-            },
-            initToxins:new Dictionary<string, Toxin>()
-        ));
-
-        microbes.Add(new Microbe(
-            initName:"LeadEater",
-            initPop:1.0f,
-            initGrowthRate:1.2f,
-            initCompetitors:new Dictionary<string, float>(),
-            initRequiredResources:new Dictionary<string, float>
-            {
-                {"Lead", 1}
-            },
-            initProducedResources:new Dictionary<string, float>(),
-            initToxins:new Dictionary<string, Toxin>()
-        ));
+        foreach(var microbeSO in microbeSOs)
+        {
+            microbes.Add(new Microbe(
+                initName:microbeSO.microbeName,
+                initPop:microbeSO.population,
+                initGrowthRate:microbeSO.growthRate,
+                initCompetitors:new Dictionary<string, float>(),
+                initRequiredResources:ResourceConverter.ConvertToDictionary(microbeSO.requiredResources),
+                initProducedResources:ResourceConverter.ConvertToDictionary(microbeSO.producedResources),
+                initToxins:ToxinConverter.ConvertToDictionary(microbeSO.toxins)
+            ));
+        }
     }
 
     // Update is called once per frame
