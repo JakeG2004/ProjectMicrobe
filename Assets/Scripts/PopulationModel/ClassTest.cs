@@ -122,4 +122,25 @@ public class ClassTest : MonoBehaviour
 
         currentStep++;
     }
+
+    public void AddMicrobe(Microbe newMicrobe)
+    {
+        microbes.Add(newMicrobe);
+    }
+
+    public void GetMicrobePopulation(string microbeNameQuery)
+    {
+        // Go through each microbe
+        foreach(var microbe in microbes)
+        {
+            // If its found, return its population
+            if(microbe.microbeName == microbeNameQuery)
+            {
+                return microbe.population;
+            }
+
+            // Otherwise, return -1
+            return -1;
+        }
+    }
 }
