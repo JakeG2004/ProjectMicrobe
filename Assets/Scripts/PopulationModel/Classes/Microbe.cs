@@ -76,7 +76,7 @@ public class Microbe
         }
 
         // Compute growth
-        float growth = growthRate * population * (1 - (competitionEffect / minK));
+        float growth = growthRate * population * (1 - (competitionEffect) / minK);//(1 - (competitionEffect / minK));
 
         // Prevent overshooting into negative population
         if(growth > -1 * population)

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ClassTest : MonoBehaviour
+public class MicrobePopSim : MonoBehaviour
 {
     public EnvironmentSO envSO;
     public Environment env;
@@ -12,16 +12,31 @@ public class ClassTest : MonoBehaviour
 
     public int currentStep = 0;
 
-    public KeyCode advanceTime = KeyCode.Space;
-
     // Start is called before the first frame update
     void Start()
     {
-        Dictionary<string, float> initialResources = ResourceConverter.ConvertToDictionary(envSO.initialResources);
+        // Set up envirocnment
+        if(!envSO)
+        {
+            Debug.LogWarning("No environment SO!");
+            env = new Environment(new Dictionary<string, float>(), new Dictionary<string, float>());
+        }
 
-        Dictionary<string, float> resourceRefresh = ResourceConverter.ConvertToDictionary(envSO.resourceRefresh);
+        else
+        {
+            // We do this because Unity has no native serialization for dictionaries??? bizarre
+            Dictionary<string, float> initialResources = ResourceConverter.ConvertToDictionary(envSO.initialResources);
 
-        env = new Environment(initialResources, resourceRefresh);
+            Dictionary<string, float> resourceRefresh = ResourceConverter.ConvertToDictionary(envSO.resourceRefresh);
+
+            env = new Environment(initialResources, resourceRefresh);
+        }
+
+        // Convert each microbeSO into a new microbe in the simulation
+        if(microbeSOs.Count == 0)
+        {
+            Debug.LogWarning("No microbe SOs!");
+        }
 
         foreach(var microbeSO in microbeSOs)
         {
@@ -37,16 +52,7 @@ public class ClassTest : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(Input.GetKeyDown(advanceTime))
-        {
-            AdvanceSimulation();
-        }
-    }
-
-    void AdvanceSimulation()
+    public void AdvanceSimulation()
     {
         // Early return when no resources
         if(env.resources.Count == 0)
@@ -123,12 +129,39 @@ public class ClassTest : MonoBehaviour
         currentStep++;
     }
 
+    public void FastForward(int n)
+    {
+        for(int i = 0; i < n; i++)
+        {
+            AdvanceSimulation();
+        }
+    }
+
     public void AddMicrobe(Microbe newMicrobe)
     {
+        foreach(var microbe in microbes)
+        {
+            if(microbe.microbeName == newMicrobe.microbeName)
+            {
+                return;
+            }
+        }
         microbes.Add(newMicrobe);
     }
 
-    public void GetMicrobePopulation(string microbeNameQuery)
+    public void RemoveMicrobe(string name)
+    {
+        foreach(var microbe in microbes)
+        {
+            if(microbe.microbeName == name)
+            {
+                microbes.Remove(microbe);
+                return;
+            }
+        }
+    }
+
+    public float GetMicrobePopulation(string microbeNameQuery)
     {
         // Go through each microbe
         foreach(var microbe in microbes)
@@ -138,9 +171,9 @@ public class ClassTest : MonoBehaviour
             {
                 return microbe.population;
             }
-
-            // Otherwise, return -1
-            return -1;
         }
+
+        // Otherwise, return -1
+        return -1.0f;
     }
 }
