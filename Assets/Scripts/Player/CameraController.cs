@@ -31,7 +31,11 @@ public class CameraController : MonoBehaviour {
 	void Awake() {
 		cam = Camera.main? Camera.main.transform : transform;
 		GM.cam = cam;
-		lookPos = character.position + Vector3.up * lookPosYOffest;
+		
+		if(character)
+		{
+			lookPos = character.position + Vector3.up * lookPosYOffest;
+		}
 		filter = GetComponent<AudioLowPassFilter>();
 	}
 	void Start() {

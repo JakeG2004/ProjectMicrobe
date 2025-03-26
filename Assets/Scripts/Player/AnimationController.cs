@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class AnimationController : MonoBehaviour {
 
-    Animator ac;
-    InputController ic;
+    public Animator ac;
+    public InputController ic;
 
     void Start() {
         ac = GetComponent<Animator>();
