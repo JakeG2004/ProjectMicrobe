@@ -7,6 +7,8 @@ public class CosmeticContainer : MonoBehaviour
     public static CosmeticContainer Instance { get; private set; }
 
     [SerializeField] private GameObject[] _hairStyles;
+    [SerializeField] private GameObject[] _topStyles;
+    [SerializeField] private GameObject[] _bottomStyles;
 
     private void Awake()
     {
@@ -23,5 +25,15 @@ public class CosmeticContainer : MonoBehaviour
     public GameObject[] GetHairStyles()
     {
         return _hairStyles;
+    }
+
+    public GameObject[] GetTopStyles()
+    {
+        return _topStyles;
+    }
+
+    public GameObject[] GetBottomStyles()
+    {
+        return _bottomStyles;
     }
 }
