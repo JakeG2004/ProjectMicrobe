@@ -9,6 +9,7 @@ public class CosmeticContainer : MonoBehaviour
     [SerializeField] private GameObject[] _hairStyles;
     [SerializeField] private GameObject[] _topStyles;
     [SerializeField] private GameObject[] _bottomStyles;
+    [SerializeField] private GameObject[] _glassesStyles;
 
     private void Awake()
     {
@@ -35,5 +36,10 @@ public class CosmeticContainer : MonoBehaviour
     public GameObject[] GetBottomStyles()
     {
         return _bottomStyles;
+    }
+
+    public GameObject[] GetGlassesStyles()
+    {
+        return _glassesStyles;
     }
 }
