@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CosmeticController : MonoBehaviour
 {
-    public enum CosmeticType { Hair, Top, Bottom, Glasses, Other }
+    public enum CosmeticType { Hair, Top, Bottom, Glasses, Eyebrows, Other }
 
     [SerializeField] private CosmeticType _selectedCosmeticType;
     [SerializeField] private GameObject[] _cosmeticOptions;
@@ -28,6 +28,9 @@ public class CosmeticController : MonoBehaviour
                 break;
             case CosmeticType.Glasses:
                 _cosmeticOptions = CosmeticContainer.Instance.GetGlassesStyles();
+                break;
+            case CosmeticType.Eyebrows:
+                _cosmeticOptions = CosmeticContainer.Instance.GetEyebrowStyles();
                 break;
             default:
                 Debug.LogWarning("Invalid cosmetic type selected in Inspector");
