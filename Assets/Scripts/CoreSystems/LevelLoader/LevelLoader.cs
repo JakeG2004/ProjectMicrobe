@@ -42,4 +42,25 @@ public class LevelLoader : MonoBehaviour
         SaveSystem.Instance.LoadState();
         Debug.Log("Save state loaded after delay.");
     }
+
+    public void LoadLevel(string levelName)
+    {
+        SaveSystem.Instance.SaveState();
+        SceneManager.LoadScene(levelName);
+    }
+
+    public void LoadLevelNoSave(string levelName)
+    {
+        SceneManager.LoadScene(levelName);
+    }
+
+    public void ReloadLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }

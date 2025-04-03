@@ -22,6 +22,10 @@ public class MovementController : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
         cam = GM.cam;
 		ic = GM.playerInput;
+
+        // Lock cursor to center of screen and make it invisible
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     void FixedUpdate() {
