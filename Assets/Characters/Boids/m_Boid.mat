@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: m_BoidMat
-  m_Shader: {fileID: 4800000, guid: 234209813d3f2254b8c2019a84434ee0, type: 3}
+  m_Name: m_Boid
+  m_Shader: {fileID: 4800000, guid: db16366f94398044c9c2d8d570e875b7, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -44,7 +44,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 4e934ae0a5ebf8848bef12e58c01524d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -61,6 +61,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _Ramp:
         m_Texture: {fileID: 2800000, guid: 0a87bc70ac32f4d4491d368bc999e9db, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _WindMask:
+        m_Texture: {fileID: 2800000, guid: 9b356b6c11f9c094e8260a116e0e37e3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
@@ -80,8 +84,16 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
+    - _WindSpeed: 10
+    - _WindStrength: 0.12
     - _ZWrite: 1
+    - __dummy__: 0
     m_Colors:
-    - _Color: {r: 0.5309972, g: 0.23973587, b: 0.23973587, a: 1}
+    - _Color: {r: 1, g: 0.45802438, b: 0.047169685, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _TintA: {r: 1, g: 0.5459853, b: 0.047169685, a: 1}
+    - _TintB: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _TintG: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _TintR: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _WindDirection: {r: 0.5, g: 1, b: 0.5, a: 0}
   m_BuildTextureStacks: []

@@ -3,6 +3,8 @@
 public class NPCMoveController : MonoBehaviour {
 
 	[SerializeField] LayerMask collisionMask;
+	[SerializeField] float wanderRadius = 10f; // sphere bounds around start position
+	[SerializeField] bool randomIdleAction = true;
 
 	Rigidbody rb;
 	Animator anim;
@@ -14,12 +16,14 @@ public class NPCMoveController : MonoBehaviour {
 	Vector3 realVelocity; // used by animation
 	Vector3 moveDirection;
 	float attentionSpan = 0; // How long the NPC is interested in walking a direction or looking at a thing
+	Vector3 homePos;
 
 
 	void Start() {
 		rb = GetComponent<Rigidbody>();
 		anim = GetComponent<Animator>();
 		currentPosition = transform.position;
+		homePos = currentPosition;
 	}
 	void FixedUpdate() {
 		Wander();
@@ -34,7 +38,7 @@ public class NPCMoveController : MonoBehaviour {
 			moveDirection = RandomDirectionOnYAxis();
 			// don't idle twice in a row. if moving, coin flip to idle or change move direction (true if false before OR rolled true)
 			move = !move || Random.value >= 0.5f;
-			if (!move) RandomiseIdleAction();
+			if (!move && randomIdleAction) RandomiseIdleAction();
 		}
 		else if (move) {
 			Move(false, 6);
@@ -53,7 +57,16 @@ public class NPCMoveController : MonoBehaviour {
 	void Move(bool turn, int maxAttempts) {
 		if (maxAttempts <= 0) {
 			// Debug.Log(name + " didn't find a move.");
-			rb.velocity = new Vector3(0f, rb.velocity.y, 0f);
+
+			// don't move
+			// rb.velocity = new Vector3(0f, rb.velocity.y, 0f);
+
+			// try to move toward home
+			Vector3 dirToHome = (homePos - transform.position).normalized;
+			//Vector3 targetVelocity = moveSpeed * dirToHome;
+			currentVelocity = Vector3.Lerp(currentVelocity, moveSpeed * dirToHome, acceleration * Time.fixedDeltaTime);
+			rb.velocity = new Vector3(currentVelocity.x, rb.velocity.y, currentVelocity.z);
+			
 			return;
 		}
 		if (turn) {
@@ -68,7 +81,12 @@ public class NPCMoveController : MonoBehaviour {
 		bool obstacle = false;
 		Vector3 checkSphereStart = transform.position + Vector3.up * 0.45f;
 
-		if (Physics.CheckSphere(checkSphereStart + moveDirection, 0.3f, ~collisionMask, QueryTriggerInteraction.Ignore)) {
+		// check if in bounds
+		if (Vector3.Distance(checkSphereStart + moveDirection, homePos) > wanderRadius) {
+			obstacle = true;
+		}
+		// check for collision
+		else if (Physics.CheckSphere(checkSphereStart + moveDirection, 0.3f, ~collisionMask, QueryTriggerInteraction.Ignore)) {
 			//// Later maybe search for player or other npcs and respond to them differently from other obstacles?
 			obstacle = true;
 		}
@@ -109,7 +127,7 @@ public class NPCMoveController : MonoBehaviour {
 		int index = Random.Range(0, 7);
 		anim.SetFloat("Idle", (float)index);
 	}
-	/*
+	
 	void OnDrawGizmos() {
 		// visual of checksphere
 		Gizmos.color = Color.red;
@@ -118,6 +136,10 @@ public class NPCMoveController : MonoBehaviour {
 		float up = 0.45f;
 		Vector3 Pos = transform.position + transform.forward * forward + transform.up * up;
 		Gizmos.DrawSphere(Pos, radius);
+
+		// draw bounds
+		Gizmos.color = Color.green;
+		Gizmos.DrawWireSphere(homePos, wanderRadius);
 	}
-	*/
+	
 }

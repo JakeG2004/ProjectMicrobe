@@ -1,11 +1,10 @@
 using UnityEngine;
 
-/*
- Boidy - Manages the spawning and movement of boids.
+/* Boidy - Manages the spawning and movement of boids.
  
  Spawning:
  - Spawns a set number of boids randomly within a squashed spherical area.
- - Applies random scale variations that affect movement speed.
+ - Applies random scale, speed, and material variations.
 
  Movement:
  - Boids move forward at a constant speed.
@@ -15,8 +14,7 @@ using UnityEngine;
    3) Obstacle Avoidance - Avoid obstacles within a set radius.
    4) Spawner Attraction - Prevent boids from straying too far.
  - Turn rate is limited.
- - Movement is handled via Transform (no physics).
-*/
+ - Movement is handled via Transform (no physics). */
 
 public class Boidy : MonoBehaviour {
     [SerializeField] GameObject boidPrefab;         // Boid object
@@ -25,8 +23,8 @@ public class Boidy : MonoBehaviour {
     [SerializeField] float spawnRadius = 15f;       // Radius around the spawner where boids try to stay
 
     readonly float spawnVerticalStretch = 0.3f;     // Flatten spawn area into a spheroid (height / width)
-    readonly float turnSpeed = 180f;                // Rotation speed (degrees per second)
-    readonly float neighborDistanceGoal = 3f;  // Ideal distance between neighbors
+    readonly float turnSpeed = 360f;                // Rotation speed (degrees per second)
+    readonly float neighborDistanceGoal = 3f;		// Ideal distance between neighbors
     readonly float obstacleAvoidanceRadius = 8f;    // Range at which boids start avoiding obstacles
     readonly float neighborCheckTime = 0.2f;        // Time interval for updating nearest neighbors
 
@@ -36,8 +34,6 @@ public class Boidy : MonoBehaviour {
     Transform[] neighbors;                          // The nearest neighbor of each boid
     float[] neighborDistances;                      // Distance between each boid and it's neighbor
     float[] moveSpeeds;                             // Movement speed of each boid
-
-    Vector3 tempAVG = Vector3.zero;
 
     void Start() {
         boids = new Transform[boidCount];
@@ -60,16 +56,32 @@ public class Boidy : MonoBehaviour {
 
             GameObject boid = Instantiate(boidPrefab, spawnPosition, Quaternion.identity);
 
-            // Apply random scale variance (smaller boids move faster)
-            float scale = Random.Range(0.5f, 1.5f);
+			// Apply random scale, speed, and material variance
+			float scale = Random.Range(0.5f, 1.5f);
             boid.transform.localScale = Vector3.one * scale;
-            moveSpeeds[i] = 4f/scale;
+            moveSpeeds[i] = Random.Range(4f, 10f);
+			RandomizeMaterialValues(boid);
 
-            boids[i] = boid.transform;
+			boids[i] = boid.transform;
         }
     }
 
-    void FindNearestBoids() {
+	void RandomizeMaterialValues(GameObject obj) {
+		Material mat = obj.GetComponent<Renderer>().material;
+		mat.SetColor("_TintR", ColorMuddy());
+		mat.SetColor("_TintG", ColorMuddy());
+		mat.SetColor("_TintB", ColorMuddy());
+		mat.SetColor("_TintA", ColorWarmBright());
+	}
+	Color ColorMuddy() {
+		return new Color(Random.value, Random.value, Random.value);
+	}
+	Color ColorWarmBright() {
+		return Random.ColorHSV(0.01f, 0.2f, 0.7f, 1f, 1f, 1f);
+	}
+
+
+	void FindNearestBoids() {
         timer += Time.deltaTime;
         if (timer < neighborCheckTime) return;
 
@@ -94,7 +106,6 @@ public class Boidy : MonoBehaviour {
     void MoveBoids() {
         float turn = turnSpeed * Time.deltaTime;
         randomOffset = OscillatingNoise(0.2f);
-        // Debug.DrawRay(transform.position, randomOffset, Color.yellow);
 
         for (int i = 0; i < boidCount; i++) {
             Transform boid = boids[i];
@@ -162,12 +173,3 @@ public class Boidy : MonoBehaviour {
     }
     */
 }
-
-
-/* BACKUP 
-// Nice random look, but not centered on 0
-Vector3 PerlinNoise(float scrollSpeed) {
-    float t = Time.time * scrollSpeed;
-    return new Vector3(Mathf.PerlinNoise(t, 0f) - 0.5f, Mathf.PerlinNoise(0f, t) - 0.5f, Mathf.PerlinNoise(t, t) - 0.5f);
-}
-*/
