@@ -7,7 +7,7 @@
 // Permission is granted to use, copy, modify, distribute, and sell this software  
 // with attribution. Provided "as is" without warranty of any kind.
 
-
+/*
 
 using UnityEngine;
 using UnityEditor;
@@ -76,4 +76,4 @@ public class UpdateSkinnedMeshWindow : EditorWindow {
 		EditorStyles.label.wordWrap = true;
 		GUILayout.Label(statusContent);
 	}
-}
+}*/
