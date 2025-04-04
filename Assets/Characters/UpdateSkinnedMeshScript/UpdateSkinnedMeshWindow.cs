@@ -9,8 +9,6 @@
 
 
 
-
-/*
 using UnityEngine;
 using UnityEditor;
 public class UpdateSkinnedMeshWindow : EditorWindow {
@@ -79,5 +77,3 @@ public class UpdateSkinnedMeshWindow : EditorWindow {
 		GUILayout.Label(statusContent);
 	}
 }
-
-*/
