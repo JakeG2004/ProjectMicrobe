@@ -118,6 +118,11 @@ public class SaveSystem : MonoBehaviour
         }
     }
 
+    public void SetName(string name)
+    {
+        _currentState.name = name;
+    }
+
     private List<CosmeticEntry> GetCosmetics()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");

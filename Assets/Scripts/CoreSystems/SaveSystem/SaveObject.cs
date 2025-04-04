@@ -5,6 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class SaveObject
 {
+    public string name;
     public List<CosmeticEntry> playerCosmetics = new List<CosmeticEntry>();
 }
 
