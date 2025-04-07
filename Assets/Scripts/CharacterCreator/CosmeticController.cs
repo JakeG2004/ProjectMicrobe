@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CosmeticController : MonoBehaviour
 {
@@ -6,10 +7,20 @@ public class CosmeticController : MonoBehaviour
 
     [SerializeField] private CosmeticType _selectedCosmeticType;
     [SerializeField] private GameObject[] _cosmeticOptions;
+    [SerializeField] private bool _includeNone = false;
+    private Slider _slider;
 
     void Start()
     {
         LoadCosmeticOptions();
+
+        _slider = GetComponent<Slider>();
+        if(!_slider)
+        {
+            Debug.Log("Failed to get slider!");
+        }
+
+        _slider.maxValue = _includeNone ? _cosmeticOptions.Length : _cosmeticOptions.Length - 1;
         UpdateCosmetic(0);
     }
 

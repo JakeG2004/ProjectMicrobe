@@ -7,7 +7,7 @@
 // Permission is granted to use, copy, modify, distribute, and sell this software  
 // with attribution. Provided "as is" without warranty of any kind.
 
-/*
+
 
 using UnityEngine;
 using UnityEditor;
@@ -54,20 +54,20 @@ public class UpdateSkinnedMeshWindow : EditorWindow {
 				foreach (var newBone in existingBones) {
 					if (newBone.name == rootName) newRoot = newBone;
 					if (newBone.name == boneName) {
-						statusText += System.Environment.NewLine + "· " + newBone.name + " found!";
+						statusText += System.Environment.NewLine + "ï¿½ " + newBone.name + " found!";
 						newBones[i] = newBone;
 						found = true;
 					}
 				}
 				if (!found) {
-					statusText += System.Environment.NewLine + "· " + boneName + " missing!";
+					statusText += System.Environment.NewLine + "ï¿½ " + boneName + " missing!";
 					missingBones++;
 				}
 			}
 			targetSkin.bones = newBones;
 			statusText += System.Environment.NewLine + "Done! Missing bones: " + missingBones;
 			if (newRoot != null) {
-				statusText += System.Environment.NewLine + "· Setting " + rootName + " as root bone.";
+				statusText += System.Environment.NewLine + "ï¿½ Setting " + rootName + " as root bone.";
 				targetSkin.rootBone = newRoot;
 			}
 		}
@@ -76,4 +76,4 @@ public class UpdateSkinnedMeshWindow : EditorWindow {
 		EditorStyles.label.wordWrap = true;
 		GUILayout.Label(statusContent);
 	}
-}*/
+}

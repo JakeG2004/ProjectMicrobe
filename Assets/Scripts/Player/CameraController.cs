@@ -31,6 +31,11 @@ public class CameraController : MonoBehaviour {
 	void Awake() {
 		cam = Camera.main? Camera.main.transform : transform;
 		GM.cam = cam;
+
+		if(!character)
+		{
+			character = GameObject.FindGameObjectWithTag("Player").transform;
+		}
 		
 		if(character)
 		{
@@ -43,7 +48,11 @@ public class CameraController : MonoBehaviour {
 	}
 
 	void Update() {
-		if (character == null) return;
+		if (character == null || !ic)
+		{
+			return;
+		}
+
 		SetLookPos();
 		Zoom();
 		RotateCameraDirection();
