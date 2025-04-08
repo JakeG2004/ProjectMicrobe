@@ -7,7 +7,10 @@ public class Sun : MonoBehaviour {
     float rotation = 0f;
 
     void Start() {
-        cam = GM.cam;
+		if(GM.cam)
+			cam = GM.cam;
+		else
+			cam = Camera.main.transform;
     }
 
     void FixedUpdate() {

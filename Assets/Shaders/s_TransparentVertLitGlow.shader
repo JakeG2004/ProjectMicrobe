@@ -10,6 +10,8 @@ Shader "Landon/Transparent/VertexLitGlow" {
 			Tags {"Queue" = "Transparent" "IgnoreProjector" = "True" "RenderType" = "Transparent"}
 			LOD 100
 
+			Cull Off
+
 			Alphatest Greater 0
 			ZWrite Off
 			Blend SrcAlpha OneMinusSrcAlpha
