@@ -1,27 +1,26 @@
-using System.Collections;
+/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TopController : MonoBehaviour
+public class BottomController : MonoBehaviour
 {
-    private enum TopType
+    private enum BottomType
     {
-        Shirt,
-        ShirtAndJacket,
-        ShirtAndLabCoat
+        Shorts,
+        Pants
     }
 
     private Toggle _tg;
 
-    [SerializeField] TopType _topType = TopType.Shirt;
-    [SerializeField] private GameObject _shirt;
-    [SerializeField] private GameObject _jacket;
-    [SerializeField] private GameObject _coat;
-    [SerializeField] private Color _hairAccessoryColor;
-    [SerializeField] private ColorTuple _shirtColors;
-    [SerializeField] private ColorTuple _jacketColors;
-    [SerializeField] private ColorTuple _coatColors;
+    [SerializeField] BottomType _bottomType = BottomType.Pants;
+    [SerializeField] private GameObject _shorts;
+    [SerializeField] private GameObject _pants;
+    [SerializeField] private GameObject _shoes;
+
+    [SerializeField] private ColorTuple _shortsColors;
+    [SerializeField] private ColorTuple _pantsColors;
+    [SerializeField] private ColorTuple _shoeColors;
 
     // Start is called before the first frame update
     void Start()
@@ -55,28 +54,24 @@ public class TopController : MonoBehaviour
     {
         if (isOn)
         {
-            CosmeticContainer.Instance.DistableAllTops();
+            CosmeticContainer.Instance.DistableAllBottoms();
             AssignColors();
         }
     }
 
     public void AssignColors()
     {
-        AssignHairAccessoryColor();
+        //AssignShoeColor();
 
         switch(_topType)
         {
-            case TopType.Shirt:
-                AssignShirtColors();
+            case BottomType.Shorts:
+                //AssignShirtColors();
                 _shirt.SetActive(true);
                 break;
-            case TopType.ShirtAndJacket:
-                AssignJacketColors();
+            case TopType.Pants:
+                //AssignPantsColors();
                 _jacket.SetActive(true);
-                break;
-            case TopType.ShirtAndLabCoat:
-                AssignLabCoatColors();
-                _coat.SetActive(true);
                 break;
         }
     }
@@ -140,12 +135,4 @@ public class TopController : MonoBehaviour
             }
         }
     }
-}
-
-[System.Serializable]
-public class ColorTuple
-{
-    [SerializeField] public Color r;
-    [SerializeField] public Color g;
-    [SerializeField] public Color b;
-}
+}*/

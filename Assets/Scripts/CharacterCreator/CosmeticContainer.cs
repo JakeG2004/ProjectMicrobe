@@ -55,4 +55,20 @@ public class CosmeticContainer : MonoBehaviour
     {
         return _skinObjs;
     }
+
+    public void DistableAllTops()
+    {
+        foreach(var top in _topStyles)
+        {
+            top.SetActive(false);
+        }
+    }
+
+    public void DisableAllBottoms()
+    {
+        foreach(var bottom in _bottomStyles)
+        {
+            bottom.SetActive(false);
+        }
+    }
 }
