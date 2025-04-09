@@ -11,7 +11,10 @@ public class HairColorController : MonoBehaviour
     private GameObject[] _hairStyles;
     private GameObject[] _eyebrowStyles;
 
+    [Tooltip("R - Primary\nG - Secondary\nB - Highlight")]
     [SerializeField] private ColorTuple _hairColor;
+
+    [SerializeField] private bool _isPrimary;
 
     void Start()
     {
@@ -44,7 +47,11 @@ public class HairColorController : MonoBehaviour
         if (isOn)
         {
             AssignHairColors();
-            AssignEyebrowColors();
+
+            if(_isPrimary)
+            {
+                AssignEyebrowColors();
+            }
         }
     }
 
@@ -54,10 +61,17 @@ public class HairColorController : MonoBehaviour
         {
             Renderer renderer = hair.GetComponent<Renderer>();
             Material mat = renderer.material;
-            mat.SetColor("_TintR", _hairColor.r);
-            mat.SetColor("_TintG", _hairColor.g);
+            if(_isPrimary)
+            {
+                mat.SetColor("_TintR", _hairColor.r);
+                // Set highlight color to hair color b
+                mat.SetColor("_HighlightColor", _hairColor.b);
+            }
 
-            // _TintB is the accessory, which is handled by the topcontroller
+            else
+            {
+                mat.SetColor("_TintG", _hairColor.g);
+            }
         }
     }
 
@@ -72,6 +86,7 @@ public class HairColorController : MonoBehaviour
                 {
                     mat.SetColor("_TintR", _hairColor.r);
                     mat.SetColor("_TintG", _hairColor.g);
+                    mat.SetColor("_HighlightColor", _hairColor.b);
                 }
 
                 if (mat.name.Contains("m_Ari_Mustache"))

@@ -133,7 +133,6 @@ public class TopController : MonoBehaviour
 
             if(mat.name.Contains("m_Ari_ClothLabCoat"))
             {
-                Debug.Log("Test");
                 mat.SetColor("_TintR", _coatColors.r);
                 mat.SetColor("_TintG", _coatColors.g);
                 mat.SetColor("_TintB", _coatColors.b);
