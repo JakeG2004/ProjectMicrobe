@@ -12,6 +12,9 @@ public class MicrobePopSim : MonoBehaviour
 
     public int currentStep = 0;
 
+    [SerializeField] private float _updatePeriod = 15.0f;
+    private float _elapsedTime = 0.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,6 +52,16 @@ public class MicrobePopSim : MonoBehaviour
                 initProducedResources:ResourceConverter.ConvertToDictionary(microbeSO.producedResources),
                 initToxins:ToxinConverter.ConvertToDictionary(microbeSO.toxins)
             ));
+        }
+    }
+
+    void Update()
+    {
+        _elapsedTime += Time.deltaTime;
+        if(_elapsedTime >= _updatePeriod)
+        {
+            AdvanceSimulation();
+            _elapsedTime = 0.0f;
         }
     }
 
