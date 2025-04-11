@@ -108,6 +108,11 @@ public class Microbe
         // Iterate through each toxin
         foreach(var res in toxins)
         {
+            if(!envResources.TryGetValue(res.Key, out float value))
+            {
+                continue;
+            }
+
             // Pull values out of class for better readabiility later
             Toxin curToxin = res.Value;
             float maxSafeDensity = curToxin.maxSafeDensity;

@@ -61,6 +61,11 @@ public class Environment
     {
         foreach(var res in addedResources)
         {
+            if(!resources.TryGetValue(res.Key, out float value))
+            {
+                continue;
+            }
+            
             resources[res.Key] += res.Value;
         }
     }

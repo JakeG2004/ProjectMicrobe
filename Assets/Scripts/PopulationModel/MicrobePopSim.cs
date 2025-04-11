@@ -189,4 +189,15 @@ public class MicrobePopSim : MonoBehaviour
         // Otherwise, return -1
         return -1.0f;
     }
+
+    public void IncreaseMicrobePopulation(string microbeName, float amount)
+    {
+        foreach(var microbe in microbes)
+        {
+            if(microbe.microbeName == microbeName)
+            {
+                microbe.population += amount;
+            }
+        }
+    }
 }

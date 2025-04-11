@@ -11,11 +11,15 @@ public class ShowHideMouse : MonoBehaviour
     }
 
     [SerializeField] private MouseStatus _mouseStatus = MouseStatus.Show;
+    [SerializeField] private bool _activateOnStart = true;
 
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(DelayedDoMouse());
+        if(_activateOnStart)
+        {
+            StartCoroutine(DelayedDoMouse());
+        }
     }
 
     private IEnumerator DelayedDoMouse()
@@ -36,6 +40,18 @@ public class ShowHideMouse : MonoBehaviour
         }    
 
         // Lock cursor to center of screen and make it invisible
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
+    public void ShowMouse()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true; 
+    }
+
+    public void HideMouse()
+    {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
