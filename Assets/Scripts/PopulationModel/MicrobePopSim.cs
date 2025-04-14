@@ -200,4 +200,9 @@ public class MicrobePopSim : MonoBehaviour
             }
         }
     }
+
+    public List<Microbe> GetMicrobes()
+    {
+        return microbes;
+    }
 }

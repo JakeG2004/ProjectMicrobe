@@ -160,7 +160,7 @@ public class Microbe
     public void UpdatePopulation(float popGrowth)
     {
         // Track history
-        popHistory.Add(popGrowth);
+        popHistory.Add(population);
 
         // Prevent population from going negative
         if(population + popGrowth > 0)
