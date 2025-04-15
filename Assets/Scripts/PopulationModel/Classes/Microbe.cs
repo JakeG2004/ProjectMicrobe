@@ -64,8 +64,8 @@ public class Microbe
                 return -1 * population;
             }
 
-            // Otherwise, cut population down to 1/3
-            return growthRate * -0.33f * population;
+            // Otherwise, cut population down by 1/3
+            return growthRate * -0.66f * population;
         }
 
         // Compute the competition effect to be sum of competition coefficients

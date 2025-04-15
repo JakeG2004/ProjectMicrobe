@@ -7,7 +7,9 @@ public class MicrobeMenu : MonoBehaviour
 {
     public static MicrobeMenu Instance { get; private set; }
     [SerializeField] private GameObject _menuPanel;
-    [SerializeField] private LineChart _chart;
+    [SerializeField] private LineChart _microbesChart;
+    [SerializeField] private LineChart _resourcesChart;
+    [SerializeField] private int _graphEntries = 10;
     private MicrobePopSim _curPylon;
     private bool _isActive = false;
 
@@ -16,15 +18,21 @@ public class MicrobeMenu : MonoBehaviour
     {
         _menuPanel.SetActive(false);   
 
+        InitChart(_microbesChart, "Microbe Populations");
+        InitChart(_resourcesChart, "Resource Amounts");
+    }
+
+    void InitChart(LineChart chart, string name)
+    {
         // Set chart parameters
-        _chart.EnsureChartComponent<Title>().show = true;
-        _chart.EnsureChartComponent<Title>().text = "Microbe Populations";
-        _chart.EnsureChartComponent<Tooltip>().show = true;
-        _chart.EnsureChartComponent<Legend>().show = true;
+        chart.EnsureChartComponent<Title>().show = true;
+        chart.EnsureChartComponent<Title>().text = name;
+        chart.EnsureChartComponent<Tooltip>().show = true;
+        chart.EnsureChartComponent<Legend>().show = true;
 
         // Assign x and y axis
-        var xAxis = _chart.EnsureChartComponent<XAxis>();
-        var yAxis = _chart.EnsureChartComponent<YAxis>();
+        var xAxis = chart.EnsureChartComponent<XAxis>();
+        var yAxis = chart.EnsureChartComponent<YAxis>();
 
         // Show axis
         xAxis.show = true;
@@ -38,17 +46,8 @@ public class MicrobeMenu : MonoBehaviour
 
         if(_isActive)
         {
-            // Clear the chart
-            _chart.RemoveData();
-            foreach(Microbe microbe in _curPylon.GetMicrobes())
-            {
-                _chart.AddSerie<Line>(microbe.microbeName);
-                foreach(float pop in microbe.popHistory)
-                {
-                    _chart.AddData(microbe.microbeName, pop);
-                }
-            }
-
+            SetMicrobeChartData();
+            SetResourcesChartData();
             GetComponent<ShowHideMouse>().ShowMouse();
             //Time.timeScale = 0.0f;
         }
@@ -57,6 +56,65 @@ public class MicrobeMenu : MonoBehaviour
         {
             GetComponent<ShowHideMouse>().HideMouse();
             //Time.timeScale = 1.0f;
+        }
+    }
+
+    public void SetMicrobeChartData()
+    {
+        // Clear the chart
+        _microbesChart.RemoveData();
+
+        // Iterate through each microbe
+        foreach(Microbe microbe in _curPylon.GetMicrobes())
+        {
+            // Add a line for the microbe
+            _microbesChart.AddSerie<Line>(microbe.microbeName);
+
+            // Show a maximum of 10 timesteps at a time
+            int numElements = microbe.popHistory.Count;
+            if(numElements > _graphEntries)
+            {
+                for(int i = numElements - _graphEntries; i < numElements; i++)
+                {
+                    _microbesChart.AddData(microbe.microbeName, microbe.popHistory[i]);
+                }
+            }
+
+            else
+            {
+                foreach(float pop in microbe.popHistory)
+                {
+                    _microbesChart.AddData(microbe.microbeName, pop);
+                }
+            }
+        }
+    }
+
+    public void SetResourcesChartData()
+    {
+        _resourcesChart.RemoveData();
+
+        foreach(var res in _curPylon.GetEnv().resourceHistory)
+        {
+            // Add line for resource
+            _resourcesChart.AddSerie<Line>(res.Key);
+
+            int numElements = res.Value.Count;
+            if(numElements > _graphEntries)
+            {
+                for(int i = numElements - _graphEntries; i < numElements; i++)
+                {
+                    _resourcesChart.AddData(res.Key, res.Value[i]);
+                }
+            }
+
+            else
+            {
+                foreach(var resAmt in res.Value)
+                {
+                    _resourcesChart.AddData(res.Key, resAmt);
+                }
+            }
         }
     }
 
