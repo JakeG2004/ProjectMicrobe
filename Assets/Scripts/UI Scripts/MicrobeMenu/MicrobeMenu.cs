@@ -123,7 +123,7 @@ public class MicrobeMenu : MonoBehaviour
         _curPylon = pylon.GetComponent<MicrobePopSim>();
     }
 
-    public void AddMicrobe(MicrobeSO microbeSO, float quantity)
+    /*public void AddMicrobe(MicrobeSO microbeSO, float quantity)
     {
         if(_curPylon.GetMicrobePopulation(microbeSO.name) != -1)
         {
@@ -140,5 +140,16 @@ public class MicrobeMenu : MonoBehaviour
             initToxins:ToxinConverter.ConvertToDictionary(microbeSO.toxins)
         );
         _curPylon.AddMicrobe(newMicrobe);
+    }*/
+
+    public void AddMicrobe(Microbe microbe)
+    {
+        if(_curPylon.GetMicrobePopulation(microbe.microbeName) != -1)
+        {
+            _curPylon.IncreaseMicrobePopulation(microbe.microbeName, microbe.population);
+            return;
+        }
+
+        _curPylon.AddMicrobe(microbe);
     }
 }
