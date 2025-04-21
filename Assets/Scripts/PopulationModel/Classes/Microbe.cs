@@ -308,4 +308,37 @@ public class Microbe
 
         kHistory.Add(minK);
     }
+
+    public Microbe Clone()
+    {
+        // Deep copy of dictionaries and lists
+        var clonedCompetitors = new Dictionary<string, float>(competitors);
+
+        var clonedRequiredResources = new Dictionary<string, float>(requiredResources);
+        var clonedProducedResources = new Dictionary<string, float>(producedResources);
+
+        var clonedToxins = new Dictionary<string, Toxin>();
+        foreach (var kvp in toxins)
+        {
+            clonedToxins.Add(kvp.Key, kvp.Value.Clone()); // Assuming Toxin class has a Clone method
+        }
+
+        // Create new Microbe instance
+        Microbe newMicrobe = new Microbe(
+            initName: microbeName,
+            initPop: population,
+            initGrowthRate: growthRate,
+            initCompetitors: clonedCompetitors,
+            initRequiredResources: clonedRequiredResources,
+            initProducedResources: clonedProducedResources,
+            initToxins: clonedToxins
+        );
+
+        // Deep copy kResources, popHistory, and kHistory
+        newMicrobe.kResources = new Dictionary<string, float>(kResources);
+        newMicrobe.popHistory = new List<float>(popHistory);
+        newMicrobe.kHistory = new List<float>(kHistory);
+
+        return newMicrobe;
+    }
 }

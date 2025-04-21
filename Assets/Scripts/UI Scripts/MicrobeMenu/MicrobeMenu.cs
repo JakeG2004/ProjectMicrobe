@@ -142,8 +142,9 @@ public class MicrobeMenu : MonoBehaviour
         _curPylon.AddMicrobe(newMicrobe);
     }*/
 
-    public void AddMicrobe(Microbe microbe)
+    public void AddMicrobe(Microbe microbe, float population)
     {
+        microbe.population = population;
         if(_curPylon.GetMicrobePopulation(microbe.microbeName) != -1)
         {
             _curPylon.IncreaseMicrobePopulation(microbe.microbeName, microbe.population);

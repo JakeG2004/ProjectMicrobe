@@ -17,4 +17,10 @@ public class Toxin
         maxSafeDensity = initMaxSafeDensity;
         lethalDensity = initLethalDensity;
     }
+
+    // Clone method for deep copying
+    public Toxin Clone()
+    {
+        return new Toxin(toxicity, minSafeDensity, maxSafeDensity, lethalDensity);
+    }
 }

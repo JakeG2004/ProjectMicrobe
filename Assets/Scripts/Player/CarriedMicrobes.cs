@@ -39,8 +39,32 @@ public class CarriedMicrobes : MonoBehaviour
         } 
     }
 
+    public Microbe GetMicrobe(int index)
+    {
+        if(index >= _microbes.Count || index < 0)
+        {
+            Debug.Log("Attempting to take from outside of bounds.");
+            return null;
+        }
+
+        return _microbes[index].Clone();
+    }
+
     public int GetMicrobeCount()
     {
         return _microbes.Count;
+    }
+
+    public void SetMicrobePopulation(string microbeName, float newPopulation)
+    {
+        foreach(Microbe microbe in _microbes)
+        {
+            if(microbe.microbeName != microbeName)
+            {
+                continue;
+            }
+
+            microbe.population = newPopulation;
+        }
     }
 }
