@@ -4,8 +4,23 @@ using UnityEngine;
 
 public class AddMicrobeToPlayerMenu : MonoBehaviour
 {
+    public static AddMicrobeToPlayerMenu Instance { get; private set; }
+
     [SerializeField] private GameObject _menuPanel;
     private bool _isActive = false;
+
+    void Awake()
+    {
+        if(Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+
+        else
+        {
+            Instance = this;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -17,5 +32,15 @@ public class AddMicrobeToPlayerMenu : MonoBehaviour
     {
         _isActive = !_isActive;
         _menuPanel.gameObject.SetActive(_isActive);
+
+        if(_isActive)
+        {
+            GetComponent<ShowHideMouse>().ShowMouse();
+        }
+
+        else
+        {
+            GetComponent<ShowHideMouse>().HideMouse();
+        }
     }
 }

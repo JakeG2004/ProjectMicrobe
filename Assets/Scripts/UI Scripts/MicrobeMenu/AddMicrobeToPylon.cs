@@ -41,6 +41,12 @@ public class AddMicrobeToPylon : MonoBehaviour
 
         // Set the carried population by the player
         _cm.SetMicrobePopulation(curMicrobe.microbeName, oldPop - popToAdd);
+
+        // Update the player inventory slots
+        foreach(var amtp in Object.FindObjectsOfType<AddMicrobeToPylon>())
+        {
+            amtp.UpdateInfo();
+        }
     }
 
     public void SetAddVal(float val)
@@ -62,6 +68,11 @@ public class AddMicrobeToPylon : MonoBehaviour
 
     // Empty text when menu is brought up (go Enabled)
     public void OnEnable()
+    {
+        UpdateInfo();
+    }
+
+    public void UpdateInfo()
     {
         // Disable if not in index
         if(_cm.GetMicrobeCount() == 0 || (_microbeIndex + 1 > _cm.GetMicrobeCount()))

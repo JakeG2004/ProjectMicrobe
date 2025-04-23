@@ -16,6 +16,16 @@ public class CarriedMicrobes : MonoBehaviour
             return;
         }
 
+        // Ensure no duplicates
+        foreach(Microbe microbe in _microbes)
+        {
+            if(microbe.microbeName == newMicrobe.microbeName)
+            {
+                microbe.population += newMicrobe.population;
+                return;
+            }
+        }
+
         // Add the microbe
         _microbes.Add(newMicrobe);
     }
@@ -65,6 +75,11 @@ public class CarriedMicrobes : MonoBehaviour
             }
 
             microbe.population = newPopulation;
+            if(microbe.population <= 0)
+            {
+                RemoveMicrobe(microbeName);
+            }
+            return;
         }
     }
 }

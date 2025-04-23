@@ -341,4 +341,18 @@ public class Microbe
 
         return newMicrobe;
     }
+
+    public static Microbe CreateMicrobeFromSO(MicrobeSO microbeSO)
+    {
+        Microbe newMicrobe = new Microbe(
+            initName:microbeSO.microbeName,
+            initPop:microbeSO.population,
+            initGrowthRate:microbeSO.growthRate,
+            initCompetitors:new Dictionary<string, float>(),
+            initRequiredResources:ResourceConverter.ConvertToDictionary(microbeSO.requiredResources),
+            initProducedResources:ResourceConverter.ConvertToDictionary(microbeSO.producedResources),
+            initToxins:ToxinConverter.ConvertToDictionary(microbeSO.toxins)
+        );
+        return newMicrobe;
+    }
 }
