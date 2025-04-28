@@ -38,7 +38,7 @@ public class MicrobePopSim : MonoBehaviour
         // Convert each microbeSO into a new microbe in the simulation
         if(microbeSOs.Count == 0)
         {
-            Debug.LogWarning("No microbe SOs!");
+            Debug.Log("No microbe SOs!");
         }
 
         foreach(var microbeSO in microbeSOs)
@@ -68,8 +68,8 @@ public class MicrobePopSim : MonoBehaviour
 
     public void AdvanceSimulation()
     {
-        // Early return when no resources
-        if(env.resources.Count == 0)
+        // Early return when no resources or microbes
+        if(env.resources.Count == 0 || microbes.Count == 0)
         {
             return;
         }

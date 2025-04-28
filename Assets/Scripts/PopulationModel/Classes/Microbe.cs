@@ -264,6 +264,22 @@ public class Microbe
         // Get the toxicity multiplier
         float toxicityMultiplier = CalculateToxicityMultiplier(envResources);
 
+        // Ensure all required resources have keys in kResources
+        foreach (var res in requiredResources)
+        {
+            // If a required resource is not already in kResources, add it with an initial value of 0
+            if (!kResources.ContainsKey(res.Key))
+            {
+                kResources.Add(res.Key, 0.0f);
+            }
+        }
+
+        // Set the kResources to be 0
+        foreach (var key in new List<string>(kResources.Keys))
+        {
+            kResources[key] = 0;
+        }
+
         // Find the carry capacity
         foreach(var res in envResources)
         {
@@ -300,6 +316,12 @@ public class Microbe
         float minK = float.MaxValue;
         foreach(var res in requiredResources)
         {
+            if(!kResources.TryGetValue(res.Key, out float value))
+            {
+                minK = 0;
+                break;
+            }
+
             if(kResources[res.Key] < minK)
             {
                 minK = kResources[res.Key];

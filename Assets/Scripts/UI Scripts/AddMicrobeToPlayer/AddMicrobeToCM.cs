@@ -10,6 +10,8 @@ public class AddMicrobeToCM : MonoBehaviour
 
     [SerializeField] private MicrobeSO _microbeSO;
     [SerializeField] private TMP_InputField _microbeAmt;
+    private float _population = 0;
+    private AddMicrobeToggler _srcToggle;
 
     // Start is called before the first frame update
     void Start()
@@ -32,11 +34,20 @@ public class AddMicrobeToCM : MonoBehaviour
             Debug.LogWarning("Failed to parse string");
             return;
         }
+
+        if(amtToAdd > _population)
+        {
+            Debug.LogWarning("Attempting to take more than the population");
+            return;
+        }
         
         CarriedMicrobes _cm = GameObject.FindGameObjectWithTag("Player").GetComponent<CarriedMicrobes>();
         Microbe newMicrobe = Microbe.CreateMicrobeFromSO(_microbeSO);
         newMicrobe.population = amtToAdd;
         _cm.AddMicrobe(newMicrobe);
+
+        _population -= amtToAdd;
+        UpdateInfo();
         
         // Update the player inventory slots
         foreach(var im in Object.FindObjectsOfType<IndividualMicrobeCtrl>())
@@ -48,11 +59,19 @@ public class AddMicrobeToCM : MonoBehaviour
     public void UpdateInfo()
     {
         TMP_Text _microbeName = GetComponent<TMP_Text>();
-        _microbeName.text = _microbeSO.microbeName;
+        _microbeName.text = _microbeSO.microbeName + ": " + _population.ToString();
+        _srcToggle?.SetPopulation(_population);
     }
 
     void OnEnable()
     {
         UpdateInfo();
+    }
+
+    public void SetMicrobe(MicrobeSO microbeSO, float population, AddMicrobeToggler src)
+    {
+        _microbeSO = microbeSO;
+        _population = population;
+        _srcToggle = src;
     }
 }

@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class AddMicrobeToPlayerMenu : MonoBehaviour
 {
     public static AddMicrobeToPlayerMenu Instance { get; private set; }
-
     [SerializeField] private GameObject _menuPanel;
     private bool _isActive = false;
 
