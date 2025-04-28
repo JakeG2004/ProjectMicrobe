@@ -89,10 +89,6 @@ public class AddMicrobeToPylon : MonoBehaviour
         // Get the microbe
         Microbe curMicrobe = _cm.GetMicrobe(_microbeIndex);
 
-        // Set the text entry to be empty (input prompt)
-        //_numToAdd.text = "";
-        //_slider.value = 0;
-
         // Set interactible
         _numToAdd.interactable = true;
         _slider.interactable = true;
