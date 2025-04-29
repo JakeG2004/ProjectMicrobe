@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 8900000, guid: 60f1fa9c7c55e934e8b0296eff890207, type: 3}
   m_Sun: {fileID: 3659699155714522960}
-  m_IndirectSpecularColor: {r: 0.38472724, g: 0.66400504, b: 0.81807315, a: 1}
+  m_IndirectSpecularColor: {r: 0.38343892, g: 0.66370606, b: 0.81816274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -76238,6 +76238,7 @@ GameObject:
   - component: {fileID: 604771294}
   - component: {fileID: 604771295}
   - component: {fileID: 604771296}
+  - component: {fileID: 604771297}
   m_Layer: 5
   m_Name: MicrobeMenu
   m_TagString: MicrobeMenu
@@ -76295,6 +76296,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mouseStatus: 0
   _activateOnStart: 0
+--- !u!114 &604771297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 604771293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1768a5c5416764c0b58dc23f4f08027, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &605091102
 GameObject:
   m_ObjectHideFlags: 0
@@ -116004,6 +116017,7 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 8
+  _mouseTracking: 1
 --- !u!124 &963194231
 Behaviour:
   m_ObjectHideFlags: 0
@@ -117591,6 +117605,7 @@ GameObject:
   - component: {fileID: 985218310}
   - component: {fileID: 985218312}
   - component: {fileID: 985218311}
+  - component: {fileID: 985218313}
   m_Layer: 5
   m_Name: AddMicrobeToPlayer
   m_TagString: Untagged
@@ -117645,6 +117660,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _menuPanel: {fileID: 1206390464}
+--- !u!114 &985218313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 985218309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1768a5c5416764c0b58dc23f4f08027, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &987780416
 GameObject:
   m_ObjectHideFlags: 0
@@ -172498,8 +172525,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MicrobeMenu, Assembly-CSharp
+      - m_Target: {fileID: 985218312}
+        m_TargetAssemblyTypeName: AddMicrobeToPlayerMenu, Assembly-CSharp
         m_MethodName: ToggleState
         m_Mode: 1
         m_Arguments:

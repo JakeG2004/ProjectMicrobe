@@ -14,8 +14,21 @@ public class MovementController : MonoBehaviour {
 	float swimAcceleration = 2f;
 
 	[SerializeField] LayerMask collisionMask;
+	[SerializeField] private bool _playerCanMove = true;
+
+	public static MovementController instance { get; private set; }
 
 	void Awake() {
+		if(instance == null)
+		{
+			instance = this;
+		}
+
+		else
+		{
+			Destroy(this.gameObject);
+		}
+
         GM.player = transform;
     }
     void Start() {
@@ -55,7 +68,7 @@ public class MovementController : MonoBehaviour {
 			}
 		}
 		// can't jump if not grounded
-		if (!ic.grounded) ic.jumpInput = false;
+		if (!ic.grounded && !ic.climbing) ic.jumpInput = false;
 	}
 	void CheckForLongDrop () {
 		// skip if longDrop is already triggered
@@ -66,10 +79,17 @@ public class MovementController : MonoBehaviour {
 	}
 
 	void Jump() {
-		if (ic.jumpInput) {
+		if (ic.jumpInput && _playerCanMove) {
 			// rb.AddForce(Vector3.up * 8f, ForceMode.VelocityChange); // stackable for crazt high jumps
 			rb.velocity = new Vector3(rb.velocity.x, 8f, rb.velocity.z);
 			ic.triggerJump = true;
+
+			if(ic.climbing)
+			{
+				Vector3 backwardDirection = -transform.forward; // Assumes forward is toward the wall
+				Vector3 launchVelocity = (backwardDirection * 5f) + (Vector3.up * 6f); // Tune values as needed
+				rb.velocity = launchVelocity;
+			}
 		}
 	}
 
@@ -100,6 +120,14 @@ public class MovementController : MonoBehaviour {
 			lookDir += ic.move.x * ProjectOnXZPlane(cam.right);
 		}
 		else { lookDir = ProjectOnXZPlane(cam.forward);	}
+
+		// Disable rotation off ladder if climbing
+		if(ic.climbing)
+		{
+			lookDir = ProjectOnXZPlane(cam.forward);
+			return;
+		}
+
 		// angle between player forward and target direction
 		ic.turnAngle = Vector3.SignedAngle(transform.forward, lookDir, Vector3.up);
 		// rotate towards target direction
@@ -126,6 +154,12 @@ public class MovementController : MonoBehaviour {
 
 		// unnormalized direction vector
 		Vector3 moveDir = (ic.move.magnitude > 0.1f)? (ic.move.y * forwardDir + ic.move.x * cam.right) : forwardDir;
+
+		if(!_playerCanMove)
+		{
+			ic.move = new Vector2(0, 0);
+			ic.turn = new Vector2(0, 0);
+		}
 
 
 		// NOT SWIMMING
@@ -159,7 +193,7 @@ public class MovementController : MonoBehaviour {
 	void Climb() {
 		if (!ic.climbing) return;
 
-		rb.velocity = new Vector3(rb.velocity.x, 8f, rb.velocity.z);
+		rb.velocity = new Vector3(rb.velocity.x * 0.1f, 8f, rb.velocity.z * 0.1f);
 		if (ic.submersion > 0f)  rb.position += Vector3.up * 0.1f; // for exiting the water
 	}
 
@@ -167,6 +201,16 @@ public class MovementController : MonoBehaviour {
 	Vector3 ProjectOnXZPlane(Vector3 vec) {
 		vec.y = 0.0f;
 		return vec;
+	}
+
+	public void SetMovementState(bool state)
+	{
+		_playerCanMove = state;
+	}
+
+	public void ToggleMovementState()
+	{
+		_playerCanMove = !_playerCanMove;
 	}
 
 	/*

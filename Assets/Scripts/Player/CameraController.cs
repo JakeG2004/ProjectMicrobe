@@ -25,6 +25,8 @@ public class CameraController : MonoBehaviour {
 	Vector3 directionSmooth;
 
 	AudioLowPassFilter filter;
+
+	[SerializeField] private bool _mouseTracking = true;
 	#endregion
 
 
@@ -55,7 +57,12 @@ public class CameraController : MonoBehaviour {
 
 		SetLookPos();
 		Zoom();
-		RotateCameraDirection();
+
+		if(_mouseTracking)
+		{
+			RotateCameraDirection();
+		}
+		
 		PositionCamera();
 		LowPassFilterIfSubmerged();
 	}
@@ -111,5 +118,15 @@ public class CameraController : MonoBehaviour {
 	void LowPassFilterIfSubmerged() {
 		if (cam.position.y < 0) filter.cutoffFrequency = 330f;
 		else filter.cutoffFrequency = 21000f;
+	}
+
+	public void SetMouseTracking(bool state)
+	{
+		_mouseTracking = state;
+	}
+
+	public void ToggleMouseTracking()
+	{
+		_mouseTracking = !_mouseTracking;
 	}
 }

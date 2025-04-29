@@ -34,14 +34,9 @@ public class AddMicrobeToPlayerMenu : MonoBehaviour
         _isActive = !_isActive;
         _menuPanel.gameObject.SetActive(_isActive);
 
-        if(_isActive)
-        {
-            GetComponent<ShowHideMouse>().ShowMouse();
-        }
-
-        else
-        {
-            GetComponent<ShowHideMouse>().HideMouse();
-        }
+        // Set UI Control state
+        GetComponent<ToggleCameraTracking>()?.SetCameraTracking(!_isActive);
+        MovementController.instance.SetMovementState(!_isActive);
+        GetComponent<ShowHideMouse>()?.SetState(_isActive);  
     }
 }

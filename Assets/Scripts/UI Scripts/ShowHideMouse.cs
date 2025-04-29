@@ -55,4 +55,17 @@ public class ShowHideMouse : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
+
+    public void SetState(bool state)
+    {
+        if(state)
+        {
+            ShowMouse();
+        }
+
+        else
+        {
+            HideMouse();
+        }
+    }
 }
