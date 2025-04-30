@@ -80,16 +80,18 @@ public class MovementController : MonoBehaviour {
 
 	void Jump() {
 		if (ic.jumpInput && _playerCanMove) {
+			if(ic.climbing)
+			{
+				ic.climbing = false;
+				Vector3 launchVelocity = new Vector3(0, 10, 0);
+				rb.velocity = launchVelocity;
+				ic.triggerJump = true;
+				return;
+			}
+
 			// rb.AddForce(Vector3.up * 8f, ForceMode.VelocityChange); // stackable for crazt high jumps
 			rb.velocity = new Vector3(rb.velocity.x, 8f, rb.velocity.z);
 			ic.triggerJump = true;
-
-			if(ic.climbing)
-			{
-				Vector3 backwardDirection = -transform.forward; // Assumes forward is toward the wall
-				Vector3 launchVelocity = (backwardDirection * 5f) + (Vector3.up * 6f); // Tune values as needed
-				rb.velocity = launchVelocity;
-			}
 		}
 	}
 
@@ -191,7 +193,7 @@ public class MovementController : MonoBehaviour {
 	}
 
 	void Climb() {
-		if (!ic.climbing) return;
+		if (!ic.climbing || ic.triggerJump) return;
 
 		rb.velocity = new Vector3(rb.velocity.x * 0.1f, 8f, rb.velocity.z * 0.1f);
 		if (ic.submersion > 0f)  rb.position += Vector3.up * 0.1f; // for exiting the water

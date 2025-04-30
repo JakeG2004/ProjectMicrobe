@@ -101,7 +101,14 @@ public class MicrobeMenu : MonoBehaviour
             {
                 for(int i = numElements - _graphEntries; i < numElements; i++)
                 {
-                    _resourcesChart.AddData(res.Key, res.Value[i]);
+                    // Prevent graph from forming the weird bumps with floats. Flatten small numbers :)
+                    float val = res.Value[i];
+                    if(val < 0.1f)
+                    {
+                        val = 0.0f;
+                    }
+
+                    _resourcesChart.AddData(res.Key, val);
                 }
             }
 
@@ -109,7 +116,12 @@ public class MicrobeMenu : MonoBehaviour
             {
                 foreach(var resAmt in res.Value)
                 {
-                    _resourcesChart.AddData(res.Key, resAmt);
+                    float val = resAmt;
+                    if(resAmt < 0.1f)
+                    {
+                        val = 0.0f;
+                    }
+                    _resourcesChart.AddData(res.Key, val);
                 }
             }
         }
