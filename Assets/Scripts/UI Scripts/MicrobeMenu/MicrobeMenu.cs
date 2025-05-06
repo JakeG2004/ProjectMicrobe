@@ -53,6 +53,7 @@ public class MicrobeMenu : MonoBehaviour
         {
             SetMicrobeChartData();
             SetResourcesChartData();
+            _curPylon = null;
         }
     }
 
@@ -142,5 +143,10 @@ public class MicrobeMenu : MonoBehaviour
         }
 
         _curPylon.AddMicrobe(microbe);
+    }
+
+    public bool HasPylon()
+    {
+        return (_curPylon != null);
     }
 }
