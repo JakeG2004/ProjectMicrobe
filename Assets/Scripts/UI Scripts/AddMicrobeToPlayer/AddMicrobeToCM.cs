@@ -37,13 +37,18 @@ public class AddMicrobeToCM : MonoBehaviour
 
         if(amtToAdd > _population)
         {
-            Debug.LogWarning("Attempting to take more than the population");
+            NotificationPanelManager.Instance.ShowPanelForSeconds("Attempting to take too many microbes!");
             return;
         }
         
         CarriedMicrobes _cm = GameObject.FindGameObjectWithTag("Player").GetComponent<CarriedMicrobes>();
         Microbe newMicrobe = Microbe.CreateMicrobeFromSO(_microbeSO);
         newMicrobe.population = amtToAdd;
+        if(_cm.IsFull())
+        {
+            NotificationPanelManager.Instance.ShowPanelForSeconds("Too many microbes in backpack!");
+            return;
+        }
         _cm.AddMicrobe(newMicrobe);
 
         _population -= amtToAdd;

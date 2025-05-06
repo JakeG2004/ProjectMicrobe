@@ -12,7 +12,7 @@ public class CarriedMicrobes : MonoBehaviour
         // Handle case of too many microbes
         if(_microbes.Count >= MAX_MICROBES)
         {
-            Debug.LogWarning("Player attempting to add microbe to full backpack");
+            //Debug.LogWarning("Player attempting to add microbe to full backpack");
             return;
         }
 
@@ -81,5 +81,10 @@ public class CarriedMicrobes : MonoBehaviour
             }
             return;
         }
+    }
+
+    public bool IsFull()
+    {
+        return _microbes.Count >= MAX_MICROBES;
     }
 }
