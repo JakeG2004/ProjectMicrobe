@@ -80,7 +80,7 @@ public class SwipeMenuManager : MonoBehaviour
             float t = Mathf.Clamp01(elapsed / time);
 
             // Apply direction-based easing
-            float easedT = EaseInOutQuad(t);
+            float easedT = EaseInOut(t);
 
             for (int i = 0; i < _scrollObjects.Length; i++)
             {
@@ -96,7 +96,7 @@ public class SwipeMenuManager : MonoBehaviour
         }
     }
 
-    private float EaseInOutQuad(float t)
+    private float EaseInOut(float t)
     {
         return t * t;
     }
