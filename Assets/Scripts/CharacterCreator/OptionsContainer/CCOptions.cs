@@ -76,12 +76,11 @@ public class CCOptions : MonoBehaviour {
 
 
 
-
-
+	/*********** !!!!!!!!!!!! un-comment to use! *********************************************
 	void Start() {
 		lockImage.enabled = !GetComponent<Toggle>().interactable;
 	}
-
+	******************************************************************************************/
 
 }
 
