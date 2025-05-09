@@ -8,6 +8,7 @@ public class NotificationPanelManager : MonoBehaviour
     public static NotificationPanelManager Instance {get; private set; }
 
     private Animator _anim;
+    private bool _isAnim = false;
     [SerializeField] private TMP_Text _notificationText;
 
     // Start is called before the first frame update
@@ -32,6 +33,7 @@ public class NotificationPanelManager : MonoBehaviour
 
     public void ShowPanel(string panelText)
     {
+        _isAnim = true;
         SetPanelText(panelText);
         ShowPanel();
     }
@@ -39,6 +41,7 @@ public class NotificationPanelManager : MonoBehaviour
     public void HidePanel()
     {
         _anim.SetTrigger("HidePanel");
+        _isAnim = false;
     }
 
     public void ShowPanelForSeconds(int seconds)
@@ -63,5 +66,10 @@ public class NotificationPanelManager : MonoBehaviour
     public void SetPanelText(string panelText)
     {
         _notificationText.text = panelText;
+    }
+
+    public bool IsAnimating()
+    {
+        return _isAnim;
     }
 }

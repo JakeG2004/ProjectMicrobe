@@ -14,7 +14,7 @@ public class AddMicrobeToCM : MonoBehaviour
     private AddMicrobeToggler _srcToggle;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         if(Instance != null && Instance != this)
         {
@@ -37,6 +37,11 @@ public class AddMicrobeToCM : MonoBehaviour
 
         if(amtToAdd > _population)
         {
+            if(NotificationPanelManager.Instance.IsAnimating() == true)
+            {
+                return;
+            }
+
             NotificationPanelManager.Instance.ShowPanelForSeconds("Attempting to take too many microbes!");
             return;
         }
@@ -46,6 +51,11 @@ public class AddMicrobeToCM : MonoBehaviour
         newMicrobe.population = amtToAdd;
         if(_cm.IsFull())
         {
+            if(NotificationPanelManager.Instance.IsAnimating() == true)
+            {
+                return;
+            }
+            
             NotificationPanelManager.Instance.ShowPanelForSeconds("Too many microbes in backpack!");
             return;
         }

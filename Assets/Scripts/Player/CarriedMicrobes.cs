@@ -53,6 +53,12 @@ public class CarriedMicrobes : MonoBehaviour
     {
         if(index >= _microbes.Count || index < 0)
         {
+            if(NotificationPanelManager.Instance.IsAnimating() == true)
+            {
+                return null;
+            }
+
+            NotificationPanelManager.Instance.ShowPanelForSeconds("No microbes to remove!");
             Debug.Log("Attempting to take from outside of bounds.");
             return null;
         }
