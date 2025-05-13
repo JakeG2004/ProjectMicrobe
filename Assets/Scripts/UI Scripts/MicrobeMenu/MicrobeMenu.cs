@@ -130,6 +130,11 @@ public class MicrobeMenu : MonoBehaviour
 
     public void SetCurrentPylon(GameObject pylon)
     {
+        if(!pylon)
+        {
+            Debug.Log("No valid gameobjct passed.");
+        }
+
         _curPylon = pylon.GetComponent<MicrobePopSim>();
 
         Debug.Log(_curPylon);
@@ -138,6 +143,12 @@ public class MicrobeMenu : MonoBehaviour
     public void AddMicrobe(Microbe microbe, float population)
     {
         microbe.population = population;
+
+        if(!_curPylon)
+        {
+            Debug.Log("Failed to get cur pylon");
+        }
+
         if(_curPylon.GetMicrobePopulation(microbe.microbeName) != -1)
         {
             _curPylon.IncreaseMicrobePopulation(microbe.microbeName, microbe.population);

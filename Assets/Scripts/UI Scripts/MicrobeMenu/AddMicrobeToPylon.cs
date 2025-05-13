@@ -35,7 +35,7 @@ public class AddMicrobeToPylon : MonoBehaviour
         }
 
         float oldPop = curMicrobe.population;
-
+        
         // Add it to the pylon
         _microbeMenu.AddMicrobe(curMicrobe, popToAdd);
 

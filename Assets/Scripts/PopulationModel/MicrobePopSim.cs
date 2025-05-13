@@ -15,6 +15,8 @@ public class MicrobePopSim : MonoBehaviour
     [SerializeField] private float _updatePeriod = 15.0f;
     private float _elapsedTime = 0.0f;
 
+    [SerializeField] private PylonScreenController _psc;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -141,6 +143,8 @@ public class MicrobePopSim : MonoBehaviour
         env.UpdateResourceHistory();
 
         currentStep++;
+
+        UpdatePylonScreens();
     }
 
     public void FastForward(int n)
@@ -210,5 +214,10 @@ public class MicrobePopSim : MonoBehaviour
     public Environment GetEnv()
     {
         return env;
+    }
+
+    public void UpdatePylonScreens()
+    {
+        _psc.UpdateMicrobeGraphs();
     }
 }

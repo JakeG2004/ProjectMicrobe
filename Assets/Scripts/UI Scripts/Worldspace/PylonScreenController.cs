@@ -12,6 +12,7 @@ public class PylonScreenController : MonoBehaviour
 
     void Start()
     {
+        _curPylon = transform.parent.GetComponent<MicrobePopSim>();
         InitChart(_microbesChart, "Microbe Populations");
         InitChart(_resourcesChart, "Resource Amounts");
     }
