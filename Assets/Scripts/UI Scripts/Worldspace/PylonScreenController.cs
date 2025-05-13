@@ -3,23 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using XCharts.Runtime;
 
-public class MicrobeMenu : MonoBehaviour
+public class PylonScreenController : MonoBehaviour
 {
-    public static MicrobeMenu Instance { get; private set; }
-    [SerializeField] private GameObject _menuPanel;
     [SerializeField] private LineChart _microbesChart;
     [SerializeField] private LineChart _resourcesChart;
     [SerializeField] private int _graphEntries = 10;
     private MicrobePopSim _curPylon;
-    private bool _isActive = false;
 
-    // Start is called before the first frame update
     void Start()
     {
-        _menuPanel.SetActive(false);   
-
         InitChart(_microbesChart, "Microbe Populations");
         InitChart(_resourcesChart, "Resource Amounts");
+    }
+
+    public void UpdateMicrobeGraphs()
+    {
+        SetMicrobeChartData();
+        SetResourcesChartData();
     }
 
     void InitChart(LineChart chart, string name)
@@ -37,24 +37,6 @@ public class MicrobeMenu : MonoBehaviour
         // Show axis
         xAxis.show = true;
         yAxis.show = true;
-    }
-
-    public void ToggleState()
-    {
-        _isActive = !_isActive;
-        _menuPanel.SetActive(_isActive);
-
-        // Set UI control state
-        GetComponent<ToggleCameraTracking>()?.SetCameraTracking(!_isActive);
-        MovementController.instance.SetMovementState(!_isActive);
-        GetComponent<ShowHideMouse>()?.SetState(_isActive);  
-
-        if(_isActive)
-        {
-            SetMicrobeChartData();
-            SetResourcesChartData();
-            //_curPylon = null;
-        }
     }
 
     public void SetMicrobeChartData()
@@ -126,29 +108,5 @@ public class MicrobeMenu : MonoBehaviour
                 }
             }
         }
-    }
-
-    public void SetCurrentPylon(GameObject pylon)
-    {
-        _curPylon = pylon.GetComponent<MicrobePopSim>();
-
-        Debug.Log(_curPylon);
-    }
-
-    public void AddMicrobe(Microbe microbe, float population)
-    {
-        microbe.population = population;
-        if(_curPylon.GetMicrobePopulation(microbe.microbeName) != -1)
-        {
-            _curPylon.IncreaseMicrobePopulation(microbe.microbeName, microbe.population);
-            return;
-        }
-
-        _curPylon.AddMicrobe(microbe);
-    }
-
-    public bool HasPylon()
-    {
-        return (_curPylon != null);
     }
 }
