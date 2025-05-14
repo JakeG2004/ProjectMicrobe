@@ -49,11 +49,15 @@ public class MicrobeMenu : MonoBehaviour
         MovementController.instance.SetMovementState(!_isActive);
         GetComponent<ShowHideMouse>()?.SetState(_isActive);  
 
+        UpdateCharts();
+    }
+
+    public void UpdateCharts()
+    {
         if(_isActive)
         {
             SetMicrobeChartData();
             SetResourcesChartData();
-            //_curPylon = null;
         }
     }
 

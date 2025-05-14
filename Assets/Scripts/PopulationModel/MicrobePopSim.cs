@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class MicrobePopSim : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class MicrobePopSim : MonoBehaviour
     private float _elapsedTime = 0.0f;
 
     [SerializeField] private PylonScreenController _psc;
+    [SerializeField] private UnityEvent _onSimAdvance;
 
     // Start is called before the first frame update
     void Start()
@@ -144,7 +146,7 @@ public class MicrobePopSim : MonoBehaviour
 
         currentStep++;
 
-        UpdatePylonScreens();
+        _onSimAdvance.Invoke();
     }
 
     public void FastForward(int n)
@@ -214,10 +216,5 @@ public class MicrobePopSim : MonoBehaviour
     public Environment GetEnv()
     {
         return env;
-    }
-
-    public void UpdatePylonScreens()
-    {
-        _psc.UpdateMicrobeGraphs();
     }
 }
