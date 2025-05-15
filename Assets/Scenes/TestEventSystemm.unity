@@ -346,10 +346,10 @@ MonoBehaviour:
   keyPressEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1871238077}
-        m_TargetAssemblyTypeName: BaseGameEventTrigger, Assembly-CSharp
+      - m_Target: {fileID: 1871238078}
+        m_TargetAssemblyTypeName: IntGameEventTrigger, Assembly-CSharp
         m_MethodName: TriggerEvent
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -454,23 +454,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1871238069}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66390e28a0880f912acfe4869b9044cd, type: 3}
+  m_Script: {fileID: 11500000, guid: 0c346f84ffb5df8c0804d8c09750078d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _event: {fileID: 11400000, guid: ae80584abf01ade6cbfef700f22f8e7e, type: 2}
---- !u!114 &1871238078
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1871238069}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b5453cc0e4cf5c8aa461f100013f2d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _event: {fileID: 11400000, guid: ae80584abf01ade6cbfef700f22f8e7e, type: 2}
+  _event: {fileID: 11400000, guid: cd75f9793c3596d188e221c4e339b85f, type: 2}
   _response:
     m_PersistentCalls:
       m_Calls:
@@ -486,6 +473,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1871238078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1871238069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f15d437969c0131f9b42e499beae9af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _event: {fileID: 11400000, guid: cd75f9793c3596d188e221c4e339b85f, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

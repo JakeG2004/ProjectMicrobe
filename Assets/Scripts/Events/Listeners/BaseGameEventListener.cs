@@ -13,10 +13,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class BaseGameEventListener : MonoBehaviour, IGameEventListener
+public class BaseGameEventListener<T, E, UER> : MonoBehaviour, IGameEventListener<T>
+    where E : BaseGameEventSO<T>
+    where UER : UnityEvent<T>
 {
-    [SerializeField] private BaseGameEventSO _event;
-    [SerializeField] private UnityEvent _response;
+    [SerializeField] private E _event;
+    [SerializeField] private UER _response;
 
     public void OnEnable()
     {
@@ -31,8 +33,8 @@ public class BaseGameEventListener : MonoBehaviour, IGameEventListener
         _event.UnregisterListener(this);
     }
 
-    public void OnEventRaised()
+    public void OnEventRaised(T value)
     {
-        _response?.Invoke();
+        _response?.Invoke(value);
     }
 }

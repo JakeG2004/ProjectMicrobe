@@ -1,4 +1,4 @@
-public interface IGameEventListener
+public interface IGameEventListener<T>
 {
-    void OnEventRaised();
+    void OnEventRaised(T value);
 }

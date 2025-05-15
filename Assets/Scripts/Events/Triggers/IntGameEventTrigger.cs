@@ -2,7 +2,7 @@
 Based on: 
 https://blog.devgenius.io/scriptableobject-game-events-1f3401bbde72
 
-Script for raising BaseGameEvents
+Script for raising IntGameEvents
 
 Author: Jake Gendreau
 Date:   5/15/25
@@ -12,17 +12,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseGameEventTrigger : MonoBehaviour
+public class IntGameEventTrigger : MonoBehaviour
 {
-    [SerializeField] private BaseGameEventSO _event;
+    [SerializeField] private IntGameEventSO _event;
 
-    public void TriggerEvent()
+    public void TriggerEvent(int item)
     {
         if(_event == null)
         {
             return;
         }
         
-        _event.Raise();
+        _event.Raise(item);
     }
 }

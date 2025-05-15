@@ -14,22 +14,22 @@ using UnityEngine;
 
 
 [CreateAssetMenu(fileName = "BaseGameEventSO", menuName = "ScriptableObjects/Events/BaseGameEventSO")]
-public class BaseGameEventSO : ScriptableObject
+public class BaseGameEventSO<T> : ScriptableObject
 {
     // The list of listeners to be notified upon event raise
-    private readonly List<IGameEventListener> _eventListeners = new List<IGameEventListener>();
+    private readonly List<IGameEventListener<T>> _eventListeners = new();
 
     // Function to raise the event, and call the function on all listeners
-    public void Raise()
+    public void Raise(T value)
     {
         for(int i = _eventListeners.Count - 1; i >= 0; i--)
         {
-            _eventListeners[i].OnEventRaised();
+            _eventListeners[i].OnEventRaised(value);
         }
     }
 
     // Adds a new listener iff it is not already in the list
-    public void RegisterListener(IGameEventListener listener)
+    public void RegisterListener(IGameEventListener<T> listener)
     {
         if(!_eventListeners.Contains(listener))
         {
@@ -38,7 +38,7 @@ public class BaseGameEventSO : ScriptableObject
     }
 
     // Removes a listener from the list iff its already in the list
-    public void UnregisterListener(IGameEventListener listener)
+    public void UnregisterListener(IGameEventListener<T> listener)
     {
         if(_eventListeners.Contains(listener))
         {
