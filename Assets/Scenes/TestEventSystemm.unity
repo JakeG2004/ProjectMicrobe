@@ -322,8 +322,8 @@ GameObject:
   - component: {fileID: 1871238074}
   - component: {fileID: 1871238073}
   - component: {fileID: 1871238072}
-  - component: {fileID: 1871238078}
   - component: {fileID: 1871238077}
+  - component: {fileID: 1871238079}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -346,10 +346,10 @@ MonoBehaviour:
   keyPressEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1871238078}
-        m_TargetAssemblyTypeName: IntGameEventTrigger, Assembly-CSharp
-        m_MethodName: TriggerEvent
-        m_Mode: 3
+      - m_Target: {fileID: 1871238079}
+        m_TargetAssemblyTypeName: Objective, Assembly-CSharp
+        m_MethodName: ActivateObjective
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -454,17 +454,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1871238069}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c346f84ffb5df8c0804d8c09750078d, type: 3}
+  m_Script: {fileID: 11500000, guid: f28d84c1bb78af808b8fa2ae50bf17b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _event: {fileID: 11400000, guid: cd75f9793c3596d188e221c4e339b85f, type: 2}
+  _event: {fileID: 11400000, guid: c360600ac29ad3fd9a3bd8f16a8cc902, type: 2}
   _response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1871238069}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1871238077}
+        m_TargetAssemblyTypeName: ObjectiveGameEventListener, Assembly-CSharp
+        m_MethodName: PrintObjective
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -473,7 +473,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1871238078
+--- !u!114 &1871238079
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -482,10 +482,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 1871238069}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f15d437969c0131f9b42e499beae9af, type: 3}
+  m_Script: {fileID: 11500000, guid: 5f4b217eee27f8965808e63c89329a2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _event: {fileID: 11400000, guid: cd75f9793c3596d188e221c4e339b85f, type: 2}
+  _objectiveSO: {fileID: 11400000, guid: c360600ac29ad3fd9a3bd8f16a8cc902, type: 2}
+  _objectiveText: Test Objective
+  _nextObjective: {fileID: 0}
+  _onActivate:
+    m_PersistentCalls:
+      m_Calls: []
+  _onComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  _onFail:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
