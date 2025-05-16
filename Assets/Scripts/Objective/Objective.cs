@@ -30,6 +30,7 @@ public class Objective : MonoBehaviour
     protected bool _isComplete = false;
     protected bool _isFailed = false;
     protected bool _isFirstObjective = false;
+    protected bool _isOneShot = true;
 
     // IEnumerator so that it can have built in waiting functionality
     private IEnumerator Start()
@@ -47,7 +48,7 @@ public class Objective : MonoBehaviour
     // Broadcasts an objective over the SO for listeners to receive
     public void ActivateObjective()
     {
-        if(_objectiveSO == null || _isActivated)
+        if(_objectiveSO == null || (_isActivated && _isOneShot))
         {
             return;
         }
