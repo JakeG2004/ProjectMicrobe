@@ -1,3 +1,10 @@
+/*
+* Script to create new entries in the Objectives Box
+*
+* Author:   Jake Gendreau
+* Date:     5/16/25
+*/
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

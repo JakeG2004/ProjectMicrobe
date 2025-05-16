@@ -1,3 +1,10 @@
+/*
+* Script to manage an Objective Entry (i.e. set its fields)
+*
+* Author:   Jake Gendreau
+* Date:     5/16/25
+*/
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

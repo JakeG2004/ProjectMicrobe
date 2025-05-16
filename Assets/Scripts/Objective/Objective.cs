@@ -13,7 +13,7 @@ using UnityEngine.Events;
 
 public class Objective : MonoBehaviour
 {
-    [SerializeField] private ObjectiveGameEventSO _objectiveSO;
+    [SerializeField] private ObjectiveChannelsSO _objectiveChannelsSO;
     [Space(10)]
 
     [SerializeField] protected Objective _nextObjective;
@@ -48,7 +48,7 @@ public class Objective : MonoBehaviour
     // Broadcasts an objective over the SO for listeners to receive
     public void ActivateObjective()
     {
-        if(_objectiveSO == null || (_isActivated && _isOneShot))
+        if(_objectiveChannelsSO == null || _objectiveChannelsSO.objectiveAddChannelSO == null || (_isActivated && _isOneShot))
         {
             return;
         }
@@ -56,7 +56,7 @@ public class Objective : MonoBehaviour
         _isActivated = true;
 
         _onActivate?.Invoke();
-        _objectiveSO.Raise(this);
+        _objectiveChannelsSO.objectiveAddChannelSO.Raise(this);
     }
 
     // Call to complete an objective
@@ -65,6 +65,7 @@ public class Objective : MonoBehaviour
         _isComplete = true;
 
         _onComplete?.Invoke();
+        _objectiveChannelsSO.objectiveCompleteChannelSO.Raise(this);
         ActivateNextObjective();
     }
 
@@ -80,6 +81,7 @@ public class Objective : MonoBehaviour
         _isFailed = true;
 
         _onFail?.Invoke();
+        _objectiveChannelsSO.objectiveFailedChannelSO.Raise(this);
         ActivateNextObjective();
     }
 
