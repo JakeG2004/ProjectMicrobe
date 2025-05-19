@@ -140,8 +140,6 @@ public class MicrobeMenu : MonoBehaviour
         }
 
         _curPylon = pylon.GetComponent<MicrobePopSim>();
-
-        Debug.Log(_curPylon);
     }
 
     public void AddMicrobe(Microbe microbe, float population)

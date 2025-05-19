@@ -56,7 +56,7 @@ public class AddMicrobeToPylon : MonoBehaviour
 
     public void SetSliderVal(string amt)
     {
-        if(!_slider)
+        if (!_slider)
         {
             return;
         }
@@ -72,10 +72,11 @@ public class AddMicrobeToPylon : MonoBehaviour
         UpdateInfo();
     }
 
+    // Updates the info of the pylon UI according to the pylon object
     public void UpdateInfo()
     {
         // Disable if not in index
-        if(_cm.GetMicrobeCount() == 0 || (_microbeIndex + 1 > _cm.GetMicrobeCount()))
+        if (_cm.GetMicrobeCount() == 0 || (_microbeIndex + 1 > _cm.GetMicrobeCount()))
         {
             _microbeName.text = "No Microbe!";
             _numToAdd.text = "0";

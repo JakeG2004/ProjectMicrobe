@@ -39,22 +39,23 @@ public class MicrobePopSim : MonoBehaviour
             env = new Environment(initialResources, resourceRefresh);
         }
 
-        // Convert each microbeSO into a new microbe in the simulation
-        if(microbeSOs.Count == 0)
+        // Check for microbeSOs
+        if (microbeSOs.Count == 0)
         {
-            Debug.Log("No microbe SOs!");
+            Debug.LogWarning("No microbe SOs!");
         }
 
-        foreach(var microbeSO in microbeSOs)
+        // Convert each microbeSO into a new microbe in the simulation
+        foreach (var microbeSO in microbeSOs)
         {
             microbes.Add(new Microbe(
-                initName:microbeSO.microbeName,
-                initPop:microbeSO.population,
-                initGrowthRate:microbeSO.growthRate,
-                initCompetitors:new Dictionary<string, float>(),
-                initRequiredResources:ResourceConverter.ConvertToDictionary(microbeSO.requiredResources),
-                initProducedResources:ResourceConverter.ConvertToDictionary(microbeSO.producedResources),
-                initToxins:ToxinConverter.ConvertToDictionary(microbeSO.toxins)
+                initName: microbeSO.microbeName,
+                initPop: microbeSO.population,
+                initGrowthRate: microbeSO.growthRate,
+                initCompetitors: new Dictionary<string, float>(),
+                initRequiredResources: ResourceConverter.ConvertToDictionary(microbeSO.requiredResources),
+                initProducedResources: ResourceConverter.ConvertToDictionary(microbeSO.producedResources),
+                initToxins: ToxinConverter.ConvertToDictionary(microbeSO.toxins)
             ));
         }
     }
