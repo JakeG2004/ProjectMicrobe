@@ -26,6 +26,13 @@ public class ObjectiveEntryScript : MonoBehaviour
         _objText.text = objText;
     }
 
+    // Initialize the entry with the objective
+    public void InitEntry(Objective obj)
+    {
+        SetObjText(obj.GetObjectiveText());
+        obj.LinkToPopup(this);
+    }
+
     public void CompleteObjective()
     {
         _completedText.text = "X";

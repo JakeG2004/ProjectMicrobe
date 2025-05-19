@@ -22,6 +22,9 @@ public class Objective : MonoBehaviour
     [SerializeField] protected string _objectiveText;
     [Space(10)]
 
+    [SerializeField] protected bool _isFirstObjective = false;
+    [Space(10)]
+
     [SerializeField] protected UnityEvent _onActivate;
     [SerializeField] protected UnityEvent _onComplete;
     [SerializeField] protected UnityEvent _onFail;
@@ -29,14 +32,14 @@ public class Objective : MonoBehaviour
     protected bool _isActivated = false;
     protected bool _isComplete = false;
     protected bool _isFailed = false;
-    protected bool _isFirstObjective = false;
     protected bool _isOneShot = true;
+    [SerializeField] protected ObjectiveEntryScript _objEntry;
 
     // IEnumerator so that it can have built in waiting functionality
     private IEnumerator Start()
     {
         // Wait 2 seconds then activate if set as first objective
-        if(_isFirstObjective)
+        if (_isFirstObjective)
         {
             yield return new WaitForSeconds(2);
             ActivateObjective();
@@ -66,6 +69,10 @@ public class Objective : MonoBehaviour
 
         _onComplete?.Invoke();
         _objectiveChannelsSO.objectiveCompleteChannelSO.Raise(this);
+        if (_objEntry)
+        {
+            _objEntry.CompleteObjective();
+        }
         ActivateNextObjective();
     }
 
@@ -97,6 +104,12 @@ public class Objective : MonoBehaviour
 
         // Activate it
         _nextObjective.ActivateObjective();
+    }
+
+    // Link the objective to its entry in the objectives UI
+    public void LinkToPopup(ObjectiveEntryScript objEntry)
+    {
+        _objEntry = objEntry;
     }
 
     /*

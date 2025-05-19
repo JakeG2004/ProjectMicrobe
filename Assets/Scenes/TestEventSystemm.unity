@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657832, g: 0.49641222, b: 0.57481664, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -307,6 +307,138 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 894344487}
   m_CullTransparentMesh: 1
+--- !u!1 &1308978296
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1308978301}
+  - component: {fileID: 1308978300}
+  - component: {fileID: 1308978299}
+  - component: {fileID: 1308978298}
+  - component: {fileID: 1308978297}
+  m_Layer: 0
+  m_Name: Cube (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1308978297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1308978296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f4b217eee27f8965808e63c89329a2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objectiveChannelsSO: {fileID: 11400000, guid: abd508a1728e99261a0c45cd360d8b56, type: 2}
+  _nextObjective: {fileID: 0}
+  _objectiveText: Test Objective 2!!!!
+  _isFirstObjective: 0
+  _onActivate:
+    m_PersistentCalls:
+      m_Calls: []
+  _onComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  _onFail:
+    m_PersistentCalls:
+      m_Calls: []
+  _objEntry: {fileID: 0}
+--- !u!65 &1308978298
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1308978296}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1308978299
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1308978296}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1308978300
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1308978296}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1308978301
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1308978296}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: -1.62}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1556100503
 GameObject:
   m_ObjectHideFlags: 0
@@ -490,6 +622,7 @@ GameObject:
   - component: {fileID: 1729581785}
   - component: {fileID: 1729581787}
   - component: {fileID: 1729581786}
+  - component: {fileID: 1729581788}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -597,6 +730,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _objectivePrefab: {fileID: 5190289176405900003, guid: cb9ae6461818f19139f33d092f77c240, type: 3}
+--- !u!114 &1729581788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1729581782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f28d84c1bb78af808b8fa2ae50bf17b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _event: {fileID: 11400000, guid: 70ce15015d3efa1929750615ffa58b36, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1780861237
 GameObject:
   m_ObjectHideFlags: 0
@@ -808,7 +957,7 @@ GameObject:
   - component: {fileID: 1871238075}
   - component: {fileID: 1871238074}
   - component: {fileID: 1871238073}
-  - component: {fileID: 1871238072}
+  - component: {fileID: 1871238080}
   - component: {fileID: 1871238079}
   m_Layer: 0
   m_Name: Cube
@@ -817,34 +966,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1871238072
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1871238069}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 034d6aa29963495cfa4f5c8256235147, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  keyPressEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1871238079}
-        m_TargetAssemblyTypeName: Objective, Assembly-CSharp
-        m_MethodName: ActivateObjective
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  key: 119
 --- !u!65 &1871238073
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -944,8 +1065,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _objectiveChannelsSO: {fileID: 11400000, guid: abd508a1728e99261a0c45cd360d8b56, type: 2}
-  _nextObjective: {fileID: 0}
+  _nextObjective: {fileID: 1308978297}
   _objectiveText: Test Objective
+  _isFirstObjective: 1
   _onActivate:
     m_PersistentCalls:
       m_Calls: []
@@ -955,6 +1077,35 @@ MonoBehaviour:
   _onFail:
     m_PersistentCalls:
       m_Calls: []
+  _objEntry: {fileID: 0}
+--- !u!114 &1871238080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1871238069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034d6aa29963495cfa4f5c8256235147, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keyPressEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1871238079}
+        m_TargetAssemblyTypeName: Objective, Assembly-CSharp
+        m_MethodName: RaiseObjectiveComplete
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  key: 113
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -962,5 +1113,6 @@ SceneRoots:
   - {fileID: 1780861240}
   - {fileID: 170368726}
   - {fileID: 1871238076}
+  - {fileID: 1308978301}
   - {fileID: 1556100507}
   - {fileID: 1696216579}
