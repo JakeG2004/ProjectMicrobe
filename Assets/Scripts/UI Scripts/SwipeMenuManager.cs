@@ -4,9 +4,16 @@ using UnityEngine.UI;
 
 public class SwipeMenuManager : MonoBehaviour
 {
+    public enum SlideType
+    {
+        Horizontal,
+        Vertical
+    };
+
     [SerializeField] private RectTransform[] _scrollObjects;
     [SerializeField] private Button _prevButton;
     [SerializeField] private Button _nextButton;
+    [SerializeField] private SlideType _slideType = SlideType.Horizontal;
 
     private int _curObject = 0;
     private float spacing = 0;
@@ -20,11 +27,24 @@ public class SwipeMenuManager : MonoBehaviour
             return;
         }
 
-        spacing = GetComponent<RectTransform>().rect.width;
-
-        for (int i = 0; i < _scrollObjects.Length; i++)
+        if (_slideType == SlideType.Vertical)
         {
-            _scrollObjects[i].anchoredPosition = new Vector2(spacing * i, 0);
+            spacing = GetComponent<RectTransform>().rect.height;
+
+            for (int i = 0; i < _scrollObjects.Length; i++)
+            {
+                _scrollObjects[i].anchoredPosition = new Vector2(_scrollObjects[i].anchoredPosition.x, -(spacing * i));
+            }
+        }
+
+        if (_slideType == SlideType.Horizontal)
+        {
+            spacing = GetComponent<RectTransform>().rect.width;
+
+            for (int i = 0; i < _scrollObjects.Length; i++)
+            {
+                _scrollObjects[i].anchoredPosition = new Vector2(spacing * i, _scrollObjects[i].anchoredPosition.y);
+            }
         }
     }
 
@@ -63,11 +83,19 @@ public class SwipeMenuManager : MonoBehaviour
         if (slideCoroutine != null)
             StopCoroutine(slideCoroutine);
 
-        slideCoroutine = StartCoroutine(SlideBetweenMenus(0.3f, direction));
+        if (_slideType == SlideType.Horizontal)
+        {
+            slideCoroutine = StartCoroutine(SlideBetweenMenusHorizontal(0.3f, direction));
+        }
+
+        if (_slideType == SlideType.Vertical)
+        {
+            slideCoroutine = StartCoroutine(SlideBetweenMenusVertical(0.3f, direction));
+        }
     }
 
-    // Smoothly slide between menu entries
-    IEnumerator SlideBetweenMenus(float time, int direction)
+    // Smoothly slide between menu entries horizontally
+    IEnumerator SlideBetweenMenusHorizontal(float time, int direction)
     {
         float elapsed = 0f;
         Vector2[] startPositions = new Vector2[_scrollObjects.Length];
@@ -77,7 +105,45 @@ public class SwipeMenuManager : MonoBehaviour
         for (int i = 0; i < _scrollObjects.Length; i++)
         {
             startPositions[i] = _scrollObjects[i].anchoredPosition;
-            endPositions[i] = new Vector2(spacing * (i - _curObject), 0);
+            endPositions[i] = new Vector2(spacing * (i - _curObject), startPositions[i].y);
+        }
+
+        // Do the slide for each of the entries
+        while (elapsed < time)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / time);
+
+            // Apply direction-based easing
+            float easedT = EaseInOut(t);
+
+            for (int i = 0; i < _scrollObjects.Length; i++)
+            {
+                _scrollObjects[i].anchoredPosition = Vector2.Lerp(startPositions[i], endPositions[i], easedT);
+            }
+
+            yield return null;
+        }
+
+        // Snap them all to their final destinations
+        for (int i = 0; i < _scrollObjects.Length; i++)
+        {
+            _scrollObjects[i].anchoredPosition = endPositions[i];
+        }
+    }
+
+    // Smoothly slide between menu entries vertically
+    IEnumerator SlideBetweenMenusVertical(float time, int direction)
+    {
+        float elapsed = 0f;
+        Vector2[] startPositions = new Vector2[_scrollObjects.Length];
+        Vector2[] endPositions = new Vector2[_scrollObjects.Length];
+
+        // Create the end positions for each entry in the slide menu
+        for (int i = 0; i < _scrollObjects.Length; i++)
+        {
+            startPositions[i] = _scrollObjects[i].anchoredPosition;
+            endPositions[i] = new Vector2(startPositions[i].x, -(spacing * (i - _curObject)));
         }
 
         // Do the slide for each of the entries
