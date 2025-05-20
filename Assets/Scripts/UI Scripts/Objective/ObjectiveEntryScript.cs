@@ -26,6 +26,7 @@ public class ObjectiveEntryScript : MonoBehaviour
     public void SetObjText(string objText)
     {
         _objText.text = objText;
+        _completedText.text = "";
     }
 
     // Initialize the entry with the objective
@@ -37,6 +38,7 @@ public class ObjectiveEntryScript : MonoBehaviour
 
         SetObjText(obj.GetObjectiveText());
         obj.LinkToPopup(this);
+        Show();
     }
 
     public void CompleteObjective()
@@ -46,22 +48,23 @@ public class ObjectiveEntryScript : MonoBehaviour
 
     public void Hide()
     {
-        _anim.SetBool("HasEntry", false;)
+        _anim.SetBool("HasEntry", false);
     }
 
     public void Show()
     {
-        _anim.SetBool("HasEntry, true");
+        _anim.SetBool("HasEntry", true);
     }
 
     public void SwitchObjective(float time, Objective obj)
     {
-        Hide();
         StartCoroutine(SwitchObjectiveIEnum(time, obj));
     }
 
-    public IEnumerator SwitchObjectiveIEnum(float time Objective obj)
+    public IEnumerator SwitchObjectiveIEnum(float time, Objective obj)
     {
+        yield return new WaitForSeconds(time);
+        Hide();
         yield return new WaitForSeconds(time);
         InitEntry(obj);
         Show();
