@@ -37,6 +37,12 @@ public class AddMicrobeToPlayerMenu : MonoBehaviour
         // Set UI Control state
         GetComponent<ToggleCameraTracking>()?.SetCameraTracking(!_isActive);
         MovementController.instance.SetMovementState(!_isActive);
-        GetComponent<ShowHideMouse>()?.SetState(_isActive);  
+        GetComponent<ShowHideMouse>()?.SetState(_isActive);
+
+        // Activate on disable (TEMPORARY)
+        if (!_isActive)
+        {
+            GetComponent<StringGameEventTrigger>().TriggerEvent("Oxygen");
+        }
     }
 }

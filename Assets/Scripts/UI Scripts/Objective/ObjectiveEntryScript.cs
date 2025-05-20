@@ -19,8 +19,6 @@ public class ObjectiveEntryScript : MonoBehaviour
     void Start()
     {
         _anim = GetComponent<Animator>();
-        _objText.gameObject.SetActive(false);
-        _completedText.transform.parent.gameObject.SetActive(false);
     }
 
     public void SetObjText(string objText)
@@ -32,10 +30,6 @@ public class ObjectiveEntryScript : MonoBehaviour
     // Initialize the entry with the objective
     public void InitEntry(Objective obj)
     {
-        // Show the objects
-        _objText.gameObject.SetActive(true);
-        _completedText.transform.parent.gameObject.SetActive(true);
-
         SetObjText(obj.GetObjectiveText());
         obj.LinkToPopup(this);
         Show();
@@ -56,12 +50,13 @@ public class ObjectiveEntryScript : MonoBehaviour
         _anim.SetBool("HasEntry", true);
     }
 
+    // Called to start an objective switch
     public void SwitchObjective(float time, Objective obj)
     {
         StartCoroutine(SwitchObjectiveIEnum(time, obj));
     }
 
-    public IEnumerator SwitchObjectiveIEnum(float time, Objective obj)
+    private IEnumerator SwitchObjectiveIEnum(float time, Objective obj)
     {
         yield return new WaitForSeconds(time);
         Hide();

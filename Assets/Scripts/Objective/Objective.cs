@@ -65,6 +65,11 @@ public class Objective : MonoBehaviour
     // Call to complete an objective
     public void RaiseObjectiveComplete()
     {
+        if (_isComplete)
+        {
+            return;
+        }
+        
         _isComplete = true;
 
         _onComplete?.Invoke();

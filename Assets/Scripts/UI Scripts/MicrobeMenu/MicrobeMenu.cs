@@ -47,9 +47,15 @@ public class MicrobeMenu : MonoBehaviour
         // Set UI control state
         GetComponent<ToggleCameraTracking>()?.SetCameraTracking(!_isActive);
         MovementController.instance.SetMovementState(!_isActive);
-        GetComponent<ShowHideMouse>()?.SetState(_isActive);  
+        GetComponent<ShowHideMouse>()?.SetState(_isActive);
 
         UpdateCharts();
+        
+        // Activate on disable (TEMPORARY)
+        if (!_isActive)
+        {
+            GetComponent<StringGameEventTrigger>().TriggerEvent("AddedMicrobe");
+        }
     }
 
     public void UpdateCharts()

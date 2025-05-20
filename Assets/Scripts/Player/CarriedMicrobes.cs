@@ -6,20 +6,20 @@ public class CarriedMicrobes : MonoBehaviour
 {
     const int MAX_MICROBES = 3;
     [SerializeField] private List<Microbe> _microbes = new List<Microbe>();
-
+    private bool _hasPylon = false;
     public void AddMicrobe(Microbe newMicrobe)
     {
         // Handle case of too many microbes
-        if(_microbes.Count >= MAX_MICROBES)
+        if (_microbes.Count >= MAX_MICROBES)
         {
             //Debug.LogWarning("Player attempting to add microbe to full backpack");
             return;
         }
 
         // Ensure no duplicates
-        foreach(Microbe microbe in _microbes)
+        foreach (Microbe microbe in _microbes)
         {
-            if(microbe.microbeName == newMicrobe.microbeName)
+            if (microbe.microbeName == newMicrobe.microbeName)
             {
                 microbe.population += newMicrobe.population;
                 return;
@@ -33,27 +33,27 @@ public class CarriedMicrobes : MonoBehaviour
     public void RemoveMicrobe(string microbeName)
     {
         // Handle empty list
-        if(_microbes.Count <= 0)
+        if (_microbes.Count <= 0)
         {
             return;
         }
 
         // Find target microbe and destroy (remove from list)
-        foreach(Microbe microbe in _microbes)
+        foreach (Microbe microbe in _microbes)
         {
-            if(microbe.microbeName == microbeName)
+            if (microbe.microbeName == microbeName)
             {
                 _microbes.Remove(microbe);
                 return;
             }
-        } 
+        }
     }
 
     public Microbe GetMicrobe(int index)
     {
-        if(index >= _microbes.Count || index < 0)
+        if (index >= _microbes.Count || index < 0)
         {
-            if(NotificationPanelManager.Instance.IsAnimating() == true)
+            if (NotificationPanelManager.Instance.IsAnimating() == true)
             {
                 return null;
             }
@@ -73,15 +73,15 @@ public class CarriedMicrobes : MonoBehaviour
 
     public void SetMicrobePopulation(string microbeName, float newPopulation)
     {
-        foreach(Microbe microbe in _microbes)
+        foreach (Microbe microbe in _microbes)
         {
-            if(microbe.microbeName != microbeName)
+            if (microbe.microbeName != microbeName)
             {
                 continue;
             }
 
             microbe.population = newPopulation;
-            if(microbe.population <= 0)
+            if (microbe.population <= 0)
             {
                 RemoveMicrobe(microbeName);
             }
@@ -92,5 +92,15 @@ public class CarriedMicrobes : MonoBehaviour
     public bool IsFull()
     {
         return _microbes.Count >= MAX_MICROBES;
+    }
+
+    public bool HasPylon()
+    {
+        return _hasPylon;
+    }
+
+    public void SetHasPylon(bool state)
+    {
+        _hasPylon = state;
     }
 }
