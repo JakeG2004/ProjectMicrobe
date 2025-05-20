@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class NPCMoveController : MonoBehaviour {
 
@@ -18,6 +19,9 @@ public class NPCMoveController : MonoBehaviour {
 	float attentionSpan = 0; // How long the NPC is interested in walking a direction or looking at a thing
 	Vector3 homePos;
 
+	private bool _canMove = true;
+	private Transform _target;
+
 
 	void Start() {
 		rb = GetComponent<Rigidbody>();
@@ -26,6 +30,14 @@ public class NPCMoveController : MonoBehaviour {
 		homePos = currentPosition;
 	}
 	void FixedUpdate() {
+		if (!_canMove)
+		{
+			//StartCoroutine(FaceTarget(target));
+			anim.SetFloat("Move", 0);
+			anim.SetFloat("Idle", 1);
+			return;
+		}
+
 		Wander();
 		RotateBasedOnMovement(4f);
 		AnimateBasedOnMovement();
@@ -127,6 +139,19 @@ public class NPCMoveController : MonoBehaviour {
 		int index = Random.Range(0, 7);
 		anim.SetFloat("Idle", (float)index);
 	}
+
+	public void SetMoveStatus(bool state)
+	{
+		_canMove = state;
+	}
+
+	/*public IEnumerator FaceTarget()
+	{
+		Vector3 relativePos = _target.position - transform.position;
+		Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
+		transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.time * .1f);
+		yield return null;
+	}*/
 	
 	void OnDrawGizmos() {
 		// visual of checksphere

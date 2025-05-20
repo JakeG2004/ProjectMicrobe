@@ -45,6 +45,11 @@ public class ObjectiveEntryScript : MonoBehaviour
         _anim.SetBool("HasEntry", false);
     }
 
+    public void DelayHide(float time)
+    {
+        StartCoroutine(DelayHideIEnum(time));
+    }
+
     public void Show()
     {
         _anim.SetBool("HasEntry", true);
@@ -63,5 +68,11 @@ public class ObjectiveEntryScript : MonoBehaviour
         yield return new WaitForSeconds(time);
         InitEntry(obj);
         Show();
+    }
+
+    private IEnumerator DelayHideIEnum(float time)
+    {
+        yield return new WaitForSeconds(time);
+        Hide();
     }
 }

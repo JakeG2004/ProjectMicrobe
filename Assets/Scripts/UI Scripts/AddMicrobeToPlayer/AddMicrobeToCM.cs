@@ -88,5 +88,6 @@ public class AddMicrobeToCM : MonoBehaviour
         _microbeSO = microbeSO;
         _population = population;
         _srcToggle = src;
+        UpdateInfo();
     }
 }

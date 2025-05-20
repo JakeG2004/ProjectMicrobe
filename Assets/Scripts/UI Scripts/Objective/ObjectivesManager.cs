@@ -11,6 +11,7 @@ public class ObjectivesManager : MonoBehaviour
 {
     private Queue<Objective> _objQ;
     private Objective _curObj;
+    private Objective _oldObj;
     private bool _firstObjective = true;
     [SerializeField] private ObjectiveEntryScript _oes;
 
@@ -36,11 +37,20 @@ public class ObjectivesManager : MonoBehaviour
         {
             UpdateObjective();
         }
+
+        _oldObj = _curObj;
     }
 
     // Update the objective
     public void UpdateObjective()
     {
+        // Handle no new objective
+        if (_oldObj == _curObj)
+        {
+            _oes.DelayHide(.75f);
+            return;
+        }
+        
         // Handle empty queue
         if (_firstObjective)
         {

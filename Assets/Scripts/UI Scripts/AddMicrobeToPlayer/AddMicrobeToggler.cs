@@ -21,7 +21,7 @@ public class AddMicrobeToggler : MonoBehaviour
     void Update()
     {
         _elapsedTime += Time.deltaTime;
-        if(_elapsedTime >= _updatePeriod)
+        if (_elapsedTime >= _updatePeriod)
         {
             _elapsedTime = 0.0f;
 
