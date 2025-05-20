@@ -9,12 +9,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager Instance { get; private set; }
     private Queue<DialogueUnit> _sentences;
     private Animator _anim;
+    private Dialogue _curDialogue;
     [SerializeField] private TMP_Text _nameText;
     [SerializeField] private TMP_Text _bodyText;
     [SerializeField] private Image _img;
@@ -41,6 +43,8 @@ public class DialogueManager : MonoBehaviour
     {
         // Show the dialogue
         _anim.SetBool("IsOpen", true);
+
+        _curDialogue = dialogue;
 
         // Clear and populate sentence queue
         _sentences.Clear();
@@ -95,6 +99,7 @@ public class DialogueManager : MonoBehaviour
     // Ends the dialogue
     public void EndDialogue()
     {
+        _curDialogue.onDialogueComplete?.Invoke();
         _anim.SetBool("IsOpen", false);
     }
 }

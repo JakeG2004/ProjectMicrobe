@@ -33,7 +33,7 @@ public class Objective : MonoBehaviour
     protected bool _isComplete = false;
     protected bool _isFailed = false;
     protected bool _isOneShot = true;
-    [SerializeField] protected ObjectiveEntryScript _objEntry;
+    protected ObjectiveEntryScript _objEntry;
 
     // IEnumerator so that it can have built in waiting functionality
     private IEnumerator Start()
