@@ -8,14 +8,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager Instance { get; private set; }
-    private Queue<string> _sentences;
+    private Queue<DialogueUnit> _sentences;
     private Animator _anim;
     [SerializeField] private TMP_Text _nameText;
     [SerializeField] private TMP_Text _bodyText;
+    [SerializeField] private Image _img;
 
     // Start is called before the first frame update
     void Start()
@@ -40,12 +42,9 @@ public class DialogueManager : MonoBehaviour
         // Show the dialogue
         _anim.SetBool("IsOpen", true);
 
-        // Set the dialogue name
-        _nameText.text = dialogue.name;
-
         // Clear and populate sentence queue
         _sentences.Clear();
-        foreach (string sentence in dialogue.sentences)
+        foreach (DialogueUnit sentence in dialogue.sentences)
         {
             _sentences.Enqueue(sentence);
         }
@@ -64,8 +63,18 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
-        // Get and show the next sentence
-        string sentence = _sentences.Dequeue();
+        // Get next sentence
+        DialogueUnit _curSentence = _sentences.Dequeue();
+
+        // Set the image to be the image in the Dialogue unit if its not null, disable if null
+        _img.enabled = (_curSentence.img != null);
+        _img.sprite = _curSentence.img;
+
+        // Set the name text
+        _nameText.text = _curSentence.name;
+
+        // Set the body text
+        string sentence = _curSentence.sentence;
         StopAllCoroutines();
         StartCoroutine(TypeSentence(sentence));
     }
@@ -77,7 +86,9 @@ public class DialogueManager : MonoBehaviour
         foreach (char letter in sentence.ToCharArray())
         {
             _bodyText.text += letter;
-            yield return null;
+
+            // Show characters at 60 / sec
+            yield return new WaitForSeconds(.016f);
         }
     }
 

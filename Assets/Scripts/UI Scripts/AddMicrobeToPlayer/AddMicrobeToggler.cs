@@ -31,8 +31,8 @@ public class AddMicrobeToggler : MonoBehaviour
 
     public void ToggleMenu()
     {
-        AddMicrobeToCM.Instance.SetMicrobe(_microbeSO, _curPopulation, this);
         AddMicrobeToPlayerMenu.Instance.ToggleState();
+        AddMicrobeToCM.Instance.SetMicrobe(_microbeSO, _curPopulation, this);
     }
 
     public void SetPopulation(float pop)

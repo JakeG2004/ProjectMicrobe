@@ -11,8 +11,14 @@ using UnityEngine;
 [System.Serializable]
 public class Dialogue
 {
-    public string name;
+    public DialogueUnit[] sentences;
+}
 
+[System.Serializable]
+public class DialogueUnit
+{
+    public Sprite img;
+    public string name;
     [TextArea(2, 3)]
-    public string[] sentences;
+    public string sentence;
 }
