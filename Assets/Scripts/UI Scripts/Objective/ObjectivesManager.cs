@@ -49,6 +49,7 @@ public class ObjectivesManager : MonoBehaviour
         if (_oldObj == _curObj)
         {
             _oes.DelayHide(.75f);
+            DirectionArrowScript.Instance.RemoveTarget();
             return;
         }
         

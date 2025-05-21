@@ -28,14 +28,14 @@ public class AddMicrobeToPylon : MonoBehaviour
         float popToAdd = float.Parse(_numToAdd.text);
 
         // Check bounds
-        if(popToAdd > curMicrobe.population || curMicrobe.population == 0)
+        if (popToAdd > curMicrobe.population || curMicrobe.population == 0)
         {
             Debug.Log("Invalid amount to add");
             return;
         }
 
         float oldPop = curMicrobe.population;
-        
+
         // Add it to the pylon
         _microbeMenu.AddMicrobe(curMicrobe, popToAdd);
 
@@ -43,10 +43,12 @@ public class AddMicrobeToPylon : MonoBehaviour
         _cm.SetMicrobePopulation(curMicrobe.microbeName, oldPop - popToAdd);
 
         // Update the player inventory slots
-        foreach(var amtp in Object.FindObjectsOfType<AddMicrobeToPylon>())
+        foreach (var amtp in Object.FindObjectsOfType<AddMicrobeToPylon>())
         {
             amtp.UpdateInfo();
         }
+
+        GetComponent<StringGameEventTrigger>().TriggerEvent(curMicrobe.microbeName);
     }
 
     public void SetAddVal(float val)

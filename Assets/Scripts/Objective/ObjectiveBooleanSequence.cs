@@ -31,40 +31,42 @@ public class ObjectiveBooleanSequence : MonoBehaviour
     // Public function to set a named bool to true
     public void SetTrue(string boolName)
     {
-        // Handle the sequenced logic
+        // Sequenced Logic
         if (_isSequenced)
         {
+            int prevIndex = 0;
+
+            // Get the key of the previous entry
             for (int i = 0; i < _boolNames.Length; i++)
             {
-                // Skip to the relevant entry
-                if (_boolNames[i] != boolName)
+                if (_boolNames[i] == boolName)
                 {
-                    continue;
-                }
-                
-                // Handle relevant entry being 0
-                if (i == 0)
-                {
-                    _bools[_boolNames[i]] = true;
-                    return;
-                }
-                
-                // Check previous entry
-                if (_bools[_boolNames[i - 1]] == false)
-                {
-                    return;
-                }
+                    // Is First entry in sequence
+                    if (i == 0)
+                    {
+                        _bools[boolName] = true;
+                        break;
+                    }
 
-                // Set it the previous was true
-                _bools[_boolNames[i]] = true;
+                    // Assign the previous Index
+                    prevIndex = i - 1;
+                }
             }
-            return;
+
+            // Check if the previous entry is complete
+            if (_bools[_boolNames[prevIndex]] == true)
+            {
+                _bools[boolName] = true;
+            }
         }
-        
-        // Unesequenced logic
-        if (_bools.ContainsKey(boolName))
+
+        // Unsequenced logic
+        else
         {
-            _bools[boolName] = true;
+            if (_bools.ContainsKey(boolName))
+            {
+                _bools[boolName] = true;
+            }
         }
 
         CheckComplete();

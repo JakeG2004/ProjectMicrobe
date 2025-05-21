@@ -55,6 +55,11 @@ public class DirectionArrowScript : MonoBehaviour
         _target = newTarget;
     }
 
+    public void RemoveTarget()
+    {
+        _target = null;
+    }
+
     void OnTriggerEnter(Collider col)
     {
         _collidingObjs.Add(col.gameObject);
