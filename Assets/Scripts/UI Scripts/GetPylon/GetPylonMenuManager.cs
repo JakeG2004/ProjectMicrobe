@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Events;
 
 public class GetPylonMenuManager : MonoBehaviour
 {
@@ -15,8 +16,8 @@ public class GetPylonMenuManager : MonoBehaviour
 
     [SerializeField] private GameObject _panel;
     [SerializeField] private Button _takePylonButton;
-
-    private BoolGameEventTrigger _menuStateTracker;
+    [SerializeField] private BoolGameEventTrigger _menuStateTracker;
+    [SerializeField] private UnityEvent _onTakePylon;
 
     private bool _isActive = false;
     private CarriedMicrobes _cm;
@@ -41,7 +42,6 @@ public class GetPylonMenuManager : MonoBehaviour
         }
 
         _panel.SetActive(false);
-        _menuStateTracker = GetComponent<BoolGameEventTrigger>();
     }
 
     public void ToggleMenu()
@@ -74,5 +74,21 @@ public class GetPylonMenuManager : MonoBehaviour
         {
             _takePylonButton.transform.GetChild(0).GetComponent<TMP_Text>().text = "Pylon Already in Inventory";
         }
+    }
+
+    public void GivePylon()
+    {
+        _cm.SetHasPylon(true);
+    }
+
+    public void TakePylon()
+    {
+        if (!_cm.HasPylon())
+        {
+            return;
+        }
+
+        _cm.SetHasPylon(false);
+        _onTakePylon?.Invoke();
     }
 }

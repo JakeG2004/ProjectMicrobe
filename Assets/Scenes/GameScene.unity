@@ -34220,6 +34220,9 @@ GameObject:
   m_Component:
   - component: {fileID: 268604524}
   - component: {fileID: 268604525}
+  - component: {fileID: 268604528}
+  - component: {fileID: 268604527}
+  - component: {fileID: 268604526}
   m_Layer: 0
   m_Name: GetPylon
   m_TagString: Untagged
@@ -34268,6 +34271,95 @@ MonoBehaviour:
   _onFail:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &268604526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 268604523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2aa24179581ffceff947a701e624e3ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _event: {fileID: 11400000, guid: d3795509322f39e7f8125967f6d8b34d, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 268604528}
+        m_TargetAssemblyTypeName: ObjectiveBooleanSequence, Assembly-CSharp
+        m_MethodName: SetTrue
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: MenuClosed
+          m_BoolArgument: 0
+        m_CallState: 2
+  _boolVal: 0
+--- !u!114 &268604527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 268604523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2aa24179581ffceff947a701e624e3ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _event: {fileID: 11400000, guid: d93cabab50dc952db82ec8cb166d65d8, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 268604528}
+        m_TargetAssemblyTypeName: ObjectiveBooleanSequence, Assembly-CSharp
+        m_MethodName: SetTrue
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: GotPylon
+          m_BoolArgument: 0
+        m_CallState: 2
+  _boolVal: 0
+--- !u!114 &268604528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 268604523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ca99cd2fc88602038b43dfa2a38d0c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _boolNames:
+  - GotPylon
+  - MenuClosed
+  _completedEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 268604525}
+        m_TargetAssemblyTypeName: Objective, Assembly-CSharp
+        m_MethodName: RaiseObjectiveComplete
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _isSequenced: 1
 --- !u!1 &269640558
 GameObject:
   m_ObjectHideFlags: 0
@@ -52593,9 +52685,6 @@ GameObject:
   - component: {fileID: 412422794}
   - component: {fileID: 412422793}
   - component: {fileID: 412422796}
-  - component: {fileID: 412422799}
-  - component: {fileID: 412422798}
-  - component: {fileID: 412422797}
   m_Layer: 5
   m_Name: AddPylonMenu
   m_TagString: Untagged
@@ -52676,93 +52765,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _panel: {fileID: 1663092478}
   _takePylonButton: {fileID: 2048706344}
---- !u!114 &412422797
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 412422791}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ca99cd2fc88602038b43dfa2a38d0c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _boolNames:
-  - GotPylon
-  - MenuClosed
-  _completedEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 337078238}
-        m_TargetAssemblyTypeName: Objective, Assembly-CSharp
-        m_MethodName: RaiseObjectiveComplete
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  _isSequenced: 1
---- !u!114 &412422798
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 412422791}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2aa24179581ffceff947a701e624e3ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _event: {fileID: 11400000, guid: d3795509322f39e7f8125967f6d8b34d, type: 2}
-  _response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 412422797}
-        m_TargetAssemblyTypeName: ObjectiveBooleanSequence, Assembly-CSharp
-        m_MethodName: SetTrue
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: MenuClosed
-          m_BoolArgument: 0
-        m_CallState: 2
-  _boolVal: 0
---- !u!114 &412422799
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 412422791}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a902e56cee29af578ae8d755bccd3b0d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  _menuStateTracker: {fileID: 412422793}
   _onTakePylon:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 412422797}
-        m_TargetAssemblyTypeName: ObjectiveBooleanSequence, Assembly-CSharp
-        m_MethodName: SetTrue
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: GotPylon
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &413075890
 GameObject:
   m_ObjectHideFlags: 0
@@ -270180,6 +270186,7 @@ GameObject:
   - component: {fileID: 2048706346}
   - component: {fileID: 2048706345}
   - component: {fileID: 2048706344}
+  - component: {fileID: 2048706347}
   m_Layer: 5
   m_Name: AddMicrobe
   m_TagString: Untagged
@@ -270251,8 +270258,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 412422799}
-        m_TargetAssemblyTypeName: PlayerPylonManager, Assembly-CSharp
+      - m_Target: {fileID: 412422796}
+        m_TargetAssemblyTypeName: GetPylonMenuManager, Assembly-CSharp
         m_MethodName: GivePylon
         m_Mode: 1
         m_Arguments:
@@ -270267,6 +270274,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: GetPylonMenuManager, Assembly-CSharp
         m_MethodName: UpdateButtonText
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2048706347}
+        m_TargetAssemblyTypeName: BoolGameEventTrigger, Assembly-CSharp
+        m_MethodName: TriggerEvent
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -270313,6 +270332,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2048706342}
   m_CullTransparentMesh: 1
+--- !u!114 &2048706347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2048706342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5533829f52a164be6b19fb31f13a2c15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _event: {fileID: 11400000, guid: d93cabab50dc952db82ec8cb166d65d8, type: 2}
 --- !u!1 &2054763652
 GameObject:
   m_ObjectHideFlags: 0
