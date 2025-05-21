@@ -29,15 +29,15 @@ public class AddMicrobeToCM : MonoBehaviour
 
     public void AddMicrobeToPlayer()
     {
-        if(!float.TryParse(_microbeAmt.text, out float amtToAdd))
+        if (!float.TryParse(_microbeAmt.text, out float amtToAdd))
         {
             Debug.LogWarning("Failed to parse string");
             return;
         }
 
-        if(amtToAdd > _population)
+        if (amtToAdd > _population)
         {
-            if(NotificationPanelManager.Instance.IsAnimating() == true)
+            if (NotificationPanelManager.Instance.IsAnimating() == true)
             {
                 return;
             }
@@ -45,17 +45,17 @@ public class AddMicrobeToCM : MonoBehaviour
             NotificationPanelManager.Instance.ShowPanelForSeconds("Attempting to take too many microbes!");
             return;
         }
-        
+
         CarriedMicrobes _cm = GameObject.FindGameObjectWithTag("Player").GetComponent<CarriedMicrobes>();
         Microbe newMicrobe = Microbe.CreateMicrobeFromSO(_microbeSO);
         newMicrobe.population = amtToAdd;
-        if(_cm.IsFull())
+        if (_cm.IsFull())
         {
-            if(NotificationPanelManager.Instance.IsAnimating() == true)
+            if (NotificationPanelManager.Instance.IsAnimating() == true)
             {
                 return;
             }
-            
+
             NotificationPanelManager.Instance.ShowPanelForSeconds("Too many microbes in backpack!");
             return;
         }
@@ -63,12 +63,15 @@ public class AddMicrobeToCM : MonoBehaviour
 
         _population -= amtToAdd;
         UpdateInfo();
-        
+
         // Update the player inventory slots
-        foreach(var im in Object.FindObjectsOfType<IndividualMicrobeCtrl>())
+        foreach (var im in Object.FindObjectsOfType<IndividualMicrobeCtrl>())
         {
             im.UpdateInfo();
         }
+
+        // Broadcast what microbe was picked up
+        GetComponent<StringGameEventTrigger>().TriggerEvent(_microbeSO.microbeName);
     }
 
     public void UpdateInfo()

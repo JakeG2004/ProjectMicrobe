@@ -25,6 +25,7 @@ public class ObjectivesManager : MonoBehaviour
     public void AddObjective(Objective obj)
     {
         _curObj = obj;
+        DirectionArrowScript.Instance.ChangeTarget(obj.GetTarget());
 
         // Set as the current objective if this is the first item
         if (_firstObjective)

@@ -25,6 +25,8 @@ public class Objective : MonoBehaviour
     [SerializeField] protected bool _isFirstObjective = false;
     [Space(10)]
 
+    [SerializeField] protected Transform _targetObject;
+
     [SerializeField] protected UnityEvent _onActivate;
     [SerializeField] protected UnityEvent _onComplete;
     [SerializeField] protected UnityEvent _onFail;
@@ -51,11 +53,11 @@ public class Objective : MonoBehaviour
     // Broadcasts an objective over the SO for listeners to receive
     public void ActivateObjective()
     {
-        if(_objectiveChannelsSO == null || _objectiveChannelsSO.objectiveAddChannelSO == null || (_isActivated && _isOneShot))
+        if (_objectiveChannelsSO == null || _objectiveChannelsSO.objectiveAddChannelSO == null || (_isActivated && _isOneShot))
         {
             return;
         }
-        
+
         _isActivated = true;
 
         _onActivate?.Invoke();
@@ -69,7 +71,7 @@ public class Objective : MonoBehaviour
         {
             return;
         }
-        
+
         _isComplete = true;
 
         _onComplete?.Invoke();
@@ -84,7 +86,7 @@ public class Objective : MonoBehaviour
     // Call to fail an objective
     public void RaiseObjectiveFailed()
     {
-        if(_isComplete || _isFailed)
+        if (_isComplete || _isFailed)
         {
             return;
         }
@@ -99,7 +101,7 @@ public class Objective : MonoBehaviour
 
     public void ActivateNextObjective()
     {
-        if(_nextObjective == null)
+        if (_nextObjective == null)
         {
             return;
         }
@@ -141,5 +143,10 @@ public class Objective : MonoBehaviour
     public bool IsFailed()
     {
         return _isFailed;
+    }
+
+    public Transform GetTarget()
+    {
+        return _targetObject;
     }
 }
