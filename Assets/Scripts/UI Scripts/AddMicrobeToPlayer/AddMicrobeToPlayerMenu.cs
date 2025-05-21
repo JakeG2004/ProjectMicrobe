@@ -10,6 +10,8 @@ public class AddMicrobeToPlayerMenu : MonoBehaviour
     [SerializeField] private GameObject _menuPanel;
     private bool _isActive = false;
 
+    private BoolGameEventTrigger _menuStateTracker;
+
     void Awake()
     {
         if(Instance != null && Instance != this)
@@ -27,6 +29,7 @@ public class AddMicrobeToPlayerMenu : MonoBehaviour
     void Start()
     {
         _menuPanel.SetActive(false);
+        _menuStateTracker = GetComponent<BoolGameEventTrigger>();
     }
 
     public void ToggleState()
@@ -39,10 +42,7 @@ public class AddMicrobeToPlayerMenu : MonoBehaviour
         MovementController.instance.SetMovementState(!_isActive);
         GetComponent<ShowHideMouse>()?.SetState(_isActive);
 
-        // Activate on disable (TEMPORARY)
-        if (!_isActive)
-        {
-            GetComponent<StringGameEventTrigger>().TriggerEvent("Oxygen");
-        }
+        // Set UI Menu Tracker State
+        _menuStateTracker.TriggerEvent(_isActive);
     }
 }

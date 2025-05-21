@@ -12,14 +12,17 @@ public class MicrobeMenu : MonoBehaviour
     [SerializeField] private int _graphEntries = 10;
     private MicrobePopSim _curPylon;
     private bool _isActive = false;
+    private BoolGameEventTrigger _menuStateTracker;
 
     // Start is called before the first frame update
     void Start()
     {
-        _menuPanel.SetActive(false);   
+        _menuPanel.SetActive(false);
 
         InitChart(_microbesChart, "Microbe Populations");
         InitChart(_resourcesChart, "Resource Amounts");
+
+        _menuStateTracker = GetComponent<BoolGameEventTrigger>();
     }
 
     void InitChart(LineChart chart, string name)
@@ -49,13 +52,10 @@ public class MicrobeMenu : MonoBehaviour
         MovementController.instance.SetMovementState(!_isActive);
         GetComponent<ShowHideMouse>()?.SetState(_isActive);
 
+        // Update the menu open indicator
+        _menuStateTracker.TriggerEvent(_isActive);
+
         UpdateCharts();
-        
-        // Activate on disable (TEMPORARY)
-        if (!_isActive)
-        {
-            GetComponent<StringGameEventTrigger>().TriggerEvent("AddedMicrobe");
-        }
     }
 
     public void UpdateCharts()
