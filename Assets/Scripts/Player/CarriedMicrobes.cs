@@ -7,6 +7,7 @@ public class CarriedMicrobes : MonoBehaviour
     const int MAX_MICROBES = 3;
     [SerializeField] private List<Microbe> _microbes = new List<Microbe>();
     private bool _hasPylon = false;
+    
     public void AddMicrobe(Microbe newMicrobe)
     {
         // Handle case of too many microbes
