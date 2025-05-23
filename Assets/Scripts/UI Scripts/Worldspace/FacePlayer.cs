@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class FacePlayer : MonoBehaviour
 {
+    [SerializeField] private bool _faceOnStart = false;
+
     private GameObject _cam;
     private Animator _anim;
 
@@ -12,6 +14,11 @@ public class FacePlayer : MonoBehaviour
     {
         _cam = GameObject.FindGameObjectWithTag("MainCamera");
         _anim = GetComponent<Animator>();
+
+        if(_faceOnStart)
+        {
+            SetAnimState(true);
+        }
     }
 
     // Update is called once per frame
@@ -23,5 +30,13 @@ public class FacePlayer : MonoBehaviour
     public void SetAnimState(bool state)
     {
         _anim.SetBool("TextIsUp", state);
+    }
+
+    void OnEnable()
+    {
+        if(_faceOnStart)
+        {
+            SetAnimState(true);
+        }
     }
 }
