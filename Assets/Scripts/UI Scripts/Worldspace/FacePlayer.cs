@@ -34,6 +34,7 @@ public class FacePlayer : MonoBehaviour
 
     void OnEnable()
     {
+        _anim = GetComponent<Animator>();
         if(_faceOnStart)
         {
             SetAnimState(true);
