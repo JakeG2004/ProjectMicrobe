@@ -9,26 +9,76 @@ using UnityEngine;
 
 public class PylonPlacementController : MonoBehaviour
 {
-    [SerializeField] private float _forwardRaycastDist = 5.0f;
-    [Serializefield] private float _downwardRaycastDist = 5.0f;
+    // The pylon object that will be moved
+    [SerializeField] private Transform _pylonObject;
 
-    private GameObject _mainCamGO;
-    private Transform _player;
+    // The distances for the raycasts
+    [SerializeField] private float _xRayDist = 5.0f;
+    [SerializeField] private float _yRayDist = 1.0f;
 
-    // Start is called before the first frame update
+    private CarriedMicrobes _cm;
+
     void Start()
     {
-        _mainCamGO = Camera.main.gameObject;
-        _player = GameObject.FindGameObjectByTag("Player").transform;
+        _cm = GameObject.FindGameObjectWithTag("Player").GetComponent<CarriedMicrobes>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        RaycastHit _horizontalHit;
-        if(Physics.Raycast(_player.position, transform.TransformDirection(Vector3.forward), out hit, _forwardRaycastDist))
+        // Set the object to have the camera's y rotation but no other rotation
+        Quaternion _newRot = Camera.main.transform.rotation;
+        _newRot.Set(0, _newRot.y, 0, _newRot.w);
+        transform.rotation = _newRot;
+
+        // Vertical raycast point
+        Vector3 _vRayOrigin;
+
+        // Our raycast hits
+        RaycastHit _xHit;
+        RaycastHit _yHit;
+
+        // Layermask to ignore player
+        int mask = ~LayerMask.GetMask("Player");
+
+        bool gotHit = false;
+
+        // Send a raycast forward. On hit
+        if(Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out _xHit, _xRayDist, mask))
         {
-            
+            _vRayOrigin = _xHit.point;
         }
+
+        // On miss
+        else
+        {
+            _vRayOrigin = transform.position + (_xRayDist * transform.TransformDirection(Vector3.forward));
+        }
+
+        // Send the raycast downward first, then upward
+        // NOTE: This is a short-circuiting expression. Equivalent to
+        // if(raycast down) ...
+        // else if (raycast up)
+        if(Physics.Raycast(_vRayOrigin, -Vector3.up, out _yHit, _yRayDist, mask) ||
+        Physics.Raycast(_vRayOrigin, Vector3.up, out _yHit, _yRayDist, mask))
+        {
+            // Set position
+            _pylonObject.position = _yHit.point;
+            _pylonObject.rotation = _newRot;
+
+            gotHit = true;
+        }
+
+        // set enabled based on whether there was a y hit
+        _pylonObject.gameObject.SetActive(gotHit && _cm.HasPylon());
     }
 }
+
+/*
+Script core idea:
+A raycast will be sent out from the player in the direction that the camera is facing.
+This raycast should be perfectly flat
+
+It will either reach something and stop, or continue until its max distance is met.
+In either case, it will do a raycast down from that position and then also up from that position.
+If one of them hits, then it will place the pylon there.
+*/
