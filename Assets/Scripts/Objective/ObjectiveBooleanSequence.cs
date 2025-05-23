@@ -17,6 +17,9 @@ public class ObjectiveBooleanSequence : MonoBehaviour
 
     [SerializeField] private UnityEvent _completedEvent;
     [SerializeField] private bool _isSequenced = false;
+    [SerializeField] private bool _allowMultiToggle = true;
+
+    private int _lastSetFrame = -1;
 
     void Start()
     {
@@ -31,6 +34,15 @@ public class ObjectiveBooleanSequence : MonoBehaviour
     // Public function to set a named bool to true
     public void SetTrue(string boolName)
     {
+        if(!_allowMultiToggle)
+        {
+            // Prevent setting multiple in the same frame
+            if (Time.frameCount == _lastSetFrame)
+                return;
+
+            _lastSetFrame = Time.frameCount;
+        }
+
         // Sequenced Logic
         if (_isSequenced)
         {
@@ -75,6 +87,15 @@ public class ObjectiveBooleanSequence : MonoBehaviour
     // Public function to set a named bool to false
     public void SetFalse(string boolName)
     {
+        if(!_allowMultiToggle)
+        {
+            // Prevent setting multiple in the same frame
+            if (Time.frameCount == _lastSetFrame)
+                return;
+
+            _lastSetFrame = Time.frameCount;
+        }
+
         if (_bools.ContainsKey(boolName))
         {
             _bools[boolName] = false;
@@ -93,5 +114,10 @@ public class ObjectiveBooleanSequence : MonoBehaviour
         }
 
         _completedEvent?.Invoke();
+    }
+
+    public void SetAllToFalse()
+    {
+        Start();
     }
 }

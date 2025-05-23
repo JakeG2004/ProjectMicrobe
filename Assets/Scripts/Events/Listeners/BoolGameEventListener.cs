@@ -17,6 +17,8 @@ public class BoolGameEventListener : MonoBehaviour, IGameEventListener<bool>
 {
     [SerializeField] private BoolGameEventSO _event;
     [SerializeField] private UnityEvent<bool> _response;
+    [SerializeField] private UnityEvent _onBoolTrue;
+    [SerializeField] private UnityEvent _onBoolFalse;
     [SerializeField] private bool _boolVal;
     public void OnEnable()
     {
@@ -36,6 +38,16 @@ public class BoolGameEventListener : MonoBehaviour, IGameEventListener<bool>
         // PrintObjective(obj);
         _response?.Invoke(obj);
         _boolVal = obj;
+
+        if(_boolVal)
+        {
+            _onBoolTrue?.Invoke();
+        }
+
+        if(!_boolVal)
+        {
+            _onBoolFalse?.Invoke();
+        }
     }
 
     public bool GetBoolVal()
