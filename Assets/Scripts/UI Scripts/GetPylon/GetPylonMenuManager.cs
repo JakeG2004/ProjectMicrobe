@@ -18,7 +18,7 @@ public class GetPylonMenuManager : MonoBehaviour
     [SerializeField] private BoolGameEventTrigger _menuStateTracker;
 
     private bool _isActive = false;
-    private CarriedMicrobes _cm;
+    private CarriedPylon _cp;
 
     void Start()
     {
@@ -32,9 +32,9 @@ public class GetPylonMenuManager : MonoBehaviour
             Destroy(this);
         }
 
-        _cm = Object.FindObjectOfType<CarriedMicrobes>();
+        _cp = Object.FindObjectOfType<CarriedPylon>();
 
-        if(!_cm)
+        if(!_cp)
         {
             Debug.Log("Failed to get carried microbes");
         }
@@ -62,8 +62,8 @@ public class GetPylonMenuManager : MonoBehaviour
 
     public void UpdateButtonText()
     {
-        _takePylonButton.interactable = !_cm.HasPylon();
-        if(!_cm.HasPylon())
+        _takePylonButton.interactable = !_cp.HasPylon();
+        if(!_cp.HasPylon())
         {
             _takePylonButton.transform.GetChild(0).GetComponent<TMP_Text>().text = "Take Pylon";
         }
@@ -76,6 +76,6 @@ public class GetPylonMenuManager : MonoBehaviour
 
     public void GivePylon()
     {
-        _cm.SetHasPylon(true);
+        _cp.SetHasPylon(true);
     }
 }

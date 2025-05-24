@@ -5,27 +5,27 @@ using UnityEngine.Events;
 
 public class PlayerPylonManager : MonoBehaviour
 {
-    private CarriedMicrobes _cm;
+    private CarriedPylon _cp;
     [SerializeField] private UnityEvent _onTakePylon;
 
     void Start()
     {
-        _cm = Object.FindObjectOfType<CarriedMicrobes>();
+        _cp = Object.FindObjectOfType<CarriedPylon>();
     }
 
     public void GivePylon()
     {
-        _cm.SetHasPylon(true);
+        _cp.SetHasPylon(true);
     }
 
     public void TakePylon()
     {
-        if (!_cm.HasPylon())
+        if (!_cp.HasPylon() || !_cp.IsInValidRegion())
         {
             return;
         }
 
-        _cm.SetHasPylon(false);
+        _cp.SetHasPylon(false);
         _onTakePylon?.Invoke();
     }
 }

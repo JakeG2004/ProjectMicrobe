@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 8900000, guid: 60f1fa9c7c55e934e8b0296eff890207, type: 3}
   m_Sun: {fileID: 3659699155714522960}
-  m_IndirectSpecularColor: {r: 0.38472724, g: 0.66400504, b: 0.81807315, a: 1}
+  m_IndirectSpecularColor: {r: 0.3841416, g: 0.6639748, b: 0.81806725, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -20970,6 +20970,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 184696239}
   m_Mesh: {fileID: 4300000, guid: b2b9a592c01094fccaf5432822f0addb, type: 3}
+--- !u!1 &185626582 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2193967628850272424, guid: ba865e1a76b00a169aacdeb68ee49d74, type: 3}
+  m_PrefabInstance: {fileID: 1825450927}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &185724667
 GameObject:
   m_ObjectHideFlags: 0
@@ -28107,20 +28112,112 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4329930011517203373, guid: c2fa7dec384ea4878af17052390109c4, type: 3}
+      propertyPath: _onBoolFalse.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6415367564727401339, guid: c2fa7dec384ea4878af17052390109c4, type: 3}
+      propertyPath: _interactEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6415367564727401339, guid: c2fa7dec384ea4878af17052390109c4, type: 3}
+      propertyPath: _interactEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6415367564727401339, guid: c2fa7dec384ea4878af17052390109c4, type: 3}
+      propertyPath: _interactEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6415367564727401339, guid: c2fa7dec384ea4878af17052390109c4, type: 3}
+      propertyPath: _interactEvent.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6415367564727401339, guid: c2fa7dec384ea4878af17052390109c4, type: 3}
+      propertyPath: _interactEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 918556842}
+    - target: {fileID: 6415367564727401339, guid: c2fa7dec384ea4878af17052390109c4, type: 3}
+      propertyPath: _interactEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 918556839}
+    - target: {fileID: 6415367564727401339, guid: c2fa7dec384ea4878af17052390109c4, type: 3}
+      propertyPath: _interactEvent.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 918556838}
+    - target: {fileID: 6415367564727401339, guid: c2fa7dec384ea4878af17052390109c4, type: 3}
+      propertyPath: _interactEvent.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6415367564727401339, guid: c2fa7dec384ea4878af17052390109c4, type: 3}
+      propertyPath: _interactEvent.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6415367564727401339, guid: c2fa7dec384ea4878af17052390109c4, type: 3}
+      propertyPath: _interactEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TriggerEvent
+      objectReference: {fileID: 0}
+    - target: {fileID: 6415367564727401339, guid: c2fa7dec384ea4878af17052390109c4, type: 3}
+      propertyPath: _interactEvent.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: InstanceObject
+      objectReference: {fileID: 0}
+    - target: {fileID: 6415367564727401339, guid: c2fa7dec384ea4878af17052390109c4, type: 3}
+      propertyPath: _interactEvent.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: TakePylon
+      objectReference: {fileID: 0}
+    - target: {fileID: 6415367564727401339, guid: c2fa7dec384ea4878af17052390109c4, type: 3}
+      propertyPath: _interactEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: BoolGameEventTrigger, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6415367564727401339, guid: c2fa7dec384ea4878af17052390109c4, type: 3}
+      propertyPath: _interactEvent.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: ObjectInstantiator, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6415367564727401339, guid: c2fa7dec384ea4878af17052390109c4, type: 3}
+      propertyPath: _interactEvent.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: PlayerPylonManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6415367564727401339, guid: c2fa7dec384ea4878af17052390109c4, type: 3}
+      propertyPath: _interactEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
+      value: PressedE
+      objectReference: {fileID: 0}
+    - target: {fileID: 6415367564727401339, guid: c2fa7dec384ea4878af17052390109c4, type: 3}
+      propertyPath: _interactEvent.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_StringArgument
+      value: PressedE
+      objectReference: {fileID: 0}
+    - target: {fileID: 6415367564727401339, guid: c2fa7dec384ea4878af17052390109c4, type: 3}
+      propertyPath: _interactEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6415367564727401339, guid: c2fa7dec384ea4878af17052390109c4, type: 3}
+      propertyPath: _interactEvent.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7139660750874450617, guid: c2fa7dec384ea4878af17052390109c4, type: 3}
       propertyPath: _completedEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7139660750874450617, guid: c2fa7dec384ea4878af17052390109c4, type: 3}
       propertyPath: _completedEvent.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7139660750874450617, guid: c2fa7dec384ea4878af17052390109c4, type: 3}
+      propertyPath: _completedEvent.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7139660750874450617, guid: c2fa7dec384ea4878af17052390109c4, type: 3}
       propertyPath: _completedEvent.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 282084001}
+      objectReference: {fileID: 0}
+    - target: {fileID: 7139660750874450617, guid: c2fa7dec384ea4878af17052390109c4, type: 3}
+      propertyPath: _completedEvent.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 918556842}
     - target: {fileID: 7139660750874450617, guid: c2fa7dec384ea4878af17052390109c4, type: 3}
       propertyPath: _completedEvent.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7139660750874450617, guid: c2fa7dec384ea4878af17052390109c4, type: 3}
+      propertyPath: _completedEvent.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7139660750874450617, guid: c2fa7dec384ea4878af17052390109c4, type: 3}
@@ -28128,24 +28225,41 @@ PrefabInstance:
       value: SetAllToFalse
       objectReference: {fileID: 0}
     - target: {fileID: 7139660750874450617, guid: c2fa7dec384ea4878af17052390109c4, type: 3}
+      propertyPath: _completedEvent.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: TriggerEvent
+      objectReference: {fileID: 0}
+    - target: {fileID: 7139660750874450617, guid: c2fa7dec384ea4878af17052390109c4, type: 3}
       propertyPath: _completedEvent.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
       value: ObjectiveBooleanSequence, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7139660750874450617, guid: c2fa7dec384ea4878af17052390109c4, type: 3}
+      propertyPath: _completedEvent.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: BoolGameEventTrigger, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7139660750874450617, guid: c2fa7dec384ea4878af17052390109c4, type: 3}
       propertyPath: _completedEvent.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7139660750874450617, guid: c2fa7dec384ea4878af17052390109c4, type: 3}
+      propertyPath: _completedEvent.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7373099842843850778, guid: c2fa7dec384ea4878af17052390109c4, type: 3}
       propertyPath: m_Name
       value: PlaceablePylon
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7139660750874450617, guid: c2fa7dec384ea4878af17052390109c4, type: 3}
+    - {fileID: 4329930011517203373, guid: c2fa7dec384ea4878af17052390109c4, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1186116908308948725, guid: c2fa7dec384ea4878af17052390109c4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 8971731932330004378, guid: c2fa7dec384ea4878af17052390109c4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 918556842}
   m_SourcePrefab: {fileID: 100100000, guid: c2fa7dec384ea4878af17052390109c4, type: 3}
 --- !u!4 &217905148 stripped
 Transform:
@@ -33048,17 +33162,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 282081651}
   m_Mesh: {fileID: 4228500893772092786, guid: cfa0f71ab5189a8468e044314adbfe50, type: 3}
---- !u!114 &282084001 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7139660750874450617, guid: c2fa7dec384ea4878af17052390109c4, type: 3}
-  m_PrefabInstance: {fileID: 217905147}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ca99cd2fc88602038b43dfa2a38d0c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &282431020
 GameObject:
   m_ObjectHideFlags: 0
@@ -34689,19 +34792,7 @@ MonoBehaviour:
         them.
     onDialogueComplete:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 337078238}
-          m_TargetAssemblyTypeName: Objective, Assembly-CSharp
-          m_MethodName: RaiseObjectiveComplete
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
+        m_Calls: []
 --- !u!1 &302006747
 GameObject:
   m_ObjectHideFlags: 0
@@ -38244,6 +38335,7 @@ GameObject:
   m_Component:
   - component: {fileID: 337078239}
   - component: {fileID: 337078238}
+  - component: {fileID: 337078240}
   m_Layer: 0
   m_Name: PlacePylon
   m_TagString: Untagged
@@ -38267,13 +38359,25 @@ MonoBehaviour:
   _nextObjective: {fileID: 989306024}
   _objectiveText: Place Pylon
   _isFirstObjective: 0
-  _targetObject: {fileID: 0}
+  _targetObject: {fileID: 581460872}
   _onActivate:
     m_PersistentCalls:
       m_Calls: []
   _onComplete:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 300907152}
+        m_TargetAssemblyTypeName: DialogueTrigger, Assembly-CSharp
+        m_MethodName: TriggerDialogue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _onFail:
     m_PersistentCalls:
       m_Calls: []
@@ -38292,6 +38396,41 @@ Transform:
   m_Children: []
   m_Father: {fileID: 101336209}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &337078240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 337078237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2aa24179581ffceff947a701e624e3ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _event: {fileID: 11400000, guid: 6bd2220628226ef0a9088fba399474b4, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 337078238}
+        m_TargetAssemblyTypeName: Objective, Assembly-CSharp
+        m_MethodName: RaiseObjectiveComplete
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onBoolTrue:
+    m_PersistentCalls:
+      m_Calls: []
+  _onBoolFalse:
+    m_PersistentCalls:
+      m_Calls: []
+  _boolVal: 0
 --- !u!1 &337362879
 GameObject:
   m_ObjectHideFlags: 0
@@ -77430,6 +77569,59 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 581255481}
   m_CullTransparentMesh: 1
+--- !u!1 &581460871
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 581460872}
+  - component: {fileID: 581460873}
+  m_Layer: 0
+  m_Name: PylonRegion
+  m_TagString: PylonRegion
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &581460872
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 581460871}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 788.4, y: 655.43286, z: 175.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1624068553}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &581460873
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 581460871}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 25
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &582179967
 GameObject:
   m_ObjectHideFlags: 0
@@ -111263,6 +111455,7 @@ GameObject:
   m_Component:
   - component: {fileID: 839241324}
   - component: {fileID: 839241323}
+  - component: {fileID: 839241325}
   m_Layer: 0
   m_Name: PylonPlacementController
   m_TagString: Untagged
@@ -111285,6 +111478,21 @@ MonoBehaviour:
   _pylonObject: {fileID: 217905148}
   _xRayDist: 5
   _yRayDist: 3
+  _onPylonPlacedEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 839241325}
+        m_TargetAssemblyTypeName: BoolGameEventTrigger, Assembly-CSharp
+        m_MethodName: TriggerEvent
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &839241324
 Transform:
   m_ObjectHideFlags: 0
@@ -111300,6 +111508,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1513276143}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &839241325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 839241322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5533829f52a164be6b19fb31f13a2c15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _event: {fileID: 11400000, guid: 6bd2220628226ef0a9088fba399474b4, type: 2}
 --- !u!1 &839655184
 GameObject:
   m_ObjectHideFlags: 0
@@ -117790,6 +118011,46 @@ Transform:
   m_Children: []
   m_Father: {fileID: 910931156}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &918556835 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8971731932330004378, guid: c2fa7dec384ea4878af17052390109c4, type: 3}
+  m_PrefabInstance: {fileID: 217905147}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &918556838 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1591549449915389968, guid: c2fa7dec384ea4878af17052390109c4, type: 3}
+  m_PrefabInstance: {fileID: 217905147}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 918556835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a902e56cee29af578ae8d755bccd3b0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &918556839 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1455919708938268819, guid: c2fa7dec384ea4878af17052390109c4, type: 3}
+  m_PrefabInstance: {fileID: 217905147}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 918556835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c5e6a94c4dcb854593e19f555533abb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &918556842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 918556835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5533829f52a164be6b19fb31f13a2c15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _event: {fileID: 11400000, guid: 6bd2220628226ef0a9088fba399474b4, type: 2}
 --- !u!1 &920005833
 GameObject:
   m_ObjectHideFlags: 0
@@ -128664,7 +128925,19 @@ MonoBehaviour:
       m_Calls: []
   _onComplete:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1146904263}
+        m_TargetAssemblyTypeName: DialogueTrigger, Assembly-CSharp
+        m_MethodName: TriggerDialogue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _onFail:
     m_PersistentCalls:
       m_Calls: []
@@ -143318,7 +143591,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1146904261}
   - component: {fileID: 1146904263}
-  - component: {fileID: 1146904262}
   m_Layer: 0
   m_Name: GotMicrobesDialogue
   m_TagString: Untagged
@@ -143341,38 +143613,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1280310711}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1146904262
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1146904260}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0dbd75979bcd8fdbf9f442f7db077c86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _event: {fileID: 11400000, guid: 531242ebc6d3e0ddcabcbf9e0104101f, type: 2}
-  _queryString: Oxygen
-  _generalResponse:
-    m_PersistentCalls:
-      m_Calls: []
-  _specificResponse:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1146904263}
-        m_TargetAssemblyTypeName: DialogueTrigger, Assembly-CSharp
-        m_MethodName: TriggerDialogue
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1146904263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182168,6 +182408,20 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2279992145856458051, guid: ba865e1a76b00a169aacdeb68ee49d74, type: 3}
   m_PrefabInstance: {fileID: 1825450927}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1513276153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 185626582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7152288167fbc10c83891044eacee95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hasPylon: 0
+  _validRegion: 0
 --- !u!1 &1513943657
 GameObject:
   m_ObjectHideFlags: 0
@@ -192708,6 +192962,38 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1623315053}
   m_Mesh: {fileID: 4300000, guid: a5b18b9d264954ae59fa357fd4c7167e, type: 3}
+--- !u!1 &1624068552
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1624068553}
+  m_Layer: 0
+  m_Name: Colliders
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1624068553
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1624068552}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 581460872}
+  m_Father: {fileID: 1786419303}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1626306876
 GameObject:
   m_ObjectHideFlags: 0
@@ -197616,7 +197902,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1672280205}
   - component: {fileID: 1672280207}
-  - component: {fileID: 1672280206}
   m_Layer: 0
   m_Name: PlacedMicrobesDialogue
   m_TagString: Untagged
@@ -197639,38 +197924,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1280310711}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1672280206
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1672280204}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0dbd75979bcd8fdbf9f442f7db077c86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _event: {fileID: 11400000, guid: 531242ebc6d3e0ddcabcbf9e0104101f, type: 2}
-  _queryString: AddedMicrobe
-  _generalResponse:
-    m_PersistentCalls:
-      m_Calls: []
-  _specificResponse:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1672280207}
-        m_TargetAssemblyTypeName: DialogueTrigger, Assembly-CSharp
-        m_MethodName: TriggerDialogue
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1672280207
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197690,19 +197943,7 @@ MonoBehaviour:
       sentence: Perfect! And that's that!
     onDialogueComplete:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 2010881937}
-          m_TargetAssemblyTypeName: Objective, Assembly-CSharp
-          m_MethodName: RaiseObjectiveComplete
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
+        m_Calls: []
 --- !u!1 &1675778060
 GameObject:
   m_ObjectHideFlags: 0
@@ -217314,6 +217555,7 @@ Transform:
   - {fileID: 1847113702}
   - {fileID: 1368533593887376558}
   - {fileID: 391373558}
+  - {fileID: 1624068553}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1786621456
@@ -227784,7 +228026,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2279992145856458051, guid: ba865e1a76b00a169aacdeb68ee49d74, type: 3}
       insertIndex: -1
       addedObject: {fileID: 839241324}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2193967628850272424, guid: ba865e1a76b00a169aacdeb68ee49d74, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1513276153}
   m_SourcePrefab: {fileID: 100100000, guid: ba865e1a76b00a169aacdeb68ee49d74, type: 3}
 --- !u!1 &1826614455
 GameObject:
@@ -249230,7 +249475,19 @@ MonoBehaviour:
       m_Calls: []
   _onComplete:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1672280207}
+        m_TargetAssemblyTypeName: DialogueTrigger, Assembly-CSharp
+        m_MethodName: TriggerDialogue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _onFail:
     m_PersistentCalls:
       m_Calls: []

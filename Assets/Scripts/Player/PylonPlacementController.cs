@@ -6,6 +6,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PylonPlacementController : MonoBehaviour
 {
@@ -16,11 +17,13 @@ public class PylonPlacementController : MonoBehaviour
     [SerializeField] private float _xRayDist = 5.0f;
     [SerializeField] private float _yRayDist = 1.0f;
 
-    private CarriedMicrobes _cm;
+    [SerializeField] private UnityEvent _onPylonPlacedEvent;
+
+    private CarriedPylon _cp;
 
     void Start()
     {
-        _cm = GameObject.FindGameObjectWithTag("Player").GetComponent<CarriedMicrobes>();
+        _cp = Object.FindObjectOfType<CarriedPylon>();
     }
 
     void Update()
@@ -69,7 +72,7 @@ public class PylonPlacementController : MonoBehaviour
         }
 
         // set enabled based on whether there was a y hit
-        _pylonObject.gameObject.SetActive(gotHit && _cm.HasPylon());
+        _pylonObject.gameObject.SetActive(gotHit && _cp.IsPlaceable());
     }
 }
 

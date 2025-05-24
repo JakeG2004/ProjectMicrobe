@@ -6,7 +6,6 @@ public class CarriedMicrobes : MonoBehaviour
 {
     const int MAX_MICROBES = 3;
     [SerializeField] private List<Microbe> _microbes = new List<Microbe>();
-    private bool _hasPylon = false;
     
     public void AddMicrobe(Microbe newMicrobe)
     {
@@ -93,15 +92,5 @@ public class CarriedMicrobes : MonoBehaviour
     public bool IsFull()
     {
         return _microbes.Count >= MAX_MICROBES;
-    }
-
-    public bool HasPylon()
-    {
-        return _hasPylon;
-    }
-
-    public void SetHasPylon(bool state)
-    {
-        _hasPylon = state;
     }
 }
