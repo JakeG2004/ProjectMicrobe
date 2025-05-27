@@ -36650,8 +36650,15 @@ MonoBehaviour:
       sentence: Perfect. Great job!
     - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
       name: Scientist
-      sentence: Looks like we need some OxygenEaters. Come back to the ship and get
-        them.
+      sentence: After looking at the pylon data, it looks like there's an excess
+        of Oxygen.
+    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
+      name: Scientist
+      sentence: If we put in some OxygenEaters, we should get a stable environment
+        set up.
+    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
+      name: Scientist
+      sentence: Why don't you go get some OxygenEatesr
     onDialogueComplete:
       m_PersistentCalls:
         m_Calls: []
@@ -114774,6 +114781,7 @@ MonoBehaviour:
   _xRayDist: 5
   _yRayDist: 3
   _objectRotation: 180
+  _yOffset: -0.1
   _onPylonPlacedEvent:
     m_PersistentCalls:
       m_Calls:

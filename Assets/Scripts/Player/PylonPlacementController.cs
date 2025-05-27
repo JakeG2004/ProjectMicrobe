@@ -18,6 +18,7 @@ public class PylonPlacementController : MonoBehaviour
     [SerializeField] private float _yRayDist = 1.0f;
 
     [SerializeField] private float _objectRotation = 180f;
+    [SerializeField] private float _yOffset = 0.1f;
 
     [SerializeField] private UnityEvent _onPylonPlacedEvent;
 
@@ -66,8 +67,10 @@ public class PylonPlacementController : MonoBehaviour
         if(Physics.Raycast(_vRayOrigin, -Vector3.up, out _yHit, _yRayDist, mask) ||
         Physics.Raycast(_vRayOrigin, Vector3.up, out _yHit, _yRayDist, mask))
         {
-            // Set position
-            _pylonObject.position = _yHit.point;
+            // Set position (subtract small amount to ensure collision with ground)
+            _pylonObject.position = _yHit.point + new Vector3(0, _yOffset, 0);
+
+            // Rotate by user defined amount
             _pylonObject.rotation = Quaternion.Euler(0, _newRot.eulerAngles.y + _objectRotation, 0);
 
             gotHit = true;
