@@ -119,6 +119,11 @@ public class Objective : MonoBehaviour
         _objEntry = objEntry;
     }
 
+    public void SetObject(Transform newObj)
+    {
+        _targetObject = newObj;
+    }
+
     /*
     *
     *    GETTERS

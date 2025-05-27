@@ -8,11 +8,11 @@ public class PylonScreenController : MonoBehaviour
     [SerializeField] private LineChart _microbesChart;
     [SerializeField] private LineChart _resourcesChart;
     [SerializeField] private int _graphEntries = 10;
-    private MicrobePopSim _curPylon;
+    [SerializeField] private MicrobePopSim _curPylon;
 
     void Start()
     {
-        _curPylon = transform.parent.GetComponent<MicrobePopSim>();
+        //_curPylon = transform.parent.GetComponent<MicrobePopSim>();
         InitChart(_microbesChart, "Microbe Populations");
         InitChart(_resourcesChart, "Resource Amounts");
     }

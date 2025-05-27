@@ -17,6 +17,8 @@ public class PylonPlacementController : MonoBehaviour
     [SerializeField] private float _xRayDist = 5.0f;
     [SerializeField] private float _yRayDist = 1.0f;
 
+    [SerializeField] private float _objectRotation = 180f;
+
     [SerializeField] private UnityEvent _onPylonPlacedEvent;
 
     private CarriedPylon _cp;
@@ -66,7 +68,7 @@ public class PylonPlacementController : MonoBehaviour
         {
             // Set position
             _pylonObject.position = _yHit.point;
-            _pylonObject.rotation = _newRot;
+            _pylonObject.rotation = Quaternion.Euler(0, _newRot.eulerAngles.y + _objectRotation, 0);
 
             gotHit = true;
         }

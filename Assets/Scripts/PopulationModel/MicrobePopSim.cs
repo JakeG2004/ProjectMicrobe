@@ -16,7 +16,6 @@ public class MicrobePopSim : MonoBehaviour
     [SerializeField] private float _updatePeriod = 15.0f;
     private float _elapsedTime = 0.0f;
 
-    [SerializeField] private PylonScreenController _psc;
     [SerializeField] private UnityEvent _onSimAdvance;
 
     // Start is called before the first frame update
