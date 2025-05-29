@@ -31,6 +31,17 @@ public class PylonPlacementController : MonoBehaviour
 
     void Update()
     {
+        CalculatePylonPlacement();
+    }
+
+    void CalculatePylonPlacement()
+    {
+        if (!_cp.IsPlaceable())
+        {
+            _pylonObject.gameObject.SetActive(false);
+            return;
+        }
+
         // Set the object to have the camera's y rotation but no other rotation
         Quaternion _newRot = Camera.main.transform.rotation;
         _newRot.Set(0, _newRot.y, 0, _newRot.w);
@@ -49,7 +60,7 @@ public class PylonPlacementController : MonoBehaviour
         bool gotHit = false;
 
         // Send a raycast forward. On hit
-        if(Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out _xHit, _xRayDist, mask))
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out _xHit, _xRayDist, mask))
         {
             _vRayOrigin = _xHit.point;
         }
@@ -64,7 +75,7 @@ public class PylonPlacementController : MonoBehaviour
         // NOTE: This is a short-circuiting expression. Equivalent to
         // if(raycast down) ...
         // else if (raycast up)
-        if(Physics.Raycast(_vRayOrigin, -Vector3.up, out _yHit, _yRayDist, mask) ||
+        if (Physics.Raycast(_vRayOrigin, -Vector3.up, out _yHit, _yRayDist, mask) ||
         Physics.Raycast(_vRayOrigin, Vector3.up, out _yHit, _yRayDist, mask))
         {
             // Set position (subtract small amount to ensure collision with ground)
@@ -80,13 +91,3 @@ public class PylonPlacementController : MonoBehaviour
         _pylonObject.gameObject.SetActive(gotHit && _cp.IsPlaceable());
     }
 }
-
-/*
-Script core idea:
-A raycast will be sent out from the player in the direction that the camera is facing.
-This raycast should be perfectly flat
-
-It will either reach something and stop, or continue until its max distance is met.
-In either case, it will do a raycast down from that position and then also up from that position.
-If one of them hits, then it will place the pylon there.
-*/

@@ -12,6 +12,8 @@ public class CarriedPylon : MonoBehaviour
     [SerializeField] private bool _hasPylon = false;
     [SerializeField] private bool _validRegion = false;
 
+    private EnvironmentSO _envSO;
+
     public void SetHasPylon(bool state)
     {
         _hasPylon = state;
@@ -29,23 +31,29 @@ public class CarriedPylon : MonoBehaviour
 
     public bool IsPlaceable()
     {
-        return(_hasPylon && _validRegion);
+        return (_hasPylon && _validRegion);
     }
 
     // For detecting whether the player is in a pylon placeable region
     public void OnTriggerEnter(Collider col)
     {
-        if(col.gameObject.tag == "PylonRegion")
+        if (col.gameObject.tag == "PylonRegion")
         {
             _validRegion = true;
+            _envSO = col.gameObject.GetComponent<PylonRegion>().GetEnvSO();
         }
     }
 
     public void OnTriggerExit(Collider col)
     {
-        if(col.gameObject.tag == "PylonRegion")
+        if (col.gameObject.tag == "PylonRegion")
         {
             _validRegion = false;
         }
+    }
+
+    public EnvironmentSO GetEnvSO()
+    {
+        return _envSO;
     }
 }

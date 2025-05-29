@@ -16,7 +16,7 @@ public class ObjectInstantiator : MonoBehaviour
     {
         if(_instantiateAsChild)
         {
-            Object.Instantiate(_objectToInstantiate, transform.position, transform.rotation, transform);
+            GameObject newObj = Object.Instantiate(_objectToInstantiate, transform.position, transform.rotation, transform);
             return;
         }
 

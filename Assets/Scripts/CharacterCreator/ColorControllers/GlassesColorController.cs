@@ -64,16 +64,19 @@ public class GlassesColorController : MonoBehaviour
     {
         foreach (GameObject go in _glassesStyles)
             {
+                // Handle none
                 if (_accesoryType == AccessoryType.None)
                 {
                     go.SetActive(false);
                 }
                 
+                // Handle glasses
                 if (go.name == "Glasses")
                 {
                     go.SetActive(_accesoryType == AccessoryType.Glasses);
                 }
 
+                // Handle goggles
                 if (go.name == "Goggles")
                 {
                     go.SetActive(_accesoryType == AccessoryType.Goggles);

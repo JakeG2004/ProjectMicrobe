@@ -21,8 +21,9 @@ public class MicrobePopSim : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        envSO = GameObject.FindGameObjectWithTag("Player").GetComponent<CarriedPylon>().GetEnvSO();
         // Set up envirocnment
-        if(!envSO)
+        if (!envSO)
         {
             Debug.LogWarning("No environment SO!");
             env = new Environment(new Dictionary<string, float>(), new Dictionary<string, float>());
@@ -63,7 +64,7 @@ public class MicrobePopSim : MonoBehaviour
     {
         _elapsedTime += Time.deltaTime;
         // Only do time step when count > 0
-        if(_elapsedTime >= _updatePeriod && microbes.Count > 0)
+        if (_elapsedTime >= _updatePeriod && microbes.Count > 0)
         {
             AdvanceSimulation();
             _elapsedTime = 0.0f;
@@ -73,22 +74,22 @@ public class MicrobePopSim : MonoBehaviour
     public void AdvanceSimulation()
     {
         // Early return when no resources or microbes
-        if(env.resources.Count == 0 || microbes.Count == 0)
+        if (env.resources.Count == 0)// || microbes.Count == 0)
         {
             return;
         }
 
         // Count the number of resources that we have, also preventing running with no resources
         int resCounter = 0;
-        foreach(var res in env.resources)
+        foreach (var res in env.resources)
         {
-            if(res.Value > 0)
+            if (res.Value > 0)
             {
                 resCounter++;
             }
         }
 
-        if(resCounter == 0)
+        if (resCounter == 0)
         {
             return;
         }
@@ -97,22 +98,22 @@ public class MicrobePopSim : MonoBehaviour
         Dictionary<string, float> totalResourceUsage = new Dictionary<string, float>();
 
         // Simulation
-        if(microbes.Count != 0)
+        if (microbes.Count != 0)
         {
             // Calculate competition coefficients at every time step
-            foreach(var m1 in microbes)
+            foreach (var m1 in microbes)
             {
                 // Reset competitors dict
                 m1.competitors = new Dictionary<string, float>();
 
-                foreach(var m2 in microbes)
+                foreach (var m2 in microbes)
                 {
                     m1.AddCompetitor(m2);
                 }
             }
 
             // Process each microbe
-            foreach(var microbe in microbes)
+            foreach (var microbe in microbes)
             {
                 // Get carry capacity of microbe
                 microbe.ComputeCarryCapacity(env.resources);
@@ -121,10 +122,10 @@ public class MicrobePopSim : MonoBehaviour
                 Dictionary<string, float> netResourceUsage = microbe.ProduceConsumeResources();
 
                 // Append changes to total resource usage
-                foreach(var resource in netResourceUsage)
+                foreach (var resource in netResourceUsage)
                 {
                     // If the resource already exists
-                    if(totalResourceUsage.TryGetValue(resource.Key, out float value))
+                    if (totalResourceUsage.TryGetValue(resource.Key, out float value))
                     {
                         totalResourceUsage[resource.Key] += resource.Value;
                         continue;
@@ -151,7 +152,7 @@ public class MicrobePopSim : MonoBehaviour
 
     public void FastForward(int n)
     {
-        for(int i = 0; i < n; i++)
+        for (int i = 0; i < n; i++)
         {
             AdvanceSimulation();
         }
@@ -159,9 +160,9 @@ public class MicrobePopSim : MonoBehaviour
 
     public void AddMicrobe(Microbe newMicrobe)
     {
-        foreach(var microbe in microbes)
+        foreach (var microbe in microbes)
         {
-            if(microbe.microbeName == newMicrobe.microbeName)
+            if (microbe.microbeName == newMicrobe.microbeName)
             {
                 return;
             }
@@ -171,9 +172,9 @@ public class MicrobePopSim : MonoBehaviour
 
     public void RemoveMicrobe(string name)
     {
-        foreach(var microbe in microbes)
+        foreach (var microbe in microbes)
         {
-            if(microbe.microbeName == name)
+            if (microbe.microbeName == name)
             {
                 microbes.Remove(microbe);
                 return;
@@ -184,10 +185,10 @@ public class MicrobePopSim : MonoBehaviour
     public float GetMicrobePopulation(string microbeNameQuery)
     {
         // Go through each microbe
-        foreach(var microbe in microbes)
+        foreach (var microbe in microbes)
         {
             // If its found, return its population
-            if(microbe.microbeName == microbeNameQuery)
+            if (microbe.microbeName == microbeNameQuery)
             {
                 return microbe.population;
             }
@@ -199,9 +200,9 @@ public class MicrobePopSim : MonoBehaviour
 
     public void IncreaseMicrobePopulation(string microbeName, float amount)
     {
-        foreach(var microbe in microbes)
+        foreach (var microbe in microbes)
         {
-            if(microbe.microbeName == microbeName)
+            if (microbe.microbeName == microbeName)
             {
                 microbe.population += amount;
             }
@@ -216,5 +217,10 @@ public class MicrobePopSim : MonoBehaviour
     public Environment GetEnv()
     {
         return env;
+    }
+
+    public void SetEnv(EnvironmentSO newEnv)
+    {
+        envSO = newEnv;
     }
 }
