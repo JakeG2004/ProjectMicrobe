@@ -39,4 +39,9 @@ public class PauseMenu : MonoBehaviour
     {
         LevelLoader.Instance.LoadLevel("MainMenu");
     }
+
+    public void LoadLevel(string levelName)
+    {
+        LevelLoader.Instance.LoadLevel(levelName);
+    }
 }

@@ -5,8 +5,16 @@ using UnityEngine.UI;
 
 public class GlassesColorController : MonoBehaviour
 {
+    public enum AccessoryType
+    {
+        Glasses,
+        Goggles,
+        None,
+    }
+
     private Toggle _tg;
-    private Color _color;
+    [SerializeField] private Color _color;
+    [SerializeField] private AccessoryType _accesoryType;
 
     [SerializeField] private GameObject[] _glassesStyles;
 
@@ -21,7 +29,8 @@ public class GlassesColorController : MonoBehaviour
             Debug.Log("Failed to get Toggle");
         }
 
-        _color = _tg.colors.normalColor;
+        _color.a = 1.0f;
+        GetComponent<Image>().color = _color;
         _tg.onValueChanged.AddListener(OnToggleValueChanged);
     }
 
@@ -30,6 +39,7 @@ public class GlassesColorController : MonoBehaviour
         if (isOn)
         {
             AssignColorToMaterial();
+            EnableGOs();
         }
     }
 
@@ -43,10 +53,31 @@ public class GlassesColorController : MonoBehaviour
         foreach (GameObject glasses in _glassesStyles)
         {
             Renderer renderer = glasses.GetComponent<Renderer>();
-            foreach(Material mat in renderer.materials)
+            foreach (Material mat in renderer.materials)
             {
                 mat.SetColor("_TintR", _color);
             }
         }
+    }
+
+    private void EnableGOs()
+    {
+        foreach (GameObject go in _glassesStyles)
+            {
+                if (_accesoryType == AccessoryType.None)
+                {
+                    go.SetActive(false);
+                }
+                
+                if (go.name == "Glasses")
+                {
+                    go.SetActive(_accesoryType == AccessoryType.Glasses);
+                }
+
+                if (go.name == "Goggles")
+                {
+                    go.SetActive(_accesoryType == AccessoryType.Goggles);
+                }
+            }
     }
 }
