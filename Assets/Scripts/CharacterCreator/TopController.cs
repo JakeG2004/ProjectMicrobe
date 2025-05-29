@@ -5,13 +5,6 @@ using UnityEngine.UI;
 
 public class TopController : MonoBehaviour
 {
-    private enum TopType
-    {
-        Shirt,
-        ShirtAndJacket,
-        ShirtAndLabCoat
-    }
-
     private Toggle _tg;
 
     [SerializeField] TopType _topType = TopType.Shirt;
@@ -35,20 +28,24 @@ public class TopController : MonoBehaviour
 
         _tg.onValueChanged.AddListener(OnToggleValueChanged);
 
-        if(!_shirt)
+        if (!_shirt)
         {
             Debug.Log("Failed to get shirt!");
         }
 
-        if(_topType == TopType.ShirtAndJacket && !_jacket)
+        if (_topType == TopType.ShirtAndJacket && !_jacket)
         {
             Debug.Log("Failed to get jacket");
         }
 
-        if(_topType == TopType.ShirtAndLabCoat && !_coat)
+        if (_topType == TopType.ShirtAndLabCoat && !_coat)
         {
             Debug.Log("Failed to get coat!");
         }
+
+        _shirtColors.SetAlpha(1.0f);
+        _jacketColors.SetAlpha(1.0f);
+        _coatColors.SetAlpha(1.0f);
     }
 
     private void OnToggleValueChanged(bool isOn)
@@ -64,7 +61,7 @@ public class TopController : MonoBehaviour
     {
         AssignHairAccessoryColor();
 
-        switch(_topType)
+        switch (_topType)
         {
             case TopType.Shirt:
                 AssignShirtColors();
@@ -83,7 +80,7 @@ public class TopController : MonoBehaviour
 
     void AssignHairAccessoryColor()
     {
-        foreach(var hair in CosmeticContainer.Instance.GetHairStyles())
+        foreach (var hair in CosmeticContainer.Instance.GetHairStyles())
         {
             Renderer renderer = hair.GetComponent<Renderer>();
             renderer.material.SetColor("_TintB", _hairAccessoryColor);
@@ -101,16 +98,16 @@ public class TopController : MonoBehaviour
     void AssignJacketColors()
     {
         Renderer renderer = _jacket.GetComponent<Renderer>();
-        foreach(Material mat in renderer.materials)
+        foreach (Material mat in renderer.materials)
         {
-            if(mat.name.Contains("m_Ari_ClothShirt"))
+            if (mat.name.Contains("m_Ari_ClothShirt"))
             {
                 mat.SetColor("_TintR", _shirtColors.r);
                 mat.SetColor("_TintG", _shirtColors.g);
                 mat.SetColor("_TintB", _shirtColors.b);
             }
 
-            if(mat.name.Contains("m_Ari_ClothHoodie"))
+            if (mat.name.Contains("m_Ari_ClothHoodie"))
             {
                 mat.SetColor("_TintR", _jacketColors.r);
                 mat.SetColor("_TintG", _jacketColors.g);
@@ -122,16 +119,16 @@ public class TopController : MonoBehaviour
     void AssignLabCoatColors()
     {
         Renderer renderer = _coat.GetComponent<Renderer>();
-        foreach(Material mat in renderer.materials)
+        foreach (Material mat in renderer.materials)
         {
-            if(mat.name.Contains("m_Ari_ClothShirt"))
+            if (mat.name.Contains("m_Ari_ClothShirt"))
             {
                 mat.SetColor("_TintR", _shirtColors.r);
                 mat.SetColor("_TintG", _shirtColors.g);
                 mat.SetColor("_TintB", _shirtColors.b);
             }
 
-            if(mat.name.Contains("m_Ari_ClothLabCoat"))
+            if (mat.name.Contains("m_Ari_ClothLabCoat"))
             {
                 mat.SetColor("_TintR", _coatColors.r);
                 mat.SetColor("_TintG", _coatColors.g);
@@ -139,6 +136,33 @@ public class TopController : MonoBehaviour
             }
         }
     }
+
+    public ColorTuple GetShirtColors()
+    {
+        return _shirtColors;
+    }
+
+    public ColorTuple GetJacketColors()
+    {
+        return _jacketColors;
+    }
+
+    public ColorTuple GetCoatColors()
+    {
+        return _coatColors;
+    }
+
+    public TopType GetTopType()
+    {
+        return _topType;
+    }
+}
+
+public enum TopType
+{
+    Shirt,
+    ShirtAndJacket,
+    ShirtAndLabCoat
 }
 
 [System.Serializable]
@@ -147,4 +171,16 @@ public class ColorTuple
     [SerializeField] public Color r;
     [SerializeField] public Color g;
     [SerializeField] public Color b;
+
+    public void SetAlpha(float alpha)
+    {
+        r.a = Mathf.Clamp01(alpha);
+        g.a = Mathf.Clamp01(alpha);
+        b.a = Mathf.Clamp01(alpha);
+    }
+
+    public float GetProteanAlpha()
+    {
+        return (b.r + b.g + b.b) / 3;
+    }
 }
