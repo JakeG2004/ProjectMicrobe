@@ -181,6 +181,8 @@ public class ColorTuple
 
     public float GetProteanAlpha()
     {
-        return (b.r + b.g + b.b) / 3;
+        // Weighted brightness to reflect human perception
+        return Mathf.Clamp01(0.299f * b.r + 0.587f * b.g + 0.114f * b.b);
     }
+
 }

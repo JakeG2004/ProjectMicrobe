@@ -22,7 +22,7 @@ public class TopButtonCreator : MonoBehaviour
     private ColorTuple _shirtColors;
     private ColorTuple _jacketColors;
     private ColorTuple _coatColors;
-    public TopType _topType;
+    private TopType _topType;
 
     // Start is called before the first frame update
     void Start()

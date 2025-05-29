@@ -5,12 +5,6 @@ using UnityEngine.UI;
 
 public class BottomController : MonoBehaviour
 {
-    private enum BottomType
-    {
-        Shorts,
-        Pants
-    }
-
     private Toggle _tg;
 
     [SerializeField] BottomType _bottomType = BottomType.Pants;
@@ -48,7 +42,7 @@ public class BottomController : MonoBehaviour
     {
         AssignShoeColor();
 
-        switch(_bottomType)
+        switch (_bottomType)
         {
             case BottomType.Shorts:
                 AssignShortsColors();
@@ -72,9 +66,9 @@ public class BottomController : MonoBehaviour
     void AssignShortsColors()
     {
         Renderer renderer = _shorts.GetComponent<Renderer>();
-        foreach(Material mat in renderer.materials)
+        foreach (Material mat in renderer.materials)
         {
-            if(mat.name.Contains("m_Ari_ClothShorts"))
+            if (mat.name.Contains("m_Ari_ClothShorts"))
             {
                 mat.SetColor("_TintR", _shortsColors.r);
                 mat.SetColor("_TintG", _shortsColors.g);
@@ -91,4 +85,30 @@ public class BottomController : MonoBehaviour
         mat.SetColor("_TintG", _pantsColors.g);
         mat.SetColor("_TintB", _pantsColors.b);
     }
+
+    public ColorTuple GetShoeColor()
+    {
+        return _shoeColors;
+    }
+
+    public ColorTuple GetPantsColor()
+    {
+        return _pantsColors;
+    }
+
+    public ColorTuple GetShortsColor()
+    {
+        return _shortsColors;
+    }
+
+    public BottomType GetBottomType()
+    {
+        return _bottomType;
+    }
+}
+
+public enum BottomType
+{
+    Shorts,
+    Pants
 }
