@@ -20,6 +20,7 @@ public class NPCMoveController : MonoBehaviour {
 	Vector3 homePos;
 
 	private bool _canMove = true;
+	private bool _talkingToPlayer = false;
 	private Transform _target;
 
 
@@ -32,7 +33,7 @@ public class NPCMoveController : MonoBehaviour {
 	void FixedUpdate() {
 		if (!_canMove)
 		{
-			//StartCoroutine(FaceTarget(target));
+			FacePlayer();
 			anim.SetFloat("Move", 0);
 			anim.SetFloat("Idle", 1);
 			return;
@@ -142,16 +143,19 @@ public class NPCMoveController : MonoBehaviour {
 
 	public void SetMoveStatus(bool state)
 	{
+		_talkingToPlayer = !state;
 		_canMove = state;
 	}
 
-	/*public IEnumerator FaceTarget()
+	// Smoothly rotate towards the player
+	public void FacePlayer()
 	{
-		Vector3 relativePos = _target.position - transform.position;
-		Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
-		transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.time * .1f);
-		yield return null;
-	}*/
+		Transform target = GameObject.FindGameObjectWithTag("Player").transform;
+		Quaternion targetRotation = Quaternion.LookRotation(target.position - transform.position);
+		transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 4.0f);
+
+		//transform.LookAt(player);
+	}
 	
 	void OnDrawGizmos() {
 		// visual of checksphere
