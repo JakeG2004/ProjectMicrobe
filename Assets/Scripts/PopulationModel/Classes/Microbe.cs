@@ -55,8 +55,6 @@ public class Microbe
             }
         }
 
-        Debug.Log("MinK = " + minK.ToString());
-
         // Avoid division by 0 in event of no resources available
         if (minK == 0)
         {

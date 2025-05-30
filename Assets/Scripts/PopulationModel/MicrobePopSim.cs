@@ -118,7 +118,7 @@ public class MicrobePopSim : MonoBehaviour
                     // Prevent microbes from competing with themselves
                     if (m1 == m2)
                     {
-                        //continue;
+                        continue;
                     }
 
                     m1.AddCompetitor(m2);
