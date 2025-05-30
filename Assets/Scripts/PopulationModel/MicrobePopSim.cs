@@ -64,7 +64,7 @@ public class MicrobePopSim : MonoBehaviour
     {
         _elapsedTime += Time.deltaTime;
         // Only do time step when count > 0
-        if (_elapsedTime >= _updatePeriod && microbes.Count > 0)
+        if (_elapsedTime >= _updatePeriod)// && microbes.Count > 0)
         {
             AdvanceSimulation();
             _elapsedTime = 0.0f;
