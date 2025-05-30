@@ -9,16 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80250b2c40646c109b295bcf5a928e3d, type: 3}
-  m_Name: TutorialSO
+  m_Script: {fileID: 11500000, guid: e21f121e1a197558691ed0c71a796a54, type: 3}
+  m_Name: Azotobacter(N2 Fixer)
   m_EditorClassIdentifier: 
-  initialResources:
+  microbeName: Azotobacter
+  population: 1
+  growthRate: 1.2
+  requiredResources:
   - resourceName: Nitrogen
-    amount: 3
+    amount: 1
   - resourceName: Oxygen
-    amount: 3
-  resourceRefresh:
-  - resourceName: Nitrogen
-    amount: 2
-  - resourceName: Oxygen
-    amount: 2
+    amount: 1
+  producedResources: []
+  toxins: []

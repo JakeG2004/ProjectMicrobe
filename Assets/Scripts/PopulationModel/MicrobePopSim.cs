@@ -18,6 +18,8 @@ public class MicrobePopSim : MonoBehaviour
 
     [SerializeField] private UnityEvent _onSimAdvance;
 
+    [SerializeField] private bool _advanceOnStart = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -57,6 +59,11 @@ public class MicrobePopSim : MonoBehaviour
                 initProducedResources: ResourceConverter.ConvertToDictionary(microbeSO.producedResources),
                 initToxins: ToxinConverter.ConvertToDictionary(microbeSO.toxins)
             ));
+        }
+
+        if (_advanceOnStart)
+        {
+            AdvanceSimulation();   
         }
     }
 
@@ -108,6 +115,12 @@ public class MicrobePopSim : MonoBehaviour
 
                 foreach (var m2 in microbes)
                 {
+                    // Prevent microbes from competing with themselves
+                    if (m1 == m2)
+                    {
+                        //continue;
+                    }
+
                     m1.AddCompetitor(m2);
                 }
             }

@@ -99,6 +99,11 @@ public class DialogueManager : MonoBehaviour
     // Ends the dialogue
     public void EndDialogue()
     {
+        if (_curDialogue == null)
+        {
+            return;
+        }
+
         _curDialogue.onDialogueComplete?.Invoke();
         _anim.SetBool("IsOpen", false);
     }

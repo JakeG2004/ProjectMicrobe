@@ -47,43 +47,57 @@ public class Microbe
     {
         // Find the minimum in the kResources carry capacity list
         float minK = float.MaxValue;
-        foreach(var res in kResources)
+        foreach (var res in kResources)
         {
-            if(res.Value < minK)
+            if (res.Value < minK)
             {
                 minK = res.Value;
             }
         }
 
+        Debug.Log("MinK = " + minK.ToString());
+
         // Avoid division by 0 in event of no resources available
-        if(minK == 0)
+        if (minK == 0)
         {
             // Kill the population if small enough
-            if(population <= 2)
+            if (population <= 2)
             {
                 return -1 * population;
             }
 
             // Otherwise, cut population down by 1/3
-            return growthRate * -0.66f * population;
+            return -0.66f * population;
         }
 
         // Compute the competition effect to be sum of competition coefficients
         float competitionEffect = 0.0f;
-        foreach(var competitor in competitors)
+        foreach (var competitor in competitors)
         {
             competitionEffect += competitor.Value;
         }
 
-        // Compute growth
-        float growth = growthRate * population * (1 - (competitionEffect) / minK);//(1 - (competitionEffect / minK));
+        float growth = growthRate * population * (1 - (population * competitionEffect) / minK);
+
+        if(competitionEffect <= 0)
+        {
+            growth = growthRate * population * (1 - (population / minK));
+        }
 
         // Prevent overshooting into negative population
-        if(growth > -1 * population)
+        if (growth > -1 * population)
         {
             return growth;
         }
-        return -1 * population;
+
+        // Kill the population if small enough
+        if (population <= 2)
+        {
+            return -1 * population;
+        }
+
+        // Otherwise, cut population down to 1/3
+        return -0.66f * population;
     }
 
     // Calculat the smallest multiplier to the carry capacity given the environment resources
@@ -168,6 +182,7 @@ public class Microbe
             population += popGrowth;
             return;
         }
+
         population = 0;
     }
 
