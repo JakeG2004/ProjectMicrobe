@@ -28,6 +28,9 @@ public class GraphUpdater : MonoBehaviour
     // Update UI graphs
     private void UpdateUIGraphs()
     {
-        _microbeMenu.UpdateCharts();
+        if (_microbeMenu)
+        {
+            _microbeMenu.UpdateCharts();
+        }
     }
 }

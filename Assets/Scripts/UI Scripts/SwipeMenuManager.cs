@@ -180,5 +180,6 @@ public class SwipeMenuManager : MonoBehaviour
     public void OnEnable()
     {
         UpdateButtons();
+        PrevMenu();
     }
 }

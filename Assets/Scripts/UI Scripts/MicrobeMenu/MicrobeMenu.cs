@@ -114,7 +114,7 @@ public class MicrobeMenu : MonoBehaviour
                 {
                     // Prevent graph from forming the weird bumps with floats. Flatten small numbers :)
                     float val = res.Value[i];
-                    if(val < 0.1f)
+                    if(val < 0.5f)
                     {
                         val = 0.0f;
                     }
@@ -128,7 +128,7 @@ public class MicrobeMenu : MonoBehaviour
                 foreach(var resAmt in res.Value)
                 {
                     float val = resAmt;
-                    if(resAmt < 0.1f)
+                    if(resAmt < 0.5f)
                     {
                         val = 0.0f;
                     }

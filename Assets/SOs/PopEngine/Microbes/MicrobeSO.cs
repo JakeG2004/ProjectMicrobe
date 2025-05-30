@@ -15,6 +15,9 @@ public class MicrobeSO : ScriptableObject
     public List<ResourceAmount> requiredResources = new List<ResourceAmount>();
     public List<ResourceAmount> producedResources = new List<ResourceAmount>();
     public List<ToxinAmount> toxins = new List<ToxinAmount>();
+
+    [TextArea(5,10)]
+    public string description;
 }
 
 [Serializable]
