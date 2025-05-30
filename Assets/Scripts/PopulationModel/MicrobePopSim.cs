@@ -20,11 +20,17 @@ public class MicrobePopSim : MonoBehaviour
     private float[] _consumptionArr = new float[10];
     private float _bioActivityVariance = 0.0f;
     private float _bioActivityMean = 0.0f;
+    private Vector2 _bioActivity;
+    private PylonRegion _region;
 
     // Start is called before the first frame update
     void Start()
     {
-        envSO = GameObject.FindGameObjectWithTag("Player").GetComponent<CarriedPylon>().GetEnvSO();
+        // Get environment from the region
+        _region = GameObject.FindGameObjectWithTag("Player").GetComponent<CarriedPylon>().GetCurrentRegion();
+        _region.SetRegionPylon(this.gameObject);
+        envSO = _region.GetEnvSO();
+
         // Set up envirocnment
         if (!envSO)
         {
@@ -170,7 +176,7 @@ public class MicrobePopSim : MonoBehaviour
         }
         _consumptionArr[currentStep % 10] = curConsumption;
 
-        Debug.Log(CalculateBioActivity());
+        CalculateBioActivity();
 
         // Log resource history
         env.AddResources(totalResourceUsage);
@@ -260,14 +266,14 @@ public class MicrobePopSim : MonoBehaviour
     // Mean of consumption and variance of consumption
     // This can ensure certain level of activity is identifiable
     // As well as a consistent level of activity
-    public Vector2 CalculateBioActivity()
+    public void CalculateBioActivity()
     {
         // Ensure that the array is full
         for (int i = 0; i < _consumptionArr.Length; i++)
         {
             if (_consumptionArr[i] == -1)
             {
-                return new Vector2(0, 0);
+                _bioActivity = new Vector2(0, 0);
             }
         }
 
@@ -289,6 +295,12 @@ public class MicrobePopSim : MonoBehaviour
 
         _bioActivityVariance /= (_consumptionArr.Length - 1);
 
-        return new Vector2(_bioActivityMean, _bioActivityVariance);
+        // Assign the new bioactivity
+        _bioActivity = new Vector2(_bioActivityMean, _bioActivityVariance);
+    }
+
+    public Vector2 GetBioActivity()
+    {
+        return _bioActivity;
     }
 }
