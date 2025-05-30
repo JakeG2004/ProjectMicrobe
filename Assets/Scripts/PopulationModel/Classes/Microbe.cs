@@ -77,7 +77,7 @@ public class Microbe
 
         float growth = growthRate * population * (1 - (population * competitionEffect) / minK);
 
-        if(competitionEffect <= 0)
+        if (competitionEffect <= 0)
         {
             growth = growthRate * population * (1 - (population / minK));
         }
@@ -89,13 +89,13 @@ public class Microbe
         }
 
         // Kill the population if small enough
-        if (population <= 2)
+        if (population <= 2 || growth < -3 * population)
         {
             return -1 * population;
         }
 
-        // Otherwise, cut population down to 1/3
-        return -0.66f * population;
+        // Otherwise, cut population down to 1/4
+        return -.75f * population;
     }
 
     // Calculat the smallest multiplier to the carry capacity given the environment resources

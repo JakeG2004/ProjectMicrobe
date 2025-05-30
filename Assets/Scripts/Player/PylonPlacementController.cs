@@ -55,7 +55,7 @@ public class PylonPlacementController : MonoBehaviour
         RaycastHit _yHit;
 
         // Layermask to ignore player
-        int mask = ~LayerMask.GetMask("Player");
+        int mask = ~LayerMask.GetMask("Player", "PylonRegion");
 
         bool gotHit = false;
 
