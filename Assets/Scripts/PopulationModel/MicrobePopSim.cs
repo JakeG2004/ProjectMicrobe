@@ -10,15 +10,16 @@ public class MicrobePopSim : MonoBehaviour
 
     public List<MicrobeSO> microbeSOs = new List<MicrobeSO>();
     public List<Microbe> microbes = new List<Microbe>();
-
     public int currentStep = 0;
 
     [SerializeField] private float _updatePeriod = 15.0f;
     private float _elapsedTime = 0.0f;
 
     [SerializeField] private UnityEvent _onSimAdvance;
-
     [SerializeField] private bool _advanceOnStart = true;
+    private float[] _consumptionArr = new float[10];
+    private float _bioActivityVariance = 0.0f;
+    private float _bioActivityMean = 0.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -61,9 +62,15 @@ public class MicrobePopSim : MonoBehaviour
             ));
         }
 
+        // Initialize array to -1s to indicate no consumption
+        for (int i = 0; i < _consumptionArr.Length; i++)
+        {
+            _consumptionArr[i] = -1;
+        }
+
         if (_advanceOnStart)
         {
-            AdvanceSimulation();   
+            AdvanceSimulation();
         }
     }
 
@@ -154,6 +161,17 @@ public class MicrobePopSim : MonoBehaviour
             }
         }
 
+        float curConsumption = 0.0f;
+
+        // Add to the bioActivity list
+        foreach (var resource in totalResourceUsage)
+        {
+            curConsumption += Mathf.Abs(resource.Value);
+        }
+        _consumptionArr[currentStep % 10] = curConsumption;
+
+        Debug.Log(CalculateBioActivity());
+
         // Log resource history
         env.AddResources(totalResourceUsage);
         env.UpdateResourceHistory();
@@ -235,5 +253,42 @@ public class MicrobePopSim : MonoBehaviour
     public void SetEnv(EnvironmentSO newEnv)
     {
         envSO = newEnv;
+    }
+
+    // Calculate the biological activity
+    // This will be expressed as a Vector2
+    // Mean of consumption and variance of consumption
+    // This can ensure certain level of activity is identifiable
+    // As well as a consistent level of activity
+    public Vector2 CalculateBioActivity()
+    {
+        // Ensure that the array is full
+        for (int i = 0; i < _consumptionArr.Length; i++)
+        {
+            if (_consumptionArr[i] == -1)
+            {
+                return new Vector2(0, 0);
+            }
+        }
+
+        // Calculate the mean
+        _bioActivityMean = 0.0f;
+        for (int i = 0; i < _consumptionArr.Length; i++)
+        {
+            _bioActivityMean += _consumptionArr[i];
+        }
+
+        _bioActivityMean /= _consumptionArr.Length;
+
+        // Calculate variance
+        _bioActivityVariance = 0;
+        for (int i = 0; i < _consumptionArr.Length; i++)
+        {
+            _bioActivityVariance += ((_consumptionArr[i] - _bioActivityMean) * (_consumptionArr[i] - _bioActivityMean));
+        }
+
+        _bioActivityVariance /= (_consumptionArr.Length - 1);
+
+        return new Vector2(_bioActivityMean, _bioActivityVariance);
     }
 }

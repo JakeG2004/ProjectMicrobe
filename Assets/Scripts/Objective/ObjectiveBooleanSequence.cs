@@ -34,13 +34,19 @@ public class ObjectiveBooleanSequence : MonoBehaviour
     // Public function to set a named bool to true
     public void SetTrue(string boolName)
     {
-        if(!_allowMultiToggle)
+        if (!_allowMultiToggle)
         {
             // Prevent setting multiple in the same frame
             if (Time.frameCount == _lastSetFrame)
                 return;
 
             _lastSetFrame = Time.frameCount;
+        }
+
+        if (!(_bools.ContainsKey(boolName)))
+        {
+            Debug.Log("Extra bool not found!");
+            return;
         }
 
         // Sequenced Logic
@@ -87,7 +93,7 @@ public class ObjectiveBooleanSequence : MonoBehaviour
     // Public function to set a named bool to false
     public void SetFalse(string boolName)
     {
-        if(!_allowMultiToggle)
+        if (!_allowMultiToggle)
         {
             // Prevent setting multiple in the same frame
             if (Time.frameCount == _lastSetFrame)
@@ -119,5 +125,16 @@ public class ObjectiveBooleanSequence : MonoBehaviour
     public void SetAllToFalse()
     {
         Start();
+    }
+
+    public void PrintBoolStates()
+    {
+        string statement = "";
+        foreach (var kvp in _bools)
+        {
+            statement += "\n" + kvp.Key + ": " + kvp.Value;
+        }
+
+        Debug.Log(statement);
     }
 }
