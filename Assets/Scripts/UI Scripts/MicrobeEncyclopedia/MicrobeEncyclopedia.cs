@@ -29,11 +29,13 @@ public class MicrobeEncyclopedia : MonoBehaviour
         _isActive = !_isActive;
 
         _panel.SetActive(_isActive);
-  
+
         // Set UI control state
         GetComponent<ToggleCameraTracking>()?.SetCameraTracking(!_isActive);
         MovementController.instance.SetMovementState(!_isActive);
         GetComponent<ShowHideMouse>()?.SetState(_isActive);
+
+        GetComponent<BoolGameEventTrigger>().TriggerEvent(_isActive);
     }
 
     public void HideInfo()
