@@ -34,6 +34,7 @@ public class ObjectiveBooleanSequence : MonoBehaviour
     // Public function to set a named bool to true
     public void SetTrue(string boolName)
     {
+        // Handle multiple toggle settings
         if (!_allowMultiToggle)
         {
             // Prevent setting multiple in the same frame
@@ -45,53 +46,57 @@ public class ObjectiveBooleanSequence : MonoBehaviour
 
         if (!(_bools.ContainsKey(boolName)))
         {
-            Debug.Log("Extra bool not found!");
+            Debug.LogWarning($"Objective `{boolName}` not found!");
             return;
         }
 
-        // Sequenced Logic
-        if (_isSequenced)
+        // Find the index of the current bool name iin _boolNames
+        int index = System.Array.IndexOf(_boolNames, boolName);
+        
+        // Handle bool name not in array
+        if(index == -1)
         {
-            int prevIndex = 0;
-
-            // Get the key of the previous entry
-            for (int i = 0; i < _boolNames.Length; i++)
-            {
-                if (_boolNames[i] == boolName)
-                {
-                    // Is First entry in sequence
-                    if (i == 0)
-                    {
-                        _bools[boolName] = true;
-                        break;
-                    }
-
-                    // Assign the previous Index
-                    prevIndex = i - 1;
-                }
-            }
-
-            // Check if the previous entry is complete
-            if (_bools[_boolNames[prevIndex]] == true)
-            {
-                _bools[boolName] = true;
-            }
+            Debug.LogWarning($"Objective `{boolName}` not found in ordered array!");
+            return;
         }
 
         // Unsequenced logic
+        if(!_isSequenced)
+        {
+            _bools[boolName] = true;
+        }
+
+        // Sequenced logic
         else
         {
-            if (_bools.ContainsKey(boolName))
+            // First element can always be set
+            if(index == 0)
             {
                 _bools[boolName] = true;
             }
+
+            // Only allow if previous element has been set
+            else
+            {
+                string prevName = _boolNames[index - 1];
+                if(_bools.TryGetValue(prevName, out bool prevComplete) && prevComplete)
+                {
+                    _bools[boolName] = true;
+                }
+
+                else
+                {
+                    Debug.Log($"Cannot set `{boolName}` yet. Previous objective not set");
+                }
+            }
         }
+
 
         CheckComplete();
     }
 
     // Public function to set a named bool to false
-    public void SetFalse(string boolName)
+    /*public void SetFalse(string boolName)
     {
         if (!_allowMultiToggle)
         {
@@ -106,7 +111,7 @@ public class ObjectiveBooleanSequence : MonoBehaviour
         {
             _bools[boolName] = false;
         }
-    }
+    }*/
 
     // Function to check whether or not every objective has been completed
     public void CheckComplete()
@@ -122,10 +127,7 @@ public class ObjectiveBooleanSequence : MonoBehaviour
         _completedEvent?.Invoke();
     }
 
-    public void SetAllToFalse()
-    {
-        Start();
-    }
+
 
     public void PrintBoolStates()
     {
