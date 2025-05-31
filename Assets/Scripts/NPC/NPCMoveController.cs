@@ -153,8 +153,6 @@ public class NPCMoveController : MonoBehaviour {
 		Transform target = GameObject.FindGameObjectWithTag("Player").transform;
 		Quaternion targetRotation = Quaternion.LookRotation(target.position - transform.position);
 		transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 4.0f);
-
-		//transform.LookAt(player);
 	}
 	
 	void OnDrawGizmos() {

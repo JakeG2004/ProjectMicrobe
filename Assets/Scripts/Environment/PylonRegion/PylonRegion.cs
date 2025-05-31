@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PylonRegion : MonoBehaviour
 {
     [SerializeField] private EnvironmentSO _envSO;
     [SerializeField] private GameObject _regionPylon;
+    [SerializeField] private UnityEvent _getPylonEvent;
 
     public EnvironmentSO GetEnvSO()
     {
@@ -20,6 +22,8 @@ public class PylonRegion : MonoBehaviour
     public void SetRegionPylon(GameObject pylon)
     {
         _regionPylon = pylon;
+        _getPylonEvent?.Invoke();
+
     }
 
     public bool HasPylon()

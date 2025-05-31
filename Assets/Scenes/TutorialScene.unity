@@ -9539,6 +9539,74 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 49688860}
   m_Mesh: {fileID: 4300000, guid: c70b95fcd69584c8ab0ad9836b08b3cc, type: 3}
+--- !u!1 &53831657
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 53831658}
+  - component: {fileID: 53831660}
+  - component: {fileID: 53831659}
+  m_Layer: 8
+  m_Name: TutorialPylonRegion2
+  m_TagString: PylonRegion
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &53831658
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 53831657}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 873.24, y: 655.43286, z: 157.12}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1624068553}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &53831659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 53831657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a51966e9677320fc4b56b29bf98e8ba3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _envSO: {fileID: 11400000, guid: b9868d7e9b86b4444af2c7d2f0b9aa2c, type: 2}
+  _regionPylon: {fileID: 0}
+--- !u!135 &53831660
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 53831657}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 14.4
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &54779796
 GameObject:
   m_ObjectHideFlags: 0
@@ -80532,6 +80600,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _envSO: {fileID: 11400000, guid: 50e52accdc61ed9ceba321ad8889e9ee, type: 2}
+  _regionPylon: {fileID: 0}
 --- !u!1 &582179967
 GameObject:
   m_ObjectHideFlags: 0
@@ -199438,6 +199507,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 581460872}
+  - {fileID: 53831658}
   m_Father: {fileID: 1786419303}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1626306876
@@ -204597,6 +204667,10 @@ MonoBehaviour:
       name: Scientist
       sentence: Absolutely flawless! Now we just wait and see how the environment
         reacts to the new addition!
+    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
+      name: Scientist
+      sentence: In the meantime, there's some other areas on this island that need
+        remediation. Do you think you can handle those?
     onDialogueComplete:
       m_PersistentCalls:
         m_Calls: []
