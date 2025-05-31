@@ -204,7 +204,14 @@ public class MicrobePopSim : MonoBehaviour
                 return;
             }
         }
+
         microbes.Add(newMicrobe);
+
+        // Backfill population
+        for(int i = 0; i < currentStep - 1; i++)
+        {
+            newMicrobe.popHistory.Add(0.0f);
+        }
     }
 
     public void RemoveMicrobe(string name)

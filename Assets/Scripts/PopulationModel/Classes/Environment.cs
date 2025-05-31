@@ -38,7 +38,10 @@ public class Environment
             resourceHistory[res.Key].Add(res.Value);
 
             // Add resources from refresh rate
-            newResourceAmounts.Add(res.Key, res.Value + resourceRefreshRate[res.Key]);
+            if(resourceRefreshRate.TryGetValue(res.Key, out float refresh))
+            {
+                newResourceAmounts.Add(res.Key, res.Value + refresh);
+            }
 
             // Prevent negative
             if(res.Value < 0)
@@ -63,7 +66,7 @@ public class Environment
         {
             if(!resources.TryGetValue(res.Key, out float value))
             {
-                continue;
+                resources.Add(res.Key, res.Value);
             }
             
             resources[res.Key] += res.Value;

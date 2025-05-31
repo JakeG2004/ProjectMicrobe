@@ -5,7 +5,7 @@ using TMPro;
 
 public class MicrobeEncyclopedia : MonoBehaviour
 {
-    [SerializeField] private MicrobeSO[] _microbes;
+    [SerializeField] private List<MicrobeSO> _microbes = new();
     [SerializeField] private GameObject _panel;
     [SerializeField] private GameObject _microbeInfoPrefab;
     [SerializeField] private GameObject _microbeContainer;
@@ -16,12 +16,7 @@ public class MicrobeEncyclopedia : MonoBehaviour
 
     void Start()
     {
-        // Add every microbe to the UI
-        foreach (MicrobeSO microbe in _microbes)
-        {
-            GameObject newMicrobeInfo = Instantiate(_microbeInfoPrefab, _microbeContainer.transform);
-            newMicrobeInfo.GetComponent<MicrobeSOEventTrigger>().SetStoredSO(microbe);
-        }
+        UpdateEntries();
     }
 
     public void ToggleState()
@@ -100,5 +95,36 @@ public class MicrobeEncyclopedia : MonoBehaviour
         }
 
         _microbeBody.text = microbeBodyText;
+    }
+
+    public void AddMicrobe(MicrobeSO newMicrobe)
+    {
+        // Handle microbe already existing
+        if(_microbes.Contains(newMicrobe))
+        {
+            return;
+        }
+
+        // Insert the microbe
+        _microbes.Add(newMicrobe);
+
+        // Update microbe entries
+        UpdateEntries();
+    }
+
+    public void UpdateEntries()
+    {
+        // Delete every child
+        foreach(Transform child in _microbeContainer.transform)
+        {
+            Destroy(child.gameObject);
+        }
+
+        // Add every microbe to the UI
+        foreach (MicrobeSO microbe in _microbes)
+        {
+            GameObject newMicrobeInfo = Instantiate(_microbeInfoPrefab, _microbeContainer.transform);
+            newMicrobeInfo.GetComponent<MicrobeSOEventTrigger>().SetStoredSO(microbe);
+        }
     }
 }

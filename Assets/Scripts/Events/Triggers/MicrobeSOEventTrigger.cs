@@ -36,6 +36,10 @@ public class MicrobeSOEventTrigger : MonoBehaviour
     public void SetStoredSO(MicrobeSO newMicrobeSO)
     {
         _thisMicrobeSO = newMicrobeSO;
-        _microbeName.text = newMicrobeSO.microbeName;
+
+        if(_microbeName)
+        {
+            _microbeName.text = newMicrobeSO.microbeName;
+        }
     }
 }
