@@ -105,7 +105,16 @@ public class SwipeMenuManager : MonoBehaviour
         for (int i = 0; i < _scrollObjects.Length; i++)
         {
             startPositions[i] = _scrollObjects[i].anchoredPosition;
-            endPositions[i] = new Vector2(spacing * (i - _curObject), startPositions[i].y);
+
+            if(_slideType == SlideType.Horizontal)
+            {
+                endPositions[i] = new Vector2(spacing * (i - _curObject), startPositions[i].y);
+            }
+
+            if(_slideType == SlideType.Vertical)
+            {
+                endPositions[i] = new Vector2(startPositions[i].x, -(spacing * (i - _curObject)));
+            }
         }      
 
         // Snap them all to their final destinations

@@ -36950,59 +36950,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 305822028}
   m_Mesh: {fileID: 4300000, guid: d3be769db7fe44f7dbfe90edbc6dd573, type: 3}
---- !u!1 &307656736
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 307656737}
-  - component: {fileID: 307656738}
-  m_Layer: 0
-  m_Name: Region2StartDialogue
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &307656737
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 307656736}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1248964878}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &307656738
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 307656736}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94ee5acd1d966e342bb78ffa04953c9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _dialogue:
-    sentences:
-    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
-      name: Scientist
-      sentence: Remember, for region two, you're going to need to get a pylon and
-        place it down, then look at the resources in the area!
-    onDialogueComplete:
-      m_PersistentCalls:
-        m_Calls: []
 --- !u!1 &308167990
 GameObject:
   m_ObjectHideFlags: 0
@@ -60803,7 +60750,7 @@ GameObject:
   - component: {fileID: 455885798}
   - component: {fileID: 455885797}
   m_Layer: 0
-  m_Name: RemediateRegion2
+  m_Name: TalkToScientist
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -60823,24 +60770,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _objectiveChannelsSO: {fileID: 11400000, guid: abd508a1728e99261a0c45cd360d8b56, type: 2}
   _nextObjective: {fileID: 0}
-  _objectiveText: Investigate Region 2
+  _objectiveText: Talk to the Scientist
   _isFirstObjective: 0
-  _targetObject: {fileID: 0}
+  _targetObject: {fileID: 632283459}
   _onActivate:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 307656738}
-        m_TargetAssemblyTypeName: DialogueTrigger, Assembly-CSharp
-        m_MethodName: TriggerDialogue
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 53831657}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -60849,6 +60784,18 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1959555318}
+        m_TargetAssemblyTypeName: DialogueSwitcher, Assembly-CSharp
+        m_MethodName: SetDialogue
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
@@ -158387,8 +158334,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 307656737}
+  m_Children: []
   m_Father: {fileID: 1280310711}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1250415593
@@ -161688,6 +161634,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1959555316}
   - {fileID: 1617111519}
   - {fileID: 1248964878}
   m_Father: {fileID: 0}
@@ -199310,7 +199257,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1959555316}
   - {fileID: 1066785519}
   - {fileID: 300907151}
   - {fileID: 392095487}
@@ -204908,8 +204854,8 @@ MonoBehaviour:
         reacts to the new addition!
     - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
       name: Scientist
-      sentence: In the meantime, there's some other areas on this island that need
-        remediation. Do you think you can handle those?
+      sentence: Come back to the Symbiosis and speak to me! We've got another assignment
+        for you.
     onDialogueComplete:
       m_PersistentCalls:
         m_Calls:
@@ -253408,8 +253354,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1959555316}
   - component: {fileID: 1959555317}
+  - component: {fileID: 1959555318}
   m_Layer: 0
-  m_Name: TalkToScientistDialogue
+  m_Name: ScientistDialogue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -253428,7 +253375,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1617111519}
+  m_Father: {fileID: 1280310711}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1959555317
 MonoBehaviour:
@@ -253481,6 +253428,86 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
+        - m_Target: {fileID: 1959555318}
+          m_TargetAssemblyTypeName: DialogueSwitcher, Assembly-CSharp
+          m_MethodName: SetDialogue
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+--- !u!114 &1959555318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1959555315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b830b3cba97731db7a2143b97ab03e6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dialogues:
+  - sentences:
+    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
+      name: Scientist
+      sentence: Go out and get a pylon!
+    onDialogueComplete:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 632283455}
+          m_TargetAssemblyTypeName: NPCMoveController, Assembly-CSharp
+          m_MethodName: SetMoveStatus
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - sentences:
+    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
+      name: Scientist
+      sentence: Great job out there! We've got another job for you. Off to the right
+        side of your existing pylon, there is a rocky region.
+    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
+      name: Scientist
+      sentence: It would be great if you could start remediatition there as well!
+    onDialogueComplete:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 632283455}
+          m_TargetAssemblyTypeName: NPCMoveController, Assembly-CSharp
+          m_MethodName: SetMoveStatus
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 455885797}
+          m_TargetAssemblyTypeName: Objective, Assembly-CSharp
+          m_MethodName: RaiseObjectiveComplete
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  _dialogueTrigger: {fileID: 1959555317}
 --- !u!1 &1960848278
 GameObject:
   m_ObjectHideFlags: 0

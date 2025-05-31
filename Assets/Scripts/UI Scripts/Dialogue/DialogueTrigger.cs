@@ -17,4 +17,8 @@ public class DialogueTrigger : MonoBehaviour
         DialogueManager.Instance.StartDialogue(_dialogue);
     }
 
+    public void SwitchDialogue(Dialogue newDialogue)
+    {
+        _dialogue = newDialogue;
+    }
 }
