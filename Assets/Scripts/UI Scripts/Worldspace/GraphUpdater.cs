@@ -5,8 +5,8 @@ using UnityEngine;
 public class GraphUpdater : MonoBehaviour
 {
     [SerializeField] private PylonScreenController _psc;
-
     private MicrobeMenu _microbeMenu;
+
     void Start()
     {
         _microbeMenu = GameObject.FindGameObjectWithTag("MicrobeMenu").GetComponent<MicrobeMenu>();
@@ -28,7 +28,8 @@ public class GraphUpdater : MonoBehaviour
     // Update UI graphs
     private void UpdateUIGraphs()
     {
-        if (_microbeMenu)
+        // Check that the microbe menu current pylon is equal to the current pylon
+        if (_microbeMenu && (_microbeMenu.GetCurrentPylon() == GetComponent<MicrobePopSim>()))
         {
             _microbeMenu.UpdateCharts();
         }

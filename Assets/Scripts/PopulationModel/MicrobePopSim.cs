@@ -185,6 +185,9 @@ public class MicrobePopSim : MonoBehaviour
         currentStep++;
 
         _onSimAdvance.Invoke();
+
+        // Update the graphs
+        GetComponent<GraphUpdater>().UpdateGraphs();
     }
 
     public void FastForward(int n)

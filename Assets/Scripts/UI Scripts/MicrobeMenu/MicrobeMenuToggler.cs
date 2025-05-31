@@ -5,6 +5,7 @@ using UnityEngine;
 public class MicrobeMenuToggler : MonoBehaviour
 {
     private MicrobeMenu _microbeMenu;
+    
     void Start()
     {
         _microbeMenu = GameObject.FindGameObjectWithTag("MicrobeMenu").GetComponent<MicrobeMenu>();
