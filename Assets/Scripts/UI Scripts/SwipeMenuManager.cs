@@ -94,6 +94,27 @@ public class SwipeMenuManager : MonoBehaviour
         }
     }
 
+    public void ResetToInitialPosition()
+    {
+        _curObject = 0;
+
+        Vector2[] startPositions = new Vector2[_scrollObjects.Length];
+        Vector2[] endPositions = new Vector2[_scrollObjects.Length];
+
+        // Create the end positions for each entry in the slide menu
+        for (int i = 0; i < _scrollObjects.Length; i++)
+        {
+            startPositions[i] = _scrollObjects[i].anchoredPosition;
+            endPositions[i] = new Vector2(spacing * (i - _curObject), startPositions[i].y);
+        }      
+
+        // Snap them all to their final destinations
+        for (int i = 0; i < _scrollObjects.Length; i++)
+        {
+            _scrollObjects[i].anchoredPosition = endPositions[i];
+        }  
+    }
+
     // Smoothly slide between menu entries horizontally
     IEnumerator SlideBetweenMenusHorizontal(float time, int direction)
     {
@@ -180,6 +201,11 @@ public class SwipeMenuManager : MonoBehaviour
     public void OnEnable()
     {
         UpdateButtons();
-        PrevMenu();
+    }
+
+    // Go back to the first slide whenever disabled
+    public void OnDisable()
+    {
+        ResetToInitialPosition();
     }
 }

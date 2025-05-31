@@ -86,7 +86,7 @@ public class ObjectiveBooleanSequence : MonoBehaviour
 
                 else
                 {
-                    Debug.Log($"Cannot set `{boolName}` yet. Previous objective not set");
+                    //Debug.Log($"Cannot set `{boolName}` yet. Previous objective not set");
                 }
             }
         }
@@ -96,7 +96,7 @@ public class ObjectiveBooleanSequence : MonoBehaviour
     }
 
     // Public function to set a named bool to false
-    /*public void SetFalse(string boolName)
+    public void SetFalse(string boolName)
     {
         if (!_allowMultiToggle)
         {
@@ -111,7 +111,7 @@ public class ObjectiveBooleanSequence : MonoBehaviour
         {
             _bools[boolName] = false;
         }
-    }*/
+    }
 
     // Function to check whether or not every objective has been completed
     public void CheckComplete()
