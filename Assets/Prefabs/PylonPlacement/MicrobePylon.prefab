@@ -9804,6 +9804,7 @@ GameObject:
   - component: {fileID: 7189980009462857410}
   - component: {fileID: 2612547762124740186}
   - component: {fileID: 6066821344875187956}
+  - component: {fileID: 5685606735227608658}
   m_Layer: 0
   m_Name: MicrobePylon
   m_TagString: Pylon
@@ -9921,6 +9922,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _advanceOnStart: 1
+  _stableActivityMean: 1
+  _stableActivityVariance: 0.5
 --- !u!114 &6066821344875187956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9934,6 +9937,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _psc: {fileID: 5172146709445894096}
+--- !u!114 &5685606735227608658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5981207602307649226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b86b640fa91848678b478486c1815f24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _event: {fileID: 11400000, guid: e9e36e8430a65e12d93eeb02fca6ae4e, type: 2}
 --- !u!1 &5990425929586624647
 GameObject:
   m_ObjectHideFlags: 0

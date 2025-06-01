@@ -17,6 +17,11 @@ public class MicrobePopSim : MonoBehaviour
 
     [SerializeField] private UnityEvent _onSimAdvance;
     [SerializeField] private bool _advanceOnStart = true;
+
+    [Space(10)]
+    [SerializeField] private float _stableActivityMean = 1.0f;
+    [SerializeField] private float _stableActivityVariance = 0.5f;
+
     private float[] _consumptionArr = new float[10];
     private float _bioActivityVariance = 0.0f;
     private float _bioActivityMean = 0.0f;
@@ -188,6 +193,13 @@ public class MicrobePopSim : MonoBehaviour
 
         // Update the graphs
         GetComponent<GraphUpdater>().UpdateGraphs();
+
+        // Broadcast if stable
+        if(IsStable())
+        {
+            //Debug.Log($"`{envSO.envName}` is stable!");
+            GetComponent<StringGameEventTrigger>().TriggerEvent(envSO.envName);
+        }
     }
 
     public void FastForward(int n)
@@ -312,5 +324,10 @@ public class MicrobePopSim : MonoBehaviour
     public Vector2 GetBioActivity()
     {
         return _bioActivity;
+    }
+
+    public bool IsStable()
+    {
+        return (_bioActivityVariance < _stableActivityVariance && _bioActivityMean > _stableActivityMean);
     }
 }

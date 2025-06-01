@@ -8,4 +8,5 @@ public class EnvironmentSO : ScriptableObject
 {
     public List<ResourceAmount> initialResources = new List<ResourceAmount>();
     public List<ResourceAmount> resourceRefresh = new List<ResourceAmount>();
+    public string envName = "";
 }
