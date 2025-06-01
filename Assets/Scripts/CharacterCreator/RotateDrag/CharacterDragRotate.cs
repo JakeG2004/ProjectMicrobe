@@ -1,3 +1,8 @@
+// CharacterDragRotate.cs
+// A script for rotating the character by dragging them on the CCUI
+// Author:  Jake Gendreau
+// 6/1/25
+
 using UnityEngine;
 
 public class CharacterDragRotate : MonoBehaviour
@@ -24,7 +29,7 @@ public class CharacterDragRotate : MonoBehaviour
             Vector3 delta = Input.mousePosition - lastMousePosition;
             float rotationY = delta.x * rotationSpeed * Time.deltaTime;
 
-            transform.Rotate(Vector3.up, -rotationY, Space.World); // Negative for natural drag direction
+            transform.Rotate(Vector3.up, -rotationY, Space.World);
             lastMousePosition = Input.mousePosition;
         }
     }

@@ -9,6 +9,7 @@ public class MicrobeEncyclopedia : MonoBehaviour
     [SerializeField] private GameObject _panel;
     [SerializeField] private GameObject _microbeInfoPrefab;
     [SerializeField] private GameObject _microbeContainer;
+    [SerializeField] private GameObject _microbeButtonSpawn;
     [SerializeField] private GameObject _microbeInfoContainer;
     [SerializeField] private TMP_Text _microbeTitle;
     [SerializeField] private TMP_Text _microbeBody;
@@ -115,7 +116,7 @@ public class MicrobeEncyclopedia : MonoBehaviour
     public void UpdateEntries()
     {
         // Delete every child
-        foreach(Transform child in _microbeContainer.transform)
+        foreach(Transform child in _microbeButtonSpawn.transform)
         {
             Destroy(child.gameObject);
         }
@@ -123,7 +124,7 @@ public class MicrobeEncyclopedia : MonoBehaviour
         // Add every microbe to the UI
         foreach (MicrobeSO microbe in _microbes)
         {
-            GameObject newMicrobeInfo = Instantiate(_microbeInfoPrefab, _microbeContainer.transform);
+            GameObject newMicrobeInfo = Instantiate(_microbeInfoPrefab, _microbeButtonSpawn.transform);
             newMicrobeInfo.GetComponent<MicrobeSOEventTrigger>().SetStoredSO(microbe);
         }
     }

@@ -22,7 +22,7 @@ public class MicrobePopSim : MonoBehaviour
     [SerializeField] private float _stableActivityMean = 1.0f;
     [SerializeField] private float _stableActivityVariance = 0.5f;
 
-    private float[] _consumptionArr = new float[10];
+    private float[] _consumptionArr = new float[6];
     private float _bioActivityVariance = 0.0f;
     private float _bioActivityMean = 0.0f;
     private Vector2 _bioActivity;
@@ -78,6 +78,9 @@ public class MicrobePopSim : MonoBehaviour
         {
             _consumptionArr[i] = -1;
         }
+
+        // Update the stability light
+        GetComponent<StabilityLightController>().UpdateStability(IsStable());
 
         if (_advanceOnStart)
         {
@@ -179,7 +182,7 @@ public class MicrobePopSim : MonoBehaviour
         {
             curConsumption += Mathf.Abs(resource.Value);
         }
-        _consumptionArr[currentStep % 10] = curConsumption;
+        _consumptionArr[currentStep % _consumptionArr.Length] = curConsumption;
 
         CalculateBioActivity();
 
@@ -187,12 +190,11 @@ public class MicrobePopSim : MonoBehaviour
         env.AddResources(totalResourceUsage);
         env.UpdateResourceHistory();
 
-        currentStep++;
-
-        _onSimAdvance.Invoke();
-
         // Update the graphs
         GetComponent<GraphUpdater>().UpdateGraphs();
+
+        // Update the stability light
+        GetComponent<StabilityLightController>().UpdateStability(IsStable());
 
         // Broadcast if stable
         if(IsStable())
@@ -200,6 +202,9 @@ public class MicrobePopSim : MonoBehaviour
             //Debug.Log($"`{envSO.envName}` is stable!");
             GetComponent<StringGameEventTrigger>().TriggerEvent(envSO.envName);
         }
+
+        currentStep++;
+        _onSimAdvance.Invoke();
     }
 
     public void FastForward(int n)
