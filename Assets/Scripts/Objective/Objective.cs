@@ -67,7 +67,7 @@ public class Objective : MonoBehaviour
     // Call to complete an objective
     public void RaiseObjectiveComplete()
     {
-        if (_isComplete || !_isActivated)
+        if (_isComplete) // || !_isActivated)
         {
             return;
         }

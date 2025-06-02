@@ -11674,7 +11674,8 @@ MonoBehaviour:
     sentences:
     - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
       name: Scientist
-      sentence: Perfect! Now find the region and place down the pylon!
+      sentence: Looks like you've got the pylon! Head over to the rocky region and
+        place it down!
     onDialogueComplete:
       m_PersistentCalls:
         m_Calls: []
@@ -33552,6 +33553,7 @@ GameObject:
   - component: {fileID: 268604528}
   - component: {fileID: 268604527}
   - component: {fileID: 268604526}
+  - component: {fileID: 268604529}
   m_Layer: 0
   m_Name: GetPylon
   m_TagString: Untagged
@@ -33593,7 +33595,19 @@ MonoBehaviour:
   _targetObject: {fileID: 1755682975}
   _onActivate:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 268604529}
+        m_TargetAssemblyTypeName: CheckPlayerHasPylon, Assembly-CSharp
+        m_MethodName: StartCheckPylon
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _onComplete:
     m_PersistentCalls:
       m_Calls:
@@ -33714,6 +33728,36 @@ MonoBehaviour:
         m_CallState: 2
   _isSequenced: 1
   _allowMultiToggle: 1
+--- !u!114 &268604529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 268604523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 904202c5307d4547ebfc66e288d0696f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hasPylonEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 268604525}
+        m_TargetAssemblyTypeName: Objective, Assembly-CSharp
+        m_MethodName: RaiseObjectiveComplete
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _notHasPylonEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &269640558
 GameObject:
   m_ObjectHideFlags: 0
@@ -60838,6 +60882,7 @@ GameObject:
   m_Component:
   - component: {fileID: 455885798}
   - component: {fileID: 455885797}
+  - component: {fileID: 455885799}
   m_Layer: 0
   m_Name: TalkToScientist
   m_TagString: Untagged
@@ -60910,6 +60955,46 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2123872487}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &455885799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 455885796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034d6aa29963495cfa4f5c8256235147, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keyPressEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 455885797}
+        m_TargetAssemblyTypeName: Objective, Assembly-CSharp
+        m_MethodName: ActivateObjective
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 455885797}
+        m_TargetAssemblyTypeName: Objective, Assembly-CSharp
+        m_MethodName: RaiseObjectiveComplete
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  key: 8
 --- !u!1 &455896425
 GameObject:
   m_ObjectHideFlags: 0
@@ -99124,6 +99209,8 @@ GameObject:
   - component: {fileID: 720086269}
   - component: {fileID: 720086268}
   - component: {fileID: 720086267}
+  - component: {fileID: 720086271}
+  - component: {fileID: 720086272}
   m_Layer: 0
   m_Name: GetPylon
   m_TagString: Untagged
@@ -99281,6 +99368,18 @@ MonoBehaviour:
           m_StringArgument: Activated
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 720086271}
+        m_TargetAssemblyTypeName: CheckPlayerHasPylon, Assembly-CSharp
+        m_MethodName: StartCheckPylon
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Activated
+          m_BoolArgument: 0
+        m_CallState: 2
   _onComplete:
     m_PersistentCalls:
       m_Calls:
@@ -99299,6 +99398,64 @@ MonoBehaviour:
   _onFail:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &720086271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 720086265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 904202c5307d4547ebfc66e288d0696f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hasPylonEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 720086270}
+        m_TargetAssemblyTypeName: Objective, Assembly-CSharp
+        m_MethodName: RaiseObjectiveComplete
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _notHasPylonEvent:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &720086272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 720086265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034d6aa29963495cfa4f5c8256235147, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keyPressEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 720086271}
+        m_TargetAssemblyTypeName: CheckPlayerHasPylon, Assembly-CSharp
+        m_MethodName: StartCheckPylon
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  key: 114
 --- !u!1 &724207588
 GameObject:
   m_ObjectHideFlags: 0
@@ -141626,7 +141783,7 @@ MonoBehaviour:
     sentences:
     - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
       name: Scientist
-      sentence: Awesome! Now that you've got that, head over to the Island.
+      sentence: You got the pylon fast! Head over to the island.
     - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
       name: Scientist
       sentence: You can place it down there!
@@ -167182,7 +167339,6 @@ GameObject:
   - component: {fileID: 1325952454}
   - component: {fileID: 1325952451}
   - component: {fileID: 1325952452}
-  - component: {fileID: 1325952455}
   m_Layer: 0
   m_Name: WaitForPylon1ToStabilize
   m_TagString: Untagged
@@ -167275,46 +167431,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1378229119}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1325952455
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1325952450}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 034d6aa29963495cfa4f5c8256235147, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  keyPressEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 919423983}
-        m_TargetAssemblyTypeName: Objective, Assembly-CSharp
-        m_MethodName: ActivateObjective
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 919423983}
-        m_TargetAssemblyTypeName: Objective, Assembly-CSharp
-        m_MethodName: RaiseObjectiveComplete
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  key: 114
 --- !u!1 &1327564364
 GameObject:
   m_ObjectHideFlags: 0
