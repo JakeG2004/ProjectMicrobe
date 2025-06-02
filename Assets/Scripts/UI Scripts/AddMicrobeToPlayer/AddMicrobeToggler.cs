@@ -25,7 +25,8 @@ public class AddMicrobeToggler : MonoBehaviour
         {
             _elapsedTime = 0.0f;
 
-            _curPopulation = _maxPopulation;
+            SetPopulation(_maxPopulation);
+            //Debug.Log($"Updating {_microbeSO.microbeName}: {_curPopulation}");
         }
     }
 

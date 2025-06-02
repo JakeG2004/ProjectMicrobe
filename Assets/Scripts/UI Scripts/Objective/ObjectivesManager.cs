@@ -25,6 +25,7 @@ public class ObjectivesManager : MonoBehaviour
     public void AddObjective(Objective obj)
     {
         _curObj = obj;
+
         DirectionArrowScript.Instance.ChangeTarget(obj.GetTarget());
 
         // Set as the current objective if this is the first item
@@ -49,6 +50,8 @@ public class ObjectivesManager : MonoBehaviour
         if (_oldObj == _curObj)
         {
             _oes.DelayHide(.75f);
+
+            //Debug.Log("removing target");
             DirectionArrowScript.Instance.RemoveTarget();
             return;
         }

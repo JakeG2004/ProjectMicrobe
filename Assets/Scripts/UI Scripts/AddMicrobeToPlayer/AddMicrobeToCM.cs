@@ -79,11 +79,12 @@ public class AddMicrobeToCM : MonoBehaviour
         TMP_Text _microbeName = GetComponent<TMP_Text>();
         _microbeName.text = _microbeSO.microbeName + ": " + _population.ToString();
         _srcToggle?.SetPopulation(_population);
+        //Debug.Log($"Set the population to {_population}");
     }
 
     void OnEnable()
     {
-        UpdateInfo();
+        //UpdateInfo();
     }
 
     public void SetMicrobe(MicrobeSO microbeSO, float population, AddMicrobeToggler src)
@@ -91,6 +92,8 @@ public class AddMicrobeToCM : MonoBehaviour
         _microbeSO = microbeSO;
         _population = population;
         _srcToggle = src;
+
+        _microbeAmt.text = "";
         UpdateInfo();
     }
 }
