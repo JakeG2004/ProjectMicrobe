@@ -80954,8 +80954,9 @@ MonoBehaviour:
     sentences:
     - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
       name: Scientist
-      sentence: Congratulations newbie! Looks like you've got two stable microbial
-        ecosystems on your hands!
+      sentence: 'Nice job! That''s two stable environments now! You did pretty great!
+
+'
     onDialogueComplete:
       m_PersistentCalls:
         m_Calls: []
@@ -122373,7 +122374,6 @@ GameObject:
   - component: {fileID: 919423982}
   - component: {fileID: 919423983}
   - component: {fileID: 919423985}
-  - component: {fileID: 919423984}
   - component: {fileID: 919423986}
   m_Layer: 0
   m_Name: StabilizeEnvrionments
@@ -122411,7 +122411,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _objectiveChannelsSO: {fileID: 11400000, guid: abd508a1728e99261a0c45cd360d8b56, type: 2}
   _nextObjective: {fileID: 0}
-  _objectiveText: Stabilize Environments
+  _objectiveText: Stabilize Environment
   _isFirstObjective: 0
   _targetObject: {fileID: 0}
   _onActivate:
@@ -122447,38 +122447,6 @@ MonoBehaviour:
   _onFail:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &919423984
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919423981}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0dbd75979bcd8fdbf9f442f7db077c86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _event: {fileID: 11400000, guid: e9e36e8430a65e12d93eeb02fca6ae4e, type: 2}
-  _queryString: Tutorial1
-  _generalResponse:
-    m_PersistentCalls:
-      m_Calls: []
-  _specificResponse:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 919423985}
-        m_TargetAssemblyTypeName: ObjectiveBooleanSequence, Assembly-CSharp
-        m_MethodName: SetTrue
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Tutorial1Stable
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &919423985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122493,7 +122461,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _boolNames:
   - Active
-  - Tutorial1Stable
   - Tutorial2Stable
   _completedEvent:
     m_PersistentCalls:
@@ -125398,14 +125365,8 @@ MonoBehaviour:
       sentence: If not, go back and get some to put in!
     - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
       name: Scientist
-      sentence: Once you do that, go checkout your other Pylon and see how it's doing!
-    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
-      name: Scientist
-      sentence: Your goal is to make these two environments stable.
-    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
-      name: Scientist
-      sentence: You'll likely need to run back and forth between the two pylons and
-        add more microbes to do so.
+      sentence: Try and make this environment stable! You may need to return to the
+        ship and grab more microbes to do so.
     onDialogueComplete:
       m_PersistentCalls:
         m_Calls: []

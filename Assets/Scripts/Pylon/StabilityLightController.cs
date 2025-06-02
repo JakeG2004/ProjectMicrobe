@@ -11,8 +11,14 @@ public class StabilityLightController : MonoBehaviour
     {
         if (_objRenderer != null)
         {
+            // Get the material from the renderer
+            Material mat = _objRenderer.material;
+
             // Change the material color to green if stable, red if not
-            _objRenderer.material.color = isStable ? Color.green : Color.red;
+            Color col = isStable ? Color.green : Color.red;
+
+            mat.color = col;
+            mat.SetColor("_EmissionColor", col);
         }
     }
 }

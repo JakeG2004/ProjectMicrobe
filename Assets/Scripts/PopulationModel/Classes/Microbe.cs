@@ -45,58 +45,52 @@ public class Microbe
     // Computes population growth using the Lotka-Volterra Model
     public float ComputeGrowth()
     {
-        // Find the minimum in the kResources carry capacity list
+        // Calculate carrying capacity
         float minK = float.MaxValue;
         foreach (var res in kResources)
         {
             if (res.Value < minK)
-            {
                 minK = res.Value;
-            }
         }
 
-        // Avoid division by 0 in event of no resources available
-        if (minK == 0)
+        // Handle resource collapse
+        if (minK <= 0.01f)
         {
-            // Kill the population if small enough
+            // Complete extinction if small enough
             if (population <= 2)
-            {
-                return -1 * population;
-            }
+                return -population;
 
-            // Otherwise, cut population down by 1/3
-            return -0.66f * population;
+            // Otherwise, cut population in half
+            return -0.5f * population;
         }
 
-        // Compute the competition effect to be sum of competition coefficients
+        // Calculate competition
         float competitionEffect = 0.0f;
         foreach (var competitor in competitors)
         {
-            competitionEffect += competitor.Value;
+            competitionEffect += Mathf.Max(0, competitor.Value);
         }
 
-        float growth = growthRate * population * (1 - (population * competitionEffect) / minK);
+        // Compute growth
+        float effectiveCompetition = Mathf.Max(competitionEffect, 1.0f);
+        float growth = growthRate * population * (1 - (population * effectiveCompetition) / minK);
 
-        if (competitionEffect <= 0)
+        // Prevent overshooting
+        if (growth < -0.9f * population)
         {
-            growth = growthRate * population * (1 - (population / minK));
+            // Extinct population if sufficiently small
+            if (population <= 3)
+            {
+                return -population;
+            }
+
+            // Otherwise, cut population down to 1/4
+            return -0.75f * population;
         }
 
-        // Prevent overshooting into negative population
-        if (growth > -1 * population)
-        {
-            return growth;
-        }
-
-        // Kill the population if small enough
-        if (population <= 2 || growth < -3 * population)
-        {
-            return -1 * population;
-        }
-
-        // Otherwise, cut population down to 1/4
-        return -.75f * population;
+        return growth;
     }
+
 
     // Calculat the smallest multiplier to the carry capacity given the environment resources
     public float CalculateToxicityMultiplier(Dictionary<string, float> envResources)
