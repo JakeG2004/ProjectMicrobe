@@ -52,6 +52,11 @@ public class DirectionArrowScript : MonoBehaviour
     // Public function to change the target to a new one
     public void ChangeTarget(Transform newTarget)
     {
+        if (!newTarget)
+        {
+            RemoveTarget();
+        }
+        
         _target = newTarget;
     }
 

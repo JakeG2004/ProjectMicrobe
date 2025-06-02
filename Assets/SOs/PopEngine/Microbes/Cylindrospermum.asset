@@ -21,7 +21,13 @@ MonoBehaviour:
   producedResources:
   - resourceName: Oxygen
     amount: 2
-  toxins: []
+  toxins:
+  - toxinName: Lead
+    toxin:
+      toxicity: 1
+      minSafeDensity: 0
+      maxSafeDensity: 0
+      lethalDensity: 0.2
   description: 'Cylindrospermum is a genus of filamentous cyanobacteria. Cyanobacteria
     are a group of microbes which obtain biological energy through photosynthesis.
 

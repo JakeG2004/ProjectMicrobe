@@ -124,6 +124,24 @@ public class Objective : MonoBehaviour
         _targetObject = newObj;
     }
 
+    public void SetDirectionArrow(Transform target)
+    {
+        // Remove target
+        if (target == null)
+        {
+            DirectionArrowScript.Instance.RemoveTarget();
+            return;
+        }
+
+        // Switch target
+        DirectionArrowScript.Instance.ChangeTarget(target);
+    }
+
+    public void RemoveTarget()
+    {
+        DirectionArrowScript.Instance.RemoveTarget();
+    }
+
     /*
     *
     *    GETTERS

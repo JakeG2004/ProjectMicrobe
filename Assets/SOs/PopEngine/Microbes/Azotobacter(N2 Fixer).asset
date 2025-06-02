@@ -22,8 +22,14 @@ MonoBehaviour:
     amount: 1
   producedResources:
   - resourceName: Ammonium
-    amount: 0
-  toxins: []
+    amount: 1
+  toxins:
+  - toxinName: Lead
+    toxin:
+      toxicity: 1
+      minSafeDensity: 0
+      maxSafeDensity: 0
+      lethalDensity: 0.2
   description: 'Azotobacter is an aerobic bacterial microbe. These microbes are free-living
     soil microbes which bind atmospheric nitrogen into usable ammonium.
 

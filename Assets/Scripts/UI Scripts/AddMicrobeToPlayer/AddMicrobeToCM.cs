@@ -49,7 +49,9 @@ public class AddMicrobeToCM : MonoBehaviour
         CarriedMicrobes _cm = GameObject.FindGameObjectWithTag("Player").GetComponent<CarriedMicrobes>();
         Microbe newMicrobe = Microbe.CreateMicrobeFromSO(_microbeSO);
         newMicrobe.population = amtToAdd;
-        if (_cm.IsFull())
+
+        // Check for full with no duplicate
+        if (_cm.IsFull() && !_cm.HasMicrobe(newMicrobe.microbeName))
         {
             if (NotificationPanelManager.Instance.IsAnimating() == true)
             {

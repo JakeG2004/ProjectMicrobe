@@ -6,7 +6,7 @@ public class CarriedMicrobes : MonoBehaviour
 {
     const int MAX_MICROBES = 3;
     [SerializeField] private List<Microbe> _microbes = new List<Microbe>();
-    
+
     public void AddMicrobe(Microbe newMicrobe)
     {
         // Handle case of too many microbes
@@ -92,5 +92,18 @@ public class CarriedMicrobes : MonoBehaviour
     public bool IsFull()
     {
         return _microbes.Count >= MAX_MICROBES;
+    }
+
+    public bool HasMicrobe(string microbeQueryName)
+    {
+        foreach (Microbe microbe in _microbes)
+        {
+            if (microbe.microbeName == microbeQueryName)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

@@ -10,7 +10,7 @@ public class MicrobeMenu : MonoBehaviour
     [SerializeField] private LineChart _microbesChart;
     [SerializeField] private LineChart _resourcesChart;
     [SerializeField] private int _graphEntries = 10;
-    //[SerializeField] private List<string> _dontGraphTheseResources = new();
+    [SerializeField] private List<string> _dontGraphTheseResources = new();
     private MicrobePopSim _curPylon;
     private bool _isActive = false;
     private BoolGameEventTrigger _menuStateTracker;
@@ -56,15 +56,17 @@ public class MicrobeMenu : MonoBehaviour
         // Update the menu open indicator
         _menuStateTracker.TriggerEvent(_isActive);
 
-        UpdateCharts(new List<string>());
+        UpdateCharts(_dontGraphTheseResources);
     }
 
-    public void UpdateCharts(List<string> _dontGraphTheseResources)
+    public void UpdateCharts(List<string> dontGraphTheseResources)
     {
-        if(_isActive)
+        _dontGraphTheseResources = dontGraphTheseResources;
+
+        if (_isActive)
         {
             SetMicrobeChartData();
-            SetResourcesChartData(_dontGraphTheseResources);
+            SetResourcesChartData(dontGraphTheseResources);
         }
     }
 
