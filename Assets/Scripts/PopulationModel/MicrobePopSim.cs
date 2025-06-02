@@ -5,28 +5,35 @@ using UnityEngine.Events;
 
 public class MicrobePopSim : MonoBehaviour
 {
+    // Variables regarding the environment
     public EnvironmentSO envSO;
     public Environment env;
 
+    // Variables regarding the microbes
     public List<MicrobeSO> microbeSOs = new List<MicrobeSO>();
     public List<Microbe> microbes = new List<Microbe>();
+
+    // Variables regarding the simulation
+    [SerializeField] private float _updatePeriod = 15.0f;
     public int currentStep = 0;
 
-    [SerializeField] private float _updatePeriod = 15.0f;
-    private float _elapsedTime = 0.0f;
-
-    [SerializeField] private UnityEvent _onSimAdvance;
+    // Helper variables
     [SerializeField] private bool _advanceOnStart = true;
+    private float _elapsedTime = 0.0f;
+    private float[] _consumptionArr = new float[6];
+    private PylonRegion _region;
+    private bool _isStable = false;
 
-    [Space(10)]
+    // Environment health variables
     [SerializeField] private float _stableActivityMean = 1.0f;
     [SerializeField] private float _stableActivityVariance = 0.5f;
-
-    private float[] _consumptionArr = new float[6];
     private float _bioActivityVariance = 0.0f;
     private float _bioActivityMean = 0.0f;
     private Vector2 _bioActivity;
-    private PylonRegion _region;
+
+    // Unity Events
+    [SerializeField] private UnityEvent _onSimAdvance;
+    [SerializeField] private UnityEvent _OnStableStateReached;
 
     // Start is called before the first frame update
     void Start()
@@ -197,10 +204,22 @@ public class MicrobePopSim : MonoBehaviour
         GetComponent<StabilityLightController>().UpdateStability(IsStable());
 
         // Broadcast if stable
-        if(IsStable())
+        if (IsStable())
         {
             //Debug.Log($"`{envSO.envName}` is stable!");
             GetComponent<StringGameEventTrigger>().TriggerEvent(envSO.envName);
+
+            if (!_isStable)
+            {
+                _OnStableStateReached?.Invoke();
+            }
+
+            _isStable = true;
+        }
+
+        else
+        {
+            _isStable = false;
         }
 
         currentStep++;

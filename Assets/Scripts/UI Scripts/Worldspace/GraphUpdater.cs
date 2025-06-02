@@ -7,6 +7,8 @@ public class GraphUpdater : MonoBehaviour
     [SerializeField] private PylonScreenController _psc;
     private MicrobeMenu _microbeMenu;
 
+    [SerializeField] private List<string> _dontGraphTheseResources;
+
     void Start()
     {
         _microbeMenu = GameObject.FindGameObjectWithTag("MicrobeMenu").GetComponent<MicrobeMenu>();
@@ -22,7 +24,7 @@ public class GraphUpdater : MonoBehaviour
     // Update worldpsace graphs
     private void UpdatePylonScreenGraphs()
     {
-        _psc.UpdateMicrobeGraphs();
+        _psc.UpdateMicrobeGraphs(_dontGraphTheseResources);
     }
 
     // Update UI graphs
@@ -31,7 +33,7 @@ public class GraphUpdater : MonoBehaviour
         // Check that the microbe menu current pylon is equal to the current pylon
         if (_microbeMenu && (_microbeMenu.GetCurrentPylon() == GetComponent<MicrobePopSim>()))
         {
-            _microbeMenu.UpdateCharts();
+            _microbeMenu.UpdateCharts(_dontGraphTheseResources);
         }
     }
 }

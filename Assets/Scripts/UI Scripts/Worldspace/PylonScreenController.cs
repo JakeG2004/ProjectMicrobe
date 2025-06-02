@@ -9,6 +9,7 @@ public class PylonScreenController : MonoBehaviour
     [SerializeField] private LineChart _resourcesChart;
     [SerializeField] private int _graphEntries = 10;
     [SerializeField] private MicrobePopSim _curPylon;
+    //[SerializeField] private List<string> _dontGraphTheseResources = new();
 
     void Start()
     {
@@ -17,10 +18,10 @@ public class PylonScreenController : MonoBehaviour
         InitChart(_resourcesChart, "Resource Amounts");
     }
 
-    public void UpdateMicrobeGraphs()
+    public void UpdateMicrobeGraphs(List<string> _dontGraphTheseResources)
     {
         SetMicrobeChartData();
-        SetResourcesChartData();
+        SetResourcesChartData(_dontGraphTheseResources);
     }
 
     void InitChart(LineChart chart, string name)
@@ -71,12 +72,17 @@ public class PylonScreenController : MonoBehaviour
         }
     }
 
-    public void SetResourcesChartData()
+    public void SetResourcesChartData(List<string> _dontGraphTheseResources)
     {
         _resourcesChart.RemoveData();
 
         foreach(var res in _curPylon.GetEnv().resourceHistory)
         {
+            if (_dontGraphTheseResources.Contains(res.Key))
+            {
+                continue;
+            }
+            
             // Add line for resource
             _resourcesChart.AddSerie<Line>(res.Key);
 

@@ -105219,10 +105219,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 68.09
+  m_fontSize: 68.6
   m_fontSizeBase: 68.09
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -123167,7 +123167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _event: {fileID: 11400000, guid: e9e36e8430a65e12d93eeb02fca6ae4e, type: 2}
-  _queryString: Tutorial2
+  _queryString: Rocky Pylon
   _generalResponse:
     m_PersistentCalls:
       m_Calls: []
@@ -167397,7 +167397,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _event: {fileID: 11400000, guid: e9e36e8430a65e12d93eeb02fca6ae4e, type: 2}
-  _queryString: Tutorial1
+  _queryString: Beach Pylon
   _generalResponse:
     m_PersistentCalls:
       m_Calls: []
@@ -207193,6 +207193,15 @@ MonoBehaviour:
       name: Scientist
       sentence: The panel to the right of the resources graph on the Pylon shows
         you the stability state. Red means unstable, green means stable.
+    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
+      name: Scientist
+      sentence: The Azotobacter that you put in will take atmospheric nitrogen and
+        convert it into Ammonium. This process is called Nitrogen fixation.
+    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
+      name: Scientist
+      sentence: Our graphs will not include Ammonium, to avoid confusion, but know
+        that if a microbe like Azotobacter, which produces Ammonium, is present,
+        then there must be ammonium being produced.
     onDialogueComplete:
       m_PersistentCalls:
         m_Calls: []
@@ -261028,7 +261037,7 @@ GameObject:
   - component: {fileID: 2016985538}
   - component: {fileID: 2016985537}
   m_Layer: 5
-  m_Name: FrameTop (1)
+  m_Name: FrameBottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -261050,7 +261059,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 6.13}
   m_SizeDelta: {x: -0.000015258789, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2016985537
