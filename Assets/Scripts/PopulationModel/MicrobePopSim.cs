@@ -446,6 +446,12 @@ public class MicrobePopSim : MonoBehaviour
         IncrementTimer();
     }
 
+
+    // ================================
+    // ===== SIMULATION FUNCTIONS =====
+    // ================================
+
+
     // Advance the simulation by a single step
     public void AdvanceSimulation()
     {
@@ -480,6 +486,7 @@ public class MicrobePopSim : MonoBehaviour
         _onSimAdvance.Invoke();
     }
 
+    // Advance the simulation by n steps
     public void FastForward(int n)
     {
         for (int i = 0; i < n; i++)
@@ -488,6 +495,13 @@ public class MicrobePopSim : MonoBehaviour
         }
     }
 
+
+    // =============================
+    // ===== MICROBE FUNCTIONS =====
+    // =============================
+
+
+    // Add a microbe to the simulation
     public void AddMicrobe(Microbe newMicrobe)
     {
         // Handle duplicate entries
@@ -508,6 +522,7 @@ public class MicrobePopSim : MonoBehaviour
         }
     }
 
+    // Removes a microbe fromt the simulation
     public void RemoveMicrobe(string name)
     {
         foreach (Microbe microbe in _microbes)
@@ -520,6 +535,7 @@ public class MicrobePopSim : MonoBehaviour
         }
     }
 
+    // Returns the population of a given microbe
     public float GetMicrobePopulation(string microbeNameQuery)
     {
         foreach (Microbe microbe in _microbes)
@@ -533,11 +549,7 @@ public class MicrobePopSim : MonoBehaviour
         return -1.0f;
     }
 
-    public EnvironmentSO GetEnvSO()
-    {
-        return _envSO;
-    }
-
+    // Increase a microbe's population by a given amount
     public void IncreaseMicrobePopulation(string microbeName, float amount)
     {
         foreach (Microbe microbe in _microbes)
@@ -549,58 +561,34 @@ public class MicrobePopSim : MonoBehaviour
         }
     }
 
+    // Get all the microbes in the simulation
     public List<Microbe> GetMicrobes()
     {
         return _microbes;
     }
 
+
+    // =================================
+    // ===== ENVIRONMENT FUNCTIONS =====
+    // =================================
+
+
+    // Get the environment
     public Environment GetEnv()
     {
         return _env;
     }
 
+    // Get the environment so
+    public EnvironmentSO GetEnvSO()
+    {
+        return _envSO;
+    }
+
+    // Set the environment
     public void SetEnv(EnvironmentSO newEnv)
     {
         _envSO = newEnv;
-    }
-
-    public void CalculateBioActivity()
-    {
-        // Ensure that the array is full
-        for (int i = 0; i < STABILITY_ARR_SIZE; i++)
-        {
-            if (_consumptionArr[i] == -1)
-            {
-                _bioActivity = new Vector2(0, 0);
-                return;
-            }
-        }
-
-        // Calculate the mean
-        float bioActivityMean = 0.0f;
-        for (int i = 0; i < STABILITY_ARR_SIZE; i++)
-        {
-            bioActivityMean += _consumptionArr[i];
-        }
-
-        bioActivityMean /= _consumptionArr.Length;
-
-        // Calculate the variance
-        float bioActivityVariance = 0.0f;
-        for (int i = 0; i < STABILITY_ARR_SIZE; i++)
-        {
-            bioActivityVariance += ((_consumptionArr[i] - bioActivityMean) * (_consumptionArr[i] - bioActivityMean));
-        }
-
-        bioActivityVariance /= (STABILITY_ARR_SIZE - 1);
-
-        // Assign the new bioactivity
-        _bioActivity = new Vector2(bioActivityMean, bioActivityVariance);
-    }
-
-    public Vector2 GetBioActivity()
-    {
-        return _bioActivity;
     }
 
     // Set up an environment from the environmentSO
@@ -634,6 +622,12 @@ public class MicrobePopSim : MonoBehaviour
         }
     }
 
+
+    // =============================
+    // ===== MICROBE FUNCTIONS =====
+    // =============================
+
+
     // Set up the microbes from MicrobeSO list
     private void InitMicrobes()
     {
@@ -648,40 +642,6 @@ public class MicrobePopSim : MonoBehaviour
         {
             Microbe newMicrobe = Microbe.CreateMicrobeFromSO(mso);
             _microbes.Add(newMicrobe);
-        }
-    }
-
-    // Initializes the arrays used in stability calculation
-    private void InitStabilityArrays()
-    {
-        // Initialize the consumption array to -1s
-        for (int i = 0; i < STABILITY_ARR_SIZE; i++)
-        {
-            _consumptionArr[i] = -1;
-        }
-
-        // Initialize the ammonium array to -1s
-        for (int i = 0; i < STABILITY_ARR_SIZE; i++)
-        {
-            _ammoniumArray[i] = -1;
-        }
-    }
-
-    private void InitScriptReferences()
-    {
-        _gu = GetComponent<GraphUpdater>();
-    }
-
-    private void IncrementTimer()
-    {
-        // Add to the time
-        _elapsedTime += Time.deltaTime;
-
-        // Perform the update if time is passed
-        if (_elapsedTime >= _updatePeriod)
-        {
-            AdvanceSimulation();
-            _elapsedTime = 0.0f;
         }
     }
 
@@ -720,6 +680,7 @@ public class MicrobePopSim : MonoBehaviour
         }
     }
 
+    // Calculates the consumption of the microbes
     private void SimulateMicrobeConsumption(Dictionary<string, float> totalResourceUsage)
     {
         // ProcessMicrobeConsumption
@@ -752,6 +713,96 @@ public class MicrobePopSim : MonoBehaviour
         }
     }
 
+
+    // =================================
+    // ===== BIOACTIVITY FUNCTIONS =====
+    // =================================
+
+
+    // Calculate mean and variance of bioactivity
+    public void CalculateBioActivity()
+    {
+        // Ensure that the array is full
+        for (int i = 0; i < STABILITY_ARR_SIZE; i++)
+        {
+            if (_consumptionArr[i] == -1)
+            {
+                _bioActivity = new Vector2(0, 0);
+                return;
+            }
+        }
+
+        // Calculate the mean
+        float bioActivityMean = 0.0f;
+        for (int i = 0; i < STABILITY_ARR_SIZE; i++)
+        {
+            bioActivityMean += _consumptionArr[i];
+        }
+
+        bioActivityMean /= _consumptionArr.Length;
+
+        // Calculate the variance
+        float bioActivityVariance = 0.0f;
+        for (int i = 0; i < STABILITY_ARR_SIZE; i++)
+        {
+            bioActivityVariance += ((_consumptionArr[i] - bioActivityMean) * (_consumptionArr[i] - bioActivityMean));
+        }
+
+        bioActivityVariance /= (STABILITY_ARR_SIZE - 1);
+
+        // Assign the new bioactivity
+        _bioActivity = new Vector2(bioActivityMean, bioActivityVariance);
+    }
+
+    // Get the vector2 of <mean, variance>
+    public Vector2 GetBioActivity()
+    {
+        return _bioActivity;
+    }
+
+
+    // ===========================
+    // ===== MISC. FUNCTIONS =====
+    // ===========================
+
+
+    // Initializes the arrays used in stability calculation
+    private void InitStabilityArrays()
+    {
+        // Initialize the consumption array to -1s
+        for (int i = 0; i < STABILITY_ARR_SIZE; i++)
+        {
+            _consumptionArr[i] = -1;
+        }
+
+        // Initialize the ammonium array to -1s
+        for (int i = 0; i < STABILITY_ARR_SIZE; i++)
+        {
+            _ammoniumArray[i] = -1;
+        }
+    }
+
+    // Bind script reference
+    private void InitScriptReferences()
+    {
+        _gu = GetComponent<GraphUpdater>();
+    }
+
+    // Increment the timer
+    private void IncrementTimer()
+    {
+        // Add to the time
+        _elapsedTime += Time.deltaTime;
+
+        // Perform the update if time is passed
+        if (_elapsedTime >= _updatePeriod)
+        {
+            AdvanceSimulation();
+            _elapsedTime = 0.0f;
+        }
+    }
+
+    // Calculate the current consumtion of everything
     private void CalculateCurrentConsumption(Dictionary<string, float> totalResourceUsage)
     {
         float curConsumption = 0.0f;
@@ -765,6 +816,7 @@ public class MicrobePopSim : MonoBehaviour
         _consumptionArr[_curStep % STABILITY_ARR_SIZE] = curConsumption;
     }
 
+    // Checks for early simulation return
     private bool CheckEarlySimReturn()
     {
         // Early return when no resources
@@ -793,7 +845,7 @@ public class MicrobePopSim : MonoBehaviour
     }
 
     // Checks that for the last STABILITY_ARR_SIZE time steps, ammonium has been produced
-    private bool CheckAmmoniumProduced()
+    public bool CheckAmmoniumProduced()
     {
         // Add the ammonium to the current step of the array
         if (_env.resources.TryGetValue("Ammonium", out float curAmmon))

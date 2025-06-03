@@ -27,9 +27,9 @@ public class NotificationSender : MonoBehaviour
         _npm.ShowPanelForSeconds(notifBody);
     }
 
-    public void SendStableStateNotif()
+    public void SendStableStateNotif(string envName)
     {
-        string notifString = GetComponent<MicrobePopSim>().GetEnvSO().envName + " Is Now Stable!";
+        string notifString = envName + " Is Now Stable!";
         SendGeneralNotification(notifString);
     }
 
