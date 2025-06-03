@@ -22,11 +22,21 @@ public class PylonStatusEventsChecker : MonoBehaviour
 
     void Start()
     {
-        _mps = GetComponent<MicrobePopSim>();
+        GetMPS();
+    }
+
+    private void GetMPS()
+    {
+        if (_mps == null)
+        {
+            _mps = GetComponent<MicrobePopSim>();
+        }
     }
 
     public void CheckNotifications()
     {
+        GetMPS();
+
         // Get the microbes from the simulation
         _newMicrobes = _mps.GetMicrobes();
 
@@ -100,6 +110,5 @@ public class PylonStatusEventsChecker : MonoBehaviour
             }
             _isStable = false;
         }
-
     }
 }
