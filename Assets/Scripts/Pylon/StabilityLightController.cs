@@ -6,6 +6,11 @@ public class StabilityLightController : MonoBehaviour
 {
     [SerializeField] private Renderer _objRenderer;
 
+    void Start()
+    {
+        UpdateStability(false);
+    }
+
     // Call this method to update the color based on stability
     public void UpdateStability(bool isStable)
     {

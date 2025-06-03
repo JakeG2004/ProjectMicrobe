@@ -10130,7 +10130,7 @@ GameObject:
   - component: {fileID: 5685606735227608658}
   - component: {fileID: 6311336060808405144}
   - component: {fileID: 7110316051627447314}
-  - component: {fileID: 6443691292980851631}
+  - component: {fileID: 530402900517178277}
   m_Layer: 0
   m_Name: MicrobePylon
   m_TagString: Pylon
@@ -10240,35 +10240,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 825914ebcff7ae7f09d74880009e2cd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  envSO: {fileID: 0}
-  microbeSOs: []
-  microbes: []
+  _envSO: {fileID: 0}
+  _microbeSOs: []
+  _microbes: []
   _updatePeriod: 15
-  currentStep: 0
   _advanceOnStart: 1
-  _stableActivityMean: 1
-  _stableActivityVariance: 0.5
   _onSimAdvance:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6443691292980851631}
-        m_TargetAssemblyTypeName: ExtinctionChecker, Assembly-CSharp
-        m_MethodName: CheckExtinction
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  _OnStableStateReached:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7110316051627447314}
-        m_TargetAssemblyTypeName: NotificationSender, Assembly-CSharp
-        m_MethodName: SendStableStateNotif
+      - m_Target: {fileID: 530402900517178277}
+        m_TargetAssemblyTypeName: PylonStatusEventsChecker, Assembly-CSharp
+        m_MethodName: CheckNotifications
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10331,7 +10313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d052d24a7f58557abe75b6ab5f7aac3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6443691292980851631
+--- !u!114 &530402900517178277
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10340,7 +10322,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5981207602307649226}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2c8ea1b19e51454bb0f3f97fd5c86d4, type: 3}
+  m_Script: {fileID: 11500000, guid: 27c2c13e8de17c8aba16f64a9e619651, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _extinctEvent:
@@ -10358,6 +10340,50 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _stableEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7110316051627447314}
+        m_TargetAssemblyTypeName: NotificationSender, Assembly-CSharp
+        m_MethodName: SendStableStateNotif
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6311336060808405144}
+        m_TargetAssemblyTypeName: StabilityLightController, Assembly-CSharp
+        m_MethodName: UpdateStability
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  _unstableEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6311336060808405144}
+        m_TargetAssemblyTypeName: StabilityLightController, Assembly-CSharp
+        m_MethodName: UpdateStability
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _stablePopMean: 1
+  _stablePopVar: 0.5
 --- !u!1 &5990425929586624647
 GameObject:
   m_ObjectHideFlags: 0
