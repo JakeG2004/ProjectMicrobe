@@ -29,13 +29,13 @@ public class NotificationSender : MonoBehaviour
 
     public void SendStableStateNotif()
     {
-        string notifString = GetComponent<MicrobePopSim>().envSO.envName + " Is Now Stable!";
+        string notifString = GetComponent<MicrobePopSim>().GetEnvSO().envName + " Is Now Stable!";
         SendGeneralNotification(notifString);
     }
 
     public void SendExtinctionNotif(string microbeName)
     {
-        string notifString = microbeName + " experienced an extinction event at " + GetComponent<MicrobePopSim>().envSO.envName;
+        string notifString = microbeName + " experienced an extinction event at " + GetComponent<MicrobePopSim>().GetEnvSO().envName;
         SendGeneralNotification(notifString);
     }
 }

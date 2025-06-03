@@ -17,7 +17,7 @@ public class ExtinctionChecker : MonoBehaviour
     public void CheckExtinction()
     {
         // Get the microbes from the simulation
-        _newMicrobes = GetComponent<MicrobePopSim>().microbes;
+        _newMicrobes = GetComponent<MicrobePopSim>().GetMicrobes();
 
         // Skip first time step
         if (_oldMicrobes == null)
