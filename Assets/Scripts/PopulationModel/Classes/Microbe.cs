@@ -64,17 +64,16 @@ public class Microbe
             return -0.5f * population;
         }
 
-        // Calculate competition
-        float competitionEffect = 0.0f;
+        // Calculate competition, accounting for self population
+        float competitionEffect = population;
         foreach (var competitor in competitors)
         {
-            //Debug.Log($"FOR MICROBE {microbeName}. {competitor.Key}: {competitor.Value}");
             competitionEffect += Mathf.Max(0, competitor.Value);
         }
 
         // Compute growth
-        float effectiveCompetition = Mathf.Max(competitionEffect, 1.0f);
-        float growth = growthRate * population * (1 - (population * effectiveCompetition) / minK);
+        float logisticTerm = (1 - (competitionEffect / minK));
+        float growth = growthRate * population * logisticTerm;
 
         // Prevent overshooting
         if (growth < -0.9f * population)
@@ -100,6 +99,12 @@ public class Microbe
         float totalResources = 0.0f;
         foreach(var res in envResources)
         {
+            // Don't allow nitrate to mess with the environmental toxicity
+            if (res.Key == "Nitrate")
+            {
+                continue;
+            }
+
             totalResources += res.Value;
         }
 
@@ -198,10 +203,15 @@ public class Microbe
         // Calculate competition coefficients and add to list
         foreach(var res in sharedResources)
         {
-            competitionCoefficients.Add(otherMicrobe.requiredResources[res] / requiredResources[res]);
+            float otherReqResources = otherMicrobe.requiredResources[res];
+            float thisReqResources = requiredResources[res];
+
+            float coefficient = otherReqResources / thisReqResources;
+
+            competitionCoefficients.Add(coefficient);
         }
 
-        // If no competiition coefficients, then the whole thing is 0
+        // If no competition coefficients, then the whole thing is 0
         if(competitionCoefficients.Count == 0)
         {
             competitors.Add(otherMicrobe.microbeName, 0);
@@ -209,17 +219,16 @@ public class Microbe
         }
 
         // Find the max of the compeititon coefficients
-        float maxCoefficient = 0.0f;
+        float meanCoefficient = 0.0f;
         foreach(var coef in competitionCoefficients)
         {
-            if(coef > maxCoefficient)
-            {
-                maxCoefficient = coef;
-            }
+            meanCoefficient += coef;
         }
 
+        meanCoefficient /= competitionCoefficients.Count;
+
         // Add the competition coefficient
-        competitors.Add(otherMicrobe.microbeName, otherMicrobe.population * maxCoefficient);
+        competitors.Add(otherMicrobe.microbeName, meanCoefficient * otherMicrobe.population);
     }
 
     // Calculate net resource usage at every time step

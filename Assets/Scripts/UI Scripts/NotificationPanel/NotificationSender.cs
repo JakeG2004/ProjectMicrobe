@@ -18,7 +18,7 @@ public class NotificationSender : MonoBehaviour
     public void SendGeneralNotification(string notifBody)
     {
         // Early return when already animating
-        if (_npm.IsAnimating())
+        if (!_npm || _npm.IsAnimating())
         {
             return;
         }

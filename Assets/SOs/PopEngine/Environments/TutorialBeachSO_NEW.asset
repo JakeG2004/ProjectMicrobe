@@ -14,13 +14,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialResources:
   - resourceName: Oxygen
-    amount: 4
+    amount: 12
   - resourceName: Nitrogen
-    amount: 2
+    amount: 6
+  - resourceName: Lead
+    amount: 0
+  - resourceName: Sulfur Dioxide
+    amount: 0
+  - resourceName: Nitrate
+    amount: 0
+  - resourceName: Carbon Dioxide
+    amount: 0
   resourceRefresh:
   - resourceName: Oxygen
-    amount: 4
+    amount: 12
   initialMicrobes:
   - microbe: {fileID: 11400000, guid: 63594733e7aa8914ea78c31c4153fbdf, type: 2}
+    population: 6
+  - microbe: {fileID: 11400000, guid: f2c460b91f42ea6429cfaa0d93203ff8, type: 2}
     population: 1
   envName: Beach Pylon
