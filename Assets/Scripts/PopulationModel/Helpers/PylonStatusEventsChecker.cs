@@ -15,6 +15,7 @@ public class PylonStatusEventsChecker : MonoBehaviour
     [SerializeField] private UnityEvent<string> _unstableEvent;
     [SerializeField] private float _stablePopMean;
     [SerializeField] private float _stablePopVar;
+    [SerializeField] private float _stableMycorrhisAmt;
     private List<Microbe> _newMicrobes;
     private List<Microbe> _oldMicrobes = null;
     private MicrobePopSim _mps;
@@ -84,14 +85,14 @@ public class PylonStatusEventsChecker : MonoBehaviour
     private void CheckStability()
     {
         // Get variables from MicrobePopSim
-        bool ammoniumProduced = _mps.CheckNitrateProduced();
+        float numMychorris = _mps.GetMicrobePopulation("F. Mycorrhis");
         Vector2 stabilityVector = _mps.GetBioActivity();
 
         // Pick out the components
         float mean = stabilityVector.x;
         float var = stabilityVector.y;
 
-        if (mean >= _stablePopMean && var <= _stablePopVar && ammoniumProduced)
+        if (mean >= _stablePopMean && var <= _stablePopVar && numMychorris > _stableMycorrhisAmt)
         {
             // Trigger the event
             if (!_isStable)

@@ -10130,6 +10130,7 @@ GameObject:
   - component: {fileID: 6311336060808405144}
   - component: {fileID: 7110316051627447314}
   - component: {fileID: 530402900517178277}
+  - component: {fileID: 3862604478810851283}
   m_Layer: 0
   m_Name: MicrobePylon
   m_TagString: Pylon
@@ -10251,6 +10252,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: PylonStatusEventsChecker, Assembly-CSharp
         m_MethodName: CheckNotifications
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3862604478810851283}
+        m_TargetAssemblyTypeName: BoolGameEventTrigger, Assembly-CSharp
+        m_MethodName: TriggerEvent
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -10394,6 +10407,20 @@ MonoBehaviour:
         m_CallState: 2
   _stablePopMean: 1
   _stablePopVar: 0.5
+  _stableMycorrhisAmt: 2
+--- !u!114 &3862604478810851283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5981207602307649226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5533829f52a164be6b19fb31f13a2c15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _event: {fileID: 11400000, guid: 06f4569ab986ca7368068f8c2f25ed03, type: 2}
 --- !u!1 &5990425929586624647
 GameObject:
   m_ObjectHideFlags: 0
@@ -13185,8 +13212,8 @@ RectTransform:
   - {fileID: 6759020013267925566}
   - {fileID: 3608296530935304282}
   - {fileID: 7816150333849292979}
-  - {fileID: 6546222565208134718}
   - {fileID: 7188672721920422025}
+  - {fileID: 6546222565208134718}
   m_Father: {fileID: 7415608479932410643}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -17962,8 +17989,8 @@ RectTransform:
   - {fileID: 3067599676507647846}
   - {fileID: 3146398088057642236}
   - {fileID: 7805396049579601521}
-  - {fileID: 2257666317874119831}
   - {fileID: 1060412704561000164}
+  - {fileID: 2257666317874119831}
   m_Father: {fileID: 8667396850552369853}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}

@@ -293,7 +293,7 @@ public class MicrobePopSim : MonoBehaviour
             // Get the environment SO from the region
             PylonRegion region = GameObject.FindGameObjectWithTag("Player").GetComponent<CarriedPylon>().GetCurrentRegion();
             region.SetRegionPylon(this.gameObject);
-            _envSO = region.GetEnvSO();   
+            _envSO = region.GetEnvSO();
         }
 
         // Initialize the environment from the SO

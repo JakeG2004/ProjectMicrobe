@@ -9055,7 +9055,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1921818466748215749, guid: ffcbd6fca87926b41851f854da6b9462, type: 3}
       propertyPath: m_Name
-      value: AzotobacterVat
+      value: MyCorrhisVat
       objectReference: {fileID: 0}
     - target: {fileID: 8528337434797706210, guid: ffcbd6fca87926b41851f854da6b9462, type: 3}
       propertyPath: m_IsActive
@@ -36664,10 +36664,15 @@ MonoBehaviour:
     sentences:
     - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
       name: Scientist
-      sentence: Perfect. Great job!
+      sentence: Perfect placement!
     - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
       name: Scientist
-      sentence: Take a look in the pylon and see what's going on in this environment!
+      sentence: Now we can start analyzing the environment!
+    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
+      name: Scientist
+      sentence: Go ahead and open it up so you can see the graphs clearly. It won't
+        have a lot of information right away, so you need to wati 15 seconds for
+        it to update! You should see more information after it updates.
     onDialogueComplete:
       m_PersistentCalls:
         m_Calls: []
@@ -45508,14 +45513,20 @@ MonoBehaviour:
     sentences:
     - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
       name: Scientist
-      sentence: Did you notice how the pylon reported surpluses of Nitrogen and Oxygen?
+      sentence: And that's the update! If you haven't already taken a look, do so!
     - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
       name: Scientist
-      sentence: Why don't you go check out the microbe encyclopedia and figure out
-        what we need.
+      sentence: It looks like it's already got steady and stable amounts of B. Nitrogenous
+        and B. Plantus.
     - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
       name: Scientist
-      sentence: It's on the ship!
+      sentence: You don't need to know what those do right now, just know that they
+        are creating a nice stable ecosystem that is producing nitrate.
+    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
+      name: Scientist
+      sentence: It looks like the only thing we need to add is F. Mycorris, which
+        binds nitrate to plant roots and helps them to grow. Why don't you go check
+        out our encyclopedia to find out more!
     onDialogueComplete:
       m_PersistentCalls:
         m_Calls: []
@@ -51712,7 +51723,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12e89815cb8ea3923864ddef615b07ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _microbeSO: {fileID: 11400000, guid: f2c460b91f42ea6429cfaa0d93203ff8, type: 2}
+  _microbeSO: {fileID: 11400000, guid: 2d0b83d9658cce0678dfee0fa75ea374, type: 2}
   _maxPopulation: 5
   _curPopulation: 5
   _updatePeriod: 15
@@ -78295,7 +78306,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &557339511
 Transform:
   m_ObjectHideFlags: 0
@@ -91445,7 +91456,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &676239116
 Transform:
   m_ObjectHideFlags: 0
@@ -122845,7 +122856,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &903751668
 Transform:
   m_ObjectHideFlags: 0
@@ -130198,6 +130209,7 @@ GameObject:
   - component: {fileID: 983107192}
   - component: {fileID: 983107194}
   - component: {fileID: 983107193}
+  - component: {fileID: 983107195}
   m_Layer: 0
   m_Name: LookAtPylon
   m_TagString: Untagged
@@ -130332,6 +130344,7 @@ MonoBehaviour:
   _boolNames:
   - Activated
   - MenuOpened
+  - SimStep
   - MenuClosed
   _completedEvent:
     m_PersistentCalls:
@@ -130348,8 +130361,43 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _isSequenced: 1
+  _isSequenced: 0
   _allowMultiToggle: 0
+--- !u!114 &983107195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 983107188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2aa24179581ffceff947a701e624e3ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _event: {fileID: 11400000, guid: 06f4569ab986ca7368068f8c2f25ed03, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 983107194}
+        m_TargetAssemblyTypeName: ObjectiveBooleanSequence, Assembly-CSharp
+        m_MethodName: SetTrue
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: SimStep
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onBoolTrue:
+    m_PersistentCalls:
+      m_Calls: []
+  _onBoolFalse:
+    m_PersistentCalls:
+      m_Calls: []
+  _boolVal: 0
 --- !u!1 &983355664
 GameObject:
   m_ObjectHideFlags: 0
@@ -142808,10 +142856,12 @@ MonoBehaviour:
     sentences:
     - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
       name: Scientist
-      sentence: You got the pylon fast! Head over to the island.
+      sentence: Sweet! To use the pylon, you'll have to run over to the island and
+        set it down.
     - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
       name: Scientist
-      sentence: You can place it down there!
+      sentence: It will automatically start reporting on the environment that it's
+        in.
     onDialogueComplete:
       m_PersistentCalls:
         m_Calls: []
@@ -152182,11 +152232,11 @@ MonoBehaviour:
     sentences:
     - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
       name: Scientist
-      sentence: Awesome! Now go back to the pylon and put them in!
+      sentence: Perfect! Now that you've got the F. Mycorrhis, head over to the pylon.
     - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
       name: Scientist
-      sentence: Be careful with how many you put in. Just one or two ought to do
-        the trick!
+      sentence: The pylon can be used to distribute resources to the environment
+        that they're housed in! All you have to do is put them in.
     onDialogueComplete:
       m_PersistentCalls:
         m_Calls:
@@ -154187,7 +154237,27 @@ MonoBehaviour:
         changing too much? That's great news! You've stabilized it!
     - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
       name: Scientist
-      sentence: Come back here and talk to me. I've got another mission for you.
+      sentence: Let's talk about how that environment worked! It all starts with
+        the oxygen in the atmosphere, which B. Nitrogenous consumes, and in turn
+        produces atmospheric nitrogen.
+    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
+      name: Scientist
+      sentence: The atmospheric nitrogen produced by Nitrogenous is then consumed
+        by B. Plantus, along with some oxygen, to produce nitrate!
+    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
+      name: Scientist
+      sentence: Now, plants love nitrate, so you might be confused why the environment
+        wasn't doing so well. To put it simply, plant roots have some trouble adding
+        nitrate on their own.
+    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
+      name: Scientist
+      sentence: To solve this issue, you added the Mycorrhis, which takes that nitrate
+        which was plentiful and binds it to plant roots, which boosts total plant
+        life!
+    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
+      name: Scientist
+      sentence: Anyways, come back and talk to me on the ship. We've got another
+        region for you to remediate!
     onDialogueComplete:
       m_PersistentCalls:
         m_Calls: []
@@ -184059,6 +184129,30 @@ MonoBehaviour:
         m_MethodName: TriggerGeneralEvent
         m_Mode: 2
         m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: 2d0b83d9658cce0678dfee0fa75ea374, type: 2}
+          m_ObjectArgumentAssemblyTypeName: MicrobeSO, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: active
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1441122814}
+        m_TargetAssemblyTypeName: MicrobeSOEventTrigger, Assembly-CSharp
+        m_MethodName: TriggerGeneralEvent
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: 63594733e7aa8914ea78c31c4153fbdf, type: 2}
+          m_ObjectArgumentAssemblyTypeName: MicrobeSO, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: active
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1441122814}
+        m_TargetAssemblyTypeName: MicrobeSOEventTrigger, Assembly-CSharp
+        m_MethodName: TriggerGeneralEvent
+        m_Mode: 2
+        m_Arguments:
           m_ObjectArgument: {fileID: 11400000, guid: f2c460b91f42ea6429cfaa0d93203ff8, type: 2}
           m_ObjectArgumentAssemblyTypeName: MicrobeSO, Assembly-CSharp
           m_IntArgument: 0
@@ -208504,24 +208598,18 @@ MonoBehaviour:
     sentences:
     - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
       name: Scientist
-      sentence: Absolutely flawless! Now we just wait and see how the environment
-        reacts to the new addition!
+      sentence: Perfect! We should see the Mycorrhis stabilize in population after
+        a while.
     - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
       name: Scientist
-      sentence: The pylons have a 15 second update period. Why don't you watch for
-        a while as your ecosystem becomes stable?
+      sentence: Watch it for a while and wait for it to stabilize!
+    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
+      name: Scientist
+      sentence: The pylon will let you know when it stabilizes.
     - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
       name: Scientist
       sentence: The panel to the right of the resources graph on the Pylon shows
         you the stability state. Red means unstable, green means stable.
-    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
-      name: Scientist
-      sentence: B. Plantus will take atmospheric Nitrogen and Oxygen, and convert
-        it into the Nitrate that plants use to grow!
-    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
-      name: Scientist
-      sentence: We won't graph the Nitrate because it would just clog up our graphs,
-        but know that if Plantus is there, Nitrate is being produced!
     onDialogueComplete:
       m_PersistentCalls:
         m_Calls: []
@@ -239811,7 +239899,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2279992145856458051, guid: ba865e1a76b00a169aacdeb68ee49d74, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -68.32
+      value: -117.49
       objectReference: {fileID: 0}
     - target: {fileID: 2279992145856458051, guid: ba865e1a76b00a169aacdeb68ee49d74, type: 3}
       propertyPath: m_LocalPosition.y
@@ -239819,7 +239907,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2279992145856458051, guid: ba865e1a76b00a169aacdeb68ee49d74, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -124.98
+      value: -58.37
       objectReference: {fileID: 0}
     - target: {fileID: 2279992145856458051, guid: ba865e1a76b00a169aacdeb68ee49d74, type: 3}
       propertyPath: m_LocalRotation.w
@@ -249365,10 +249453,11 @@ MonoBehaviour:
     sentences:
     - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
       name: Scientist
-      sentence: Seems to me like B. Plantus is a perfect choice!
+      sentence: Now you're an expert regarding F. Mycorrhis!
     - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
       name: Scientist
-      sentence: If you did, go ahead and pick some up from our vats!
+      sentence: We've got some on the ship, why don't you go grab some? They're stored
+        in big vats!
     onDialogueComplete:
       m_PersistentCalls:
         m_Calls: []
@@ -257470,11 +257559,18 @@ MonoBehaviour:
       sentence: Hey! Nice seeing you. You must be the new hire!
     - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
       name: Scientist
-      sentence: We're trying to restore the ecosystem of this island here. Can you
-        help?
+      sentence: Welcome to project Symbiosis! our goal is to remediate this island
+        and make it habitable again!
     - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
       name: Scientist
-      sentence: You'll need to go get a pylon to set up on the island.
+      sentence: We've noticed that the nearest beach is suffering biologically. We
+        suspect that it's because of the microbes in the soil being imbalanced. Could
+        you check it out for us?
+    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
+      name: Scientist
+      sentence: The first thing that you'll need to do is get a pylon. The pylons
+        allow us to analyze the microbes and composition of the environment it's
+        set up in, as well as distribute microbes throughout that environment.
     onDialogueComplete:
       m_PersistentCalls:
         m_Calls:
