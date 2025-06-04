@@ -10,6 +10,9 @@ public class Microbe
     public float population;
     public float growthRate;
     public Dictionary<string, float> competitors;
+    public float dampingForce = 0.2f;
+    // Require high competition to dampen
+    public float dampingThreshold = 0.65f;
 
     // Resources and toxins
     public Dictionary<string, float> requiredResources;
@@ -71,6 +74,17 @@ public class Microbe
             competitionEffect += Mathf.Max(0, competitor.Value);
         }
 
+        // Use the inverse of the lotka volterra models to find stable states
+
+        // Force to push competing species to a stable state
+        float damping = 1.0f;
+        if (competitionEffect - population > dampingThreshold)
+        {
+            float equilibrium = population / competitionEffect;
+            float deviation = Mathf.Abs(population - equilibrium);
+            damping = Mathf.Exp(-dampingForce * deviation);
+        }
+
         // Compute growth
         float logisticTerm = (1 - (competitionEffect / minK));
         float growth = growthRate * population * logisticTerm;
@@ -88,7 +102,7 @@ public class Microbe
             return -0.75f * population;
         }
 
-        return growth;
+        return growth * damping;
     }
 
 

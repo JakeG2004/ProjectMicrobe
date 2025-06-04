@@ -10,16 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 80250b2c40646c109b295bcf5a928e3d, type: 3}
-  m_Name: TutorialBeachSO_OLD
+  m_Name: TutorialBeachSO
   m_EditorClassIdentifier: 
   initialResources:
-  - resourceName: Nitrogen
-    amount: 3
   - resourceName: Oxygen
-    amount: 4
+    amount: 12
+  - resourceName: Nitrogen
+    amount: 12
+  - resourceName: Lead
+    amount: 0
+  - resourceName: Sulfur Dioxide
+    amount: 0
+  - resourceName: Nitrate
+    amount: 0
+  - resourceName: Carbon Dioxide
+    amount: 0
   resourceRefresh:
-  - resourceName: Nitrogen
-    amount: 2
   - resourceName: Oxygen
-    amount: 2
+    amount: 12
+  initialMicrobes:
+  - microbe: {fileID: 11400000, guid: 63594733e7aa8914ea78c31c4153fbdf, type: 2}
+    population: 3
+  - microbe: {fileID: 11400000, guid: f2c460b91f42ea6429cfaa0d93203ff8, type: 2}
+    population: 6
   envName: Beach Pylon

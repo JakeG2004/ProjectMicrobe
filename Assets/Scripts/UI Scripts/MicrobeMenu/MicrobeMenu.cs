@@ -72,59 +72,78 @@ public class MicrobeMenu : MonoBehaviour
 
     public void SetMicrobeChartData()
     {
+        float max = 0.0f;
+
         // Clear the chart
         _microbesChart.RemoveData();
 
         // Iterate through each microbe
-        foreach(Microbe microbe in _curPylon.GetMicrobes())
+        foreach (Microbe microbe in _curPylon.GetMicrobes())
         {
             // Add a line for the microbe
             _microbesChart.AddSerie<Line>(microbe.microbeName);
 
             // Show a maximum of 10 timesteps at a time
             int numElements = microbe.popHistory.Count;
-            if(numElements > _graphEntries)
+            if (numElements > _graphEntries)
             {
-                for(int i = numElements - _graphEntries; i < numElements; i++)
+                for (int i = numElements - _graphEntries; i < numElements; i++)
                 {
                     _microbesChart.AddData(microbe.microbeName, microbe.popHistory[i]);
+                    if (microbe.popHistory[i] > max)
+                    {
+                        max = microbe.popHistory[i];
+                    }
                 }
             }
 
             else
             {
-                foreach(float pop in microbe.popHistory)
+                foreach (float pop in microbe.popHistory)
                 {
                     _microbesChart.AddData(microbe.microbeName, pop);
+                    if (pop > max)
+                    {
+                        max = pop;
+                    }
                 }
             }
         }
+
+        _microbesChart.EnsureChartComponent<YAxis>().max = max;
     }
 
     public void SetResourcesChartData(List<string> _dontGraphTheseResources)
     {
         _resourcesChart.RemoveData();
 
-        foreach(var res in _curPylon.GetEnv().resourceHistory)
+        float max = 0.0f;
+
+        foreach (var res in _curPylon.GetEnv().resourceHistory)
         {
             if (_dontGraphTheseResources.Contains(res.Key))
             {
                 continue;
             }
-            
+
             // Add line for resource
             _resourcesChart.AddSerie<Line>(res.Key);
 
             int numElements = res.Value.Count;
-            if(numElements > _graphEntries)
+            if (numElements > _graphEntries)
             {
-                for(int i = numElements - _graphEntries; i < numElements; i++)
+                for (int i = numElements - _graphEntries; i < numElements; i++)
                 {
                     // Prevent graph from forming the weird bumps with floats. Flatten small numbers :)
                     float val = res.Value[i];
-                    if(val < 0.5f)
+                    if (val < 0.5f)
                     {
                         val = 0.0f;
+                    }
+
+                    if (val > max)
+                    {
+                        max = val;
                     }
 
                     _resourcesChart.AddData(res.Key, val);
@@ -133,17 +152,29 @@ public class MicrobeMenu : MonoBehaviour
 
             else
             {
-                foreach(var resAmt in res.Value)
+                foreach (var resAmt in res.Value)
                 {
                     float val = resAmt;
-                    if(resAmt < 0.5f)
+                    if (resAmt < 0.5f)
                     {
                         val = 0.0f;
                     }
                     _resourcesChart.AddData(res.Key, val);
+
+                    if (resAmt > max)
+                    {
+                        max = resAmt;
+                    }
                 }
             }
         }
+
+        if (max > 50)
+        {
+            max = 50;
+        }
+
+        _resourcesChart.EnsureChartComponent<YAxis>().max = max;
     }
 
     public void SetCurrentPylon(GameObject pylon)
