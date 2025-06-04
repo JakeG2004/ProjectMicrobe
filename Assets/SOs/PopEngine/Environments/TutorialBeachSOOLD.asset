@@ -10,20 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 80250b2c40646c109b295bcf5a928e3d, type: 3}
-  m_Name: TutorialCaveSO
+  m_Name: TutorialBeachSOOLD
   m_EditorClassIdentifier: 
   initialResources:
-  - resourceName: Lead
-    amount: 15
-  - resourceName: Nitrogen
-    amount: 4
-  - resourceName: Carbon Dioxide
-    amount: 2
-  resourceRefresh:
   - resourceName: Nitrogen
     amount: 3
-  - resourceName: Carbon Dioxide
+  - resourceName: Oxygen
+    amount: 4
+  resourceRefresh:
+  - resourceName: Nitrogen
     amount: 2
-  - resourceName: Lead
-    amount: 1
-  envName: Cave Pylon
+  - resourceName: Oxygen
+    amount: 2
+  envName: Beach Pylon

@@ -84,7 +84,7 @@ public class PylonStatusEventsChecker : MonoBehaviour
     private void CheckStability()
     {
         // Get variables from MicrobePopSim
-        bool ammoniumProduced = _mps.CheckAmmoniumProduced();
+        bool ammoniumProduced = _mps.CheckNitrateProduced();
         Vector2 stabilityVector = _mps.GetBioActivity();
 
         // Pick out the components

@@ -10,17 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e21f121e1a197558691ed0c71a796a54, type: 3}
-  m_Name: Cylindrospermum
+  m_Name: Plantus
   m_EditorClassIdentifier: 
-  microbeName: Cylindrospermum
+  microbeName: B. Plantus
   population: 1
-  growthRate: 0.8
+  growthRate: 1
   requiredResources:
-  - resourceName: Carbon Dioxide
-    amount: 2
-  producedResources:
+  - resourceName: Nitrogen
+    amount: 1
   - resourceName: Oxygen
-    amount: 2
+    amount: 1
+  producedResources:
+  - resourceName: Nitrate
+    amount: 1
   toxins:
   - toxinName: Lead
     toxin:
@@ -28,9 +30,10 @@ MonoBehaviour:
       minSafeDensity: 0
       maxSafeDensity: 0
       lethalDensity: 0.2
-  description: 'Cylindrospermum is a genus of filamentous cyanobacteria. Cyanobacteria
-    are a group of microbes which obtain biological energy through photosynthesis.
+  description: 'Plantus is an aerobic bacterial microbe. It converts atmospheric
+    Nitrogen and Oxygen into Nitrate, which is usable by plants.
 
 
-    Cylindrospermum
-    is useful for converting Carbon Dioxide into Oxygen, usable by other microbes.'
+    Plantus is
+    useful for converting Nitrogen and Oxygen into the usable Nitrate that plants
+    need.'

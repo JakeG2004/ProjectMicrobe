@@ -10,18 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e21f121e1a197558691ed0c71a796a54, type: 3}
-  m_Name: LeadEater
+  m_Name: Metallus
   m_EditorClassIdentifier: 
-  microbeName: LeadEater
+  microbeName: B. Metallus
   population: 1
   growthRate: 0.6
   requiredResources:
   - resourceName: Lead
     amount: 1
+  - resourceName: Nitrogen
+    amount: 1
   producedResources: []
   toxins: []
-  description: 'Lead Eater is an anaerobic microbe which consumes lead.
+  description: 'B. Metallis is a bacteria which eats heavy metals, namely Lead. It
+    can thrive in any environment which contains Lead.
 
 
-    It
-    is useful for eliminating Lead from an environment'
+    It is useful for cleaning
+    up environments so that other microbes may thrive.'

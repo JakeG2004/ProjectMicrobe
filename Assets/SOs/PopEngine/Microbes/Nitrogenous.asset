@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e21f121e1a197558691ed0c71a796a54, type: 3}
+  m_Name: Nitrogenous
+  m_EditorClassIdentifier: 
+  microbeName: B. Nitrogenous
+  population: 1
+  growthRate: 0.85
+  requiredResources:
+  - resourceName: Oxygen
+    amount: 2
+  producedResources:
+  - resourceName: Nitrogen
+    amount: 1
+  toxins:
+  - toxinName: Lead
+    toxin:
+      toxicity: 1
+      minSafeDensity: 0
+      maxSafeDensity: 0.2
+      lethalDensity: 0.3
+  description: 'B. Nitrogenous is a bacterial microbe which consumes atmospheric
+    Oxygen (O2) and produces atmospheric Nitrogen (N2).
+
+
+    It is useful for creating
+    atmospheric Nitrogen in an environment.'

@@ -68,6 +68,7 @@ public class Microbe
         float competitionEffect = 0.0f;
         foreach (var competitor in competitors)
         {
+            //Debug.Log($"FOR MICROBE {microbeName}. {competitor.Key}: {competitor.Value}");
             competitionEffect += Mathf.Max(0, competitor.Value);
         }
 

@@ -9619,6 +9619,7 @@ GameObject:
   - component: {fileID: 53831658}
   - component: {fileID: 53831660}
   - component: {fileID: 53831659}
+  - component: {fileID: 53831661}
   m_Layer: 8
   m_Name: RockyRegion
   m_TagString: PylonRegion
@@ -9679,6 +9680,37 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 14.4
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &53831661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 53831657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4149f33b341df2d8b9c3f0297a9ae7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _targetTag: Player
+  _onEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: ObjectiveBooleanSequence, Assembly-CSharp
+        m_MethodName: SetTrue
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: PlayerInRegion
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onExit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &54779796
 GameObject:
   m_ObjectHideFlags: 0
@@ -22146,11 +22178,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 198511911}
-  - component: {fileID: 198511914}
-  - component: {fileID: 198511913}
-  - component: {fileID: 198511912}
   m_Layer: 0
-  m_Name: MicrobeEncyclopedia
+  m_Name: Interact
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22165,85 +22194,14 @@ Transform:
   m_GameObject: {fileID: 198511910}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 719.96, y: 669.73285, z: 122.61}
+  m_LocalPosition: {x: 0.19, y: 0.307, z: 1.41}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1072449184}
   - {fileID: 2138558345}
-  m_Father: {fileID: 822144441}
+  m_Father: {fileID: 1516191580}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &198511912
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 198511910}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &198511913
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 198511910}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &198511914
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 198511910}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &198728752
 GameObject:
   m_ObjectHideFlags: 0
@@ -51756,7 +51714,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _microbeSO: {fileID: 11400000, guid: f2c460b91f42ea6429cfaa0d93203ff8, type: 2}
   _maxPopulation: 5
-  _curPopulation: 1
+  _curPopulation: 5
   _updatePeriod: 15
 --- !u!114 &412468733
 MonoBehaviour:
@@ -60192,13 +60150,13 @@ MonoBehaviour:
     sentences:
     - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
       name: Scientist
-      sentence: Just Carbon Dioxide and Nitrogen? That's not enough for Azotobacter
-        to live off of.
+      sentence: Just Carbon Dioxide and Nitrogen? That's not enough for Plantus to
+        live off of.
     - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
       name: Scientist
       sentence: The Encyclopedia probably has something that can convert that Carbon
-        Dioxide into Oxygen, which the Azotobacter can use. Why don't you go find
-        out what we've got?
+        Dioxide into Oxygen, which the Plantus can use. Why don't you go find out
+        what we've got?
     onDialogueComplete:
       m_PersistentCalls:
         m_Calls: []
@@ -72496,6 +72454,38 @@ Transform:
   - {fileID: 1115766848}
   m_Father: {fileID: 1847113702}
   m_LocalEulerAnglesHint: {x: 0, y: -246.37, z: 0}
+--- !u!1 &510816352
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 510816353}
+  m_Layer: 0
+  m_Name: ArrowTargets
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &510816353
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 510816352}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 609972266}
+  m_Father: {fileID: 1786419303}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &511039518
 GameObject:
   m_ObjectHideFlags: 0
@@ -75870,8 +75860,7 @@ MonoBehaviour:
     sentences:
     - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
       name: Scientist
-      sentence: Awesome! Looks like Cylindrospermum will be a great choice! Go get
-        it!
+      sentence: Awesome! Looks like B. Carbonus will be a great choice! Go get it!
     onDialogueComplete:
       m_PersistentCalls:
         m_Calls: []
@@ -78306,7 +78295,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &557339511
 Transform:
   m_ObjectHideFlags: 0
@@ -81671,7 +81660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a51966e9677320fc4b56b29bf98e8ba3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _envSO: {fileID: 11400000, guid: 50e52accdc61ed9ceba321ad8889e9ee, type: 2}
+  _envSO: {fileID: 11400000, guid: c42279f5ecba2282dbf63166da7632cd, type: 2}
   _regionPylon: {fileID: 0}
   _getPylonEvent:
     m_PersistentCalls:
@@ -84302,6 +84291,91 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 609456884}
   m_CullTransparentMesh: 1
+--- !u!1 &609972265
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 609972266}
+  - component: {fileID: 609972267}
+  - component: {fileID: 609972268}
+  m_Layer: 0
+  m_Name: CaveMouth
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &609972266
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 609972265}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -0.2420913, z: 0, w: 0.9702535}
+  m_LocalPosition: {x: 812.37, y: 687.81, z: 207.42}
+  m_LocalScale: {x: 19.6, y: 12.78, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 510816353}
+  m_LocalEulerAnglesHint: {x: 0, y: -28.02, z: 0}
+--- !u!65 &609972267
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 609972265}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &609972268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 609972265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4149f33b341df2d8b9c3f0297a9ae7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _targetTag: Player
+  _onEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 993359089}
+        m_TargetAssemblyTypeName: Objective, Assembly-CSharp
+        m_MethodName: SetDirectionArrow
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 815460145}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: PlayerInMouth
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onExit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &610209944
 GameObject:
   m_ObjectHideFlags: 0
@@ -91371,7 +91445,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &676239116
 Transform:
   m_ObjectHideFlags: 0
@@ -109533,7 +109607,7 @@ Transform:
   - {fileID: 948810032}
   - {fileID: 270850523}
   - {fileID: 1487375725}
-  - {fileID: 198511911}
+  - {fileID: 1516191580}
   - {fileID: 1481585036}
   m_Father: {fileID: 1786419303}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -109920,7 +109994,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _microbeSO: {fileID: 11400000, guid: 50cfa95e1c6198142a450c83f9b15245, type: 2}
   _maxPopulation: 5
-  _curPopulation: 1
+  _curPopulation: 5
   _updatePeriod: 15
 --- !u!114 &827010675
 MonoBehaviour:
@@ -122771,7 +122845,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &903751668
 Transform:
   m_ObjectHideFlags: 0
@@ -123473,12 +123547,12 @@ MonoBehaviour:
     sentences:
     - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
       name: Scientist
-      sentence: This should create a symbiotic relationship between the Cylindrospermum
-        and the Azotobacter!
+      sentence: This should create a symbiotic relationship between the Carbonus
+        and the Plantus!
     - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
       name: Scientist
-      sentence: Cylindrospermum will consume the Carbion Dioxide and convert it into
-        Oxygen, which will then get used by the Azotobacter. Pretty cool!
+      sentence: Carbonus will consume the Carbion Dioxide and convert it into Oxygen,
+        which will then get used by the Plantus. Pretty cool!
     onDialogueComplete:
       m_PersistentCalls:
         m_Calls: []
@@ -123532,7 +123606,7 @@ MonoBehaviour:
   _nextObjective: {fileID: 477375722}
   _objectiveText: Stabilize Environment
   _isFirstObjective: 0
-  _targetObject: {fileID: 632283459}
+  _targetObject: {fileID: 0}
   _onActivate:
     m_PersistentCalls:
       m_Calls:
@@ -126477,8 +126551,8 @@ MonoBehaviour:
     sentences:
     - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
       name: Scientist
-      sentence: Great Job! Do you still have any Azotobacter? If you do, go ahead
-        and put some in! You can see them grow!
+      sentence: Great Job! Do you still have any Plantus? If you do, go ahead and
+        put some in! You can see them grow!
     - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
       name: Scientist
       sentence: If not, go back and get some to put in!
@@ -136223,6 +136297,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1855400603}
   - {fileID: 1433117719}
   - {fileID: 95176971}
   m_Father: {fileID: 1787399684}
@@ -136243,7 +136318,7 @@ MonoBehaviour:
   _nextObjective: {fileID: 339789075}
   _objectiveText: Analyze the Cave
   _isFirstObjective: 0
-  _targetObject: {fileID: 815460145}
+  _targetObject: {fileID: 609972266}
   _onActivate:
     m_PersistentCalls:
       m_Calls:
@@ -136271,7 +136346,7 @@ MonoBehaviour:
           m_StringArgument: Activated
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1855400604}
         m_TargetAssemblyTypeName: ObjectiveBooleanSequence, Assembly-CSharp
         m_MethodName: SetTrue
         m_Mode: 5
@@ -139740,7 +139815,7 @@ MonoBehaviour:
   _nextObjective: {fileID: 919423983}
   _objectiveText: Place the Microbes
   _isFirstObjective: 0
-  _targetObject: {fileID: 53831658}
+  _targetObject: {fileID: 0}
   _onActivate:
     m_PersistentCalls:
       m_Calls:
@@ -143773,12 +143848,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1072449184}
-  - component: {fileID: 1072449189}
   - component: {fileID: 1072449188}
   - component: {fileID: 1072449186}
   - component: {fileID: 1072449185}
+  - component: {fileID: 1072449189}
   m_Layer: 0
-  m_Name: PlayerInteractSphere
+  m_Name: PlayerInteract
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -143793,8 +143868,8 @@ Transform:
   m_GameObject: {fileID: 1072449183}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 2.43, y: 1.11, z: 0}
+  m_LocalScale: {x: 4.8, y: 2.88, z: 4.28}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 198511911}
@@ -143882,8 +143957,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!135 &1072449189
-SphereCollider:
+--- !u!65 &1072449189
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -143901,7 +143976,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 7
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1073662697
 GameObject:
@@ -178244,7 +178319,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _microbeSO: {fileID: 11400000, guid: 9021a24973ccc32ce882031d5b48c5be, type: 2}
   _maxPopulation: 5
-  _curPopulation: 1
+  _curPopulation: 5
   _updatePeriod: 15
 --- !u!114 &1376283601
 MonoBehaviour:
@@ -189358,7 +189433,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3277167510709583648, guid: af2a7fc7db96542419709b3e1b11f5b1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 747.07654
+      value: 715.23
       objectReference: {fileID: 0}
     - target: {fileID: 3277167510709583648, guid: af2a7fc7db96542419709b3e1b11f5b1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -189366,7 +189441,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3277167510709583648, guid: af2a7fc7db96542419709b3e1b11f5b1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 132.1914
+      value: 119.36
       objectReference: {fileID: 0}
     - target: {fileID: 3277167510709583648, guid: af2a7fc7db96542419709b3e1b11f5b1, type: 3}
       propertyPath: m_LocalRotation.w
@@ -192576,6 +192651,72 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1515389535}
   m_Mesh: {fileID: 4300000, guid: a358b055dafe74156be6e642960da48a, type: 3}
+--- !u!1001 &1516191579
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 822144441}
+    m_Modifications:
+    - target: {fileID: 1434461065202150, guid: da3259ccad74245bc8111d7fa34eac7d, type: 3}
+      propertyPath: m_Name
+      value: MicrobeEncyclopedia
+      objectReference: {fileID: 0}
+    - target: {fileID: 4039310447253752, guid: da3259ccad74245bc8111d7fa34eac7d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 715.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 4039310447253752, guid: da3259ccad74245bc8111d7fa34eac7d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 669.42346
+      objectReference: {fileID: 0}
+    - target: {fileID: 4039310447253752, guid: da3259ccad74245bc8111d7fa34eac7d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 123.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 4039310447253752, guid: da3259ccad74245bc8111d7fa34eac7d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.997936
+      objectReference: {fileID: 0}
+    - target: {fileID: 4039310447253752, guid: da3259ccad74245bc8111d7fa34eac7d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4039310447253752, guid: da3259ccad74245bc8111d7fa34eac7d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.06421726
+      objectReference: {fileID: 0}
+    - target: {fileID: 4039310447253752, guid: da3259ccad74245bc8111d7fa34eac7d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4039310447253752, guid: da3259ccad74245bc8111d7fa34eac7d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4039310447253752, guid: da3259ccad74245bc8111d7fa34eac7d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -7.364
+      objectReference: {fileID: 0}
+    - target: {fileID: 4039310447253752, guid: da3259ccad74245bc8111d7fa34eac7d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects:
+    - {fileID: 1244123861675226, guid: da3259ccad74245bc8111d7fa34eac7d, type: 3}
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4039310447253752, guid: da3259ccad74245bc8111d7fa34eac7d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 198511911}
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: da3259ccad74245bc8111d7fa34eac7d, type: 3}
+--- !u!4 &1516191580 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4039310447253752, guid: da3259ccad74245bc8111d7fa34eac7d, type: 3}
+  m_PrefabInstance: {fileID: 1516191579}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1516309605
 GameObject:
   m_ObjectHideFlags: 0
@@ -208375,13 +208516,12 @@ MonoBehaviour:
         you the stability state. Red means unstable, green means stable.
     - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
       name: Scientist
-      sentence: The Azotobacter that you put in will take atmospheric nitrogen and
-        convert it into Ammonium. This process is called Nitrogen fixation.
+      sentence: B. Plantus will take atmospheric Nitrogen and Oxygen, and convert
+        it into the Nitrate that plants use to grow!
     - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
       name: Scientist
-      sentence: Our graphs will not include Ammonium, to avoid confusion, but know
-        that if a microbe like Azotobacter, which produces Ammonium, is present,
-        then there must be ammonium being produced.
+      sentence: We won't graph the Nitrate because it would just clog up our graphs,
+        but know that if Plantus is there, Nitrate is being produced!
     onDialogueComplete:
       m_PersistentCalls:
         m_Calls: []
@@ -229238,6 +229378,7 @@ Transform:
   - {fileID: 391373558}
   - {fileID: 1624068553}
   - {fileID: 822144441}
+  - {fileID: 510816353}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1786621456
@@ -247401,6 +247542,70 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1854979001}
   m_Mesh: {fileID: 4300000, guid: 732b827306aeb4518a5deabac1fd07a9, type: 3}
+--- !u!1 &1855400602
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1855400603}
+  - component: {fileID: 1855400604}
+  m_Layer: 0
+  m_Name: MoveArrowToCaveGut
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1855400603
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1855400602}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 993359088}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1855400604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1855400602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ca99cd2fc88602038b43dfa2a38d0c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _boolNames:
+  - Activated
+  - PlayerInMouth
+  _completedEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 993359089}
+        m_TargetAssemblyTypeName: Objective, Assembly-CSharp
+        m_MethodName: SetObject
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 815460145}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _isSequenced: 1
+  _allowMultiToggle: 1
 --- !u!1 &1855586999
 GameObject:
   m_ObjectHideFlags: 0
@@ -249160,7 +249365,7 @@ MonoBehaviour:
     sentences:
     - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
       name: Scientist
-      sentence: Did you find a good match?
+      sentence: Seems to me like B. Plantus is a perfect choice!
     - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
       name: Scientist
       sentence: If you did, go ahead and pick some up from our vats!
@@ -283173,7 +283378,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2138558344}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.081}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -283181,7 +283386,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 1.5}
+  m_AnchoredPosition: {x: 0.87, y: 1.5}
   m_SizeDelta: {x: 20, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &2138558346

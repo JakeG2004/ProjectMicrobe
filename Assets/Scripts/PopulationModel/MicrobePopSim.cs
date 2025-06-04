@@ -25,7 +25,7 @@ public class MicrobePopSim : MonoBehaviour
     // ===== STABILITY VARIABLES =====
     const int STABILITY_ARR_SIZE = 6;
     private float[] _consumptionArr = new float[STABILITY_ARR_SIZE];
-    private float[] _ammoniumArray = new float[STABILITY_ARR_SIZE];
+    private float[] _nitrateArray = new float[STABILITY_ARR_SIZE];
     private Vector2 _bioActivity;
 
 
@@ -89,7 +89,7 @@ public class MicrobePopSim : MonoBehaviour
         // Update the graphs
         _gu.UpdateGraphs();
 
-        CheckAmmoniumProduced();
+        CheckNitrateProduced();
 
         _curStep++;
         _onSimAdvance.Invoke();
@@ -175,67 +175,6 @@ public class MicrobePopSim : MonoBehaviour
     {
         return _microbes;
     }
-
-
-    // =================================
-    // ===== ENVIRONMENT FUNCTIONS =====
-    // =================================
-
-
-    // Get the environment
-    public Environment GetEnv()
-    {
-        return _env;
-    }
-
-    // Get the environment so
-    public EnvironmentSO GetEnvSO()
-    {
-        return _envSO;
-    }
-
-    // Set the environment
-    public void SetEnv(EnvironmentSO newEnv)
-    {
-        _envSO = newEnv;
-    }
-
-    // Set up an environment from the environmentSO
-    private void InitEnv()
-    {
-        // Get the environment SO from the region
-        PylonRegion region = GameObject.FindGameObjectWithTag("Player").GetComponent<CarriedPylon>().GetCurrentRegion();
-        region.SetRegionPylon(this.gameObject);
-        _envSO = region.GetEnvSO();
-
-        // Initialize the environment from the SO
-
-        // Create a new environment if one doesnt already exist
-        if (!_envSO)
-        {
-            Debug.LogWarning("No environmentSO!");
-            _env = new Environment(new Dictionary<string, float>(), new Dictionary<string, float>());
-        }
-
-        // Create new environment from the given envSO
-        else
-        {
-            // Create the initial resources dictionary
-            Dictionary<string, float> initialResources = ResourceConverter.ConvertToDictionary(_envSO.initialResources);
-
-            // Create the resource refresh dictionary
-            Dictionary<string, float> resourceRefresh = ResourceConverter.ConvertToDictionary(_envSO.resourceRefresh);
-
-            // Set the environment
-            _env = new Environment(initialResources, resourceRefresh);
-        }
-    }
-
-
-    // =============================
-    // ===== MICROBE FUNCTIONS =====
-    // =============================
-
 
     // Set up the microbes from MicrobeSO list
     private void InitMicrobes()
@@ -324,6 +263,69 @@ public class MicrobePopSim : MonoBehaviour
 
 
     // =================================
+    // ===== ENVIRONMENT FUNCTIONS =====
+    // =================================
+
+
+    // Get the environment
+    public Environment GetEnv()
+    {
+        return _env;
+    }
+
+    // Get the environment so
+    public EnvironmentSO GetEnvSO()
+    {
+        return _envSO;
+    }
+
+    // Set the environment
+    public void SetEnv(EnvironmentSO newEnv)
+    {
+        _envSO = newEnv;
+    }
+
+    // Set up an environment from the environmentSO
+    private void InitEnv()
+    {
+        // Get the environment SO from the region
+        PylonRegion region = GameObject.FindGameObjectWithTag("Player").GetComponent<CarriedPylon>().GetCurrentRegion();
+        region.SetRegionPylon(this.gameObject);
+        _envSO = region.GetEnvSO();
+
+        // Initialize the environment from the SO
+
+        // Create a new environment if one doesnt already exist
+        if (!_envSO)
+        {
+            Debug.LogWarning("No environmentSO!");
+            _env = new Environment(new Dictionary<string, float>(), new Dictionary<string, float>());
+        }
+
+        // Create new environment from the given envSO
+        else
+        {
+            // Create the initial resources dictionary
+            Dictionary<string, float> initialResources = ResourceConverter.ConvertToDictionary(_envSO.initialResources);
+
+            // Create the resource refresh dictionary
+            Dictionary<string, float> resourceRefresh = ResourceConverter.ConvertToDictionary(_envSO.resourceRefresh);
+
+            // Set the environment
+            _env = new Environment(initialResources, resourceRefresh);
+        }
+
+        // Add the microbes in the SO to the microbe list
+        foreach (MicrobeSOPopPair microbeSOPopPair in _envSO.initialMicrobes)
+        {
+            Microbe newMicrobe = Microbe.CreateMicrobeFromSO(microbeSOPopPair.microbe);
+            newMicrobe.population = microbeSOPopPair.population;
+            _microbes.Add(newMicrobe);
+        }
+    }
+
+
+    // =================================
     // ===== BIOACTIVITY FUNCTIONS =====
     // =================================
 
@@ -384,10 +386,10 @@ public class MicrobePopSim : MonoBehaviour
             _consumptionArr[i] = -1;
         }
 
-        // Initialize the ammonium array to -1s
+        // Initialize the nitrate array to -1s
         for (int i = 0; i < STABILITY_ARR_SIZE; i++)
         {
-            _ammoniumArray[i] = -1;
+            _nitrateArray[i] = -1;
         }
     }
 
@@ -453,19 +455,19 @@ public class MicrobePopSim : MonoBehaviour
         return false;
     }
 
-    // Checks that for the last STABILITY_ARR_SIZE time steps, ammonium has been produced
-    public bool CheckAmmoniumProduced()
+    // Checks that for the last STABILITY_ARR_SIZE time steps, nitrate has been produced
+    public bool CheckNitrateProduced()
     {
-        // Add the ammonium to the current step of the array
-        if (_env.resources.TryGetValue("Ammonium", out float curAmmon))
+        // Add the nitrate to the current step of the array
+        if (_env.resources.TryGetValue("Nitrate", out float curNitrate))
         {
-            _ammoniumArray[_curStep % STABILITY_ARR_SIZE] = curAmmon;
+            _nitrateArray[_curStep % STABILITY_ARR_SIZE] = curNitrate;
         }
 
         // Check that the array is full
         for (int i = 0; i < STABILITY_ARR_SIZE; i++)
         {
-            if (_ammoniumArray[i] <= 0)
+            if (_nitrateArray[i] <= 0)
             {
                 return false;
             }
