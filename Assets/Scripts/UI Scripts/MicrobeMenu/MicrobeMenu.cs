@@ -129,6 +129,12 @@ public class MicrobeMenu : MonoBehaviour
 
     public void SetResourcesChartData(List<string> _dontGraphTheseResources)
     {
+        ThemeStyle theme = _microbesChart.theme;
+
+        int curIndex = 0;
+
+        _envLegend.DestroyEntries();
+
         _resourcesChart.RemoveData();
 
         float max = 0.0f;
@@ -140,6 +146,9 @@ public class MicrobeMenu : MonoBehaviour
                 continue;
             }
 
+            _envLegend.AddEntry(theme.colorPalette[curIndex], res.Key);
+            curIndex++;
+
             // Add line for resource
             _resourcesChart.AddSerie<Line>(res.Key);
 
@@ -150,7 +159,7 @@ public class MicrobeMenu : MonoBehaviour
                 {
                     // Prevent graph from forming the weird bumps with floats. Flatten small numbers :)
                     float val = res.Value[i];
-                    if (val < 0.5f)
+                    if (val < 0.2f)
                     {
                         val = 0.0f;
                     }

@@ -7979,7 +7979,6 @@ GameObject:
   - component: {fileID: 5440424718516139356}
   - component: {fileID: 2927236691934196727}
   - component: {fileID: 8589592096348269140}
-  - component: {fileID: 5172146709445894096}
   m_Layer: 0
   m_Name: Canvas_ScreenB
   m_TagString: Untagged
@@ -8071,22 +8070,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &5172146709445894096
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4324861329959211426}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 332c8a0c50c0b2b648e4174af46fd377, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _microbesChart: {fileID: 758559001321258667}
-  _resourcesChart: {fileID: 8033159709675753697}
-  _graphEntries: 10
-  _curPylon: {fileID: 2612547762124740186}
 --- !u!1 &4377891895632320665
 GameObject:
   m_ObjectHideFlags: 0
@@ -9340,6 +9323,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6770891163058321216}
+  - component: {fileID: 209546503764095462}
   m_Layer: 0
   m_Name: Pylon_With_Canvases
   m_TagString: Untagged
@@ -9365,6 +9349,22 @@ Transform:
   - {fileID: 6720554265921771620}
   m_Father: {fileID: 1699515492825084458}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &209546503764095462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4972310474007108433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 332c8a0c50c0b2b648e4174af46fd377, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _microbesChart: {fileID: 758559001321258667}
+  _resourcesChart: {fileID: 8033159709675753697}
+  _graphEntries: 10
+  _curPylon: {fileID: 2612547762124740186}
 --- !u!1 &5003644127846818510
 GameObject:
   m_ObjectHideFlags: 0
@@ -10594,7 +10594,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac2bceb9c093aa4f9bca24b25da1d681, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _psc: {fileID: 5172146709445894096}
+  _psc: {fileID: 209546503764095462}
   _dontGraphTheseResources: []
 --- !u!114 &5685606735227608658
 MonoBehaviour:

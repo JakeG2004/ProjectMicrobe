@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class SwipeMenuManager : MonoBehaviour
 {
@@ -46,6 +47,8 @@ public class SwipeMenuManager : MonoBehaviour
                 _scrollObjects[i].anchoredPosition = new Vector2(spacing * i, _scrollObjects[i].anchoredPosition.y);
             }
         }
+
+        UpdateButtons();
     }
 
     // Go to the next menu
@@ -73,8 +76,26 @@ public class SwipeMenuManager : MonoBehaviour
     // Show and hide buttons in accordance to current page
     private void UpdateButtons()
     {
-        _nextButton.interactable = (_curObject < _scrollObjects.Length - 1);
-        _prevButton.interactable = (_curObject > 0);
+        // Toggle interactibles
+        _nextButton.interactable = _curObject < _scrollObjects.Length - 1;
+        _prevButton.interactable = _curObject > 0;
+
+        // Set previous button title
+        string prevButtonName = "";
+        if (_curObject > 0)
+        {
+            prevButtonName = _scrollObjects[_curObject - 1].gameObject.name;
+        }
+
+        // Set next button title
+        string nextButtonName = "";
+        if (_curObject < _scrollObjects.Length - 1)
+        {
+            nextButtonName = _scrollObjects[_curObject + 1].gameObject.name;
+        }
+
+        _prevButton.GetComponentInChildren<TMP_Text>().text = prevButtonName;
+        _nextButton.GetComponentInChildren<TMP_Text>().text = nextButtonName;
     }
 
     // Start a slide either to the left or to the right
