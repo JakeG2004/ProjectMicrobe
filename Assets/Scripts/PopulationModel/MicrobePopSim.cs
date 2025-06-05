@@ -23,7 +23,7 @@ public class MicrobePopSim : MonoBehaviour
 
 
     // ===== STABILITY VARIABLES =====
-    const int STABILITY_ARR_SIZE = 6;
+    const int STABILITY_ARR_SIZE = 5;
     private float[] _consumptionArr = new float[STABILITY_ARR_SIZE];
     private float[] _mycorrhisArray = new float[STABILITY_ARR_SIZE];
     private Vector2 _bioActivity;
@@ -203,6 +203,42 @@ public class MicrobePopSim : MonoBehaviour
 
         SetMicrobeCompetitors();
         SimulateMicrobeConsumption(totalResourceUsage);
+    }
+
+    // Checks that for the last STABILITY_ARR_SIZE time steps, mycorrhis exists
+    public Vector2 GetMycorrhisStats()
+    {
+        // Add the nitrate to the current step of the array
+        _mycorrhisArray[_curStep % STABILITY_ARR_SIZE] = GetMicrobePopulation("F. Mycorrhis");
+
+        // Check that the array is full
+        for (int i = 0; i < STABILITY_ARR_SIZE; i++)
+        {
+            if (_mycorrhisArray[i] <= 0)
+            {
+                return new Vector2(0, 0);
+            }
+        }
+
+        float mycorrhisMean = 0.0f;
+        // Get the mean
+        for (int i = 0; i < STABILITY_ARR_SIZE; i++)
+        {
+            mycorrhisMean += _mycorrhisArray[i];
+        }
+
+        mycorrhisMean /= _mycorrhisArray.Length;
+
+        // Get the variance
+        float mycorrhisVar = 0.0f;
+        for (int i = 0; i < STABILITY_ARR_SIZE; i++)
+        {
+            mycorrhisVar += ((_mycorrhisArray[i] - mycorrhisMean) * (_mycorrhisArray[i] - mycorrhisMean));
+        }
+
+        mycorrhisVar /= (STABILITY_ARR_SIZE - 1);
+
+        return new Vector2(mycorrhisMean, mycorrhisVar);
     }
 
     // Sets the competition between every pair of microbes
@@ -427,7 +463,7 @@ public class MicrobePopSim : MonoBehaviour
     {
         _gu = GetComponent<GraphUpdater>();
         _psec = GetComponent<PylonStatusEventsChecker>();
-        _psec.SetStableState(new Vector3(_envSO.stableMean, _envSO.stableVar, _envSO.stableMycorrhis));
+        _psec.SetStableState(new Vector2(_envSO.stableMycorrhisAmt, _envSO.stableMycorrhisVar));
     }
 
     // Increment the timer
@@ -484,41 +520,5 @@ public class MicrobePopSim : MonoBehaviour
         }
 
         return false;
-    }
-
-    // Checks that for the last STABILITY_ARR_SIZE time steps, mycorrhis exists
-    public Vector2 GetMycorrhisStats()
-    {
-        // Add the nitrate to the current step of the array
-        _mycorrhisArray[_curStep % STABILITY_ARR_SIZE] = GetMicrobePopulation("F. Mycorrhis");
-
-        // Check that the array is full
-        for (int i = 0; i < STABILITY_ARR_SIZE; i++)
-        {
-            if (_mycorrhisArray[i] <= 0)
-            {
-                return new Vector2(0, 0);
-            }
-        }
-
-        float mycorrhisMean = 0.0f;
-        // Get the mean
-        for (int i = 0; i < STABILITY_ARR_SIZE; i++)
-        {
-            mycorrhisMean += _mycorrhisArray[i];
-        }
-
-        mycorrhisMean /= _mycorrhisArray.Length;
-
-        // Get the variance
-        float mycorrhisVar = 0.0f;
-        for (int i = 0; i < STABILITY_ARR_SIZE; i++)
-        {
-            mycorrhisVar += ((_mycorrhisArray[i] - mycorrhisMean) * (_mycorrhisArray[i] - mycorrhisMean));
-        }
-
-        mycorrhisVar /= (STABILITY_ARR_SIZE - 1);
-
-        return new Vector2(mycorrhisMean, mycorrhisVar);
     }
 }

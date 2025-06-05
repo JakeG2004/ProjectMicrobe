@@ -18,6 +18,7 @@ public class Microbe
     public Dictionary<string, float> requiredResources;
     public Dictionary<string, float> producedResources;
     public Dictionary<string, Toxin> toxins;
+    public float toxicityMultiplier;
 
     // Carry capacity
     public Dictionary<string, float> kResources = new Dictionary<string, float>();
@@ -87,7 +88,7 @@ public class Microbe
 
         // Compute growth
         float logisticTerm = (1 - (competitionEffect / minK));
-        float growth = growthRate * population * logisticTerm;
+        float growth = growthRate * population * logisticTerm * toxicityMultiplier;
 
         // Prevent overshooting
         if (growth < -0.9f * population)
@@ -113,12 +114,6 @@ public class Microbe
         float totalResources = 0.0f;
         foreach(var res in envResources)
         {
-            // Don't allow nitrate to mess with the environmental toxicity
-            if (res.Key == "Nitrate")
-            {
-                continue;
-            }
-
             totalResources += res.Value;
         }
 
@@ -293,7 +288,7 @@ public class Microbe
     public void ComputeCarryCapacity(Dictionary<string, float> envResources)
     {
         // Get the toxicity multiplier
-        float toxicityMultiplier = CalculateToxicityMultiplier(envResources);
+        toxicityMultiplier = CalculateToxicityMultiplier(envResources);
 
         // Ensure all required resources have keys in kResources
         foreach (var res in requiredResources)

@@ -13,17 +13,28 @@ public class PylonStatusEventsChecker : MonoBehaviour
     [SerializeField] private UnityEvent<string> _extinctEvent;
     [SerializeField] private UnityEvent<string> _stableEvent;
     [SerializeField] private UnityEvent<string> _unstableEvent;
-    [SerializeField] private float _stablePopMean;
-    [SerializeField] private float _stablePopVar;
-    [SerializeField] private float _stableMycorrhisAmt;
+    [SerializeField] private float _stableMycorrhisMean;
+    [SerializeField] private float _stableMycorrhisVar;
     private List<Microbe> _newMicrobes;
     private List<Microbe> _oldMicrobes = null;
     private MicrobePopSim _mps;
     private bool _isStable = false;
 
+    // Vars for calculating health
+    private float _envHealth = 0.0f;
+    private const int HEALTH_SAMPLE_SIZE = 5;
+    private float[] _healthHist = new float[HEALTH_SAMPLE_SIZE];
+    private int _curHealthIdx = 0;
+
     void Start()
     {
         GetMPS();
+
+        // InitializeValues
+        for (int i = 0; i < HEALTH_SAMPLE_SIZE; i++)
+        {
+            _healthHist[i] = 0;
+        }
     }
 
     private void GetMPS()
@@ -43,6 +54,7 @@ public class PylonStatusEventsChecker : MonoBehaviour
 
         CheckExtinction();
         CheckStability();
+        UpdateEnvironmentalHealthList();
 
         // Set the old microbes
         _oldMicrobes = new List<Microbe>();
@@ -86,17 +98,12 @@ public class PylonStatusEventsChecker : MonoBehaviour
     {
         // Get variables from MicrobePopSim
         Vector2 mycorrhisVector = _mps.GetMycorrhisStats();
-        Vector2 stabilityVector = _mps.GetBioActivity();
-
-        // Pick out the components
-        float bioMean = stabilityVector.x;
-        float bioVar = stabilityVector.y;
 
         // Pick out the components of mycorrhis
         float mycorrhisMean = mycorrhisVector.x;
         float mycorrhisVar = mycorrhisVector.y;
 
-        if (bioMean >= _stablePopMean && bioVar <= _stablePopVar && mycorrhisMean > _stableMycorrhisAmt && mycorrhisVar < 5.0f)
+        if (mycorrhisMean > _stableMycorrhisMean && mycorrhisVar < 5.0f)
         {
             // Trigger the event
             if (!_isStable)
@@ -119,13 +126,46 @@ public class PylonStatusEventsChecker : MonoBehaviour
 
     public float GetStableMycorrhisAmt()
     {
-        return _stableMycorrhisAmt;
+        return _stableMycorrhisMean;
     }
 
-    public void SetStableState(Vector3 vals)
+    public void SetStableState(Vector2 vals)
     {
-        _stablePopMean = vals.x;
-        _stablePopVar = vals.y;
-        _stableMycorrhisAmt = vals.z;
+        _stableMycorrhisMean = vals.x;
+        _stableMycorrhisVar = vals.y;
+    }
+
+    // Environmental health calculated as the mean of the sample mean of the Mycorrhis population
+    public void CalculateEnvironmentalHealth()
+    {
+        // Start with health at 0
+        float healthMean = 0.0f;
+
+        // Check that health array is full
+        foreach (float healthStep in _healthHist)
+        {
+            healthMean += healthStep;
+        }
+
+        healthMean /= (HEALTH_SAMPLE_SIZE);
+
+        _envHealth = healthMean;
+    }
+
+    public void UpdateEnvironmentalHealthList()
+    {
+        // Get the stats from the pop sim
+        Vector2 stats = _mps.GetMycorrhisStats();
+
+        // Add to the list, 0 if too much variance or mean is less than the expected mean
+        // 1 otherwise
+        _healthHist[_curHealthIdx] = (stats.x > _stableMycorrhisMean && stats.y < _stableMycorrhisVar) ? 1 : 0;
+        _curHealthIdx = (_curHealthIdx + 1) % HEALTH_SAMPLE_SIZE;
+    }
+
+    public float GetEnvHealth()
+    {
+        CalculateEnvironmentalHealth();
+        return _envHealth;
     }
 }

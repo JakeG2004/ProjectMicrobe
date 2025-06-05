@@ -82,9 +82,8 @@ public class MicrobeMenu : MonoBehaviour
         {
             SetMicrobeChartData();
             SetResourcesChartData(dontGraphTheseResources);
+            SetEnvHealthSlider();
         }
-
-        SetEnvHealthSlider();
     }
 
     public void SetMicrobeChartData()
@@ -258,30 +257,10 @@ public class MicrobeMenu : MonoBehaviour
 
     public void SetEnvHealthSlider()
     {
-        float envHealth = 0.0f;
-
+        // Get the pylon status event checker
         PylonStatusEventsChecker psec = _curPylon.gameObject.GetComponent<PylonStatusEventsChecker>();
-
-        float stableMycorrhisAmt = psec.GetStableMycorrhisAmt();
-        Vector2 mycorrhisStats = _curPylon.GetMycorrhisStats();
-
-        float toxinsDensity = _curPylon.GetToxinDensity();
-
-        if (mycorrhisStats.x >= stableMycorrhisAmt && mycorrhisStats.y < 5.0f)
-        {
-            envHealth = 1 - toxinsDensity;
-        }
-
-        else if (mycorrhisStats.y < 5.0f)
-        {
-            envHealth = (mycorrhisStats.x / stableMycorrhisAmt) * (1 - toxinsDensity);
-        }
-
-        else
-        {
-            envHealth = 0.0f;
-        }
-
-        _envHealthSlider.SetSliderFill(envHealth * (1 - (mycorrhisStats.y / 5.0f)));
+        float envHealth = psec.GetEnvHealth();
+        Debug.Log(envHealth);
+        _envHealthSlider.SetSliderFill(envHealth);
     }
 }

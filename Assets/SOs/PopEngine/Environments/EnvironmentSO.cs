@@ -10,9 +10,8 @@ public class EnvironmentSO : ScriptableObject
     public List<ResourceAmount> resourceRefresh = new List<ResourceAmount>();
     public List<MicrobeSOPopPair> initialMicrobes = new List<MicrobeSOPopPair>();
     public string envName = "";
-    public float stableMean;
-    public float stableVar;
-    public float stableMycorrhis;
+    public float stableMycorrhisVar;
+    public float stableMycorrhisAmt;
 }
 
 [System.Serializable]

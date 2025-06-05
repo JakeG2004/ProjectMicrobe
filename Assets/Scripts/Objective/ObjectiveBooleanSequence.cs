@@ -44,6 +44,13 @@ public class ObjectiveBooleanSequence : MonoBehaviour
             _lastSetFrame = Time.frameCount;
         }
 
+        // Handle null reference error
+        if (_bools == null)
+        {
+            return;
+        }
+        
+
         if (!(_bools.ContainsKey(boolName)))
         {
             Debug.LogWarning($"Objective `{boolName}` not found!");

@@ -13,17 +13,22 @@ MonoBehaviour:
   m_Name: TutorialCaveSO
   m_EditorClassIdentifier: 
   initialResources:
+  - resourceName: Oxygen
+    amount: 0
+  - resourceName: Nitrogen
+    amount: 0
   - resourceName: Lead
     amount: 15
-  - resourceName: Nitrogen
-    amount: 4
+  - resourceName: Sulfur Dioxide
+    amount: 0
+  - resourceName: Nitrate
+    amount: 0
   - resourceName: Carbon Dioxide
-    amount: 2
+    amount: 0
   resourceRefresh:
-  - resourceName: Nitrogen
-    amount: 3
-  - resourceName: Carbon Dioxide
-    amount: 2
-  - resourceName: Lead
-    amount: 1
+  - resourceName: Oxygen
+    amount: 6
+  initialMicrobes: []
   envName: Cave Pylon
+  stableMycorrhisVar: 10
+  stableMycorrhisAmt: 2

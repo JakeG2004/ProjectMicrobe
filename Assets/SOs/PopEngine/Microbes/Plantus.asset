@@ -23,7 +23,13 @@ MonoBehaviour:
   producedResources:
   - resourceName: Nitrate
     amount: 1.5
-  toxins: []
+  toxins:
+  - toxinName: Lead
+    toxin:
+      toxicity: 0.8
+      minSafeDensity: 0
+      maxSafeDensity: 0
+      lethalDensity: 0.3
   description: 'Plantus is an aerobic bacterial microbe. It converts atmospheric
     Nitrogen and Oxygen into Nitrate, which is usable by plants.
 
