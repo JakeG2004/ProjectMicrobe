@@ -11,6 +11,8 @@ public class MicrobeMenu : MonoBehaviour
     [SerializeField] private LineChart _resourcesChart;
     [SerializeField] private int _graphEntries = 10;
     [SerializeField] private List<string> _dontGraphTheseResources = new();
+    [SerializeField] private LegendManager _microbeLegend;
+    [SerializeField] private LegendManager _envLegend;
     private MicrobePopSim _curPylon;
     private bool _isActive = false;
     private BoolGameEventTrigger _menuStateTracker;
@@ -32,7 +34,7 @@ public class MicrobeMenu : MonoBehaviour
         chart.EnsureChartComponent<Title>().show = true;
         chart.EnsureChartComponent<Title>().text = name;
         chart.EnsureChartComponent<Tooltip>().show = true;
-        chart.EnsureChartComponent<Legend>().show = true;
+        chart.EnsureChartComponent<Legend>().show = false;
 
         // Assign x and y axis
         var xAxis = chart.EnsureChartComponent<XAxis>();
@@ -72,6 +74,12 @@ public class MicrobeMenu : MonoBehaviour
 
     public void SetMicrobeChartData()
     {
+        ThemeStyle theme = _microbesChart.theme;
+
+        int curIndex = 0;
+
+        _microbeLegend.DestroyEntries();
+
         float max = 0.0f;
 
         // Clear the chart
@@ -82,6 +90,10 @@ public class MicrobeMenu : MonoBehaviour
         {
             // Add a line for the microbe
             _microbesChart.AddSerie<Line>(microbe.microbeName);
+
+            _microbeLegend.AddEntry(theme.colorPalette[curIndex], microbe.microbeName);
+
+            curIndex++;
 
             // Show a maximum of 10 timesteps at a time
             int numElements = microbe.popHistory.Count;
@@ -111,6 +123,8 @@ public class MicrobeMenu : MonoBehaviour
         }
 
         _microbesChart.EnsureChartComponent<YAxis>().max = max;
+
+
     }
 
     public void SetResourcesChartData(List<string> _dontGraphTheseResources)
