@@ -85,14 +85,18 @@ public class PylonStatusEventsChecker : MonoBehaviour
     private void CheckStability()
     {
         // Get variables from MicrobePopSim
-        float numMychorris = _mps.GetMicrobePopulation("F. Mycorrhis");
+        Vector2 mycorrhisVector = _mps.GetMycorrhisStats();
         Vector2 stabilityVector = _mps.GetBioActivity();
 
         // Pick out the components
-        float mean = stabilityVector.x;
-        float var = stabilityVector.y;
+        float bioMean = stabilityVector.x;
+        float bioVar = stabilityVector.y;
 
-        if (mean >= _stablePopMean && var <= _stablePopVar && numMychorris > _stableMycorrhisAmt)
+        // Pick out the components of mycorrhis
+        float mycorrhisMean = mycorrhisVector.x;
+        float mycorrhisVar = mycorrhisVector.y;
+
+        if (bioMean >= _stablePopMean && bioVar <= _stablePopVar && mycorrhisMean > _stableMycorrhisAmt && mycorrhisVar < 5.0f)
         {
             // Trigger the event
             if (!_isStable)
@@ -111,5 +115,17 @@ public class PylonStatusEventsChecker : MonoBehaviour
             }
             _isStable = false;
         }
+    }
+
+    public float GetStableMycorrhisAmt()
+    {
+        return _stableMycorrhisAmt;
+    }
+
+    public void SetStableState(Vector3 vals)
+    {
+        _stablePopMean = vals.x;
+        _stablePopVar = vals.y;
+        _stableMycorrhisAmt = vals.z;
     }
 }

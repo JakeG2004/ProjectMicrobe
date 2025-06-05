@@ -25,12 +25,13 @@ public class MicrobePopSim : MonoBehaviour
     // ===== STABILITY VARIABLES =====
     const int STABILITY_ARR_SIZE = 6;
     private float[] _consumptionArr = new float[STABILITY_ARR_SIZE];
-    private float[] _nitrateArray = new float[STABILITY_ARR_SIZE];
+    private float[] _mycorrhisArray = new float[STABILITY_ARR_SIZE];
     private Vector2 _bioActivity;
 
 
     // ===== SCRIPT REFERENCES =====
     private GraphUpdater _gu;
+    private PylonStatusEventsChecker _psec;
 
 
     // ===== UNITY EVENTS =====
@@ -88,8 +89,6 @@ public class MicrobePopSim : MonoBehaviour
 
         // Update the graphs
         _gu.UpdateGraphs();
-
-        CheckNitrateProduced();
 
         _curStep++;
         _onSimAdvance.Invoke();
@@ -374,6 +373,33 @@ public class MicrobePopSim : MonoBehaviour
         return _bioActivity;
     }
 
+    public float GetToxinDensity()
+    {
+        float toxinAmt = 0.0f;
+
+        toxinAmt += GetResourceAmt("Lead");
+        toxinAmt += GetResourceAmt("Sulfur Dioxide");
+
+        float totalRes = 0.0f;
+
+        // Get total resources
+        foreach (var res in _env.resources)
+        {
+            totalRes += res.Value;
+        }
+
+        return toxinAmt / totalRes;
+    }
+
+    public float GetResourceAmt(string resName)
+    {
+        if (_env.resources.TryGetValue(resName, out float amt))
+        {
+            return (amt);
+        }
+
+        return -1;
+    }
 
     // ===========================
     // ===== MISC. FUNCTIONS =====
@@ -389,10 +415,10 @@ public class MicrobePopSim : MonoBehaviour
             _consumptionArr[i] = -1;
         }
 
-        // Initialize the nitrate array to -1s
+        // Initialize the mycorrhis array to -1s
         for (int i = 0; i < STABILITY_ARR_SIZE; i++)
         {
-            _nitrateArray[i] = -1;
+            _mycorrhisArray[i] = -1;
         }
     }
 
@@ -400,6 +426,8 @@ public class MicrobePopSim : MonoBehaviour
     private void InitScriptReferences()
     {
         _gu = GetComponent<GraphUpdater>();
+        _psec = GetComponent<PylonStatusEventsChecker>();
+        _psec.SetStableState(new Vector3(_envSO.stableMean, _envSO.stableVar, _envSO.stableMycorrhis));
     }
 
     // Increment the timer
@@ -458,24 +486,39 @@ public class MicrobePopSim : MonoBehaviour
         return false;
     }
 
-    // Checks that for the last STABILITY_ARR_SIZE time steps, nitrate has been produced
-    public bool CheckNitrateProduced()
+    // Checks that for the last STABILITY_ARR_SIZE time steps, mycorrhis exists
+    public Vector2 GetMycorrhisStats()
     {
         // Add the nitrate to the current step of the array
-        if (_env.resources.TryGetValue("Nitrate", out float curNitrate))
-        {
-            _nitrateArray[_curStep % STABILITY_ARR_SIZE] = curNitrate;
-        }
+        _mycorrhisArray[_curStep % STABILITY_ARR_SIZE] = GetMicrobePopulation("F. Mycorrhis");
 
         // Check that the array is full
         for (int i = 0; i < STABILITY_ARR_SIZE; i++)
         {
-            if (_nitrateArray[i] <= 0)
+            if (_mycorrhisArray[i] <= 0)
             {
-                return false;
+                return new Vector2(0, 0);
             }
         }
 
-        return true;
+        float mycorrhisMean = 0.0f;
+        // Get the mean
+        for (int i = 0; i < STABILITY_ARR_SIZE; i++)
+        {
+            mycorrhisMean += _mycorrhisArray[i];
+        }
+
+        mycorrhisMean /= _mycorrhisArray.Length;
+
+        // Get the variance
+        float mycorrhisVar = 0.0f;
+        for (int i = 0; i < STABILITY_ARR_SIZE; i++)
+        {
+            mycorrhisVar += ((_mycorrhisArray[i] - mycorrhisMean) * (_mycorrhisArray[i] - mycorrhisMean));
+        }
+
+        mycorrhisVar /= (STABILITY_ARR_SIZE - 1);
+
+        return new Vector2(mycorrhisMean, mycorrhisVar);
     }
 }

@@ -5,17 +5,27 @@ using XCharts.Runtime;
 
 public class MicrobeMenu : MonoBehaviour
 {
+    // Singleton instance
     public static MicrobeMenu Instance { get; private set; }
-    [SerializeField] private GameObject _menuPanel;
+
+    // Graphing variables
+    [SerializeField] private List<string> _dontGraphTheseResources = new();
     [SerializeField] private LineChart _microbesChart;
     [SerializeField] private LineChart _resourcesChart;
     [SerializeField] private int _graphEntries = 10;
-    [SerializeField] private List<string> _dontGraphTheseResources = new();
+
+    // Env health slider
+    [SerializeField] private CustomSlider _envHealthSlider;
+
+    // Menu UI Elements
+    [SerializeField] private GameObject _menuPanel;
     [SerializeField] private LegendManager _microbeLegend;
     [SerializeField] private LegendManager _envLegend;
+
+    // Helpers
+    private BoolGameEventTrigger _menuStateTracker;
     private MicrobePopSim _curPylon;
     private bool _isActive = false;
-    private BoolGameEventTrigger _menuStateTracker;
 
     // Start is called before the first frame update
     void Start()
@@ -48,6 +58,8 @@ public class MicrobeMenu : MonoBehaviour
     public void ToggleState()
     {
         _isActive = !_isActive;
+
+        // Set menu state
         _menuPanel.SetActive(_isActive);
 
         // Set UI control state
@@ -58,6 +70,7 @@ public class MicrobeMenu : MonoBehaviour
         // Update the menu open indicator
         _menuStateTracker.TriggerEvent(_isActive);
 
+        // Update the charts
         UpdateCharts(_dontGraphTheseResources);
     }
 
@@ -70,15 +83,19 @@ public class MicrobeMenu : MonoBehaviour
             SetMicrobeChartData();
             SetResourcesChartData(dontGraphTheseResources);
         }
+
+        SetEnvHealthSlider();
     }
 
     public void SetMicrobeChartData()
     {
+        // Variables for setting the legends
         ThemeStyle theme = _microbesChart.theme;
 
-        int curIndex = 0;
-
+        // Destroy the existing legend entries
         _microbeLegend.DestroyEntries();
+
+        int curIndex = 0;
 
         float max = 0.0f;
 
@@ -91,6 +108,7 @@ public class MicrobeMenu : MonoBehaviour
             // Add a line for the microbe
             _microbesChart.AddSerie<Line>(microbe.microbeName);
 
+            // Add an entry to the legend
             _microbeLegend.AddEntry(theme.colorPalette[curIndex], microbe.microbeName);
 
             curIndex++;
@@ -202,7 +220,7 @@ public class MicrobeMenu : MonoBehaviour
 
     public void SetCurrentPylon(GameObject pylon)
     {
-        if(!pylon)
+        if (!pylon)
         {
             Debug.Log("No valid gameobjct passed.");
         }
@@ -219,12 +237,12 @@ public class MicrobeMenu : MonoBehaviour
     {
         microbe.population = population;
 
-        if(!_curPylon)
+        if (!_curPylon)
         {
             Debug.Log("Failed to get cur pylon");
         }
 
-        if(_curPylon.GetMicrobePopulation(microbe.microbeName) != -1)
+        if (_curPylon.GetMicrobePopulation(microbe.microbeName) != -1)
         {
             _curPylon.IncreaseMicrobePopulation(microbe.microbeName, microbe.population);
             return;
@@ -236,5 +254,34 @@ public class MicrobeMenu : MonoBehaviour
     public bool HasPylon()
     {
         return (_curPylon != null);
+    }
+
+    public void SetEnvHealthSlider()
+    {
+        float envHealth = 0.0f;
+
+        PylonStatusEventsChecker psec = _curPylon.gameObject.GetComponent<PylonStatusEventsChecker>();
+
+        float stableMycorrhisAmt = psec.GetStableMycorrhisAmt();
+        Vector2 mycorrhisStats = _curPylon.GetMycorrhisStats();
+
+        float toxinsDensity = _curPylon.GetToxinDensity();
+
+        if (mycorrhisStats.x >= stableMycorrhisAmt && mycorrhisStats.y < 5.0f)
+        {
+            envHealth = 1 - toxinsDensity;
+        }
+
+        else if (mycorrhisStats.y < 5.0f)
+        {
+            envHealth = (mycorrhisStats.x / stableMycorrhisAmt) * (1 - toxinsDensity);
+        }
+
+        else
+        {
+            envHealth = 0.0f;
+        }
+
+        _envHealthSlider.SetSliderFill(envHealth * (1 - (mycorrhisStats.y / 5.0f)));
     }
 }

@@ -62,14 +62,20 @@ public class Environment
     // Adds resources from external source
     public void AddResources(Dictionary<string, float> addedResources)
     {
-        foreach(var res in addedResources)
+        foreach (var res in addedResources)
         {
-            if(!resources.TryGetValue(res.Key, out float value))
+            if (!resources.TryGetValue(res.Key, out float value))
             {
                 resources.Add(res.Key, res.Value);
             }
-            
+
             resources[res.Key] += res.Value;
+
+            // Cap resources
+            if (resources[res.Key] > 100f)
+            {
+                resources[res.Key] = 100f;
+            }
         }
     }
 }

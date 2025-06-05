@@ -29,6 +29,7 @@ public class PylonScreenController : MonoBehaviour
         chart.EnsureChartComponent<Title>().show = true;
         chart.EnsureChartComponent<Title>().text = name;
         chart.EnsureChartComponent<Tooltip>().show = true;
+        chart.EnsureChartComponent<Legend>().show = false;
 
         // Assign x and y axis
         var xAxis = chart.EnsureChartComponent<XAxis>();
