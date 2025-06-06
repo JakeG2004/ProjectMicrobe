@@ -16,6 +16,7 @@ public class TimeScaleController : MonoBehaviour
         {
             _elapsedTime = 0.0f;
             AdvancePylons();
+            AdvanceVats();
         }
     }
 
@@ -26,6 +27,16 @@ public class TimeScaleController : MonoBehaviour
         foreach (MicrobePopSim sim in popSims)
         {
             sim.AdvanceSimulation();
+        }
+    }
+
+    public void AdvanceVats()
+    {
+        AddMicrobeToggler[] vatTogglers = FindObjectsOfType<AddMicrobeToggler>();
+
+        foreach (AddMicrobeToggler amt in vatTogglers)
+        {
+            amt.FillPopulation();
         }
     }
 

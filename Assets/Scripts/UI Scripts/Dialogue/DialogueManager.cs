@@ -20,6 +20,8 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private TMP_Text _nameText;
     [SerializeField] private TMP_Text _bodyText;
     [SerializeField] private Image _img;
+    //private Dialogue _nextDialogue;
+    //private bool _isDialogueOpen = false;
 
     // Start is called before the first frame update
     void Start()
@@ -41,6 +43,13 @@ public class DialogueManager : MonoBehaviour
     // Starts the dialogue using the dialogue box
     public void StartDialogue(Dialogue dialogue)
     {
+        StartCoroutine(DelayStartDialogue(dialogue));
+    }
+
+    public IEnumerator DelayStartDialogue(Dialogue dialogue)
+    {
+        yield return new WaitForSeconds(0.1f);
+
         // Show the dialogue
         _anim.SetBool("IsOpen", true);
 

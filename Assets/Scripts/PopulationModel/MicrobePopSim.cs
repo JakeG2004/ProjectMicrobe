@@ -16,9 +16,7 @@ public class MicrobePopSim : MonoBehaviour
 
 
     // ===== SIMULATION VARIABLES =====
-    [SerializeField] private float _updatePeriod = 15.0f;
     [SerializeField] private bool _advanceOnStart = true;
-    private float _elapsedTime = 0.0f;
     private int _curStep = 0;
 
 
@@ -50,12 +48,6 @@ public class MicrobePopSim : MonoBehaviour
             AdvanceSimulation();
         }
     }
-
-    void Update()
-    {
-        //IncrementTimer();
-    }
-
 
     // ================================
     // ===== SIMULATION FUNCTIONS =====
@@ -464,20 +456,6 @@ public class MicrobePopSim : MonoBehaviour
         _gu = GetComponent<GraphUpdater>();
         _psec = GetComponent<PylonStatusEventsChecker>();
         _psec.SetStableState(new Vector2(_envSO.stableMycorrhisAmt, _envSO.stableMycorrhisVar));
-    }
-
-    // Increment the timer
-    private void IncrementTimer()
-    {
-        // Add to the time
-        _elapsedTime += Time.deltaTime;
-
-        // Perform the update if time is passed
-        if (_elapsedTime >= _updatePeriod)
-        {
-            AdvanceSimulation();
-            _elapsedTime = 0.0f;
-        }
     }
 
     // Calculate the current consumtion of everything
