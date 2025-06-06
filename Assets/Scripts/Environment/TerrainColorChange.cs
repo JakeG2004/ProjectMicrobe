@@ -7,8 +7,13 @@ public class TerrainColorChange : MonoBehaviour
     [SerializeField] private Terrain _terrain;
     [SerializeField] private Color _color;
 
+    void Start()
+    {
+        ChangeTerrainColor();
+    }
+
     public void ChangeTerrainColor()
     {
-        _terrain.materialTemplate.color = _color;
+        _terrain.terrainData.terrainLayers[0].diffuseRemapMax = _color;
     }
 }

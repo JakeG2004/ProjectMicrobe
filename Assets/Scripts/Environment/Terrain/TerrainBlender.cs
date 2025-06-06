@@ -1,0 +1,72 @@
+using UnityEngine;
+
+public class TerrainBlender : MonoBehaviour
+{
+    [SerializeField] private Terrain _terrain;
+    // 0 for brown, 1 for green
+    [SerializeField] private float _blendFactor = 0.0f;
+    [SerializeField] private float _detailDensity = 0.1f;
+    private const string _blendFactorPropertyName = "_CustomBlendFactor";
+    private Material _terrainMat;
+
+    void Start()
+    {
+        // Warn if no terrain
+        if (_terrain == null)
+        {
+            Debug.LogWarning("No terrain!");
+            return;
+        }
+
+        _terrainMat = _terrain.materialTemplate;
+        if (_terrainMat == null)
+        {
+            Debug.LogError("No terrin material found!");
+            return;
+        }
+
+        UpdateTerrainProperties();
+    }
+
+    void Update()
+    {
+        bool blendFactorChanged = _terrainMat.GetFloat(_blendFactorPropertyName) != _blendFactor;
+        bool detailDensityChanged = _terrain.detailObjectDensity != _detailDensity;
+
+        if (blendFactorChanged || detailDensityChanged)
+        {
+            UpdateTerrainProperties();
+        }
+    }
+
+    public void UpdateTerrainProperties()
+    {
+        if (_terrainMat != null)
+        {
+            _terrainMat.SetFloat(_blendFactorPropertyName, 1 - _blendFactor);
+        }
+
+        if (_terrain != null)
+        {
+            _terrain.detailObjectDensity = _detailDensity;
+        }
+    }
+
+    public void SetBlendFactor(float val)
+    {
+        _blendFactor = Mathf.Clamp01(val);
+        UpdateTerrainProperties();
+    }
+
+    public void SetDetailDensity(float val)
+    {
+        // Normalize to [.1, .65]
+        _detailDensity = .1f + (((val - 0f) * (.65f - .1f)) / (.65f - 0f));
+        UpdateTerrainProperties();
+    }
+
+    public float GetBlendFactor()
+    {
+        return _blendFactor;
+    }
+} 

@@ -19,6 +19,7 @@ public class PylonStatusEventsChecker : MonoBehaviour
     private List<Microbe> _oldMicrobes = null;
     private MicrobePopSim _mps;
     private bool _isStable = false;
+    private PylonRegion _pr;
 
     // Vars for calculating health
     private float _envHealth = 0.0f;
@@ -55,6 +56,7 @@ public class PylonStatusEventsChecker : MonoBehaviour
         CheckExtinction();
         CheckStability();
         UpdateEnvironmentalHealthList();
+        UpdateEnvironmentHealth();
 
         // Set the old microbes
         _oldMicrobes = new List<Microbe>();
@@ -158,5 +160,16 @@ public class PylonStatusEventsChecker : MonoBehaviour
     {
         CalculateEnvironmentalHealth();
         return _envHealth;
+    }
+
+    public void SetRegion(PylonRegion pr)
+    {
+        _pr = pr;
+    }
+
+    public void UpdateEnvironmentHealth()
+    {
+        CalculateEnvironmentalHealth();
+        _pr.SetEnvHealth(_envHealth);
     }
 }

@@ -42,6 +42,9 @@ public class MicrobePopSim : MonoBehaviour
         InitStabilityArrays();
         InitScriptReferences();
 
+        PylonRegion region = GameObject.FindGameObjectWithTag("Player").GetComponent<CarriedPylon>().GetCurrentRegion();
+        _psec.SetRegion(region);
+
         // Advance on start if set
         if (_advanceOnStart)
         {

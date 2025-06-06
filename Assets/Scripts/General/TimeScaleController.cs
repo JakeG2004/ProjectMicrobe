@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TimeScaleController : MonoBehaviour
 {
     private float _elapsedTime = 0.0f;
     private float _updatePeriod = 15.0f;
     private int _curTimeIdx = 0;
+    [SerializeField] private UnityEvent<float> _onChangeUpdatePeriod;
 
     // Pylon update periods
     void Update()
@@ -58,5 +60,7 @@ public class TimeScaleController : MonoBehaviour
         }
 
         sun.SetRotationScaler(sunTimeScale);
+
+        _onChangeUpdatePeriod.Invoke(_updatePeriod);
     }
 }
