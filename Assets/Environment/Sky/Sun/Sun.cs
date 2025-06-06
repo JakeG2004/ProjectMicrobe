@@ -1,23 +1,32 @@
 using UnityEngine;
 
-public class Sun : MonoBehaviour {
+public class Sun : MonoBehaviour
+{
 
-	[SerializeField] bool rotate = true;
+    [SerializeField] bool rotate = true;
+    [SerializeField] private float _timeScaler = 1.0f;
     Transform cam;
     float rotation = 0f;
 
-    void Start() {
-		if(GM.cam)
-			cam = GM.cam;
-		else
-			cam = Camera.main.transform;
+    void Start()
+    {
+        if (GM.cam)
+            cam = GM.cam;
+        else
+            cam = Camera.main.transform;
     }
 
-    void FixedUpdate() {
+    void FixedUpdate()
+    {
         transform.position = cam.position;
 
-		if(!rotate) return;
-        rotation += Time.fixedDeltaTime;
+        if (!rotate) return;
+        rotation += (Time.fixedDeltaTime) * _timeScaler;
         transform.rotation = Quaternion.Euler(41f, rotation, 0f);
+    }
+
+    public void SetRotationScaler(float scaler)
+    {
+        _timeScaler = scaler;
     }
 }

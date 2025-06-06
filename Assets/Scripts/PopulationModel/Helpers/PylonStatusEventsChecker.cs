@@ -96,31 +96,22 @@ public class PylonStatusEventsChecker : MonoBehaviour
 
     private void CheckStability()
     {
-        // Get variables from MicrobePopSim
-        Vector2 mycorrhisVector = _mps.GetMycorrhisStats();
+        bool _curStable = (_envHealth == 1.0f);
 
-        // Pick out the components of mycorrhis
-        float mycorrhisMean = mycorrhisVector.x;
-        float mycorrhisVar = mycorrhisVector.y;
-
-        if (mycorrhisMean > _stableMycorrhisMean && mycorrhisVar < 5.0f)
+        // Handle stable -> unstable
+        if (_isStable && !_curStable)
         {
-            // Trigger the event
-            if (!_isStable)
-            {
-                _stableEvent.Invoke(_mps.GetEnvSO().envName);
-            }
-            _isStable = true;
+            _unstableEvent.Invoke(_mps.GetEnvSO().envName);
+            _isStable = false;
+            return;
         }
 
-        else
+        // unstable -> stable
+        if (!_isStable && _curStable)
         {
-            // Trigger the event
-            if (_isStable)
-            {
-                _unstableEvent.Invoke(_mps.GetEnvSO().envName);
-            }
-            _isStable = false;
+            _stableEvent.Invoke(_mps.GetEnvSO().envName);
+            _isStable = true;
+            return;
         }
     }
 

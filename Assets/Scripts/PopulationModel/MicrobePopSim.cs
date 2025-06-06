@@ -53,7 +53,7 @@ public class MicrobePopSim : MonoBehaviour
 
     void Update()
     {
-        IncrementTimer();
+        //IncrementTimer();
     }
 
 

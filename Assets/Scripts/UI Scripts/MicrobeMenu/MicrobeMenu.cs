@@ -260,7 +260,6 @@ public class MicrobeMenu : MonoBehaviour
         // Get the pylon status event checker
         PylonStatusEventsChecker psec = _curPylon.gameObject.GetComponent<PylonStatusEventsChecker>();
         float envHealth = psec.GetEnvHealth();
-        Debug.Log(envHealth);
         _envHealthSlider.SetSliderFill(envHealth);
     }
 }
