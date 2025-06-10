@@ -4,6 +4,7 @@
 // Date:    6/9/25
 
 using UnityEngine;
+using System.Collections;
 
 public class CoconutPlayerController : MonoBehaviour
 {
@@ -39,11 +40,11 @@ public class CoconutPlayerController : MonoBehaviour
             // Get the angle that the arrow should form with the player
             float angle = -1 * Mathf.Atan2(_diff.x, _diff.y) * Mathf.Rad2Deg;
 
-            float arrowScale = Mathf.Clamp(Vector3.Distance(_startPos, curMousePos) * 0.01f, 0f, 3f);
+            float arrowScale = Mathf.Clamp(Vector3.Distance(_startPos, curMousePos) * 0.01f, 0f, 3f) * 2f;
 
             // Set rotation, scale, position
             _arrowObj.transform.rotation = Quaternion.Euler(0, 0, angle);
-            _arrowObj.transform.localScale = new Vector3(1, arrowScale, 1f);
+            _arrowObj.GetComponent<SpriteRenderer>().size = new Vector2(1f, arrowScale);
             _arrowObj.transform.localPosition = new Vector3(_diff.x * (arrowScale / 2), _diff.y * (arrowScale / 2), 0f);
         }
 
@@ -91,8 +92,18 @@ public class CoconutPlayerController : MonoBehaviour
         if (col.gameObject.tag == "Ground")
         {
             _isGrounded = false;
-            transform.SetParent(_originalParent);
             _curPlatform = null;
+
+            if (this.gameObject.activeInHierarchy)
+            {
+                StartCoroutine(DelayedUnparent());   
+            }
         }
+    }
+
+    IEnumerator DelayedUnparent()
+    {
+        yield return null; // Wait for one frame
+        transform.SetParent(_originalParent);
     }
 }
