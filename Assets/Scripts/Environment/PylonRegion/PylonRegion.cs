@@ -9,6 +9,7 @@ public class PylonRegion : MonoBehaviour
     [SerializeField] private GameObject _regionPylon;
     [SerializeField] private UnityEvent _getPylonEvent;
     [SerializeField] private GameObject _plantParent;
+    [SerializeField] private GameObject _pylonPrefab;
     private float _updateTime = 15.0f;
     private float _oldHealth = 0.0f;
     private Dictionary<GameObject, Vector3> _plantScales = new();
@@ -42,6 +43,16 @@ public class PylonRegion : MonoBehaviour
     public bool HasPylon()
     {
         return (_regionPylon != null);
+    }
+
+    public GameObject GetPylon()
+    {
+        return _regionPylon;
+    }
+
+    public GameObject GetPylonPrefab()
+    {
+        return _pylonPrefab;
     }
 
     public void SetEnvHealth(float envHealth)

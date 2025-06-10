@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 8900000, guid: 60f1fa9c7c55e934e8b0296eff890207, type: 3}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.38384846, g: 0.6638534, b: 0.8180598, a: 1}
+  m_IndirectSpecularColor: {r: 0.3878723, g: 0.6644698, b: 0.8181424, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -688,7 +688,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2114532123}
   m_HandleRect: {fileID: 2114532122}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -9304,7 +9304,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 108
+  m_fontSize: 91.55
   m_fontSizeBase: 41.94
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -11133,7 +11133,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: TutorialScene
+          m_StringArgument: TutorialScene_NEW
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &367941325
@@ -17337,7 +17337,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1266335557}
   m_HandleRect: {fileID: 1266335556}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -18849,6 +18849,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotate: 0
+  _timeScaler: 1
 --- !u!123 &648731548
 LensFlare:
   m_ObjectHideFlags: 0
@@ -21349,8 +21350,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1486872036}
   m_HandleRect: {fileID: 1486872035}
   m_Direction: 0
-  m_Value: -0.00000028790177
-  m_Size: 0.7195768
+  m_Value: 0.00000028790168
+  m_Size: 0.7195767
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -27708,7 +27709,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 830511655}
   m_HandleRect: {fileID: 830511654}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -30998,7 +30999,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 933744288}
   m_HandleRect: {fileID: 933744287}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -32337,6 +32338,7 @@ GameObject:
   - component: {fileID: 1172372162}
   - component: {fileID: 1172372161}
   - component: {fileID: 1172372160}
+  - component: {fileID: 1172372164}
   m_Layer: 5
   m_Name: Back Button
   m_TagString: Untagged
@@ -32437,25 +32439,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: Connect
+      - m_Target: {fileID: 1172372164}
+        m_TargetAssemblyTypeName: LoadLevelScript, Assembly-CSharp
+        m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: PlayOneShot
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 8300000, guid: 0ffbdd5cb6a389143bb05d1b8f7c1102, type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -32499,6 +32489,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1172372158}
   m_CullTransparentMesh: 0
+--- !u!114 &1172372164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1172372158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f911091145095c278d134955560c6d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _loadType: 0
 --- !u!1 &1173686809
 GameObject:
   m_ObjectHideFlags: 0
@@ -36443,8 +36446,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 47702026}
   m_HandleRect: {fileID: 47702025}
   m_Direction: 0
-  m_Value: -0.00000007197543
-  m_Size: 0.24285717
+  m_Value: 0.00000007197542
+  m_Size: 0.24285714
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -39546,7 +39549,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1362837364}
   m_HandleRect: {fileID: 1362837363}
   m_Direction: 0
-  m_Value: -0.00000007677378
+  m_Value: 0.00000007677378
   m_Size: 0.25492033
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -56038,7 +56041,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1815360060}
   m_HandleRect: {fileID: 1815360059}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 1.0000004
   m_Size: 0.7083092
   m_NumberOfSteps: 0
   m_OnValueChanged:

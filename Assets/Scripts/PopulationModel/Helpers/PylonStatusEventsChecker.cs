@@ -164,7 +164,10 @@ public class PylonStatusEventsChecker : MonoBehaviour
 
     public void SetRegion(PylonRegion pr)
     {
-        _pr = pr;
+        if (_pr == null)
+        {
+            _pr = pr;   
+        }
     }
 
     public void UpdateEnvironmentHealth()

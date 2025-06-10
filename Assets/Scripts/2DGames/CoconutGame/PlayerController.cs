@@ -71,7 +71,7 @@ public class CoconutPlayerController : MonoBehaviour
 
     public void ResetGame()
     {
-        transform.position = _initPlayerPos;
+        transform.localPosition = Vector3.zero;
         _prize.SetActive(true);
     }
 

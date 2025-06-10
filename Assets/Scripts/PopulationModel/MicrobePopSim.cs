@@ -31,6 +31,9 @@ public class MicrobePopSim : MonoBehaviour
     private GraphUpdater _gu;
     private PylonStatusEventsChecker _psec;
 
+    // ===== SAVE SYSTEM INTERACTION =====
+    private List<MicrobeNamePopPair> _microbeInfo = new();
+
 
     // ===== UNITY EVENTS =====
     [SerializeField] private UnityEvent _onSimAdvance;
@@ -152,6 +155,22 @@ public class MicrobePopSim : MonoBehaviour
         return -1.0f;
     }
 
+    public void SetMicrobePopulation(string name, float amt)
+    {
+        foreach (Microbe microbe in _microbes)
+        {
+            if (microbe.microbeName == name)
+            {
+                microbe.population = amt;
+            }
+        }
+    }
+
+    public void QueueMicrobePop(MicrobeNamePopPair newMicrobe)
+    {
+        _microbeInfo.Add(newMicrobe);
+    }
+
     // Increase a microbe's population by a given amount
     public void IncreaseMicrobePopulation(string microbeName, float amount)
     {
@@ -170,6 +189,19 @@ public class MicrobePopSim : MonoBehaviour
         return _microbes;
     }
 
+    public MicrobeSO GetMicrobeSO(string name)
+    {
+        foreach (MicrobeSO mso in _microbeSOs)
+        {
+            if (mso.microbeName == name)
+            {
+                return mso;
+            }
+        }
+
+        return null;
+    }
+
     // Set up the microbes from MicrobeSO list
     private void InitMicrobes()
     {
@@ -184,6 +216,11 @@ public class MicrobePopSim : MonoBehaviour
         {
             Microbe newMicrobe = Microbe.CreateMicrobeFromSO(mso);
             _microbes.Add(newMicrobe);
+        }
+
+        foreach (MicrobeNamePopPair mnpp in _microbeInfo)
+        {
+            SetMicrobePopulation(mnpp.name, mnpp.pop);
         }
     }
 

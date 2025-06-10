@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using UnityEngine.Audio;
 
 public class SaveSystem : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class SaveSystem : MonoBehaviour
     public static SaveSystem Instance { get; private set; }
 
     private SaveObject _currentState;
+
+    [SerializeField] private AudioMixer _am;
 
     // Singleton pattern
     void Awake()
@@ -36,9 +39,14 @@ public class SaveSystem : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.L))
+        if (Input.GetKeyDown(KeyCode.L))
         {
             LoadState();
+        }
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            SaveState();
         }
     }
 
@@ -48,6 +56,8 @@ public class SaveSystem : MonoBehaviour
         {
             _currentState.playerCosmetics = GetCosmetics();
         }
+
+        GetRegions();
 
         string saveJson = JsonUtility.ToJson(_currentState);
         File.WriteAllText(_savePath, saveJson);
@@ -66,6 +76,9 @@ public class SaveSystem : MonoBehaviour
             {
                 SetCosmetics();
             }
+
+            LoadVolume();
+            LoadRegions();
 
             Debug.Log("Loaded state");
             return;
@@ -123,11 +136,159 @@ public class SaveSystem : MonoBehaviour
         _currentState.name = name;
     }
 
+    // Vector3 is master, music, sfx
+    public void SetVolume(Vector3 vol)
+    {
+        _currentState.volumeData.masterVolume = vol.x;
+        _currentState.volumeData.musicVolume = vol.y;
+        _currentState.volumeData.sfxVolume = vol.z;
+    }
+
+    public void LoadVolume()
+    {
+        _am.SetFloat("MasterVolume", _currentState.volumeData.masterVolume);
+        _am.SetFloat("MusicVolume", _currentState.volumeData.musicVolume);
+        _am.SetFloat("SFXVolume", _currentState.volumeData.sfxVolume);
+    }
+
+    public void GetRegions()
+    {
+        // Get each pylon
+        MicrobePopSim[] sims = Object.FindObjectsOfType<MicrobePopSim>();
+
+        // Check for empty, early return
+        if (sims.Length == 0)
+        {
+            Debug.Log("No sims!");
+            return;
+        }
+
+        // Get each of them, adding to the list
+        foreach (MicrobePopSim sim in sims)
+        {
+            string envName = sim.GetEnvSO().envName;
+
+            bool foundRegion = false;
+            // Entry already exists
+            foreach (RegionData region in _currentState.regionData)
+            {
+                if (region.regionName == envName)
+                {
+                    GetDataFromRegion(region, sim);
+                    foundRegion = true;
+                    break;
+                }
+            }
+
+            // Prevent repeat entries
+            if (foundRegion)
+            {
+                continue;
+            }
+
+            // Add new entry
+            RegionData newRegion = new();
+            newRegion.regionName = envName;
+
+            GetDataFromRegion(newRegion, sim);
+
+            // Add it to the list
+            _currentState.regionData.Add(newRegion);
+        }
+    }
+
+    private void GetDataFromRegion(RegionData region, MicrobePopSim sim)
+    {
+        // Copy the transform
+        region.pylonPosition = sim.gameObject.transform.position;
+        region.pylonRotation = sim.gameObject.transform.rotation;
+
+        // Copy the current microbes
+        foreach (Microbe microbe in sim.GetMicrobes())
+        {
+            string name = microbe.microbeName;
+            float population = microbe.population;
+
+            bool foundMicrobe = false;
+            foreach (MicrobeNamePopPair data in region.microbes)
+            {
+                if (data.name == name)
+                {
+                    data.pop = population;
+                    foundMicrobe = true;
+                    break;
+                }
+            }
+
+            if (foundMicrobe)
+            {
+                continue;
+            }
+
+            // Create a new microbeSOPopPair to store the current populations
+            MicrobeNamePopPair mnpp = new();
+            mnpp.name = name;
+            mnpp.pop = population;
+
+            region.microbes.Add(mnpp);
+        }
+    }
+
+    private void GetMicrobesFromRegion(RegionData region)
+    {
+        
+    }
+
+    public void LoadRegions()
+    {
+        PylonRegion[] regions = Object.FindObjectsOfType<PylonRegion>();
+
+        // Early return if no regions
+        if (regions.Length == 0)
+        {
+            return;
+        }
+
+        foreach (RegionData region in _currentState.regionData)
+        {
+            // Get the region name
+            string regionName = region.regionName;
+
+            // Find the region which corresponds to the pylon
+            foreach (PylonRegion pylonRegion in regions)
+            {
+                if (pylonRegion.GetEnvSO().envName == regionName)
+                {
+                    // Instance a new pylon
+                    GameObject newPylon = Object.Instantiate(pylonRegion.GetPylonPrefab());
+
+                    // Set the region to correspond to the newPylon
+                    pylonRegion.SetRegionPylon(newPylon);
+
+                    // Set the new pylon transform
+                    newPylon.transform.position = region.pylonPosition;
+                    newPylon.transform.rotation = region.pylonRotation;
+
+                    // Set the new pylon information
+                    MicrobePopSim sim = newPylon.GetComponent<MicrobePopSim>();
+                    sim.SetEnv(pylonRegion.GetEnvSO());
+                    newPylon.GetComponent<PylonStatusEventsChecker>().SetRegion(pylonRegion);
+
+                    // Set microbes
+                    foreach (MicrobeNamePopPair mnpp in region.microbes)
+                    {
+                        sim.QueueMicrobePop(mnpp);
+                    }
+                }
+            }
+        }
+    }
+
     private List<CosmeticEntry> GetCosmetics()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
 
-        if(!player)
+        if (!player)
         {
             Debug.Log("Failed to find player.");
             return null;
@@ -139,7 +300,7 @@ public class SaveSystem : MonoBehaviour
         int numChildren = player.transform.childCount;
 
         // Start at 1 to skip the skeleton
-        for(int i = 1; i< numChildren; i++)
+        for (int i = 1; i < numChildren; i++)
         {
             // get the child
             GameObject child = player.transform.GetChild(i).gameObject;
@@ -148,7 +309,7 @@ public class SaveSystem : MonoBehaviour
             Renderer renderer = child.GetComponent<Renderer>();
 
             // skip if no renderer
-            if(!renderer)
+            if (!renderer)
             {
                 continue;
             }
@@ -157,10 +318,10 @@ public class SaveSystem : MonoBehaviour
             List<MaterialData> mats = new List<MaterialData>();
 
             // save each material
-            foreach(var mat in renderer.materials)
+            foreach (var mat in renderer.materials)
             {
                 // skip if it doesnt have the right fields
-                if(!mat.HasColor("_TintR") || !mat.HasColor("_TintG") || !mat.HasColor("_TintB"))
+                if (!mat.HasColor("_TintR") || !mat.HasColor("_TintG") || !mat.HasColor("_TintB"))
                 {
                     continue;
                 }

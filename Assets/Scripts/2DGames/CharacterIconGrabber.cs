@@ -1,3 +1,8 @@
+// CharacterIconGrabber.cs
+// A script for grabbing the character icon from the character camera
+// Author:  Jake Gendreau
+// Date:    6/10/25
+
 using UnityEngine;
 using System;
 using System.Collections;

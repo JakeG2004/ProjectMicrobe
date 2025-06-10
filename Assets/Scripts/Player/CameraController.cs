@@ -1,6 +1,8 @@
 using UnityEngine;
+using System.Collections;
 
-public class CameraController : MonoBehaviour {
+public class CameraController : MonoBehaviour
+{
 
 	#region variables
 	Transform cam;
@@ -20,36 +22,41 @@ public class CameraController : MonoBehaviour {
 
 	Vector3 lookPos;
 	readonly float lookPosYOffest = 2f;
-	
+
 	Vector3 directionGoal;
 	Vector3 directionSmooth;
 
 	AudioLowPassFilter filter;
 
+	private bool _aboveWater = false;
+
 	[SerializeField] private bool _mouseTracking = true;
 	#endregion
 
 
-	void Awake() {
-		cam = Camera.main? Camera.main.transform : transform;
+	void Awake()
+	{
+		cam = Camera.main ? Camera.main.transform : transform;
 		GM.cam = cam;
 
-		if(!character)
+		if (!character)
 		{
 			character = GameObject.FindGameObjectWithTag("Player").transform;
 		}
-		
-		if(character)
+
+		if (character)
 		{
 			lookPos = character.position + Vector3.up * lookPosYOffest;
 		}
 		filter = GetComponent<AudioLowPassFilter>();
 	}
-	void Start() {
+	void Start()
+	{
 		ic = GM.playerInput;
 	}
 
-	void Update() {
+	void Update()
+	{
 		if (character == null || !ic)
 		{
 			return;
@@ -58,48 +65,55 @@ public class CameraController : MonoBehaviour {
 		SetLookPos();
 		Zoom();
 
-		if(_mouseTracking)
+		if (_mouseTracking)
 		{
 			RotateCameraDirection();
 		}
-		
+
 		PositionCamera();
 		LowPassFilterIfSubmerged();
 	}
-	
 
-	void SetLookPos() {
+
+	void SetLookPos()
+	{
 		Vector3 lookGoal = character.position + Vector3.up * lookPosYOffest;
 		lookPos = Vector3.Lerp(lookPos, lookGoal, Time.deltaTime * 5f);
 	}
-	public void SetLookPosExternal() {
+	public void SetLookPosExternal()
+	{
 		lookPos = character.position + Vector3.up * lookPosYOffest;
 		Debug.Log("Moving Camera Look Position!");
 	}
 
-	void Zoom() {
+	void Zoom()
+	{
 		zoomGoal = Mathf.Lerp(zoomBounds.x, zoomBounds.y, ic.zoom);
 		CameraColision();
 		zoom = Mathf.Lerp(zoom, Mathf.Min(zoomGoal, zoomCollision), Time.deltaTime * 5f);
 	}
-	void CameraColision() {
-		if (Physics.Raycast(lookPos, directionSmooth, out RaycastHit hit, zoomGoal, ~mask)) {
-			zoomCollision = Mathf.Max(Vector3.Distance(lookPos, hit.point) - 0.1f,0.8f);
+	void CameraColision()
+	{
+		if (Physics.Raycast(lookPos, directionSmooth, out RaycastHit hit, zoomGoal, ~mask))
+		{
+			zoomCollision = Mathf.Max(Vector3.Distance(lookPos, hit.point) - 0.1f, 0.8f);
 		}
 		else zoomCollision = zoomBounds.y;
 	}
-	void RotateCameraDirection() {
+	void RotateCameraDirection()
+	{
 		angleVert = ClampAngle(angleVert - ic.look.y, angleVertBounds.x, angleVertBounds.y);
 		angleHoz += ic.look.x;
 		// also turn camera when player moves to the side 
 		angleHoz += ic.move.x * 1.5f;
-		
+
 		Vector3 directionHoz = Quaternion.AngleAxis(angleHoz, Vector3.up) * Vector3.forward;
 		Vector3 directionHozLeft = Vector3.Cross(directionHoz, Vector3.up);
 		directionGoal = Quaternion.AngleAxis(angleVert, directionHozLeft) * directionHoz;
 		//Debug.DrawRay(lookPos, cameraDirection, Color.red);
 	}
-	void PositionCamera() {
+	void PositionCamera()
+	{
 		Vector3 posGoal = lookPos + directionGoal * zoom;
 		Vector3 posSmooth = Vector3.Lerp(cam.position, posGoal, Time.deltaTime * 10f);
 		directionSmooth = (posSmooth - lookPos).normalized;
@@ -108,16 +122,27 @@ public class CameraController : MonoBehaviour {
 		cam.position = lookPos + directionSmooth * zoom;
 		cam.LookAt(lookPos);
 	}
-	float ClampAngle(float angle, float min, float max) {
-		do {
+	float ClampAngle(float angle, float min, float max)
+	{
+		do
+		{
 			if (angle < -360) angle += 360;
 			if (angle > 360) angle -= 360;
 		} while (angle < -360 || angle > 360);
 		return Mathf.Clamp(angle, min, max);
 	}
-	void LowPassFilterIfSubmerged() {
-		if (cam.position.y < 0) filter.cutoffFrequency = 330f;
-		else filter.cutoffFrequency = 21000f;
+	void LowPassFilterIfSubmerged()
+	{
+		if (cam.position.y < 0 && _aboveWater)
+		{
+			_aboveWater = false;
+			StartCoroutine(ChangeLowPassOverTime(330f));
+		}
+		else if(cam.position.y >= 0 && !_aboveWater)
+		{
+			_aboveWater = true;
+			StartCoroutine(ChangeLowPassOverTime(10000f));
+		}
 	}
 
 	public void SetMouseTracking(bool state)
@@ -128,5 +153,22 @@ public class CameraController : MonoBehaviour {
 	public void ToggleMouseTracking()
 	{
 		_mouseTracking = !_mouseTracking;
+	}
+
+	// Smoothly transition between different cutoff amounts utilizing the natural smoothing of LERPing with a current value
+	private IEnumerator ChangeLowPassOverTime(float targetFreq)
+	{
+		float elapsedTime = 0.0f;
+		float transitionTime = 0.5f;
+
+		while (elapsedTime < transitionTime)
+		{
+			float step = elapsedTime / transitionTime;
+			elapsedTime += Time.deltaTime;
+			filter.cutoffFrequency = Mathf.Lerp(filter.cutoffFrequency, targetFreq, step);
+			yield return null;
+		}
+
+		filter.cutoffFrequency = targetFreq;
 	}
 }

@@ -14,12 +14,17 @@ public class LoadLevelScript : MonoBehaviour
 
     public void LoadLevel(string levelName)
     {
-        if(_loadType == LoadType.Save)
+        if (_loadType == LoadType.Save)
         {
             LevelLoader.Instance.LoadLevel(levelName);
             return;
         }
 
         LevelLoader.Instance.LoadLevelNoSave(levelName);
+    }
+
+    public void QuitGame()
+    {
+        LevelLoader.Instance.QuitGame();
     }
 }
