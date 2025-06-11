@@ -60,6 +60,7 @@ public class SaveSystem : MonoBehaviour
         }
 
         SaveRegions();
+        SaveObjectives();
 
         string saveJson = JsonUtility.ToJson(_currentState);
         File.WriteAllText(_savePath, saveJson);
@@ -82,6 +83,7 @@ public class SaveSystem : MonoBehaviour
 
             LoadVolume();
             LoadRegions();
+            LoadObjectives();
 
             Debug.Log("Loaded state");
             return;
@@ -110,6 +112,63 @@ public class SaveSystem : MonoBehaviour
         _am.SetFloat("MasterVolume", _currentState.volumeData.masterVolume);
         _am.SetFloat("MusicVolume", _currentState.volumeData.musicVolume);
         _am.SetFloat("SFXVolume", _currentState.volumeData.sfxVolume);
+    }
+
+    public void SaveObjectives()
+    {
+        // Get all of the objective groups
+        ObjectiveGroup[] objGroups = Object.FindObjectsOfType<ObjectiveGroup>();
+
+        // Iterate through every objective group
+        foreach (ObjectiveGroup objGroup in objGroups)
+        {
+            bool foundGroup = false;
+
+            // Try to find a matching existing entry, then update it
+            foreach (ObjectiveGroupItem ogi in _currentState.objectives)
+            {
+                if (ogi.name == objGroup.GetName())
+                {
+                    foundGroup = true;
+
+                    ogi.completeObjectives = objGroup.GetCompletedObjectives();
+                    ogi.currentObjective = objGroup.GetCurrentObjective();
+                    ogi.complete = objGroup.IsComplete();
+                    break;
+                }
+            }
+
+            if (foundGroup)
+            {
+                continue;
+            }
+
+            // Create a new entry and add it
+            ObjectiveGroupItem newOGI = new();
+            newOGI.name = objGroup.GetName();
+            newOGI.completeObjectives = objGroup.GetCompletedObjectives();
+            newOGI.currentObjective = objGroup.GetCurrentObjective();
+            newOGI.complete = objGroup.IsComplete();
+
+            _currentState.objectives.Add(newOGI);
+        }
+    }
+
+    void LoadObjectives()
+    {
+        // Get all of the objective groups
+        ObjectiveGroup[] objGroups = Object.FindObjectsOfType<ObjectiveGroup>();
+
+        foreach (ObjectiveGroupItem ogi in _currentState.objectives)
+        {
+            foreach (ObjectiveGroup objGroup in objGroups)
+            {
+                if (objGroup.GetName() == ogi.name)
+                {
+                    objGroup.CompleteObjectives(ogi);
+                }
+            }
+        }
     }
 
     // Saves the regions
@@ -406,21 +465,5 @@ public class SaveSystem : MonoBehaviour
                 }
             }
         }
-    }
-
-    // Adds a completed NPC to the list
-    public void AddCompletedNPC(string npcName)
-    {
-        // Early return if already contained
-        if (_currentState.completedNPCs.Contains(npcName))
-        {
-            return;
-        }
-        _currentState.completedNPCs.Add(npcName);
-    }
-
-    public void LoadNPCs()
-    {
-
     }
 }

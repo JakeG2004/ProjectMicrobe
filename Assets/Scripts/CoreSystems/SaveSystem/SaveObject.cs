@@ -9,7 +9,7 @@ public class SaveObject
     public List<CosmeticEntry> playerCosmetics = new List<CosmeticEntry>();
     public List<RegionData> regionData = new List<RegionData>();
     public VolumeData volumeData = new VolumeData();
-    public List<string> completedNPCs = new List<string>();
+    public List<ObjectiveGroupItem> objectives = new List<ObjectiveGroupItem>();
 }
 
 [System.Serializable]
@@ -54,4 +54,13 @@ public class VolumeData
     public float masterVolume;
     public float musicVolume;
     public float sfxVolume;
+}
+
+[System.Serializable]
+public class ObjectiveGroupItem
+{
+    public string name;
+    public List<string> completeObjectives;
+    public string currentObjective;
+    public bool complete;
 }

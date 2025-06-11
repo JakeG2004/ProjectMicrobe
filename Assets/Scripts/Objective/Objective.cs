@@ -26,6 +26,7 @@ public class Objective : MonoBehaviour
     [Space(10)]
 
     [SerializeField] protected Transform _targetObject;
+    [SerializeField] protected ObjectiveGroup _objectiveGroup;
 
     [SerializeField] protected UnityEvent _onActivate;
     [SerializeField] protected UnityEvent _onComplete;
@@ -62,6 +63,13 @@ public class Objective : MonoBehaviour
 
         _onActivate?.Invoke();
         _objectiveChannelsSO.objectiveAddChannelSO.Raise(this);
+        _objectiveGroup.SetCurrentObjective(this.gameObject.name);
+    }
+
+    public void SkipObjective()
+    {
+        _isActivated = true;
+        _isComplete = true;
     }
 
     // Call to complete an objective
@@ -80,6 +88,8 @@ public class Objective : MonoBehaviour
         {
             _objEntry.CompleteObjective();
         }
+
+        _objectiveGroup.MarkComplete(this.gameObject.name);
         ActivateNextObjective();
     }
 
