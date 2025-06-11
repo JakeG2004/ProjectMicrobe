@@ -1,3 +1,8 @@
+// SaveSystem.cs
+// A script for manging saving and loading with the game
+// Author:  Jake Gendreau
+// Date:    6/10/25
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,13 +11,10 @@ using UnityEngine.Audio;
 
 public class SaveSystem : MonoBehaviour
 {
-    private string _savePath;
-
-    public static SaveSystem Instance { get; private set; }
-
-    private SaveObject _currentState;
-
     [SerializeField] private AudioMixer _am;
+    private SaveObject _currentState;
+    private string _savePath;
+    public static SaveSystem Instance { get; private set; }
 
     // Singleton pattern
     void Awake()
@@ -51,17 +53,26 @@ public class SaveSystem : MonoBehaviour
         }
     }
 
+
+    // ==========================
+    // ===== MAIN FUNCTIONS =====
+    // ==========================
+
+
     // Saves the current state of the game, optionally getting the player
     public void SaveState()
     {
+        // Get the cosmetics off the player if the player exists
         if (GameObject.FindGameObjectWithTag("Player"))
         {
             _currentState.playerCosmetics = SaveCosmetics();
         }
 
+        // Perform the save functions
         SaveRegions();
         SaveObjectives();
 
+        // Write it to a file and announce it
         string saveJson = JsonUtility.ToJson(_currentState);
         File.WriteAllText(_savePath, saveJson);
         Debug.Log("Saved State");
@@ -76,21 +87,31 @@ public class SaveSystem : MonoBehaviour
             string loadJson = File.ReadAllText(_savePath);
             _currentState = JsonUtility.FromJson<SaveObject>(loadJson);
 
+            // Load the cosmetics if the player is there
             if (GameObject.FindGameObjectWithTag("Player"))
             {
                 LoadCosmetics();
             }
 
+            // Load the other things
             LoadVolume();
             LoadRegions();
             LoadObjectives();
 
+            // Alert the player
             Debug.Log("Loaded state");
             return;
         }
 
         Debug.Log("Failed to find file");
     }
+
+
+
+    // =============================
+    // ===== ONE-OFF FUNCTIONS =====
+    // =============================
+
 
     // Set the name of the save
     public void SaveName(string name)
@@ -114,6 +135,13 @@ public class SaveSystem : MonoBehaviour
         _am.SetFloat("SFXVolume", _currentState.volumeData.sfxVolume);
     }
 
+
+    // ===============================
+    // ===== OBJECTIVE FUNCTIONS =====
+    // ===============================
+
+
+    // Saves the objectives sorted into objective groups
     public void SaveObjectives()
     {
         // Get all of the objective groups
@@ -154,6 +182,7 @@ public class SaveSystem : MonoBehaviour
         }
     }
 
+    // Load the objectives based on their objective groups
     void LoadObjectives()
     {
         // Get all of the objective groups
@@ -170,6 +199,12 @@ public class SaveSystem : MonoBehaviour
             }
         }
     }
+
+
+    // ============================
+    // ===== REGION FUNCTIONS =====
+    // ============================
+
 
     // Saves the regions
     public void SaveRegions()
@@ -354,6 +389,12 @@ public class SaveSystem : MonoBehaviour
             }
         }
     }
+
+
+    // ==============================
+    // ===== COSMETIC FUNCTIONS =====
+    // ==============================
+
 
     // Save the cosmetics
     private List<CosmeticEntry> SaveCosmetics()

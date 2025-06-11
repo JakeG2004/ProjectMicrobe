@@ -50,7 +50,6 @@ public class StringFloatPair
 [System.Serializable]
 public class VolumeData
 {
-    // Initialize to all zero dB
     public float masterVolume;
     public float musicVolume;
     public float sfxVolume;
