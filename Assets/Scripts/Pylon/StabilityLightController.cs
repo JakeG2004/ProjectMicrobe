@@ -8,6 +8,12 @@ public class StabilityLightController : MonoBehaviour
 
     void Start()
     {
+        // Early return for already stable
+        if (_objRenderer.material.color == Color.green)
+        {
+            return;
+        }
+
         UpdateStability(false);
     }
 

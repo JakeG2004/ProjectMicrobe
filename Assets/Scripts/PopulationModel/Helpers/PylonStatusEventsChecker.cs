@@ -189,5 +189,11 @@ public class PylonStatusEventsChecker : MonoBehaviour
         _healthHist = newHist;
         CalculateEnvironmentalHealth();
         _pr.InstantSetHealth(_envHealth);
+
+        Debug.Log(_envHealth);
+        if (_envHealth >= 1.0f)
+        {
+            this.gameObject.GetComponent<StabilityLightController>().UpdateStability(true);
+        }
     }
 }
