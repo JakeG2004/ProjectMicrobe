@@ -61,6 +61,14 @@ public class PylonRegion : MonoBehaviour
         _oldHealth = envHealth;
     }
 
+    public void InstantSetHealth(float envHealth)
+    {
+        TerrainBlender tb = GetComponent<TerrainBlender>();
+
+        tb.SetBlendFactor(envHealth);
+        tb.SetDetailDensity(envHealth);
+    }
+
     public IEnumerator LerpEnvHealth(float envHealth)
     {
         TerrainBlender tb = GetComponent<TerrainBlender>();

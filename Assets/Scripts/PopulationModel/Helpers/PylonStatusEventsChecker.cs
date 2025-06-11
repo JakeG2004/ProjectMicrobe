@@ -31,10 +31,13 @@ public class PylonStatusEventsChecker : MonoBehaviour
     {
         GetMPS();
 
-        // InitializeValues
-        for (int i = 0; i < HEALTH_SAMPLE_SIZE; i++)
+        if (_envHealth == 0)
         {
-            _healthHist[i] = 0;
+            // InitializeValues
+            for (int i = 0; i < HEALTH_SAMPLE_SIZE; i++)
+            {
+                _healthHist[i] = 0;
+            }
         }
     }
 
@@ -166,7 +169,7 @@ public class PylonStatusEventsChecker : MonoBehaviour
     {
         if (_pr == null)
         {
-            _pr = pr;   
+            _pr = pr;
         }
     }
 
@@ -174,5 +177,17 @@ public class PylonStatusEventsChecker : MonoBehaviour
     {
         CalculateEnvironmentalHealth();
         _pr.SetEnvHealth(_envHealth);
+    }
+
+    public float[] GetHealthHist()
+    {
+        return _healthHist;
+    }
+
+    public void SetHealthHist(float[] newHist)
+    {
+        _healthHist = newHist;
+        CalculateEnvironmentalHealth();
+        _pr.InstantSetHealth(_envHealth);
     }
 }

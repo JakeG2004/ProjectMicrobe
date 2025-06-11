@@ -14,10 +14,13 @@ public class LegendManager : MonoBehaviour
         }
     }
 
-    public void AddEntry(Color col, string legendText)
+    public bool AddEntry(Color col, string legendText)
     {
         GameObject newLegendElement = Object.Instantiate(_legendEntry, transform);
+        newLegendElement.name = legendText;
         newLegendElement.GetComponent<LegendEntryScript>().SetColor(col);
         newLegendElement.GetComponent<LegendEntryScript>().SetText(legendText);
+
+        return true;
     }
 }

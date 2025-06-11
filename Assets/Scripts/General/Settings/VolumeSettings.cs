@@ -55,6 +55,6 @@ public class VolumeSettings : MonoBehaviour
         _am.GetFloat("MusicVolume", out float musicVol);
         _am.GetFloat("SFXVolume", out float sfxVol);
 
-        SaveSystem.Instance.SetVolume(new Vector3(masterVol, musicVol, sfxVol));
+        SaveSystem.Instance.SaveVolume(new Vector3(masterVol, musicVol, sfxVol));
     }
 }

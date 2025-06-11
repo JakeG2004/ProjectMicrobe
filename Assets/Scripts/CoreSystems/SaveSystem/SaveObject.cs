@@ -9,6 +9,7 @@ public class SaveObject
     public List<CosmeticEntry> playerCosmetics = new List<CosmeticEntry>();
     public List<RegionData> regionData = new List<RegionData>();
     public VolumeData volumeData = new VolumeData();
+    public List<string> completedNPCs = new List<string>();
 }
 
 [System.Serializable]
@@ -33,14 +34,17 @@ public class RegionData
     public string regionName;
     public Vector3 pylonPosition;
     public Quaternion pylonRotation;
-    public List<MicrobeNamePopPair> microbes = new();
+    public List<StringFloatPair> microbes = new();
+    public List<StringFloatPair> resources = new();
+    public float[] healthHistory;
+    public float[] mycorrhisArray;
 }
 
 [System.Serializable]
-public class MicrobeNamePopPair
+public class StringFloatPair
 {
     public string name;
-    public float pop;
+    public float amount;
 }
 
 [System.Serializable]

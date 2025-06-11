@@ -17,7 +17,7 @@ public class SaveSystem : MonoBehaviour
     // Singleton pattern
     void Awake()
     {
-        if(Instance == null)
+        if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
@@ -37,6 +37,7 @@ public class SaveSystem : MonoBehaviour
         _currentState = new SaveObject();
     }
 
+    // Handle input keys for quick save / load
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.L))
@@ -50,31 +51,33 @@ public class SaveSystem : MonoBehaviour
         }
     }
 
+    // Saves the current state of the game, optionally getting the player
     public void SaveState()
     {
-        if(GameObject.FindGameObjectWithTag("Player"))
+        if (GameObject.FindGameObjectWithTag("Player"))
         {
-            _currentState.playerCosmetics = GetCosmetics();
+            _currentState.playerCosmetics = SaveCosmetics();
         }
 
-        GetRegions();
+        SaveRegions();
 
         string saveJson = JsonUtility.ToJson(_currentState);
         File.WriteAllText(_savePath, saveJson);
         Debug.Log("Saved State");
     }
 
+    // Loads the state from the save
     public void LoadState()
     {
         // If the file exists, load it
-        if(File.Exists(_savePath))
+        if (File.Exists(_savePath))
         {
             string loadJson = File.ReadAllText(_savePath);
             _currentState = JsonUtility.FromJson<SaveObject>(loadJson);
-            
-            if(GameObject.FindGameObjectWithTag("Player"))
+
+            if (GameObject.FindGameObjectWithTag("Player"))
             {
-                SetCosmetics();
+                LoadCosmetics();
             }
 
             LoadVolume();
@@ -87,63 +90,21 @@ public class SaveSystem : MonoBehaviour
         Debug.Log("Failed to find file");
     }
 
-    private void SetCosmetics()
-    {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-
-        if(!player)
-        {
-            Debug.Log("Failed to find player.");
-            return;
-        }
-
-        int numChildren = player.transform.childCount;
-
-        // Set the cosmetic status for each child
-        for(int i = 1; i < numChildren; i++)
-        {
-            GameObject child = player.transform.GetChild(i).gameObject;
-            Renderer renderer = child.GetComponent<Renderer>();
-
-            // Look at the cosmetic entry list
-            foreach(CosmeticEntry cosmetic in _currentState.playerCosmetics)
-            {
-                // Skip non-included entries
-                if(cosmetic.name != child.name)
-                {
-                    continue;
-                }
-
-                child.SetActive(cosmetic.enabled);
-
-                // Set the material colors how they should be
-                int materialCount = Mathf.Min(renderer.materials.Length, cosmetic.materials.Count);
-
-                for(int j = 0; j < materialCount; j++)
-                {
-                    MaterialData data = cosmetic.materials[j];
-
-                    renderer.materials[j].SetColor("_TintR", data.tintR);
-                    renderer.materials[j].SetColor("_TintG", data.tintG);
-                    renderer.materials[j].SetColor("_TintB", data.tintB);
-                }
-            }
-        }
-    }
-
-    public void SetName(string name)
+    // Set the name of the save
+    public void SaveName(string name)
     {
         _currentState.name = name;
     }
 
-    // Vector3 is master, music, sfx
-    public void SetVolume(Vector3 vol)
+    // Save the volume
+    public void SaveVolume(Vector3 vol)
     {
         _currentState.volumeData.masterVolume = vol.x;
         _currentState.volumeData.musicVolume = vol.y;
         _currentState.volumeData.sfxVolume = vol.z;
     }
 
+    // Loads the volume
     public void LoadVolume()
     {
         _am.SetFloat("MasterVolume", _currentState.volumeData.masterVolume);
@@ -151,7 +112,8 @@ public class SaveSystem : MonoBehaviour
         _am.SetFloat("SFXVolume", _currentState.volumeData.sfxVolume);
     }
 
-    public void GetRegions()
+    // Saves the regions
+    public void SaveRegions()
     {
         // Get each pylon
         MicrobePopSim[] sims = Object.FindObjectsOfType<MicrobePopSim>();
@@ -197,6 +159,7 @@ public class SaveSystem : MonoBehaviour
         }
     }
 
+    // Helper function to get data from the regions
     private void GetDataFromRegion(RegionData region, MicrobePopSim sim)
     {
         // Copy the transform
@@ -210,11 +173,11 @@ public class SaveSystem : MonoBehaviour
             float population = microbe.population;
 
             bool foundMicrobe = false;
-            foreach (MicrobeNamePopPair data in region.microbes)
+            foreach (StringFloatPair data in region.microbes)
             {
                 if (data.name == name)
                 {
-                    data.pop = population;
+                    data.amount = population;
                     foundMicrobe = true;
                     break;
                 }
@@ -226,19 +189,53 @@ public class SaveSystem : MonoBehaviour
             }
 
             // Create a new microbeSOPopPair to store the current populations
-            MicrobeNamePopPair mnpp = new();
+            StringFloatPair mnpp = new();
             mnpp.name = name;
-            mnpp.pop = population;
+            mnpp.amount = population;
 
             region.microbes.Add(mnpp);
         }
+
+        // Copy the current environment
+        foreach (var res in sim.GetEnv().resources)
+        {
+            // Get the values from the dictionary
+            string name = res.Key;
+            float amount = res.Value;
+
+            bool foundResource = false;
+
+            // Overwrite existing entry if exists
+            foreach (StringFloatPair resourceEntry in region.resources)
+            {
+                if (resourceEntry.name == name)
+                {
+                    foundResource = true;
+                    resourceEntry.amount = amount;
+                    break;
+                }
+            }
+
+            // Go to next resource if resource was found
+            if (foundResource)
+            {
+                continue;
+            }
+
+            // Create a new StringFloatPair with the data
+            StringFloatPair sfp = new();
+            sfp.name = name;
+            sfp.amount = amount;
+
+            region.resources.Add(sfp);
+        }
+
+        // Get the health history
+        region.healthHistory = sim.gameObject.GetComponent<PylonStatusEventsChecker>().GetHealthHist();
+        region.mycorrhisArray = sim.GetMycorrhisArray();
     }
 
-    private void GetMicrobesFromRegion(RegionData region)
-    {
-        
-    }
-
+    // Loads the data from the regions
     public void LoadRegions()
     {
         PylonRegion[] regions = Object.FindObjectsOfType<PylonRegion>();
@@ -272,19 +269,35 @@ public class SaveSystem : MonoBehaviour
                     // Set the new pylon information
                     MicrobePopSim sim = newPylon.GetComponent<MicrobePopSim>();
                     sim.SetEnv(pylonRegion.GetEnvSO());
+
+                    // Prevent it from simulating right on start
+                    // sim.SetAdvanceOnStart(false);
+
+                    // Set the region for the PSED
                     newPylon.GetComponent<PylonStatusEventsChecker>().SetRegion(pylonRegion);
 
                     // Set microbes
-                    foreach (MicrobeNamePopPair mnpp in region.microbes)
+                    foreach (StringFloatPair mnpp in region.microbes)
                     {
                         sim.QueueMicrobePop(mnpp);
                     }
+
+                    // Set resources
+                    foreach (StringFloatPair sfp in region.resources)
+                    {
+                        sim.QueueResourceAmount(sfp);
+                    }
+
+                    // Set health hist
+                    sim.gameObject.GetComponent<PylonStatusEventsChecker>().SetHealthHist(region.healthHistory);
+                    sim.SetMycorrhisArray(region.mycorrhisArray);
                 }
             }
         }
     }
 
-    private List<CosmeticEntry> GetCosmetics()
+    // Save the cosmetics
+    private List<CosmeticEntry> SaveCosmetics()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
 
@@ -348,5 +361,66 @@ public class SaveSystem : MonoBehaviour
 
         Debug.Log("Got Cosmetics");
         return cosmetics;
+    }
+
+    // Load cosmetics
+    private void LoadCosmetics()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+        if (!player)
+        {
+            Debug.Log("Failed to find player.");
+            return;
+        }
+
+        int numChildren = player.transform.childCount;
+
+        // Set the cosmetic status for each child
+        for (int i = 1; i < numChildren; i++)
+        {
+            GameObject child = player.transform.GetChild(i).gameObject;
+            Renderer renderer = child.GetComponent<Renderer>();
+
+            // Look at the cosmetic entry list
+            foreach (CosmeticEntry cosmetic in _currentState.playerCosmetics)
+            {
+                // Skip non-included entries
+                if (cosmetic.name != child.name)
+                {
+                    continue;
+                }
+
+                child.SetActive(cosmetic.enabled);
+
+                // Set the material colors how they should be
+                int materialCount = Mathf.Min(renderer.materials.Length, cosmetic.materials.Count);
+
+                for (int j = 0; j < materialCount; j++)
+                {
+                    MaterialData data = cosmetic.materials[j];
+
+                    renderer.materials[j].SetColor("_TintR", data.tintR);
+                    renderer.materials[j].SetColor("_TintG", data.tintG);
+                    renderer.materials[j].SetColor("_TintB", data.tintB);
+                }
+            }
+        }
+    }
+
+    // Adds a completed NPC to the list
+    public void AddCompletedNPC(string npcName)
+    {
+        // Early return if already contained
+        if (_currentState.completedNPCs.Contains(npcName))
+        {
+            return;
+        }
+        _currentState.completedNPCs.Add(npcName);
+    }
+
+    public void LoadNPCs()
+    {
+
     }
 }
