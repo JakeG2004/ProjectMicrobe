@@ -65,6 +65,11 @@ public class PylonRegion : MonoBehaviour
     {
         TerrainBlender tb = GetComponent<TerrainBlender>();
 
+        if (!tb)
+        {
+            return;
+        }
+
         tb.SetBlendFactor(envHealth);
         tb.SetDetailDensity(envHealth);
     }
@@ -72,8 +77,9 @@ public class PylonRegion : MonoBehaviour
     public IEnumerator LerpEnvHealth(float envHealth)
     {
         TerrainBlender tb = GetComponent<TerrainBlender>();
+        
         float elapsed = 0.0f;
-        float start = tb.GetBlendFactor();
+        float start = (tb != null) ? tb.GetBlendFactor() : 0;
         float totalChange = envHealth - start;
 
         while (elapsed < _updateTime)
@@ -84,16 +90,23 @@ public class PylonRegion : MonoBehaviour
             // Linear interpolation
             float blendVal = start + totalChange * t;
 
-            tb.SetBlendFactor(blendVal);
-            tb.SetDetailDensity(blendVal);
             UpdatePlantSize(blendVal);
+
+            if (tb != null)
+            {
+                tb.SetBlendFactor(blendVal);
+                tb.SetDetailDensity(blendVal);
+            }
 
             yield return null;
         }
 
         // Snap to final value to ensure precision
-        tb.SetBlendFactor(envHealth);
-        tb.SetDetailDensity(envHealth);
+        if (tb != null)
+        {
+            tb.SetBlendFactor(envHealth);
+            tb.SetDetailDensity(envHealth);   
+        }
     }
 
     public void SetUpdateTime(float newTime)

@@ -10,6 +10,7 @@ public class SaveObject
     public List<RegionData> regionData = new List<RegionData>();
     public VolumeData volumeData = new VolumeData();
     public List<ObjectiveGroupItem> objectives = new List<ObjectiveGroupItem>();
+    public PlayerBackpack backpack = new PlayerBackpack();
 }
 
 [System.Serializable]
@@ -31,6 +32,7 @@ public class MaterialData
 [System.Serializable]
 public class RegionData
 {
+    public bool isActive = false;
     public string regionName;
     public Vector3 pylonPosition;
     public Quaternion pylonRotation;
@@ -62,4 +64,11 @@ public class ObjectiveGroupItem
     public List<string> completeObjectives;
     public string currentObjective;
     public bool complete;
+}
+
+[System.Serializable]
+public class PlayerBackpack
+{
+    public List<StringFloatPair> carriedMicrobes;
+    public bool hasPylon;
 }

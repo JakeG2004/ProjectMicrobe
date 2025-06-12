@@ -31,6 +31,7 @@ public class Objective : MonoBehaviour
     [SerializeField] protected UnityEvent _onActivate;
     [SerializeField] protected UnityEvent _onComplete;
     [SerializeField] protected UnityEvent _onFail;
+    [SerializeField] protected UnityEvent _onLoadPrereqs;
 
     protected bool _isActivated = false;
     protected bool _isComplete = false;
@@ -70,6 +71,13 @@ public class Objective : MonoBehaviour
     {
         _isActivated = true;
         _isComplete = true;
+        _objectiveGroup.MarkComplete(this.gameObject.name);
+        LoadPrereqs();
+    }
+
+    public void LoadPrereqs()
+    {
+        _onLoadPrereqs.Invoke();
     }
 
     // Call to complete an objective

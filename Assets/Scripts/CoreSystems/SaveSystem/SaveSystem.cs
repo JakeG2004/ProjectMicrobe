@@ -71,6 +71,7 @@ public class SaveSystem : MonoBehaviour
         // Perform the save functions
         SaveRegions();
         SaveObjectives();
+        SavePlayerBackpack();
 
         // Write it to a file and announce it
         string saveJson = JsonUtility.ToJson(_currentState);
@@ -97,6 +98,7 @@ public class SaveSystem : MonoBehaviour
             LoadVolume();
             LoadRegions();
             LoadObjectives();
+            LoadPlayerBackpack();
 
             // Alert the player
             Debug.Log("Loaded state");
@@ -135,6 +137,49 @@ public class SaveSystem : MonoBehaviour
         _am.SetFloat("SFXVolume", _currentState.volumeData.sfxVolume);
     }
 
+
+    // =====================================
+    // ===== PLAYER BACKPACK FUNCTIONS =====
+    // =====================================
+
+    public void SavePlayerBackpack()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        CarriedPylon cp = player.GetComponent<CarriedPylon>();
+        CarriedMicrobes cm = player.GetComponent<CarriedMicrobes>();
+
+        // Early return for no player
+        if (player == null || cp == null || cm == null)
+        {
+            return;
+        }
+
+        // Pick up whether the player has a pylon
+        _currentState.backpack.hasPylon = cp.HasPylon();
+
+        // Pick up the microbes from the player
+        _currentState.backpack.carriedMicrobes = cm.GetMicrobes();
+    }
+
+    public void LoadPlayerBackpack()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+        CarriedMicrobes cm = player.GetComponent<CarriedMicrobes>();
+        CarriedPylon cp = player.GetComponent<CarriedPylon>();
+
+        // Early return if references not found
+        if (player == null || cm == null || cp == null)
+        {
+            return;
+        }
+
+        cp.SetHasPylon(_currentState.backpack.hasPylon);
+        foreach (StringFloatPair microbe in _currentState.backpack.carriedMicrobes)
+        {
+            cm.AddMicrobe(microbe);
+        }
+    }
 
     // ===============================
     // ===== OBJECTIVE FUNCTIONS =====
@@ -259,6 +304,7 @@ public class SaveSystem : MonoBehaviour
         // Copy the transform
         region.pylonPosition = sim.gameObject.transform.position;
         region.pylonRotation = sim.gameObject.transform.rotation;
+        region.isActive = sim.gameObject.activeInHierarchy;
 
         // Copy the current microbes
         foreach (Microbe microbe in sim.GetMicrobes())
@@ -364,9 +410,6 @@ public class SaveSystem : MonoBehaviour
                     MicrobePopSim sim = newPylon.GetComponent<MicrobePopSim>();
                     sim.SetEnv(pylonRegion.GetEnvSO());
 
-                    // Prevent it from simulating right on start
-                    // sim.SetAdvanceOnStart(false);
-
                     // Set the region for the PSED
                     newPylon.GetComponent<PylonStatusEventsChecker>().SetRegion(pylonRegion);
 
@@ -385,6 +428,9 @@ public class SaveSystem : MonoBehaviour
                     // Set health hist
                     sim.gameObject.GetComponent<PylonStatusEventsChecker>().SetHealthHist(region.healthHistory);
                     sim.SetMycorrhisArray(region.mycorrhisArray);
+
+                    // Set the on/off state
+                    pylonRegion.gameObject.SetActive(region.isActive);
                 }
             }
         }

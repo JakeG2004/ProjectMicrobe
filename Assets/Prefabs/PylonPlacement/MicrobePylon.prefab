@@ -10441,6 +10441,7 @@ GameObject:
   - component: {fileID: 7110316051627447314}
   - component: {fileID: 530402900517178277}
   - component: {fileID: 3862604478810851283}
+  - component: {fileID: 4547914654994019425}
   m_Layer: 0
   m_Name: MicrobePylon
   m_TagString: Pylon
@@ -10553,7 +10554,6 @@ MonoBehaviour:
   _envSO: {fileID: 0}
   _microbeSOs: []
   _microbes: []
-  _updatePeriod: 15
   _advanceOnStart: 1
   _onSimAdvance:
     m_PersistentCalls:
@@ -10661,6 +10661,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 4547914654994019425}
+        m_TargetAssemblyTypeName: StringGameEventTrigger, Assembly-CSharp
+        m_MethodName: TriggerEvent
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _stableEvent:
     m_PersistentCalls:
       m_Calls:
@@ -10715,9 +10727,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _stablePopMean: 1
-  _stablePopVar: 0.5
-  _stableMycorrhisAmt: 2
+  _stableMycorrhisMean: 0
+  _stableMycorrhisVar: 0
 --- !u!114 &3862604478810851283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10731,6 +10742,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _event: {fileID: 11400000, guid: 06f4569ab986ca7368068f8c2f25ed03, type: 2}
+--- !u!114 &4547914654994019425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5981207602307649226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b86b640fa91848678b478486c1815f24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _event: {fileID: 11400000, guid: 16ce0196746960222aaad1d46bdd4e27, type: 2}
 --- !u!1 &5990425929586624647
 GameObject:
   m_ObjectHideFlags: 0

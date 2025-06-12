@@ -24,23 +24,23 @@ public class AddMicrobeToPylon : MonoBehaviour
     public void InsertMicrobes()
     {
         // Get a clone of the carried microbe
-        Microbe curMicrobe = _cm.GetMicrobe(_microbeIndex);
+        StringFloatPair curMicrobe = _cm.GetMicrobe(_microbeIndex);
         float popToAdd = float.Parse(_numToAdd.text);
 
         // Check bounds
-        if (popToAdd > curMicrobe.population || curMicrobe.population == 0)
+        if (popToAdd > curMicrobe.amount || curMicrobe.amount == 0)
         {
             Debug.Log("Invalid amount to add");
             return;
         }
 
-        float oldPop = curMicrobe.population;
+        float oldPop = curMicrobe.amount;
 
         // Add it to the pylon
         _microbeMenu.AddMicrobe(curMicrobe, popToAdd);
 
         // Set the carried population by the player
-        _cm.SetMicrobePopulation(curMicrobe.microbeName, oldPop - popToAdd);
+        _cm.SetMicrobePopulation(curMicrobe.name, oldPop - popToAdd);
 
         // Update the player inventory slots
         foreach (var amtp in Object.FindObjectsOfType<AddMicrobeToPylon>())
@@ -48,7 +48,7 @@ public class AddMicrobeToPylon : MonoBehaviour
             amtp.UpdateInfo();
         }
 
-        GetComponent<StringGameEventTrigger>().TriggerEvent(curMicrobe.microbeName);
+        GetComponent<StringGameEventTrigger>().TriggerEvent(curMicrobe.name);
     }
 
     public void SetAddVal(float val)
@@ -90,7 +90,7 @@ public class AddMicrobeToPylon : MonoBehaviour
         }
 
         // Get the microbe
-        Microbe curMicrobe = _cm.GetMicrobe(_microbeIndex);
+        StringFloatPair curMicrobe = _cm.GetMicrobe(_microbeIndex);
 
         // Set interactible
         _numToAdd.interactable = true;
@@ -98,7 +98,7 @@ public class AddMicrobeToPylon : MonoBehaviour
         _button.interactable = true;
 
         // Fill fields
-        _microbeName.text = curMicrobe.microbeName;
-        _slider.maxValue = curMicrobe.population;
+        _microbeName.text = curMicrobe.name;
+        _slider.maxValue = curMicrobe.amount;
     }
 }

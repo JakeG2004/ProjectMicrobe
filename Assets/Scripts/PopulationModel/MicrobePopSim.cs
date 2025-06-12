@@ -109,24 +109,26 @@ public class MicrobePopSim : MonoBehaviour
 
 
     // Add a microbe to the simulation
-    public void AddMicrobe(Microbe newMicrobe)
+    public void AddMicrobe(StringFloatPair newMicrobe)
     {
         // Handle duplicate entries
         foreach (Microbe microbe in _microbes)
         {
-            if (microbe.microbeName == newMicrobe.microbeName)
+            if (microbe.microbeName == newMicrobe.name)
             {
                 return;
             }
         }
 
-        _microbes.Add(newMicrobe);
+        // Find the corresponding microbe and increase its population
+        //_microbes.Add(newMicrobe);
+        SetMicrobePopulation(newMicrobe.name, GetMicrobePopulation(newMicrobe.name) + newMicrobe.amount);
 
         // Backfill population
-        for (int i = 0; i < _curStep - 1; i++)
+        /*for (int i = 0; i < _curStep - 1; i++)
         {
             newMicrobe.popHistory.Add(0.0f);
-        }
+        }*/
     }
 
     // Removes a microbe fromt the simulation

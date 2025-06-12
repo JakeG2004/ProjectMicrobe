@@ -70,6 +70,7 @@ public class ObjectiveGroup : MonoBehaviour
             {
                 Objective curObj = child.gameObject.GetComponent<Objective>();
                 curObj.ActivateObjective();
+                curObj.LoadPrereqs();
             }
         }
     }

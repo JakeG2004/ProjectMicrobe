@@ -19,7 +19,13 @@ MonoBehaviour:
   - resourceName: Nitrate
     amount: 1
   producedResources: []
-  toxins: []
+  toxins:
+  - toxinName: Lead
+    toxin:
+      toxicity: 0.8
+      minSafeDensity: 0
+      maxSafeDensity: 0
+      lethalDensity: 0.3
   description: "F. Mycorrhis is a fungal microbe which is critical to the Nitrogen
     Cycle. It takes the Nitrate in an environment and aids plants in uptake and use
     of the Nitrate. \n\nMycorrhis is necessary for making ecosystems operate at full

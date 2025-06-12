@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialResources:
   - resourceName: Oxygen
-    amount: 0
+    amount: 8
   - resourceName: Nitrogen
     amount: 0
   - resourceName: Lead
@@ -27,8 +27,18 @@ MonoBehaviour:
     amount: 0
   resourceRefresh:
   - resourceName: Oxygen
-    amount: 6
-  initialMicrobes: []
-  envName: Cave Pylon
-  stableMycorrhisVar: 10
+    amount: 8
+  initialMicrobes:
+  - microbe: {fileID: 11400000, guid: 50cfa95e1c6198142a450c83f9b15245, type: 2}
+    population: 0
+  - microbe: {fileID: 11400000, guid: 2d0b83d9658cce0678dfee0fa75ea374, type: 2}
+    population: 0
+  - microbe: {fileID: 11400000, guid: 63594733e7aa8914ea78c31c4153fbdf, type: 2}
+    population: 2
+  - microbe: {fileID: 11400000, guid: f2c460b91f42ea6429cfaa0d93203ff8, type: 2}
+    population: 0
+  - microbe: {fileID: 11400000, guid: e75cc02b116e38c69b5cb2c444e56560, type: 2}
+    population: 0
+  envName: Bug Collector Pylon
+  stableMycorrhisVar: 15
   stableMycorrhisAmt: 2

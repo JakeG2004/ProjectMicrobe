@@ -34,8 +34,8 @@ public class IndividualMicrobeCtrl : MonoBehaviour
         }
 
         // Assign information as necessary
-        Microbe curMicrobe = _cm.GetMicrobe(_microbeIndex);
-        _microbeText.text = curMicrobe.microbeName + ": " + curMicrobe.population.ToString();
+        StringFloatPair curMicrobe = _cm.GetMicrobe(_microbeIndex);
+        _microbeText.text = curMicrobe.name + ": " + curMicrobe.amount.ToString();
     }
 
     void OnEnable()
@@ -45,7 +45,7 @@ public class IndividualMicrobeCtrl : MonoBehaviour
 
     public void RemoveMicrobe()
     {
-        _cm.RemoveMicrobe(_cm.GetMicrobe(_microbeIndex)?.microbeName);
+        _cm.RemoveMicrobe(_cm.GetMicrobe(_microbeIndex)?.name);
         foreach(var im in Object.FindObjectsOfType<IndividualMicrobeCtrl>())
         {
             im.UpdateInfo();

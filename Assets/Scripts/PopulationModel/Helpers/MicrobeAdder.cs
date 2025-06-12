@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MicrobeAdder : MonoBehaviour
 {
-    public KeyCode addMicrobe = KeyCode.A;
+    /*public KeyCode addMicrobe = KeyCode.A;
     public MicrobeSO microbeSO;
 
     void Update()
@@ -23,5 +23,5 @@ public class MicrobeAdder : MonoBehaviour
             );
             _cm.AddMicrobe(newMicrobe);
         }
-    }
+    }*/
 }

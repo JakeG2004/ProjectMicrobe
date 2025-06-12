@@ -232,18 +232,18 @@ public class MicrobeMenu : MonoBehaviour
         return _curPylon;
     }
 
-    public void AddMicrobe(Microbe microbe, float population)
+    public void AddMicrobe(StringFloatPair microbe, float population)
     {
-        microbe.population = population;
+        microbe.amount = population;
 
         if (!_curPylon)
         {
             Debug.Log("Failed to get cur pylon");
         }
 
-        if (_curPylon.GetMicrobePopulation(microbe.microbeName) != -1)
+        if (_curPylon.GetMicrobePopulation(microbe.name) != -1)
         {
-            _curPylon.IncreaseMicrobePopulation(microbe.microbeName, microbe.population);
+            _curPylon.IncreaseMicrobePopulation(microbe.name, microbe.amount);
             return;
         }
 
