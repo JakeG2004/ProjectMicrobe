@@ -1,0 +1,50 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+
+public class BugManager : MonoBehaviour
+{
+    [SerializeField] private TMP_Text _scoreText;
+    [SerializeField] private TMP_Text _timeText;
+    [SerializeField] private int _totalTime = 30;
+    private int _curScore = 0;
+
+    void OnEnable()
+    {
+        _curScore = 0;
+
+        _scoreText.text = "Score: 0";
+        _timeText.text = $"Time: {_totalTime}";
+
+        StartCoroutine(IManageTimer());
+    }
+
+    void OnDisable()
+    {
+        StopAllCoroutines();
+    }
+
+    public void OnBugClicked(int numClicked)
+    {
+        _curScore += numClicked;
+        _scoreText.text = $"Score: {_curScore}"; 
+    }
+
+    private IEnumerator IManageTimer()
+    {
+        int curTime = _totalTime;
+
+        while(curTime > 0)
+        {
+            // Update the time text
+            _timeText.text = $"Timer: {curTime}";
+
+            curTime -= 1;
+            yield return new WaitForSeconds(1.0f);
+        }
+
+        Debug.Log("Game Over!");
+    }
+}
