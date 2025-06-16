@@ -14,9 +14,18 @@ public class BugBox : MonoBehaviour
     
     [SerializeField] private Vector2 _box;
 
-    void Start()
+    void OnEnable()
     {
+        DestroyBugs();
         SpawnBugs();
+    }
+
+    void DestroyBugs()
+    {
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject);
+        }
     }
 
     void SpawnBugs()
@@ -30,6 +39,14 @@ public class BugBox : MonoBehaviour
             newBug.GetComponent<RandomBugMovement>().SetBounds(new Vector2(_box.x, _box.y));
 
             newBug.GetComponent<RandomBugMovement>().ResetBug();
+        }
+    }
+
+    public void EndGame()
+    {
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject);
         }
     }
 

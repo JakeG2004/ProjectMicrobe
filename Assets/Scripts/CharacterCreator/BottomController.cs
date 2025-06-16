@@ -8,9 +8,9 @@ public class BottomController : MonoBehaviour
     private Toggle _tg;
 
     [SerializeField] BottomType _bottomType = BottomType.Pants;
-    [SerializeField] private GameObject _shorts;
-    [SerializeField] private GameObject _pants;
-    [SerializeField] private GameObject _shoes;
+    private GameObject _shorts;
+    private GameObject _pants;
+    private GameObject _shoes;
 
     [SerializeField] private ColorTuple _shortsColors;
     [SerializeField] private ColorTuple _pantsColors;
@@ -27,6 +27,27 @@ public class BottomController : MonoBehaviour
         }
 
         _tg.onValueChanged.AddListener(OnToggleValueChanged);
+
+        foreach (GameObject cosmetic in CosmeticContainer.Instance.GetBottomStyles())
+        {
+            if (cosmetic.name == "Shorts")
+            {
+                _shorts = cosmetic;
+                continue;
+            }
+
+            if (cosmetic.name == "Pants")
+            {
+                _pants = cosmetic;
+                continue;
+            }
+
+            if (cosmetic.name == "Shoes")
+            {
+                _shoes = cosmetic;
+                continue;
+            }
+        }
     }
 
     private void OnToggleValueChanged(bool isOn)

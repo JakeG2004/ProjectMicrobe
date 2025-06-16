@@ -11,8 +11,8 @@ public class CosmeticContainer : MonoBehaviour
     [SerializeField] private GameObject[] _bottomStyles;
     [SerializeField] private GameObject[] _glassesStyles;
     [SerializeField] private GameObject[] _eyebrowStyles;
-
     [SerializeField] private GameObject[] _skinObjs;
+    [SerializeField] private GameObject _eyes;
 
     private void Awake()
     {
@@ -56,9 +56,14 @@ public class CosmeticContainer : MonoBehaviour
         return _skinObjs;
     }
 
+    public GameObject GetEyes()
+    {
+        return _eyes;
+    }
+
     public void DistableAllTops()
     {
-        foreach(var top in _topStyles)
+        foreach (var top in _topStyles)
         {
             top.SetActive(false);
         }
@@ -68,6 +73,11 @@ public class CosmeticContainer : MonoBehaviour
     {
         foreach(var bottom in _bottomStyles)
         {
+            if (bottom.name == "Shoes")
+            {
+                continue;
+            }
+
             bottom.SetActive(false);
         }
     }

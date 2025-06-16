@@ -1,14 +1,23 @@
+// BugManager.cs
+// A script for managing the bug minigame
+// Author:  Jake Gendreau
+// Date:    6/16/25
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Events;
 
 public class BugManager : MonoBehaviour
 {
     [SerializeField] private TMP_Text _scoreText;
     [SerializeField] private TMP_Text _timeText;
     [SerializeField] private int _totalTime = 30;
+
+    [Space(10)]
+    [SerializeField] private UnityEvent _OnTimerEndEvent;
     private int _curScore = 0;
 
     void OnEnable()
@@ -36,7 +45,7 @@ public class BugManager : MonoBehaviour
     {
         int curTime = _totalTime;
 
-        while(curTime > 0)
+        while (curTime > 0)
         {
             // Update the time text
             _timeText.text = $"Timer: {curTime}";
@@ -45,6 +54,7 @@ public class BugManager : MonoBehaviour
             yield return new WaitForSeconds(1.0f);
         }
 
-        Debug.Log("Game Over!");
+        _timeText.text = "Timer: 0";
+        _OnTimerEndEvent.Invoke();
     }
 }

@@ -8,7 +8,6 @@
 // with attribution. Provided "as is" without warranty of any kind.
 
 
-/*
 using UnityEngine;
 using UnityEditor;
 public class UpdateSkinnedMeshWindow : EditorWindow {
@@ -76,4 +75,4 @@ public class UpdateSkinnedMeshWindow : EditorWindow {
 		EditorStyles.label.wordWrap = true;
 		GUILayout.Label(statusContent);
 	}
-}*/
+}

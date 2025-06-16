@@ -1,3 +1,8 @@
+// TimeScaleController.cs
+// A script for managing time-related thigns in the game
+// Author:  Jake Gendreau
+// Date:    6/16/25
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -62,5 +67,10 @@ public class TimeScaleController : MonoBehaviour
         sun.SetRotationScaler(sunTimeScale);
 
         _onChangeUpdatePeriod.Invoke(_updatePeriod);
+    }
+
+    public void ResetTimeCounter()
+    {
+        _elapsedTime = 0.0f;
     }
 }

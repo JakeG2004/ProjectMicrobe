@@ -8,9 +8,9 @@ public class TopController : MonoBehaviour
     private Toggle _tg;
 
     [SerializeField] TopType _topType = TopType.Shirt;
-    [SerializeField] private GameObject _shirt;
-    [SerializeField] private GameObject _jacket;
-    [SerializeField] private GameObject _coat;
+    private GameObject _shirt;
+    private GameObject _jacket;
+    private GameObject _coat;
     [SerializeField] private Color _hairAccessoryColor;
     [SerializeField] private ColorTuple _shirtColors;
     [SerializeField] private ColorTuple _jacketColors;
@@ -46,6 +46,27 @@ public class TopController : MonoBehaviour
         _shirtColors.SetAlpha(1.0f);
         _jacketColors.SetAlpha(1.0f);
         _coatColors.SetAlpha(1.0f);
+
+        foreach (GameObject cosmetic in CosmeticContainer.Instance.GetTopStyles())
+        {
+            if (cosmetic.name == "Shirt")
+            {
+                _shirt = cosmetic;
+                continue;
+            }
+
+            if (cosmetic.name == "Hoodie")
+            {
+                _jacket = cosmetic;
+                continue;
+            }
+
+            if (cosmetic.name == "LabCoat")
+            {
+                _coat = cosmetic;
+                continue;
+            }
+        }
     }
 
     private void OnToggleValueChanged(bool isOn)

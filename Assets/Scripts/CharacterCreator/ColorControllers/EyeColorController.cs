@@ -8,7 +8,7 @@ public class EyeColorController : MonoBehaviour
     private Toggle _tg;
     private Color _color;
 
-    [SerializeField] private GameObject _eyes;
+    private GameObject _eyes;
 
     void Start()
     {
@@ -21,6 +21,8 @@ public class EyeColorController : MonoBehaviour
 
         _color = _tg.colors.normalColor;
         _tg.onValueChanged.AddListener(OnToggleValueChanged);
+
+        _eyes = CosmeticContainer.Instance.GetEyes();
     }
 
     private void OnToggleValueChanged(bool isOn)
