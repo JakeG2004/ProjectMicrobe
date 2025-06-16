@@ -13,9 +13,9 @@ public class GlassesColorController : MonoBehaviour
     }
 
     private Toggle _tg;
-    [SerializeField] private Color _color;
+    [SerializeField] private ColorTuple _lensColor;
+    [SerializeField] private ColorTuple _bodyColor;
     [SerializeField] private AccessoryType _accesoryType;
-
     [SerializeField] private GameObject[] _glassesStyles;
 
     void Start()
@@ -29,8 +29,7 @@ public class GlassesColorController : MonoBehaviour
             Debug.Log("Failed to get Toggle");
         }
 
-        _color.a = 1.0f;
-        GetComponent<Image>().color = _color;
+        GetComponent<Image>().color = _bodyColor.r;
         _tg.onValueChanged.AddListener(OnToggleValueChanged);
     }
 
@@ -38,24 +37,43 @@ public class GlassesColorController : MonoBehaviour
     {
         if (isOn)
         {
-            AssignColorToMaterial();
+            AssignColors();
             EnableGOs();
         }
     }
 
-    public void AssignColorToMaterial()
+    public void AssignColors()
     {
         if (!_tg || !_tg.isOn)
         {
             return;
         }
 
+        // Assign colors
         foreach (GameObject glasses in _glassesStyles)
         {
             Renderer renderer = glasses.GetComponent<Renderer>();
+
+            // Iterate through every material
             foreach (Material mat in renderer.materials)
             {
-                mat.SetColor("_TintR", _color);
+                // Set body colors
+                if (mat.name.Contains("m_Ari_ClothGlasses") || mat.name.Contains("m_Ari_ClothGoggles"))
+                {
+                    mat.SetColor("_TintR", _bodyColor.r);
+                    mat.SetColor("_TintG", _bodyColor.g);
+                    mat.SetColor("_TintB", _bodyColor.b);
+                    continue;
+                }
+                
+                // Set lens colors
+                if (mat.name.Contains("m_Ari_Glass_Lens"))
+                {
+                    mat.SetColor("_TintR", _lensColor.r);
+                    mat.SetColor("_TintG", _lensColor.g);
+                    mat.SetColor("_TintB", _lensColor.b);
+                    continue;
+                }
             }
         }
     }

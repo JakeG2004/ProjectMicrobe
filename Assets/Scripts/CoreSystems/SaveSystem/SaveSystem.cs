@@ -557,9 +557,9 @@ public class SaveSystem : MonoBehaviour
     }
 
 
-    // ======================
-    // ===== CC INDECES =====
-    // ======================
+    // ===========================
+    // ===== CC INDEX VALUES =====
+    // ===========================
 
     public void SaveCCValues()
     {
@@ -627,7 +627,7 @@ public class SaveSystem : MonoBehaviour
             return;
         }
 
-        // Save each element of the class
+        // Load each element of the class
         foreach (CCIndexManager ccMgr in ccim)
         {
             switch (ccMgr.GetValType())

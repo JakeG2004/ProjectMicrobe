@@ -111,6 +111,7 @@ public class TopController : MonoBehaviour
                 mat.SetColor("_TintR", _shirtColors.r);
                 mat.SetColor("_TintG", _shirtColors.g);
                 mat.SetColor("_TintB", _shirtColors.b);
+                continue;
             }
 
             if (mat.name.Contains("m_Ari_ClothHoodie"))
@@ -118,6 +119,7 @@ public class TopController : MonoBehaviour
                 mat.SetColor("_TintR", _jacketColors.r);
                 mat.SetColor("_TintG", _jacketColors.g);
                 mat.SetColor("_TintB", _jacketColors.b);
+                continue;
             }
         }
     }

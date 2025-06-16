@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: m_CC_GL_GlassesLense1
-  m_Shader: {fileID: 4800000, guid: 978df59d6e521b44da8cb509c25b3766, type: 3}
+  m_Shader: {fileID: 4800000, guid: 92da57c1e22e174488d47563302d2b01, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -119,6 +119,7 @@ Material:
     - _Parallax: 0.08
     - _Refract: 0.5
     - _Scroll: 0
+    - _Shininess: 0.7
     - _SmoothnessTextureChannel: 0
     - _Spec: 0.654
     - _SpecularHighlights: 1
@@ -126,10 +127,11 @@ Material:
     - _UVSec: 0
     - _ZWrite: 0
     m_Colors:
-    - _Color: {r: 0, g: 0.1470357, b: 0.3773585, a: 1}
+    - _Color: {r: 0, g: 0.1470357, b: 0.3773585, a: 0.27450982}
     - _ColorA: {r: 0.509434, g: 0.22479454, b: 0.1754183, a: 1}
     - _ColorB: {r: 0.9245283, g: 0.8503916, b: 0.8503916, a: 0.23921569}
     - _ColorC: {r: 0, g: 0, b: 0, a: 1}
+    - _Emission: {r: 0, g: 0, b: 0.2, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FresCol: {r: 0, g: 0.3, b: 0.5, a: 0.5}
     - _FresColor: {r: 0, g: 0.59375, b: 1, a: 0.9019608}
