@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 /* Boidy - Manages the spawning and movement of boids.
  
@@ -21,7 +22,7 @@ public class Boidy : MonoBehaviour {
     [SerializeField] Transform[] obstacles;         // Center position of obstacles to avoid
     [SerializeField] int boidCount = 10;            // Number of boids to spawn
     [SerializeField] float spawnRadius = 15f;       // Radius around the spawner where boids try to stay
-
+    [SerializeField] private bool _spawnOnStart = true;
     readonly float spawnVerticalStretch = 0.3f;     // Flatten spawn area into a spheroid (height / width)
     readonly float turnSpeed = 360f;                // Rotation speed (degrees per second)
     readonly float neighborDistanceGoal = 3f;		// Ideal distance between neighbors
@@ -40,7 +41,38 @@ public class Boidy : MonoBehaviour {
         neighbors = new Transform[boidCount];
         neighborDistances = new float[boidCount];
         moveSpeeds = new float[boidCount];
-        SpawnBoids();
+
+        if (_spawnOnStart)
+        {
+            SpawnBoids();   
+        }
+    }
+
+    public void SlowSpawnBoids()
+    {
+        StartCoroutine(ISlowSpawnBoids());
+    }
+
+    private IEnumerator ISlowSpawnBoids()
+    {
+        for (int i = 0; i < boidCount; i++)
+        {
+            Vector3 spawnPosition = Random.insideUnitSphere * spawnRadius;
+            spawnPosition.y *= spawnVerticalStretch; // Apply vertical squashing
+            spawnPosition += transform.position;
+
+            GameObject boid = Instantiate(boidPrefab, spawnPosition, Quaternion.identity);
+
+            // Apply random scale, speed, and material variance
+            float scale = Random.Range(0.5f, 1.5f);
+            boid.transform.localScale = Vector3.one * scale;
+            moveSpeeds[i] = Random.Range(4f, 10f);
+            RandomizeMaterialValues(boid);
+
+            boids[i] = boid.transform;
+
+            yield return new WaitForSeconds(5.0f);
+        }
     }
 
     void Update() {

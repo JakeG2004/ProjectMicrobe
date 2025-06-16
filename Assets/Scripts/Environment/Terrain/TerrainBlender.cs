@@ -30,6 +30,11 @@ public class TerrainBlender : MonoBehaviour
 
     void Update()
     {
+        if (_terrain == null)
+        {
+            return;
+        }
+
         bool blendFactorChanged = _terrainMat.GetFloat(_blendFactorPropertyName) != _blendFactor;
         bool detailDensityChanged = _terrain.detailObjectDensity != _detailDensity;
 
@@ -41,6 +46,11 @@ public class TerrainBlender : MonoBehaviour
 
     public void UpdateTerrainProperties()
     {
+        if (_terrain == null)
+        {
+            return;
+        }
+        
         if (_terrainMat != null)
         {
             _terrainMat.SetFloat(_blendFactorPropertyName, 1 - _blendFactor);

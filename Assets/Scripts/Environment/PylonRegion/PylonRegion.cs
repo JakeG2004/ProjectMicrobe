@@ -10,8 +10,12 @@ public class PylonRegion : MonoBehaviour
     [SerializeField] private UnityEvent _getPylonEvent;
     [SerializeField] private GameObject _plantParent;
     [SerializeField] private GameObject _pylonPrefab;
+    [SerializeField] private UnityEvent _reachedFullHealthEvent;
     private float _updateTime = 15.0f;
     private float _oldHealth = 0.0f;
+    private bool _hasReachedFullHealth = false;
+    private Coroutine _healthLerpCoroutine;
+
     private Dictionary<GameObject, Vector3> _plantScales = new();
 
     void Start()
@@ -57,7 +61,18 @@ public class PylonRegion : MonoBehaviour
 
     public void SetEnvHealth(float envHealth)
     {
-        StartCoroutine(LerpEnvHealth(envHealth));
+        if (envHealth >= 1 && !_hasReachedFullHealth)
+        {
+            _hasReachedFullHealth = true;
+            _reachedFullHealthEvent.Invoke();
+        }
+        
+        if (_healthLerpCoroutine != null)
+        {
+            StopCoroutine(_healthLerpCoroutine);
+        }
+
+        _healthLerpCoroutine = StartCoroutine(LerpEnvHealth(envHealth));
         _oldHealth = envHealth;
     }
 
@@ -65,7 +80,7 @@ public class PylonRegion : MonoBehaviour
     {
         TerrainBlender tb = GetComponent<TerrainBlender>();
 
-        if (!tb)
+        if (tb == null)
         {
             return;
         }
@@ -77,7 +92,7 @@ public class PylonRegion : MonoBehaviour
     public IEnumerator LerpEnvHealth(float envHealth)
     {
         TerrainBlender tb = GetComponent<TerrainBlender>();
-        
+
         float elapsed = 0.0f;
         float start = (tb != null) ? tb.GetBlendFactor() : 0;
         float totalChange = envHealth - start;
@@ -105,8 +120,10 @@ public class PylonRegion : MonoBehaviour
         if (tb != null)
         {
             tb.SetBlendFactor(envHealth);
-            tb.SetDetailDensity(envHealth);   
+            tb.SetDetailDensity(envHealth);
         }
+
+        UpdatePlantSize(envHealth);
     }
 
     public void SetUpdateTime(float newTime)
