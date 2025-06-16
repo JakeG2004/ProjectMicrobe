@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3394788213721752157}
-  - component: {fileID: 6340520151410723129}
   - component: {fileID: 4500206300070019024}
   - component: {fileID: 5483046831375448496}
   - component: {fileID: 5740576725943029060}
   - component: {fileID: 8846171218343212107}
+  - component: {fileID: 7579022754527901308}
   m_Layer: 0
   m_Name: PlayerInteractSphere
   m_TagString: Untagged
@@ -36,27 +36,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1699515492825084458}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &6340520151410723129
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 31845047743457716}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 7
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4500206300070019024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,6 +143,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _event: {fileID: 11400000, guid: 320bc6375b0c5c021876122594a6b1aa, type: 2}
+--- !u!65 &7579022754527901308
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 31845047743457716}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4.33, y: 3.69, z: 4.28}
+  m_Center: {x: 0, y: 0.95, z: 2.39}
 --- !u!1 &82763971180349378
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,6 +11,7 @@ public class SaveObject
     public VolumeData volumeData = new VolumeData();
     public List<ObjectiveGroupItem> objectives = new List<ObjectiveGroupItem>();
     public PlayerBackpack backpack = new PlayerBackpack();
+    public CCUIVals ccVals = new CCUIVals();
 }
 
 [System.Serializable]
@@ -71,4 +72,17 @@ public class PlayerBackpack
 {
     public List<StringFloatPair> carriedMicrobes;
     public bool hasPylon;
+}
+
+[System.Serializable]
+public class CCUIVals
+{
+    public float hairIndex;
+    public int hairPrimary;
+    public int hairSecondary;
+    public int eyes;
+    public int skin;
+    public int glasses;
+    public int upperBody;
+    public int lowerBody;
 }

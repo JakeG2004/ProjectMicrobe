@@ -72,6 +72,7 @@ public class SaveSystem : MonoBehaviour
         SaveRegions();
         SaveObjectives();
         SavePlayerBackpack();
+        SaveCCValues();
 
         // Write it to a file and announce it
         string saveJson = JsonUtility.ToJson(_currentState);
@@ -550,6 +551,66 @@ public class SaveSystem : MonoBehaviour
                     renderer.materials[j].SetColor("_TintG", data.tintG);
                     renderer.materials[j].SetColor("_TintB", data.tintB);
                 }
+            }
+        }
+    }
+
+
+    // ======================
+    // ===== CC INDECES =====
+    // ======================
+
+    public void SaveCCValues()
+    {
+        // Get all of the CCIndexManagers
+        CCIndexManager[] ccim = Object.FindObjectsOfType<CCIndexManager>();
+
+        // Early return if no entries
+        if (ccim.Length == 0)
+        {
+            return;
+        }
+
+        // Save each element of the class
+        foreach (CCIndexManager ccMgr in ccim)
+        {
+            switch (ccMgr.GetValType())
+            {
+                case "HairSlider":
+                    _currentState.ccVals.hairIndex = ccMgr.GetSliderValue();
+                    break;
+
+                case "HairPrimary":
+                    _currentState.ccVals.hairPrimary = ccMgr.GetToggleGroupValue();
+                    break;
+
+                case "HairSecondary":
+                    _currentState.ccVals.hairSecondary = ccMgr.GetToggleGroupValue();
+                    break;
+
+                case "EyeColor":
+                    _currentState.ccVals.eyes = ccMgr.GetToggleGroupValue();
+                    break;
+
+                case "SkinColor":
+                    _currentState.ccVals.skin = ccMgr.GetToggleGroupValue();
+                    break;
+
+                case "GlassesColor":
+                    _currentState.ccVals.glasses = ccMgr.GetToggleGroupValue();
+                    break;
+
+                case "UpperBody":
+                    _currentState.ccVals.upperBody = ccMgr.GetToggleGroupValue();
+                    break;
+
+                case "LowerBody":
+                    _currentState.ccVals.lowerBody = ccMgr.GetToggleGroupValue();
+                    break;
+
+                default:
+                    Debug.LogWarning("Invalid case in SaveCCValues");
+                    break;
             }
         }
     }
