@@ -551,6 +551,12 @@ public class SaveSystem : MonoBehaviour
                     renderer.materials[j].SetColor("_TintR", data.tintR);
                     renderer.materials[j].SetColor("_TintG", data.tintG);
                     renderer.materials[j].SetColor("_TintB", data.tintB);
+
+                    if (renderer.materials[j].name.Contains("m_Ari_Skin"))
+                    {
+                        renderer.materials[j].SetColor("_TintB", Color.white);
+                        renderer.materials[j].SetColor("_SSS", data.tintB);
+                    }
                 }
             }
         }

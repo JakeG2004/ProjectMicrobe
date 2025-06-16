@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class EyeColorController : MonoBehaviour
 {
     private Toggle _tg;
-    private Color _color;
+    [SerializeField] private ColorTuple _colors;
 
     private GameObject _eyes;
 
@@ -19,10 +19,30 @@ public class EyeColorController : MonoBehaviour
             Debug.Log("Failed to get Toggle");
         }
 
-        _color = _tg.colors.normalColor;
         _tg.onValueChanged.AddListener(OnToggleValueChanged);
 
         _eyes = CosmeticContainer.Instance.GetEyes();
+
+        // Create a color block given the new colors
+        ColorBlock buttonColors = new();
+        buttonColors.colorMultiplier = 1.0f;
+        buttonColors.disabledColor = (_colors.r / 4f) + new Color (0f, 0f, 0f, 1f);
+        buttonColors.fadeDuration = 0.1f;
+        buttonColors.highlightedColor = _colors.r + new Color(0.1f, 0.1f, 0.1f, 1f);
+        buttonColors.normalColor = _colors.r;
+        buttonColors.pressedColor = _colors.g;
+        buttonColors.selectedColor = _colors.r;
+
+        if (_colors.r == Color.black)
+        {
+            buttonColors.highlightedColor = _colors.g + new Color(0.1f, 0.1f, 0.1f, 1f);
+            buttonColors.normalColor = _colors.g;
+            buttonColors.pressedColor = _colors.r;
+            buttonColors.selectedColor = _colors.g;
+        }
+
+        // Assign the color block
+            _tg.colors = buttonColors;
     }
 
     private void OnToggleValueChanged(bool isOn)
@@ -44,33 +64,12 @@ public class EyeColorController : MonoBehaviour
 
         foreach (Material mat in renderer.materials)
         {
-            if (mat.name.Contains("m_Ari_Eye")) // Adjust with your actual material name
+            if (mat.name.Contains("m_Ari_Eye"))
             {
-                mat.SetColor("_TintR", _color);
-
-                // Find the complementary color
-                Color complementaryColor = GetComplementaryColor(_color);
-                mat.SetColor("_TintG", complementaryColor);
+                mat.SetColor("_TintR", _colors.r);
+                mat.SetColor("_TintG", _colors.g);
+                mat.SetColor("_TintB", _colors.b);
             }
         }
-    }
-
-    // Function to calculate complementary color
-    private Color GetComplementaryColor(Color color)
-    {
-        // Convert to HSV to manipulate the hue
-        Color.RGBToHSV(color, out float h, out float s, out float v);
-
-        // Add 180 degrees to the hue to find the complementary color
-        h += 0.5f; // 180 degrees is 0.5 in the 0-1 range for HSV
-
-        // Ensure hue is wrapped within the 0-1 range
-        if (h > 1f)
-        {
-            h -= 1f;
-        }
-
-        // Convert back to RGB
-        return Color.HSVToRGB(h, s, v);
     }
 }
