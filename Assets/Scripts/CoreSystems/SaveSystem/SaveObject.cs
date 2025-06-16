@@ -7,11 +7,11 @@ public class SaveObject
 {
     public string name;
     public List<CosmeticEntry> playerCosmetics = new List<CosmeticEntry>();
+    public CCUIVals ccVals = new CCUIVals();
     public List<RegionData> regionData = new List<RegionData>();
     public VolumeData volumeData = new VolumeData();
     public List<ObjectiveGroupItem> objectives = new List<ObjectiveGroupItem>();
     public PlayerBackpack backpack = new PlayerBackpack();
-    public CCUIVals ccVals = new CCUIVals();
 }
 
 [System.Serializable]

@@ -20,6 +20,11 @@ public class CCIndexManager : MonoBehaviour
         return _slider.value;
     }
 
+    public void SetSliderValue(float val)
+    {
+        _slider.value = val;
+    }
+
     // Returns the index of the active toggle
     public int GetToggleGroupValue()
     {
@@ -35,10 +40,19 @@ public class CCIndexManager : MonoBehaviour
         return -1;
     }
 
-    public Vector2 GetOutfitToggleGroupValue()
+    public void SetToggleGroupValue(int val)
     {
-        //int numCostumes = transform.childCount;
-        //for (int i = 0; i < transform.childCount; i++)
+        for (int i = 0; i < _toggleGroup.gameObject.transform.childCount; i++)
+        {
+            Toggle curChild = _toggleGroup.gameObject.transform.GetChild(i).gameObject.GetComponent<Toggle>();
+
+            curChild.isOn = false;
+            
+            if (i == val)
+            {
+                curChild.isOn = true;
+            }
+        }
     }
 
     public string GetValType()

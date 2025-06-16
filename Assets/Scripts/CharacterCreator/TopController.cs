@@ -28,21 +28,6 @@ public class TopController : MonoBehaviour
 
         _tg.onValueChanged.AddListener(OnToggleValueChanged);
 
-        if (!_shirt)
-        {
-            Debug.Log("Failed to get shirt!");
-        }
-
-        if (_topType == TopType.ShirtAndJacket && !_jacket)
-        {
-            Debug.Log("Failed to get jacket");
-        }
-
-        if (_topType == TopType.ShirtAndLabCoat && !_coat)
-        {
-            Debug.Log("Failed to get coat!");
-        }
-
         _shirtColors.SetAlpha(1.0f);
         _jacketColors.SetAlpha(1.0f);
         _coatColors.SetAlpha(1.0f);

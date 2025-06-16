@@ -100,6 +100,7 @@ public class SaveSystem : MonoBehaviour
             LoadRegions();
             LoadObjectives();
             LoadPlayerBackpack();
+            LoadCCValues();
 
             // Alert the player
             Debug.Log("Loaded state");
@@ -606,6 +607,61 @@ public class SaveSystem : MonoBehaviour
 
                 case "LowerBody":
                     _currentState.ccVals.lowerBody = ccMgr.GetToggleGroupValue();
+                    break;
+
+                default:
+                    Debug.LogWarning("Invalid case in SaveCCValues");
+                    break;
+            }
+        }
+    }
+
+    public void LoadCCValues()
+    {
+        // Get all of the CCIndexManagers
+        CCIndexManager[] ccim = Object.FindObjectsOfType<CCIndexManager>();
+
+        // Early return if no entries
+        if (ccim.Length == 0)
+        {
+            return;
+        }
+
+        // Save each element of the class
+        foreach (CCIndexManager ccMgr in ccim)
+        {
+            switch (ccMgr.GetValType())
+            {
+                case "HairSlider":
+                    ccMgr.SetSliderValue(_currentState.ccVals.hairIndex);
+                    break;
+
+                case "HairPrimary":
+                    ccMgr.SetToggleGroupValue(_currentState.ccVals.hairPrimary);
+                    break;
+
+                case "HairSecondary":
+                    ccMgr.SetToggleGroupValue(_currentState.ccVals.hairSecondary);
+                    break;
+
+                case "EyeColor":
+                    ccMgr.SetToggleGroupValue(_currentState.ccVals.eyes);
+                    break;
+
+                case "SkinColor":
+                    ccMgr.SetToggleGroupValue(_currentState.ccVals.skin);
+                    break;
+
+                case "GlassesColor":
+                    ccMgr.SetToggleGroupValue(_currentState.ccVals.glasses);
+                    break;
+
+                case "UpperBody":
+                    ccMgr.SetToggleGroupValue(_currentState.ccVals.upperBody);
+                    break;
+
+                case "LowerBody":
+                    ccMgr.SetToggleGroupValue(_currentState.ccVals.lowerBody);
                     break;
 
                 default:
