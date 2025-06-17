@@ -164,6 +164,11 @@ public class TopController : MonoBehaviour
     {
         return _topType;
     }
+
+    public void SetHairAccessoryColor(Color color)
+    {
+        _hairAccessoryColor = color;
+    }
 }
 
 public enum TopType
