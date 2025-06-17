@@ -495,6 +495,12 @@ public class SaveSystem : MonoBehaviour
                 data.tintG = mat.GetColor("_TintG");
                 data.tintB = mat.GetColor("_TintB");
 
+                // Handle skin
+                if (mat.name.Contains("m_Ari_Skin"))
+                {
+                    data.tintB = mat.GetColor("_SSS");
+                }
+
                 mats.Add(data);
             }
 

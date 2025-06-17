@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public class MaterialColorExporter : EditorWindow
 {
-    [MenuItem("Tools/Export Material Colors as JSON")]
+    [MenuItem("Tools/ClothMaterials/Export Top Material Colors as JSON")]
     public static void ShowWindow()
     {
         GetWindow<MaterialColorExporter>("Material Color Exporter");
@@ -41,7 +41,7 @@ public class MaterialColorExporter : EditorWindow
                 GameObject obj = selectedObjects[i + j];
                 ObjectData objData = new ObjectData();
                 objData.name = obj.name;
-                objData.materials = new List<MaterialData>();
+                objData.materials = new List<ClothMaterialData>();
 
                 Renderer renderer = obj.GetComponent<Renderer>();
                 if (renderer != null)
@@ -53,7 +53,7 @@ public class MaterialColorExporter : EditorWindow
                         if (mat == null) continue;
                         if (j != 0 && mat.name.Contains("Shirt")) continue;
 
-                        MaterialData matData = new MaterialData();
+                        ClothMaterialData matData = new ClothMaterialData();
                         matData.name = mat.name;
 
                         if (mat.HasProperty("_TintR"))
@@ -111,11 +111,11 @@ public class MaterialColorExporter : EditorWindow
     public class ObjectData
     {
         public string name;
-        public List<MaterialData> materials;
+        public List<ClothMaterialData> materials;
     }
 
     [System.Serializable]
-    public class MaterialData
+    public class ClothMaterialData
     {
         public string name;
         public ColorData TintR;

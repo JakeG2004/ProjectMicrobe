@@ -8,7 +8,7 @@ public class MaterialColorImporter : EditorWindow
 {
     private List<TopController> _topControllers = new();
 
-    [MenuItem("Tools/Import Material Colors JSON")]
+    [MenuItem("Tools/ClothMaterials/Import Material Colors JSON to Buttons")]
     public static void ShowWindow()
     {
         GetWindow<MaterialColorImporter>("Material Color Importer");
