@@ -33,6 +33,7 @@ public class EyeColorController : MonoBehaviour
         buttonColors.pressedColor = _colors.g;
         buttonColors.selectedColor = _colors.r;
 
+        // Handle base color being black, fall back to secondary color
         if (_colors.r == Color.black)
         {
             buttonColors.highlightedColor = _colors.g + new Color(0.1f, 0.1f, 0.1f, 1f);
