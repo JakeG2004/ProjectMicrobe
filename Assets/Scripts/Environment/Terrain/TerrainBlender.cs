@@ -14,14 +14,14 @@ public class TerrainBlender : MonoBehaviour
         // Warn if no terrain
         if (_terrain == null)
         {
-            Debug.LogWarning("No terrain!");
+            // Debug.LogWarning("No terrain!");
             return;
         }
 
         _terrainMat = _terrain.materialTemplate;
         if (_terrainMat == null)
         {
-            Debug.LogError("No terrin material found!");
+            // Debug.LogError("No terrin material found!");
             return;
         }
 

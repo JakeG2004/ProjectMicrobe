@@ -35,7 +35,7 @@ public class SaveSystem : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("Save Path: " + _savePath);
+        // Debug.Log("Save Path: " + _savePath);
         _currentState = new SaveObject();
     }
 
@@ -115,12 +115,11 @@ public class SaveSystem : MonoBehaviour
     private void CreateNewSave()
     {
         _currentState = new SaveObject();
-        Debug.Log(_currentState);
         
         // Write it to a file and announce it
         string saveJson = JsonUtility.ToJson(_currentState);
         File.WriteAllText(_savePath, saveJson);
-        Debug.Log("Saved State");
+        Debug.Log("Created new save");
         LoadState();
     }
 
@@ -320,7 +319,6 @@ public class SaveSystem : MonoBehaviour
         // Check for empty, early return
         if (sims.Length == 0)
         {
-            Debug.Log("No sims!");
             return;
         }
 
@@ -509,7 +507,6 @@ public class SaveSystem : MonoBehaviour
 
         if (!player)
         {
-            Debug.Log("Failed to find player.");
             return null;
         }
 
@@ -571,7 +568,6 @@ public class SaveSystem : MonoBehaviour
             });
         }
 
-        Debug.Log("Got Cosmetics");
         return cosmetics;
     }
 
@@ -582,7 +578,6 @@ public class SaveSystem : MonoBehaviour
 
         if (!player)
         {
-            Debug.Log("Failed to find player.");
             return;
         }
 

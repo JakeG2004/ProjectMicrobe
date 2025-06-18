@@ -30,7 +30,7 @@ public class LevelLoader : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log($"Level {scene.name} has been loaded!");
+        // Debug.Log($"Level {scene.name} has been loaded!");
         
         // Short delay to prevent race conditions
         StartCoroutine(DelayedLoadState());

@@ -209,10 +209,10 @@ public class MicrobePopSim : MonoBehaviour
     private void InitMicrobes()
     {
         // Give warning if no microbe SOs
-        if (_microbeSOs.Count == 0)
+        /*if (_microbeSOs.Count == 0)
         {
             Debug.LogWarning("No Microbe SOs!");
-        }
+        }*/
 
         // Convert the microbeSOs into a new Microbe and add it to the list
         foreach (MicrobeSO mso in _microbeSOs)
