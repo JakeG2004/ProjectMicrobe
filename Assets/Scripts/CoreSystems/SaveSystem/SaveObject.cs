@@ -6,6 +6,7 @@ using UnityEngine;
 public class SaveObject
 {
     public string name;
+    public List<string> unlockedCosmetics = new List<string>();
     public List<CosmeticEntry> playerCosmetics = new List<CosmeticEntry>();
     public CCUIVals ccVals = new CCUIVals();
     public List<RegionData> regionData = new List<RegionData>();
@@ -53,9 +54,9 @@ public class StringFloatPair
 [System.Serializable]
 public class VolumeData
 {
-    public float masterVolume;
-    public float musicVolume;
-    public float sfxVolume;
+    public float masterVolume = 0;
+    public float musicVolume = 0;
+    public float sfxVolume = 0;
 }
 
 [System.Serializable]
@@ -77,12 +78,35 @@ public class PlayerBackpack
 [System.Serializable]
 public class CCUIVals
 {
-    public float hairIndex;
-    public int hairPrimary;
-    public int hairSecondary;
-    public int eyes;
-    public int skin;
-    public int glasses;
-    public int upperBody;
-    public int lowerBody;
+    public float hairIndex = 8;
+    public int hairPrimary = 3;
+    public int hairSecondary = 12;
+    public int eyes = 1;
+    public int skin = 1;
+    public int glasses = 10;
+    public int upperBody = 2;
+    public int lowerBody = 14;
+    public int hat = 0;
+
+    /*
+    BASIC ARI LOOK:
+        "hairIndex": 0,
+        "hairPrimary": 3,
+        "hairSecondary": 12,
+        "eyes": 1,
+        "skin": 1,
+        "glasses": 10,
+        "upperBody": 2,
+        "lowerBody": 14
+
+    ANOTHER SENSIBLE DEFAULT:
+        "hairIndex": 0
+        "hairPrimary": 16
+        "hairSecondary": 2
+        "eyes": 0
+        "skin": 2
+        "glasses": 0
+        "upperBody": 7
+        "lowerBody": 5
+    */
 }

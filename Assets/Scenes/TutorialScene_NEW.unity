@@ -173180,8 +173180,9 @@ GameObject:
   - component: {fileID: 1178241515}
   - component: {fileID: 1178241516}
   - component: {fileID: 1178241517}
+  - component: {fileID: 1178241518}
   m_Layer: 0
-  m_Name: Circle
+  m_Name: Coconut
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -173356,9 +173357,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1178241518}
+        m_TargetAssemblyTypeName: CosmeticUnlocker, Assembly-CSharp
+        m_MethodName: UnlockCosmetic
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Coconut
+          m_BoolArgument: 1
+        m_CallState: 2
   _onExit:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1178241518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1178241511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68c659c6f7db3f05d95736455035b974, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1179840034
 GameObject:
   m_ObjectHideFlags: 0
@@ -265941,6 +265966,7 @@ GameObject:
   - component: {fileID: 1810086698}
   - component: {fileID: 1810086697}
   - component: {fileID: 1810086699}
+  - component: {fileID: 1810086700}
   m_Layer: 5
   m_Name: Game
   m_TagString: Untagged
@@ -266012,6 +266038,7 @@ MonoBehaviour:
   _scoreText: {fileID: 152777768}
   _timeText: {fileID: 1486328508}
   _totalTime: 30
+  _goalScore: 75
   _OnTimerEndEvent:
     m_PersistentCalls:
       m_Calls:
@@ -266039,6 +266066,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+  _OnGoalReachedEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1810086700}
+        m_TargetAssemblyTypeName: CosmeticUnlocker, Assembly-CSharp
+        m_MethodName: UnlockCosmetic
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Bug
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1810086699
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -266052,6 +266094,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _event: {fileID: 11400000, guid: d24733b723e4d76458ad9d7a83602beb, type: 2}
+--- !u!114 &1810086700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1810086695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68c659c6f7db3f05d95736455035b974, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1810223632
 GameObject:
   m_ObjectHideFlags: 0
@@ -300232,10 +300286,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: 'Welcome to Buggy Bank! Capture as many bugs as you can in the time frame!
+    If you can get 75, you get a reward!
 
 
-    Reward:
-    Bug Helmet'
+    Reward: Bug Helmet'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f6ca9ce9d92b0064c8368a2f0dc8963a, type: 2}
   m_sharedMaterial: {fileID: 7917372319335216275, guid: f6ca9ce9d92b0064c8368a2f0dc8963a, type: 2}

@@ -15,9 +15,11 @@ public class BugManager : MonoBehaviour
     [SerializeField] private TMP_Text _scoreText;
     [SerializeField] private TMP_Text _timeText;
     [SerializeField] private int _totalTime = 30;
+    [SerializeField] private int _goalScore = 75;
 
     [Space(10)]
     [SerializeField] private UnityEvent _OnTimerEndEvent;
+    [SerializeField] private UnityEvent _OnGoalReachedEvent;
     private int _curScore = 0;
 
     void OnEnable()
@@ -56,5 +58,10 @@ public class BugManager : MonoBehaviour
 
         _timeText.text = "Timer: 0";
         _OnTimerEndEvent.Invoke();
+
+        if (_curScore >= _goalScore)
+        {
+            _OnGoalReachedEvent.Invoke();
+        }
     }
 }

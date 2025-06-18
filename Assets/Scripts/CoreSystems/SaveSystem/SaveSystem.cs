@@ -101,6 +101,7 @@ public class SaveSystem : MonoBehaviour
             LoadObjectives();
             LoadPlayerBackpack();
             LoadCCValues();
+            SetCCUnlockableStates();
 
             // Alert the player
             Debug.Log("Loaded state");
@@ -108,6 +109,19 @@ public class SaveSystem : MonoBehaviour
         }
 
         Debug.Log("Failed to find file");
+        CreateNewSave();
+    }
+
+    private void CreateNewSave()
+    {
+        _currentState = new SaveObject();
+        Debug.Log(_currentState);
+        
+        // Write it to a file and announce it
+        string saveJson = JsonUtility.ToJson(_currentState);
+        File.WriteAllText(_savePath, saveJson);
+        Debug.Log("Saved State");
+        LoadState();
     }
 
 
@@ -140,9 +154,52 @@ public class SaveSystem : MonoBehaviour
     }
 
 
+    // ================================
+    // ===== UNLOCKABLE COSMETICS =====
+    // ================================
+
+
+    public void UnlockCosmetic(string cosmeticName)
+    {
+        // Prevent duplicates
+        if (_currentState.unlockedCosmetics.Contains(cosmeticName))
+        {
+            return;
+        }
+
+        // Add the new entry to the list
+        _currentState.unlockedCosmetics.Add(cosmeticName);
+    }
+
+    public void SetCCUnlockableStates()
+    {
+        ToggleCosmeticLocker[] tcls = Object.FindObjectsOfType<ToggleCosmeticLocker>();
+
+        // Early return if no lockers found
+        if (tcls.Length == 0)
+        {
+            return;
+        }
+
+        foreach (string cosmetic in _currentState.unlockedCosmetics)
+        {
+            foreach (ToggleCosmeticLocker tcl in tcls)
+            {
+                string cosmeticName = tcl.GetCosmeticName();
+
+                if (cosmeticName == cosmetic)
+                {
+                    tcl.SetLockState(false);
+                }
+            }
+        }
+    }
+
+
     // =====================================
     // ===== PLAYER BACKPACK FUNCTIONS =====
     // =====================================
+
 
     public void SavePlayerBackpack()
     {
@@ -182,6 +239,7 @@ public class SaveSystem : MonoBehaviour
             cm.AddMicrobe(microbe);
         }
     }
+
 
     // ===============================
     // ===== OBJECTIVE FUNCTIONS =====
@@ -621,6 +679,10 @@ public class SaveSystem : MonoBehaviour
                     _currentState.ccVals.lowerBody = ccMgr.GetToggleGroupValue();
                     break;
 
+                case "Hat":
+                    _currentState.ccVals.hat = ccMgr.GetToggleGroupValue();
+                    break;
+
                 default:
                     Debug.LogWarning("Invalid case in SaveCCValues");
                     break;
@@ -676,10 +738,21 @@ public class SaveSystem : MonoBehaviour
                     ccMgr.SetToggleGroupValue(_currentState.ccVals.lowerBody);
                     break;
 
+                case "Hat":
+                    ccMgr.SetToggleGroupValue(_currentState.ccVals.hat);
+                    break;
+
                 default:
                     Debug.LogWarning("Invalid case in SaveCCValues");
                     break;
             }
         }
+
+        // Manage hair
+        /*HatController[] hcs = Object.FindObjectsOfType<HatController>();
+        foreach (HatController hc in hcs)
+        {
+            hc.SyncInitialState();
+        }*/
     }
 }
