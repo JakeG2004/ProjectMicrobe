@@ -23,7 +23,7 @@ public class PylonStatusEventsChecker : MonoBehaviour
 
     // Vars for calculating health
     private float _envHealth = 0.0f;
-    private const int HEALTH_SAMPLE_SIZE = 5;
+    private const int HEALTH_SAMPLE_SIZE = 10;
     private float[] _healthHist = new float[HEALTH_SAMPLE_SIZE];
     private int _curHealthIdx = 0;
 
@@ -176,7 +176,7 @@ public class PylonStatusEventsChecker : MonoBehaviour
     public void UpdateEnvironmentHealth()
     {
         CalculateEnvironmentalHealth();
-        _pr.SetEnvHealth(_envHealth);
+        _pr.gameObject.GetComponent<RegionPlantGrower>().SetEnvHealth(_envHealth);
     }
 
     public float[] GetHealthHist()
@@ -188,7 +188,7 @@ public class PylonStatusEventsChecker : MonoBehaviour
     {
         _healthHist = newHist;
         CalculateEnvironmentalHealth();
-        _pr.InstantSetHealth(_envHealth);
+        _pr.gameObject.GetComponent<RegionPlantGrower>().InstantSetHealth(_envHealth);
 
         if (_envHealth >= 1.0f)
         {

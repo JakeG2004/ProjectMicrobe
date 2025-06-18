@@ -10,17 +10,39 @@ using UnityEngine;
 public class NotificationSender : MonoBehaviour
 {
     private NotificationPanelManager _npm;
+    private float _preventForSeconds = 1.0f;
+    private bool _canShowNotifs = false;
 
     void Start()
     {
         _npm = NotificationPanelManager.Instance;
+        StartCoroutine(IPreventStartNotifs());
     }
+
+    private IEnumerator IPreventStartNotifs()
+    {
+        float elapsedTime = 0.0f;
+
+        while (elapsedTime <= _preventForSeconds)
+        {
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        _canShowNotifs = true;
+    }
+
     public void SendGeneralNotification(string notifBody)
     {
+        if (!_canShowNotifs)
+        {
+            return;
+        }
+
         // Early return when already animating
         if (!_npm || _npm.IsAnimating())
         {
-            return;
+            _npm = NotificationPanelManager.Instance;
         }
 
         // Do the animation

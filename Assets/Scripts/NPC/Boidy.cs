@@ -23,7 +23,7 @@ public class Boidy : MonoBehaviour {
     [SerializeField] int boidCount = 10;            // Number of boids to spawn
     [SerializeField] float spawnRadius = 15f;       // Radius around the spawner where boids try to stay
     [SerializeField] private bool _spawnOnStart = true;
-    readonly float spawnVerticalStretch = 0.3f;     // Flatten spawn area into a spheroid (height / width)
+    [SerializeField] float spawnVerticalStretch = .3f;     // Flatten spawn area into a spheroid (height / width)
     readonly float turnSpeed = 360f;                // Rotation speed (degrees per second)
     readonly float neighborDistanceGoal = 3f;		// Ideal distance between neighbors
     readonly float obstacleAvoidanceRadius = 8f;    // Range at which boids start avoiding obstacles
@@ -35,7 +35,7 @@ public class Boidy : MonoBehaviour {
     Transform[] neighbors;                          // The nearest neighbor of each boid
     float[] neighborDistances;                      // Distance between each boid and it's neighbor
     float[] moveSpeeds;                             // Movement speed of each boid
-
+    private float _numBoids;
     void Start() {
         boids = new Transform[boidCount];
         neighbors = new Transform[boidCount];
@@ -69,6 +69,7 @@ public class Boidy : MonoBehaviour {
             moveSpeeds[i] = Random.Range(4f, 10f);
             RandomizeMaterialValues(boid);
 
+            _numBoids++;
             boids[i] = boid.transform;
 
             yield return new WaitForSeconds(5.0f);
@@ -81,20 +82,22 @@ public class Boidy : MonoBehaviour {
     }
 
     void SpawnBoids() {
-        for (int i = 0; i < boidCount; i++) {
+        for (int i = 0; i < boidCount; i++)
+        {
             Vector3 spawnPosition = Random.insideUnitSphere * spawnRadius;
             spawnPosition.y *= spawnVerticalStretch; // Apply vertical squashing
             spawnPosition += transform.position;
 
             GameObject boid = Instantiate(boidPrefab, spawnPosition, Quaternion.identity);
 
-			// Apply random scale, speed, and material variance
-			float scale = Random.Range(0.5f, 1.5f);
+            // Apply random scale, speed, and material variance
+            float scale = Random.Range(0.5f, 1.5f);
             boid.transform.localScale = Vector3.one * scale;
             moveSpeeds[i] = Random.Range(4f, 10f);
-			RandomizeMaterialValues(boid);
+            RandomizeMaterialValues(boid);
 
-			boids[i] = boid.transform;
+            boids[i] = boid.transform;
+            _numBoids++;
         }
     }
 
@@ -117,11 +120,11 @@ public class Boidy : MonoBehaviour {
         timer += Time.deltaTime;
         if (timer < neighborCheckTime) return;
 
-        for (int i = 0; i < boidCount; i++) {
+        for (int i = 0; i < _numBoids; i++) {
             Transform nearestBoid = null;
             float nearestDistance = float.MaxValue;
 
-            for (int j = 0; j < boidCount; j++) {
+            for (int j = 0; j < _numBoids; j++) {
                 if (i == j) continue;
 
                 float distance = Vector3.SqrMagnitude(boids[j].position - boids[i].position);
@@ -139,7 +142,7 @@ public class Boidy : MonoBehaviour {
         float turn = turnSpeed * Time.deltaTime;
         randomOffset = OscillatingNoise(0.2f);
 
-        for (int i = 0; i < boidCount; i++) {
+        for (int i = 0; i < _numBoids; i++) {
             Transform boid = boids[i];
             
             // 1. Shared random movment
@@ -185,7 +188,7 @@ public class Boidy : MonoBehaviour {
         return new Vector3(Mathf.Sin(t), Mathf.Cos(t * 2.718f), Mathf.Sin(t * 1.618f));
     }
 
-    /*
+    
     void OnDrawGizmos() {
         Matrix4x4 originalMatrix = Gizmos.matrix;
 
@@ -203,5 +206,5 @@ public class Boidy : MonoBehaviour {
             Gizmos.DrawWireSphere(obstacle.position, obstacleAvoidanceRadius);
         }
     }
-    */
+    
 }

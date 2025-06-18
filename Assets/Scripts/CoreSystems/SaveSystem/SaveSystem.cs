@@ -722,6 +722,7 @@ public class SaveSystem : MonoBehaviour
                         break;
                     }
 
+                    // No hat selected, continue as normal
                     else
                     {
                         ccMgr.SetSliderValueWithNotify(_currentState.ccVals.hairIndex);

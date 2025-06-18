@@ -11030,11 +11030,7 @@ MonoBehaviour:
   _getPylonEvent:
     m_PersistentCalls:
       m_Calls: []
-  _plantParent: {fileID: 0}
   _pylonPrefab: {fileID: 5981207602307649226, guid: 80458b45d0cf3198f879a1f2dd73a7aa, type: 3}
-  _reachedFullHealthEvent:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!135 &53831660
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -89442,6 +89438,9 @@ GameObject:
   - component: {fileID: 581460874}
   - component: {fileID: 581460875}
   - component: {fileID: 581460876}
+  - component: {fileID: 581460878}
+  - component: {fileID: 581460877}
+  - component: {fileID: 581460879}
   m_Layer: 8
   m_Name: BeachRegion
   m_TagString: PylonRegion
@@ -89502,11 +89501,7 @@ MonoBehaviour:
   _getPylonEvent:
     m_PersistentCalls:
       m_Calls: []
-  _plantParent: {fileID: 1330277912}
   _pylonPrefab: {fileID: 5981207602307649226, guid: 80458b45d0cf3198f879a1f2dd73a7aa, type: 3}
-  _reachedFullHealthEvent:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &581460875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89531,17 +89526,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 581460871}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 530a0516310c3eb84bce62eb071a2f16, type: 3}
+  m_Script: {fileID: 11500000, guid: 4d5afc4682856025b95fe136d7d9f06c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _event: {fileID: 11400000, guid: 116c09cbbfa3e3a5ea2ac0dcd815e8e2, type: 2}
-  _response:
+  _onStartGrowth:
+    m_PersistentCalls:
+      m_Calls: []
+  _onGrowthComplete:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 581460874}
-        m_TargetAssemblyTypeName: PylonRegion, Assembly-CSharp
-        m_MethodName: SetUpdateTime
-        m_Mode: 0
+      - m_Target: {fileID: 581460878}
+        m_TargetAssemblyTypeName: DialogueSwitcher, Assembly-CSharp
+        m_MethodName: SetDialogue
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -89550,6 +89547,90 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 581460879}
+        m_TargetAssemblyTypeName: NotificationSender, Assembly-CSharp
+        m_MethodName: SendGeneralNotification
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Coconut Trees Fully Grown!
+          m_BoolArgument: 0
+        m_CallState: 2
+  _growthTime: 120
+  _plantParent: {fileID: 1330277912}
+--- !u!114 &581460877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 581460871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b86b640fa91848678b478486c1815f24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _event: {fileID: 11400000, guid: 6e4e9e374a68781ce8088393843a5007, type: 2}
+--- !u!114 &581460878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 581460871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b830b3cba97731db7a2143b97ab03e6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dialogues:
+  - sentences:
+    - img: {fileID: 21300000, guid: 9a2647da9b471dd648b07473bb552004, type: 3}
+      name: Coconut Farmer
+      sentence: Awesome! Eveything is grown! Let's get a coconut!
+    onDialogueComplete:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1757547293}
+          m_TargetAssemblyTypeName: NPCMoveController, Assembly-CSharp
+          m_MethodName: SetMoveStatus
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+        - m_Target: {fileID: 581460877}
+          m_TargetAssemblyTypeName: StringGameEventTrigger, Assembly-CSharp
+          m_MethodName: TriggerEvent
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: CoconutGame
+            m_BoolArgument: 0
+          m_CallState: 2
+  _dialogueTrigger: {fileID: 1094904571}
+--- !u!114 &581460879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 581460871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d052d24a7f58557abe75b6ab5f7aac3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &582179967
 GameObject:
   m_ObjectHideFlags: 0
@@ -120026,8 +120107,9 @@ GameObject:
   - component: {fileID: 815460145}
   - component: {fileID: 815460147}
   - component: {fileID: 815460146}
-  - component: {fileID: 815460148}
   - component: {fileID: 815460149}
+  - component: {fileID: 815460150}
+  - component: {fileID: 815460151}
   m_Layer: 8
   m_Name: CaveRegion
   m_TagString: PylonRegion
@@ -120047,7 +120129,8 @@ Transform:
   m_LocalPosition: {x: 816.97, y: 667.258, z: 257.04}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2078393651}
   m_Father: {fileID: 1624068553}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &815460146
@@ -120067,11 +120150,7 @@ MonoBehaviour:
   _getPylonEvent:
     m_PersistentCalls:
       m_Calls: []
-  _plantParent: {fileID: 1374137797}
   _pylonPrefab: {fileID: 5981207602307649226, guid: 80458b45d0cf3198f879a1f2dd73a7aa, type: 3}
-  _reachedFullHealthEvent:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!135 &815460147
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -120093,34 +120172,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 11.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &815460148
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 815460144}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 530a0516310c3eb84bce62eb071a2f16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _event: {fileID: 11400000, guid: 116c09cbbfa3e3a5ea2ac0dcd815e8e2, type: 2}
-  _response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 815460146}
-        m_TargetAssemblyTypeName: PylonRegion, Assembly-CSharp
-        m_MethodName: SetUpdateTime
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &815460149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120136,6 +120187,107 @@ MonoBehaviour:
   _terrain: {fileID: 0}
   _blendFactor: 0
   _detailDensity: 0.1
+--- !u!114 &815460150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 815460144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d5afc4682856025b95fe136d7d9f06c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _onStartGrowth:
+    m_PersistentCalls:
+      m_Calls: []
+  _onGrowthComplete:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 815460151}
+        m_TargetAssemblyTypeName: DialogueSwitcher, Assembly-CSharp
+        m_MethodName: SetDialogue
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2078393652}
+        m_TargetAssemblyTypeName: Boidy, Assembly-CSharp
+        m_MethodName: SlowSpawnBoids
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _growthTime: 120
+  _plantParent: {fileID: 1374137797}
+--- !u!114 &815460151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 815460144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b830b3cba97731db7a2143b97ab03e6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dialogues:
+  - sentences:
+    - img: {fileID: 0}
+      name: Bug Collector
+      sentence: Awesome! Want to help me catch some bugs?
+    onDialogueComplete:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 510632893}
+          m_TargetAssemblyTypeName: NPCMoveController, Assembly-CSharp
+          m_MethodName: SetMoveStatus
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+        - m_Target: {fileID: 145871181}
+          m_TargetAssemblyTypeName: ObjectiveBooleanSequence, Assembly-CSharp
+          m_MethodName: SetTrue
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: GameActivated
+            m_BoolArgument: 1
+          m_CallState: 2
+        - m_Target: {fileID: 1049903087}
+          m_TargetAssemblyTypeName: StringGameEventTrigger, Assembly-CSharp
+          m_MethodName: TriggerEvent
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: BugGame
+            m_BoolArgument: 1
+          m_CallState: 2
+  _dialogueTrigger: {fileID: 920974964}
 --- !u!1 &815478352
 GameObject:
   m_ObjectHideFlags: 0
@@ -138608,6 +138760,7 @@ MonoBehaviour:
   boidCount: 10
   spawnRadius: 30
   _spawnOnStart: 1
+  spawnVerticalStretch: 0.3
 --- !u!4 &910931156
 Transform:
   m_ObjectHideFlags: 0
@@ -157434,18 +157587,6 @@ MonoBehaviour:
   _onActivate:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 145871181}
-        m_TargetAssemblyTypeName: ObjectiveBooleanSequence, Assembly-CSharp
-        m_MethodName: SetTrue
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Activated
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1049903086}
         m_TargetAssemblyTypeName: DialogueSwitcher, Assembly-CSharp
         m_MethodName: SetDialogue
@@ -157460,14 +157601,26 @@ MonoBehaviour:
         m_CallState: 2
   _onComplete:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2123872488}
+        m_TargetAssemblyTypeName: ObjectiveGroup, Assembly-CSharp
+        m_MethodName: SetGroupComplete
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   _onFail:
     m_PersistentCalls:
       m_Calls: []
   _onLoadPrereqs:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1049903086}
+      - m_Target: {fileID: 815460151}
         m_TargetAssemblyTypeName: DialogueSwitcher, Assembly-CSharp
         m_MethodName: SetDialogue
         m_Mode: 3
@@ -157495,7 +157648,8 @@ MonoBehaviour:
   - sentences:
     - img: {fileID: 0}
       name: Bug Collector
-      sentence: Awesome! Want to help me catch some bugs?
+      sentence: Sweet! Wait for everything to grow, then come back! We can catch
+        some bugs!
     onDialogueComplete:
       m_PersistentCalls:
         m_Calls:
@@ -157511,28 +157665,16 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 145871181}
-          m_TargetAssemblyTypeName: ObjectiveBooleanSequence, Assembly-CSharp
-          m_MethodName: SetTrue
-          m_Mode: 5
+        - m_Target: {fileID: 1049903085}
+          m_TargetAssemblyTypeName: Objective, Assembly-CSharp
+          m_MethodName: RaiseObjectiveComplete
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: GameActivated
-            m_BoolArgument: 1
-          m_CallState: 2
-        - m_Target: {fileID: 1049903087}
-          m_TargetAssemblyTypeName: StringGameEventTrigger, Assembly-CSharp
-          m_MethodName: TriggerEvent
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: BugGame
+            m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
   _dialogueTrigger: {fileID: 920974964}
@@ -174701,6 +174843,10 @@ MonoBehaviour:
       name: Scientist
       sentence: Perfect! You did great! Now talk to the Client and we can wrap this
         one up!
+    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
+      name: Scientist
+      sentence: We should see the greenery start to grow now that everything is stable
+        and safe!
     onDialogueComplete:
       m_PersistentCalls:
         m_Calls:
@@ -313000,6 +313146,57 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2077927695}
   m_Mesh: {fileID: -389719607123282579, guid: 17e96e8415522674f982f26eca03875f, type: 3}
+--- !u!1 &2078393650
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2078393651}
+  - component: {fileID: 2078393652}
+  m_Layer: 8
+  m_Name: BoidSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2078393651
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2078393650}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7.34, y: 13.51, z: 1.98}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 815460145}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2078393652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2078393650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1caab5d3c1da8c4da6f2bd2a21325c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boidPrefab: {fileID: 2281511144010397274, guid: 96c82e706abb35589bb214708371ff80, type: 3}
+  obstacles:
+  - {fileID: 1513276143}
+  boidCount: 20
+  spawnRadius: 13.9
+  _spawnOnStart: 0
+  spawnVerticalStretch: 1.18
 --- !u!1 &2078605398
 GameObject:
   m_ObjectHideFlags: 0
@@ -323116,18 +323313,6 @@ MonoBehaviour:
   _onActivate:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 162238665}
-        m_TargetAssemblyTypeName: ObjectiveBooleanSequence, Assembly-CSharp
-        m_MethodName: SetTrue
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Activated
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 2122540022}
         m_TargetAssemblyTypeName: DialogueSwitcher, Assembly-CSharp
         m_MethodName: SetDialogue
@@ -323161,7 +323346,7 @@ MonoBehaviour:
   _onLoadPrereqs:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2122540022}
+      - m_Target: {fileID: 581460878}
         m_TargetAssemblyTypeName: DialogueSwitcher, Assembly-CSharp
         m_MethodName: SetDialogue
         m_Mode: 3
@@ -323192,23 +323377,10 @@ MonoBehaviour:
       sentence: Thank you so much for doing that!
     - img: {fileID: 21300000, guid: 9a2647da9b471dd648b07473bb552004, type: 3}
       name: Coconut Farmer
-      sentence: Since you helped me to grow my trees, I'd like to thank you by giving
-        you a coconut!
+      sentence: Come back once everything is grown and I can get you a coconut!
     onDialogueComplete:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 2122540021}
-          m_TargetAssemblyTypeName: Objective, Assembly-CSharp
-          m_MethodName: RaiseObjectiveComplete
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
         - m_Target: {fileID: 1757547293}
           m_TargetAssemblyTypeName: NPCMoveController, Assembly-CSharp
           m_MethodName: SetMoveStatus
@@ -323221,16 +323393,16 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 2122540024}
-          m_TargetAssemblyTypeName: StringGameEventTrigger, Assembly-CSharp
-          m_MethodName: TriggerEvent
-          m_Mode: 5
+        - m_Target: {fileID: 2122540021}
+          m_TargetAssemblyTypeName: Objective, Assembly-CSharp
+          m_MethodName: RaiseObjectiveComplete
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: CoconutGame
+            m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
   _dialogueTrigger: {fileID: 1094904571}

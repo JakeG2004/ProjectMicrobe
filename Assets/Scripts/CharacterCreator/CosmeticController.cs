@@ -1,3 +1,8 @@
+// CosmeticController.cs
+// A generalized script for controlling any cosmetic with a slider
+// Author:  Jake Gendreau
+// Date:    6/18/25
+
 using UnityEngine;
 using UnityEngine.UI;
 
