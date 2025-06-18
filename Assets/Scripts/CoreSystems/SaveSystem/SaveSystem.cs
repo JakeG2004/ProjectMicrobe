@@ -707,8 +707,26 @@ public class SaveSystem : MonoBehaviour
             switch (ccMgr.GetValType())
             {
                 case "HairSlider":
-                    ccMgr.SetSliderValue(_currentState.ccVals.hairIndex);
-                    break;
+                    // If a hat is selected
+                    if (_currentState.ccVals.hat != 0)
+                    {
+                        // Sets the slider value without invoking the callback method
+                        ccMgr.SetSliderValueNoNotify(_currentState.ccVals.hairIndex);
+
+                        // Call its onload event
+                        ccMgr.OnLoad(_currentState.ccVals.hairIndex);
+
+                        // Get the cosmetic controller and set its value
+                        CosmeticController cc = ccMgr.gameObject.GetComponent<CosmeticController>();
+                        cc.SetVal(_currentState.ccVals.hairIndex);
+                        break;
+                    }
+
+                    else
+                    {
+                        ccMgr.SetSliderValueWithNotify(_currentState.ccVals.hairIndex);
+                        break;
+                    }
 
                 case "HairPrimary":
                     ccMgr.SetToggleGroupValue(_currentState.ccVals.hairPrimary);
@@ -747,12 +765,5 @@ public class SaveSystem : MonoBehaviour
                     break;
             }
         }
-
-        // Manage hair
-        /*HatController[] hcs = Object.FindObjectsOfType<HatController>();
-        foreach (HatController hc in hcs)
-        {
-            hc.SyncInitialState();
-        }*/
     }
 }

@@ -7,12 +7,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class CCIndexManager : MonoBehaviour
 {
     [SerializeField] private string _type;
     [SerializeField] private Slider _slider;
     [SerializeField] private ToggleGroup _toggleGroup;
+    [SerializeField] private UnityEvent<float> _onLoadEvent;
 
     // Returns the slider value
     public float GetSliderValue()
@@ -20,7 +22,12 @@ public class CCIndexManager : MonoBehaviour
         return _slider.value;
     }
 
-    public void SetSliderValue(float val)
+    public void SetSliderValueNoNotify(float val)
+    {
+        _slider.SetValueWithoutNotify(val);
+    }
+
+    public void SetSliderValueWithNotify(float val)
     {
         _slider.value = val;
     }
@@ -47,7 +54,7 @@ public class CCIndexManager : MonoBehaviour
             Toggle curChild = _toggleGroup.gameObject.transform.GetChild(i).gameObject.GetComponent<Toggle>();
 
             curChild.isOn = false;
-            
+
             if (i == val)
             {
                 curChild.isOn = true;
@@ -58,5 +65,10 @@ public class CCIndexManager : MonoBehaviour
     public string GetValType()
     {
         return _type;
+    }
+
+    public void OnLoad(float val)
+    {
+        _onLoadEvent.Invoke(val);
     }
 }

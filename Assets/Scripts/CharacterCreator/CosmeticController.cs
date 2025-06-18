@@ -8,7 +8,6 @@ public class CosmeticController : MonoBehaviour
     [SerializeField] private CosmeticType _selectedCosmeticType;
     [SerializeField] private GameObject[] _cosmeticOptions;
     [SerializeField] private bool _includeNone = false;
-    private GameObject[] _hats;
     private Slider _slider;
     private float _curVal;
 
@@ -24,8 +23,6 @@ public class CosmeticController : MonoBehaviour
 
         _slider.maxValue = _includeNone ? _cosmeticOptions.Length : _cosmeticOptions.Length - 1;
         UpdateCosmetic(0);
-
-        _hats = CosmeticContainer.Instance.GetHats();
     }
 
     private void LoadCosmeticOptions()
@@ -58,7 +55,7 @@ public class CosmeticController : MonoBehaviour
 
     public void UpdateCosmetic(float value)
     {
-        _curVal = value;
+        SetVal(value);
 
         int idx = (int)value;
         for (int i = 0; i < _cosmeticOptions.Length; i++)
@@ -72,11 +69,8 @@ public class CosmeticController : MonoBehaviour
         return _curVal;
     }
 
-    public void DisableAllHats()
+    public void SetVal(float value)
     {
-        foreach (GameObject hat in _hats)
-        {
-            hat.SetActive(false);
-        }
+        _curVal = value;
     }
 } 

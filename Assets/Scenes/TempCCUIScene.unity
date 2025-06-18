@@ -1946,7 +1946,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2114532123}
   m_HandleRect: {fileID: 2114532122}
   m_Direction: 0
-  m_Value: 0.00000034548194
+  m_Value: 0.000000115160645
   m_Size: 0.50651765
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -2400,6 +2400,9 @@ MonoBehaviour:
   _type: LowerBody
   _slider: {fileID: 0}
   _toggleGroup: {fileID: 33982754}
+  _onLoadEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &33982759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11620,6 +11623,9 @@ MonoBehaviour:
   _type: HairSecondary
   _slider: {fileID: 0}
   _toggleGroup: {fileID: 198826286}
+  _onLoadEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &199039947
 GameObject:
   m_ObjectHideFlags: 0
@@ -15002,6 +15008,9 @@ MonoBehaviour:
   _type: Hat
   _slider: {fileID: 0}
   _toggleGroup: {fileID: 245697948}
+  _onLoadEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &245697950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36958,6 +36967,7 @@ GameObject:
   - component: {fileID: 546666658}
   - component: {fileID: 546666657}
   - component: {fileID: 546666660}
+  - component: {fileID: 546666661}
   m_Layer: 5
   m_Name: None
   m_TagString: Untagged
@@ -37087,6 +37097,53 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hatName: 
   _hairSlider: {fileID: 1361400416}
+--- !u!114 &546666661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 546666654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2aa24179581ffceff947a701e624e3ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _event: {fileID: 11400000, guid: 29e7fc9a398ce11d7bbd49559c598fdb, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 245697948}
+        m_TargetAssemblyTypeName: UnityEngine.UI.ToggleGroup, UnityEngine.UI
+        m_MethodName: SetAllTogglesOff
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 546666657}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Toggle, UnityEngine.UI
+        m_MethodName: set_isOn
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  _onBoolTrue:
+    m_PersistentCalls:
+      m_Calls: []
+  _onBoolFalse:
+    m_PersistentCalls:
+      m_Calls: []
+  _boolVal: 0
 --- !u!1 &547489771
 GameObject:
   m_ObjectHideFlags: 0
@@ -38870,7 +38927,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1266335557}
   m_HandleRect: {fileID: 1266335556}
   m_Direction: 0
-  m_Value: 0.00000035212582
+  m_Value: 0.00000011737527
   m_Size: 0.51127815
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -47074,7 +47131,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1486872036}
   m_HandleRect: {fileID: 1486872035}
   m_Direction: 0
-  m_Value: 0.00000028790163
+  m_Value: 0.00000009596721
   m_Size: 0.4610169
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -61662,7 +61719,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 830511655}
   m_HandleRect: {fileID: 830511654}
   m_Direction: 0
-  m_Value: 0.00000034548194
+  m_Value: 0.000000115160645
   m_Size: 0.50651765
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -65067,6 +65124,9 @@ MonoBehaviour:
   _type: UpperBody
   _slider: {fileID: 0}
   _toggleGroup: {fileID: 1008951452}
+  _onLoadEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1008951457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65890,6 +65950,9 @@ MonoBehaviour:
   _type: SkinColor
   _slider: {fileID: 0}
   _toggleGroup: {fileID: 1014805696}
+  _onLoadEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1016890006
 GameObject:
   m_ObjectHideFlags: 0
@@ -69922,6 +69985,9 @@ MonoBehaviour:
   _type: LowerBody
   _slider: {fileID: 0}
   _toggleGroup: {fileID: 1090138224}
+  _onLoadEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1090138227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71991,7 +72057,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 933744288}
   m_HandleRect: {fileID: 933744287}
   m_Direction: 0
-  m_Value: 0.00000035212582
+  m_Value: 0.00000011737527
   m_Size: 0.51127815
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -85912,8 +85978,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 47702026}
   m_HandleRect: {fileID: 47702025}
   m_Direction: 0
-  m_Value: 0.00000015354755
-  m_Size: 0.2549203
+  m_Value: 0.00000007677378
+  m_Size: 0.25492033
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -87615,6 +87681,7 @@ GameObject:
   - component: {fileID: 1361400413}
   - component: {fileID: 1361400416}
   - component: {fileID: 1361400417}
+  - component: {fileID: 1361400418}
   m_Layer: 5
   m_Name: HairSlider
   m_TagString: Untagged
@@ -87768,6 +87835,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1361400418}
+        m_TargetAssemblyTypeName: BoolGameEventTrigger, Assembly-CSharp
+        m_MethodName: TriggerEvent
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1361400416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87798,6 +87877,34 @@ MonoBehaviour:
   _type: HairSlider
   _slider: {fileID: 1361400415}
   _toggleGroup: {fileID: 0}
+  _onLoadEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1848222352}
+        m_TargetAssemblyTypeName: HandleLabelController, Assembly-CSharp
+        m_MethodName: UpdateHandleText
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1361400418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1361400410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5533829f52a164be6b19fb31f13a2c15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _event: {fileID: 11400000, guid: 29e7fc9a398ce11d7bbd49559c598fdb, type: 2}
 --- !u!1 &1362837362
 GameObject:
   m_ObjectHideFlags: 0
@@ -92950,8 +93057,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1362837364}
   m_HandleRect: {fileID: 1362837363}
   m_Direction: 0
-  m_Value: 0.00000015354755
-  m_Size: 0.2549203
+  m_Value: 0.00000007677378
+  m_Size: 0.25492033
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -93194,6 +93301,9 @@ MonoBehaviour:
   _type: GlassesColor
   _slider: {fileID: 0}
   _toggleGroup: {fileID: 1455964984}
+  _onLoadEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1458853887
 GameObject:
   m_ObjectHideFlags: 0
@@ -94546,6 +94656,9 @@ MonoBehaviour:
   _type: EyeColor
   _slider: {fileID: 0}
   _toggleGroup: {fileID: 1473778326}
+  _onLoadEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1475670019
 GameObject:
   m_ObjectHideFlags: 0
@@ -132387,6 +132500,9 @@ MonoBehaviour:
   _type: UpperBody
   _slider: {fileID: 0}
   _toggleGroup: {fileID: 2036849034}
+  _onLoadEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &2036849037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135419,6 +135535,9 @@ MonoBehaviour:
   _type: HairPrimary
   _slider: {fileID: 0}
   _toggleGroup: {fileID: 2090661272}
+  _onLoadEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2092017471
 GameObject:
   m_ObjectHideFlags: 0

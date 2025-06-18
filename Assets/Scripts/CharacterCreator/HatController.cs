@@ -31,7 +31,7 @@ public class HatController : MonoBehaviour
     }
 
     // Hats take priority over hair, so turn all hair off
-    private void OnToggleValueChanged(bool isOn)
+    public void OnToggleValueChanged(bool isOn)
     {
         // Earlly return and check for no hat, turn on hair
         if (isOn && _hatName == "")
