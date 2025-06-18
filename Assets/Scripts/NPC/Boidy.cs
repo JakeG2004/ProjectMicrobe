@@ -24,6 +24,7 @@ public class Boidy : MonoBehaviour {
     [SerializeField] float spawnRadius = 15f;       // Radius around the spawner where boids try to stay
     [SerializeField] private bool _spawnOnStart = true;
     [SerializeField] float spawnVerticalStretch = .3f;     // Flatten spawn area into a spheroid (height / width)
+    [SerializeField] private bool _showGizmos = false;
     readonly float turnSpeed = 360f;                // Rotation speed (degrees per second)
     readonly float neighborDistanceGoal = 3f;		// Ideal distance between neighbors
     readonly float obstacleAvoidanceRadius = 8f;    // Range at which boids start avoiding obstacles
@@ -190,6 +191,11 @@ public class Boidy : MonoBehaviour {
 
     
     void OnDrawGizmos() {
+        if (!_showGizmos)
+        {
+            return;
+        }
+        
         Matrix4x4 originalMatrix = Gizmos.matrix;
 
         // Create a scaled transformation matrix to draw the spawn spheroid

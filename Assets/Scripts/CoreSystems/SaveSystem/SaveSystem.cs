@@ -104,11 +104,11 @@ public class SaveSystem : MonoBehaviour
             SetCCUnlockableStates();
 
             // Alert the player
-            Debug.Log("Loaded state");
+            Debug.Log("SAVE SYSTEM: Loaded state");
             return;
         }
 
-        Debug.Log("Failed to find file");
+        Debug.Log("SAVE SYSTEM: Failed to find file");
         CreateNewSave();
     }
 
@@ -119,7 +119,7 @@ public class SaveSystem : MonoBehaviour
         // Write it to a file and announce it
         string saveJson = JsonUtility.ToJson(_currentState);
         File.WriteAllText(_savePath, saveJson);
-        Debug.Log("Created new save");
+        Debug.Log("SAVE SYSTEM: Created new save");
         LoadState();
     }
 

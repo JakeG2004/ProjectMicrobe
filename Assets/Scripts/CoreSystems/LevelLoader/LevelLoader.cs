@@ -40,7 +40,6 @@ public class LevelLoader : MonoBehaviour
     {
         yield return null;
         SaveSystem.Instance.LoadState();
-        Debug.Log("Save state loaded after delay.");
     }
 
     public void LoadLevel(string levelName)
