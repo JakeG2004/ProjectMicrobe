@@ -3,14 +3,14 @@
 // Author:  Jake Gendreau
 // Date:    6/18/25
 
-/*using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class InteractMaster : MonoBehaviour
 {
     public static InteractMaster Instance { get; private set; }
-    private List<InteractInSphere> _iiss = new();
+    private List<FacePlayer> _fps = new();
 
     void Awake()
     {
@@ -25,21 +25,37 @@ public class InteractMaster : MonoBehaviour
         }
     }
 
-    public void AddInteract(InteractInSphere iis)
+    public void AddInteract(FacePlayer fp)
     {
-        _iiss.Add(iis);
+        _fps.Add(fp);
     }
 
-    public void DisableOtherInteracts(InteractInSphere curiis)
+    public void DisableOtherInteracts(FacePlayer curFp)
     {
-        foreach (InteractInSphere iis in _iiss)
+        foreach (FacePlayer fp in _fps)
         {
-            if (iis == curiis)
+            if (fp == curFp)
             {
+                foreach (Transform child in fp.gameObject.transform.parent)
+                {
+                    InteractInSphere iip = child.gameObject.GetComponent<InteractInSphere>();
+                    if (iip != null)
+                    {
+                        iip.SetInteractable(true);
+                    }
+                }
                 continue;
             }
 
-            iis.SetInteractable(false);
+            fp.SetAnimState(false);
+            foreach (Transform child in fp.gameObject.transform.parent)
+            {
+                InteractInSphere iip = child.gameObject.GetComponent<InteractInSphere>();
+                if (iip != null)
+                {
+                    iip.SetInteractable(false);
+                }
+            }
         }
     }
-}*/
+}

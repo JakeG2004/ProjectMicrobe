@@ -13,7 +13,7 @@ public class FacePlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        InteractMaster.Instance.AddInteract(this);
 
         _cam = GameObject.FindGameObjectWithTag("MainCamera");
         _anim = GetComponent<Animator>();
@@ -37,6 +37,11 @@ public class FacePlayer : MonoBehaviour
 
     public void SetAnimState(bool state)
     {
+        if (state == true)
+        {
+            InteractMaster.Instance.DisableOtherInteracts(this);
+        }
+        
         _anim.SetBool("TextIsUp", state);
         _isUp = state;
     }

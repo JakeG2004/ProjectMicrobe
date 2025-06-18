@@ -9,17 +9,16 @@ public class InteractInSphere : MonoBehaviour
     private Transform _playerTransform;
     private bool _playerInRange = false;
     private KeyCode _interact = KeyCode.E;
+    private bool _interactable = true;
 
-    // Start is called before the first frame update
     void Start()
     {
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (_playerInRange && Input.GetKeyDown(_interact))
+        if (_interactable && _playerInRange && Input.GetKeyDown(_interact))
         {
             _interactEvent.Invoke();
         }
@@ -39,5 +38,10 @@ public class InteractInSphere : MonoBehaviour
         {
             _playerInRange = false;
         }
+    }
+
+    public void SetInteractable(bool state)
+    {
+        _interactable = state;
     }
 }
