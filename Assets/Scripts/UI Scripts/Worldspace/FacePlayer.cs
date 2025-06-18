@@ -8,10 +8,13 @@ public class FacePlayer : MonoBehaviour
 
     private GameObject _cam;
     private Animator _anim;
+    private bool _isUp = false;
 
     // Start is called before the first frame update
     void Start()
     {
+        
+
         _cam = GameObject.FindGameObjectWithTag("MainCamera");
         _anim = GetComponent<Animator>();
 
@@ -24,12 +27,18 @@ public class FacePlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!_isUp)
+        {
+            return;
+        }
+
         transform.LookAt(_cam.transform);
     }
 
     public void SetAnimState(bool state)
     {
         _anim.SetBool("TextIsUp", state);
+        _isUp = state;
     }
 
     void OnEnable()

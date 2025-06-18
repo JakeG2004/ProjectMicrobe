@@ -140,8 +140,6 @@ public class MicrobeMenu : MonoBehaviour
         }
 
         _microbesChart.EnsureChartComponent<YAxis>().max = max;
-
-
     }
 
     public void SetResourcesChartData(List<string> _dontGraphTheseResources)

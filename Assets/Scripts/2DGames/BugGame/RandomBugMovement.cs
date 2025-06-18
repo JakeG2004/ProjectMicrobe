@@ -72,12 +72,12 @@ public class RandomBugMovement : MonoBehaviour
         // Handle x bounds
         if(Mathf.Abs(newPos.x) >= _boxBounds.x)
         {
-            newPos.x = -Mathf.Sign(newPos.x) * _boxBounds.x;
+            newPos.x = -Mathf.Sign(newPos.x) * (_boxBounds.x - 0.1f);
         }
 
         if(Mathf.Abs(newPos.y) >= _boxBounds.y)
         {
-            newPos.y = -Mathf.Sign(newPos.y) * _boxBounds.y;
+            newPos.y = -Mathf.Sign(newPos.y) * (_boxBounds.y - 0.1f);
         }
 
         transform.localPosition = newPos;
