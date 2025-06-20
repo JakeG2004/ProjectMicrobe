@@ -10,27 +10,25 @@ using UnityEngine.Events;
 
 public class GeneralMenu : MonoBehaviour
 {
-    [SerializeField] protected string _menuName;
     [SerializeField] protected GameObject _panel;
 
     protected bool _isActive = false;
 
     // Component references
-    protected ToggleCameraTracking _tct;
-    protected ShowHideMouse _shm;
-    protected MovementController _mc;
+    protected MenuControlsManager _mcm;
     protected AudioSource _as;
     protected MenuSoundPlayer _msp;
+    protected BoolGameEventTrigger _bget;
 
     protected virtual void Start()
     {
-        _tct = GetComponent<ToggleCameraTracking>();
-        _shm = GetComponent<ShowHideMouse>();
-        _mc = MovementController.instance;
+        _mcm = GetComponent<MenuControlsManager>();
+        _msp = GetComponent<MenuSoundPlayer>();
+        _bget = GetComponent<BoolGameEventTrigger>();
 
         _panel.SetActive(false);
     }
-    
+
     // Toggles the menu, publicly accessible
     public virtual void ToggleMenu()
     {
@@ -44,7 +42,7 @@ public class GeneralMenu : MonoBehaviour
         _panel.SetActive(_isActive);
 
         // Handle the audio
-        if(_isActive)
+        if (_isActive)
         {
             _msp.PlaySound(AudioType.MENU_OPEN);
         }
@@ -53,12 +51,13 @@ public class GeneralMenu : MonoBehaviour
         {
             _msp.PlaySound(AudioType.MENU_CLOSED);
         }
+
+        // State tracker
+        _bget?.TriggerEvent(_isActive);
     }
 
     void Set3DControls(bool state)
     {
-        _tct.SetCameraTracking(state);
-        _mc.SetMovementState(state);
-        _shm.SetState(!state);
+        _mcm?.SetControlState(!state);
     }
 }

@@ -3,45 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class MicrobeEncyclopedia : MonoBehaviour
+public class MicrobeEncyclopedia : GeneralMenu
 {
+    [Space(20)]
     [SerializeField] private List<MicrobeSO> _microbes = new();
-    [SerializeField] private GameObject _panel;
     [SerializeField] private GameObject _microbeInfoPrefab;
     [SerializeField] private GameObject _microbeContainer;
     [SerializeField] private GameObject _microbeButtonSpawn;
     [SerializeField] private GameObject _microbeInfoContainer;
     [SerializeField] private TMP_Text _microbeTitle;
     [SerializeField] private TMP_Text _microbeBody;
-    private bool _isActive = false;
 
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         UpdateEntries();
-    }
-
-    public void ToggleState()
-    {
-        _isActive = !_isActive;
-
-        _panel.SetActive(_isActive);
-
-        // Set UI control state
-        GetComponent<ToggleCameraTracking>()?.SetCameraTracking(!_isActive);
-        MovementController.instance.SetMovementState(!_isActive);
-        GetComponent<ShowHideMouse>()?.SetState(_isActive);
-
-        GetComponent<BoolGameEventTrigger>().TriggerEvent(_isActive);
-
-        if(_isActive)
-        {
-            GetComponent<MenuSoundPlayer>().PlaySound(AudioType.MENU_OPEN);
-        }
-
-        else
-        {
-            GetComponent<MenuSoundPlayer>().PlaySound(AudioType.MENU_CLOSED);
-        }
     }
 
     public void HideInfo()

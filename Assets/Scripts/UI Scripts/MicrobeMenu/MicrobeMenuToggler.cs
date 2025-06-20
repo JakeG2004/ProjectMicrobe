@@ -8,12 +8,12 @@ public class MicrobeMenuToggler : MonoBehaviour
     
     void Start()
     {
-        _microbeMenu = GameObject.FindGameObjectWithTag("MicrobeMenu").GetComponent<MicrobeMenu>();
+        _microbeMenu = MicrobeMenu.Instance;
     }
 
     public void ToggleMicrobeMenu()
     {
         _microbeMenu.SetCurrentPylon(transform.parent.gameObject);
-        _microbeMenu.ToggleState();
+        _microbeMenu.ToggleMenu();
     }
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 8900000, guid: 60f1fa9c7c55e934e8b0296eff890207, type: 3}
   m_Sun: {fileID: 3659699155714522960}
-  m_IndirectSpecularColor: {r: 0.3841416, g: 0.6639748, b: 0.81806725, a: 1}
+  m_IndirectSpecularColor: {r: 0.38343892, g: 0.66370606, b: 0.81816274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -19850,8 +19850,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 833901421}
-        m_TargetAssemblyTypeName: AddMicrobeToPlayerMenu, Assembly-CSharp
-        m_MethodName: ToggleState
+        m_TargetAssemblyTypeName: GeneralMenu, Assembly-CSharp
+        m_MethodName: ToggleMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -58749,12 +58749,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 412422792}
-  - component: {fileID: 412422795}
-  - component: {fileID: 412422794}
-  - component: {fileID: 412422793}
-  - component: {fileID: 412422796}
   - component: {fileID: 412422798}
+  - component: {fileID: 412422796}
   - component: {fileID: 412422797}
+  - component: {fileID: 412422799}
+  - component: {fileID: 412422793}
   m_Layer: 5
   m_Name: AddPylonMenu
   m_TagString: Untagged
@@ -58795,32 +58794,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _event: {fileID: 11400000, guid: 7a8982a91ccbea13baf5873e2712bc96, type: 2}
---- !u!114 &412422794
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 412422791}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1768a5c5416764c0b58dc23f4f08027, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &412422795
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 412422791}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02185fb7678724239a7797567030c289, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _mouseStatus: 0
-  _activateOnStart: 0
 --- !u!114 &412422796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58833,7 +58806,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6c0e38d9b6ae90c5beffc65d93e8913, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _menuName: GetPylonMenu
   _panel: {fileID: 1663092478}
   _takePylonButton: {fileID: 2048706344}
   _menuStateTracker: {fileID: 412422793}
@@ -58948,6 +58920,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &412422799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 412422791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82517ff88dda711e0a5e5382f066b986, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &412468728
 GameObject:
   m_ObjectHideFlags: 0
@@ -58957,11 +58941,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 412468729}
+  - component: {fileID: 412468735}
   - component: {fileID: 412468734}
   - component: {fileID: 412468733}
   - component: {fileID: 412468732}
   - component: {fileID: 412468731}
-  - component: {fileID: 412468735}
+  - component: {fileID: 412468736}
   m_Layer: 0
   m_Name: PlayerInteract
   m_TagString: Untagged
@@ -59029,7 +59014,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 412468732}
         m_TargetAssemblyTypeName: AddMicrobeToggler, Assembly-CSharp
-        m_MethodName: ToggleMenu
+        m_MethodName: PopulateMenuData
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -59049,6 +59034,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 412468736}
+        m_TargetAssemblyTypeName: StringGameEventTrigger, Assembly-CSharp
+        m_MethodName: TriggerEvent
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: AddMicrobeToPlayerMenu
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &412468734
@@ -59115,6 +59112,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &412468736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 412468728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b86b640fa91848678b478486c1815f24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _event: {fileID: 11400000, guid: 87d66894822897be0ac428a6401a3c97, type: 2}
 --- !u!1 &413075890
 GameObject:
   m_ObjectHideFlags: 0
@@ -77246,8 +77256,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1546337196}
-        m_TargetAssemblyTypeName: PuaseMenu, Assembly-CSharp
-        m_MethodName: TogglePause
+        m_TargetAssemblyTypeName: GeneralMenu, Assembly-CSharp
+        m_MethodName: ToggleMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -78844,12 +78854,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 501069139}
-  - component: {fileID: 501069140}
-  - component: {fileID: 501069142}
-  - component: {fileID: 501069141}
-  - component: {fileID: 501069143}
   - component: {fileID: 501069145}
+  - component: {fileID: 501069140}
+  - component: {fileID: 501069143}
   - component: {fileID: 501069144}
+  - component: {fileID: 501069147}
   m_Layer: 5
   m_Name: MicrobeMenu
   m_TagString: MicrobeMenu
@@ -78889,40 +78898,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 018f4c4626af5352bb814023097670b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _panel: {fileID: 1202586973}
   _dontGraphTheseResources: []
   _microbesChart: {fileID: 1786621459}
   _resourcesChart: {fileID: 905764101}
+  _microbeLegend: {fileID: 100642661}
+  _envLegend: {fileID: 1443709618}
   _graphEntries: 10
   _envHealthSlider: {fileID: 742826011}
   _menuPanel: {fileID: 1202586973}
-  _microbeLegend: {fileID: 100642661}
-  _envLegend: {fileID: 1443709618}
---- !u!114 &501069141
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 501069138}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1768a5c5416764c0b58dc23f4f08027, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &501069142
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 501069138}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02185fb7678724239a7797567030c289, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _mouseStatus: 0
-  _activateOnStart: 0
 --- !u!114 &501069143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79047,6 +79031,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &501069147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 501069138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82517ff88dda711e0a5e5382f066b986, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &501820244
 GameObject:
   m_ObjectHideFlags: 0
@@ -83305,8 +83301,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1750592249}
-        m_TargetAssemblyTypeName: MicrobeEncyclopedia, Assembly-CSharp
-        m_MethodName: ToggleState
+        m_TargetAssemblyTypeName: GeneralMenu, Assembly-CSharp
+        m_MethodName: ToggleMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -122455,7 +122451,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 827010674}
         m_TargetAssemblyTypeName: AddMicrobeToggler, Assembly-CSharp
-        m_MethodName: ToggleMenu
+        m_MethodName: PopulateMenuData
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -128396,14 +128392,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 833901420}
+  - component: {fileID: 833901425}
   - component: {fileID: 833901421}
-  - component: {fileID: 833901423}
-  - component: {fileID: 833901422}
   - component: {fileID: 833901424}
   - component: {fileID: 833901426}
-  - component: {fileID: 833901425}
+  - component: {fileID: 833901427}
   m_Layer: 5
-  m_Name: AddMicrobeToPlayer (Slide)
+  m_Name: AddMicrobeToPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -128441,33 +128436,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08ac5207ec2bc133188e1e193a54d9e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _menuPanel: {fileID: 1408059900}
---- !u!114 &833901422
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 833901419}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1768a5c5416764c0b58dc23f4f08027, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &833901423
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 833901419}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02185fb7678724239a7797567030c289, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _mouseStatus: 0
-  _activateOnStart: 0
+  _panel: {fileID: 1408059900}
 --- !u!114 &833901424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128592,6 +128561,18 @@ MonoBehaviour:
   _menuUp: {fileID: 8300000, guid: c6d6c72d595d3e28495555602a62fd78, type: 3}
   _menuDown: {fileID: 8300000, guid: 128bb54fbd5b16d5fba55eea4885fcbf, type: 3}
   _menuSound: {fileID: 8300000, guid: 1287a0a31f804d90b9b4f298fc019fd9, type: 3}
+--- !u!114 &833901427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 833901419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82517ff88dda711e0a5e5382f066b986, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &834192607
 GameObject:
   m_ObjectHideFlags: 0
@@ -133772,7 +133753,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 501069140}
         m_TargetAssemblyTypeName: MicrobeMenu, Assembly-CSharp
-        m_MethodName: ToggleState
+        m_MethodName: ToggleMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -164029,7 +164010,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1093180301}
         m_TargetAssemblyTypeName: AddMicrobeToggler, Assembly-CSharp
-        m_MethodName: ToggleMenu
+        m_MethodName: PopulateMenuData
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -201361,7 +201342,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1376283600}
         m_TargetAssemblyTypeName: AddMicrobeToggler, Assembly-CSharp
-        m_MethodName: ToggleMenu
+        m_MethodName: PopulateMenuData
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -221318,12 +221299,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1546337192}
-  - component: {fileID: 1546337195}
-  - component: {fileID: 1546337194}
-  - component: {fileID: 1546337193}
-  - component: {fileID: 1546337196}
   - component: {fileID: 1546337198}
+  - component: {fileID: 1546337196}
+  - component: {fileID: 1546337195}
   - component: {fileID: 1546337197}
+  - component: {fileID: 1546337199}
   m_Layer: 5
   m_Name: PauseMenu
   m_TagString: Untagged
@@ -221351,32 +221331,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1546337193
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1546337191}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1768a5c5416764c0b58dc23f4f08027, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1546337194
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1546337191}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02185fb7678724239a7797567030c289, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _mouseStatus: 0
-  _activateOnStart: 0
 --- !u!114 &1546337195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -221393,8 +221347,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1546337196}
-        m_TargetAssemblyTypeName: PuaseMenu, Assembly-CSharp
-        m_MethodName: TogglePause
+        m_TargetAssemblyTypeName: GeneralMenu, Assembly-CSharp
+        m_MethodName: ToggleMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -221417,7 +221371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4babbd7c3e32b58ca8e4b29a2aa6c1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _menu: {fileID: 584936922}
+  _panel: {fileID: 584936922}
 --- !u!114 &1546337197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -221529,6 +221483,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1546337199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1546337191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82517ff88dda711e0a5e5382f066b986, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1551537252
 GameObject:
   m_ObjectHideFlags: 0
@@ -253493,15 +253459,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1750592248}
-  - component: {fileID: 1750592251}
-  - component: {fileID: 1750592250}
+  - component: {fileID: 1750592257}
   - component: {fileID: 1750592249}
   - component: {fileID: 1750592253}
   - component: {fileID: 1750592254}
   - component: {fileID: 1750592255}
   - component: {fileID: 1750592256}
   - component: {fileID: 1750592258}
-  - component: {fileID: 1750592257}
+  - component: {fileID: 1750592259}
   m_Layer: 5
   m_Name: MicrobeEncyclopedia
   m_TagString: Untagged
@@ -253541,44 +253506,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3bd2c8ea625a737dae472a5000d8662, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _panel: {fileID: 635124325}
   _microbes:
   - {fileID: 11400000, guid: 50cfa95e1c6198142a450c83f9b15245, type: 2}
   - {fileID: 11400000, guid: 2d0b83d9658cce0678dfee0fa75ea374, type: 2}
   - {fileID: 11400000, guid: 63594733e7aa8914ea78c31c4153fbdf, type: 2}
   - {fileID: 11400000, guid: f2c460b91f42ea6429cfaa0d93203ff8, type: 2}
-  _panel: {fileID: 635124325}
   _microbeInfoPrefab: {fileID: 2381561658923823769, guid: 0d1a56345dea1e0deb9bca3cfa97ea43, type: 3}
   _microbeContainer: {fileID: 1711628328}
   _microbeButtonSpawn: {fileID: 1091719746}
   _microbeInfoContainer: {fileID: 1930942967}
   _microbeTitle: {fileID: 1060975336}
   _microbeBody: {fileID: 1672870510}
---- !u!114 &1750592250
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1750592247}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1768a5c5416764c0b58dc23f4f08027, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1750592251
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1750592247}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02185fb7678724239a7797567030c289, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _mouseStatus: 0
-  _activateOnStart: 0
 --- !u!114 &1750592253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253624,8 +253563,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1750592249}
-        m_TargetAssemblyTypeName: MicrobeEncyclopedia, Assembly-CSharp
-        m_MethodName: ToggleState
+        m_TargetAssemblyTypeName: GeneralMenu, Assembly-CSharp
+        m_MethodName: ToggleMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -253806,6 +253745,18 @@ MonoBehaviour:
   _menuUp: {fileID: 8300000, guid: c6d6c72d595d3e28495555602a62fd78, type: 3}
   _menuDown: {fileID: 8300000, guid: 128bb54fbd5b16d5fba55eea4885fcbf, type: 3}
   _menuSound: {fileID: 8300000, guid: 1287a0a31f804d90b9b4f298fc019fd9, type: 3}
+--- !u!114 &1750592259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1750592247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82517ff88dda711e0a5e5382f066b986, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1752052304
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,9 +8,9 @@ public class AddMicrobeToggler : MonoBehaviour
     [SerializeField] private float _maxPopulation = 100;
     [SerializeField] private float _curPopulation = 50;
 
-    public void ToggleMenu()
+    public void PopulateMenuData()
     {
-        AddMicrobeToPlayerMenu.Instance.ToggleState();
+        AddMicrobeToPlayerMenu.Instance.ToggleMenu();
         AddMicrobeToCM.Instance.SetMicrobe(_microbeSO, _curPopulation, this);
     }
 

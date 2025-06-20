@@ -3,39 +3,48 @@ using System.Collections.Generic;
 using UnityEngine;
 using XCharts.Runtime;
 
-public class MicrobeMenu : MonoBehaviour
+public class MicrobeMenu : GeneralMenu
 {
     // Singleton instance
     public static MicrobeMenu Instance { get; private set; }
 
+    [Space(20)]
     // Graphing variables
     [SerializeField] private List<string> _dontGraphTheseResources = new();
     [SerializeField] private LineChart _microbesChart;
     [SerializeField] private LineChart _resourcesChart;
+    [SerializeField] private LegendManager _microbeLegend;
+    [SerializeField] private LegendManager _envLegend;
     [SerializeField] private int _graphEntries = 10;
+
+    [Space(20)]
 
     // Env health slider
     [SerializeField] private CustomSlider _envHealthSlider;
 
     // Menu UI Elements
     [SerializeField] private GameObject _menuPanel;
-    [SerializeField] private LegendManager _microbeLegend;
-    [SerializeField] private LegendManager _envLegend;
 
     // Helpers
-    private BoolGameEventTrigger _menuStateTracker;
     private MicrobePopSim _curPylon;
-    private bool _isActive = false;
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
-        _menuPanel.SetActive(false);
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+
+        else
+        {
+            Destroy(this.gameObject);
+        }
+        
+        base.Start();
 
         InitChart(_microbesChart, "Microbe Populations");
         InitChart(_resourcesChart, "Resource Amounts");
-
-        _menuStateTracker = GetComponent<BoolGameEventTrigger>();
     }
 
     void InitChart(LineChart chart, string name)
@@ -55,33 +64,12 @@ public class MicrobeMenu : MonoBehaviour
         yAxis.show = true;
     }
 
-    public void ToggleState()
+    public override void ToggleMenu()
     {
-        _isActive = !_isActive;
-
-        // Set menu state
-        _menuPanel.SetActive(_isActive);
-
-        // Set UI control state
-        GetComponent<ToggleCameraTracking>()?.SetCameraTracking(!_isActive);
-        MovementController.instance.SetMovementState(!_isActive);
-        GetComponent<ShowHideMouse>()?.SetState(_isActive);
-
-        // Update the menu open indicator
-        _menuStateTracker.TriggerEvent(_isActive);
+        base.ToggleMenu();
 
         // Update the charts
         UpdateCharts(_dontGraphTheseResources);
-
-        if(_isActive)
-        {
-            GetComponent<MenuSoundPlayer>().PlaySound(AudioType.MENU_OPEN);
-        }
-
-        else
-        {
-            GetComponent<MenuSoundPlayer>().PlaySound(AudioType.MENU_CLOSED);
-        }
     }
 
     public void UpdateCharts(List<string> dontGraphTheseResources)

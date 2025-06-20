@@ -9,11 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3394788213721752157}
+  - component: {fileID: 7579022754527901308}
   - component: {fileID: 4500206300070019024}
   - component: {fileID: 5483046831375448496}
-  - component: {fileID: 5740576725943029060}
   - component: {fileID: 8846171218343212107}
-  - component: {fileID: 7579022754527901308}
+  - component: {fileID: 6257515224327611565}
+  - component: {fileID: 7864092939244189104}
   m_Layer: 0
   m_Name: PlayerInteractSphere
   m_TagString: Untagged
@@ -36,6 +37,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1699515492825084458}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &7579022754527901308
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 31845047743457716}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4.33, y: 3.69, z: 4.28}
+  m_Center: {x: 0, y: 0.95, z: 2.39}
 --- !u!114 &4500206300070019024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94,7 +116,7 @@ MonoBehaviour:
   _interactEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5740576725943029060}
+      - m_Target: {fileID: 7864092939244189104}
         m_TargetAssemblyTypeName: MicrobeMenuToggler, Assembly-CSharp
         m_MethodName: ToggleMicrobeMenu
         m_Mode: 1
@@ -103,7 +125,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: MicrobeMenu
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 8846171218343212107}
@@ -118,18 +140,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &5740576725943029060
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 31845047743457716}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8746951572c5dafd399cec2da0c7f5f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8846171218343212107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,27 +153,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _event: {fileID: 11400000, guid: 320bc6375b0c5c021876122594a6b1aa, type: 2}
---- !u!65 &7579022754527901308
-BoxCollider:
+--- !u!114 &6257515224327611565
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 31845047743457716}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 4.33, y: 3.69, z: 4.28}
-  m_Center: {x: 0, y: 0.95, z: 2.39}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b86b640fa91848678b478486c1815f24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _event: {fileID: 11400000, guid: 87d66894822897be0ac428a6401a3c97, type: 2}
+--- !u!114 &7864092939244189104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 31845047743457716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8746951572c5dafd399cec2da0c7f5f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &82763971180349378
 GameObject:
   m_ObjectHideFlags: 0
