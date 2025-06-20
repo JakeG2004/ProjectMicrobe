@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Events;
 
 public class NotificationPanelManager : MonoBehaviour
 {
@@ -10,11 +11,12 @@ public class NotificationPanelManager : MonoBehaviour
     private Animator _anim;
     private bool _isAnim = false;
     [SerializeField] private TMP_Text _notificationText;
+    [SerializeField] private UnityEvent _newNotifEvent;
 
     // Start is called before the first frame update
     void Start()
     {
-        if(Instance != null && Instance != this)
+        if (Instance != null && Instance != this)
         {
             Destroy(this.gameObject);
         }
@@ -28,6 +30,7 @@ public class NotificationPanelManager : MonoBehaviour
 
     public void ShowPanel()
     {
+        _newNotifEvent.Invoke();
         _isAnim = true;
         _anim.SetTrigger("ShowPanel");
     }

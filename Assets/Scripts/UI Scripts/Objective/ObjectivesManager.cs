@@ -6,7 +6,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class ObjectivesManager : MonoBehaviour
 {
     private Queue<Objective> _objQ;

@@ -17,6 +17,7 @@ public class DialogueManager : MonoBehaviour
     private Queue<DialogueUnit> _sentences;
     private Animator _anim;
     private Dialogue _curDialogue;
+    private SoundPlayer _sp;
     [SerializeField] private TMP_Text _nameText;
     [SerializeField] private TMP_Text _bodyText;
     [SerializeField] private Image _img;
@@ -38,6 +39,7 @@ public class DialogueManager : MonoBehaviour
 
         _sentences = new();
         _anim = GetComponent<Animator>();
+        _sp = GetComponent<SoundPlayer>();
     }
 
     // Starts the dialogue using the dialogue box
@@ -99,6 +101,12 @@ public class DialogueManager : MonoBehaviour
         foreach (char letter in sentence.ToCharArray())
         {
             _bodyText.text += letter;
+            _sp.PlayRapidSound(0);
+
+            if (_anim.GetBool("IsOpen") == false)
+            {
+                yield break;
+            }
 
             // Show characters at 60 / sec
             yield return new WaitForSeconds(.016f);
@@ -115,5 +123,6 @@ public class DialogueManager : MonoBehaviour
 
         _curDialogue.onDialogueComplete?.Invoke();
         _anim.SetBool("IsOpen", false);
+        //StopAllCoroutines();
     }
 }
