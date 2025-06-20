@@ -10,28 +10,38 @@ public class DoorScifi : MonoBehaviour {
 	bool open = false;
 	bool move = false;
 	float openPercent = 0f;
+	private AudioSource _as;
 
-	void Start() {
-		if (doors.Length != 2) {
+	void Start()
+	{
+		if (doors.Length != 2)
+		{
 			Debug.Log(name + " should have two doors.");
 			return;
 		}
-		for (int i = 1; i >= 0; i--) {
+		for (int i = 1; i >= 0; i--)
+		{
 			closePos[i] = doors[i].position;
 			openPos[i] = closePos[i] + doors[i].forward * 1.3f;
 			//Debug.Log(doors[i].name + " start position: " + closePos[i].ToString());
 		}
+
+		_as = GetComponent<AudioSource>();
 	}
 	void OnTriggerEnter(Collider other) {
-		if (other.tag == "Player") {
+		if (other.tag == "Player")
+		{
 			open = true;
 			move = true;
+			_as.PlayOneShot(doorSound);
 		}
 	}
 	void OnTriggerExit(Collider other) {
-		if (other.tag == "Player") {
+		if (other.tag == "Player")
+		{
 			open = false;
 			move = true;
+			_as.PlayOneShot(doorSound);
 		}
 	}
 	void Update() {
