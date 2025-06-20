@@ -39,7 +39,7 @@ public class FacePlayer : MonoBehaviour
     {
         if (state == true)
         {
-            InteractMaster.Instance.DisableOtherInteracts(this);
+            InteractMaster.Instance?.DisableOtherInteracts(this);
         }
         
         _anim.SetBool("TextIsUp", state);

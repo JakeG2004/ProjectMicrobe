@@ -44,5 +44,15 @@ public class AddMicrobeToPlayerMenu : MonoBehaviour
 
         // Set UI Menu Tracker State
         _menuStateTracker.TriggerEvent(_isActive);
+
+        if(_isActive)
+        {
+            GetComponent<MenuSoundPlayer>().PlaySound(AudioType.MENU_OPEN);
+        }
+
+        else
+        {
+            GetComponent<MenuSoundPlayer>().PlaySound(AudioType.MENU_CLOSED);
+        }
     }
 }

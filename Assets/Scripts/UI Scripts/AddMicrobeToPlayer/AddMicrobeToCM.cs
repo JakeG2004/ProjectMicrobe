@@ -39,6 +39,7 @@ public class AddMicrobeToCM : MonoBehaviour
         {
             if (NotificationPanelManager.Instance.IsAnimating() == true)
             {
+                NotificationPanelManager.Instance.UpdatePanelText("Attempting to take too many microbes!");
                 return;
             }
 
@@ -57,6 +58,7 @@ public class AddMicrobeToCM : MonoBehaviour
         {
             if (NotificationPanelManager.Instance.IsAnimating() == true)
             {
+                NotificationPanelManager.Instance.UpdatePanelText("Too many microbes in backpack!");
                 return;
             }
 

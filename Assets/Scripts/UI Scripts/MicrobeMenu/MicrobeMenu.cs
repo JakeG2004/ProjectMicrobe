@@ -72,6 +72,16 @@ public class MicrobeMenu : MonoBehaviour
 
         // Update the charts
         UpdateCharts(_dontGraphTheseResources);
+
+        if(_isActive)
+        {
+            GetComponent<MenuSoundPlayer>().PlaySound(AudioType.MENU_OPEN);
+        }
+
+        else
+        {
+            GetComponent<MenuSoundPlayer>().PlaySound(AudioType.MENU_CLOSED);
+        }
     }
 
     public void UpdateCharts(List<string> dontGraphTheseResources)

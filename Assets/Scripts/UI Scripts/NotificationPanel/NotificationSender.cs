@@ -40,9 +40,16 @@ public class NotificationSender : MonoBehaviour
         }
 
         // Early return when already animating
-        if (!_npm || _npm.IsAnimating())
+        if (!_npm)
         {
             _npm = NotificationPanelManager.Instance;
+        }
+
+        // Panel is already down; change text
+        if(_npm.IsAnimating())
+        {
+            _npm.UpdatePanelText(notifBody);
+            return;
         }
 
         // Do the animation
@@ -58,6 +65,12 @@ public class NotificationSender : MonoBehaviour
     public void SendExtinctionNotif(string microbeName)
     {
         string notifString = microbeName + " experienced an extinction event at " + GetComponent<MicrobePopSim>().GetEnvSO().envName;
+        SendGeneralNotification(notifString);
+    }
+
+    public void SendTimeSpeedNotif(float speed)
+    {
+        string notifString = $"Time speed: {15f / speed}";
         SendGeneralNotification(notifString);
     }
 }

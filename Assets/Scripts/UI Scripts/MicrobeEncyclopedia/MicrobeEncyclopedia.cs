@@ -32,6 +32,16 @@ public class MicrobeEncyclopedia : MonoBehaviour
         GetComponent<ShowHideMouse>()?.SetState(_isActive);
 
         GetComponent<BoolGameEventTrigger>().TriggerEvent(_isActive);
+
+        if(_isActive)
+        {
+            GetComponent<MenuSoundPlayer>().PlaySound(AudioType.MENU_OPEN);
+        }
+
+        else
+        {
+            GetComponent<MenuSoundPlayer>().PlaySound(AudioType.MENU_CLOSED);
+        }
     }
 
     public void HideInfo()

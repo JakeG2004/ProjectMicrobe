@@ -28,6 +28,16 @@ public class PauseMenu : MonoBehaviour
         // Freeze camera controls
         GetComponent<ShowHideMouse>().SetState(_isActive);
         GetComponent<ToggleCameraTracking>().SetCameraTracking(!_isActive);
+
+        if(_isActive)
+        {
+            GetComponent<MenuSoundPlayer>().PlaySound(AudioType.MENU_OPEN);
+        }
+
+        else
+        {
+            GetComponent<MenuSoundPlayer>().PlaySound(AudioType.MENU_CLOSED);
+        }
     }
 
     public void ReloadLevel()

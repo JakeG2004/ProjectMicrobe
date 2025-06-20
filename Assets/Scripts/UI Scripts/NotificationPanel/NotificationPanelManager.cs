@@ -28,12 +28,12 @@ public class NotificationPanelManager : MonoBehaviour
 
     public void ShowPanel()
     {
+        _isAnim = true;
         _anim.SetTrigger("ShowPanel");
     }
 
     public void ShowPanel(string panelText)
     {
-        _isAnim = true;
         SetPanelText(panelText);
         ShowPanel();
     }
@@ -66,6 +66,13 @@ public class NotificationPanelManager : MonoBehaviour
     public void SetPanelText(string panelText)
     {
         _notificationText.text = panelText;
+    }
+
+    public void UpdatePanelText(string panelText)
+    {
+        _notificationText.text = panelText;
+        StopAllCoroutines();
+        StartCoroutine(HidePanelAfterSeconds(1));
     }
 
     public bool IsAnimating()
