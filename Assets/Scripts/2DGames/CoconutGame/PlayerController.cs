@@ -19,9 +19,12 @@ public class CoconutPlayerController : MonoBehaviour
     private Vector3 _offset = Vector3.zero;
     private Transform _originalParent;
     private Vector3 _initPlayerPos;
+    private SoundPlayer _sp;
+    float _prevArrowScale = 0.0f;
 
     void Start()
     {
+        _sp = GetComponent<SoundPlayer>();
         _initPlayerPos = transform.position;
         _originalParent = transform.parent;
         _rb = GetComponent<Rigidbody2D>();
@@ -46,6 +49,13 @@ public class CoconutPlayerController : MonoBehaviour
             _arrowObj.transform.rotation = Quaternion.Euler(0, 0, angle);
             _arrowObj.GetComponent<SpriteRenderer>().size = new Vector2(1f, arrowScale);
             _arrowObj.transform.localPosition = new Vector3(_diff.x * (arrowScale / 2), _diff.y * (arrowScale / 2), 0f);
+
+            if (_prevArrowScale < arrowScale)
+            {
+                _sp.PlayRapidSound(0);
+            }
+
+            _prevArrowScale = arrowScale;
         }
 
         else
@@ -66,12 +76,17 @@ public class CoconutPlayerController : MonoBehaviour
             _isDragging = false;
             _rb.velocity = _diff * 10.0f;
             _curPlatform = null;
+            _prevArrowScale = 0.0f;
+
+            _sp.PlaySound(1);
         }
     }
 
     public void ResetGame()
     {
-        transform.localPosition = Vector3.zero;
+        _rb.velocity = Vector2.zero;
+        transform.SetParent(_originalParent);
+        transform.position = _initPlayerPos;
         _prize.SetActive(true);
     }
 

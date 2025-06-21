@@ -59,6 +59,8 @@ public class BugManager : MonoBehaviour
         _timeText.text = "Timer: 0";
         _OnTimerEndEvent.Invoke();
 
+        Debug.Log(_curScore);
+
         if (_curScore >= _goalScore)
         {
             _OnGoalReachedEvent.Invoke();

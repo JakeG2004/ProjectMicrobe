@@ -25,6 +25,13 @@ public class RandomBugMovement : MonoBehaviour
         Color.yellow
     };
 
+    private SoundPlayer _sp;
+
+    void Start()
+    {
+        _sp = GetComponent<SoundPlayer>();
+    }
+
     void Update()
     {
         DoMovement();
@@ -55,12 +62,17 @@ public class RandomBugMovement : MonoBehaviour
     {
         // Set its position randomly within the range 
         transform.localPosition = new Vector3(Random.Range(-_boxBounds.x, _boxBounds.x), Random.Range(-_boxBounds.y, _boxBounds.y), 0);
-    
+
         // Set its rotation randomly
         transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
 
         // Set its color randomly
         GetComponent<SpriteRenderer>().color = _colors[Random.Range(0, 6)];
+
+        if (_sp)
+        {
+            _sp.PlaySound(0);
+        }
     }
 
 

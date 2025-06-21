@@ -5,10 +5,16 @@ using UnityEngine;
 public class Clicker : MonoBehaviour
 {
     private int _numBugsClicked = 0;
+    private SoundPlayer _sp;
+
+    void Start()
+    {
+        _sp = GetComponent<SoundPlayer>();
+    }
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        col.gameObject.GetComponent<RandomBugMovement>().ResetBug();     
+        col.gameObject.GetComponent<RandomBugMovement>().ResetBug();
         _numBugsClicked++;
     }
 
