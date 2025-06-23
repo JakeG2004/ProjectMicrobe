@@ -20,8 +20,10 @@ public class RegionPlantGrower : MonoBehaviour
 
     // GROWTH VARIABLES
     [SerializeField] private GameObject _plantParent;
+    [SerializeField] private GameObject _vineParent;
     private float _envHealth = 0;
     private Dictionary<GameObject, Vector3> _plantScales = new();
+    private Dictionary<GameObject, Vector3> _vineScales = new();
 
     void Start()
     {
@@ -29,6 +31,17 @@ public class RegionPlantGrower : MonoBehaviour
         foreach (Transform child in _plantParent.transform)
         {
             _plantScales.Add(child.gameObject, child.localScale);
+            child.localScale = Vector3.zero;
+        }
+
+        if (!_vineParent)
+        {
+            return;
+        }
+
+        foreach (Transform child in _vineParent.transform)
+        {
+            _vineScales.Add(child.gameObject, child.localScale);
             child.localScale = Vector3.zero;
         }
     }
@@ -72,6 +85,7 @@ public class RegionPlantGrower : MonoBehaviour
         }
 
         UpdatePlantSize(envHealth);
+        UpdateVineSize(envHealth);
 
         tb.SetBlendFactor(_envHealth);
         tb.SetDetailDensity(_envHealth);
@@ -116,11 +130,35 @@ public class RegionPlantGrower : MonoBehaviour
             tb.SetBlendFactor(1);
             tb.SetDetailDensity(1);
         }
+
+        // Grow the vines over 5 seconds
+        curTime = 0.0f;
+        while (curTime <= 5.0f)
+        {
+            curTime += Time.deltaTime;
+            float growthRatio = curTime / 5.0f;
+            UpdateVineSize(growthRatio);
+
+            yield return null;
+        }
     }
 
     public void UpdatePlantSize(float size)
     {
         foreach (var kvp in _plantScales)
+        {
+            kvp.Key.transform.localScale = new Vector3(size * kvp.Value.x, size * kvp.Value.y, size * kvp.Value.z);
+        }
+    }
+
+    private void UpdateVineSize(float size)
+    {
+        if (!_vineParent)
+        {
+            return;    
+        }
+        
+        foreach (var kvp in _vineScales)
         {
             kvp.Key.transform.localScale = new Vector3(size * kvp.Value.x, size * kvp.Value.y, size * kvp.Value.z);
         }
