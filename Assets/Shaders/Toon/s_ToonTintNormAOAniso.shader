@@ -20,8 +20,6 @@ Shader "Landon/Toon/Tint Mask/Normal, AO, Anisotropic" {
 		CGPROGRAM
 		
 		#pragma surface surf ToonyColorsCustom fullforwardshadows
-		//#pragma target 2.0
-		//#pragma glsl
 		
 		sampler2D _MainTex, _BumpMap, _AnisoTex, _Ramp;
 		fixed4 _TintR, _TintG, _TintB, _HighlightColor, _Highlight;
@@ -61,8 +59,6 @@ Shader "Landon/Toon/Tint Mask/Normal, AO, Anisotropic" {
 		#endif
 
 
-
-
 			half offset = _Highlight.r * 2 - 1;
 			half gloss = _Highlight.g;
 			half bright = _Highlight.b;
@@ -78,8 +74,6 @@ Shader "Landon/Toon/Tint Mask/Normal, AO, Anisotropic" {
 
 			// apply highlight color. and mask spec based on texture highlight
 			c.rgb += saturate(_HighlightColor.rgb * spec * NdotL) * s.AnisoDir.a;
-
-
 
 
 			return c;

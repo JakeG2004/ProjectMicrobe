@@ -4,9 +4,7 @@ Shader "Landon/Toon/Tint Mask/SSS" {
 		_TintR ("Tint R (RGB)", Color) = (.5,.5,.5,1)
 		_TintG ("Tint G (RGB)", Color) = (.5,.5,.5,1)
 		_TintB ("Tint B (RGB)", Color) = (.5,.5,.5,1)
-		
 		_SSS("SSS Color (RGB), SSS Intensity (A)", Color) = (1,0,0,0.5)
-
 		[NoScaleOffset] _Ramp ("Toon Ramp (RGB)", 2D) = "gray" {}
 	}
 	
@@ -31,7 +29,6 @@ Shader "Landon/Toon/Tint Mask/SSS" {
 			fixed3 Albedo;
 			fixed3 Normal;
 			fixed3 Emission;
-			half Specular;
 			fixed Alpha;
 		};
 		
@@ -52,29 +49,17 @@ Shader "Landon/Toon/Tint Mask/SSS" {
 		#endif
 		
 		
-		
-		
-		
-		// SSS ........
 		// SSS Mask stored in Alpha
-		
 		c.rgb += (1.0 - atten) * _SSS.rgb * _SSS.a * s.Alpha;
-		
-		
-		
 		
 		
 			return c;
 		}
 		
 		
-		
-		
-		
 		void surf (Input IN, inout SurfaceOutputCustom o) {
 			fixed4 tex = tex2D(_MainTex, IN.uv_MainTex);
 			o.Albedo = tex.r * _TintR.rgb + tex.g * _TintG.rgb + tex.b * _TintB.rgb;
-			
 			
 			//Store SSS in Alpha
 			o.Alpha = tex.a;

@@ -1,7 +1,7 @@
-Shader "Landon/Toon/Texture Glow" {
+Shader "Landon/Toon/Color Cubemap" {
 	Properties {
-		_MainTex ("Main Texture (RGB)", 2D) = "white" {}
-		_Color("Color (RGB), ", Color) = (1,1,1,1)
+		_Color ("Color (RGB), ", Color) = (1,1,1,1)
+		_Cube ("Cubemap", CUBE) = "" {}
 		_Ramp ("Toon Ramp (RGB)", 2D) = "gray" {}
 	}
 	
@@ -10,19 +10,17 @@ Shader "Landon/Toon/Texture Glow" {
 		CGPROGRAM
 		#pragma surface surf ToonRamp fullforwardshadows
 		#include "LightingToonRamp.cginc"
-		
-		sampler2D _MainTex;
+
+		samplerCUBE _Cube;
 		fixed4 _Color;
 
 		struct Input {
-			half2 uv_MainTex;
+			fixed4 color : COLOR;
+			float3 worldRefl;
 		};
-		
 		void surf (Input IN, inout SurfaceOutputCustom o) {
-			fixed4 mainTex = tex2D(_MainTex, IN.uv_MainTex);
-			
-			o.Albedo = mainTex.rgb;
-			o.Emission = (1 - mainTex.a) * 2 * _Color.rgb;
+			o.Albedo = _Color.rgb;
+			o.Emission = texCUBE (_Cube, IN.worldRefl).rgb;
 		}
 		ENDCG
 	}
