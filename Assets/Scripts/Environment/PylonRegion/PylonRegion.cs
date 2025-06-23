@@ -11,6 +11,12 @@ public class PylonRegion : MonoBehaviour
     [SerializeField] private GameObject _pylonPrefab;
     private Dictionary<GameObject, Vector3> _plantScales = new();
 
+    void Start()
+    {
+        // Disable the collider on start, this will be enabled when region unlocked
+        GetComponent<SphereCollider>().enabled = false;
+    }
+
     public EnvironmentSO GetEnvSO()
     {
         return _envSO;

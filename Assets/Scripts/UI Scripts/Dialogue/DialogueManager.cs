@@ -97,6 +97,9 @@ public class DialogueManager : MonoBehaviour
     // Types the sentence one character at a time
     private IEnumerator TypeSentence(string sentence)
     {
+        // Play the continue sound
+        GetComponent<SoundPlayer>().PlaySound(1);
+
         _bodyText.text = "";
         foreach (char letter in sentence.ToCharArray())
         {

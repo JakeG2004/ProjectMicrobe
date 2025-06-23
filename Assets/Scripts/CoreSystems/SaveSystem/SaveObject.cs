@@ -54,8 +54,8 @@ public class StringFloatPair
 [System.Serializable]
 public class VolumeData
 {
-    public float masterVolume = -10;
-    public float musicVolume = -10;
+    public float masterVolume = 0;
+    public float musicVolume = 0;
     public float sfxVolume = 0;
 }
 

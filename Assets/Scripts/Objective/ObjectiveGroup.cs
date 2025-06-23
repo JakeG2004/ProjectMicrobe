@@ -45,23 +45,7 @@ public class ObjectiveGroup : MonoBehaviour
             return;
         }
 
-        // Iterate through every element and silently activate and complete
-        for (int i = 0; i < objectiveProgress.Count; i++)
-        {
-            string obj = objectiveProgress[i];
-
-            // Find the corresponding child
-            foreach (Transform child in transform)
-            {
-                if (child.name == obj)
-                {
-                    Objective objective = child.gameObject.GetComponent<Objective>();
-
-                    // Silently complete and activate the objective
-                    objective.SkipObjective();
-                }
-            }
-        }
+        SkipToName(_currentObjective);
 
         // Find the current objective and activate it
         foreach (Transform child in transform)
@@ -103,5 +87,24 @@ public class ObjectiveGroup : MonoBehaviour
     public string GetName()
     {
         return _groupName;
+    }
+
+    public void SkipToName(string name)
+    {
+        foreach (Transform child in transform)
+        {
+            if (child.gameObject.name != name)
+            {
+                Objective objective = child.gameObject.GetComponent<Objective>();
+
+                // Silently complete and activate the objective
+                objective.SkipObjective();
+            }
+
+            else
+            {
+                return;
+            }
+        }
     }
 }

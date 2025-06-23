@@ -22,12 +22,27 @@ public class CoconutPlayerController : MonoBehaviour
     private SoundPlayer _sp;
     float _prevArrowScale = 0.0f;
 
+    bool _canPlaySound = false;
+
     void Start()
     {
         _sp = GetComponent<SoundPlayer>();
         _initPlayerPos = transform.position;
         _originalParent = transform.parent;
         _rb = GetComponent<Rigidbody2D>();
+
+        StartCoroutine(IPreventStartSounds());
+    }
+
+    private IEnumerator IPreventStartSounds()
+    {
+        while (!Input.GetMouseButtonUp(0))
+        {
+            _isDragging = false;
+            yield return null;            
+        }
+
+        _canPlaySound = true;
     }
 
     void Update()
@@ -71,7 +86,7 @@ public class CoconutPlayerController : MonoBehaviour
             _startPos = curMousePos;
         }
 
-        if (Input.GetMouseButtonUp(0) && _isGrounded)
+        if (Input.GetMouseButtonUp(0) && _isGrounded && _canPlaySound)
         {
             _isDragging = false;
             _rb.velocity = _diff * 10.0f;
@@ -84,6 +99,10 @@ public class CoconutPlayerController : MonoBehaviour
 
     public void ResetGame()
     {
+        _isDragging = false;
+        _canPlaySound = false;
+        StartCoroutine(IPreventStartSounds());
+
         _rb.velocity = Vector2.zero;
         transform.SetParent(_originalParent);
         transform.position = _initPlayerPos;
