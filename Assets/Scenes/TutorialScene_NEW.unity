@@ -69857,6 +69857,66 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1850557919}
+        m_TargetAssemblyTypeName: ObjectiveBooleanSequence, Assembly-CSharp
+        m_MethodName: SetTrue
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Activated
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1388747790}
+        m_TargetAssemblyTypeName: ObjectiveBooleanSequence, Assembly-CSharp
+        m_MethodName: SetTrue
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Activated
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1577119213}
+        m_TargetAssemblyTypeName: ObjectiveBooleanSequence, Assembly-CSharp
+        m_MethodName: SetTrue
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Activated
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 837356170}
+        m_TargetAssemblyTypeName: ObjectiveBooleanSequence, Assembly-CSharp
+        m_MethodName: SetTrue
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Activated
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 686232523}
+        m_TargetAssemblyTypeName: ObjectiveBooleanSequence, Assembly-CSharp
+        m_MethodName: SetTrue
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Activated
+          m_BoolArgument: 1
+        m_CallState: 2
   _onComplete:
     m_PersistentCalls:
       m_Calls: []
@@ -69876,6 +69936,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1850557919}
+        m_TargetAssemblyTypeName: ObjectiveBooleanSequence, Assembly-CSharp
+        m_MethodName: SetTrue
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Activated
           m_BoolArgument: 1
         m_CallState: 2
 --- !u!4 &455885798
@@ -116630,6 +116702,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7a8982a91ccbea13baf5873e2712bc96, type: 2}
   - {fileID: 11400000, guid: 30ad18d8ee7d6bd6a8a4faf067011b69, type: 2}
   - {fileID: 11400000, guid: 0daed8179a6c57adcbc2847a5b3841e2, type: 2}
+  - {fileID: 11400000, guid: d3795509322f39e7f8125967f6d8b34d, type: 2}
   _response:
     m_PersistentCalls:
       m_Calls: []
@@ -116690,7 +116763,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
   _onBoolTrue:
     m_PersistentCalls:
@@ -118528,6 +118601,7 @@ GameObject:
   - component: {fileID: 777739269}
   - component: {fileID: 777739268}
   - component: {fileID: 777739267}
+  - component: {fileID: 777739270}
   m_Layer: 5
   m_Name: 2DGameManager
   m_TagString: Untagged
@@ -118609,7 +118683,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 777739270}
         m_TargetAssemblyTypeName: BoolGameEventTrigger, Assembly-CSharp
         m_MethodName: TriggerEvent
         m_Mode: 6
@@ -118619,7 +118693,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
   _specificResponse:
     m_PersistentCalls:
@@ -118709,6 +118783,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e89f8d6e52dfeb9a1a622fc42f0577c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &777739270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 777739262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5533829f52a164be6b19fb31f13a2c15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _event: {fileID: 11400000, guid: d3795509322f39e7f8125967f6d8b34d, type: 2}
 --- !u!1 &778252839
 GameObject:
   m_ObjectHideFlags: 0
@@ -160064,6 +160151,18 @@ MonoBehaviour:
           m_TargetAssemblyTypeName: Objective, Assembly-CSharp
           m_MethodName: RaiseObjectiveComplete
           m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: BoolGameEventTrigger, Assembly-CSharp
+          m_MethodName: TriggerEvent
+          m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -246444,18 +246543,6 @@ MonoBehaviour:
   _onActivate:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1850557919}
-        m_TargetAssemblyTypeName: ObjectiveBooleanSequence, Assembly-CSharp
-        m_MethodName: SetTrue
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Activated
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1697991179}
         m_TargetAssemblyTypeName: CheckPlayerHasPylon, Assembly-CSharp
         m_MethodName: CheckPylon
@@ -259404,6 +259491,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1763443667}
+  - component: {fileID: 1763443668}
   m_Layer: 0
   m_Name: BugGame
   m_TagString: Untagged
@@ -259429,6 +259517,34 @@ Transform:
   - {fileID: 1406442023}
   m_Father: {fileID: 1840856625}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1763443668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1763443666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b503676c540dc3af49be99a7d4574ed7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1406442025}
+        m_TargetAssemblyTypeName: Clicker, Assembly-CSharp
+        m_MethodName: Click
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _eventType: 2
 --- !u!1 &1763587058
 GameObject:
   m_ObjectHideFlags: 0
@@ -328807,6 +328923,18 @@ MonoBehaviour:
           m_TargetAssemblyTypeName: Objective, Assembly-CSharp
           m_MethodName: RaiseObjectiveComplete
           m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: BoolGameEventTrigger, Assembly-CSharp
+          m_MethodName: TriggerEvent
+          m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

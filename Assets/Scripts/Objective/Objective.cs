@@ -60,6 +60,8 @@ public class Objective : MonoBehaviour
             return;
         }
 
+        transform.parent.GetComponent<ObjectiveGroup>().SkipToName(this.gameObject.name);
+
         _isActivated = true;
 
         _onActivate?.Invoke();
@@ -98,6 +100,7 @@ public class Objective : MonoBehaviour
         }
 
         _objectiveGroup.MarkComplete(this.gameObject.name);
+
         ActivateNextObjective();
     }
 
