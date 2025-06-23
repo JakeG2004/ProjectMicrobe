@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 80250b2c40646c109b295bcf5a928e3d, type: 3}
-  m_Name: TutorialRockySO
+  m_Name: TutorialMountain
   m_EditorClassIdentifier: 
   initialResources:
   - resourceName: Oxygen
-    amount: 8
+    amount: 0
   - resourceName: Nitrogen
-    amount: 8
+    amount: 0
   - resourceName: Lead
-    amount: 4
+    amount: 0
   - resourceName: Sulfur Dioxide
     amount: 0
   - resourceName: Nitrate
@@ -30,9 +30,15 @@ MonoBehaviour:
     amount: 8
   initialMicrobes:
   - microbe: {fileID: 11400000, guid: f2c460b91f42ea6429cfaa0d93203ff8, type: 2}
-    population: 4
+    population: 0
   - microbe: {fileID: 11400000, guid: 63594733e7aa8914ea78c31c4153fbdf, type: 2}
-    population: 2
-  envName: Rocky Pylon
+    population: 0
+  - microbe: {fileID: 11400000, guid: 2d0b83d9658cce0678dfee0fa75ea374, type: 2}
+    population: 0
+  - microbe: {fileID: 11400000, guid: e75cc02b116e38c69b5cb2c444e56560, type: 2}
+    population: 0
+  - microbe: {fileID: 11400000, guid: 50cfa95e1c6198142a450c83f9b15245, type: 2}
+    population: 0
+  envName: Mountain Pylon
   stableMycorrhisVar: 60
   stableMycorrhisAmt: 2
