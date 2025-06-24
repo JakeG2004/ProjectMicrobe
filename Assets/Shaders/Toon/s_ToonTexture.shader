@@ -18,6 +18,7 @@ Shader "Landon/Toon/Texture" {
 		void surf (Input IN, inout SurfaceOutputCustom o) {
 			fixed4 mainTex = tex2D(_MainTex, IN.uv_MainTex);
 			o.Albedo = mainTex.rgb;
+			o.Alpha = 1;
 		}
 		ENDCG
 	}

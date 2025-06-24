@@ -22,6 +22,7 @@ Shader "Landon/Toon/Normal/Texture" {
 		void surf (Input IN, inout SurfaceOutputCustom o) {
 			o.Albedo = tex2D(_MainTex, IN.uv_MainTex) * _Color;
 			o.Normal = UnpackNormal(tex2D(_BumpMap, IN.uv_MainTex));
+			o.Alpha = 1;
 		}
 		ENDCG
 	}
