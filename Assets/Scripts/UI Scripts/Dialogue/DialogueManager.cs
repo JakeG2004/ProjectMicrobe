@@ -21,8 +21,6 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private TMP_Text _nameText;
     [SerializeField] private TMP_Text _bodyText;
     [SerializeField] private Image _img;
-    //private Dialogue _nextDialogue;
-    //private bool _isDialogueOpen = false;
 
     // Start is called before the first frame update
     void Start()
@@ -56,6 +54,7 @@ public class DialogueManager : MonoBehaviour
         _anim.SetBool("IsOpen", true);
 
         _curDialogue = dialogue;
+        DialogueSO _dso = _curDialogue.dialogueSO;
 
         // Clear and populate sentence queue
         _sentences.Clear();
@@ -63,6 +62,15 @@ public class DialogueManager : MonoBehaviour
         {
             _sentences.Enqueue(sentence);
         }
+
+        _sp.SetSound(0, _dso.dialogueSound);
+
+        // Set the image to be the image in the Dialogue unit if its not null, disable if null
+        _img.enabled = (_dso.img != null);
+        _img.sprite = _dso.img;
+
+        // Set the name text
+        _nameText.text = _dso.dialogueName;
 
         // Start the dialogue
         DisplayNextSentence();
@@ -80,13 +88,6 @@ public class DialogueManager : MonoBehaviour
 
         // Get next sentence
         DialogueUnit _curSentence = _sentences.Dequeue();
-
-        // Set the image to be the image in the Dialogue unit if its not null, disable if null
-        _img.enabled = (_curSentence.img != null);
-        _img.sprite = _curSentence.img;
-
-        // Set the name text
-        _nameText.text = _curSentence.name;
 
         // Set the body text
         string sentence = _curSentence.sentence;

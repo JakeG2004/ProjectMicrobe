@@ -12,6 +12,7 @@ using UnityEngine.Events;
 [System.Serializable]
 public class Dialogue
 {
+    public DialogueSO dialogueSO;
     public DialogueUnit[] sentences;
     public UnityEvent onDialogueComplete;
 }
@@ -19,8 +20,6 @@ public class Dialogue
 [System.Serializable]
 public class DialogueUnit
 {
-    public Sprite img;
-    public string name;
     [TextArea(2, 3)]
     public string sentence;
 }

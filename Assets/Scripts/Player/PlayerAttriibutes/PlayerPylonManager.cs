@@ -10,7 +10,7 @@ public class PlayerPylonManager : MonoBehaviour
 
     void Start()
     {
-        _cp = Object.FindObjectOfType<CarriedPylon>();
+        _cp = GameObject.FindGameObjectWithTag("Player").GetComponent<CarriedPylon>();
     }
 
     public void GivePylon()

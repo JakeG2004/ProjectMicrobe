@@ -166,7 +166,7 @@ public class NPCMoveController : MonoBehaviour {
 
 		// draw bounds
 		Gizmos.color = Color.green;
-		Gizmos.DrawWireSphere(homePos, wanderRadius);
+		Gizmos.DrawWireSphere(transform.position, wanderRadius);
 	}
 	
 }

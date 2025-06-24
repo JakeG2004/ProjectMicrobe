@@ -5710,19 +5710,7 @@ MonoBehaviour:
       m_Calls: []
   _onLoadPrereqs:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7786949}
-        m_TargetAssemblyTypeName: PlayerPylonManager, Assembly-CSharp
-        m_MethodName: GivePylon
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!4 &7786948
 Transform:
   m_ObjectHideFlags: 0
@@ -12278,6 +12266,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 66313649}
   m_CullTransparentMesh: 1
+--- !u!1 &68749979
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 68749980}
+  m_Layer: 0
+  m_Name: Eye Left
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &68749980
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 68749979}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.0000000026948235, y: -0.00000010958535, z: -0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: -0.20856638, y: 0.17565313, z: 0.12882213}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 529924148}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &69109868
 GameObject:
   m_ObjectHideFlags: 0
@@ -14442,6 +14461,38 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 87150620}
   m_Mesh: {fileID: 4300000, guid: ed8543ec389034f7f967ebf509ba920d, type: 3}
+--- !u!1 &87836175
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 87836176}
+  m_Layer: 0
+  m_Name: Leg Right
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &87836176
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87836175}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.007159062, y: 0.997058, z: 0.036439557, w: -0.06705534}
+  m_LocalPosition: {x: -0.014870787, y: 0.00000004656613, z: -0.10253006}
+  m_LocalScale: {x: 0.99999964, y: 0.99999994, z: 1.0000005}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1097858652}
+  m_Father: {fileID: 1838673790}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &89036696
 GameObject:
   m_ObjectHideFlags: 0
@@ -14871,6 +14922,143 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 89900824}
   m_Mesh: {fileID: 4300000, guid: 37e7cbc7bad6342e3a2069dad35c8c35, type: 3}
+--- !u!1 &90574528
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 90574529}
+  - component: {fileID: 90574532}
+  - component: {fileID: 90574531}
+  - component: {fileID: 90574530}
+  m_Layer: 0
+  m_Name: PlayerInteractSphere
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &90574529
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 90574528}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.61326265, z: -0, w: 0.789879}
+  m_LocalPosition: {x: 0.000011628494, y: -0.25, z: 0.038622186}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 746233664}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &90574530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 90574528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fa74fb9c1d6f989ab2166ec20664d0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interactEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1002772852}
+        m_TargetAssemblyTypeName: DialogueTrigger, Assembly-CSharp
+        m_MethodName: TriggerDialogue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2033553237}
+        m_TargetAssemblyTypeName: NPCNavMeshMovement, Assembly-CSharp
+        m_MethodName: SetMoveStatus
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &90574531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 90574528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4149f33b341df2d8b9c3f0297a9ae7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _targetTag: Player
+  _onEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 927572595}
+        m_TargetAssemblyTypeName: FacePlayer, Assembly-CSharp
+        m_MethodName: SetAnimState
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: TextIsUp
+          m_BoolArgument: 1
+        m_CallState: 2
+  _onExit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 927572595}
+        m_TargetAssemblyTypeName: FacePlayer, Assembly-CSharp
+        m_MethodName: SetAnimState
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!135 &90574532
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 90574528}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 2
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &92171839
 GameObject:
   m_ObjectHideFlags: 0
@@ -17181,6 +17369,8 @@ MonoBehaviour:
   _sounds:
   - {fileID: 8300000, guid: c6f40e143467aaebdacfe5d9b372b730, type: 3}
   _rapidPlayPeriod: 0.05
+  _silentOnStart: 0
+  _startSilentTime: 1
 --- !u!82 &115598278
 AudioSource:
   m_ObjectHideFlags: 0
@@ -20489,6 +20679,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &142321280
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 142321281}
+  m_Layer: 0
+  m_Name: Fingers Left
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &142321281
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 142321280}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.12904894, y: -0.019416098, z: -0.0025406654, w: 0.9914449}
+  m_LocalPosition: {x: -0.11734372, y: 0.0003848076, z: -0.00069758896}
+  m_LocalScale: {x: 1.0000018, y: 0.9999985, z: 0.99999905}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 923496663}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &142593549
 GameObject:
   m_ObjectHideFlags: 0
@@ -25786,14 +26007,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dialogue:
+    dialogueSO: {fileID: 11400000, guid: 6cc773b8bd7f52191a1aa3003ddd7083, type: 2}
     sentences:
-    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
-      name: Scientist
-      sentence: Ah! That Lead is the issue. It's a toxin to most microbes. We have
+    - sentence: Ah! That Lead is the issue. It's a toxin to most microbes. We have
         to get rid of it fast or else we'll lose the microbes that are here!
-    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
-      name: Scientist
-      sentence: Check out the encyclopedia! There might be something in there that
+    - sentence: Check out the encyclopedia! There might be something in there that
         can remove it from the environment!
     onDialogueComplete:
       m_PersistentCalls:
@@ -26515,6 +26733,106 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 198728752}
   m_CullTransparentMesh: 1
+--- !u!1 &199935773
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 199935774}
+  - component: {fileID: 199935776}
+  - component: {fileID: 199935775}
+  m_Layer: 0
+  m_Name: GetUpdateSequenceListener
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &199935774
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 199935773}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1423809601}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &199935775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 199935773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2aa24179581ffceff947a701e624e3ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _event: {fileID: 11400000, guid: 06f4569ab986ca7368068f8c2f25ed03, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 199935776}
+        m_TargetAssemblyTypeName: ObjectiveBooleanSequence, Assembly-CSharp
+        m_MethodName: SetTrue
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: SimStep
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onBoolTrue:
+    m_PersistentCalls:
+      m_Calls: []
+  _onBoolFalse:
+    m_PersistentCalls:
+      m_Calls: []
+  _boolVal: 0
+--- !u!114 &199935776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 199935773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ca99cd2fc88602038b43dfa2a38d0c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _boolNames:
+  - Activated
+  - SimStep
+  _completedEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1423809602}
+        m_TargetAssemblyTypeName: Objective, Assembly-CSharp
+        m_MethodName: RaiseObjectiveComplete
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _isSequenced: 1
+  _allowMultiToggle: 1
 --- !u!1 &200578358
 GameObject:
   m_ObjectHideFlags: 0
@@ -38264,6 +38582,94 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 255440339}
   m_Mesh: {fileID: 4300000, guid: a113cab5199064aed8ae31f85006a37c, type: 3}
+--- !u!1 &256278905
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 256278906}
+  - component: {fileID: 256278907}
+  m_Layer: 0
+  m_Name: Mustache
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &256278906
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 256278905}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2033553230}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!137 &256278907
+SkinnedMeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 256278905}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 3
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: d0c53c1fcbc3d996cb86cb1b2d23b332, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  serializedVersion: 2
+  m_Quality: 0
+  m_UpdateWhenOffscreen: 0
+  m_SkinnedMotionVectors: 1
+  m_Mesh: {fileID: 3131188959575262684, guid: a1c1915206b1dc24e958a54039f5ab26, type: 3}
+  m_Bones:
+  - {fileID: 1064358256}
+  - {fileID: 529924148}
+  - {fileID: 669675861}
+  m_BlendShapeWeights: []
+  m_RootBone: {fileID: 1838673790}
+  m_AABB:
+    m_Center: {x: -0.13054378, y: 0.32788172, z: 0.000019013882}
+    m_Extent: {x: 0.2581113, y: 0.114147395, z: 0.31258962}
+  m_DirtyAABB: 0
 --- !u!1 &256475248
 GameObject:
   m_ObjectHideFlags: 0
@@ -41598,6 +42004,124 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &288199569
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 288199570}
+  - component: {fileID: 288199571}
+  - component: {fileID: 288199572}
+  m_Layer: 0
+  m_Name: GetPylon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &288199570
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 288199569}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1045444189}
+  m_Father: {fileID: 1787399684}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &288199571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 288199569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f4b217eee27f8965808e63c89329a2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objectiveChannelsSO: {fileID: 11400000, guid: abd508a1728e99261a0c45cd360d8b56, type: 2}
+  _nextObjective: {fileID: 1593299340}
+  _objectiveText: Get a Pylon
+  _isFirstObjective: 0
+  _targetObject: {fileID: 1487375725}
+  _objectiveGroup: {fileID: 1787399685}
+  _onActivate:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1045444190}
+        m_TargetAssemblyTypeName: ObjectiveBooleanSequence, Assembly-CSharp
+        m_MethodName: SetTrue
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Activated
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 288199572}
+        m_TargetAssemblyTypeName: CheckPlayerHasPylon, Assembly-CSharp
+        m_MethodName: CheckPylon
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Activated
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  _onFail:
+    m_PersistentCalls:
+      m_Calls: []
+  _onLoadPrereqs:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &288199572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 288199569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 904202c5307d4547ebfc66e288d0696f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hasPylonEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 288199571}
+        m_TargetAssemblyTypeName: Objective, Assembly-CSharp
+        m_MethodName: RaiseObjectiveComplete
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _notHasPylonEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &288393208
 GameObject:
   m_ObjectHideFlags: 0
@@ -42509,6 +43033,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 296387761}
   m_Mesh: {fileID: 4300000, guid: 28c52b0a49241464381f982975d3379c, type: 3}
+--- !u!1 &297491493
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 297491494}
+  m_Layer: 0
+  m_Name: Thumb Left
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &297491494
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297491493}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.29009533, y: 0.39500144, z: 0.16976348, w: 0.85498476}
+  m_LocalPosition: {x: -0.051870633, y: -0.036180686, z: 0.052310914}
+  m_LocalScale: {x: 1.0000007, y: 1.0000018, z: 0.99999684}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 923496663}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &298413160
 GameObject:
   m_ObjectHideFlags: 0
@@ -45322,8 +45877,6 @@ GameObject:
   - component: {fileID: 325236413}
   - component: {fileID: 325236412}
   - component: {fileID: 325236411}
-  - component: {fileID: 325236410}
-  - component: {fileID: 325236409}
   - component: {fileID: 325236408}
   m_Layer: 8
   m_Name: MountainRegion
@@ -45359,64 +45912,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d052d24a7f58557abe75b6ab5f7aac3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &325236409
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 325236406}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b86b640fa91848678b478486c1815f24, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _event: {fileID: 11400000, guid: 6e4e9e374a68781ce8088393843a5007, type: 2}
---- !u!114 &325236410
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 325236406}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b830b3cba97731db7a2143b97ab03e6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _dialogues:
-  - sentences:
-    - img: {fileID: 21300000, guid: 9a2647da9b471dd648b07473bb552004, type: 3}
-      name: Coconut Farmer
-      sentence: Awesome! Eveything is grown! Let's get a coconut!
-    onDialogueComplete:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1757547293}
-          m_TargetAssemblyTypeName: NPCMoveController, Assembly-CSharp
-          m_MethodName: SetMoveStatus
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
-        - m_Target: {fileID: 325236409}
-          m_TargetAssemblyTypeName: StringGameEventTrigger, Assembly-CSharp
-          m_MethodName: TriggerEvent
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: CoconutGame
-            m_BoolArgument: 0
-          m_CallState: 2
-  _dialogueTrigger: {fileID: 1094904571}
 --- !u!114 &325236411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45435,18 +45930,6 @@ MonoBehaviour:
   _onGrowthComplete:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 325236410}
-        m_TargetAssemblyTypeName: DialogueSwitcher, Assembly-CSharp
-        m_MethodName: SetDialogue
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 325236408}
         m_TargetAssemblyTypeName: NotificationSender, Assembly-CSharp
         m_MethodName: SendGeneralNotification
@@ -47425,6 +47908,38 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 343186664}
   m_Mesh: {fileID: -6439367033556897392, guid: cfa0f71ab5189a8468e044314adbfe50, type: 3}
+--- !u!1 &344865984
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 344865985}
+  m_Layer: 0
+  m_Name: Region3Dialogue
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &344865985
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 344865984}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1519800421}
+  m_Father: {fileID: 1280310711}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &345022490
 GameObject:
   m_ObjectHideFlags: 0
@@ -50063,6 +50578,39 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 363380736}
   m_CullTransparentMesh: 1
+--- !u!1 &363626017
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 363626018}
+  m_Layer: 0
+  m_Name: Neck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &363626018
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 363626017}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.0000070465703, y: 0.003456057, z: -0.1861622, w: 0.98251295}
+  m_LocalPosition: {x: -0.16392426, y: -0.028602416, z: 0.0000000042840838}
+  m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 529924148}
+  - {fileID: 1702618187}
+  m_Father: {fileID: 2071536042}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &365493620
 GameObject:
   m_ObjectHideFlags: 0
@@ -52191,6 +52739,37 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!1 &387478480
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 387478481}
+  m_Layer: 0
+  m_Name: Hood1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &387478481
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 387478480}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.0033902111, y: -0.0011230981, z: 0.49998719, w: 0.86602545}
+  m_LocalPosition: {x: -0.22538976, y: -0.09865818, z: -0.001749854}
+  m_LocalScale: {x: 1, y: 1, z: 0.99999976}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1702618187}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &387692061
 GameObject:
   m_ObjectHideFlags: 0
@@ -59434,6 +60013,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 128bb54fbd5b16d5fba55eea4885fcbf, type: 3}
   - {fileID: 8300000, guid: 1287a0a31f804d90b9b4f298fc019fd9, type: 3}
   _rapidPlayPeriod: 0.1
+  _silentOnStart: 0
+  _startSilentTime: 1
 --- !u!82 &412422798
 AudioSource:
   m_ObjectHideFlags: 0
@@ -59445,7 +60026,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -7121508339005156148, guid: 53c1b50a4a041e248a70ae5a52114562, type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -69064,7 +69645,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &449207294
 Transform:
   m_ObjectHideFlags: 0
@@ -69830,16 +70411,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dialogue:
+    dialogueSO: {fileID: 11400000, guid: 6cc773b8bd7f52191a1aa3003ddd7083, type: 2}
     sentences:
-    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
-      name: Scientist
-      sentence: Awesome! Now just head back and try to get everything stable!
-    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
-      name: Scientist
-      sentence: It should look somewhat similar to your other pylon.
-    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
-      name: Scientist
-      sentence: There may be some more oscillation in this one though!
+    - sentence: Awesome! Now just head back and try to get everything stable!
+    - sentence: It should look somewhat similar to your other pylon.
+    - sentence: There may be some more oscillation in this one though!
     onDialogueComplete:
       m_PersistentCalls:
         m_Calls: []
@@ -70178,58 +70754,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1850557919}
-        m_TargetAssemblyTypeName: ObjectiveBooleanSequence, Assembly-CSharp
-        m_MethodName: SetTrue
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Activated
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 1388747790}
-        m_TargetAssemblyTypeName: ObjectiveBooleanSequence, Assembly-CSharp
-        m_MethodName: SetTrue
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Activated
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 1577119213}
-        m_TargetAssemblyTypeName: ObjectiveBooleanSequence, Assembly-CSharp
-        m_MethodName: SetTrue
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Activated
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 837356170}
-        m_TargetAssemblyTypeName: ObjectiveBooleanSequence, Assembly-CSharp
-        m_MethodName: SetTrue
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Activated
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 686232523}
-        m_TargetAssemblyTypeName: ObjectiveBooleanSequence, Assembly-CSharp
-        m_MethodName: SetTrue
-        m_Mode: 5
+      - m_Target: {fileID: 1625156264}
+        m_TargetAssemblyTypeName: TriggerableEvent, Assembly-CSharp
+        m_MethodName: ActivateEvent
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -70259,16 +70787,16 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1850557919}
-        m_TargetAssemblyTypeName: ObjectiveBooleanSequence, Assembly-CSharp
-        m_MethodName: SetTrue
-        m_Mode: 5
+      - m_Target: {fileID: 1625156264}
+        m_TargetAssemblyTypeName: TriggerableEvent, Assembly-CSharp
+        m_MethodName: ActivateEvent
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Activated
+          m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
 --- !u!4 &455885798
@@ -70283,7 +70811,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1625156263}
   m_Father: {fileID: 2123872487}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &455885799
@@ -70299,10 +70828,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dialogues:
-  - sentences:
-    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
-      name: Scientist
-      sentence: Great job helping her out! There's another client on this island.
+  - dialogueSO: {fileID: 11400000, guid: 6cc773b8bd7f52191a1aa3003ddd7083, type: 2}
+    sentences:
+    - sentence: Great job helping her out! There's another client on this island.
         Can you find them?
     onDialogueComplete:
       m_PersistentCalls:
@@ -76106,6 +76634,106 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 462997595}
   m_CullTransparentMesh: 1
+--- !u!1 &464328799
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 464328800}
+  - component: {fileID: 464328803}
+  - component: {fileID: 464328802}
+  m_Layer: 0
+  m_Name: PlacePylonSequenceListener
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &464328800
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 464328799}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1593299339}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &464328802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 464328799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2aa24179581ffceff947a701e624e3ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _event: {fileID: 11400000, guid: 6bd2220628226ef0a9088fba399474b4, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 464328803}
+        m_TargetAssemblyTypeName: ObjectiveBooleanSequence, Assembly-CSharp
+        m_MethodName: SetTrue
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: PylonPlaced
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onBoolTrue:
+    m_PersistentCalls:
+      m_Calls: []
+  _onBoolFalse:
+    m_PersistentCalls:
+      m_Calls: []
+  _boolVal: 0
+--- !u!114 &464328803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 464328799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ca99cd2fc88602038b43dfa2a38d0c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _boolNames:
+  - Activated
+  - PylonPlaced
+  _completedEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1593299340}
+        m_TargetAssemblyTypeName: Objective, Assembly-CSharp
+        m_MethodName: RaiseObjectiveComplete
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _isSequenced: 1
+  _allowMultiToggle: 1
 --- !u!1 &464519886
 GameObject:
   m_ObjectHideFlags: 0
@@ -76300,13 +76928,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dialogue:
+    dialogueSO: {fileID: 11400000, guid: 6cc773b8bd7f52191a1aa3003ddd7083, type: 2}
     sentences:
-    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
-      name: Scientist
-      sentence: You took a look around? Did you notice F. Mycorrhis?
-    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
-      name: Scientist
-      sentence: It's a fungus that takes Nitrate in the environment and helps plants
+    - sentence: You took a look around? Did you notice F. Mycorrhis?
+    - sentence: It's a fungus that takes Nitrate in the environment and helps plants
         absorb it! If you grab some, we can put it into the environment!
     onDialogueComplete:
       m_PersistentCalls:
@@ -76926,6 +77551,94 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 471289289}
   m_Mesh: {fileID: 4300000, guid: 525d914842e3442e2a5c0e5269790ae4, type: 3}
+--- !u!1 &472924983
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 472924984}
+  - component: {fileID: 472924985}
+  m_Layer: 0
+  m_Name: Eyes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &472924984
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 472924983}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -0, y: 1.2482399, z: 0.19760787}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2033553230}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!137 &472924985
+SkinnedMeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 472924983}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 3
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 5e0976ef282942649a25f370a9868050, type: 2}
+  - {fileID: 2100000, guid: 27a57a173962c74499e45cf1a85d65e5, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  serializedVersion: 2
+  m_Quality: 0
+  m_UpdateWhenOffscreen: 0
+  m_SkinnedMotionVectors: 1
+  m_Mesh: {fileID: 3359138182758997695, guid: a1c1915206b1dc24e958a54039f5ab26, type: 3}
+  m_Bones:
+  - {fileID: 881327749}
+  - {fileID: 68749980}
+  m_BlendShapeWeights: []
+  m_RootBone: {fileID: 68749980}
+  m_AABB:
+    m_Center: {x: 0.002395682, y: 0.00076955557, z: -0.12879679}
+    m_Extent: {x: 0.15462488, y: 0.15442564, z: 0.28363785}
+  m_DirtyAABB: 0
 --- !u!1 &473325851
 GameObject:
   m_ObjectHideFlags: 0
@@ -77119,6 +77832,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 867534599}
+  - {fileID: 508770457}
   m_Father: {fileID: 1787399684}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &477375722
@@ -77134,14 +77848,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _objectiveChannelsSO: {fileID: 11400000, guid: abd508a1728e99261a0c45cd360d8b56, type: 2}
-  _nextObjective: {fileID: 0}
+  _nextObjective: {fileID: 2110127221}
   _objectiveText: Talk to the Scientist
   _isFirstObjective: 0
   _targetObject: {fileID: 632283459}
-  _objectiveGroup: {fileID: 0}
+  _objectiveGroup: {fileID: 1787399685}
   _onActivate:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 867534600}
+        m_TargetAssemblyTypeName: DialogueSwitcher, Assembly-CSharp
+        m_MethodName: SetDialogue
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 508770458}
+        m_TargetAssemblyTypeName: TriggerableEvent, Assembly-CSharp
+        m_MethodName: ActivateEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _onComplete:
     m_PersistentCalls:
       m_Calls: []
@@ -77150,7 +77888,19 @@ MonoBehaviour:
       m_Calls: []
   _onLoadPrereqs:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 508770458}
+        m_TargetAssemblyTypeName: TriggerableEvent, Assembly-CSharp
+        m_MethodName: ActivateEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &477780165
 GameObject:
   m_ObjectHideFlags: 0
@@ -79869,6 +80619,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 128bb54fbd5b16d5fba55eea4885fcbf, type: 3}
   - {fileID: 8300000, guid: 1287a0a31f804d90b9b4f298fc019fd9, type: 3}
   _rapidPlayPeriod: 0.05
+  _silentOnStart: 0
+  _startSilentTime: 1
 --- !u!82 &501069145
 AudioSource:
   m_ObjectHideFlags: 0
@@ -79880,7 +80632,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -7121508339005156148, guid: 53c1b50a4a041e248a70ae5a52114562, type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -80870,6 +81622,91 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 508412958}
   m_Mesh: {fileID: 1795232812876766526, guid: ce2ba694e7b9ee04883bb456ee427ba9, type: 3}
+--- !u!1 &508770456
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 508770457}
+  - component: {fileID: 508770458}
+  m_Layer: 0
+  m_Name: CriticalObjectivesActivator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &508770457
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 508770456}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 477375720}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &508770458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 508770456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 547156b6034f3f2308f8e3920c5700b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _activateOnStart: 0
+  _oneShot: 1
+  _event:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1045444190}
+        m_TargetAssemblyTypeName: ObjectiveBooleanSequence, Assembly-CSharp
+        m_MethodName: SetTrue
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Activated
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 325236414}
+        m_TargetAssemblyTypeName: UnityEngine.Collider, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Activated
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 464328803}
+        m_TargetAssemblyTypeName: ObjectiveBooleanSequence, Assembly-CSharp
+        m_MethodName: SetTrue
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Activated
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!1 &510632892
 GameObject:
   m_ObjectHideFlags: 0
@@ -82691,18 +83528,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dialogue:
+    dialogueSO: {fileID: 11400000, guid: 6cc773b8bd7f52191a1aa3003ddd7083, type: 2}
     sentences:
-    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
-      name: Scientist
-      sentence: Awesome! Now that you've got a pylon, the next step is to put it
+    - sentence: Awesome! Now that you've got a pylon, the next step is to put it
         down.
-    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
-      name: Scientist
-      sentence: It will automatically start to collect data on the environment that
+    - sentence: It will automatically start to collect data on the environment that
         it's in. With any luck, we'll know what's wrong!
-    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
-      name: Scientist
-      sentence: Head back over to the Client's property and set down the pylon!
+    - sentence: Head back over to the Client's property and set down the pylon!
     onDialogueComplete:
       m_PersistentCalls:
         m_Calls:
@@ -82994,6 +83826,44 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 529827161}
   m_Mesh: {fileID: 4300000, guid: c70b95fcd69584c8ab0ad9836b08b3cc, type: 3}
+--- !u!1 &529924147
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 529924148}
+  m_Layer: 0
+  m_Name: Head
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &529924148
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 529924147}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.00015779265, y: -0.0034524505, z: 0.22884159, w: 0.9734576}
+  m_LocalPosition: {x: -0.16637507, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1061743611}
+  - {fileID: 68749980}
+  - {fileID: 881327749}
+  - {fileID: 1064358256}
+  - {fileID: 1239151364}
+  - {fileID: 1941442699}
+  - {fileID: 669675861}
+  m_Father: {fileID: 363626018}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &530354576
 GameObject:
   m_ObjectHideFlags: 0
@@ -91036,10 +91906,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dialogues:
-  - sentences:
-    - img: {fileID: 21300000, guid: 9a2647da9b471dd648b07473bb552004, type: 3}
-      name: Coconut Farmer
-      sentence: Awesome! Eveything is grown! Let's get a coconut!
+  - dialogueSO: {fileID: 11400000, guid: ef00812a01b51e16a982550a514085e3, type: 2}
+    sentences:
+    - sentence: Awesome! Eveything is grown! Let's get a coconut!
     onDialogueComplete:
       m_PersistentCalls:
         m_Calls:
@@ -91059,6 +91928,18 @@ MonoBehaviour:
           m_TargetAssemblyTypeName: StringGameEventTrigger, Assembly-CSharp
           m_MethodName: TriggerEvent
           m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: CoconutGame
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 2122540021}
+          m_TargetAssemblyTypeName: Objective, Assembly-CSharp
+          m_MethodName: RaiseObjectiveComplete
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -94029,6 +94910,95 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 606488445}
   m_Mesh: {fileID: -6439367033556897392, guid: cfa0f71ab5189a8468e044314adbfe50, type: 3}
+--- !u!1 &606730592
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 606730593}
+  - component: {fileID: 606730594}
+  m_Layer: 0
+  m_Name: Shoes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &606730593
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 606730592}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2033553230}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!137 &606730594
+SkinnedMeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 606730592}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 3
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 7115825afbadf77458af2d2ef1d5587a, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  serializedVersion: 2
+  m_Quality: 0
+  m_UpdateWhenOffscreen: 0
+  m_SkinnedMotionVectors: 1
+  m_Mesh: {fileID: -278085929633702562, guid: a1c1915206b1dc24e958a54039f5ab26, type: 3}
+  m_Bones:
+  - {fileID: 1890353994}
+  - {fileID: 1097858652}
+  - {fileID: 1848983633}
+  - {fileID: 1271875513}
+  m_BlendShapeWeights: []
+  m_RootBone: {fileID: 1271875513}
+  m_AABB:
+    m_Center: {x: -0.21765259, y: 0.01649449, z: 0.15096262}
+    m_Extent: {x: 0.18945095, y: 0.2067765, z: 0.2883315}
+  m_DirtyAABB: 0
 --- !u!1 &607619301
 GameObject:
   m_ObjectHideFlags: 0
@@ -95219,24 +96189,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dialogue:
+    dialogueSO: {fileID: 11400000, guid: 6cc773b8bd7f52191a1aa3003ddd7083, type: 2}
     sentences:
-    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
-      name: Scientist
-      sentence: Awesome! Now we've got some data to work with.
-    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
-      name: Scientist
-      sentence: If you haven't already, look in the pylon. You should see that B.
+    - sentence: Awesome! Now we've got some data to work with.
+    - sentence: If you haven't already, look in the pylon. You should see that B.
         Nitrogenous and B. Plantus are both stable!
-    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
-      name: Scientist
-      sentence: Furthermore, Nitrate is being steadily produced.
-    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
-      name: Scientist
-      sentence: So, we need something that will consume that nitrate and help plants
+    - sentence: Furthermore, Nitrate is being steadily produced.
+    - sentence: So, we need something that will consume that nitrate and help plants
         absorb it!
-    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
-      name: Scientist
-      sentence: Check out the encyclopedia and find what we need!
+    - sentence: Check out the encyclopedia and find what we need!
     onDialogueComplete:
       m_PersistentCalls:
         m_Calls:
@@ -101534,13 +102495,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dialogue:
+    dialogueSO: {fileID: 11400000, guid: 6cc773b8bd7f52191a1aa3003ddd7083, type: 2}
     sentences:
-    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
-      name: Scientist
-      sentence: Awesome! Now we just have to wait to see if things stabilize!
-    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
-      name: Scientist
-      sentence: That can take a while, so you could go ahead and explore if you would
+    - sentence: Awesome! Now we just have to wait to see if things stabilize!
+    - sentence: That can take a while, so you could go ahead and explore if you would
         like. The pylon will notify you if anything goes extinct or if it stabilizes.
     onDialogueComplete:
       m_PersistentCalls:
@@ -101824,6 +102782,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 128bb54fbd5b16d5fba55eea4885fcbf, type: 3}
   - {fileID: 8300000, guid: 1287a0a31f804d90b9b4f298fc019fd9, type: 3}
   _rapidPlayPeriod: 0.05
+  _silentOnStart: 0
+  _startSilentTime: 1
 --- !u!82 &668852330
 AudioSource:
   m_ObjectHideFlags: 0
@@ -101835,7 +102795,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -7121508339005156148, guid: 53c1b50a4a041e248a70ae5a52114562, type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -101920,6 +102880,37 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &669675860
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 669675861}
+  m_Layer: 0
+  m_Name: Brow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &669675861
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 669675860}
+  serializedVersion: 2
+  m_LocalRotation: {x: -8.505066e-11, y: -0.000000003896184, z: -4.2632896e-14, w: 1}
+  m_LocalPosition: {x: -0.29020578, y: 0.4112235, z: -0.00000005969487}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 529924148}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &669718178
 GameObject:
   m_ObjectHideFlags: 0
@@ -102804,6 +103795,38 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 683814715}
   m_Mesh: {fileID: 4300000, guid: d3be769db7fe44f7dbfe90edbc6dd573, type: 3}
+--- !u!1 &684841212
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 684841213}
+  m_Layer: 0
+  m_Name: Elbow Right
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &684841213
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 684841212}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.026168693, y: 0.10704791, z: -0.06832931, w: 0.9915579}
+  m_LocalPosition: {x: -0.20852947, y: 0.0000000029802323, z: 0}
+  m_LocalScale: {x: 1.0000002, y: 1.0000002, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1388933657}
+  m_Father: {fileID: 1977940460}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &685919728
 GameObject:
   m_ObjectHideFlags: 0
@@ -113787,6 +114810,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 734863729}
   m_Mesh: {fileID: 4407528749312075106, guid: 415bb3dc0affad14cbdc94f61ddccba1, type: 3}
+--- !u!1 &734971073
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 734971074}
+  m_Layer: 0
+  m_Name: Fingers Right
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &734971074
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 734971073}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.12904936, y: 0.019415976, z: -0.0025406545, w: 0.9914448}
+  m_LocalPosition: {x: -0.11734338, y: 0.0003847122, z: 0.0006975949}
+  m_LocalScale: {x: 0.99999976, y: 0.9999994, z: 1.0000024}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1388933657}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &736222276
 GameObject:
   m_ObjectHideFlags: 0
@@ -115239,6 +116293,39 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 746006535}
   m_CullTransparentMesh: 1
+--- !u!1 &746233663
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 746233664}
+  m_Layer: 0
+  m_Name: Interact
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &746233664
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 746233663}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.92, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 90574529}
+  - {fileID: 927572593}
+  m_Father: {fileID: 2033553230}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &746279981
 GameObject:
   m_ObjectHideFlags: 0
@@ -119283,6 +120370,38 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 778357712}
   m_CullTransparentMesh: 1
+--- !u!1 &778915676
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 778915677}
+  m_Layer: 0
+  m_Name: Leg Left
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &778915677
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 778915676}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.0065402263, y: 0.9970428, z: -0.036438722, w: 0.067343704}
+  m_LocalPosition: {x: -0.014870787, y: 0.00000004656613, z: 0.10253006}
+  m_LocalScale: {x: 1.0000002, y: 0.99999964, z: 1.0000002}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1271875513}
+  m_Father: {fileID: 1838673790}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &780238683
 GameObject:
   m_ObjectHideFlags: 0
@@ -122564,10 +123683,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dialogues:
-  - sentences:
-    - img: {fileID: 0}
-      name: Bug Collector
-      sentence: Awesome! Want to help me catch some bugs?
+  - dialogueSO: {fileID: 11400000, guid: c461897ffc2dd72b58e0f935289ecf84, type: 2}
+    sentences:
+    - sentence: Awesome! Want to help me catch some bugs?
     onDialogueComplete:
       m_PersistentCalls:
         m_Calls:
@@ -122599,6 +123717,18 @@ MonoBehaviour:
           m_TargetAssemblyTypeName: StringGameEventTrigger, Assembly-CSharp
           m_MethodName: TriggerEvent
           m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: BugGame
+            m_BoolArgument: 1
+          m_CallState: 2
+        - m_Target: {fileID: 1049903085}
+          m_TargetAssemblyTypeName: Objective, Assembly-CSharp
+          m_MethodName: RaiseObjectiveComplete
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -123798,6 +124928,38 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 819278020}
   m_Mesh: {fileID: 4300000, guid: 6b99a8dc3fcb84c3fa2567aff80e0d3a, type: 3}
+--- !u!1 &820513253
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 820513254}
+  m_Layer: 0
+  m_Name: Shoulder Left
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &820513254
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 820513253}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.05639748, y: 0.7890676, z: 0.055030987, w: 0.60923165}
+  m_LocalPosition: {x: -0.15478797, y: -0.03881071, z: 0.17884526}
+  m_LocalScale: {x: 1, y: 0.99999994, z: 0.9999998}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1710419070}
+  m_Father: {fileID: 2071536042}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &820900054
 GameObject:
   m_ObjectHideFlags: 0
@@ -130527,7 +131689,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -7121508339005156148, guid: 53c1b50a4a041e248a70ae5a52114562, type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -130629,6 +131791,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 128bb54fbd5b16d5fba55eea4885fcbf, type: 3}
   - {fileID: 8300000, guid: 1287a0a31f804d90b9b4f298fc019fd9, type: 3}
   _rapidPlayPeriod: 0.1
+  _silentOnStart: 0
+  _startSilentTime: 1
 --- !u!114 &833901427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135562,20 +136726,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dialogues:
-  - sentences:
-    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
-      name: Scientist
-      sentence: Awesome! Two for two! You're doing great. There's one last client
-        on this island.
-    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
-      name: Scientist
-      sentence: You might have seen this person, but they live on top of the mountain!
-    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
-      name: Scientist
-      sentence: Go ask them what they need!
+  - dialogueSO: {fileID: 11400000, guid: 6cc773b8bd7f52191a1aa3003ddd7083, type: 2}
+    sentences:
+    - sentence: Nice job! Two for two means you're a real pro! Most people don't
+        get it so fast.
+    - sentence: We've got one last client for you on this island, right on top of
+        the mountain.
+    - sentence: Go say hi!
     onDialogueComplete:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 477375722}
+          m_TargetAssemblyTypeName: Objective, Assembly-CSharp
+          m_MethodName: RaiseObjectiveComplete
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 632283455}
+          m_TargetAssemblyTypeName: NPCMoveController, Assembly-CSharp
+          m_MethodName: SetMoveStatus
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
   _dialogueTrigger: {fileID: 1959555317}
 --- !u!1 &867775985
 GameObject:
@@ -135711,6 +136895,104 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 867775985}
   m_CullTransparentMesh: 1
+--- !u!1 &869388466
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 869388467}
+  - component: {fileID: 869388468}
+  m_Layer: 3
+  m_Name: Hoodie
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &869388467
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 869388466}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2033553230}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!137 &869388468
+SkinnedMeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 869388466}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 3
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 68ff3e8bd8a64fa49a421af12df9ecce, type: 2}
+  - {fileID: 2100000, guid: 9326f81a38a785d4586712a3b43f81a3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  serializedVersion: 2
+  m_Quality: 0
+  m_UpdateWhenOffscreen: 0
+  m_SkinnedMotionVectors: 1
+  m_Mesh: {fileID: -6437923277489693469, guid: fa42d3ef2997a214daa407d8715b7cc9, type: 3}
+  m_Bones:
+  - {fileID: 1404381936}
+  - {fileID: 2071536042}
+  - {fileID: 1712335076}
+  - {fileID: 1838673790}
+  - {fileID: 684841213}
+  - {fileID: 1388933657}
+  - {fileID: 1977940460}
+  - {fileID: 1702618187}
+  - {fileID: 387478481}
+  - {fileID: 1710419070}
+  - {fileID: 923496663}
+  - {fileID: 820513254}
+  m_BlendShapeWeights: []
+  m_RootBone: {fileID: 1838673790}
+  m_AABB:
+    m_Center: {x: -0.282382, y: -0.11785743, z: -0.00027248263}
+    m_Extent: {x: 0.3054943, y: 0.30473801, z: 0.64733803}
+  m_DirtyAABB: 0
 --- !u!1 &870058590
 GameObject:
   m_ObjectHideFlags: 1
@@ -136950,6 +138232,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 880540391}
   m_CullTransparentMesh: 1
+--- !u!1 &881327748
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 881327749}
+  m_Layer: 0
+  m_Name: Eye Right
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &881327749
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 881327748}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.0000000026948235, y: -0.00000010958535, z: -0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: -0.20856638, y: 0.17565303, z: -0.12880002}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 529924148}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &882176227
 GameObject:
   m_ObjectHideFlags: 0
@@ -137489,6 +138802,99 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 887027403}
   m_Mesh: {fileID: 4300002, guid: 9449de6b4f69541da942966c2538df95, type: 3}
+--- !u!1 &887061196
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 887061197}
+  - component: {fileID: 887061198}
+  m_Layer: 0
+  m_Name: Pants
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &887061197
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 887061196}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2033553230}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!137 &887061198
+SkinnedMeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 887061196}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 3
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: e148a2c9af2c4a3449157b3273fa55f8, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  serializedVersion: 2
+  m_Quality: 0
+  m_UpdateWhenOffscreen: 0
+  m_SkinnedMotionVectors: 1
+  m_Mesh: {fileID: 7666266049737368757, guid: a1c1915206b1dc24e958a54039f5ab26, type: 3}
+  m_Bones:
+  - {fileID: 1838673790}
+  - {fileID: 1712335076}
+  - {fileID: 87836176}
+  - {fileID: 778915677}
+  - {fileID: 1097858652}
+  - {fileID: 1890353994}
+  - {fileID: 1271875513}
+  - {fileID: 1848983633}
+  m_BlendShapeWeights: []
+  m_RootBone: {fileID: 1838673790}
+  m_AABB:
+    m_Center: {x: 0.19915013, y: -0.01971133, z: 0.00003924966}
+    m_Extent: {x: 0.31206208, y: 0.19107518, z: 0.28350344}
+  m_DirtyAABB: 0
 --- !u!1 &888051284
 GameObject:
   m_ObjectHideFlags: 0
@@ -139349,6 +140755,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 905504433}
   m_Mesh: {fileID: 4300002, guid: c955d0524a6d449be8459b6f27b56b6b, type: 3}
+--- !u!1 &905511796
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 905511797}
+  m_Layer: 0
+  m_Name: Thumb Right
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &905511797
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 905511796}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.2900967, y: -0.39500114, z: 0.1697618, w: 0.85498476}
+  m_LocalPosition: {x: -0.051870536, y: -0.036180593, z: -0.05231108}
+  m_LocalScale: {x: 0.99999845, y: 1.0000039, z: 0.999999}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1388933657}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &905764100
 GameObject:
   m_ObjectHideFlags: 0
@@ -141463,10 +142900,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dialogue:
+    dialogueSO: {fileID: 11400000, guid: 6cc773b8bd7f52191a1aa3003ddd7083, type: 2}
     sentences:
-    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
-      name: Scientist
-      sentence: Great! Now we just need to wait for all the Lead to disappear. When
+    - sentence: Great! Now we just need to wait for all the Lead to disappear. When
         that happens, our Metallus should die off, since they need it to survive!
     onDialogueComplete:
       m_PersistentCalls:
@@ -141945,14 +143381,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dialogue:
+    dialogueSO: {fileID: 11400000, guid: c461897ffc2dd72b58e0f935289ecf84, type: 2}
     sentences:
-    - img: {fileID: 21300000, guid: 9a2647da9b471dd648b07473bb552004, type: 3}
-      name: Bug Collector
-      sentence: Hey! You're with the Remediators! I need your help, but I'm not ready
+    - sentence: Hey! You're with the Remediators! I need your help, but I'm not ready
         yet.
-    - img: {fileID: 21300000, guid: 9a2647da9b471dd648b07473bb552004, type: 3}
-      name: Bug Collector
-      sentence: Come back in a bit!
+    - sentence: Come back in a bit!
     onDialogueComplete:
       m_PersistentCalls:
         m_Calls:
@@ -142079,6 +143512,39 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 921068321}
   m_Mesh: {fileID: 4300000, guid: d3be769db7fe44f7dbfe90edbc6dd573, type: 3}
+--- !u!1 &923496662
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 923496663}
+  m_Layer: 0
+  m_Name: Wrist Left
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &923496663
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 923496662}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7175938, y: -0.09410639, z: 0.020457827, w: 0.6897714}
+  m_LocalPosition: {x: -0.24154702, y: 0, z: 0.00000009536743}
+  m_LocalScale: {x: 1.000002, y: 0.9999992, z: 0.999999}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 297491494}
+  - {fileID: 142321281}
+  m_Father: {fileID: 1710419070}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &925644055
 GameObject:
   m_ObjectHideFlags: 0
@@ -142399,6 +143865,213 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 680, y: 641.17}
   m_Pivot: {x: 0, y: 1}
+--- !u!1 &927572592
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 927572593}
+  - component: {fileID: 927572597}
+  - component: {fileID: 927572596}
+  - component: {fileID: 927572595}
+  - component: {fileID: 927572594}
+  m_Layer: 7
+  m_Name: InteractText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &927572593
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 927572592}
+  m_LocalRotation: {x: -0, y: 0.61326265, z: -0, w: 0.789879}
+  m_LocalPosition: {x: 0, y: 0, z: 0.038622186}
+  m_LocalScale: {x: -1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 746233664}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.000014782819, y: 1.5}
+  m_SizeDelta: {x: 20, y: 5}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &927572594
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 927572592}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e931052bd7cec41ca939d4a1b3be5bcb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &927572595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 927572592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a605b5aea1dfc2f0a97b46a333f98543, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _faceOnStart: 0
+--- !u!114 &927572596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 927572592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Press E
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: f6ca9ce9d92b0064c8368a2f0dc8963a, type: 2}
+  m_sharedMaterial: {fileID: 7917372319335216275, guid: f6ca9ce9d92b0064c8368a2f0dc8963a, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 7.1
+  m_fontSizeBase: 7.1
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 0
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 927572597}
+  m_maskType: 0
+  _SortingLayer: 0
+  _SortingLayerID: 0
+  _SortingOrder: 0
+--- !u!23 &927572597
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 927572592}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 7917372319335216275, guid: f6ca9ce9d92b0064c8368a2f0dc8963a, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &928137500
 GameObject:
   m_ObjectHideFlags: 0
@@ -155732,6 +157405,69 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1002293608}
   m_Mesh: {fileID: 4300000, guid: a4cd944f9f9f2427092e16a58358bffb, type: 3}
+--- !u!1 &1002772850
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1002772851}
+  - component: {fileID: 1002772852}
+  m_Layer: 0
+  m_Name: MountainMainDialogue
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1002772851
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1002772850}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1280310711}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1002772852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1002772850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94ee5acd1d966e342bb78ffa04953c9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dialogue:
+    dialogueSO: {fileID: 11400000, guid: 46745d10d157790bdb3ca302fbad67bf, type: 2}
+    sentences:
+    - sentence: Aye! What are ye doing upon me mountain?! Come ye back when I'm ready!
+    onDialogueComplete:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2033553237}
+          m_TargetAssemblyTypeName: NPCNavMeshMovement, Assembly-CSharp
+          m_MethodName: SetMoveStatus
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
 --- !u!1 &1003755045
 GameObject:
   m_ObjectHideFlags: 0
@@ -157618,6 +159354,69 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1019616881}
   m_Mesh: {fileID: 4300000, guid: d3be769db7fe44f7dbfe90edbc6dd573, type: 3}
+--- !u!1 &1020564099
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1020564100}
+  - component: {fileID: 1020564101}
+  m_Layer: 0
+  m_Name: NavMesh
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1020564100
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020564099}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1847113702}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1020564101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020564099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 3
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.16666667
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 23800000, guid: 4e71ed0839433993ca47a2f9952f65e1, type: 2}
+  m_BuildHeightMesh: 0
 --- !u!1 &1024119108
 GameObject:
   m_ObjectHideFlags: 0
@@ -158016,18 +159815,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dialogues:
-  - sentences:
-    - img: {fileID: 0}
-      name: Bug Collector
-      sentence: Hello! Nice to finally get to talk with you! I saw the work you did
+  - dialogueSO: {fileID: 11400000, guid: 6cc773b8bd7f52191a1aa3003ddd7083, type: 2}
+    sentences:
+    - sentence: Hello! Nice to finally get to talk with you! I saw the work you did
         with the Coconut Farmer, and I've got to say, you did great!
-    - img: {fileID: 0}
-      name: Bug Collector
-      sentence: I'm an avid bug collector, and there's a very special species of
+    - sentence: I'm an avid bug collector, and there's a very special species of
         bug here! Ihaven't been able to find any yet.
-    - img: {fileID: 0}
-      name: Bug Collector
-      sentence: They're supposed to breed in here, but something seems off. Can you
+    - sentence: They're supposed to breed in here, but something seems off. Can you
         help?
     onDialogueComplete:
       m_PersistentCalls:
@@ -159933,6 +161727,143 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1044748500}
   m_Mesh: {fileID: 4300000, guid: daa25e35ab55648b88fe8cb44ee10ba3, type: 3}
+--- !u!1 &1045444188
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1045444189}
+  - component: {fileID: 1045444190}
+  - component: {fileID: 1045444192}
+  - component: {fileID: 1045444191}
+  m_Layer: 0
+  m_Name: GetPylonSequenceListener
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1045444189
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1045444188}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 288199570}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1045444190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1045444188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ca99cd2fc88602038b43dfa2a38d0c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _boolNames:
+  - Activated
+  - PylonGot
+  - MenuClosed
+  _completedEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 288199571}
+        m_TargetAssemblyTypeName: Objective, Assembly-CSharp
+        m_MethodName: RaiseObjectiveComplete
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _isSequenced: 1
+  _allowMultiToggle: 1
+--- !u!114 &1045444191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1045444188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2aa24179581ffceff947a701e624e3ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _event: {fileID: 11400000, guid: 7a8982a91ccbea13baf5873e2712bc96, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls: []
+  _onBoolTrue:
+    m_PersistentCalls:
+      m_Calls: []
+  _onBoolFalse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1045444190}
+        m_TargetAssemblyTypeName: ObjectiveBooleanSequence, Assembly-CSharp
+        m_MethodName: SetTrue
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: MenuClosed
+          m_BoolArgument: 0
+        m_CallState: 2
+  _boolVal: 0
+--- !u!114 &1045444192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1045444188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2aa24179581ffceff947a701e624e3ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _event: {fileID: 11400000, guid: d93cabab50dc952db82ec8cb166d65d8, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1045444190}
+        m_TargetAssemblyTypeName: ObjectiveBooleanSequence, Assembly-CSharp
+        m_MethodName: SetTrue
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: PylonGot
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onBoolTrue:
+    m_PersistentCalls:
+      m_Calls: []
+  _onBoolFalse:
+    m_PersistentCalls:
+      m_Calls: []
+  _boolVal: 0
 --- !u!1 &1045552163
 GameObject:
   m_ObjectHideFlags: 0
@@ -160510,10 +162441,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dialogues:
-  - sentences:
-    - img: {fileID: 0}
-      name: Bug Collector
-      sentence: Sweet! Wait for everything to grow, then come back! We can catch
+  - dialogueSO: {fileID: 11400000, guid: c461897ffc2dd72b58e0f935289ecf84, type: 2}
+    sentences:
+    - sentence: Sweet! Wait for everything to grow, then come back! We can catch
         some bugs!
     onDialogueComplete:
       m_PersistentCalls:
@@ -161928,6 +163858,38 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1060975334}
   m_CullTransparentMesh: 1
+--- !u!1 &1061743610
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1061743611}
+  m_Layer: 0
+  m_Name: Ponytail0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1061743611
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1061743610}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.00000004557808, y: 0.00000003791272, z: 0.6466512, w: 0.7627858}
+  m_LocalPosition: {x: -0.6727702, y: -0.39326894, z: 0.00000006448827}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1467804231}
+  m_Father: {fileID: 529924148}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1063016035
 GameObject:
   m_ObjectHideFlags: 0
@@ -162103,6 +164065,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1063140983}
   m_Mesh: {fileID: 4300000, guid: 1ac2b12ee3caf49c399f3627f94ccffc, type: 3}
+--- !u!1 &1064358255
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1064358256}
+  m_Layer: 0
+  m_Name: Hair Front
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1064358256
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1064358255}
+  serializedVersion: 2
+  m_LocalRotation: {x: -8.505066e-11, y: -0.000000003896184, z: -4.2632896e-14, w: 1}
+  m_LocalPosition: {x: -0.13932829, y: 0.46180582, z: -0.000000068490046}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 529924148}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1065206060
 GameObject:
   m_ObjectHideFlags: 0
@@ -166762,17 +168755,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dialogue:
+    dialogueSO: {fileID: 11400000, guid: ef00812a01b51e16a982550a514085e3, type: 2}
     sentences:
-    - img: {fileID: 21300000, guid: 9a2647da9b471dd648b07473bb552004, type: 3}
-      name: Coconut Farmer
-      sentence: Oh! Hello there! You must be with The Remediators!
-    - img: {fileID: 21300000, guid: 9a2647da9b471dd648b07473bb552004, type: 3}
-      name: Coconut Farmer
-      sentence: I'm so glad you came! I'm a coconut farmer trying to get established
+    - sentence: Oh! Hello there! You must be with The Remediators!
+    - sentence: I'm so glad you came! I'm a coconut farmer trying to get established
         here, but as you can see, I've got no trees going!
-    - img: {fileID: 21300000, guid: 9a2647da9b471dd648b07473bb552004, type: 3}
-      name: Coconut Farmer
-      sentence: Do you think you could help me out?
+    - sentence: Do you think you could help me out?
     onDialogueComplete:
       m_PersistentCalls:
         m_Calls:
@@ -167344,6 +169332,38 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &1097858651
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1097858652}
+  m_Layer: 0
+  m_Name: Knee Right
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1097858652
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1097858651}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.073781095, y: -0.037481613, z: 0.07207171, w: 0.9939604}
+  m_LocalPosition: {x: -0.20898326, y: -0.000000053085387, z: 0.00000011920929}
+  m_LocalScale: {x: 0.9999908, y: 1.0000085, z: 1.0000008}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1890353994}
+  m_Father: {fileID: 87836176}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1098082816
 GameObject:
   m_ObjectHideFlags: 0
@@ -177838,14 +179858,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dialogue:
+    dialogueSO: {fileID: 11400000, guid: 6cc773b8bd7f52191a1aa3003ddd7083, type: 2}
     sentences:
-    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
-      name: Scientist
-      sentence: Perfect! You did great! Now talk to the Client and we can wrap this
+    - sentence: Perfect! You did great! Now talk to the Client and we can wrap this
         one up!
-    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
-      name: Scientist
-      sentence: We should see the greenery start to grow now that everything is stable
+    - sentence: We should see the greenery start to grow now that everything is stable
         and safe!
     onDialogueComplete:
       m_PersistentCalls:
@@ -181096,10 +183113,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dialogue:
+    dialogueSO: {fileID: 11400000, guid: 6cc773b8bd7f52191a1aa3003ddd7083, type: 2}
     sentences:
-    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
-      name: Scientist
-      sentence: Great job newbie! Come back to the ship! We've got one more client
+    - sentence: Great job newbie! Come back to the ship! We've got one more client
         on this island!
     onDialogueComplete:
       m_PersistentCalls:
@@ -182415,10 +184431,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dialogue:
+    dialogueSO: {fileID: 11400000, guid: 6cc773b8bd7f52191a1aa3003ddd7083, type: 2}
     sentences:
-    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
-      name: Scientist
-      sentence: B. Metallus looks perfect to me! It'll get rid of all of the Lead!
+    - sentence: B. Metallus looks perfect to me! It'll get rid of all of the Lead!
         Go pick some up!
     onDialogueComplete:
       m_PersistentCalls:
@@ -184122,6 +186137,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1238639949}
   m_Mesh: {fileID: -9057107975293050397, guid: cfa0f71ab5189a8468e044314adbfe50, type: 3}
+--- !u!1 &1239151363
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1239151364}
+  m_Layer: 0
+  m_Name: Hair Top
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1239151364
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1239151363}
+  serializedVersion: 2
+  m_LocalRotation: {x: -8.505066e-11, y: -0.000000003896184, z: -4.2632896e-14, w: 1}
+  m_LocalPosition: {x: -0.8564555, y: 0.090035394, z: -0.000000006891787}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 529924148}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1240600637
 GameObject:
   m_ObjectHideFlags: 0
@@ -187698,6 +189744,38 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1271853214}
   m_Mesh: {fileID: 4300004, guid: b469b0bb9e6314c91ab401004cadcfbd, type: 3}
+--- !u!1 &1271875512
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1271875513}
+  m_Layer: 0
+  m_Name: Knee Left
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1271875513
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1271875512}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.073888294, y: 0.036945377, z: 0.07075225, w: 0.99406725}
+  m_LocalPosition: {x: -0.20898321, y: -0.00000010542572, z: -0.0000000834465}
+  m_LocalScale: {x: 1.0000032, y: 0.9999973, z: 0.9999998}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1848983633}
+  m_Father: {fileID: 778915677}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1272337992
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -187954,6 +190032,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1273081074}
   m_Mesh: {fileID: 4300002, guid: 9449de6b4f69541da942966c2538df95, type: 3}
+--- !u!1 &1273263876
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1273263877}
+  m_Layer: 0
+  m_Name: Ponytail4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1273263877
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1273263876}
+  serializedVersion: 2
+  m_LocalRotation: {x: 6.0437993e-10, y: -0.00000001642942, z: 0.0019173631, w: 0.99999815}
+  m_LocalPosition: {x: -0.3475403, y: 0.000000047683717, z: 0}
+  m_LocalScale: {x: 1, y: 1.0000001, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2020278963}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1273338106
 GameObject:
   m_ObjectHideFlags: 0
@@ -188847,8 +190956,10 @@ Transform:
   - {fileID: 1959555316}
   - {fileID: 1094904570}
   - {fileID: 920974965}
+  - {fileID: 1002772851}
   - {fileID: 1617111519}
   - {fileID: 1248964878}
+  - {fileID: 344865985}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1281495393
@@ -189998,6 +192109,105 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1288994511}
   m_Mesh: {fileID: 4300000, guid: c74ebb3cf43fe448b9b376f4f9c9bac8, type: 3}
+--- !u!1 &1290323157
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1290323158}
+  - component: {fileID: 1290323159}
+  m_Layer: 0
+  m_Name: Body
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1290323158
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1290323157}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -0, y: 1.2569169, z: 0.03863117}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2033553230}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!137 &1290323159
+SkinnedMeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1290323157}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 3
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: c13d057b39dcb35499254dbc00c19fa0, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  serializedVersion: 2
+  m_Quality: 0
+  m_UpdateWhenOffscreen: 0
+  m_SkinnedMotionVectors: 1
+  m_Mesh: {fileID: 2959467708922500008, guid: a1c1915206b1dc24e958a54039f5ab26, type: 3}
+  m_Bones:
+  - {fileID: 529924148}
+  - {fileID: 669675861}
+  - {fileID: 363626018}
+  - {fileID: 2071536042}
+  - {fileID: 734971074}
+  - {fileID: 1388933657}
+  - {fileID: 905511797}
+  - {fileID: 684841213}
+  - {fileID: 1977940460}
+  - {fileID: 142321281}
+  - {fileID: 923496663}
+  - {fileID: 297491494}
+  - {fileID: 1710419070}
+  - {fileID: 820513254}
+  m_BlendShapeWeights: []
+  m_RootBone: {fileID: 2071536042}
+  m_AABB:
+    m_Center: {x: -0.58048415, y: 0.008791238, z: 0.0008791983}
+    m_Extent: {x: 0.57745004, y: 0.44204462, z: 0.8399546}
+  m_DirtyAABB: 0
 --- !u!1 &1291300445
 GameObject:
   m_ObjectHideFlags: 0
@@ -193946,7 +196156,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -6617040369992813954, guid: 53c1b50a4a041e248a70ae5a52114562, type: 2}
   m_audioClip: {fileID: 8300000, guid: 603e8e1edd44c02f2b589c56f1b917ad, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -201303,6 +203513,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0bfc8cf47bcc31a7cbd669a1c3866c3f, type: 3}
   - {fileID: 8300000, guid: c75aa93eeaf284ed5a354ea1dc7fd2ed, type: 3}
   _rapidPlayPeriod: 0.05
+  _silentOnStart: 0
+  _startSilentTime: 1
 --- !u!1 &1352439455
 GameObject:
   m_ObjectHideFlags: 0
@@ -205085,10 +207297,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dialogues:
-  - sentences:
-    - img: {fileID: 0}
-      name: Bug Collector
-      sentence: Woah! That's quite the piece of equipment you've got there!
+  - dialogueSO: {fileID: 11400000, guid: c461897ffc2dd72b58e0f935289ecf84, type: 2}
+    sentences:
+    - sentence: Woah! That's quite the piece of equipment you've got there!
     onDialogueComplete:
       m_PersistentCalls:
         m_Calls:
@@ -205855,6 +208066,39 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1388910242}
   m_Mesh: {fileID: 4300000, guid: 720fa6cffb59f4010be156d92db937b4, type: 3}
+--- !u!1 &1388933656
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1388933657}
+  m_Layer: 0
+  m_Name: Wrist Right
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1388933657
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1388933656}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.7175938, y: 0.09410636, z: 0.02045786, w: 0.6897714}
+  m_LocalPosition: {x: -0.24154702, y: 0.0000000059604646, z: 0}
+  m_LocalScale: {x: 0.99999934, y: 1.0000024, z: 0.99999887}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 905511797}
+  - {fileID: 734971074}
+  m_Father: {fileID: 684841213}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1389101781
 GameObject:
   m_ObjectHideFlags: 0
@@ -207633,6 +209877,38 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7272185882489290785, guid: 1ea61b4a276b4ca4bababf8467a5fda3, type: 3}
   m_PrefabInstance: {fileID: 1402781573}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1404381935
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1404381936}
+  m_Layer: 0
+  m_Name: Belly
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1404381936
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1404381935}
+  serializedVersion: 2
+  m_LocalRotation: {x: -8.1448004e-10, y: 0.000000026299972, z: 0.045322977, w: 0.9989724}
+  m_LocalPosition: {x: -0.11341014, y: 0, z: 0}
+  m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2071536042}
+  m_Father: {fileID: 1712335076}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1404578503
 GameObject:
   m_ObjectHideFlags: 0
@@ -208022,6 +210298,8 @@ MonoBehaviour:
   _sounds:
   - {fileID: 8300000, guid: 2f6fb89c64d499c27a440391e1429ba9, type: 3}
   _rapidPlayPeriod: 0.05
+  _silentOnStart: 0
+  _startSilentTime: 1
 --- !u!82 &1406442030
 AudioSource:
   m_ObjectHideFlags: 0
@@ -210616,6 +212894,81 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1421330997}
   m_Mesh: {fileID: 4300000, guid: 54be5cd5a442546f7a1b3fed759fcb95, type: 3}
+--- !u!1 &1423809600
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1423809601}
+  - component: {fileID: 1423809602}
+  m_Layer: 0
+  m_Name: GetUpdate
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1423809601
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1423809600}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 199935774}
+  m_Father: {fileID: 1787399684}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1423809602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1423809600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f4b217eee27f8965808e63c89329a2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objectiveChannelsSO: {fileID: 11400000, guid: abd508a1728e99261a0c45cd360d8b56, type: 2}
+  _nextObjective: {fileID: 2111445991}
+  _objectiveText: Wait for Pylon Update
+  _isFirstObjective: 0
+  _targetObject: {fileID: 0}
+  _objectiveGroup: {fileID: 1787399685}
+  _onActivate:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 199935776}
+        m_TargetAssemblyTypeName: ObjectiveBooleanSequence, Assembly-CSharp
+        m_MethodName: SetTrue
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Activated
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  _onFail:
+    m_PersistentCalls:
+      m_Calls: []
+  _onLoadPrereqs:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1424263807
 GameObject:
   m_ObjectHideFlags: 0
@@ -215781,6 +218134,38 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!1 &1467804230
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1467804231}
+  m_Layer: 0
+  m_Name: Ponytail1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1467804231
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1467804230}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.0000000029116713, y: 0.000000011416377, z: 0.66732174, w: 0.74476963}
+  m_LocalPosition: {x: -0.1426281, y: 0, z: 1.4551915e-12}
+  m_LocalScale: {x: 1.0000001, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1857992024}
+  m_Father: {fileID: 1061743611}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1468947816
 GameObject:
   m_ObjectHideFlags: 0
@@ -218368,16 +220753,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dialogue:
+    dialogueSO: {fileID: 11400000, guid: 6cc773b8bd7f52191a1aa3003ddd7083, type: 2}
     sentences:
-    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
-      name: Scientist
-      sentence: Perfect! Now it'll start collecting data on the environment
-    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
-      name: Scientist
-      sentence: If you wait for a whlle, you'll see the graphs update.
-    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
-      name: Scientist
-      sentence: Then we can really see what's going on with the area!
+    - sentence: Perfect! Now it'll start collecting data on the environment
+    - sentence: If you wait for a whlle, you'll see the graphs update.
+    - sentence: Then we can really see what's going on with the area!
     onDialogueComplete:
       m_PersistentCalls:
         m_Calls:
@@ -220975,10 +223355,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dialogue:
+    dialogueSO: {fileID: 11400000, guid: 6cc773b8bd7f52191a1aa3003ddd7083, type: 2}
     sentences:
-    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
-      name: Scientist
-      sentence: Sweet! Now head back over to the pylon!
+    - sentence: Sweet! Now head back over to the pylon!
     onDialogueComplete:
       m_PersistentCalls:
         m_Calls:
@@ -222319,6 +224698,75 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1519330784}
   m_Mesh: {fileID: 4300000, guid: c70b95fcd69584c8ab0ad9836b08b3cc, type: 3}
+--- !u!1 &1519800420
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1519800421}
+  - component: {fileID: 1519800422}
+  m_Layer: 0
+  m_Name: GotUpdateDialogue
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1519800421
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1519800420}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 344865985}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1519800422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1519800420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94ee5acd1d966e342bb78ffa04953c9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dialogue:
+    dialogueSO: {fileID: 11400000, guid: 6cc773b8bd7f52191a1aa3003ddd7083, type: 2}
+    sentences:
+    - sentence: Wow!
+    - sentence: There's nothing there!
+    - sentence: Well... that explains how barren it is.
+    - sentence: Good news is, you're the right person for the job. You basically
+        reconstructed a whole ecosystem in the cave!
+    - sentence: That Sulfur Dioxide is scary though, it also explains the smell.
+    - sentence: See if you can't get rid of it!
+    onDialogueComplete:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2111445991}
+          m_TargetAssemblyTypeName: Objective, Assembly-CSharp
+          m_MethodName: ActivateObjective
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1520565026
 GameObject:
   m_ObjectHideFlags: 0
@@ -224934,23 +227382,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dialogue:
+    dialogueSO: {fileID: 11400000, guid: 6cc773b8bd7f52191a1aa3003ddd7083, type: 2}
     sentences:
-    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
-      name: Scientist
-      sentence: Things just... aren't working? That doesn't seem right.
-    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
-      name: Scientist
-      sentence: It could be because of an imbalance in the soil.
-    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
-      name: Scientist
-      sentence: If the soil can't support plants, then the plants can't support the
+    - sentence: Things just... aren't working? That doesn't seem right.
+    - sentence: It could be because of an imbalance in the soil.
+    - sentence: If the soil can't support plants, then the plants can't support the
         bugs that eat them.
-    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
-      name: Scientist
-      sentence: The food chain is quite the thing isn't it?
-    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
-      name: Scientist
-      sentence: Anyways, let's get started with remediation!
+    - sentence: The food chain is quite the thing isn't it?
+    - sentence: Anyways, let's get started with remediation!
     onDialogueComplete:
       m_PersistentCalls:
         m_Calls: []
@@ -225163,6 +227602,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 128bb54fbd5b16d5fba55eea4885fcbf, type: 3}
   - {fileID: 8300000, guid: 1287a0a31f804d90b9b4f298fc019fd9, type: 3}
   _rapidPlayPeriod: 0.1
+  _silentOnStart: 0
+  _startSilentTime: 1
 --- !u!82 &1546337198
 AudioSource:
   m_ObjectHideFlags: 0
@@ -225174,7 +227615,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -7121508339005156148, guid: 53c1b50a4a041e248a70ae5a52114562, type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -229416,6 +231857,81 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1592971225}
   m_Mesh: {fileID: 4300000, guid: c78e47648ac9846ee8f198b0c446deea, type: 3}
+--- !u!1 &1593299338
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1593299339}
+  - component: {fileID: 1593299340}
+  m_Layer: 0
+  m_Name: PlacePylon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1593299339
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593299338}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 464328800}
+  m_Father: {fileID: 1787399684}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1593299340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593299338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f4b217eee27f8965808e63c89329a2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objectiveChannelsSO: {fileID: 11400000, guid: abd508a1728e99261a0c45cd360d8b56, type: 2}
+  _nextObjective: {fileID: 1423809602}
+  _objectiveText: Place the Pylon
+  _isFirstObjective: 0
+  _targetObject: {fileID: 325236407}
+  _objectiveGroup: {fileID: 1787399685}
+  _onActivate:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 464328803}
+        m_TargetAssemblyTypeName: ObjectiveBooleanSequence, Assembly-CSharp
+        m_MethodName: SetTrue
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Activated
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  _onFail:
+    m_PersistentCalls:
+      m_Calls: []
+  _onLoadPrereqs:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1593322996
 GameObject:
   m_ObjectHideFlags: 0
@@ -230020,7 +232536,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -7121508339005156148, guid: 53c1b50a4a041e248a70ae5a52114562, type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -230120,6 +232636,8 @@ MonoBehaviour:
   _sounds:
   - {fileID: 8300000, guid: 3cab04a4c3332d8baadd759c74ea933a, type: 3}
   _rapidPlayPeriod: 0.05
+  _silentOnStart: 1
+  _startSilentTime: 1
 --- !u!1 &1595064237
 GameObject:
   m_ObjectHideFlags: 0
@@ -238267,6 +240785,115 @@ Transform:
   - {fileID: 325236407}
   m_Father: {fileID: 1786419303}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1625156262
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1625156263}
+  - component: {fileID: 1625156264}
+  m_Layer: 0
+  m_Name: ActivateCriticalObjectives
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1625156263
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625156262}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 455885798}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1625156264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625156262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 547156b6034f3f2308f8e3920c5700b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _activateOnStart: 0
+  _oneShot: 1
+  _event:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1850557919}
+        m_TargetAssemblyTypeName: ObjectiveBooleanSequence, Assembly-CSharp
+        m_MethodName: SetTrue
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Activated
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1388747790}
+        m_TargetAssemblyTypeName: ObjectiveBooleanSequence, Assembly-CSharp
+        m_MethodName: SetTrue
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Activated
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1577119213}
+        m_TargetAssemblyTypeName: ObjectiveBooleanSequence, Assembly-CSharp
+        m_MethodName: SetTrue
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Activated
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 837356170}
+        m_TargetAssemblyTypeName: ObjectiveBooleanSequence, Assembly-CSharp
+        m_MethodName: SetTrue
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Activated
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 686232523}
+        m_TargetAssemblyTypeName: ObjectiveBooleanSequence, Assembly-CSharp
+        m_MethodName: SetTrue
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Activated
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1626306876
 GameObject:
   m_ObjectHideFlags: 0
@@ -238774,6 +241401,8 @@ MonoBehaviour:
   _sounds:
   - {fileID: 8300000, guid: dd5674a66c9e2a10f83c57fa65556101, type: 3}
   _rapidPlayPeriod: 0.05
+  _silentOnStart: 0
+  _startSilentTime: 1
 --- !u!82 &1630173605
 AudioSource:
   m_ObjectHideFlags: 0
@@ -238785,7 +241414,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -7121508339005156148, guid: 53c1b50a4a041e248a70ae5a52114562, type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -241818,10 +244447,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dialogues:
-  - sentences:
-    - img: {fileID: 21300000, guid: 9a2647da9b471dd648b07473bb552004, type: 3}
-      name: CoconutFarmer
-      sentence: I'm so glad you can help!
+  - dialogueSO: {fileID: 11400000, guid: ef00812a01b51e16a982550a514085e3, type: 2}
+    sentences:
+    - sentence: I'm so glad you can help!
     onDialogueComplete:
       m_PersistentCalls:
         m_Calls:
@@ -244039,6 +246667,93 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1665860326}
   m_Mesh: {fileID: 1222781794301000482, guid: 9998ee925207c2a4c99665cc6bcb4ffe, type: 3}
+--- !u!1 &1666241251
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1666241252}
+  - component: {fileID: 1666241253}
+  m_Layer: 0
+  m_Name: Eyebrows
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1666241252
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1666241251}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -0, y: 1.2569059, z: 0.03865471}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2033553230}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!137 &1666241253
+SkinnedMeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1666241251}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 3
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 9893b15f917514542884af83ca320e99, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  serializedVersion: 2
+  m_Quality: 0
+  m_UpdateWhenOffscreen: 0
+  m_SkinnedMotionVectors: 1
+  m_Mesh: {fileID: 2391710573937639460, guid: a1c1915206b1dc24e958a54039f5ab26, type: 3}
+  m_Bones:
+  - {fileID: 669675861}
+  - {fileID: 529924148}
+  m_BlendShapeWeights: []
+  m_RootBone: {fileID: 529924148}
+  m_AABB:
+    m_Center: {x: -0.31699783, y: 0.3526461, z: 0.00001898408}
+    m_Extent: {x: 0.037075087, y: 0.06022255, z: 0.28835002}
+  m_DirtyAABB: 0
 --- !u!1 &1666420518
 GameObject:
   m_ObjectHideFlags: 0
@@ -247175,6 +249890,38 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1700893929}
   m_CullTransparentMesh: 1
+--- !u!1 &1702618186
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1702618187}
+  m_Layer: 0
+  m_Name: Hood0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1702618187
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1702618186}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.006418106, y: -0.0021384167, z: 0.9396683, w: 0.34202003}
+  m_LocalPosition: {x: -0.0102442745, y: -0.047718048, z: 0.00097049103}
+  m_LocalScale: {x: 1, y: 0.9999999, z: 0.9999998}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 387478481}
+  m_Father: {fileID: 363626018}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1703345669
 GameObject:
   m_ObjectHideFlags: 0
@@ -248693,6 +251440,38 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1709845616}
   m_Mesh: {fileID: 4025967325886508770, guid: 415bb3dc0affad14cbdc94f61ddccba1, type: 3}
+--- !u!1 &1710419069
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1710419070}
+  m_Layer: 0
+  m_Name: Elbow Left
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1710419070
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1710419069}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.026168635, y: -0.10704803, z: -0.06832933, w: 0.9915579}
+  m_LocalPosition: {x: -0.20852947, y: 0, z: 0.00000009536743}
+  m_LocalScale: {x: 1, y: 1.0000001, z: 0.9999999}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 923496663}
+  m_Father: {fileID: 820513254}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1710635882
 GameObject:
   m_ObjectHideFlags: 0
@@ -249042,6 +251821,38 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1711628328}
   m_CullTransparentMesh: 1
+--- !u!1 &1712335075
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1712335076}
+  m_Layer: 0
+  m_Name: Hip
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1712335076
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1712335075}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.00009055157, y: -0.0026871825, z: 0.024236646, w: 0.9997027}
+  m_LocalPosition: {x: -0.05531583, y: 0.0000004084781, z: -5.8819614e-14}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1404381936}
+  m_Father: {fileID: 1838673790}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1712547980
 GameObject:
   m_ObjectHideFlags: 0
@@ -255188,6 +257999,7 @@ GameObject:
   - component: {fileID: 1723749142}
   - component: {fileID: 1723749141}
   - component: {fileID: 1723749140}
+  - component: {fileID: 1723749143}
   m_Layer: 9
   m_Name: Terrain
   m_TagString: Untagged
@@ -255269,6 +258081,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 994600911}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1723749143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1723749139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 0
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff
 --- !u!1 &1724696795
 GameObject:
   m_ObjectHideFlags: 0
@@ -258260,7 +261091,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -7121508339005156148, guid: 53c1b50a4a041e248a70ae5a52114562, type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -258362,6 +261193,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 128bb54fbd5b16d5fba55eea4885fcbf, type: 3}
   - {fileID: 8300000, guid: 1287a0a31f804d90b9b4f298fc019fd9, type: 3}
   _rapidPlayPeriod: 0.1
+  _silentOnStart: 0
+  _startSilentTime: 1
 --- !u!114 &1750592259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -259459,6 +262292,106 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1760082238}
   m_Mesh: {fileID: 4300000, guid: d3be769db7fe44f7dbfe90edbc6dd573, type: 3}
+--- !u!1 &1760370037
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1760370038}
+  - component: {fileID: 1760370040}
+  - component: {fileID: 1760370039}
+  m_Layer: 0
+  m_Name: GetUpdateSequenceListener
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1760370038
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1760370037}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2111445990}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1760370039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1760370037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2aa24179581ffceff947a701e624e3ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _event: {fileID: 11400000, guid: 06f4569ab986ca7368068f8c2f25ed03, type: 2}
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1760370040}
+        m_TargetAssemblyTypeName: ObjectiveBooleanSequence, Assembly-CSharp
+        m_MethodName: SetTrue
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: SimStep
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onBoolTrue:
+    m_PersistentCalls:
+      m_Calls: []
+  _onBoolFalse:
+    m_PersistentCalls:
+      m_Calls: []
+  _boolVal: 0
+--- !u!114 &1760370040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1760370037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ca99cd2fc88602038b43dfa2a38d0c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _boolNames:
+  - Activated
+  - SimStep
+  _completedEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2111445991}
+        m_TargetAssemblyTypeName: Objective, Assembly-CSharp
+        m_MethodName: RaiseObjectiveComplete
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _isSequenced: 1
+  _allowMultiToggle: 1
 --- !u!1 &1760455512
 GameObject:
   m_ObjectHideFlags: 0
@@ -266622,14 +269555,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dialogue:
+    dialogueSO: {fileID: 11400000, guid: 6cc773b8bd7f52191a1aa3003ddd7083, type: 2}
     sentences:
-    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
-      name: Scientist
-      sentence: Perfect! I don't know if you noticed in the encyclopedia, but Metallus
+    - sentence: Perfect! I don't know if you noticed in the encyclopedia, but Metallus
         needs Nitrogen.
-    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
-      name: Scientist
-      sentence: But, we're in luck! Nitrogenous is not vulnerable to Lead poisoning,
+    - sentence: But, we're in luck! Nitrogenous is not vulnerable to Lead poisoning,
         so the ones that are already in there should be able to survive with no problem!
         Go ahead and add the metallus!
     onDialogueComplete:
@@ -269090,6 +272020,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1787399684}
+  - component: {fileID: 1787399685}
   m_Layer: 0
   m_Name: Mountaineer
   m_TagString: Untagged
@@ -269111,8 +272042,26 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 477375720}
+  - {fileID: 2110127220}
+  - {fileID: 288199570}
+  - {fileID: 1593299339}
+  - {fileID: 1423809601}
+  - {fileID: 2111445990}
   m_Father: {fileID: 101336209}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1787399685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1787399683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b01546d5ee5f608b9a32c332699f8f32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _groupName: Mountaineer
 --- !u!1 &1788214222
 GameObject:
   m_ObjectHideFlags: 0
@@ -269537,10 +272486,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dialogue:
+    dialogueSO: {fileID: 11400000, guid: 6cc773b8bd7f52191a1aa3003ddd7083, type: 2}
     sentences:
-    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
-      name: Scientist
-      sentence: Perfect! It should be fairly sinple to get the environment up and
+    - sentence: Perfect! It should be fairly sinple to get the environment up and
         running now! We need some B. Plantus and some F. Myrocchis!
     onDialogueComplete:
       m_PersistentCalls:
@@ -280020,6 +282968,40 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1838195417}
   m_Mesh: {fileID: 4300006, guid: 732b827306aeb4518a5deabac1fd07a9, type: 3}
+--- !u!1 &1838673789
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1838673790}
+  m_Layer: 0
+  m_Name: Skeleton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1838673790
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838673789}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.50000006, y: -0.49999994, z: -0.49999994, w: 0.50000006}
+  m_LocalPosition: {x: 0, y: 0.4805843, z: 0.001828939}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 778915677}
+  - {fileID: 87836176}
+  - {fileID: 1712335076}
+  m_Father: {fileID: 2033553230}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1838673885
 GameObject:
   m_ObjectHideFlags: 0
@@ -285965,6 +288947,86 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1845314902}
   m_Mesh: {fileID: 4300000, guid: a0213a9b18ad449c0bfece12b4968801, type: 3}
+--- !u!1 &1845725219
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1845725220}
+  - component: {fileID: 1845725221}
+  m_Layer: 0
+  m_Name: MtnManDialogueSwitcher
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1845725220
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1845725219}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2110127220}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1845725221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1845725219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b830b3cba97731db7a2143b97ab03e6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dialogues:
+  - dialogueSO: {fileID: 11400000, guid: 46745d10d157790bdb3ca302fbad67bf, type: 2}
+    sentences:
+    - sentence: Aye, welcome to me mountain.
+    - sentence: I came here in search of beauty and wonderful plants to trade, but
+        it's more barren than me head.
+    - sentence: 'It smells bad too. '
+    - sentence: Can ye help me?
+    onDialogueComplete:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2110127221}
+          m_TargetAssemblyTypeName: Objective, Assembly-CSharp
+          m_MethodName: RaiseObjectiveComplete
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 2033553237}
+          m_TargetAssemblyTypeName: NPCNavMeshMovement, Assembly-CSharp
+          m_MethodName: SetMoveStatus
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+  _dialogueTrigger: {fileID: 1002772852}
 --- !u!1 &1845765077
 GameObject:
   m_ObjectHideFlags: 0
@@ -286182,8 +289244,10 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1757547297}
+  - {fileID: 2033553230}
   - {fileID: 510632897}
   - {fileID: 632283459}
+  - {fileID: 1020564100}
   m_Father: {fileID: 1786419303}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1847642232
@@ -286642,6 +289706,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1848734742}
   m_Mesh: {fileID: 4300000, guid: c18ed7265bccf447bb86ec4e324010cd, type: 3}
+--- !u!1 &1848983632
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1848983633}
+  m_Layer: 0
+  m_Name: Foot Left
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1848983633
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1848983632}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.022622362, y: 0.047228627, z: -0.504261, w: 0.861962}
+  m_LocalPosition: {x: -0.18657203, y: -0.0000000014901161, z: 0}
+  m_LocalScale: {x: 1.0000051, y: 0.99999505, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1271875513}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1850063663
 GameObject:
   m_ObjectHideFlags: 0
@@ -287386,6 +290481,7 @@ GameObject:
   - component: {fileID: 1857754327}
   - component: {fileID: 1857754326}
   - component: {fileID: 1857754325}
+  - component: {fileID: 1857754328}
   m_Layer: 0
   m_Name: ChunkyRock2A (1)
   m_TagString: Untagged
@@ -287480,6 +290576,57 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1857754323}
   m_Mesh: {fileID: 2223272173139174093, guid: 0da0465be46d81e4abae50987b625e66, type: 3}
+--- !u!114 &1857754328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1857754323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 0
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff
+--- !u!1 &1857992023
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1857992024}
+  m_Layer: 0
+  m_Name: Ponytail2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1857992024
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1857992023}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.000000022746123, y: -0.00000007162096, z: 0.17822197, w: 0.9839903}
+  m_LocalPosition: {x: -0.21897803, y: 0, z: 0}
+  m_LocalScale: {x: 0.9999999, y: 0.99999976, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2020278963}
+  m_Father: {fileID: 1467804231}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1858081676
 GameObject:
   m_ObjectHideFlags: 0
@@ -290051,6 +293198,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1889270797}
   m_Mesh: {fileID: -2591558911808402210, guid: 415bb3dc0affad14cbdc94f61ddccba1, type: 3}
+--- !u!1 &1890353993
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1890353994}
+  m_Layer: 0
+  m_Name: Foot Right
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1890353994
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1890353993}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.023139259, y: -0.046793263, z: -0.5048165, w: 0.8616469}
+  m_LocalPosition: {x: -0.18657203, y: -0.0000000029802323, z: -0.000000023841858}
+  m_LocalScale: {x: 0.99998647, y: 1.0000135, z: 1.0000001}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1097858652}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1891117064
 GameObject:
   m_ObjectHideFlags: 0
@@ -290187,7 +293365,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a5720a20bb907da4b88375b8d3f98560, type: 2}
+  - {fileID: 2100000, guid: d0c53c1fcbc3d996cb86cb1b2d23b332, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -295192,20 +298370,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dialogue:
+    dialogueSO: {fileID: 11400000, guid: 6cc773b8bd7f52191a1aa3003ddd7083, type: 2}
     sentences:
-    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
-      name: Scientist
-      sentence: Ok! That seems like a pretty simple request that you should be able
+    - sentence: Ok! That seems like a pretty simple request that you should be able
         to handle without a problem.
-    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
-      name: Scientist
-      sentence: I'll walk you through how to do everything! Don't worry!
-    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
-      name: Scientist
-      sentence: So, the first step is to go grab a pylon from our ship!
-    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
-      name: Scientist
-      sentence: The pylon will let you look at the current environmental composition
+    - sentence: I'll walk you through how to do everything! Don't worry!
+    - sentence: So, the first step is to go grab a pylon from our ship!
+    - sentence: The pylon will let you look at the current environmental composition
         in a region, as well as what soil microbes are there!
     onDialogueComplete:
       m_PersistentCalls:
@@ -296546,6 +299717,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1941309469}
   m_Mesh: {fileID: 4300002, guid: a358b055dafe74156be6e642960da48a, type: 3}
+--- !u!1 &1941442698
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1941442699}
+  m_Layer: 0
+  m_Name: Hair Bun
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1941442699
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1941442698}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.00000005056995, y: 0.000000050690232, z: 0.7071068, w: 0.7071067}
+  m_LocalPosition: {x: -0.5403161, y: -0.43777594, z: 0.000019123627}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 529924148}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1942220788
 GameObject:
   m_ObjectHideFlags: 0
@@ -299004,20 +302206,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dialogue:
+    dialogueSO: {fileID: 11400000, guid: 6cc773b8bd7f52191a1aa3003ddd7083, type: 2}
     sentences:
-    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
-      name: Scientist
-      sentence: Hey! Nice seeing you. You must be the new hire!
-    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
-      name: Scientist
-      sentence: Welcome to The Remediators! I'm sure you remember from the job listing,
+    - sentence: Hey! Nice seeing you. You must be the new hire!
+    - sentence: Welcome to The Remediators! I'm sure you remember from the job listing,
         but I'll fill you in on what we do!
-    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
-      name: Scientist
-      sentence: People hire us to go around the world to remediate their soil environments.
-    - img: {fileID: 21300000, guid: e06b9820da6ec8c649bd8c01130b5e07, type: 3}
-      name: Scientist
-      sentence: It looks like your first project is this island right here! We got
+    - sentence: People hire us to go around the world to remediate their soil environments.
+    - sentence: It looks like your first project is this island right here! We got
         a call from someone here, but we don't know exactly where they are. Why don't
         you go find them?
     onDialogueComplete:
@@ -300496,6 +303691,38 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1977357220}
   m_Mesh: {fileID: 4300000, guid: 0339c9fef4e4142e39ff489ed5620c4c, type: 3}
+--- !u!1 &1977940459
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1977940460}
+  m_Layer: 0
+  m_Name: Shoulder Right
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1977940460
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1977940459}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.05639735, y: -0.78906786, z: 0.055030927, w: 0.6092315}
+  m_LocalPosition: {x: -0.15478778, y: -0.0388107, z: -0.1788453}
+  m_LocalScale: {x: 1, y: 0.99999994, z: 0.99999994}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 684841213}
+  m_Father: {fileID: 2071536042}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1978216080
 GameObject:
   m_ObjectHideFlags: 0
@@ -309145,6 +312372,38 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2020114033}
   m_Mesh: {fileID: 4300000, guid: 8fb360021eab244deb4f1e3d7ba5e239, type: 3}
+--- !u!1 &2020278962
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2020278963}
+  m_Layer: 0
+  m_Name: Ponytail3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2020278963
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2020278962}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.0000000010963005, y: -0.000000030620765, z: -0.044078775, w: 0.9990281}
+  m_LocalPosition: {x: -0.35596487, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 0.99999994}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1273263877}
+  m_Father: {fileID: 1857992024}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2021796904
 GameObject:
   m_ObjectHideFlags: 0
@@ -309933,6 +313192,130 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2033377804}
   m_Mesh: {fileID: 4300000, guid: 6b99a8dc3fcb84c3fa2567aff80e0d3a, type: 3}
+--- !u!1 &2033553229
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2033553230}
+  - component: {fileID: 2033553234}
+  - component: {fileID: 2033553233}
+  - component: {fileID: 2033553236}
+  - component: {fileID: 2033553237}
+  m_Layer: 0
+  m_Name: MountainMan
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2033553230
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2033553229}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.9826943, z: -0, w: 0.1852347}
+  m_LocalPosition: {x: 773.5, y: 697.86, z: 236.69}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1838673790}
+  - {fileID: 887061197}
+  - {fileID: 606730593}
+  - {fileID: 869388467}
+  - {fileID: 1666241252}
+  - {fileID: 1290323158}
+  - {fileID: 472924984}
+  - {fileID: 256278906}
+  - {fileID: 746233664}
+  m_Father: {fileID: 1847113702}
+  m_LocalEulerAnglesHint: {x: 0, y: -158.65, z: 0}
+--- !u!136 &2033553233
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2033553229}
+  m_Material: {fileID: 13400000, guid: 1603461715bcb944a9f2094af7cda176, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.21
+  m_Height: 1.9
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
+--- !u!95 &2033553234
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2033553229}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: a1c1915206b1dc24e958a54039f5ab26, type: 3}
+  m_Controller: {fileID: 9100000, guid: 88e36c01af2c1184d8d5de25c704aa61, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!195 &2033553236
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2033553229}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.89
+  m_Speed: 2
+  m_Acceleration: 3
+  avoidancePriority: 50
+  m_AngularSpeed: 500
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2.9
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &2033553237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2033553229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e45fdc1c6eedd46fe811eb042c5e30fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _walkRadius: 8
+  _debug: 0
 --- !u!1 &2033729622
 GameObject:
   m_ObjectHideFlags: 0
@@ -316051,7 +319434,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -7121508339005156148, guid: 53c1b50a4a041e248a70ae5a52114562, type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -316152,6 +319535,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c6f40e143467aaebdacfe5d9b372b730, type: 3}
   - {fileID: 8300000, guid: c6d6c72d595d3e28495555602a62fd78, type: 3}
   _rapidPlayPeriod: 0.05
+  _silentOnStart: 0
+  _startSilentTime: 1
 --- !u!1 &2046905753
 GameObject:
   m_ObjectHideFlags: 0
@@ -318422,6 +321807,40 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2071178888}
   m_Mesh: {fileID: 4300000, guid: a358b055dafe74156be6e642960da48a, type: 3}
+--- !u!1 &2071536041
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2071536042}
+  m_Layer: 0
+  m_Name: Torso
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2071536042
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2071536041}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.00008596697, y: 0.0026873006, z: -0.11296877, w: 0.99359494}
+  m_LocalPosition: {x: -0.10099278, y: 0.000000011920929, z: 1.8626452e-10}
+  m_LocalScale: {x: 0.9999998, y: 0.9999998, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 363626018}
+  - {fileID: 820513254}
+  - {fileID: 1977940460}
+  m_Father: {fileID: 1404381936}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2072353348
 GameObject:
   m_ObjectHideFlags: 0
@@ -327209,6 +330628,81 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2109891695}
   m_Mesh: {fileID: 4300000, guid: c70b95fcd69584c8ab0ad9836b08b3cc, type: 3}
+--- !u!1 &2110127219
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2110127220}
+  - component: {fileID: 2110127221}
+  m_Layer: 0
+  m_Name: TalkToClient
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2110127220
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2110127219}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1845725220}
+  m_Father: {fileID: 1787399684}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2110127221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2110127219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f4b217eee27f8965808e63c89329a2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objectiveChannelsSO: {fileID: 11400000, guid: abd508a1728e99261a0c45cd360d8b56, type: 2}
+  _nextObjective: {fileID: 288199571}
+  _objectiveText: Talk To The Client
+  _isFirstObjective: 0
+  _targetObject: {fileID: 2033553230}
+  _objectiveGroup: {fileID: 1787399685}
+  _onActivate:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1845725221}
+        m_TargetAssemblyTypeName: DialogueSwitcher, Assembly-CSharp
+        m_MethodName: SetDialogue
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  _onFail:
+    m_PersistentCalls:
+      m_Calls: []
+  _onLoadPrereqs:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2110358073
 GameObject:
   m_ObjectHideFlags: 0
@@ -327479,6 +330973,81 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2111303603}
   m_CullTransparentMesh: 1
+--- !u!1 &2111445989
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2111445990}
+  - component: {fileID: 2111445991}
+  m_Layer: 0
+  m_Name: GetRidOfSO2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2111445990
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2111445989}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1760370038}
+  m_Father: {fileID: 1787399684}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2111445991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2111445989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f4b217eee27f8965808e63c89329a2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objectiveChannelsSO: {fileID: 11400000, guid: abd508a1728e99261a0c45cd360d8b56, type: 2}
+  _nextObjective: {fileID: 0}
+  _objectiveText: Get Rid of the SO2
+  _isFirstObjective: 0
+  _targetObject: {fileID: 0}
+  _objectiveGroup: {fileID: 1787399685}
+  _onActivate:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1760370040}
+        m_TargetAssemblyTypeName: ObjectiveBooleanSequence, Assembly-CSharp
+        m_MethodName: SetTrue
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Activated
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  _onFail:
+    m_PersistentCalls:
+      m_Calls: []
+  _onLoadPrereqs:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2111975122
 GameObject:
   m_ObjectHideFlags: 0
@@ -329180,13 +332749,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dialogues:
-  - sentences:
-    - img: {fileID: 21300000, guid: 9a2647da9b471dd648b07473bb552004, type: 3}
-      name: Coconut Farmer
-      sentence: Thank you so much for doing that!
-    - img: {fileID: 21300000, guid: 9a2647da9b471dd648b07473bb552004, type: 3}
-      name: Coconut Farmer
-      sentence: Come back once everything is grown and I can get you a coconut!
+  - dialogueSO: {fileID: 11400000, guid: ef00812a01b51e16a982550a514085e3, type: 2}
+    sentences:
+    - sentence: Thank you so much for doing that!
+    - sentence: Come back once everything is grown and I can get you a coconut!
     onDialogueComplete:
       m_PersistentCalls:
         m_Calls:

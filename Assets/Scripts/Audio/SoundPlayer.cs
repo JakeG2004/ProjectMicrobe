@@ -11,14 +11,29 @@ public class SoundPlayer : MonoBehaviour
 {
     [SerializeField] private List<AudioClip> _sounds = new();
     [SerializeField] private float _rapidPlayPeriod = 0.05f;
+    [SerializeField] private bool _silentOnStart = false;
+    [SerializeField] private float _startSilentTime = 1.0f;
     private bool _playedRapidSound = false;
     private bool _playingWithPriority = false;
-
     private AudioSource _as;
 
     void Start()
     {
         _as = GetComponent<AudioSource>();
+
+        if (!_silentOnStart)
+        {
+            return;
+        }
+        
+        StartCoroutine(ISilenceAtStart());
+    }
+
+    private IEnumerator ISilenceAtStart()
+    {
+        _playingWithPriority = true;
+        yield return new WaitForSeconds(_startSilentTime);
+        _playingWithPriority = false;
     }
 
     public void PlaySound(int idx)
@@ -67,5 +82,16 @@ public class SoundPlayer : MonoBehaviour
     {
         yield return new WaitForSeconds(_rapidPlayPeriod);
         _playedRapidSound = false;
+    }
+
+    public void SetSound(int idx, AudioClip ac)
+    {
+        if (_sounds.Count <= 0)
+        {
+            _sounds.Add(ac);
+            return;
+        }
+
+        _sounds[0] = ac;
     }
 }

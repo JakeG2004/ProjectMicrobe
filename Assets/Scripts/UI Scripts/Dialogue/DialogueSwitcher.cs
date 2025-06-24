@@ -15,14 +15,14 @@ public class DialogueSwitcher : MonoBehaviour
     public void SetDialogue(int _dialogueIndex)
     {
         // Handle no dialogue trigger
-        if(!_dialogueTrigger)
+        if (!_dialogueTrigger)
         {
             Debug.LogWarning("Failed to get dialogue trigger!");
             return;
         }
 
         // Handle out of bounds
-        if(_dialogueIndex >= _dialogues.Length || _dialogueIndex < 0)
+        if (_dialogueIndex >= _dialogues.Length || _dialogueIndex < 0)
         {
             Debug.LogWarning("Dialogue index is outside of bounds!");
             return;
