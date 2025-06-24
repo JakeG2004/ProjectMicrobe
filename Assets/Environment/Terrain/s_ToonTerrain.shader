@@ -554,8 +554,9 @@
 		UsePass "Hidden/Nature/Terrain/Utilities/PICKING"
 		UsePass "Hidden/Nature/Terrain/Utilities/SELECTION"
 	}
-
+	// Used when Unity bakes or draws terrain at a distance using a single texture
 	Dependency "BaseMapShader"    = "Hidden/Landon/Toony Colors Pro 2/Terrain8-BasePass"
+	// Used when Unity generates that base map (e.g., baking into a texture atlas)
 	Dependency "BaseMapGenShader" = "Hidden/Landon/Toony Colors Pro 2/Terrain8-BaseGen"
 
 	Fallback "Diffuse"

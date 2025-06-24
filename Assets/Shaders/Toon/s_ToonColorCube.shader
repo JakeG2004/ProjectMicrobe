@@ -1,8 +1,7 @@
-Shader "Landon/Toon/Color Cubemap" {
+Shader "Landon/Toon/Color Cube" {
 	Properties {
 		_Color ("Color (RGB), ", Color) = (1,1,1,1)
-		_Cube ("Cubemap", CUBE) = "" {}
-		_Ramp ("Toon Ramp (RGB)", 2D) = "gray" {}
+		[NoScaleOffset] _Ramp ("Toon Ramp (RGB)", 2D) = "gray" {}
 	}
 	
 	SubShader {
@@ -11,7 +10,6 @@ Shader "Landon/Toon/Color Cubemap" {
 		#pragma surface surf ToonRamp fullforwardshadows
 		#include "LightingToonRamp.cginc"
 
-		samplerCUBE _Cube;
 		fixed4 _Color;
 
 		struct Input {
@@ -20,9 +18,19 @@ Shader "Landon/Toon/Color Cubemap" {
 		};
 		void surf (Input IN, inout SurfaceOutputCustom o) {
 			o.Albedo = _Color.rgb;
-			o.Emission = texCUBE (_Cube, IN.worldRefl).rgb;
+			o.Emission = UNITY_SAMPLE_TEXCUBE(unity_SpecCube0, IN.worldRefl).rgb;
+			o.Alpha = 1;
+			o.Occlusion = 1;
 		}
 		ENDCG
 	}
-	Fallback "Diffuse"
+	Fallback "Landon/Toon/Texture"
 }
+
+/* Selectable cubemep
+	_Cube ("Cubemap", CUBE) = "" {}
+	...
+	samplerCUBE _Cube;
+	...
+	o.Emission = texCUBE (_Cube, IN.worldRefl).rgb;
+*/

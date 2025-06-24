@@ -1,7 +1,7 @@
 Shader "Landon/Toon/Texture" {
 	Properties {
 		_MainTex ("Main Texture (RGB)", 2D) = "white" {}
-		_Ramp ("Toon Ramp (RGB)", 2D) = "gray" {}
+		[NoScaleOffset] _Ramp ("Toon Ramp (RGB)", 2D) = "gray" {}
 	}
 	
 	SubShader {
@@ -18,8 +18,11 @@ Shader "Landon/Toon/Texture" {
 		void surf (Input IN, inout SurfaceOutputCustom o) {
 			fixed4 mainTex = tex2D(_MainTex, IN.uv_MainTex);
 			o.Albedo = mainTex.rgb;
+			o.Alpha = 1;
+			o.Emission = 0;
+			o.Occlusion = 1;
 		}
 		ENDCG
 	}
-	Fallback "Diffuse"
+	FallBack "Diffuse" // needed for shadows
 }

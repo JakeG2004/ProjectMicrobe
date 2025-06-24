@@ -19,10 +19,11 @@ Shader "Landon/Toon/Texture, AO" {
 			fixed4 mainTex = tex2D(_MainTex, IN.uv_MainTex);
 			
 			o.Albedo = mainTex.rgb;
-			//store AO in Alpha
-			o.Alpha = mainTex.a;
+			o.Occlusion = mainTex.a;
+			o.Emission = 0;
+			o.Alpha = 1;
 		}
 		ENDCG
 	}
-	Fallback "Diffuse"
+	Fallback "Landon/Toon/Texture"
 }

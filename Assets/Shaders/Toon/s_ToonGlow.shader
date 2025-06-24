@@ -19,8 +19,10 @@ Shader "Landon/Toon/Glow" {
 		void surf (Input IN, inout SurfaceOutputCustom o) {
 			o.Albedo = _Color.rgb;
 			o.Emission = _Color.rgb * 2;
+			o.Alpha = 1;
+			o.Occlusion = 1;
 		}
 		ENDCG
 	}
-	Fallback "Diffuse"
+	Fallback "Landon/Toon/Color"
 }

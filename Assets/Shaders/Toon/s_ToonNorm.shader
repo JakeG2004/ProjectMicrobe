@@ -3,7 +3,7 @@ Shader "Landon/Toon/Normal/Texture" {
 		_MainTex ("Main Texture (RGB)", 2D) = "gray" {}
 		_BumpMap("Bumpmap", 2D) = "bump" {}
 		_Color("Color Mult (RGB)", Color) = (1,1,1,1)
-		_Ramp ("Toon Ramp (RGB)", 2D) = "gray" {}
+		[NoScaleOffset] _Ramp ("Toon Ramp (RGB)", 2D) = "gray" {}
 	}
 	
 	SubShader {
@@ -22,8 +22,11 @@ Shader "Landon/Toon/Normal/Texture" {
 		void surf (Input IN, inout SurfaceOutputCustom o) {
 			o.Albedo = tex2D(_MainTex, IN.uv_MainTex) * _Color;
 			o.Normal = UnpackNormal(tex2D(_BumpMap, IN.uv_MainTex));
+			o.Alpha = 1;
+			o.Emission = 0;
+			o.Occlusion = 1;
 		}
 		ENDCG
 	}
-	Fallback "Diffuse"
+	Fallback "Landon/Toon/Texture"
 }

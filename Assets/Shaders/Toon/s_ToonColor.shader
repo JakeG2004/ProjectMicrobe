@@ -16,8 +16,11 @@ Shader "Landon/Toon/Color" {
 		};
 		void surf (Input IN, inout SurfaceOutputCustom o) {
 			o.Albedo = _Color.rgb;
+			o.Alpha = 1;
+			o.Emission = 0;
+			o.Occlusion = 1;
 		}
 		ENDCG
 	}
-	Fallback "Diffuse"
+	FallBack "Diffuse" // needed for shadows
 }

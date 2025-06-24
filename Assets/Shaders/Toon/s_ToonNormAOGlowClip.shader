@@ -7,9 +7,10 @@ Shader "Landon/Toon/Normal/AO Glow Clip" {
 	}
 	
 	SubShader {
-		Tags { "RenderType"="Opaque" }
+		Tags { "RenderType"="TransparentCutout" "Queue"="AlphaTest" "IgnoreProjector"="True" }
+		Cull Off
 		CGPROGRAM
-		#pragma surface surf ToonRamp fullforwardshadows
+		#pragma surface surf ToonRamp alpha:clip fullforwardshadows addshadow
 		#include "LightingToonRamp.cginc"
 		
 		sampler2D _MainTex, _GlowTex, _BumpMap;
@@ -23,14 +24,12 @@ Shader "Landon/Toon/Normal/AO Glow Clip" {
 			
 			o.Albedo = mainTex.rgb;
 			o.Normal = UnpackNormal(tex2D(_BumpMap, IN.uv_MainTex));
-			o.Emission = glowTex.rgb * 2;
-
-			//store AO in Alpha
-			o.Alpha = mainTex.a;
-			//store cutout in glowTexA
+			o.Occlusion = mainTex.a;
+			o.Emission = glowTex.rgb * 1.5;
+			o.Alpha = glowTex.a;
 			clip(glowTex.a - 0.5);
 		}
 		ENDCG
 	}
-	Fallback "Diffuse"
+	Fallback "Landon/Toon/Normal/Texture"
 }
