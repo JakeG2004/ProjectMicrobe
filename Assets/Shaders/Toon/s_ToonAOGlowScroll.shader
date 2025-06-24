@@ -1,4 +1,3 @@
-//uses unity_ShadowColor
 Shader "Landon/Toon/Texture, AO, Glow Scroll" {
 	Properties {
 		_MainTex ("Texture (RGB) AO (A)", 2D) = "white" {}
@@ -30,10 +29,11 @@ Shader "Landon/Toon/Texture, AO, Glow Scroll" {
 			fixed3 glowScroll = tex2D(_Glow, IN.uv_MainTex - scroll);
 
 			o.Albedo = mainTex.rgb;
-			o.Alpha = mainTex.a;
+			o.Occlusion = mainTex.a;
 			o.Emission = glowTex.r * glowScroll.g * _Color;
+			o.Alpha = 1;
 		}
 		ENDCG
 	}
-	Fallback "Diffuse"
+	 Fallback "Landon/Toon/Texture, AO"
 }

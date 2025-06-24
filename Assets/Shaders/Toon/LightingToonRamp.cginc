@@ -1,6 +1,5 @@
 #ifndef TOON_RAMP_INCLUDED
 #define TOON_RAMP_INCLUDED
-
 sampler2D _Ramp;
 
 struct SurfaceOutputCustom {
@@ -8,6 +7,7 @@ struct SurfaceOutputCustom {
 	fixed3 Normal;
 	fixed3 Emission;
 	fixed Alpha;
+	fixed Occlusion;
 };
 
 inline half4 LightingToonRamp(SurfaceOutputCustom s, half3 lightDir, half3 viewDir, half atten) {
@@ -18,19 +18,17 @@ inline half4 LightingToonRamp(SurfaceOutputCustom s, half3 lightDir, half3 viewD
 #if !(POINT) && !(SPOT)
 		ramp *= atten;
 #endif
-
-	//AO stored in alpha
-	ramp *= s.Alpha;
-
+	ramp *= s.Occlusion;
 	ramp = lerp(unity_ShadowColor.rgb, fixed3(1, 1, 1), ramp);
+	
 	fixed4 c;
 	c.rgb = s.Albedo * _LightColor0.rgb * ramp;
-	c.a = 1;
+	c.rgb += s.Emission;
+	c.a = s.Alpha;
 #if (POINT || SPOT)
 		c.rgb *= atten;
 #endif
 
 	return c;
 }
-
 #endif

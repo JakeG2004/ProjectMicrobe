@@ -23,12 +23,11 @@ Shader "Landon/Toon/Normal/AO Glow" {
 			
 			o.Albedo = mainTex.rgb;
 			o.Normal = UnpackNormal(tex2D(_BumpMap, IN.uv_MainTex));
-
-			//store AO in Alpha
-			o.Alpha = mainTex.a;
+			o.Alpha = 1;
+			o.Occlusion = mainTex.a;
 			o.Emission = glowTex.rgb * 1.5;
 		}
 		ENDCG
 	}
-	Fallback "Diffuse"
+	Fallback "Landon/Toon/Normal/Texture"
 }

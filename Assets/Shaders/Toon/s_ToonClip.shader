@@ -9,7 +9,7 @@ Shader "Landon/Toon/Texture, Clip" {
 		Tags { "RenderType" = "TransparentCutout" "Queue" = "AlphaTest" }
 		Cull Off
 		CGPROGRAM
-		#pragma surface surf ToonRamp keepalpha fullforwardshadows addshadow 
+		#pragma surface surf ToonRamp alpha:clip fullforwardshadows addshadow 
 		#include "LightingToonRamp.cginc"
 		
 		sampler2D _MainTex;
@@ -23,8 +23,11 @@ Shader "Landon/Toon/Texture, Clip" {
 			fixed4 mainTex = tex2D(_MainTex, IN.uv_MainTex);
 			o.Albedo = mainTex.rgb;
 			clip(mainTex.a - _Cutoff);
+			o.Alpha = mainTex.a;
+			o.Emission = 0;
+			o.Occlusion = 1;
 		}
 		ENDCG
 	}
-	Fallback "Diffuse"
+	Fallback "Landon/Toon/Texture"
 }

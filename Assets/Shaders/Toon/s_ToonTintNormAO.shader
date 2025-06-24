@@ -24,10 +24,11 @@ Shader "Landon/Toon/Tint Mask/Normal, AO" {
 			fixed4 tex = tex2D(_MainTex, IN.uv_MainTex);
 			o.Albedo = tex.r * _TintR.rgb + tex.g * _TintG.rgb + tex.b * _TintB.rgb;
 			o.Normal = UnpackNormal(tex2D(_BumpMap, IN.uv_MainTex));
-			//store AO in Alpha
-			o.Alpha = tex.a;
+			o.Alpha = 1;
+			o.Emission = 0;
+			o.Occlusion = tex.a;
 		}
 		ENDCG
 	}
-	Fallback "Diffuse"
+	Fallback "Landon/Toon/Normal/Texture"
 }

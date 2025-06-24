@@ -24,7 +24,7 @@ SubShader {
     ColorMask RGB
 
 CGPROGRAM
-#pragma surface surf ToonyColorsCustom vertex:WavingGrassVert addshadow exclude_path:deferred
+#pragma surface surf ToonyColorsCustom vertex:WavingGrassVert fullforwardshadows addshadow exclude_path:deferred
 //#pragma surface surf ToonyColorsCustom vertex:WavingGrassVert fullforwardshadows exclude_path:deferred
 #include "TerrainEngine.cginc"
 
@@ -38,13 +38,17 @@ struct Input {
 
 
 //Custom SurfaceOutput
-struct SurfaceOutputCustom {
+/*struct SurfaceOutputCustom {
 	fixed3 Albedo;
 	fixed3 Normal;
 	fixed3 Emission;
 	fixed Alpha;
-};
-inline half4 LightingToonyColorsCustom (SurfaceOutputCustom s, half3 lightDir, half3 viewDir, half atten) {
+};*/
+
+// Use Unity's built-in output so Unity can generate proper shadow caster pass
+
+
+inline half4 LightingToonyColorsCustom (SurfaceOutput s, half3 lightDir, half3 viewDir, half atten) {
 		s.Normal = normalize(s.Normal);
 		fixed ndl = max(0, dot(s.Normal, lightDir)*0.5 + 0.5);
 			
@@ -63,12 +67,11 @@ inline half4 LightingToonyColorsCustom (SurfaceOutputCustom s, half3 lightDir, h
 
 // void surf (Input IN, inout SurfaceOutput o) {
 
-void surf (Input IN, inout SurfaceOutputCustom o) {
+void surf (Input IN, inout SurfaceOutput o) {
     fixed4 c = tex2D(_MainTex, IN.uv_MainTex) * IN.color;
     o.Albedo = c.rgb;
-    o.Alpha = c.a;
+    o.Alpha = c.a * IN.color.a;
     clip (o.Alpha - _Cutoff);
-    o.Alpha *= IN.color.a;
 }
 ENDCG
 }
@@ -110,5 +113,6 @@ ENDCG
         }
     }
 
-    Fallback Off
+	// Fallback "Landon/Toon/Texture, Clip"
+    // Fallback Off
 }
