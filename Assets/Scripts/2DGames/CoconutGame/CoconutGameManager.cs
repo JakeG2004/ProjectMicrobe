@@ -1,21 +1,15 @@
-// BugManager.cs
-// A script for managing the bug minigame
-// Author:  Jake Gendreau
-// Date:    6/16/25
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
 using UnityEngine.Events;
+using TMPro;
 
-public class BugManager : MonoBehaviour
+public class CoconutGameManager : MonoBehaviour
 {
     [SerializeField] private TMP_Text _scoreText;
     [SerializeField] private TMP_Text _timeText;
     [SerializeField] private int _totalTime = 30;
-    [SerializeField] private int _goalScore = 75;
+    [SerializeField] private int _goalScore = 20;
 
     [Space(10)]
     [SerializeField] private UnityEvent _OnTimerEndEvent;

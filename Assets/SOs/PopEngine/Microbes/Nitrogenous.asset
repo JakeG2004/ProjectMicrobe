@@ -21,7 +21,13 @@ MonoBehaviour:
   producedResources:
   - resourceName: Nitrogen
     amount: 2
-  toxins: []
+  toxins:
+  - toxinName: Sulfur Dioxide
+    toxin:
+      toxicity: 0.6
+      minSafeDensity: 0
+      maxSafeDensity: 0.35
+      lethalDensity: 0
   description: 'B. Nitrogenous is a bacterial microbe which consumes atmospheric
     Oxygen (O2) and produces atmospheric Nitrogen (N2).
 

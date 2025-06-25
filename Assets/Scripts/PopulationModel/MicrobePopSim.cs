@@ -124,11 +124,7 @@ public class MicrobePopSim : MonoBehaviour
         //_microbes.Add(newMicrobe);
         SetMicrobePopulation(newMicrobe.name, GetMicrobePopulation(newMicrobe.name) + newMicrobe.amount);
 
-        // Backfill population
-        /*for (int i = 0; i < _curStep - 1; i++)
-        {
-            newMicrobe.popHistory.Add(0.0f);
-        }*/
+        Debug.Log(GetMicrobePopulation(newMicrobe.name));
     }
 
     // Removes a microbe fromt the simulation

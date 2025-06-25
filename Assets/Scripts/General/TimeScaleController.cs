@@ -11,7 +11,7 @@ using UnityEngine.Events;
 public class TimeScaleController : MonoBehaviour
 {
     private float _elapsedTime = 0.0f;
-    private float _updatePeriod = 15.0f;
+    [SerializeField] private float _updatePeriod = 15.0f;
     private int _curTimeIdx = 0;
     [SerializeField] private UnityEvent<float> _onChangeUpdatePeriod;
 

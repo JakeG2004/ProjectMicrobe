@@ -30,19 +30,29 @@ public class TextureClickManager : MonoBehaviour
 
     Vector2 GetMousePosAsUV()
     {
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
             Vector2 localPoint;
 
-            if(RectTransformUtility.ScreenPointToLocalPointInRectangle(_rt, Input.mousePosition, null, out localPoint))
+            if (RectTransformUtility.ScreenPointToLocalPointInRectangle(_rt, Input.mousePosition, null, out localPoint))
             {
                 Vector2 size = _rt.rect.size;
                 Vector2 uv = (localPoint + size * 0.5f) / size;
 
+                // Calculate world position
                 Vector3 worldSpaceCoordinate = CalculateCoordinate(uv);
-                _CollisionCheck.gameObject.GetComponent<Clicker>().Click();
-                _CollisionCheck.transform.position = worldSpaceCoordinate;
-                
+
+                // Convert to local space of parent
+                Transform parent = _CollisionCheck.transform.parent;
+                Vector3 localPosition = parent.InverseTransformPoint(worldSpaceCoordinate);
+
+                // Set local Y to -2.5
+                localPosition.x = Mathf.Clamp(localPosition.x, -3.6f, 3.6f);
+                localPosition.y = -2.5f;
+
+                // Apply local position
+                _CollisionCheck.transform.localPosition = localPosition;
+
                 return uv;
             }
         }

@@ -91,6 +91,11 @@ public class ObjectiveGroup : MonoBehaviour
 
     public void SkipToName(string name)
     {
+        if (name == "")
+        {
+            return;
+        }
+        
         foreach (Transform child in transform)
         {
             if (child.gameObject.name != name)

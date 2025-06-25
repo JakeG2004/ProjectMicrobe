@@ -14,8 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   microbeName: B. Sulfrus
   population: 0
-  growthRate: 0
-  requiredResources: []
-  producedResources: []
+  growthRate: 0.6
+  requiredResources:
+  - resourceName: Sulfur Dioxide
+    amount: 1
+  producedResources:
+  - resourceName: Carbon Dioxide
+    amount: 1
   toxins: []
-  description: 
+  description: B. Sulfrus is a bacterial microbe which consumes Sulfur Dioxide. It
+    is useful for cleaning up environments that are too rich in Sulfur Dioxide.

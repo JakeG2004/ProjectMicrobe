@@ -6,7 +6,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class CoconutPlayerController : MonoBehaviour
+public class MountainPlayerController : MonoBehaviour
 {
     [SerializeField] private GameObject _arrowObj;
     [SerializeField] private GameObject _prize;

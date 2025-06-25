@@ -75,6 +75,8 @@ public class Microbe
             competitionEffect += Mathf.Max(0, competitor.Value);
         }
 
+        //float meanComp = competitionEffect / (competitors.Count * 2);
+
         // Use the inverse of the lotka volterra models to find stable states
 
         // Force to push competing species to a stable state
@@ -82,8 +84,14 @@ public class Microbe
         if (competitionEffect - population > dampingThreshold)
         {
             float equilibrium = population / competitionEffect;
-            float deviation = Mathf.Abs(population - equilibrium);
-            damping = Mathf.Exp(-dampingForce * deviation);
+            //float equilibrium = minK / (1 + competitionEffect);
+            //float deviation = Mathf.Abs(population - equilibrium);
+            //damping = Mathf.Exp(-dampingForce * deviation);
+            if (population > equilibrium)
+            {
+                float deviation = population - equilibrium;
+                damping = Mathf.Exp(-dampingForce * deviation);
+            }
         }
 
         // Compute growth
@@ -104,6 +112,8 @@ public class Microbe
         }
 
         return growth * damping;
+        //return Mathf.Lerp(growth, meanComp, dampingForce);
+
     }
 
 
