@@ -41,7 +41,7 @@ public class InteractText : MonoBehaviour
     private IEnumerator IHideText()
     {
         _anim.SetBool("isUp", false);
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.1f);
         SetText("");
     }
 }
