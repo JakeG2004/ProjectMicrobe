@@ -1,5 +1,6 @@
 // InteractMaster.cs
 // A script for managing and referencing all interactible text prompts
+// Uses a stack to manage which one is currently active
 // Author:  Jake Gendreau
 // Date:    6/18/25
 
@@ -11,6 +12,7 @@ public class InteractMaster : MonoBehaviour
 {
     public static InteractMaster Instance { get; private set; }
     private List<FacePlayer> _fps = new();
+    private Stack<FacePlayer> _currentInteractPrompts = new();
 
     void Awake()
     {
@@ -56,6 +58,36 @@ public class InteractMaster : MonoBehaviour
                     iip.SetInteractable(false);
                 }
             }
+        }
+    }
+
+    public void PushInteractable(FacePlayer curFP)
+    {
+        InteractInSphere iip;
+        foreach (FacePlayer fp in _currentInteractPrompts)
+        {
+            iip = fp.gameObject.GetComponent<InteractInSphere>();
+            if (iip != null)
+            {
+                iip.SetInteractable(false);
+            }
+        }
+
+        _currentInteractPrompts.Push(curFP);
+        iip = curFP.gameObject.GetComponent<InteractInSphere>();
+        if (iip != null)
+        {
+            iip.SetInteractable(true);
+        }
+    }
+
+    public void PopInteractable()
+    {
+        FacePlayer fp = _currentInteractPrompts.Pop();
+        InteractInSphere iip = fp.gameObject.GetComponent<InteractInSphere>();
+        if (iip != null)
+        {
+            iip.SetInteractable(false);
         }
     }
 }

@@ -11,11 +11,14 @@ public class FallingCoconutManager : MonoBehaviour
     private float _baseX = 0.0f;
     private float _timer = 0f;
 
+    private BoolGameEventTrigger _bget;
+
     void Start()
     {
         _timer = Random.Range(0f, 2f);
-        transform.localPosition = new Vector3(Random.Range(-3f, 3f), Random.Range(5f, 15f), 0f);
-        _baseX = transform.localPosition.x;
+        ResetCoconut();
+
+        _bget = GetComponent<BoolGameEventTrigger>();
     }
 
     void Update()
@@ -39,5 +42,31 @@ public class FallingCoconutManager : MonoBehaviour
         float newX = _baseX + horizontalOffset;
 
         transform.localPosition = new Vector3(newX, newY, transform.localPosition.z);
+    }
+
+    private void ResetCoconut()
+    {
+        float randX = Random.Range(-3f, 3f);
+        float randY = Random.Range(7f, 15f);
+
+        transform.localPosition = new Vector3(randX, randY, 0);
+        _baseX = randX;
+
+        _fallSpeed += Random.Range(-2f, 2f);
+        _horizontalSpeed += Random.Range(-1f, 1f);
+        _horizontalRange += Random.Range(-1f, 1f);
+
+        Mathf.Clamp(_fallSpeed, .5f, 10f);
+        Mathf.Clamp(_horizontalSpeed, 0f, 5f);
+        Mathf.Clamp(_horizontalRange, 0f, 5f);
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            ResetCoconut();
+            _bget.TriggerEvent(true);
+        }
     }
 }

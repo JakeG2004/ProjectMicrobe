@@ -12,6 +12,9 @@ public class CoconutGameManager : MonoBehaviour
     [SerializeField] private int _goalScore = 20;
 
     [Space(10)]
+    [SerializeField] private GameObject _coconutPrefab;
+
+    [Space(10)]
     [SerializeField] private UnityEvent _OnTimerEndEvent;
     [SerializeField] private UnityEvent _OnGoalReachedEvent;
     private int _curScore = 0;
@@ -23,6 +26,11 @@ public class CoconutGameManager : MonoBehaviour
         _scoreText.text = "Score: 0";
         _timeText.text = $"Time: {_totalTime}";
 
+        for (int i = 0; i < 4; i++)
+        {
+            GameObject newCoconut = Instantiate(_coconutPrefab, transform);
+        }
+
         StartCoroutine(IManageTimer());
     }
 
@@ -31,10 +39,10 @@ public class CoconutGameManager : MonoBehaviour
         StopAllCoroutines();
     }
 
-    public void OnBugClicked(int numClicked)
+    public void OnCoconutCollected()
     {
-        _curScore += numClicked;
-        _scoreText.text = $"Score: {_curScore}"; 
+        _curScore++;
+        _scoreText.text = $"Score: {_curScore}";
     }
 
     private IEnumerator IManageTimer()
@@ -56,6 +64,16 @@ public class CoconutGameManager : MonoBehaviour
         if (_curScore >= _goalScore)
         {
             _OnGoalReachedEvent.Invoke();
+        }
+    }
+
+    public void DestroyCoconuts()
+    {
+        FallingCoconutManager[] coconuts = Object.FindObjectsOfType<FallingCoconutManager>();
+
+        foreach (FallingCoconutManager coconut in coconuts)
+        {
+            Destroy(coconut.gameObject);
         }
     }
 }
