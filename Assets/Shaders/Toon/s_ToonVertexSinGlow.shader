@@ -1,7 +1,7 @@
-﻿Shader "Landon/Toon/Texture, Vertex Sin, Glow" {
+﻿Shader "Landon/Toon/Vertex Sin, Glow" {
     Properties {
-        [MainTexture] _MainTex ("Albedo", 2D) = "white" {}
         [NoScaleOffset] _Ramp ("Ramp Texture (RGB)", 2D) = "gray" {}
+        [MainTexture] _MainTex ("Albedo (RGB), Glow Mask (A)", 2D) = "white" {}
         _WindDirection ("Direction", Vector) = (1, 0, 0, 0)
         _WindStrength ("Strength", Range(0, 0.2)) = 0.025
         [NoScaleOffset] _WindMask ("Mask", 2D) = "white" {}
@@ -69,6 +69,7 @@
             half3 Emission;
             half Specular;
             half Gloss;
+			fixed Occlusion;
             half Alpha;
             Input input;
 
@@ -150,21 +151,23 @@
             // Define ramp threshold and smoothstep depending on context
             #define RAMP_TEXTURE _Ramp
             half2 rampUv = ndl.xx * 0.5 + 0.5;
+			// Sharpen Ramp
+			rampUv = smoothstep(0.3, 0.7, rampUv);
+			// Apply AO
+			rampUv *= surface.Occlusion;
+			// Sample the ramp texture using rampUv as both U and V coordinates
             ramp = tex2D(RAMP_TEXTURE, rampUv).rgb;
+
 
             // Apply attenuation
             ramp *= atten;
 
             // Highlight/Shadow Colors
-            #if !defined(UNITY_PASS_FORWARDBASE)
-                ramp = lerp(half3(0, 0, 0), surface.__highlightColor, ramp);
-            #else
-                ramp = lerp(surface.__shadowColor, surface.__highlightColor, ramp);
-            #endif
+            ramp = lerp(surface.__shadowColor, surface.__highlightColor * lightColor.rgb, ramp);
 
             // Output color
             half4 color;
-            color.rgb = surface.Albedo * lightColor.rgb * ramp;
+            color.rgb = surface.Albedo * ramp;
             color.a = surface.Alpha;
 
             // Apply indirect lighting (ambient)
@@ -190,6 +193,5 @@
         }
         ENDCG
     }
-
-    Fallback "Diffuse"
+    Fallback "Landon/Toon/Texture"
 }

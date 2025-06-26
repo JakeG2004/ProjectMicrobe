@@ -1,8 +1,12 @@
-Shader "Landon/Toon/Color Cube Fresnel" {
+// color shader using ToonRamp fresnel and cubemap
+// color alpha gives Cubemap Emission
+// fresColor alpha gives Fresnel Angle
+
+Shader "Landon/Toon/Color Shiney" {
 	Properties {
+		[NoScaleOffset] _Ramp ("Toon Ramp (RGB)", 2D) = "gray" {}
 		_Color ("Color (RGB), Gloss (A)", Color) = (1,1,1,1)
 		_FresColor ("Fresnel Color(RGB), Fresnel Angle (A)", Color) = (0,0.3,0.5,1)
-		_Ramp ("Toon Ramp (RGB)", 2D) = "gray" {}
 	}
 	
 	SubShader {
@@ -30,5 +34,5 @@ Shader "Landon/Toon/Color Cube Fresnel" {
 		}
 		ENDCG
 	}
-	Fallback "Landon/Toon/Texture"
+	Fallback "Landon/Toon/Color"
 }

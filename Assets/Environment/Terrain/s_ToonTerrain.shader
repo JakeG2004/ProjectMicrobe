@@ -513,12 +513,12 @@
 			#if !defined(UNITY_PASS_FORWARDBASE)
 				ramp = lerp(half3(0,0,0), surface.__highlightColor, ramp);
 			#else
-				ramp = lerp(surface.__shadowColor, surface.__highlightColor, ramp);
+				ramp = lerp(surface.__shadowColor, surface.__highlightColor * lightColor.rgb, ramp);
 			#endif
 
 			// Output color
 			half4 color;
-			color.rgb = surface.Albedo * lightColor.rgb * ramp;
+			color.rgb = surface.Albedo * ramp;
 			color.a = surface.Alpha;
 
 			// Apply indirect lighting (ambient)

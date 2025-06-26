@@ -84,6 +84,7 @@
 			half3 Emission;
 			half Specular;
 			half Gloss;
+			fixed Occlusion;
 			half Alpha;
 
 			Input input;
@@ -161,8 +162,7 @@
 		//================================================================
 		// LIGHTING FUNCTION
 
-		inline half4 LightingToonyColorsCustom(inout SurfaceOutputCustom surface, UnityGI gi)
-		{
+		inline half4 LightingToonyColorsCustom(inout SurfaceOutputCustom surface, UnityGI gi) {
 
 			half3 lightDir = gi.light.dir;
 			#if defined(UNITY_PASS_FORWARDBASE)
@@ -180,22 +180,23 @@
 			
 			//Define ramp threshold and smoothstep depending on context
 			#define		RAMP_TEXTURE	_Ramp
-			half2 rampUv = ndl.xx * 0.5 + 0.5;
+			half2 rampUv = ndl.xx * 0.5 + 0.5;\
+			// Sharpen Ramp
+			rampUv = smoothstep(0.3, 0.7, rampUv);
+			// Apply AO
+			rampUv *= surface.Occlusion;
+			// Sample the ramp texture using rampUv as both U and V coordinates
 			ramp = tex2D(RAMP_TEXTURE, rampUv).rgb;
 
 			// Apply attenuation (shadowmaps & point/spot lights attenuation)
 			ramp *= atten;
 
-			// Highlight/Shadow Colors
-			#if !defined(UNITY_PASS_FORWARDBASE)
-				ramp = lerp(half3(0,0,0), surface.__highlightColor, ramp);
-			#else
-				ramp = lerp(surface.__shadowColor, surface.__highlightColor, ramp);
-			#endif
+
+			ramp = lerp(surface.__shadowColor, surface.__highlightColor * lightColor.rgb, ramp);
 
 			// Output color
 			half4 color;
-			color.rgb = surface.Albedo * lightColor.rgb * ramp;
+			color.rgb = surface.Albedo * ramp;
 			color.a = surface.Alpha;
 
 			// Apply indirect lighting (ambient)
