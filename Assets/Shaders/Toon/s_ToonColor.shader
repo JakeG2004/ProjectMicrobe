@@ -1,7 +1,10 @@
+// Simple color shader using ToonRamp
+// reducing color alpha gives Emission
+
 Shader "Landon/Toon/Color" {
 	Properties {
-		_Color ("Color (RGB), ", Color) = (1,1,1,1)
-		_Ramp ("Toon Ramp (RGB)", 2D) = "gray" {}
+		[NoScaleOffset] _Ramp ("Toon Ramp (RGB)", 2D) = "gray" {}
+		_Color ("Color (RGB), Glow (-a)", Color) = (1,1,1,1)
 	}
 	
 	SubShader {
@@ -16,11 +19,11 @@ Shader "Landon/Toon/Color" {
 		};
 		void surf (Input IN, inout SurfaceOutputCustom o) {
 			o.Albedo = _Color.rgb;
-			o.Alpha = 1;
-			o.Emission = 0;
+			o.Emission = (1 - _Color.a) * 2 * _Color.rgb;
 			o.Occlusion = 1;
+			o.Alpha = 1;
 		}
 		ENDCG
 	}
-	FallBack "Diffuse" // needed for shadows
+	FallBack "VertexLit" // needed for shadows
 }

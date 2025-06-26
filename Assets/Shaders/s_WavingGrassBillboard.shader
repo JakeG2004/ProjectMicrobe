@@ -72,11 +72,11 @@ inline half4 LightingToonyColorsCustom (SurfaceOutputCustom s, half3 lightDir, h
 		fixed ndl = max(0, dot(s.Normal, lightDir)*0.5 + 0.5);
 			
 		fixed3 ramp = tex2D(_Ramp, fixed2(ndl,ndl));
-	#if !(POINT) && !(SPOT)
+	#if (!POINT && !SPOT) // for directional shadow recieving
 		ramp *= atten;
 	#endif
-		ramp = lerp(unity_ShadowColor.rgb,fixed3(1,1,1),ramp);
-		fixed4 c = fixed4(s.Albedo * _LightColor0.rgb * ramp,1);
+		ramp = lerp(unity_ShadowColor.rgb,_LightColor0.rgb,ramp);
+		fixed4 c = fixed4(s.Albedo * ramp,1);
 	#if (POINT || SPOT)
 		c.rgb *= atten;
 	#endif
