@@ -13,7 +13,7 @@ public class InteractMaster : MonoBehaviour
     public static InteractMaster Instance { get; private set; }
     [SerializeField] private InteractText _interactText;
     [SerializeField] private KeyCode _interactKey = KeyCode.E;
-    private InteractableStack<InteractableObject> _interactables = new();
+    [SerializeField] private InteractableStack<InteractableObject> _interactables = new();
     private bool _isInteractable = false;
 
 
@@ -47,14 +47,17 @@ public class InteractMaster : MonoBehaviour
         // If current objective, hide it and show the next one;
         if (_interactables.Peek() == io)
         {
+            // Get the current interactable
             _interactables.Pop();
 
+            // Move to the next one if there are more
             if (_interactables.Count > 0)
             {
                 _interactText.ShowText(_interactables.Peek());
                 return;
             }
 
+            // Otherwise, hide and turn off interaction
             _interactText.HideText();
             _isInteractable = false;
             return;
@@ -63,18 +66,27 @@ public class InteractMaster : MonoBehaviour
         _interactables.Remove(io);
     }
 
-    // Handle the interaction using interrupt instead of polling (hopefully better)
+    // Handle the interaction and tracking of objects
     void Update()
     {
-        if (Input.GetKeyDown(_interactKey) && _isInteractable)
+        // Track moving interactable objects (placeable pylon, NPC's, etc...)
+        if (_isInteractable)
         {
             InteractableObject io = _interactables.Peek();
-            io.Interact();
-            
-            if (io.gameObject.activeSelf == false)
+            _interactText.SetPos(_interactables.Peek().transform.position);
+
+            // Handle interact input
+            if (Input.GetKeyDown(_interactKey))
+            {
+                io.Interact();
+            }
+
+            // Disable if the gameobjcet is inactinve
+            if (io.gameObject.activeInHierarchy == false)
             {
                 RemoveInteract(io);
             }
+
         }
     }
 }
