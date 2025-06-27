@@ -1,4 +1,4 @@
-using UnityEngine;
+/*using UnityEngine;
 using UnityEngine.EventSystems;
 
 // joystick ripped from 'Joystick Pack' asset.  Modified by Landon
@@ -131,4 +131,4 @@ public class MobileJoystick : MonoBehaviour, IPointerDownHandler, IDragHandler, 
 		}
 		return Vector2.zero;
 	}
-}
+}*/

@@ -1,4 +1,4 @@
-using UnityEngine;
+/*using UnityEngine;
 
 public class InputController : MonoBehaviour {
 
@@ -31,8 +31,9 @@ public class InputController : MonoBehaviour {
 	Transform cam;
 	Transform player;
 
-	void Awake() {
-        GM.playerInput = this;
+	void Awake()
+	{
+		GM.playerInput = this;
     }
     void Start() {
         cam = GM.cam;
@@ -71,6 +72,11 @@ public class InputController : MonoBehaviour {
 		jumpInput = Input.GetButton("Jump") || Input.GetAxis("JumpXbox") > 0.5f || mobileJumpInput;
 	}
     void GetSubmergence() {
+		if (!player)
+		{
+			Debug.LogWarning("Failed to get player!");
+			return;
+		}
         submersion = Mathf.Clamp01(player.position.y * -0.5f);
     }
 
@@ -94,7 +100,7 @@ public class InputController : MonoBehaviour {
 	public void UseMobileControls(bool value) {
 		useMobileJoysticks = value;
 	}
-}
+}*/
 
 
 

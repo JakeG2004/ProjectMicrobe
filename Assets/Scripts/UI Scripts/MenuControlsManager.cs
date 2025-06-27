@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class MenuControlsManager : MonoBehaviour
 {
-    private MovementController _mc;
+    private PlayerMovementController _mc;
 
     void Start()
     {
-        _mc = MovementController.instance;
+        _mc = PlayerMovementController.Instance;
     }
 
     public void SetControlState(bool _isActive)

@@ -17,7 +17,7 @@ public class Toggle3DControls : MonoBehaviour
     public void Set3DControls(bool state)
     {
         _tct.SetCameraTracking(state);
-        MovementController.instance.SetMovementState(state);
+        PlayerMovementController.Instance.SetMovementState(state);
         _shm.SetState(!state);
     }
 }

@@ -4,8 +4,6 @@ public class GM : MonoBehaviour {
 
     [HideInInspector] public static Transform player;
     [HideInInspector] public static Transform cam;
-	[HideInInspector] public static InputController playerInput;
-
 }
 
 /* if I wanted this on an object in the scene for some reason

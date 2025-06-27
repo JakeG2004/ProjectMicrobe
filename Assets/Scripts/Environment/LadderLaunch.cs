@@ -2,16 +2,16 @@ using UnityEngine;
 
 public class LadderLaunch : MonoBehaviour {
 
-	InputController ic;
+	PlayerStates _ps;
 
 	void Start() {
-		ic = GM.playerInput;
+		_ps = PlayerMovementController.Instance.GetStates();
 	}
 	void OnTriggerEnter(Collider other) {
-		if (other.CompareTag("Player")) ic.climbing = true;
+		if (other.CompareTag("Player")) _ps.isClimbing = true;
 	}
 	void OnTriggerExit(Collider other) {
-		if (other.CompareTag("Player")) ic.climbing = false;
+		if (other.CompareTag("Player")) _ps.isClimbing = false;
 	}
 }
 

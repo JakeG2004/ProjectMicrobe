@@ -20,7 +20,7 @@ public class SimplePlayerRipple : MonoBehaviour
 
 	void Start()
 	{
-		player = GM.player;
+		player = GameObject.FindGameObjectWithTag("Player").transform;
 		ripples = GetComponent<ParticleSystem>();
 		rippleSounds = GetComponent<AudioSource>();
 		splashSounds = transform.GetChild(0).GetComponent<AudioSource>();

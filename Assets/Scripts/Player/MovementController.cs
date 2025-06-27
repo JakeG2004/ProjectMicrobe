@@ -1,4 +1,4 @@
-using UnityEngine;
+/*using UnityEngine;
 
 public class MovementController : MonoBehaviour {
 
@@ -42,12 +42,12 @@ public class MovementController : MonoBehaviour {
     }
 
     void FixedUpdate() {
-		CheckIfGrounded();
-		CheckIfRunningIntoWall();
-		StepUp();
-		Jump();
-		Rotate();
-		Move();
+		CheckIfGrounded(); // x
+		CheckIfRunningIntoWall(); // x
+		StepUp(); // x
+		Jump(); // x
+		Rotate(); // x
+		Move(); // x
 		Climb();
 		
 
@@ -238,4 +238,4 @@ public class MovementController : MonoBehaviour {
 		Gizmos.DrawSphere(allowedPos, checkRadius);
 	}
 	*/
-}
+//}
