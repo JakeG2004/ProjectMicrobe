@@ -12,7 +12,7 @@ public class PlayerMovementController : MonoBehaviour
     private Rigidbody _rb;
     private Transform _cam;
     private PlayerStates _states;
-    private Vector2 _inputVector;
+    private Vector3 _smoothedLookDir = Vector3.forward;
     private float _lookSensitivity = 3.0f;
     private bool _playerCanMove = true;
     private bool _runningIntoWall = false;
@@ -42,8 +42,8 @@ public class PlayerMovementController : MonoBehaviour
         playerInputActions.Player.Jump.started += Jump;
 
         // Movement lambdas
-        playerInputActions.Player.Movement.performed += ctx => _inputVector = ctx.ReadValue<Vector2>();
-        playerInputActions.Player.Movement.canceled += ctx => _inputVector = Vector2.zero;
+        playerInputActions.Player.Movement.performed += ctx => _states.move = ctx.ReadValue<Vector2>();
+        playerInputActions.Player.Movement.canceled += ctx => _states.move = Vector2.zero;
 
         // Sprint lambda to toggle
         playerInputActions.Player.Sprint.started += ctx => _states.isSprinting = !_states.isSprinting;
@@ -64,8 +64,6 @@ public class PlayerMovementController : MonoBehaviour
 
     void FixedUpdate()
     {
-        _states.move = _inputVector;
-
         GetSubmergence();
         CheckIfGrounded();
         CheckIfRunningIntoWall();
@@ -120,35 +118,40 @@ public class PlayerMovementController : MonoBehaviour
 
     private void Rotate()
     {
-        Vector3 lookDir = Vector3.zero;
+        Vector3 targetLookDir;
 
-        // face towards direction of movement
-        if (_inputVector.magnitude > 0.1f)
+        // If moving, look in direction of input
+        if (_states.move.magnitude > 0.1f)
         {
-            lookDir += _inputVector.y * ProjectOnXZPlane(_cam.forward);
-            lookDir += _inputVector.x * ProjectOnXZPlane(_cam.right);
+            targetLookDir = _states.move.y * ProjectOnXZPlane(_cam.forward) +
+                            _states.move.x * ProjectOnXZPlane(_cam.right);
         }
-
-        // Face camera forward
         else
         {
-            lookDir = ProjectOnXZPlane(_cam.forward);
+            targetLookDir = ProjectOnXZPlane(_cam.forward);
         }
 
-        // Disable rotation if climbing
+        // If climbing, don't rotate
         if (_states.isClimbing)
         {
-            lookDir = ProjectOnXZPlane(_cam.forward);
+            _smoothedLookDir = ProjectOnXZPlane(_cam.forward);
+            return;
         }
 
-        // Calculate the angle between the player forward and the target direction
-        _states.turnAngle = Vector3.SignedAngle(transform.forward, lookDir, Vector3.up);
+        // Normalize target direction
+        targetLookDir = ProjectOnXZPlane(targetLookDir.normalized);
 
-        // Rotate towards the target direction
-        Vector3 rot = Vector3.RotateTowards(transform.forward, lookDir, TurnAngleBasedOnSubmersion(), 0f);
+        // Smoothly interpolate direction
+        _smoothedLookDir = Vector3.Slerp(_smoothedLookDir, targetLookDir, TurnAngleBasedOnSubmersion());
 
-        // Apply the new rotation
-        transform.rotation = Quaternion.LookRotation(rot);
+        // Update turn angle for animation
+        _states.turnAngle = Vector3.SignedAngle(transform.forward, _smoothedLookDir, Vector3.up);
+
+        // Apply rotation
+        if (_smoothedLookDir != Vector3.zero)
+        {
+            transform.rotation = Quaternion.LookRotation(_smoothedLookDir);
+        }
     }
 
     private float TurnAngleBasedOnSubmersion()
@@ -161,35 +164,40 @@ public class PlayerMovementController : MonoBehaviour
         // forward direction if 15 degrees up from camera forward
         Vector3 forwardDir = Vector3.RotateTowards(_cam.forward, Vector3.up, Mathf.Deg2Rad * 15f, 0f);
 
+		if (_runningIntoWall)
+        {
+            _states.move *= new Vector3(0.2f, 1f, 0.2f);
+		}
+
         // unnormalized direction vector
-        Vector3 moveDir = (_inputVector.magnitude > 0.1f) ? (_inputVector.y * forwardDir + _inputVector.x * _cam.right) : forwardDir;
+        Vector3 moveDir = (_states.move.magnitude > 0.1f) ? (_states.move.y * forwardDir + _states.move.x * _cam.right) : forwardDir;
 
         // Reset controls to be effectively zero when player not allowed to move
         if (!_playerCanMove)
         {
-            _inputVector = Vector2.zero;
+            _states.move = Vector2.zero;
         }
 
         // Swimming movement
         if (_states.submersion >= 0.8f)
         {
-            HandleSwimMovement(_inputVector, moveDir);
+            HandleSwimMovement(moveDir);
         }
 
         // Land movement
         else
         {
-            HandleLandMovement(_inputVector, moveDir);
+            HandleLandMovement(moveDir);
         }
     }
 
-    private void HandleLandMovement(Vector2 _inputVector, Vector3 moveDir)
+    private void HandleLandMovement(Vector3 moveDir)
     {
         // Normalize direction vector and disallow vertical movement input
         moveDir = new Vector3(moveDir.x, 0, moveDir.z).normalized;
 
         // Run more slowly through deeper water
-        float moveSpeed = Mathf.Lerp(_vals.landSpeed, 1f, _states.submersion) * _inputVector.magnitude;
+        float moveSpeed = Mathf.Lerp(_vals.landSpeed, 1f, _states.submersion) * _states.move.magnitude;
 
         // Calculate target movement speed
         Vector3 moveTarget = _states.isSprinting ? moveDir * moveSpeed * _vals.sprintMod : moveDir * moveSpeed;
@@ -204,10 +212,10 @@ public class PlayerMovementController : MonoBehaviour
         _rb.velocity = moveSmooth + Vector3.up * _rb.velocity.y;
     }
 
-    private void HandleSwimMovement(Vector2 _inputVector, Vector3 moveDir)
+    private void HandleSwimMovement(Vector3 moveDir)
     {
         // Calculate the target movement speed, applying user input
-        Vector3 moveTarget = moveDir.normalized * _vals.swimSpeed * _inputVector.magnitude;
+        Vector3 moveTarget = moveDir.normalized * _vals.swimSpeed * _states.move.magnitude;
 
         // Limit vertical input near the surface
         moveTarget.y = Mathf.Lerp(0.1f, moveTarget.y, _states.submersion * 5f - 4f);
