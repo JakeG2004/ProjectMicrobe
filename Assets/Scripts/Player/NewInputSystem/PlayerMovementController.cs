@@ -53,7 +53,7 @@ public class PlayerMovementController : MonoBehaviour
         playerInputActions.Player.Look.canceled += ctx => _states.look = Vector2.zero;
 
         // zoom lambda
-        playerInputActions.Player.Zoom.performed += ctx => _states.zoom = Mathf.Clamp01(_states.zoom + Mathf.Sign(ctx.ReadValue<float>()) * _vals._scrollAmt);
+        playerInputActions.Player.Zoom.performed += ctx => _states.zoom = Mathf.Clamp01(_states.zoom + Mathf.Sign(ctx.ReadValue<float>()) * _vals.scrollAmt);
     }
 
     void Start()
@@ -64,6 +64,12 @@ public class PlayerMovementController : MonoBehaviour
 
     void FixedUpdate()
     {
+        _states.smoothedMove = Vector2.Lerp(_states.smoothedMove, _states.move, _vals.inputSmoothingSpeed * Time.fixedDeltaTime);
+        if (_states.move.magnitude < 0.1f && _states.smoothedMove.magnitude < 0.1f)
+        {
+            _states.smoothedMove = Vector2.zero;
+        }
+
         GetSubmergence();
         CheckIfGrounded();
         CheckIfRunningIntoWall();
@@ -121,10 +127,10 @@ public class PlayerMovementController : MonoBehaviour
         Vector3 targetLookDir;
 
         // If moving, look in direction of input
-        if (_states.move.magnitude > 0.1f)
+        if (_states.smoothedMove.magnitude > 0.1f)
         {
-            targetLookDir = _states.move.y * ProjectOnXZPlane(_cam.forward) +
-                            _states.move.x * ProjectOnXZPlane(_cam.right);
+            targetLookDir = _states.smoothedMove.y * ProjectOnXZPlane(_cam.forward) +
+                            _states.smoothedMove.x * ProjectOnXZPlane(_cam.right);
         }
         else
         {
@@ -166,11 +172,11 @@ public class PlayerMovementController : MonoBehaviour
 
 		if (_runningIntoWall)
         {
-            _states.move *= new Vector3(0.2f, 1f, 0.2f);
+            _states.smoothedMove *= new Vector3(0.2f, 1f, 0.2f);
 		}
 
         // unnormalized direction vector
-        Vector3 moveDir = (_states.move.magnitude > 0.1f) ? (_states.move.y * forwardDir + _states.move.x * _cam.right) : forwardDir;
+        Vector3 moveDir = (_states.smoothedMove.magnitude > 0.1f) ? (_states.smoothedMove.y * forwardDir + _states.smoothedMove.x * _cam.right) : forwardDir;
 
         // Reset controls to be effectively zero when player not allowed to move
         if (!_playerCanMove)
@@ -197,7 +203,7 @@ public class PlayerMovementController : MonoBehaviour
         moveDir = new Vector3(moveDir.x, 0, moveDir.z).normalized;
 
         // Run more slowly through deeper water
-        float moveSpeed = Mathf.Lerp(_vals.landSpeed, 1f, _states.submersion) * _states.move.magnitude;
+        float moveSpeed = Mathf.Lerp(_vals.landSpeed, 1f, _states.submersion) * _states.smoothedMove.magnitude;
 
         // Calculate target movement speed
         Vector3 moveTarget = _states.isSprinting ? moveDir * moveSpeed * _vals.sprintMod : moveDir * moveSpeed;
@@ -215,7 +221,7 @@ public class PlayerMovementController : MonoBehaviour
     private void HandleSwimMovement(Vector3 moveDir)
     {
         // Calculate the target movement speed, applying user input
-        Vector3 moveTarget = moveDir.normalized * _vals.swimSpeed * _states.move.magnitude;
+        Vector3 moveTarget = moveDir.normalized * _vals.swimSpeed * _states.smoothedMove.magnitude;
 
         // Limit vertical input near the surface
         moveTarget.y = Mathf.Lerp(0.1f, moveTarget.y, _states.submersion * 5f - 4f);
@@ -331,5 +337,8 @@ public class PlayerControlVals
     [SerializeField] public float sprintMod = 1.5f;
 
     [Space(10)]
-    [SerializeField] public float _scrollAmt = 0.25f;
+    [SerializeField] public float scrollAmt = 0.25f;
+
+    [Space(10)]
+    [SerializeField] public float inputSmoothingSpeed = 15f;
 }

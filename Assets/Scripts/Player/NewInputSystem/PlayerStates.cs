@@ -12,6 +12,7 @@ public class PlayerStates : MonoBehaviour
 
     [Space(10)]
     public Vector2 move = Vector2.zero;
+    public Vector2 smoothedMove = Vector2.zero;
     public Vector2 turn = Vector2.zero;
     public Vector2 look = Vector2.zero;
 
