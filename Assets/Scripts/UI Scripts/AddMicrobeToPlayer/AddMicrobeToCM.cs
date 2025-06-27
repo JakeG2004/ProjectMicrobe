@@ -9,7 +9,6 @@ public class AddMicrobeToCM : MonoBehaviour
     public static AddMicrobeToCM Instance { get; private set; }
 
     [SerializeField] private MicrobeSO _microbeSO;
-    [SerializeField] private TMP_InputField _microbeAmt;
     private float _population = 0;
     private AddMicrobeToggler _srcToggle;
 
@@ -29,29 +28,11 @@ public class AddMicrobeToCM : MonoBehaviour
 
     public void AddMicrobeToPlayer()
     {
-        if (!float.TryParse(_microbeAmt.text, out float amtToAdd))
-        {
-            Debug.LogWarning("Failed to parse string");
-            return;
-        }
-
-        if (amtToAdd > _population)
-        {
-            if (NotificationPanelManager.Instance.IsAnimating() == true)
-            {
-                NotificationPanelManager.Instance.UpdatePanelText("Attempting to take too many microbes!");
-                return;
-            }
-
-            NotificationPanelManager.Instance.ShowPanelForSeconds("Attempting to take too many microbes!");
-            return;
-        }
-
         CarriedMicrobes _cm = GameObject.FindGameObjectWithTag("Player").GetComponent<CarriedMicrobes>();
 
         StringFloatPair newMicrobe = new();
         newMicrobe.name = _microbeSO.microbeName;
-        newMicrobe.amount = amtToAdd;
+        newMicrobe.amount = _population;
 
         // Check for full with no duplicate
         if (_cm.IsFull() && !_cm.HasMicrobe(newMicrobe.name))
@@ -67,7 +48,7 @@ public class AddMicrobeToCM : MonoBehaviour
         }
         _cm.AddMicrobe(newMicrobe);
 
-        _population -= amtToAdd;
+        _population = 0;
         UpdateInfo();
 
         // Update the player inventory slots
@@ -99,7 +80,6 @@ public class AddMicrobeToCM : MonoBehaviour
         _population = population;
         _srcToggle = src;
 
-        _microbeAmt.text = "";
         UpdateInfo();
     }
 }
