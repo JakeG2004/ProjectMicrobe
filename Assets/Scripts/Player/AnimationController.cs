@@ -4,17 +4,19 @@ public class AnimationController : MonoBehaviour {
 
     public Animator ac;
     private PlayerStates _states;
+	private Rigidbody _rb;
 
 	void Awake()
 	{
 		_states = GetComponent<PlayerStates>();
+		_rb = GetComponent<Rigidbody>();
 	}
 
     void Start() {
         ac = GetComponent<Animator>();
     }
     void FixedUpdate() {
-		ac.SetFloat("Move", _states.move.magnitude * (_states.isSprinting ? 1.5f : 1f));
+		ac.SetFloat("Move", _rb.velocity.magnitude * 0.25f);
 		ac.SetFloat("Submersion", _states.submersion);
 		ac.SetFloat("LookVert", _states.turn.y);
 		ac.SetFloat("LookHoz", _states.turn.x);
