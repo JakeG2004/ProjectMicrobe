@@ -206,7 +206,11 @@ public class PlayerMovementController : MonoBehaviour
         float moveSpeed = Mathf.Lerp(_vals.landSpeed, 1f, _states.submersion) * _states.smoothedMove.magnitude;
 
         // Calculate target movement speed
-        Vector3 moveTarget = _states.isSprinting ? moveDir * moveSpeed * _vals.sprintMod : moveDir * moveSpeed;
+        Vector3 moveTarget = moveDir * moveSpeed;
+        if(_states.isSprinting)
+        {
+            moveTarget *= _vals.sprintMod;
+        }
 
         // Current speed movement on XZ plane
         Vector3 moveCurrent = ProjectOnXZPlane(moveTarget).normalized;
