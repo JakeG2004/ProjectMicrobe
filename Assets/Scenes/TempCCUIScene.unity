@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 8900000, guid: 60f1fa9c7c55e934e8b0296eff890207, type: 3}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3878723, g: 0.6644698, b: 0.8181424, a: 1}
+  m_IndirectSpecularColor: {r: 0.38384846, g: 0.6638534, b: 0.8180598, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -210,6 +210,7 @@ GameObject:
   - component: {fileID: 2777085}
   - component: {fileID: 2777084}
   - component: {fileID: 2777083}
+  - component: {fileID: 2777086}
   m_Layer: 5
   m_Name: Scroll View
   m_TagString: Untagged
@@ -306,6 +307,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2777081}
   m_CullTransparentMesh: 1
+--- !u!114 &2777086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2777081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7818f621de0f6d23db0c574c1c9237aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4061905
 GameObject:
   m_ObjectHideFlags: 0
@@ -1946,8 +1959,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2114532123}
   m_HandleRect: {fileID: 2114532122}
   m_Direction: 0
-  m_Value: 0.00000034548194
-  m_Size: 0.50651765
+  m_Value: 0.00000023032135
+  m_Size: 0.5065177
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2516,6 +2529,7 @@ GameObject:
   - component: {fileID: 35813421}
   - component: {fileID: 35813420}
   - component: {fileID: 35813419}
+  - component: {fileID: 35813424}
   m_Layer: 5
   m_Name: EyeColor6
   m_TagString: Untagged
@@ -2675,6 +2689,20 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 0
+--- !u!114 &35813424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 35813416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 579152203}
+  _toggleGroupSetCount: 1
 --- !u!1 &35863970
 GameObject:
   m_ObjectHideFlags: 0
@@ -5265,6 +5293,7 @@ GameObject:
   - component: {fileID: 89929681}
   - component: {fileID: 89929680}
   - component: {fileID: 89929679}
+  - component: {fileID: 89929684}
   m_Layer: 5
   m_Name: EyeColor7
   m_TagString: Untagged
@@ -5424,6 +5453,20 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 0
+--- !u!114 &89929684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 89929676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 579152203}
+  _toggleGroupSetCount: 1
 --- !u!1 &90040154
 GameObject:
   m_ObjectHideFlags: 0
@@ -6330,6 +6373,7 @@ GameObject:
   - component: {fileID: 115721641}
   - component: {fileID: 115721640}
   - component: {fileID: 115721639}
+  - component: {fileID: 115721644}
   m_Layer: 5
   m_Name: Skin3
   m_TagString: Untagged
@@ -6513,6 +6557,20 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   m_IsOn: 1
+--- !u!114 &115721644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 115721636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 709841165}
+  _toggleGroupSetCount: 1
 --- !u!1 &115875802
 GameObject:
   m_ObjectHideFlags: 0
@@ -7995,6 +8053,7 @@ GameObject:
   - component: {fileID: 137216818}
   - component: {fileID: 137216817}
   - component: {fileID: 137216816}
+  - component: {fileID: 137216821}
   m_Layer: 5
   m_Name: Outfit3Jacket
   m_TagString: Untagged
@@ -8160,6 +8219,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 137216814}
   m_CullTransparentMesh: 1
+--- !u!114 &137216821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 137216814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 896258692}
+  _toggleGroupSetCount: 3
 --- !u!1 &138630733
 GameObject:
   m_ObjectHideFlags: 0
@@ -9029,6 +9102,7 @@ GameObject:
   - component: {fileID: 158184741}
   - component: {fileID: 158184740}
   - component: {fileID: 158184739}
+  - component: {fileID: 158184743}
   m_Layer: 5
   m_Name: ToggleHairOrange
   m_TagString: Untagged
@@ -9095,7 +9169,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.5019608}
+    m_NormalColor: {r: 0.7176471, g: 0.7176471, b: 0.7176471, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.8}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 1, g: 1, b: 1, a: 0.5019608}
@@ -9160,6 +9234,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 158184737}
   m_CullTransparentMesh: 1
+--- !u!114 &158184743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 158184737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 2777086}
+  _toggleGroupSetCount: 1
 --- !u!1 &158350047
 GameObject:
   m_ObjectHideFlags: 0
@@ -9901,6 +9989,7 @@ GameObject:
   - component: {fileID: 172242312}
   - component: {fileID: 172242311}
   - component: {fileID: 172242310}
+  - component: {fileID: 172242315}
   m_Layer: 5
   m_Name: Outfit10Jacket
   m_TagString: Untagged
@@ -10066,6 +10155,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 172242308}
   m_CullTransparentMesh: 1
+--- !u!114 &172242315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 172242308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 896258692}
+  _toggleGroupSetCount: 3
 --- !u!1 &173006537
 GameObject:
   m_ObjectHideFlags: 0
@@ -10791,6 +10894,7 @@ GameObject:
   - component: {fileID: 180587784}
   - component: {fileID: 180587783}
   - component: {fileID: 180587782}
+  - component: {fileID: 180587787}
   m_Layer: 5
   m_Name: Skin4
   m_TagString: Untagged
@@ -10974,6 +11078,20 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   m_IsOn: 0
+--- !u!114 &180587787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180587779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 709841165}
+  _toggleGroupSetCount: 1
 --- !u!1 &181790966
 GameObject:
   m_ObjectHideFlags: 0
@@ -12334,6 +12452,7 @@ GameObject:
   - component: {fileID: 210025656}
   - component: {fileID: 210025655}
   - component: {fileID: 210025654}
+  - component: {fileID: 210025659}
   m_Layer: 5
   m_Name: Shorts3
   m_TagString: Untagged
@@ -12496,6 +12615,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 210025652}
   m_CullTransparentMesh: 1
+--- !u!114 &210025659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 210025652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 1107575990}
+  _toggleGroupSetCount: 2
 --- !u!1 &211009543
 GameObject:
   m_ObjectHideFlags: 0
@@ -14070,6 +14203,7 @@ GameObject:
   - component: {fileID: 234124587}
   - component: {fileID: 234124586}
   - component: {fileID: 234124585}
+  - component: {fileID: 234124590}
   m_Layer: 5
   m_Name: EyeColor10
   m_TagString: Untagged
@@ -14229,6 +14363,20 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 0
+--- !u!114 &234124590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 234124582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 579152203}
+  _toggleGroupSetCount: 1
 --- !u!1 &234851837
 GameObject:
   m_ObjectHideFlags: 0
@@ -16828,6 +16976,7 @@ GameObject:
   - component: {fileID: 271850900}
   - component: {fileID: 271850899}
   - component: {fileID: 271850898}
+  - component: {fileID: 271850903}
   m_Layer: 5
   m_Name: Pants8
   m_TagString: Untagged
@@ -16990,6 +17139,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 271850896}
   m_CullTransparentMesh: 1
+--- !u!114 &271850903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 271850896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 1107575990}
+  _toggleGroupSetCount: 2
 --- !u!1 &271921701
 GameObject:
   m_ObjectHideFlags: 0
@@ -19240,6 +19403,7 @@ GameObject:
   - component: {fileID: 317436746}
   - component: {fileID: 317436745}
   - component: {fileID: 317436749}
+  - component: {fileID: 317436750}
   m_Layer: 5
   m_Name: Glasses1
   m_TagString: Untagged
@@ -19388,6 +19552,20 @@ MonoBehaviour:
     b: {r: 0.39607844, g: 0.39607844, b: 0.39607844, a: 1}
   _accesoryType: 0
   _glassesStyles: []
+--- !u!114 &317436750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 317436743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 1475670024}
+  _toggleGroupSetCount: 1
 --- !u!1 &319133196
 GameObject:
   m_ObjectHideFlags: 0
@@ -19852,6 +20030,7 @@ GameObject:
   - component: {fileID: 322171498}
   - component: {fileID: 322171497}
   - component: {fileID: 322171496}
+  - component: {fileID: 322171501}
   m_Layer: 5
   m_Name: EyeColor9
   m_TagString: Untagged
@@ -20011,6 +20190,20 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 0
+--- !u!114 &322171501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 322171493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 579152203}
+  _toggleGroupSetCount: 1
 --- !u!1 &322582178
 GameObject:
   m_ObjectHideFlags: 0
@@ -20431,7 +20624,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 108
+  m_fontSize: 99
   m_fontSizeBase: 41.94
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -21942,6 +22135,7 @@ GameObject:
   - component: {fileID: 349303666}
   - component: {fileID: 349303665}
   - component: {fileID: 349303668}
+  - component: {fileID: 349303669}
   m_Layer: 5
   m_Name: Glasses2
   m_TagString: Untagged
@@ -22090,6 +22284,20 @@ MonoBehaviour:
     b: {r: 0.32156864, g: 0.34117648, b: 0.41568628, a: 1}
   _accesoryType: 0
   _glassesStyles: []
+--- !u!114 &349303669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 349303663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 1475670024}
+  _toggleGroupSetCount: 1
 --- !u!1 &351839792
 GameObject:
   m_ObjectHideFlags: 0
@@ -24006,6 +24214,7 @@ GameObject:
   - component: {fileID: 374547597}
   - component: {fileID: 374547596}
   - component: {fileID: 374547595}
+  - component: {fileID: 374547599}
   m_Layer: 5
   m_Name: ToggleHairPurple
   m_TagString: Untagged
@@ -24064,15 +24273,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 1361400415}
+    m_SelectOnDown: {fileID: 1505913105}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.5019608}
+    m_NormalColor: {r: 0.7176471, g: 0.7176471, b: 0.7176471, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.8}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 1, g: 1, b: 1, a: 0.5019608}
@@ -24137,6 +24346,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 374547592}
   m_CullTransparentMesh: 1
+--- !u!114 &374547599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 374547592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 695356658}
+  _toggleGroupSetCount: 1
 --- !u!1 &374861636
 GameObject:
   m_ObjectHideFlags: 0
@@ -25659,6 +25882,7 @@ GameObject:
   - component: {fileID: 401281299}
   - component: {fileID: 401281298}
   - component: {fileID: 401281297}
+  - component: {fileID: 401281302}
   m_Layer: 5
   m_Name: Shorts6
   m_TagString: Untagged
@@ -25821,6 +26045,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 401281295}
   m_CullTransparentMesh: 1
+--- !u!114 &401281302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 401281295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 1107575990}
+  _toggleGroupSetCount: 2
 --- !u!1 &403546505
 GameObject:
   m_ObjectHideFlags: 0
@@ -26269,6 +26507,7 @@ GameObject:
   - component: {fileID: 406993702}
   - component: {fileID: 406993701}
   - component: {fileID: 406993700}
+  - component: {fileID: 406993705}
   m_Layer: 5
   m_Name: Skin6
   m_TagString: Untagged
@@ -26452,6 +26691,20 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   m_IsOn: 0
+--- !u!114 &406993705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 406993697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 709841165}
+  _toggleGroupSetCount: 1
 --- !u!1 &407941391
 GameObject:
   m_ObjectHideFlags: 0
@@ -27127,6 +27380,7 @@ GameObject:
   - component: {fileID: 420641904}
   - component: {fileID: 420641903}
   - component: {fileID: 420641902}
+  - component: {fileID: 420641906}
   m_Layer: 5
   m_Name: None
   m_TagString: Untagged
@@ -27275,6 +27529,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 420641900}
   m_CullTransparentMesh: 1
+--- !u!114 &420641906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 420641900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 1475670024}
+  _toggleGroupSetCount: 1
 --- !u!1 &421861388
 GameObject:
   m_ObjectHideFlags: 0
@@ -28698,6 +28966,7 @@ GameObject:
   - component: {fileID: 443850299}
   - component: {fileID: 443850298}
   - component: {fileID: 443850297}
+  - component: {fileID: 443850302}
   m_Layer: 5
   m_Name: Outfit4Coat
   m_TagString: Untagged
@@ -28863,6 +29132,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 443850295}
   m_CullTransparentMesh: 1
+--- !u!114 &443850302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 443850295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 896258692}
+  _toggleGroupSetCount: 3
 --- !u!1 &444874775
 GameObject:
   m_ObjectHideFlags: 0
@@ -29176,6 +29459,7 @@ GameObject:
   - component: {fileID: 446699572}
   - component: {fileID: 446699571}
   - component: {fileID: 446699570}
+  - component: {fileID: 446699574}
   m_Layer: 5
   m_Name: ToggleHairDarkGrey
   m_TagString: Untagged
@@ -29242,7 +29526,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.5019608}
+    m_NormalColor: {r: 0.7176471, g: 0.7176471, b: 0.7176471, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.8}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 1, g: 1, b: 1, a: 0.5019608}
@@ -29307,6 +29591,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 446699568}
   m_CullTransparentMesh: 1
+--- !u!114 &446699574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 446699568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 2777086}
+  _toggleGroupSetCount: 1
 --- !u!1 &447987606
 GameObject:
   m_ObjectHideFlags: 0
@@ -31391,6 +31689,7 @@ GameObject:
   - component: {fileID: 486669942}
   - component: {fileID: 486669941}
   - component: {fileID: 486669940}
+  - component: {fileID: 486669945}
   m_Layer: 5
   m_Name: Outfit10Coat
   m_TagString: Untagged
@@ -31556,6 +31855,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 486669938}
   m_CullTransparentMesh: 1
+--- !u!114 &486669945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 486669938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 896258692}
+  _toggleGroupSetCount: 3
 --- !u!1 &487620965
 GameObject:
   m_ObjectHideFlags: 0
@@ -31569,6 +31882,7 @@ GameObject:
   - component: {fileID: 487620969}
   - component: {fileID: 487620968}
   - component: {fileID: 487620967}
+  - component: {fileID: 487620971}
   m_Layer: 5
   m_Name: Goggles3
   m_TagString: Untagged
@@ -31717,6 +32031,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 487620965}
   m_CullTransparentMesh: 1
+--- !u!114 &487620971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 487620965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 1475670024}
+  _toggleGroupSetCount: 1
 --- !u!1 &489221235
 GameObject:
   m_ObjectHideFlags: 0
@@ -32181,6 +32509,7 @@ GameObject:
   - component: {fileID: 494539543}
   - component: {fileID: 494539542}
   - component: {fileID: 494539541}
+  - component: {fileID: 494539546}
   m_Layer: 5
   m_Name: Skin7
   m_TagString: Untagged
@@ -32364,6 +32693,20 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   m_IsOn: 0
+--- !u!114 &494539546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 494539538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 709841165}
+  _toggleGroupSetCount: 1
 --- !u!1 &495962749
 GameObject:
   m_ObjectHideFlags: 0
@@ -32650,7 +32993,7 @@ GameObject:
   m_Component:
   - component: {fileID: 499396409}
   - component: {fileID: 499396408}
-  - component: {fileID: 499396407}
+  - component: {fileID: 499396410}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -32658,26 +33001,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &499396407
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 499396406}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SendPointerHoverToParent: 1
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
 --- !u!114 &499396408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32690,7 +33013,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 1361400410}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &499396409
@@ -32708,6 +33031,36 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &499396410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 499396406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
+  m_MoveRepeatDelay: 0.5
+  m_MoveRepeatRate: 0.1
+  m_XRTrackingOrigin: {fileID: 0}
+  m_ActionsAsset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_PointAction: {fileID: -1654692200621890270, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_MoveAction: {fileID: -8784545083839296357, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_SubmitAction: {fileID: 392368643174621059, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_CancelAction: {fileID: 7727032971491509709, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_LeftClickAction: {fileID: 3001919216989983466, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_MiddleClickAction: {fileID: -2185481485913320682, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_RightClickAction: {fileID: -4090225696740746782, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_ScrollWheelAction: {fileID: 6240969308177333660, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_TrackedDevicePositionAction: {fileID: 6564999863303420839, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_TrackedDeviceOrientationAction: {fileID: 7970375526676320489, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_DeselectOnBackgroundClick: 0
+  m_PointerBehavior: 0
+  m_CursorLockBehavior: 0
 --- !u!1 &499722325
 GameObject:
   m_ObjectHideFlags: 0
@@ -32797,6 +33150,7 @@ GameObject:
   - component: {fileID: 500096491}
   - component: {fileID: 500096490}
   - component: {fileID: 500096489}
+  - component: {fileID: 500096494}
   m_Layer: 5
   m_Name: Outfit5Coat
   m_TagString: Untagged
@@ -32962,6 +33316,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 500096487}
   m_CullTransparentMesh: 1
+--- !u!114 &500096494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 500096487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 896258692}
+  _toggleGroupSetCount: 3
 --- !u!1 &500580506
 GameObject:
   m_ObjectHideFlags: 0
@@ -33201,6 +33569,7 @@ GameObject:
   - component: {fileID: 502212130}
   - component: {fileID: 502212129}
   - component: {fileID: 502212128}
+  - component: {fileID: 502212133}
   m_Layer: 5
   m_Name: Shorts9
   m_TagString: Untagged
@@ -33363,6 +33732,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 502212126}
   m_CullTransparentMesh: 1
+--- !u!114 &502212133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 502212126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 1107575990}
+  _toggleGroupSetCount: 2
 --- !u!1 &503630050
 GameObject:
   m_ObjectHideFlags: 0
@@ -33528,6 +33911,7 @@ GameObject:
   - component: {fileID: 506154883}
   - component: {fileID: 506154882}
   - component: {fileID: 506154881}
+  - component: {fileID: 506154885}
   m_Layer: 5
   m_Name: ToggleHairWhite
   m_TagString: Untagged
@@ -33594,7 +33978,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.5019608}
+    m_NormalColor: {r: 0.7176471, g: 0.7176471, b: 0.7176471, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.8}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 1, g: 1, b: 1, a: 0.5019608}
@@ -33659,6 +34043,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 506154879}
   m_CullTransparentMesh: 1
+--- !u!114 &506154885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 506154879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 2777086}
+  _toggleGroupSetCount: 1
 --- !u!1 &506376681
 GameObject:
   m_ObjectHideFlags: 0
@@ -33672,6 +34070,7 @@ GameObject:
   - component: {fileID: 506376685}
   - component: {fileID: 506376684}
   - component: {fileID: 506376683}
+  - component: {fileID: 506376687}
   m_Layer: 5
   m_Name: ToggleHairFuscia
   m_TagString: Untagged
@@ -33738,7 +34137,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.5019608}
+    m_NormalColor: {r: 0.7176471, g: 0.7176471, b: 0.7176471, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.8}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 1, g: 1, b: 1, a: 0.5019608}
@@ -33803,6 +34202,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 506376681}
   m_CullTransparentMesh: 1
+--- !u!114 &506376687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 506376681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 2777086}
+  _toggleGroupSetCount: 1
 --- !u!1 &507380645
 GameObject:
   m_ObjectHideFlags: 0
@@ -33817,6 +34230,7 @@ GameObject:
   - component: {fileID: 507380649}
   - component: {fileID: 507380648}
   - component: {fileID: 507380647}
+  - component: {fileID: 507380652}
   m_Layer: 5
   m_Name: Shorts10
   m_TagString: Untagged
@@ -33979,6 +34393,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 507380645}
   m_CullTransparentMesh: 1
+--- !u!114 &507380652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 507380645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 1107575990}
+  _toggleGroupSetCount: 2
 --- !u!1 &508829300
 GameObject:
   m_ObjectHideFlags: 0
@@ -34143,6 +34571,7 @@ GameObject:
   - component: {fileID: 509208179}
   - component: {fileID: 509208178}
   - component: {fileID: 509208177}
+  - component: {fileID: 509208182}
   m_Layer: 5
   m_Name: Outfit4Jacket
   m_TagString: Untagged
@@ -34308,6 +34737,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 509208175}
   m_CullTransparentMesh: 1
+--- !u!114 &509208182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 509208175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 896258692}
+  _toggleGroupSetCount: 3
 --- !u!1 &510256923
 GameObject:
   m_ObjectHideFlags: 0
@@ -35128,6 +35571,7 @@ GameObject:
   - component: {fileID: 520474436}
   - component: {fileID: 520474435}
   - component: {fileID: 520474434}
+  - component: {fileID: 520474438}
   m_Layer: 5
   m_Name: Goggles1
   m_TagString: Untagged
@@ -35276,6 +35720,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 520474432}
   m_CullTransparentMesh: 1
+--- !u!114 &520474438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 520474432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 1475670024}
+  _toggleGroupSetCount: 1
 --- !u!1 &521925268
 GameObject:
   m_ObjectHideFlags: 0
@@ -36968,6 +37426,7 @@ GameObject:
   - component: {fileID: 546666657}
   - component: {fileID: 546666660}
   - component: {fileID: 546666661}
+  - component: {fileID: 546666662}
   m_Layer: 5
   m_Name: None
   m_TagString: Untagged
@@ -37144,6 +37603,20 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _boolVal: 0
+--- !u!114 &546666662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 546666654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 1500722932}
+  _toggleGroupSetCount: 1
 --- !u!1 &547489771
 GameObject:
   m_ObjectHideFlags: 0
@@ -38495,6 +38968,7 @@ GameObject:
   - component: {fileID: 571660304}
   - component: {fileID: 571660303}
   - component: {fileID: 571660302}
+  - component: {fileID: 571660307}
   m_Layer: 5
   m_Name: Shorts2
   m_TagString: Untagged
@@ -38657,6 +39131,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 571660300}
   m_CullTransparentMesh: 1
+--- !u!114 &571660307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 571660300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 1107575990}
+  _toggleGroupSetCount: 2
 --- !u!1 &574807885
 GameObject:
   m_ObjectHideFlags: 0
@@ -38749,6 +39237,7 @@ GameObject:
   - component: {fileID: 579152202}
   - component: {fileID: 579152201}
   - component: {fileID: 579152200}
+  - component: {fileID: 579152203}
   m_Layer: 5
   m_Name: Scroll View
   m_TagString: Untagged
@@ -38845,6 +39334,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 579152198}
   m_CullTransparentMesh: 1
+--- !u!114 &579152203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 579152198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7818f621de0f6d23db0c574c1c9237aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &581083414
 GameObject:
   m_ObjectHideFlags: 0
@@ -38927,7 +39428,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1266335557}
   m_HandleRect: {fileID: 1266335556}
   m_Direction: 0
-  m_Value: 0.00000035212582
+  m_Value: 0.00000023475054
   m_Size: 0.51127815
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -39571,6 +40072,7 @@ GameObject:
   - component: {fileID: 587525902}
   - component: {fileID: 587525901}
   - component: {fileID: 587525900}
+  - component: {fileID: 587525904}
   m_Layer: 5
   m_Name: ToggleHairPink
   m_TagString: Untagged
@@ -39629,15 +40131,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 1361400415}
+    m_SelectOnDown: {fileID: 1505913105}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.5019608}
+    m_NormalColor: {r: 0.7176471, g: 0.7176471, b: 0.7176471, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.8}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 1, g: 1, b: 1, a: 0.5019608}
@@ -39702,6 +40204,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 587525897}
   m_CullTransparentMesh: 1
+--- !u!114 &587525904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 587525897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 695356658}
+  _toggleGroupSetCount: 1
 --- !u!1 &592192575
 GameObject:
   m_ObjectHideFlags: 0
@@ -41323,6 +41839,7 @@ GameObject:
   - component: {fileID: 616083810}
   - component: {fileID: 616083809}
   - component: {fileID: 616083808}
+  - component: {fileID: 616083812}
   m_Layer: 5
   m_Name: Glasses5
   m_TagString: Untagged
@@ -41471,6 +41988,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 616083806}
   m_CullTransparentMesh: 1
+--- !u!114 &616083812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 616083806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 1475670024}
+  _toggleGroupSetCount: 1
 --- !u!1 &616805059
 GameObject:
   m_ObjectHideFlags: 0
@@ -41709,6 +42240,7 @@ GameObject:
   - component: {fileID: 624206528}
   - component: {fileID: 624206527}
   - component: {fileID: 624206526}
+  - component: {fileID: 624206530}
   m_Layer: 5
   m_Name: ToggleHairForestGreen
   m_TagString: Untagged
@@ -41775,7 +42307,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.5019608}
+    m_NormalColor: {r: 0.7176471, g: 0.7176471, b: 0.7176471, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.8}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 1, g: 1, b: 1, a: 0.5019608}
@@ -41840,6 +42372,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 624206524}
   m_CullTransparentMesh: 1
+--- !u!114 &624206530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 624206524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 2777086}
+  _toggleGroupSetCount: 1
 --- !u!1 &630434944
 GameObject:
   m_ObjectHideFlags: 0
@@ -43532,6 +44078,7 @@ GameObject:
   - component: {fileID: 660939330}
   - component: {fileID: 660939329}
   - component: {fileID: 660939328}
+  - component: {fileID: 660939332}
   m_Layer: 5
   m_Name: ToggleHairOrange
   m_TagString: Untagged
@@ -43590,15 +44137,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 1361400415}
+    m_SelectOnDown: {fileID: 1505913105}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.5019608}
+    m_NormalColor: {r: 0.7176471, g: 0.7176471, b: 0.7176471, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.8}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 1, g: 1, b: 1, a: 0.5019608}
@@ -43663,6 +44210,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 660939325}
   m_CullTransparentMesh: 1
+--- !u!114 &660939332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 660939325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 695356658}
+  _toggleGroupSetCount: 1
 --- !u!1 &661988630
 GameObject:
   m_ObjectHideFlags: 0
@@ -44742,6 +45303,7 @@ GameObject:
   - component: {fileID: 695356657}
   - component: {fileID: 695356656}
   - component: {fileID: 695356655}
+  - component: {fileID: 695356658}
   m_Layer: 5
   m_Name: Scroll View
   m_TagString: Untagged
@@ -44838,6 +45400,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 695356653}
   m_CullTransparentMesh: 1
+--- !u!114 &695356658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 695356653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7818f621de0f6d23db0c574c1c9237aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &700905198
 GameObject:
   m_ObjectHideFlags: 0
@@ -45408,6 +45982,7 @@ GameObject:
   - component: {fileID: 709841164}
   - component: {fileID: 709841163}
   - component: {fileID: 709841162}
+  - component: {fileID: 709841165}
   m_Layer: 5
   m_Name: Scroll View
   m_TagString: Untagged
@@ -45504,6 +46079,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 709841160}
   m_CullTransparentMesh: 1
+--- !u!114 &709841165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 709841160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7818f621de0f6d23db0c574c1c9237aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &710313670
 GameObject:
   m_ObjectHideFlags: 0
@@ -46267,6 +46854,7 @@ GameObject:
   - component: {fileID: 725861078}
   - component: {fileID: 725861077}
   - component: {fileID: 725861076}
+  - component: {fileID: 725861080}
   m_Layer: 5
   m_Name: ToggleHairPink
   m_TagString: Untagged
@@ -46333,7 +46921,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.5019608}
+    m_NormalColor: {r: 0.7176471, g: 0.7176471, b: 0.7176471, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.8}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 1, g: 1, b: 1, a: 0.5019608}
@@ -46398,6 +46986,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 725861074}
   m_CullTransparentMesh: 1
+--- !u!114 &725861080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 725861074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 2777086}
+  _toggleGroupSetCount: 1
 --- !u!1 &726106738
 GameObject:
   m_ObjectHideFlags: 0
@@ -46481,7 +47083,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 275109700}
   m_Direction: 0
   m_Value: 1
-  m_Size: 1
+  m_Size: 0.9999999
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -47416,6 +48018,7 @@ GameObject:
   - component: {fileID: 737127315}
   - component: {fileID: 737127314}
   - component: {fileID: 737127313}
+  - component: {fileID: 737127318}
   m_Layer: 5
   m_Name: Outfit3Coat
   m_TagString: Untagged
@@ -47581,6 +48184,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 737127311}
   m_CullTransparentMesh: 1
+--- !u!114 &737127318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 737127311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 896258692}
+  _toggleGroupSetCount: 3
 --- !u!1 &738114315
 GameObject:
   m_ObjectHideFlags: 0
@@ -49917,6 +50534,7 @@ GameObject:
   - component: {fileID: 791248322}
   - component: {fileID: 791248321}
   - component: {fileID: 791248320}
+  - component: {fileID: 791248325}
   m_Layer: 5
   m_Name: Outfit3Shirt
   m_TagString: Untagged
@@ -50082,6 +50700,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 791248318}
   m_CullTransparentMesh: 1
+--- !u!114 &791248325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 791248318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 896258692}
+  _toggleGroupSetCount: 3
 --- !u!1 &791905206
 GameObject:
   m_ObjectHideFlags: 0
@@ -50800,6 +51432,7 @@ GameObject:
   - component: {fileID: 800975579}
   - component: {fileID: 800975578}
   - component: {fileID: 800975582}
+  - component: {fileID: 800975583}
   m_Layer: 5
   m_Name: Hat3
   m_TagString: Untagged
@@ -50943,6 +51576,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hatName: 
   _hairSlider: {fileID: 1361400416}
+--- !u!114 &800975583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 800975576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 1500722932}
+  _toggleGroupSetCount: 1
 --- !u!1 &801332993
 GameObject:
   m_ObjectHideFlags: 0
@@ -50957,6 +51604,7 @@ GameObject:
   - component: {fileID: 801332996}
   - component: {fileID: 801332999}
   - component: {fileID: 801333000}
+  - component: {fileID: 801333001}
   m_Layer: 5
   m_Name: CoconutHat
   m_TagString: Untagged
@@ -51100,6 +51748,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hatName: Coconut
   _hairSlider: {fileID: 1361400416}
+--- !u!114 &801333001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 801332993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 1500722932}
+  _toggleGroupSetCount: 1
 --- !u!1 &804073124
 GameObject:
   m_ObjectHideFlags: 0
@@ -53915,6 +54577,7 @@ GameObject:
   - component: {fileID: 858834567}
   - component: {fileID: 858834566}
   - component: {fileID: 858834565}
+  - component: {fileID: 858834570}
   m_Layer: 5
   m_Name: EyeColor1
   m_TagString: Untagged
@@ -54074,6 +54737,20 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 1
+--- !u!114 &858834570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 858834562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 579152203}
+  _toggleGroupSetCount: 1
 --- !u!1 &860556207
 GameObject:
   m_ObjectHideFlags: 0
@@ -55492,6 +56169,7 @@ GameObject:
   - component: {fileID: 872778634}
   - component: {fileID: 872778633}
   - component: {fileID: 872778632}
+  - component: {fileID: 872778636}
   m_Layer: 5
   m_Name: ToggleHairDarkBrown
   m_TagString: Untagged
@@ -55550,15 +56228,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 1361400415}
+    m_SelectOnDown: {fileID: 1505913105}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.5019608}
+    m_NormalColor: {r: 0.7176471, g: 0.7176471, b: 0.7176471, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.8}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 1, g: 1, b: 1, a: 0.5019608}
@@ -55623,6 +56301,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 872778629}
   m_CullTransparentMesh: 1
+--- !u!114 &872778636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 872778629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 695356658}
+  _toggleGroupSetCount: 1
 --- !u!1 &873380832
 GameObject:
   m_ObjectHideFlags: 0
@@ -56543,6 +57235,7 @@ GameObject:
   - component: {fileID: 896258691}
   - component: {fileID: 896258690}
   - component: {fileID: 896258689}
+  - component: {fileID: 896258692}
   m_Layer: 5
   m_Name: Scroll View
   m_TagString: Untagged
@@ -56639,6 +57332,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 896258687}
   m_CullTransparentMesh: 1
+--- !u!114 &896258692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 896258687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7818f621de0f6d23db0c574c1c9237aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &899076542
 GameObject:
   m_ObjectHideFlags: 0
@@ -56652,6 +57357,7 @@ GameObject:
   - component: {fileID: 899076546}
   - component: {fileID: 899076545}
   - component: {fileID: 899076544}
+  - component: {fileID: 899076548}
   m_Layer: 5
   m_Name: ToggleHairMagenta
   m_TagString: Untagged
@@ -56718,7 +57424,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.5019608}
+    m_NormalColor: {r: 0.7176471, g: 0.7176471, b: 0.7176471, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.8}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 1, g: 1, b: 1, a: 0.5019608}
@@ -56783,6 +57489,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 899076542}
   m_CullTransparentMesh: 1
+--- !u!114 &899076548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 899076542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 2777086}
+  _toggleGroupSetCount: 1
 --- !u!1 &899240129
 GameObject:
   m_ObjectHideFlags: 0
@@ -59007,6 +59727,7 @@ GameObject:
   - component: {fileID: 938713332}
   - component: {fileID: 938713331}
   - component: {fileID: 938713330}
+  - component: {fileID: 938713334}
   m_Layer: 5
   m_Name: ToggleHairLightGrey
   m_TagString: Untagged
@@ -59065,15 +59786,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 1361400415}
+    m_SelectOnDown: {fileID: 1505913105}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.5019608}
+    m_NormalColor: {r: 0.7176471, g: 0.7176471, b: 0.7176471, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.8}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 1, g: 1, b: 1, a: 0.5019608}
@@ -59138,6 +59859,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 938713327}
   m_CullTransparentMesh: 1
+--- !u!114 &938713334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 938713327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 695356658}
+  _toggleGroupSetCount: 1
 --- !u!1 &938912164
 GameObject:
   m_ObjectHideFlags: 0
@@ -59765,6 +60500,7 @@ GameObject:
   - component: {fileID: 944019115}
   - component: {fileID: 944019114}
   - component: {fileID: 944019113}
+  - component: {fileID: 944019118}
   m_Layer: 5
   m_Name: Pants2
   m_TagString: Untagged
@@ -59927,6 +60663,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 944019111}
   m_CullTransparentMesh: 1
+--- !u!114 &944019118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 944019111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 1107575990}
+  _toggleGroupSetCount: 2
 --- !u!1 &944252506
 GameObject:
   m_ObjectHideFlags: 0
@@ -59941,6 +60691,7 @@ GameObject:
   - component: {fileID: 944252511}
   - component: {fileID: 944252510}
   - component: {fileID: 944252509}
+  - component: {fileID: 944252514}
   m_Layer: 5
   m_Name: Skin2
   m_TagString: Untagged
@@ -60124,6 +60875,20 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   m_IsOn: 0
+--- !u!114 &944252514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 944252506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 709841165}
+  _toggleGroupSetCount: 1
 --- !u!1 &945110010
 GameObject:
   m_ObjectHideFlags: 0
@@ -60513,6 +61278,7 @@ GameObject:
   - component: {fileID: 949004549}
   - component: {fileID: 949004548}
   - component: {fileID: 949004547}
+  - component: {fileID: 949004552}
   m_Layer: 5
   m_Name: Outfit8Shirt
   m_TagString: Untagged
@@ -60678,6 +61444,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 949004545}
   m_CullTransparentMesh: 1
+--- !u!114 &949004552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 949004545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 896258692}
+  _toggleGroupSetCount: 3
 --- !u!1 &951006135
 GameObject:
   m_ObjectHideFlags: 0
@@ -61719,8 +62499,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 830511655}
   m_HandleRect: {fileID: 830511654}
   m_Direction: 0
-  m_Value: 0.00000034548194
-  m_Size: 0.50651765
+  m_Value: 0
+  m_Size: 0.5065177
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -63034,6 +63814,7 @@ GameObject:
   - component: {fileID: 990372869}
   - component: {fileID: 990372868}
   - component: {fileID: 990372867}
+  - component: {fileID: 990372871}
   m_Layer: 5
   m_Name: ToggleHairSalmon
   m_TagString: Untagged
@@ -63100,7 +63881,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.5019608}
+    m_NormalColor: {r: 0.7176471, g: 0.7176471, b: 0.7176471, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.8}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 1, g: 1, b: 1, a: 0.5019608}
@@ -63165,6 +63946,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 990372865}
   m_CullTransparentMesh: 1
+--- !u!114 &990372871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 990372865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 2777086}
+  _toggleGroupSetCount: 1
 --- !u!1 &990588081
 GameObject:
   m_ObjectHideFlags: 0
@@ -63945,6 +64740,7 @@ GameObject:
   - component: {fileID: 1001554017}
   - component: {fileID: 1001554016}
   - component: {fileID: 1001554015}
+  - component: {fileID: 1001554020}
   m_Layer: 5
   m_Name: Outfit1Jacket
   m_TagString: Untagged
@@ -64110,6 +64906,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1001554013}
   m_CullTransparentMesh: 1
+--- !u!114 &1001554020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1001554013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 896258692}
+  _toggleGroupSetCount: 3
 --- !u!1 &1002023965
 GameObject:
   m_ObjectHideFlags: 0
@@ -64273,6 +65083,7 @@ GameObject:
   - component: {fileID: 1004029536}
   - component: {fileID: 1004029535}
   - component: {fileID: 1004029534}
+  - component: {fileID: 1004029538}
   m_Layer: 5
   m_Name: ToggleHairYellow
   m_TagString: Untagged
@@ -64331,15 +65142,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 1361400415}
+    m_SelectOnDown: {fileID: 1505913105}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.5019608}
+    m_NormalColor: {r: 0.7176471, g: 0.7176471, b: 0.7176471, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.8}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 1, g: 1, b: 1, a: 0.5019608}
@@ -64404,6 +65215,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1004029531}
   m_CullTransparentMesh: 1
+--- !u!114 &1004029538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1004029531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 695356658}
+  _toggleGroupSetCount: 1
 --- !u!1 &1004705894
 GameObject:
   m_ObjectHideFlags: 0
@@ -66117,6 +66942,7 @@ GameObject:
   - component: {fileID: 1021844826}
   - component: {fileID: 1021844825}
   - component: {fileID: 1021844824}
+  - component: {fileID: 1021844829}
   m_Layer: 5
   m_Name: Outfit5Shirt
   m_TagString: Untagged
@@ -66282,6 +67108,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1021844822}
   m_CullTransparentMesh: 1
+--- !u!114 &1021844829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1021844822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 896258692}
+  _toggleGroupSetCount: 3
 --- !u!1 &1022921073
 GameObject:
   m_ObjectHideFlags: 0
@@ -66521,6 +67361,7 @@ GameObject:
   - component: {fileID: 1025520117}
   - component: {fileID: 1025520116}
   - component: {fileID: 1025520120}
+  - component: {fileID: 1025520121}
   m_Layer: 5
   m_Name: Hat4
   m_TagString: Untagged
@@ -66664,6 +67505,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hatName: 
   _hairSlider: {fileID: 1361400416}
+--- !u!114 &1025520121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1025520114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 1500722932}
+  _toggleGroupSetCount: 1
 --- !u!1 &1027665326
 GameObject:
   m_ObjectHideFlags: 0
@@ -66902,6 +67757,7 @@ GameObject:
   - component: {fileID: 1031413496}
   - component: {fileID: 1031413495}
   - component: {fileID: 1031413494}
+  - component: {fileID: 1031413498}
   m_Layer: 5
   m_Name: ToggleHairCyan
   m_TagString: Untagged
@@ -66968,7 +67824,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.5019608}
+    m_NormalColor: {r: 0.7176471, g: 0.7176471, b: 0.7176471, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.8}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 1, g: 1, b: 1, a: 0.5019608}
@@ -67033,6 +67889,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1031413492}
   m_CullTransparentMesh: 1
+--- !u!114 &1031413498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1031413492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 2777086}
+  _toggleGroupSetCount: 1
 --- !u!1 &1033366030
 GameObject:
   m_ObjectHideFlags: 0
@@ -67647,6 +68517,7 @@ GameObject:
   - component: {fileID: 1050384135}
   - component: {fileID: 1050384134}
   - component: {fileID: 1050384133}
+  - component: {fileID: 1050384138}
   m_Layer: 5
   m_Name: Outfit9Jacket
   m_TagString: Untagged
@@ -67812,6 +68683,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1050384131}
   m_CullTransparentMesh: 1
+--- !u!114 &1050384138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1050384131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 896258692}
+  _toggleGroupSetCount: 3
 --- !u!1 &1052321900
 GameObject:
   m_ObjectHideFlags: 0
@@ -67901,6 +68786,7 @@ GameObject:
   - component: {fileID: 1053539186}
   - component: {fileID: 1053539185}
   - component: {fileID: 1053539184}
+  - component: {fileID: 1053539189}
   m_Layer: 5
   m_Name: Outfit2Shirt
   m_TagString: Untagged
@@ -68066,6 +68952,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1053539182}
   m_CullTransparentMesh: 1
+--- !u!114 &1053539189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1053539182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 896258692}
+  _toggleGroupSetCount: 3
 --- !u!1 &1056357357
 GameObject:
   m_ObjectHideFlags: 0
@@ -69655,6 +70555,7 @@ GameObject:
   - component: {fileID: 1087005767}
   - component: {fileID: 1087005766}
   - component: {fileID: 1087005770}
+  - component: {fileID: 1087005771}
   m_Layer: 5
   m_Name: BugHat
   m_TagString: Untagged
@@ -69798,6 +70699,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hatName: Bug
   _hairSlider: {fileID: 1361400416}
+--- !u!114 &1087005771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1087005764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 1500722932}
+  _toggleGroupSetCount: 1
 --- !u!1 &1089590916
 GameObject:
   m_ObjectHideFlags: 0
@@ -70174,6 +71089,7 @@ GameObject:
   - component: {fileID: 1093574623}
   - component: {fileID: 1093574622}
   - component: {fileID: 1093574621}
+  - component: {fileID: 1093574625}
   m_Layer: 5
   m_Name: ToggleHairLightBrown
   m_TagString: Untagged
@@ -70240,7 +71156,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.5019608}
+    m_NormalColor: {r: 0.7176471, g: 0.7176471, b: 0.7176471, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.8}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 1, g: 1, b: 1, a: 0.5019608}
@@ -70305,6 +71221,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1093574619}
   m_CullTransparentMesh: 1
+--- !u!114 &1093574625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1093574619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 2777086}
+  _toggleGroupSetCount: 1
 --- !u!1 &1093765106
 GameObject:
   m_ObjectHideFlags: 0
@@ -71162,6 +72092,7 @@ GameObject:
   - component: {fileID: 1107575989}
   - component: {fileID: 1107575988}
   - component: {fileID: 1107575987}
+  - component: {fileID: 1107575990}
   m_Layer: 5
   m_Name: Scroll View
   m_TagString: Untagged
@@ -71258,6 +72189,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1107575985}
   m_CullTransparentMesh: 1
+--- !u!114 &1107575990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1107575985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7818f621de0f6d23db0c574c1c9237aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1108290813
 GameObject:
   m_ObjectHideFlags: 0
@@ -71422,6 +72365,7 @@ GameObject:
   - component: {fileID: 1108694214}
   - component: {fileID: 1108694213}
   - component: {fileID: 1108694212}
+  - component: {fileID: 1108694217}
   m_Layer: 5
   m_Name: Shorts5
   m_TagString: Untagged
@@ -71584,6 +72528,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1108694210}
   m_CullTransparentMesh: 1
+--- !u!114 &1108694217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1108694210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 1107575990}
+  _toggleGroupSetCount: 2
 --- !u!1 &1108948949
 GameObject:
   m_ObjectHideFlags: 0
@@ -72057,7 +73015,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 933744288}
   m_HandleRect: {fileID: 933744287}
   m_Direction: 0
-  m_Value: 0.00000035212582
+  m_Value: 0.00000023475054
   m_Size: 0.51127815
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -72489,6 +73447,7 @@ GameObject:
   - component: {fileID: 1124166789}
   - component: {fileID: 1124166788}
   - component: {fileID: 1124166787}
+  - component: {fileID: 1124166791}
   m_Layer: 5
   m_Name: ToggleHairSalmon
   m_TagString: Untagged
@@ -72547,15 +73506,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnUp: {fileID: 1361400415}
+    m_SelectOnDown: {fileID: 1505913105}
+    m_SelectOnLeft: {fileID: 660939329}
+    m_SelectOnRight: {fileID: 1582112693}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.5019608}
+    m_NormalColor: {r: 0.7176471, g: 0.7176471, b: 0.7176471, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.8}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 1, g: 1, b: 1, a: 0.5019608}
@@ -72620,6 +73579,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1124166784}
   m_CullTransparentMesh: 1
+--- !u!114 &1124166791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1124166784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 695356658}
+  _toggleGroupSetCount: 1
 --- !u!1 &1124582102
 GameObject:
   m_ObjectHideFlags: 0
@@ -72709,6 +73682,7 @@ GameObject:
   - component: {fileID: 1125832324}
   - component: {fileID: 1125832323}
   - component: {fileID: 1125832322}
+  - component: {fileID: 1125832327}
   m_Layer: 5
   m_Name: Outfit6Coat
   m_TagString: Untagged
@@ -72874,6 +73848,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1125832320}
   m_CullTransparentMesh: 1
+--- !u!114 &1125832327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1125832320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 896258692}
+  _toggleGroupSetCount: 3
 --- !u!1 &1129460752
 GameObject:
   m_ObjectHideFlags: 0
@@ -74261,6 +75249,7 @@ GameObject:
   - component: {fileID: 1152105731}
   - component: {fileID: 1152105730}
   - component: {fileID: 1152105729}
+  - component: {fileID: 1152105734}
   m_Layer: 5
   m_Name: EyeColor5
   m_TagString: Untagged
@@ -74420,6 +75409,20 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 0
+--- !u!114 &1152105734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152105726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 579152203}
+  _toggleGroupSetCount: 1
 --- !u!1 &1152446260
 GameObject:
   m_ObjectHideFlags: 0
@@ -74883,6 +75886,7 @@ GameObject:
   - component: {fileID: 1162708487}
   - component: {fileID: 1162708486}
   - component: {fileID: 1162708485}
+  - component: {fileID: 1162708489}
   m_Layer: 5
   m_Name: ToggleHairMintGreen
   m_TagString: Untagged
@@ -74941,15 +75945,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 1361400415}
+    m_SelectOnDown: {fileID: 1505913105}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.5019608}
+    m_NormalColor: {r: 0.7176471, g: 0.7176471, b: 0.7176471, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.8}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 1, g: 1, b: 1, a: 0.5019608}
@@ -75014,6 +76018,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1162708482}
   m_CullTransparentMesh: 1
+--- !u!114 &1162708489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1162708482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 695356658}
+  _toggleGroupSetCount: 1
 --- !u!1 &1171356891
 GameObject:
   m_ObjectHideFlags: 0
@@ -75028,6 +76046,7 @@ GameObject:
   - component: {fileID: 1171356896}
   - component: {fileID: 1171356895}
   - component: {fileID: 1171356894}
+  - component: {fileID: 1171356899}
   m_Layer: 5
   m_Name: EyeColor4
   m_TagString: Untagged
@@ -75187,6 +76206,20 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 0
+--- !u!114 &1171356899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1171356891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 579152203}
+  _toggleGroupSetCount: 1
 --- !u!1 &1172273817
 GameObject:
   m_ObjectHideFlags: 0
@@ -75978,6 +77011,7 @@ GameObject:
   - component: {fileID: 1185285063}
   - component: {fileID: 1185285062}
   - component: {fileID: 1185285061}
+  - component: {fileID: 1185285066}
   m_Layer: 5
   m_Name: Outfit2Jacket
   m_TagString: Untagged
@@ -76143,6 +77177,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1185285059}
   m_CullTransparentMesh: 1
+--- !u!114 &1185285066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1185285059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 896258692}
+  _toggleGroupSetCount: 3
 --- !u!1 &1186053583
 GameObject:
   m_ObjectHideFlags: 0
@@ -76532,6 +77580,7 @@ GameObject:
   - component: {fileID: 1193105514}
   - component: {fileID: 1193105513}
   - component: {fileID: 1193105512}
+  - component: {fileID: 1193105517}
   m_Layer: 5
   m_Name: Shorts8
   m_TagString: Untagged
@@ -76694,6 +77743,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1193105510}
   m_CullTransparentMesh: 1
+--- !u!114 &1193105517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1193105510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 1107575990}
+  _toggleGroupSetCount: 2
 --- !u!1 &1193661676
 GameObject:
   m_ObjectHideFlags: 0
@@ -76783,6 +77846,7 @@ GameObject:
   - component: {fileID: 1193778828}
   - component: {fileID: 1193778827}
   - component: {fileID: 1193778826}
+  - component: {fileID: 1193778831}
   m_Layer: 5
   m_Name: Outfit8Jacket
   m_TagString: Untagged
@@ -76948,6 +78012,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1193778824}
   m_CullTransparentMesh: 1
+--- !u!114 &1193778831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1193778824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 896258692}
+  _toggleGroupSetCount: 3
 --- !u!1 &1196616839
 GameObject:
   m_ObjectHideFlags: 0
@@ -77412,6 +78490,7 @@ GameObject:
   - component: {fileID: 1203135162}
   - component: {fileID: 1203135161}
   - component: {fileID: 1203135160}
+  - component: {fileID: 1203135165}
   m_Layer: 5
   m_Name: Outfit7Coat
   m_TagString: Untagged
@@ -77577,6 +78656,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1203135158}
   m_CullTransparentMesh: 1
+--- !u!114 &1203135165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1203135158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 896258692}
+  _toggleGroupSetCount: 3
 --- !u!1 &1203321497
 GameObject:
   m_ObjectHideFlags: 0
@@ -78175,6 +79268,7 @@ GameObject:
   - component: {fileID: 1208612800}
   - component: {fileID: 1208612799}
   - component: {fileID: 1208612798}
+  - component: {fileID: 1208612803}
   m_Layer: 5
   m_Name: Outfit7Shirt
   m_TagString: Untagged
@@ -78340,6 +79434,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1208612796}
   m_CullTransparentMesh: 1
+--- !u!114 &1208612803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1208612796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 896258692}
+  _toggleGroupSetCount: 3
 --- !u!1 &1208752177
 GameObject:
   m_ObjectHideFlags: 0
@@ -78669,6 +79777,7 @@ GameObject:
   - component: {fileID: 1215522317}
   - component: {fileID: 1215522316}
   - component: {fileID: 1215522315}
+  - component: {fileID: 1215522320}
   m_Layer: 5
   m_Name: Outfit6Shirt
   m_TagString: Untagged
@@ -78834,6 +79943,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1215522313}
   m_CullTransparentMesh: 1
+--- !u!114 &1215522320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1215522313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 896258692}
+  _toggleGroupSetCount: 3
 --- !u!1 &1215827933
 GameObject:
   m_ObjectHideFlags: 0
@@ -79854,6 +80977,7 @@ GameObject:
   - component: {fileID: 1232559376}
   - component: {fileID: 1232559375}
   - component: {fileID: 1232559374}
+  - component: {fileID: 1232559379}
   m_Layer: 5
   m_Name: Pants3
   m_TagString: Untagged
@@ -80016,6 +81140,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1232559372}
   m_CullTransparentMesh: 1
+--- !u!114 &1232559379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1232559372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 1107575990}
+  _toggleGroupSetCount: 2
 --- !u!1 &1236699849
 GameObject:
   m_ObjectHideFlags: 0
@@ -83187,6 +84325,7 @@ GameObject:
   - component: {fileID: 1296863593}
   - component: {fileID: 1296863592}
   - component: {fileID: 1296863591}
+  - component: {fileID: 1296863595}
   m_Layer: 5
   m_Name: ToggleHairPurple
   m_TagString: Untagged
@@ -83253,7 +84392,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.5019608}
+    m_NormalColor: {r: 0.7176471, g: 0.7176471, b: 0.7176471, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.8}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 1, g: 1, b: 1, a: 0.5019608}
@@ -83318,6 +84457,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1296863589}
   m_CullTransparentMesh: 1
+--- !u!114 &1296863595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1296863589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 2777086}
+  _toggleGroupSetCount: 1
 --- !u!1 &1298013941
 GameObject:
   m_ObjectHideFlags: 0
@@ -84027,6 +85180,7 @@ GameObject:
   - component: {fileID: 1309593612}
   - component: {fileID: 1309593611}
   - component: {fileID: 1309593610}
+  - component: {fileID: 1309593615}
   m_Layer: 5
   m_Name: Pants6
   m_TagString: Untagged
@@ -84189,6 +85343,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1309593608}
   m_CullTransparentMesh: 1
+--- !u!114 &1309593615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1309593608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 1107575990}
+  _toggleGroupSetCount: 2
 --- !u!1 &1311687343
 GameObject:
   m_ObjectHideFlags: 0
@@ -84203,6 +85371,7 @@ GameObject:
   - component: {fileID: 1311687347}
   - component: {fileID: 1311687346}
   - component: {fileID: 1311687345}
+  - component: {fileID: 1311687350}
   m_Layer: 5
   m_Name: Shorts1
   m_TagString: Untagged
@@ -84365,6 +85534,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1311687343}
   m_CullTransparentMesh: 1
+--- !u!114 &1311687350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1311687343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 1107575990}
+  _toggleGroupSetCount: 2
 --- !u!1 &1313613417
 GameObject:
   m_ObjectHideFlags: 0
@@ -85978,8 +87161,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 47702026}
   m_HandleRect: {fileID: 47702025}
   m_Direction: 0
-  m_Value: 0.00000007677377
-  m_Size: 0.2549203
+  m_Value: 0.00000007677378
+  m_Size: 0.25492033
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -86035,6 +87218,7 @@ GameObject:
   - component: {fileID: 1333356690}
   - component: {fileID: 1333356689}
   - component: {fileID: 1333356688}
+  - component: {fileID: 1333356692}
   m_Layer: 5
   m_Name: ToggleHairDarkBlonde
   m_TagString: Untagged
@@ -86093,15 +87277,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnUp: {fileID: 1361400415}
+    m_SelectOnDown: {fileID: 1505913105}
+    m_SelectOnLeft: {fileID: 1533677367}
+    m_SelectOnRight: {fileID: 660939329}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.5019608}
+    m_NormalColor: {r: 0.7176471, g: 0.7176471, b: 0.7176471, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.8}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 1, g: 1, b: 1, a: 0.5019608}
@@ -86166,6 +87350,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1333356685}
   m_CullTransparentMesh: 1
+--- !u!114 &1333356692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1333356685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 695356658}
+  _toggleGroupSetCount: 1
 --- !u!1 &1340197666
 GameObject:
   m_ObjectHideFlags: 0
@@ -86827,6 +88025,7 @@ GameObject:
   - component: {fileID: 1351456923}
   - component: {fileID: 1351456922}
   - component: {fileID: 1351456921}
+  - component: {fileID: 1351456926}
   m_Layer: 5
   m_Name: Outfit6Jacket
   m_TagString: Untagged
@@ -86992,6 +88191,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1351456919}
   m_CullTransparentMesh: 1
+--- !u!114 &1351456926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1351456919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 896258692}
+  _toggleGroupSetCount: 3
 --- !u!1 &1352506339
 GameObject:
   m_ObjectHideFlags: 0
@@ -87761,10 +88974,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 1172372161}
+    m_SelectOnDown: {fileID: 1533677367}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 2
@@ -88278,6 +89491,7 @@ GameObject:
   - component: {fileID: 1374001937}
   - component: {fileID: 1374001936}
   - component: {fileID: 1374001935}
+  - component: {fileID: 1374001940}
   m_Layer: 5
   m_Name: Pants10
   m_TagString: Untagged
@@ -88440,6 +89654,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1374001933}
   m_CullTransparentMesh: 1
+--- !u!114 &1374001940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1374001933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 1107575990}
+  _toggleGroupSetCount: 2
 --- !u!1 &1377076471
 GameObject:
   m_ObjectHideFlags: 0
@@ -88754,6 +89982,7 @@ GameObject:
   - component: {fileID: 1381276364}
   - component: {fileID: 1381276363}
   - component: {fileID: 1381276362}
+  - component: {fileID: 1381276367}
   m_Layer: 5
   m_Name: Outfit1Coat
   m_TagString: Untagged
@@ -88919,6 +90148,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1381276360}
   m_CullTransparentMesh: 1
+--- !u!114 &1381276367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1381276360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 896258692}
+  _toggleGroupSetCount: 3
 --- !u!1 &1382764927
 GameObject:
   m_ObjectHideFlags: 0
@@ -89007,6 +90250,7 @@ GameObject:
   - component: {fileID: 1384911253}
   - component: {fileID: 1384911252}
   - component: {fileID: 1384911251}
+  - component: {fileID: 1384911255}
   m_Layer: 5
   m_Name: Glasses4
   m_TagString: Untagged
@@ -89155,6 +90399,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1384911249}
   m_CullTransparentMesh: 1
+--- !u!114 &1384911255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1384911249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 1475670024}
+  _toggleGroupSetCount: 1
 --- !u!1 &1385059134
 GameObject:
   m_ObjectHideFlags: 0
@@ -89559,6 +90817,7 @@ GameObject:
   - component: {fileID: 1390328878}
   - component: {fileID: 1390328877}
   - component: {fileID: 1390328876}
+  - component: {fileID: 1390328881}
   m_Layer: 5
   m_Name: Skin8
   m_TagString: Untagged
@@ -89742,6 +91001,20 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   m_IsOn: 0
+--- !u!114 &1390328881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1390328873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 709841165}
+  _toggleGroupSetCount: 1
 --- !u!1 &1391664792
 GameObject:
   m_ObjectHideFlags: 0
@@ -89830,6 +91103,7 @@ GameObject:
   - component: {fileID: 1392496853}
   - component: {fileID: 1392496852}
   - component: {fileID: 1392496851}
+  - component: {fileID: 1392496855}
   m_Layer: 5
   m_Name: ToggleHairDarkRed
   m_TagString: Untagged
@@ -89888,15 +91162,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 1361400415}
+    m_SelectOnDown: {fileID: 1505913105}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.5019608}
+    m_NormalColor: {r: 0.7176471, g: 0.7176471, b: 0.7176471, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.8}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 1, g: 1, b: 1, a: 0.5019608}
@@ -89961,6 +91235,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1392496848}
   m_CullTransparentMesh: 1
+--- !u!114 &1392496855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1392496848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 695356658}
+  _toggleGroupSetCount: 1
 --- !u!1 &1393974672
 GameObject:
   m_ObjectHideFlags: 0
@@ -90432,6 +91720,7 @@ GameObject:
   - component: {fileID: 1401039247}
   - component: {fileID: 1401039246}
   - component: {fileID: 1401039245}
+  - component: {fileID: 1401039249}
   m_Layer: 5
   m_Name: ToggleHairBlue
   m_TagString: Untagged
@@ -90490,15 +91779,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 1361400415}
+    m_SelectOnDown: {fileID: 1505913105}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.5019608}
+    m_NormalColor: {r: 0.7176471, g: 0.7176471, b: 0.7176471, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.8}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 1, g: 1, b: 1, a: 0.5019608}
@@ -90563,6 +91852,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1401039242}
   m_CullTransparentMesh: 1
+--- !u!114 &1401039249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1401039242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 695356658}
+  _toggleGroupSetCount: 1
 --- !u!1 &1401241801
 GameObject:
   m_ObjectHideFlags: 0
@@ -92769,6 +94072,7 @@ GameObject:
   - component: {fileID: 1447603641}
   - component: {fileID: 1447603640}
   - component: {fileID: 1447603639}
+  - component: {fileID: 1447603643}
   m_Layer: 5
   m_Name: ToggleHairSkyBlue
   m_TagString: Untagged
@@ -92835,7 +94139,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.5019608}
+    m_NormalColor: {r: 0.7176471, g: 0.7176471, b: 0.7176471, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.8}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 1, g: 1, b: 1, a: 0.5019608}
@@ -92900,6 +94204,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1447603637}
   m_CullTransparentMesh: 1
+--- !u!114 &1447603643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1447603637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 2777086}
+  _toggleGroupSetCount: 1
 --- !u!1 &1453236152
 GameObject:
   m_ObjectHideFlags: 0
@@ -93057,8 +94375,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1362837364}
   m_HandleRect: {fileID: 1362837363}
   m_Direction: 0
-  m_Value: 0.00000007677377
-  m_Size: 0.2549203
+  m_Value: 0.00000007677378
+  m_Size: 0.25492033
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -94546,6 +95864,8 @@ GameObject:
   - component: {fileID: 1473778328}
   - component: {fileID: 1473778327}
   - component: {fileID: 1473778330}
+  - component: {fileID: 1473778331}
+  - component: {fileID: 1473778332}
   m_Layer: 5
   m_Name: EyeColorGrid
   m_TagString: Untagged
@@ -94579,7 +95899,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -0.00015460029, y: 0}
+  m_AnchoredPosition: {x: -0.000030517578, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1473778326
@@ -94659,6 +95979,48 @@ MonoBehaviour:
   _onLoadEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1473778331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1473778324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7818f621de0f6d23db0c574c1c9237aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1473778332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1473778324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aa08ab6e0800fa44ae55d278d1423e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Content: {fileID: 0}
+  m_Horizontal: 1
+  m_Vertical: 1
+  m_MovementType: 1
+  m_Elasticity: 0.1
+  m_Inertia: 1
+  m_DecelerationRate: 0.135
+  m_ScrollSensitivity: 1
+  m_Viewport: {fileID: 0}
+  m_HorizontalScrollbar: {fileID: 0}
+  m_VerticalScrollbar: {fileID: 0}
+  m_HorizontalScrollbarVisibility: 0
+  m_VerticalScrollbarVisibility: 0
+  m_HorizontalScrollbarSpacing: 0
+  m_VerticalScrollbarSpacing: 0
+  m_OnValueChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1475670019
 GameObject:
   m_ObjectHideFlags: 0
@@ -94671,6 +96033,7 @@ GameObject:
   - component: {fileID: 1475670023}
   - component: {fileID: 1475670022}
   - component: {fileID: 1475670021}
+  - component: {fileID: 1475670024}
   m_Layer: 5
   m_Name: Scroll View
   m_TagString: Untagged
@@ -94767,6 +96130,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1475670019}
   m_CullTransparentMesh: 1
+--- !u!114 &1475670024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1475670019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7818f621de0f6d23db0c574c1c9237aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1480399561
 GameObject:
   m_ObjectHideFlags: 0
@@ -95996,6 +97371,7 @@ GameObject:
   - component: {fileID: 1491940965}
   - component: {fileID: 1491940964}
   - component: {fileID: 1491940963}
+  - component: {fileID: 1491940967}
   m_Layer: 5
   m_Name: Goggles4
   m_TagString: Untagged
@@ -96144,6 +97520,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1491940961}
   m_CullTransparentMesh: 1
+--- !u!114 &1491940967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1491940961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 1475670024}
+  _toggleGroupSetCount: 1
 --- !u!1 &1495926320
 GameObject:
   m_ObjectHideFlags: 0
@@ -96233,6 +97623,7 @@ GameObject:
   - component: {fileID: 1496653818}
   - component: {fileID: 1496653817}
   - component: {fileID: 1496653816}
+  - component: {fileID: 1496653821}
   m_Layer: 5
   m_Name: Shorts4
   m_TagString: Untagged
@@ -96395,6 +97786,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1496653814}
   m_CullTransparentMesh: 1
+--- !u!114 &1496653821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1496653814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 1107575990}
+  _toggleGroupSetCount: 2
 --- !u!1 &1496897359
 GameObject:
   m_ObjectHideFlags: 0
@@ -96707,6 +98112,7 @@ GameObject:
   - component: {fileID: 1500722931}
   - component: {fileID: 1500722930}
   - component: {fileID: 1500722929}
+  - component: {fileID: 1500722932}
   m_Layer: 5
   m_Name: Scroll View
   m_TagString: Untagged
@@ -96803,6 +98209,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1500722927}
   m_CullTransparentMesh: 1
+--- !u!114 &1500722932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1500722927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7818f621de0f6d23db0c574c1c9237aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1501786482
 GameObject:
   m_ObjectHideFlags: 0
@@ -97041,6 +98459,7 @@ GameObject:
   - component: {fileID: 1505913106}
   - component: {fileID: 1505913105}
   - component: {fileID: 1505913104}
+  - component: {fileID: 1505913108}
   m_Layer: 5
   m_Name: ToggleHairLightBlonde
   m_TagString: Untagged
@@ -97107,7 +98526,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.5019608}
+    m_NormalColor: {r: 0.7176471, g: 0.7176471, b: 0.7176471, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.8}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 1, g: 1, b: 1, a: 0.5019608}
@@ -97172,6 +98591,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1505913102}
   m_CullTransparentMesh: 1
+--- !u!114 &1505913108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1505913102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 2777086}
+  _toggleGroupSetCount: 1
 --- !u!1 &1506929346
 GameObject:
   m_ObjectHideFlags: 0
@@ -97806,6 +99239,7 @@ GameObject:
   - component: {fileID: 1515554194}
   - component: {fileID: 1515554193}
   - component: {fileID: 1515554192}
+  - component: {fileID: 1515554197}
   m_Layer: 5
   m_Name: Outfit9Shirt
   m_TagString: Untagged
@@ -97971,6 +99405,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1515554190}
   m_CullTransparentMesh: 1
+--- !u!114 &1515554197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1515554190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 896258692}
+  _toggleGroupSetCount: 3
 --- !u!1 &1517046909
 GameObject:
   m_ObjectHideFlags: 0
@@ -98685,6 +100133,7 @@ GameObject:
   - component: {fileID: 1525174371}
   - component: {fileID: 1525174370}
   - component: {fileID: 1525174369}
+  - component: {fileID: 1525174373}
   m_Layer: 5
   m_Name: ToggleHairCyan
   m_TagString: Untagged
@@ -98743,15 +100192,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 1361400415}
+    m_SelectOnDown: {fileID: 1505913105}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.5019608}
+    m_NormalColor: {r: 0.7176471, g: 0.7176471, b: 0.7176471, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.8}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 1, g: 1, b: 1, a: 0.5019608}
@@ -98816,6 +100265,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1525174366}
   m_CullTransparentMesh: 1
+--- !u!114 &1525174373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1525174366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 695356658}
+  _toggleGroupSetCount: 1
 --- !u!1 &1527484932
 GameObject:
   m_ObjectHideFlags: 0
@@ -99130,6 +100593,7 @@ GameObject:
   - component: {fileID: 1529867974}
   - component: {fileID: 1529867973}
   - component: {fileID: 1529867972}
+  - component: {fileID: 1529867977}
   m_Layer: 5
   m_Name: Outfit4Shirt
   m_TagString: Untagged
@@ -99295,6 +100759,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1529867970}
   m_CullTransparentMesh: 1
+--- !u!114 &1529867977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1529867970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 896258692}
+  _toggleGroupSetCount: 3
 --- !u!1 &1531551250
 GameObject:
   m_ObjectHideFlags: 0
@@ -99533,6 +101011,7 @@ GameObject:
   - component: {fileID: 1533677368}
   - component: {fileID: 1533677367}
   - component: {fileID: 1533677370}
+  - component: {fileID: 1533677371}
   m_Layer: 5
   m_Name: ToggleHairLightBlonde
   m_TagString: Untagged
@@ -99574,15 +101053,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnUp: {fileID: 1361400415}
+    m_SelectOnDown: {fileID: 1505913105}
+    m_SelectOnLeft: {fileID: 1687243888}
+    m_SelectOnRight: {fileID: 1333356689}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.5019608}
+    m_NormalColor: {r: 0.7176471, g: 0.7176471, b: 0.7176471, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.8}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 1, g: 1, b: 1, a: 0.5019608}
@@ -99664,6 +101143,20 @@ MonoBehaviour:
     g: {r: 0.9339623, g: 0.9002632, b: 0.7973923, a: 1}
     b: {r: 0, g: 0, b: 0, a: 0}
   _isPrimary: 1
+--- !u!114 &1533677371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1533677365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 695356658}
+  _toggleGroupSetCount: 1
 --- !u!1 &1536667174
 GameObject:
   m_ObjectHideFlags: 0
@@ -100654,6 +102147,7 @@ GameObject:
   - component: {fileID: 1550730275}
   - component: {fileID: 1550730274}
   - component: {fileID: 1550730273}
+  - component: {fileID: 1550730277}
   m_Layer: 5
   m_Name: ToggleHairMagenta
   m_TagString: Untagged
@@ -100712,15 +102206,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 1361400415}
+    m_SelectOnDown: {fileID: 1505913105}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.5019608}
+    m_NormalColor: {r: 0.7176471, g: 0.7176471, b: 0.7176471, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.8}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 1, g: 1, b: 1, a: 0.5019608}
@@ -100785,6 +102279,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1550730270}
   m_CullTransparentMesh: 1
+--- !u!114 &1550730277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1550730270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 695356658}
+  _toggleGroupSetCount: 1
 --- !u!1 &1551925947
 GameObject:
   m_ObjectHideFlags: 0
@@ -101720,6 +103228,7 @@ GameObject:
   - component: {fileID: 1566402525}
   - component: {fileID: 1566402524}
   - component: {fileID: 1566402523}
+  - component: {fileID: 1566402528}
   m_Layer: 5
   m_Name: EyeColor2
   m_TagString: Untagged
@@ -101879,6 +103388,20 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 0
+--- !u!114 &1566402528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1566402520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 579152203}
+  _toggleGroupSetCount: 1
 --- !u!1 &1566706047
 GameObject:
   m_ObjectHideFlags: 0
@@ -102193,6 +103716,7 @@ GameObject:
   - component: {fileID: 1572791605}
   - component: {fileID: 1572791604}
   - component: {fileID: 1572791603}
+  - component: {fileID: 1572791608}
   m_Layer: 5
   m_Name: EyeColor3
   m_TagString: Untagged
@@ -102352,6 +103876,20 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 0
+--- !u!114 &1572791608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1572791600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 579152203}
+  _toggleGroupSetCount: 1
 --- !u!1 &1572937634
 GameObject:
   m_ObjectHideFlags: 0
@@ -103001,6 +104539,7 @@ GameObject:
   - component: {fileID: 1582112694}
   - component: {fileID: 1582112693}
   - component: {fileID: 1582112692}
+  - component: {fileID: 1582112696}
   m_Layer: 5
   m_Name: ToggleHairLightBrown
   m_TagString: Untagged
@@ -103059,15 +104598,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 1361400415}
+    m_SelectOnDown: {fileID: 1505913105}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.5019608}
+    m_NormalColor: {r: 0.7176471, g: 0.7176471, b: 0.7176471, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.8}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 1, g: 1, b: 1, a: 0.5019608}
@@ -103132,6 +104671,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1582112689}
   m_CullTransparentMesh: 1
+--- !u!114 &1582112696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1582112689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 695356658}
+  _toggleGroupSetCount: 1
 --- !u!1 &1583642651
 GameObject:
   m_ObjectHideFlags: 0
@@ -103296,6 +104849,7 @@ GameObject:
   - component: {fileID: 1584128126}
   - component: {fileID: 1584128125}
   - component: {fileID: 1584128124}
+  - component: {fileID: 1584128129}
   m_Layer: 5
   m_Name: Outfit9Coat
   m_TagString: Untagged
@@ -103461,6 +105015,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1584128122}
   m_CullTransparentMesh: 1
+--- !u!114 &1584128129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584128122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 896258692}
+  _toggleGroupSetCount: 3
 --- !u!1 &1592494296
 GameObject:
   m_ObjectHideFlags: 0
@@ -103627,6 +105195,7 @@ GameObject:
   - component: {fileID: 1593920491}
   - component: {fileID: 1593920490}
   - component: {fileID: 1593920489}
+  - component: {fileID: 1593920494}
   m_Layer: 5
   m_Name: Pants7
   m_TagString: Untagged
@@ -103789,6 +105358,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1593920487}
   m_CullTransparentMesh: 1
+--- !u!114 &1593920494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593920487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 1107575990}
+  _toggleGroupSetCount: 2
 --- !u!1 &1594348125
 GameObject:
   m_ObjectHideFlags: 0
@@ -104943,6 +106526,7 @@ GameObject:
   - component: {fileID: 1611931829}
   - component: {fileID: 1611931828}
   - component: {fileID: 1611931827}
+  - component: {fileID: 1611931831}
   m_Layer: 5
   m_Name: ToggleHairLightGrey
   m_TagString: Untagged
@@ -105009,7 +106593,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.5019608}
+    m_NormalColor: {r: 0.7176471, g: 0.7176471, b: 0.7176471, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.8}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 1, g: 1, b: 1, a: 0.5019608}
@@ -105074,6 +106658,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1611931825}
   m_CullTransparentMesh: 1
+--- !u!114 &1611931831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1611931825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 2777086}
+  _toggleGroupSetCount: 1
 --- !u!1 &1612370764
 GameObject:
   m_ObjectHideFlags: 0
@@ -106470,6 +108068,7 @@ GameObject:
   - component: {fileID: 1636661067}
   - component: {fileID: 1636661066}
   - component: {fileID: 1636661069}
+  - component: {fileID: 1636661070}
   m_Layer: 5
   m_Name: Glasses3
   m_TagString: Untagged
@@ -106618,6 +108217,20 @@ MonoBehaviour:
     b: {r: 0.47058824, g: 0.29411766, b: 0.26666668, a: 1}
   _accesoryType: 0
   _glassesStyles: []
+--- !u!114 &1636661070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1636661064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 1475670024}
+  _toggleGroupSetCount: 1
 --- !u!1 &1636668294
 GameObject:
   m_ObjectHideFlags: 0
@@ -107658,6 +109271,7 @@ GameObject:
   - component: {fileID: 1650836449}
   - component: {fileID: 1650836448}
   - component: {fileID: 1650836447}
+  - component: {fileID: 1650836452}
   m_Layer: 5
   m_Name: Skin9
   m_TagString: Untagged
@@ -107841,6 +109455,20 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   m_IsOn: 0
+--- !u!114 &1650836452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1650836444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 709841165}
+  _toggleGroupSetCount: 1
 --- !u!1 &1650903460
 GameObject:
   m_ObjectHideFlags: 0
@@ -108628,6 +110256,7 @@ GameObject:
   - component: {fileID: 1658398335}
   - component: {fileID: 1658398334}
   - component: {fileID: 1658398333}
+  - component: {fileID: 1658398338}
   m_Layer: 5
   m_Name: Outfit7Jacket
   m_TagString: Untagged
@@ -108793,6 +110422,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1658398331}
   m_CullTransparentMesh: 1
+--- !u!114 &1658398338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1658398331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 896258692}
+  _toggleGroupSetCount: 3
 --- !u!1 &1658598344
 GameObject:
   m_ObjectHideFlags: 0
@@ -109258,6 +110901,7 @@ GameObject:
   - component: {fileID: 1662584232}
   - component: {fileID: 1662584231}
   - component: {fileID: 1662584230}
+  - component: {fileID: 1662584235}
   m_Layer: 5
   m_Name: Pants9
   m_TagString: Untagged
@@ -109420,6 +111064,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1662584228}
   m_CullTransparentMesh: 1
+--- !u!114 &1662584235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1662584228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 1107575990}
+  _toggleGroupSetCount: 2
 --- !u!1 &1665354447
 GameObject:
   m_ObjectHideFlags: 0
@@ -110940,6 +112598,7 @@ GameObject:
   - component: {fileID: 1687243889}
   - component: {fileID: 1687243888}
   - component: {fileID: 1687243887}
+  - component: {fileID: 1687243891}
   m_Layer: 5
   m_Name: ToggleHairForestGreen
   m_TagString: Untagged
@@ -110998,15 +112657,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnUp: {fileID: 1361400415}
+    m_SelectOnDown: {fileID: 624206527}
+    m_SelectOnLeft: {fileID: 1525174370}
+    m_SelectOnRight: {fileID: 1533677367}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.5019608}
+    m_NormalColor: {r: 0.7176471, g: 0.7176471, b: 0.7176471, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.8}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 1, g: 1, b: 1, a: 0.5019608}
@@ -111071,6 +112730,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1687243884}
   m_CullTransparentMesh: 1
+--- !u!114 &1687243891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687243884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 695356658}
+  _toggleGroupSetCount: 1
 --- !u!1 &1687955009
 GameObject:
   m_ObjectHideFlags: 0
@@ -113763,6 +115436,7 @@ GameObject:
   - component: {fileID: 1727513302}
   - component: {fileID: 1727513301}
   - component: {fileID: 1727513300}
+  - component: {fileID: 1727513304}
   m_Layer: 5
   m_Name: ToggleHairDarkRed
   m_TagString: Untagged
@@ -113829,7 +115503,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.5019608}
+    m_NormalColor: {r: 0.7176471, g: 0.7176471, b: 0.7176471, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.8}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 1, g: 1, b: 1, a: 0.5019608}
@@ -113894,6 +115568,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1727513298}
   m_CullTransparentMesh: 1
+--- !u!114 &1727513304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1727513298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 2777086}
+  _toggleGroupSetCount: 1
 --- !u!1 &1731412577
 GameObject:
   m_ObjectHideFlags: 0
@@ -114602,6 +116290,7 @@ GameObject:
   - component: {fileID: 1753290210}
   - component: {fileID: 1753290209}
   - component: {fileID: 1753290208}
+  - component: {fileID: 1753290213}
   m_Layer: 5
   m_Name: Outfit10Shirt
   m_TagString: Untagged
@@ -114767,6 +116456,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1753290206}
   m_CullTransparentMesh: 1
+--- !u!114 &1753290213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1753290206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 896258692}
+  _toggleGroupSetCount: 3
 --- !u!1 &1755422559
 GameObject:
   m_ObjectHideFlags: 0
@@ -115081,6 +116784,7 @@ GameObject:
   - component: {fileID: 1756106988}
   - component: {fileID: 1756106987}
   - component: {fileID: 1756106986}
+  - component: {fileID: 1756106991}
   m_Layer: 5
   m_Name: Outfit8Coat
   m_TagString: Untagged
@@ -115246,6 +116950,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1756106984}
   m_CullTransparentMesh: 1
+--- !u!114 &1756106991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1756106984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 896258692}
+  _toggleGroupSetCount: 3
 --- !u!1 &1757303432
 GameObject:
   m_ObjectHideFlags: 0
@@ -116288,6 +118006,7 @@ GameObject:
   - component: {fileID: 1768144761}
   - component: {fileID: 1768144760}
   - component: {fileID: 1768144759}
+  - component: {fileID: 1768144764}
   m_Layer: 5
   m_Name: EyeColor8
   m_TagString: Untagged
@@ -116447,6 +118166,20 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 0
+--- !u!114 &1768144764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1768144756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 579152203}
+  _toggleGroupSetCount: 1
 --- !u!1 &1768373406
 GameObject:
   m_ObjectHideFlags: 0
@@ -116760,6 +118493,7 @@ GameObject:
   - component: {fileID: 1775908973}
   - component: {fileID: 1775908972}
   - component: {fileID: 1775908971}
+  - component: {fileID: 1775908975}
   m_Layer: 5
   m_Name: ToggleHairDarkBlonde
   m_TagString: Untagged
@@ -116826,7 +118560,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.5019608}
+    m_NormalColor: {r: 0.7176471, g: 0.7176471, b: 0.7176471, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.8}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 1, g: 1, b: 1, a: 0.5019608}
@@ -116891,6 +118625,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1775908969}
   m_CullTransparentMesh: 1
+--- !u!114 &1775908975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1775908969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 2777086}
+  _toggleGroupSetCount: 1
 --- !u!1 &1777158152
 GameObject:
   m_ObjectHideFlags: 0
@@ -117390,6 +119138,7 @@ GameObject:
   - component: {fileID: 1797029871}
   - component: {fileID: 1797029870}
   - component: {fileID: 1797029869}
+  - component: {fileID: 1797029873}
   m_Layer: 5
   m_Name: Goggles5
   m_TagString: Untagged
@@ -117538,6 +119287,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1797029867}
   m_CullTransparentMesh: 1
+--- !u!114 &1797029873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1797029867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 1475670024}
+  _toggleGroupSetCount: 1
 --- !u!1 &1800024447
 GameObject:
   m_ObjectHideFlags: 0
@@ -118620,6 +120383,7 @@ GameObject:
   - component: {fileID: 1817715830}
   - component: {fileID: 1817715829}
   - component: {fileID: 1817715828}
+  - component: {fileID: 1817715833}
   m_Layer: 5
   m_Name: Skin5
   m_TagString: Untagged
@@ -118803,6 +120567,20 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   m_IsOn: 0
+--- !u!114 &1817715833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1817715825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 709841165}
+  _toggleGroupSetCount: 1
 --- !u!1 &1817807646
 GameObject:
   m_ObjectHideFlags: 0
@@ -120706,6 +122484,7 @@ GameObject:
   - component: {fileID: 1838784670}
   - component: {fileID: 1838784669}
   - component: {fileID: 1838784668}
+  - component: {fileID: 1838784672}
   m_Layer: 5
   m_Name: ToggleHairDarkBrown
   m_TagString: Untagged
@@ -120772,7 +122551,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.5019608}
+    m_NormalColor: {r: 0.7176471, g: 0.7176471, b: 0.7176471, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.8}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 1, g: 1, b: 1, a: 0.5019608}
@@ -120837,6 +122616,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1838784666}
   m_CullTransparentMesh: 1
+--- !u!114 &1838784672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838784666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 2777086}
+  _toggleGroupSetCount: 1
 --- !u!1 &1840351280
 GameObject:
   m_ObjectHideFlags: 0
@@ -122481,6 +124274,7 @@ GameObject:
   - component: {fileID: 1875838945}
   - component: {fileID: 1875838944}
   - component: {fileID: 1875838943}
+  - component: {fileID: 1875838947}
   m_Layer: 5
   m_Name: ToggleHairMintGreen
   m_TagString: Untagged
@@ -122547,7 +124341,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.5019608}
+    m_NormalColor: {r: 0.7176471, g: 0.7176471, b: 0.7176471, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.8}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 1, g: 1, b: 1, a: 0.5019608}
@@ -122612,6 +124406,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1875838941}
   m_CullTransparentMesh: 1
+--- !u!114 &1875838947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1875838941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 2777086}
+  _toggleGroupSetCount: 1
 --- !u!1 &1876488441
 GameObject:
   m_ObjectHideFlags: 0
@@ -123075,6 +124883,7 @@ GameObject:
   - component: {fileID: 1887773260}
   - component: {fileID: 1887773259}
   - component: {fileID: 1887773258}
+  - component: {fileID: 1887773262}
   m_Layer: 5
   m_Name: ToggleHairSkyBlue
   m_TagString: Untagged
@@ -123133,15 +124942,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 1361400415}
+    m_SelectOnDown: {fileID: 1505913105}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.5019608}
+    m_NormalColor: {r: 0.7176471, g: 0.7176471, b: 0.7176471, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.8}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 1, g: 1, b: 1, a: 0.5019608}
@@ -123206,6 +125015,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1887773255}
   m_CullTransparentMesh: 1
+--- !u!114 &1887773262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1887773255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 695356658}
+  _toggleGroupSetCount: 1
 --- !u!1 &1889781952
 GameObject:
   m_ObjectHideFlags: 0
@@ -125124,6 +126947,7 @@ GameObject:
   - component: {fileID: 1926571709}
   - component: {fileID: 1926571708}
   - component: {fileID: 1926571707}
+  - component: {fileID: 1926571712}
   m_Layer: 5
   m_Name: Pants5
   m_TagString: Untagged
@@ -125286,6 +127110,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1926571705}
   m_CullTransparentMesh: 1
+--- !u!114 &1926571712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1926571705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 1107575990}
+  _toggleGroupSetCount: 2
 --- !u!1 &1926893675
 GameObject:
   m_ObjectHideFlags: 0
@@ -125375,6 +127213,7 @@ GameObject:
   - component: {fileID: 1927402553}
   - component: {fileID: 1927402552}
   - component: {fileID: 1927402551}
+  - component: {fileID: 1927402556}
   m_Layer: 5
   m_Name: Skin1
   m_TagString: Untagged
@@ -125558,6 +127397,20 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   m_IsOn: 0
+--- !u!114 &1927402556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1927402548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 709841165}
+  _toggleGroupSetCount: 1
 --- !u!1 &1927610641
 GameObject:
   m_ObjectHideFlags: 0
@@ -126546,6 +128399,7 @@ GameObject:
   - component: {fileID: 1945615902}
   - component: {fileID: 1945615901}
   - component: {fileID: 1945615900}
+  - component: {fileID: 1945615904}
   m_Layer: 5
   m_Name: Goggles2
   m_TagString: Untagged
@@ -126694,6 +128548,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1945615898}
   m_CullTransparentMesh: 1
+--- !u!114 &1945615904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1945615898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 1475670024}
+  _toggleGroupSetCount: 1
 --- !u!1 &1945726222
 GameObject:
   m_ObjectHideFlags: 0
@@ -126708,6 +128576,7 @@ GameObject:
   - component: {fileID: 1945726226}
   - component: {fileID: 1945726225}
   - component: {fileID: 1945726224}
+  - component: {fileID: 1945726229}
   m_Layer: 5
   m_Name: Outfit2Coat
   m_TagString: Untagged
@@ -126873,6 +128742,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1945726222}
   m_CullTransparentMesh: 1
+--- !u!114 &1945726229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1945726222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 896258692}
+  _toggleGroupSetCount: 3
 --- !u!1 &1947957978
 GameObject:
   m_ObjectHideFlags: 0
@@ -127262,6 +129145,7 @@ GameObject:
   - component: {fileID: 1952734210}
   - component: {fileID: 1952734209}
   - component: {fileID: 1952734208}
+  - component: {fileID: 1952734213}
   m_Layer: 5
   m_Name: Pants4
   m_TagString: Untagged
@@ -127424,6 +129308,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1952734206}
   m_CullTransparentMesh: 1
+--- !u!114 &1952734213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1952734206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 1107575990}
+  _toggleGroupSetCount: 2
 --- !u!1 &1952774935
 GameObject:
   m_ObjectHideFlags: 0
@@ -128552,6 +130450,7 @@ GameObject:
   - component: {fileID: 1969776961}
   - component: {fileID: 1969776960}
   - component: {fileID: 1969776959}
+  - component: {fileID: 1969776963}
   m_Layer: 5
   m_Name: ToggleHairDarkGrey
   m_TagString: Untagged
@@ -128610,15 +130509,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 1361400415}
+    m_SelectOnDown: {fileID: 1505913105}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.5019608}
+    m_NormalColor: {r: 0.7176471, g: 0.7176471, b: 0.7176471, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.8}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 1, g: 1, b: 1, a: 0.5019608}
@@ -128683,6 +130582,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1969776956}
   m_CullTransparentMesh: 1
+--- !u!114 &1969776963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1969776956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 695356658}
+  _toggleGroupSetCount: 1
 --- !u!1 &1972624970
 GameObject:
   m_ObjectHideFlags: 0
@@ -128697,6 +130610,7 @@ GameObject:
   - component: {fileID: 1972624974}
   - component: {fileID: 1972624973}
   - component: {fileID: 1972624972}
+  - component: {fileID: 1972624977}
   m_Layer: 5
   m_Name: Pants1
   m_TagString: Untagged
@@ -128859,6 +130773,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1972624970}
   m_CullTransparentMesh: 1
+--- !u!114 &1972624977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1972624970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 1107575990}
+  _toggleGroupSetCount: 2
 --- !u!1 &1973745484
 GameObject:
   m_ObjectHideFlags: 0
@@ -128947,6 +130875,7 @@ GameObject:
   - component: {fileID: 1975758684}
   - component: {fileID: 1975758683}
   - component: {fileID: 1975758682}
+  - component: {fileID: 1975758686}
   m_Layer: 5
   m_Name: ToggleHairBlue
   m_TagString: Untagged
@@ -129013,7 +130942,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.5019608}
+    m_NormalColor: {r: 0.7176471, g: 0.7176471, b: 0.7176471, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.8}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 1, g: 1, b: 1, a: 0.5019608}
@@ -129078,6 +131007,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1975758680}
   m_CullTransparentMesh: 1
+--- !u!114 &1975758686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1975758680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 2777086}
+  _toggleGroupSetCount: 1
 --- !u!1 &1975800961
 GameObject:
   m_ObjectHideFlags: 0
@@ -131699,6 +133642,7 @@ GameObject:
   - component: {fileID: 2024564475}
   - component: {fileID: 2024564474}
   - component: {fileID: 2024564473}
+  - component: {fileID: 2024564477}
   m_Layer: 5
   m_Name: ToggleHairFuscia
   m_TagString: Untagged
@@ -131757,15 +133701,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 1361400415}
+    m_SelectOnDown: {fileID: 1505913105}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.5019608}
+    m_NormalColor: {r: 0.7176471, g: 0.7176471, b: 0.7176471, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.8}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 1, g: 1, b: 1, a: 0.5019608}
@@ -131830,6 +133774,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2024564470}
   m_CullTransparentMesh: 1
+--- !u!114 &2024564477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2024564470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 695356658}
+  _toggleGroupSetCount: 1
 --- !u!1 &2028511154
 GameObject:
   m_ObjectHideFlags: 0
@@ -132914,6 +134872,7 @@ GameObject:
   - component: {fileID: 2047009092}
   - component: {fileID: 2047009091}
   - component: {fileID: 2047009090}
+  - component: {fileID: 2047009095}
   m_Layer: 5
   m_Name: Outfit5Jacket
   m_TagString: Untagged
@@ -133079,6 +135038,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2047009088}
   m_CullTransparentMesh: 1
+--- !u!114 &2047009095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2047009088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 896258692}
+  _toggleGroupSetCount: 3
 --- !u!1 &2047244186
 GameObject:
   m_ObjectHideFlags: 0
@@ -133092,6 +135065,7 @@ GameObject:
   - component: {fileID: 2047244191}
   - component: {fileID: 2047244190}
   - component: {fileID: 2047244189}
+  - component: {fileID: 2047244193}
   m_Layer: 5
   m_Name: ToggleHairWhite
   m_TagString: Untagged
@@ -133150,15 +135124,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 1361400415}
+    m_SelectOnDown: {fileID: 1505913105}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.5019608}
+    m_NormalColor: {r: 0.7176471, g: 0.7176471, b: 0.7176471, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.8}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 1, g: 1, b: 1, a: 0.5019608}
@@ -133223,6 +135197,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2047244186}
   m_CullTransparentMesh: 1
+--- !u!114 &2047244193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2047244186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 695356658}
+  _toggleGroupSetCount: 1
 --- !u!1 &2048094183
 GameObject:
   m_ObjectHideFlags: 0
@@ -133312,6 +135300,7 @@ GameObject:
   - component: {fileID: 2053019274}
   - component: {fileID: 2053019273}
   - component: {fileID: 2053019272}
+  - component: {fileID: 2053019277}
   m_Layer: 5
   m_Name: Shorts7
   m_TagString: Untagged
@@ -133474,6 +135463,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2053019270}
   m_CullTransparentMesh: 1
+--- !u!114 &2053019277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2053019270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 1107575990}
+  _toggleGroupSetCount: 2
 --- !u!1 &2053078001
 GameObject:
   m_ObjectHideFlags: 0
@@ -134318,6 +136321,7 @@ GameObject:
   - component: {fileID: 2074449967}
   - component: {fileID: 2074449966}
   - component: {fileID: 2074449965}
+  - component: {fileID: 2074449970}
   m_Layer: 5
   m_Name: Skin10
   m_TagString: Untagged
@@ -134501,6 +136505,20 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   m_IsOn: 0
+--- !u!114 &2074449970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2074449962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 709841165}
+  _toggleGroupSetCount: 1
 --- !u!1 &2074808735
 GameObject:
   m_ObjectHideFlags: 0
@@ -135627,6 +137645,7 @@ GameObject:
   - component: {fileID: 2092896128}
   - component: {fileID: 2092896131}
   - component: {fileID: 2092896132}
+  - component: {fileID: 2092896133}
   m_Layer: 5
   m_Name: Outfit1Shirt
   m_TagString: Untagged
@@ -135792,6 +137811,20 @@ MonoBehaviour:
   _jacket: {fileID: 478130913}
   _labPocket: {fileID: 1275749902}
   _labButton: {fileID: 115875804}
+--- !u!114 &2092896133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2092896126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 896258692}
+  _toggleGroupSetCount: 3
 --- !u!1 &2098070693
 GameObject:
   m_ObjectHideFlags: 0
@@ -135805,6 +137838,7 @@ GameObject:
   - component: {fileID: 2098070697}
   - component: {fileID: 2098070696}
   - component: {fileID: 2098070695}
+  - component: {fileID: 2098070699}
   m_Layer: 5
   m_Name: ToggleHairYellow
   m_TagString: Untagged
@@ -135871,7 +137905,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.5019608}
+    m_NormalColor: {r: 0.7176471, g: 0.7176471, b: 0.7176471, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.8}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 1, g: 1, b: 1, a: 0.5019608}
@@ -135936,6 +137970,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2098070693}
   m_CullTransparentMesh: 1
+--- !u!114 &2098070699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2098070693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7eccefd7a4d6d92ae8fe1b3339096a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sto: {fileID: 2777086}
+  _toggleGroupSetCount: 1
 --- !u!1 &2098307596
 GameObject:
   m_ObjectHideFlags: 0

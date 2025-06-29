@@ -29,7 +29,7 @@ public class HairColorController : MonoBehaviour
         }
 
         ColorBlock tgColors = new ColorBlock();
-        tgColors.normalColor = _hairColor.r;
+        tgColors.normalColor = _hairColor.r * 0.85f;
         tgColors.selectedColor = _hairColor.r;
         tgColors.disabledColor = _hairColor.r;
         tgColors.highlightedColor = _hairColor.g;

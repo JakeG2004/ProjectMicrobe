@@ -9,6 +9,9 @@ public class PlayerMovementController : MonoBehaviour
 
     [SerializeField] private PlayerControlVals _vals;
     [SerializeField] private LayerMask _collisionMask;
+
+    [SerializeField] private float _gcRadius = 0.5f;
+
     private Rigidbody _rb;
     private Transform _cam;
     private PlayerStates _states;
@@ -35,8 +38,7 @@ public class PlayerMovementController : MonoBehaviour
         _states = GetComponent<PlayerStates>();
 
         // Add our generated input sytem actions
-        PlayerInputActions playerInputActions = new PlayerInputActions();
-        playerInputActions.Player.Enable();
+        PlayerInputActions playerInputActions = NewInputController.Instance.GetPlayerInputActions();
 
         // Bind functions
         playerInputActions.Player.Jump.started += Jump;
@@ -115,7 +117,7 @@ public class PlayerMovementController : MonoBehaviour
         }
 
         Vector3 checkPos = transform.position + transform.forward * 0.1f + transform.up * 0.3f;
-        if (Physics.CheckSphere(checkPos, 0.2f, ~_collisionMask, QueryTriggerInteraction.Ignore))
+        if (Physics.CheckSphere(checkPos, _gcRadius, ~_collisionMask, QueryTriggerInteraction.Ignore))
         {
             _rb.position += Vector3.up * 0.1f;
             _states.isGrounded = true;
@@ -277,7 +279,7 @@ public class PlayerMovementController : MonoBehaviour
             return;
         }
 
-        float checkRadius = 0.2f;
+        float checkRadius = _gcRadius;
         Vector3 checkOffset = Vector3.up * checkRadius;
 
         _states.isGrounded = Physics.CheckSphere(transform.position + checkOffset, checkRadius, ~_collisionMask, QueryTriggerInteraction.Ignore);

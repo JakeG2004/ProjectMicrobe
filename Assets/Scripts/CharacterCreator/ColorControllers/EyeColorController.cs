@@ -29,7 +29,7 @@ public class EyeColorController : MonoBehaviour
         buttonColors.disabledColor = (_colors.r / 4f) + new Color (0f, 0f, 0f, 1f);
         buttonColors.fadeDuration = 0.1f;
         buttonColors.highlightedColor = _colors.r + new Color(0.1f, 0.1f, 0.1f, 1f);
-        buttonColors.normalColor = _colors.r;
+        buttonColors.normalColor = _colors.r * .85f;
         buttonColors.pressedColor = _colors.g;
         buttonColors.selectedColor = _colors.r;
 
