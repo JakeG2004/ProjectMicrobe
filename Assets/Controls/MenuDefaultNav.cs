@@ -11,4 +11,9 @@ public class MenuDefaultNav : MonoBehaviour
     {
         _primarySelectable.Select();
     }
+
+    public void TriggerDefaultSelectable()
+    {
+        _primarySelectable.Select();
+    }
 }

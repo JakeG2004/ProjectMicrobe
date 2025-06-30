@@ -58,6 +58,7 @@ public class SwipeMenuManager : MonoBehaviour
             return;
 
         _curObject++;
+
         UpdateButtons();
         StartSlide(1);
     }
@@ -96,6 +97,13 @@ public class SwipeMenuManager : MonoBehaviour
 
         _prevButton.GetComponentInChildren<TMP_Text>().text = prevButtonName;
         _nextButton.GetComponentInChildren<TMP_Text>().text = nextButtonName;
+
+
+        TriggerableEvent te = _scrollObjects[_curObject].gameObject.GetComponent<TriggerableEvent>();
+        if (te != null)
+        {
+            te.ActivateEvent();    
+        }
     }
 
     // Start a slide either to the left or to the right

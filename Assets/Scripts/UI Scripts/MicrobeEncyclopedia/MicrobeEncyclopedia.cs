@@ -17,7 +17,7 @@ public class MicrobeEncyclopedia : GeneralMenu
     protected override void Start()
     {
         base.Start();
-        UpdateEntries();
+        //UpdateEntries();
     }
 
     public void HideInfo()

@@ -6,6 +6,13 @@ using UnityEngine.UI;
 [RequireComponent(typeof(ScrollRect))]
 public class ScrollToObject : MonoBehaviour
 {
+    public enum ScrollType
+    {
+        HORIZONTAL,
+        VERTICAL,
+    };
+
+    [SerializeField] private ScrollType _scrollType = ScrollType.HORIZONTAL;
     private ScrollRect _sr;
 
     void Awake()
@@ -21,18 +28,26 @@ public class ScrollToObject : MonoBehaviour
 
     private IEnumerator SmoothScroll(float scrollVal)
     {
-        float elapsedTime = 0.0f;
-        float startVal = _sr.horizontalScrollbar.value;
+        Scrollbar scrollbar = _sr.horizontalScrollbar;
 
-        while(elapsedTime <= 0.05f)
+        if (_scrollType == ScrollType.VERTICAL)
+        {
+            scrollbar = _sr.verticalScrollbar;
+            scrollVal = 1 - scrollVal;
+        }
+
+        float elapsedTime = 0.0f;
+        float startVal = scrollbar.value;
+
+        while (elapsedTime <= 0.05f)
         {
             elapsedTime += Time.deltaTime;
             float scrollRatio = elapsedTime / 0.05f;
 
-            _sr.horizontalScrollbar.value = Mathf.Lerp(startVal, scrollVal, scrollRatio);
+            scrollbar.value = Mathf.Lerp(startVal, scrollVal, scrollRatio);
             yield return null;
         }
 
-        _sr.horizontalScrollbar.value = scrollVal;
+        scrollbar.value = scrollVal;
     }
 }
