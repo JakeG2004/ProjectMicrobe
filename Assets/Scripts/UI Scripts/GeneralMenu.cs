@@ -36,7 +36,7 @@ public class GeneralMenu : MonoBehaviour
         _isActive = !_isActive;
 
         // Set the 3d controls
-        Set3DControls(!_isActive);
+        SetMouseVisibility(_isActive);
 
         // Set the panel
         _panel.SetActive(_isActive);
@@ -45,19 +45,21 @@ public class GeneralMenu : MonoBehaviour
         if (_isActive)
         {
             _sp.PlaySound(0);
+            NewInputController.Instance.SetMenuMode();
         }
 
         else
         {
             _sp.PlaySound(1);
+            NewInputController.Instance.Set3DMode();
         }
 
         // State tracker
         _bget?.TriggerEvent(_isActive);
     }
 
-    void Set3DControls(bool state)
+    void SetMouseVisibility(bool state)
     {
-        _mcm?.SetControlState(!state);
+        _mcm?.SetMouseState(state);
     }
 }

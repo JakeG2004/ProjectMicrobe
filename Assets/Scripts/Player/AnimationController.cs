@@ -6,6 +6,8 @@ public class AnimationController : MonoBehaviour {
     private PlayerStates _states;
 	private Rigidbody _rb;
 
+	private float moveVal = 0.0f;
+
 	void Awake()
 	{
 		_states = GetComponent<PlayerStates>();
@@ -16,7 +18,10 @@ public class AnimationController : MonoBehaviour {
         ac = GetComponent<Animator>();
     }
     void FixedUpdate() {
-		ac.SetFloat("Move", _rb.velocity.magnitude * 0.25f);
+		// Lerp towards the movement speed from the preious frame so that animation blending gets a chance
+		moveVal = Mathf.Lerp(moveVal, _states.smoothedMove.magnitude * (_states.isSprinting ? 2f : 1f), 0.3f);
+
+		ac.SetFloat("Move", moveVal);
 		ac.SetFloat("Submersion", _states.submersion);
 		ac.SetFloat("LookVert", _states.turn.y);
 		ac.SetFloat("LookHoz", _states.turn.x);
