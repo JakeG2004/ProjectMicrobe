@@ -343553,6 +343553,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 5963815200987020923, guid: ba865e1a76b00a169aacdeb68ee49d74, type: 3}
+      propertyPath: m_CullingMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6038802109591311063, guid: ba865e1a76b00a169aacdeb68ee49d74, type: 3}
       propertyPath: m_Layer
       value: 3
@@ -343626,7 +343630,8 @@ MonoBehaviour:
     landSpeed: 6
     landAcceleration: 3
     sprintMod: 1.5
-    _scrollAmt: 0.25
+    scrollAmt: 0.25
+    inputSmoothingSpeed: 15
   _collisionMask:
     serializedVersion: 2
     m_Bits: 88
@@ -343662,6 +343667,7 @@ MonoBehaviour:
   longDrop: 0
   isSprinting: 0
   move: {x: 0, y: 0}
+  smoothedMove: {x: 0, y: 0}
   turn: {x: 0, y: 0}
   look: {x: 0, y: 0}
   submersion: 0
