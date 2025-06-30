@@ -19,6 +19,6 @@ public class PlayerStates : MonoBehaviour
     [Space(10)]
     public float submersion = 0f;
     public float turnAngle = 0.0f;
-    public float zoom = 0.0f;
+    public float zoom = 1.0f;
     public float lookSensitivity = 1.0f;
 }
