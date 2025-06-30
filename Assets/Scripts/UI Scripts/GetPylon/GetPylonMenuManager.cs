@@ -54,9 +54,10 @@ public class GetPylonMenuManager : GeneralMenu
     void UpdateButtonText()
     {
         _takePylonButton.interactable = !_cp.HasPylon();
-        if(!_cp.HasPylon())
+        if (!_cp.HasPylon())
         {
             _takePylonButton.transform.GetChild(0).GetComponent<TMP_Text>().text = "Take Pylon";
+            GetComponent<MenuNavChanger>().UpdateNavObjects();
         }
 
         else

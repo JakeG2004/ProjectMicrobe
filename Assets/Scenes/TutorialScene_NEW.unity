@@ -61513,6 +61513,7 @@ GameObject:
   - component: {fileID: 412422797}
   - component: {fileID: 412422799}
   - component: {fileID: 412422793}
+  - component: {fileID: 412422800}
   m_Layer: 5
   m_Name: AddPylonMenu
   m_TagString: Untagged
@@ -61695,6 +61696,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82517ff88dda711e0a5e5382f066b986, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &412422800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 412422791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1838b69a482ec10479587dcaf97c53c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _navObjs:
+  - selectObj: {fileID: 1399576084}
+    nav:
+      m_Mode: 4
+      m_WrapAround: 0
+      m_SelectOnUp: {fileID: 1696184336}
+      m_SelectOnDown: {fileID: 2048706344}
+      m_SelectOnLeft: {fileID: 0}
+      m_SelectOnRight: {fileID: 0}
+  - selectObj: {fileID: 1696184336}
+    nav:
+      m_Mode: 4
+      m_WrapAround: 0
+      m_SelectOnUp: {fileID: 2048706344}
+      m_SelectOnDown: {fileID: 1399576084}
+      m_SelectOnLeft: {fileID: 0}
+      m_SelectOnRight: {fileID: 0}
 --- !u!1 &413075890
 GameObject:
   m_ObjectHideFlags: 0
@@ -251096,7 +251126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54b1992659ed28b82bcc3b8ac5451efe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _primarySelectable: {fileID: 2048706344}
+  _primarySelectable: {fileID: 1696184336}
 --- !u!1 &1663351725
 GameObject:
   m_ObjectHideFlags: 0
@@ -329791,6 +329821,7 @@ GameObject:
   - component: {fileID: 2048706345}
   - component: {fileID: 2048706344}
   - component: {fileID: 2048706347}
+  - component: {fileID: 2048706348}
   m_Layer: 5
   m_Name: AddMicrobe
   m_TagString: Untagged
@@ -329922,6 +329953,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2048706348}
+        m_TargetAssemblyTypeName: MenuNavChanger, Assembly-CSharp
+        m_MethodName: UpdateNavObjects
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2048706345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -329973,6 +330016,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _event: {fileID: 11400000, guid: d93cabab50dc952db82ec8cb166d65d8, type: 2}
+--- !u!114 &2048706348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2048706342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1838b69a482ec10479587dcaf97c53c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _navObjs:
+  - selectObj: {fileID: 1696184336}
+    nav:
+      m_Mode: 4
+      m_WrapAround: 0
+      m_SelectOnUp: {fileID: 1399576084}
+      m_SelectOnDown: {fileID: 1399576084}
+      m_SelectOnLeft: {fileID: 0}
+      m_SelectOnRight: {fileID: 0}
+  - selectObj: {fileID: 1399576084}
+    nav:
+      m_Mode: 4
+      m_WrapAround: 0
+      m_SelectOnUp: {fileID: 1696184336}
+      m_SelectOnDown: {fileID: 1696184336}
+      m_SelectOnLeft: {fileID: 0}
+      m_SelectOnRight: {fileID: 0}
 --- !u!1 &2048951918
 GameObject:
   m_ObjectHideFlags: 0
