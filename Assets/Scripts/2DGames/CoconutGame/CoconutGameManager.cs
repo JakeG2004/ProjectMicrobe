@@ -26,6 +26,8 @@ public class CoconutGameManager : MonoBehaviour
         _scoreText.text = "Score: 0";
         _timeText.text = $"Time: {_totalTime}";
 
+        DestroyCoconuts();
+
         for (int i = 0; i < 4; i++)
         {
             GameObject newCoconut = Instantiate(_coconutPrefab, transform);
@@ -60,6 +62,8 @@ public class CoconutGameManager : MonoBehaviour
 
         _timeText.text = "Timer: 0";
         _OnTimerEndEvent.Invoke();
+
+        NewInputController.Instance.SetMenuMode();
 
         if (_curScore >= _goalScore)
         {

@@ -1,4 +1,4 @@
-/*using UnityEngine;
+using UnityEngine;
 
 public class MovementController : MonoBehaviour {
 
@@ -238,4 +238,4 @@ public class MovementController : MonoBehaviour {
 		Gizmos.DrawSphere(allowedPos, checkRadius);
 	}
 	*/
-//}
+}

@@ -26,7 +26,10 @@ public class GeneralMenu : MonoBehaviour
         _sp = GetComponent<SoundPlayer>();
         _bget = GetComponent<BoolGameEventTrigger>();
 
-        _panel.SetActive(false);
+        if (_panel != null)
+        {
+            _panel.SetActive(false);
+        }
     }
 
     // Toggles the menu, publicly accessible
@@ -39,7 +42,11 @@ public class GeneralMenu : MonoBehaviour
         SetMouseVisibility(_isActive);
 
         // Set the panel
-        _panel.SetActive(_isActive);
+        if (_panel != null)
+        {
+            _panel?.SetActive(_isActive);    
+        }
+        
 
         // Handle the audio
         if (_isActive)

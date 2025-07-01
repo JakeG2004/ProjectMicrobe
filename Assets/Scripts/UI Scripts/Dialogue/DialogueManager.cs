@@ -84,7 +84,7 @@ public class DialogueManager : MonoBehaviour
     public void DisplayNextSentence()
     {
         // Check for complete dialogue
-        if (_sentences.Count == 0)
+        if (_sentences.Count == 0 || _curDialogue == null)
         {
             EndDialogue();
             return;
@@ -135,5 +135,7 @@ public class DialogueManager : MonoBehaviour
 
         _curDialogue.onDialogueComplete?.Invoke();
         _anim.SetBool("IsOpen", false);
+
+        _curDialogue = null;
     }
 }

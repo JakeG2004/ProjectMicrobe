@@ -1,4 +1,4 @@
-/*using UnityEngine;
+using UnityEngine;
 
 public class InputController : MonoBehaviour {
 
@@ -100,7 +100,7 @@ public class InputController : MonoBehaviour {
 	public void UseMobileControls(bool value) {
 		useMobileJoysticks = value;
 	}
-}*/
+}
 
 
 
