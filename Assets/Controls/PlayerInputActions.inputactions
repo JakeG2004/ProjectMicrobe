@@ -566,13 +566,13 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Cam",
-                    "type": "Value",
-                    "id": "019889a2-9476-4108-a578-7c4806484aa5",
-                    "expectedControlType": "Vector2",
+                    "name": "Back",
+                    "type": "Button",
+                    "id": "b92ec8ed-0736-475c-a25b-08339b60b922",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -819,59 +819,26 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "RightStick",
-                    "id": "e44f5fc6-10b6-4b67-a62a-ac9b707b4e6f",
-                    "path": "2DVector(mode=2)",
+                    "name": "",
+                    "id": "2a4d921e-2cd6-4849-a874-fc3f68ba8758",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "Cam",
-                    "isComposite": true,
+                    "groups": "Gamepad",
+                    "action": "Back",
+                    "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "up",
-                    "id": "cb6f8d93-52aa-4d30-9e21-e121441f3f8d",
-                    "path": "<Gamepad>/rightStick/up",
+                    "name": "",
+                    "id": "b859c4db-eb70-4128-9746-ffd0aca057a3",
+                    "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Cam",
+                    "groups": "KeyboardMouse",
+                    "action": "Back",
                     "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "down",
-                    "id": "16c4a430-efbd-464d-9268-6b1e62f3759a",
-                    "path": "<Gamepad>/rightStick/down",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Cam",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "left",
-                    "id": "10bdb202-363f-4b8a-9647-3fb09de7a2cc",
-                    "path": "<Gamepad>/rightStick/left",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Cam",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "right",
-                    "id": "9b675d8e-e3df-41c6-9696-6d46ec4c6f9d",
-                    "path": "<Gamepad>/rightStick/right",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Cam",
-                    "isComposite": false,
-                    "isPartOfComposite": true
+                    "isPartOfComposite": false
                 }
             ]
         }

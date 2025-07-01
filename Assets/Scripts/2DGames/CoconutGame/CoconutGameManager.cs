@@ -18,6 +18,12 @@ public class CoconutGameManager : MonoBehaviour
     [SerializeField] private UnityEvent _OnTimerEndEvent;
     [SerializeField] private UnityEvent _OnGoalReachedEvent;
     private int _curScore = 0;
+    private SoundPlayer _sp;
+
+    void Awake()
+    {
+        _sp = GetComponent<SoundPlayer>();
+    }
 
     void OnEnable()
     {
@@ -67,6 +73,7 @@ public class CoconutGameManager : MonoBehaviour
 
         if (_curScore >= _goalScore)
         {
+            _sp.PlaySound(0);
             _OnGoalReachedEvent.Invoke();
         }
     }

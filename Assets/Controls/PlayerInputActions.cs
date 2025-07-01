@@ -588,13 +588,13 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Cam"",
-                    ""type"": ""Value"",
-                    ""id"": ""019889a2-9476-4108-a578-7c4806484aa5"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""name"": ""Back"",
+                    ""type"": ""Button"",
+                    ""id"": ""b92ec8ed-0736-475c-a25b-08339b60b922"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": true
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -841,59 +841,26 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""RightStick"",
-                    ""id"": ""e44f5fc6-10b6-4b67-a62a-ac9b707b4e6f"",
-                    ""path"": ""2DVector(mode=2)"",
+                    ""name"": """",
+                    ""id"": ""2a4d921e-2cd6-4849-a874-fc3f68ba8758"",
+                    ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Cam"",
-                    ""isComposite"": true,
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Back"",
+                    ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""up"",
-                    ""id"": ""cb6f8d93-52aa-4d30-9e21-e121441f3f8d"",
-                    ""path"": ""<Gamepad>/rightStick/up"",
+                    ""name"": """",
+                    ""id"": ""b859c4db-eb70-4128-9746-ffd0aca057a3"",
+                    ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Cam"",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""Back"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""16c4a430-efbd-464d-9268-6b1e62f3759a"",
-                    ""path"": ""<Gamepad>/rightStick/down"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Cam"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""10bdb202-363f-4b8a-9647-3fb09de7a2cc"",
-                    ""path"": ""<Gamepad>/rightStick/left"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Cam"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""9b675d8e-e3df-41c6-9696-6d46ec4c6f9d"",
-                    ""path"": ""<Gamepad>/rightStick/right"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Cam"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -942,7 +909,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Minigames = asset.FindActionMap("Minigames", throwIfNotFound: true);
         m_Minigames_Move = m_Minigames.FindAction("Move", throwIfNotFound: true);
         m_Minigames_Select = m_Minigames.FindAction("Select", throwIfNotFound: true);
-        m_Minigames_Cam = m_Minigames.FindAction("Cam", throwIfNotFound: true);
+        m_Minigames_Back = m_Minigames.FindAction("Back", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1108,14 +1075,14 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private List<IMinigamesActions> m_MinigamesActionsCallbackInterfaces = new List<IMinigamesActions>();
     private readonly InputAction m_Minigames_Move;
     private readonly InputAction m_Minigames_Select;
-    private readonly InputAction m_Minigames_Cam;
+    private readonly InputAction m_Minigames_Back;
     public struct MinigamesActions
     {
         private @PlayerInputActions m_Wrapper;
         public MinigamesActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Minigames_Move;
         public InputAction @Select => m_Wrapper.m_Minigames_Select;
-        public InputAction @Cam => m_Wrapper.m_Minigames_Cam;
+        public InputAction @Back => m_Wrapper.m_Minigames_Back;
         public InputActionMap Get() { return m_Wrapper.m_Minigames; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1131,9 +1098,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Select.started += instance.OnSelect;
             @Select.performed += instance.OnSelect;
             @Select.canceled += instance.OnSelect;
-            @Cam.started += instance.OnCam;
-            @Cam.performed += instance.OnCam;
-            @Cam.canceled += instance.OnCam;
+            @Back.started += instance.OnBack;
+            @Back.performed += instance.OnBack;
+            @Back.canceled += instance.OnBack;
         }
 
         private void UnregisterCallbacks(IMinigamesActions instance)
@@ -1144,9 +1111,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Select.started -= instance.OnSelect;
             @Select.performed -= instance.OnSelect;
             @Select.canceled -= instance.OnSelect;
-            @Cam.started -= instance.OnCam;
-            @Cam.performed -= instance.OnCam;
-            @Cam.canceled -= instance.OnCam;
+            @Back.started -= instance.OnBack;
+            @Back.performed -= instance.OnBack;
+            @Back.canceled -= instance.OnBack;
         }
 
         public void RemoveCallbacks(IMinigamesActions instance)
@@ -1197,6 +1164,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnSelect(InputAction.CallbackContext context);
-        void OnCam(InputAction.CallbackContext context);
+        void OnBack(InputAction.CallbackContext context);
     }
 }

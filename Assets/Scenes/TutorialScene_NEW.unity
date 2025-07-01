@@ -13361,6 +13361,7 @@ GameObject:
   - component: {fileID: 76192013}
   - component: {fileID: 76192014}
   - component: {fileID: 76192015}
+  - component: {fileID: 76192016}
   m_Layer: 0
   m_Name: InputController
   m_TagString: Untagged
@@ -13464,6 +13465,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _on2dMenuBackPressed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 76192016}
+        m_TargetAssemblyTypeName: BoolGameEventTrigger, Assembly-CSharp
+        m_MethodName: TriggerEvent
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &76192014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13534,6 +13550,19 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _boolVal: 0
+--- !u!114 &76192016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 76192010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5533829f52a164be6b19fb31f13a2c15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _event: {fileID: 11400000, guid: e8f6400915f56182c9c1a8949adb19cc, type: 2}
 --- !u!1 &76411306
 GameObject:
   m_ObjectHideFlags: 0
@@ -210336,6 +210365,8 @@ GameObject:
   - component: {fileID: 1367341000}
   - component: {fileID: 1367340999}
   - component: {fileID: 1367341001}
+  - component: {fileID: 1367341003}
+  - component: {fileID: 1367341002}
   m_Layer: 0
   m_Name: CoconutGame
   m_TagString: Untagged
@@ -210439,7 +210470,7 @@ MonoBehaviour:
   _scoreText: {fileID: 1324019888}
   _timeText: {fileID: 1959086682}
   _totalTime: 30
-  _goalScore: 45
+  _goalScore: 30
   _coconutPrefab: {fileID: 7221149927592254332, guid: 00af0051ef32b9d6883d36514d8184e4, type: 3}
   _OnTimerEndEvent:
     m_PersistentCalls:
@@ -210495,6 +210526,119 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68c659c6f7db3f05d95736455035b974, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!82 &1367341002
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367340996}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -7121508339005156148, guid: 53c1b50a4a041e248a70ae5a52114562, type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &1367341003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367340996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1dcda03e34f8552984ba9921bbf8d69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sounds:
+  - {fileID: 8300000, guid: c75aa93eeaf284ed5a354ea1dc7fd2ed, type: 3}
+  _rapidPlayPeriod: 0.05
+  _silentOnStart: 0
+  _startSilentTime: 1
 --- !u!1 &1367687622
 GameObject:
   m_ObjectHideFlags: 0

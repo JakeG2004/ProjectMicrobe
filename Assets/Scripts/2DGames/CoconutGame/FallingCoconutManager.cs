@@ -10,8 +10,14 @@ public class FallingCoconutManager : MonoBehaviour
 
     private float _baseX = 0.0f;
     private float _timer = 0f;
+    private SoundPlayer _sp;
 
     private BoolGameEventTrigger _bget;
+
+    void Awake()
+    {
+        _sp = GetComponent<SoundPlayer>();
+    }
 
     void Start()
     {
@@ -65,6 +71,7 @@ public class FallingCoconutManager : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
+            _sp.PlayRapidSound(0);
             ResetCoconut();
             _bget.TriggerEvent(true);
         }
