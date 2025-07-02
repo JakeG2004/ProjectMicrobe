@@ -63,9 +63,6 @@ public class ToggleNavBinder
                 nav.selectOnLeft = (i > 0) ? selectables[i - 1] : selectables[selectables.Length - 1];
                 nav.selectOnRight = (i < selectables.Length - 1) ? selectables[i + 1] : selectables[0];
 
-                nav.selectOnUp = null;
-                nav.selectOnDown = null;
-
                 selectables[i].navigation = nav;
 
                 Debug.Log("Horizontal link complete");
@@ -75,9 +72,6 @@ public class ToggleNavBinder
             {
                 nav.selectOnUp = (i > 0) ? selectables[i - 1] : selectables[selectables.Length - 1];
                 nav.selectOnDown = (i < selectables.Length - 1) ? selectables[i + 1] : selectables[0];
-
-                nav.selectOnLeft = null;
-                nav.selectOnUp = null;
 
                 selectables[i].navigation = nav;
 

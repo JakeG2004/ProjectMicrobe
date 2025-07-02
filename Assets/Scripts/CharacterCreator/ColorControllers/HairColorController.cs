@@ -2,80 +2,53 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class HairColorController : MonoBehaviour
+public class HairColorController : BaseToggleGroupController
 {
-    private Toggle _tg;
-    private Color _color;
-
+    [SerializeField] private bool _isPrimary;
     private GameObject[] _hairStyles;
     private GameObject[] _eyebrowStyles;
 
-    [Tooltip("R - Primary\nG - Secondary\nB - Highlight")]
-    [SerializeField] private ColorTuple _hairColor;
-
-    [SerializeField] private bool _isPrimary;
-
-    void Start()
+    protected override void Start()
     {
+        base.Start();
+
         _hairStyles = CosmeticContainer.Instance?.GetHairStyles();
         _eyebrowStyles = CosmeticContainer.Instance?.GetEyebrowStyles();
-
-        _tg = GetComponent<Toggle>();
-
-        if (!_tg)
-        {
-            Debug.Log("Failed to get Toggle");
-        }
-
-        ColorBlock tgColors = new ColorBlock();
-        tgColors.normalColor = _hairColor.r * 0.85f;
-        tgColors.selectedColor = _hairColor.r;
-        tgColors.disabledColor = _hairColor.r;
-        tgColors.highlightedColor = _hairColor.g;
-        tgColors.pressedColor = _hairColor.g;
-        tgColors.colorMultiplier = 1.0f;
-        tgColors.fadeDuration = 0.1f;
-
-        _tg.colors = tgColors;
-
-        _tg.onValueChanged.AddListener(OnToggleValueChanged);
     }
 
-    private void OnToggleValueChanged(bool isOn)
+    protected override void OnTurnOn()
     {
-        if (isOn)
-        {
-            AssignHairColors();
+        AssignHairColors();
 
-            if(_isPrimary)
-            {
-                AssignEyebrowColors();
-            }
+        if (_isPrimary)
+        {
+            AssignEyebrowColors();
         }
     }
 
-    public void AssignHairColors()
+    private void AssignHairColors()
     {
         foreach (GameObject hair in _hairStyles)
         {
             Renderer renderer = hair.GetComponent<Renderer>();
             Material mat = renderer.material;
-            if(_isPrimary)
+            if (_isPrimary)
             {
-                mat.SetColor("_TintR", _hairColor.r);
+                mat.SetColor("_TintR", _colorTuple.r);
                 // Set highlight color to hair color b
-                mat.SetColor("_HighlightColor", _hairColor.b);
+                mat.SetColor("_HighlightColor", _colorTuple.b);
             }
 
             else
             {
-                mat.SetColor("_TintG", _hairColor.g);
+                mat.SetColor("_TintG", _colorTuple.g);
             }
         }
     }
 
-    public void AssignEyebrowColors()
+    private void AssignEyebrowColors()
     {
         foreach (GameObject eyebrow in _eyebrowStyles)
         {
@@ -84,15 +57,15 @@ public class HairColorController : MonoBehaviour
             {
                 if (mat.name.Contains("m_Ari_EyeBrow"))
                 {
-                    mat.SetColor("_TintR", _hairColor.r);
-                    mat.SetColor("_TintG", _hairColor.g);
-                    mat.SetColor("_HighlightColor", _hairColor.b);
+                    mat.SetColor("_TintR", _colorTuple.r);
+                    mat.SetColor("_TintG", _colorTuple.g);
+                    mat.SetColor("_HighlightColor", _colorTuple.b);
                 }
 
                 if (mat.name.Contains("m_Ari_Mustache"))
                 {
-                    mat.SetColor("_TintG", _hairColor.r);
-                    mat.SetColor("_TintB", _hairColor.g);
+                    mat.SetColor("_TintG", _colorTuple.r);
+                    mat.SetColor("_TintB", _colorTuple.g);
                 }
             }
         }

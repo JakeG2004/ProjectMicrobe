@@ -19,7 +19,6 @@ public class ToggleScroller : MonoBehaviour, ISelectHandler
 
     public void OnSelect(BaseEventData eventData)
     {
-        Debug.Log(_scrollVal);
         _sto.ScrollTo(_scrollVal);
     }
 

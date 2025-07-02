@@ -3,46 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SkinColorController : MonoBehaviour
+public class SkinColorController : BaseToggleGroupController
 {
-    private Toggle _tg;
-    [SerializeField] private ColorTuple _colors;
-
     private GameObject[] _skinObjs;
 
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         _skinObjs = CosmeticContainer.Instance?.GetSkinObjects();
-
-        _tg = GetComponent<Toggle>();
-
-        if (!_tg)
-        {
-            Debug.Log("Failed to get Toggle");
-        }
-
-        _tg.onValueChanged.AddListener(OnToggleValueChanged);
-
-        // Create a color block given the new colors
-        ColorBlock buttonColors = new();
-        buttonColors.colorMultiplier = 1.0f;
-        buttonColors.disabledColor = (_colors.r / 4f) + new Color (0f, 0f, 0f, 1f);
-        buttonColors.fadeDuration = 0.1f;
-        buttonColors.highlightedColor = _colors.r + new Color(0.1f, 0.1f, 0.1f, 1f);
-        buttonColors.normalColor = _colors.r * 0.85f;
-        buttonColors.pressedColor = _colors.g;
-        buttonColors.selectedColor = _colors.r;
-
-        // Assign the color block
-        _tg.colors = buttonColors;
     }
 
-    private void OnToggleValueChanged(bool isOn)
+    protected override void OnTurnOn()
     {
-        if (isOn)
-        {
-            AssignColorToMaterial();
-        }
+        AssignColorToMaterial();
     }
 
     public void AssignColorToMaterial()
@@ -59,15 +32,15 @@ public class SkinColorController : MonoBehaviour
             {
                 if (mat.name.Contains("m_Ari_Skin"))
                 {
-                    mat.SetColor("_TintR", _colors.r);
-                    mat.SetColor("_TintG", _colors.g);
+                    mat.SetColor("_TintR", _colorTuple.r);
+                    mat.SetColor("_TintG", _colorTuple.g);
                     mat.SetColor("_TintB", Color.white);
-                    mat.SetColor("_SSS", _colors.b);
+                    mat.SetColor("_SSS", _colorTuple.b);
                 }
 
                 if (mat.name.Contains("m_Ari_Mustache"))
                 {
-                    mat.SetColor("_TintR", _colors.r);
+                    mat.SetColor("_TintR", _colorTuple.r);
                 }
             }
         }

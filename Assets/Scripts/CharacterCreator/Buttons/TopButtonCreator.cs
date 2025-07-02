@@ -39,6 +39,8 @@ public class TopButtonCreator : MonoBehaviour
         // Get the top type
         _topType = _tc.GetTopType();
 
+        Debug.Log("test");
+
         SetCosmeticColors();
         SetCosmeticActive();
     }

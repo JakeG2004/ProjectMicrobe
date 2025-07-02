@@ -3,34 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TopController : MonoBehaviour
+public class TopController : BaseToggleGroupController
 {
-    private Toggle _tg;
-
-    [SerializeField] TopType _topType = TopType.Shirt;
     private GameObject _shirt;
     private GameObject _jacket;
     private GameObject _coat;
+    [SerializeField] private ColorTupleSO _jacketColors;
+    [SerializeField] private ColorTupleSO _coatColors;
     [SerializeField] private Color _hairAccessoryColor;
-    [SerializeField] private ColorTuple _shirtColors;
-    [SerializeField] private ColorTuple _jacketColors;
-    [SerializeField] private ColorTuple _coatColors;
+    [SerializeField] TopType _topType = TopType.Shirt;
+    private ColorTupleSO _shirtColors;
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
-        _tg = GetComponent<Toggle>();
+        base.Start();
 
-        if (!_tg)
-        {
-            Debug.Log("Failed to get Toggle");
-        }
+        _shirtColors = _colorTuple;
 
-        _tg.onValueChanged.AddListener(OnToggleValueChanged);
-
-        _shirtColors.SetAlpha(1.0f);
-        _jacketColors.SetAlpha(1.0f);
-        _coatColors.SetAlpha(1.0f);
+        Debug.Log(_colorTuple);
 
         foreach (GameObject cosmetic in CosmeticContainer.Instance.GetTopStyles())
         {
@@ -52,17 +43,30 @@ public class TopController : MonoBehaviour
                 continue;
             }
         }
+
+        _hairAccessoryColor = _shirtColors.r;
     }
 
-    private void OnToggleValueChanged(bool isOn)
+    // Override with nothing so that the colors dont get too wonky
+    protected override void SetColorBlock()
     {
-        if (isOn)
-        {
-            CosmeticContainer.Instance.DistableAllTops();
-            AssignColors();
-        }
+        ColorBlock tgColors = new ColorBlock();
+        tgColors.normalColor = Color.white;
+        tgColors.selectedColor = Color.white;
+        tgColors.disabledColor = Color.white;
+        tgColors.highlightedColor = Color.white;
+        tgColors.pressedColor = Color.white;
+        tgColors.colorMultiplier = 1.0f;
+        tgColors.fadeDuration = 0.1f;
+
+        _tg.colors = tgColors;
     }
 
+    protected override void OnTurnOn()
+    {
+        CosmeticContainer.Instance.DistableAllTops();
+        AssignColors();
+    }
     public void AssignColors()
     {
         AssignHairAccessoryColor();
@@ -147,17 +151,32 @@ public class TopController : MonoBehaviour
 
     public ColorTuple GetShirtColors()
     {
-        return _shirtColors;
+        ColorTuple ct = new ColorTuple();
+        ct.r = _colorTuple.r;
+        ct.g = _colorTuple.g;
+        ct.b = _colorTuple.b;
+
+        return ct;
     }
 
     public ColorTuple GetJacketColors()
     {
-        return _jacketColors;
+        ColorTuple ct = new ColorTuple();
+        ct.r = _jacketColors.r;
+        ct.g = _jacketColors.g;
+        ct.b = _jacketColors.b;
+
+        return ct;
     }
 
     public ColorTuple GetCoatColors()
     {
-        return _coatColors;
+        ColorTuple ct = new ColorTuple();
+        ct.r = _coatColors.r;
+        ct.g = _coatColors.g;
+        ct.b = _coatColors.b;
+
+        return ct;
     }
 
     public TopType GetTopType()
