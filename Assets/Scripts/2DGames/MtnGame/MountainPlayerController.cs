@@ -221,4 +221,9 @@ public class MountainPlayerController : MonoBehaviour
     {
         NewInputController.Instance.SetMenuMode();
     }
+
+    void OnEnable()
+    {
+        NewInputController.Instance.SetMinigameMode();
+    }
 }
