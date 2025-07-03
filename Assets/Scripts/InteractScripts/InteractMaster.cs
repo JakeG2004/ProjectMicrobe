@@ -108,7 +108,6 @@ public class InteractMaster : MonoBehaviour
 
     public void SetInteractableState(bool state)
     {
-        Debug.Log("test");
         _isInteractable = state;
     }
 

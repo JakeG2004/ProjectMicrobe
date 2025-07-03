@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(NewInputController))]
 public class WorldAndMenuControls : MonoBehaviour
 {
     [SerializeField] private UnityEvent _onMenuPressed;

@@ -28,7 +28,12 @@ public class InteractText : MonoBehaviour
     {
         StopAllCoroutines();
         SetPos(io.gameObject.transform.position);
-        SetText(io.GetInteractText());
+        //SetText(io.GetInteractText());
+
+        foreach (Transform child in _interactText.transform)
+        {
+            child.GetComponent<SpriteRenderer>().enabled = true;
+        }
 
         _anim.SetBool("isUp", true);
     }
@@ -43,5 +48,10 @@ public class InteractText : MonoBehaviour
         _anim.SetBool("isUp", false);
         yield return new WaitForSeconds(0.1f);
         SetText("");
+
+        foreach (Transform child in _interactText.transform)
+        {
+            child.GetComponent<SpriteRenderer>().enabled = false;
+        }
     }
 }

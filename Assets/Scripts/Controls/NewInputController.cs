@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class NewInputController : MonoBehaviour
 {
     public static NewInputController Instance { get; private set; }
+    [SerializeField] private UnityEvent _onMouseKeyboard;
+    [SerializeField] private UnityEvent _onGamepad;
     private PlayerInputActions _pia;
     private InputType _curDevice = InputType.Unknown;
 
@@ -18,6 +21,7 @@ public class NewInputController : MonoBehaviour
         else
         {
             Instance = this;
+            DontDestroyOnLoad(this.gameObject);
         }
 
         _pia = new();
@@ -31,6 +35,11 @@ public class NewInputController : MonoBehaviour
                 action.performed += UpdateInputDevice;
             }
         }
+    }
+
+    void Update()
+    {
+        Debug.Log($"UI: {_pia.UI.enabled}\nPlayer: {_pia.Player.enabled}\nMinigames: {_pia.Minigames.enabled}");
     }
 
     public PlayerInputActions GetPlayerInputActions()
@@ -67,17 +76,41 @@ public class NewInputController : MonoBehaviour
 
         if (device is UnityEngine.InputSystem.Gamepad)
         {
+            if (_curDevice != InputType.Controller)
+            {
+                _onGamepad.Invoke();
+            }
+
             _curDevice = InputType.Controller;
         }
 
         else if (device is UnityEngine.InputSystem.Keyboard || device is UnityEngine.InputSystem.Mouse)
         {
+            if (_curDevice != InputType.KeyboardMouse)
+            {
+                _onMouseKeyboard.Invoke();
+            }
+
             _curDevice = InputType.KeyboardMouse;
         }
 
         else
         {
             _curDevice = InputType.Unknown;
+        }
+    }
+
+    public void EmitCurDevice()
+    {
+        Set3DMode();
+        if (_curDevice == InputType.Controller)
+        {
+            _onGamepad.Invoke();
+        }
+
+        else
+        {
+            _onMouseKeyboard.Invoke();
         }
     }
 }
