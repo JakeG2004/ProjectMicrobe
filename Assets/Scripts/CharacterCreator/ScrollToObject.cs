@@ -28,6 +28,7 @@ public class ScrollToObject : MonoBehaviour
 
     private IEnumerator SmoothScroll(float scrollVal)
     {
+        yield return new WaitForSeconds(0.05f);
         Scrollbar scrollbar = _sr.horizontalScrollbar;
 
         if (_scrollType == ScrollType.VERTICAL)
