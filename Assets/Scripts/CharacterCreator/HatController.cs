@@ -8,31 +8,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HatController : MonoBehaviour
+public class HatController : BaseToggleGroupController
 {
     [SerializeField] private string _hatName;
     [SerializeField] private CosmeticController _hairSlider;
-    private Toggle _tg;
     private GameObject[] _hairStyles;
     private GameObject[] _hats;
 
-    void Start()
+    protected override void Start()
     {
+        base.Start();
+
         _hairStyles = CosmeticContainer.Instance.GetHairStyles();
         _hats = CosmeticContainer.Instance.GetHats();
-
-        _tg = GetComponent<Toggle>();
-        if (!_tg)
-        {
-            Debug.Log("Failed to get toggle!");
-        }
-
-        _tg.onValueChanged.AddListener(OnToggleValueChanged);
     }
 
     // Hats take priority over hair, so turn all hair off
-    public void OnToggleValueChanged(bool isOn)
+    protected override void OnToggleValueChanged(bool isOn)
     {
+        base.OnToggleValueChanged(isOn);
+        
         // Earlly return and check for no hat, turn on hair
         if (isOn && _hatName == "")
         {

@@ -3,30 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BottomController : MonoBehaviour
+public class BottomController : BaseToggleGroupController
 {
-    private Toggle _tg;
-
-    [SerializeField] BottomType _bottomType = BottomType.Pants;
     private GameObject _shorts;
     private GameObject _pants;
     private GameObject _shoes;
-
-    [SerializeField] private ColorTuple _shortsColors;
-    [SerializeField] private ColorTuple _pantsColors;
-    [SerializeField] private ColorTuple _shoeColors;
+    private ColorTuple _shortsColors = new();
+    [SerializeField] private ColorTupleSO _pantsColors;
+    [SerializeField] private ColorTupleSO _shoeColors;
+    [SerializeField] BottomType _bottomType = BottomType.Pants;
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
-        _tg = GetComponent<Toggle>();
+        base.Start();
 
-        if (!_tg)
-        {
-            Debug.Log("Failed to get Toggle");
-        }
-
-        _tg.onValueChanged.AddListener(OnToggleValueChanged);
+        _shortsColors.r = _colorTuple.r;
+        _shortsColors.g = _colorTuple.g;
+        _shortsColors.b = _colorTuple.b;
 
         foreach (GameObject cosmetic in CosmeticContainer.Instance.GetBottomStyles())
         {
@@ -50,13 +44,24 @@ public class BottomController : MonoBehaviour
         }
     }
 
-    private void OnToggleValueChanged(bool isOn)
+    protected override void SetColorBlock()
     {
-        if (isOn)
-        {
-            CosmeticContainer.Instance.DisableAllBottoms();
-            AssignColors();
-        }
+        ColorBlock tgColors = new ColorBlock();
+        tgColors.normalColor = Color.white;
+        tgColors.selectedColor = Color.white;
+        tgColors.disabledColor = Color.white;
+        tgColors.highlightedColor = Color.white;
+        tgColors.pressedColor = Color.white;
+        tgColors.colorMultiplier = 1.0f;
+        tgColors.fadeDuration = 0.1f;
+
+        _tg.colors = tgColors;
+    }
+
+    protected override void OnTurnOn()
+    {
+        CosmeticContainer.Instance.DisableAllBottoms();
+        AssignColors();
     }
 
     public void AssignColors()
@@ -109,17 +114,32 @@ public class BottomController : MonoBehaviour
 
     public ColorTuple GetShoeColor()
     {
-        return _shoeColors;
+        ColorTuple ct = new();
+        ct.r = _shoeColors.r;
+        ct.g = _shoeColors.g;
+        ct.b = _shoeColors.b;
+
+        return ct;
     }
 
     public ColorTuple GetPantsColor()
     {
-        return _pantsColors;
+        ColorTuple ct = new();
+        ct.r = _pantsColors.r;
+        ct.g = _pantsColors.g;
+        ct.b = _pantsColors.b;
+
+        return ct;
     }
 
     public ColorTuple GetShortsColor()
     {
-        return _shortsColors;
+        ColorTuple ct = new();
+        ct.r = _colorTuple.r;
+        ct.g = _colorTuple.g;
+        ct.b = _colorTuple.b;
+
+        return ct;
     }
 
     public BottomType GetBottomType()

@@ -30,7 +30,6 @@ public class GlassesColorController : BaseToggleGroupController
 
     public void AssignColors()
     {
-        Debug.Log("Assign colors");
         if (!_tg || !_tg.isOn)
         {
             return;
@@ -72,7 +71,6 @@ public class GlassesColorController : BaseToggleGroupController
 
     private void EnableGOs()
     {
-        Debug.Log("Enable GOs");
         foreach (GameObject go in _glassesStyles)
         {
             // Handle none

@@ -21,8 +21,6 @@ public class TopController : BaseToggleGroupController
 
         _shirtColors = _colorTuple;
 
-        Debug.Log(_colorTuple);
-
         foreach (GameObject cosmetic in CosmeticContainer.Instance.GetTopStyles())
         {
             if (cosmetic.name == "Shirt")
