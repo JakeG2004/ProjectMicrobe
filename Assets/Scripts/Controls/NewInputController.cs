@@ -37,10 +37,10 @@ public class NewInputController : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        Debug.Log($"UI: {_pia.UI.enabled}\nPlayer: {_pia.Player.enabled}\nMinigames: {_pia.Minigames.enabled}");
-    }
+    //void Update()
+    //{
+    //    Debug.Log($"UI: {_pia.UI.enabled}\nPlayer: {_pia.Player.enabled}\nMinigames: {_pia.Minigames.enabled}");
+    //}
 
     public PlayerInputActions GetPlayerInputActions()
     {
