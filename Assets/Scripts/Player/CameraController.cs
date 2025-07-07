@@ -9,7 +9,7 @@ public class CameraController : MonoBehaviour
 	[SerializeField] Transform character;
 	[SerializeField] LayerMask mask;
 
-	InputController ic;
+	PlayerStates _states;
 
 	float zoom = 4f;
 	float zoomGoal = 4f;
@@ -52,12 +52,12 @@ public class CameraController : MonoBehaviour
 	}
 	void Start()
 	{
-		ic = GM.playerInput;
+		_states = PlayerMovementController.Instance.GetStates();
 	}
 
 	void Update()
 	{
-		if (character == null || !ic)
+		if (character == null || _states == null)
 		{
 			return;
 		}
@@ -88,7 +88,7 @@ public class CameraController : MonoBehaviour
 
 	void Zoom()
 	{
-		zoomGoal = Mathf.Lerp(zoomBounds.x, zoomBounds.y, ic.zoom);
+		zoomGoal = Mathf.Lerp(zoomBounds.x, zoomBounds.y, _states.zoom);
 		CameraColision();
 		zoom = Mathf.Lerp(zoom, Mathf.Min(zoomGoal, zoomCollision), Time.deltaTime * 5f);
 	}
@@ -102,10 +102,10 @@ public class CameraController : MonoBehaviour
 	}
 	void RotateCameraDirection()
 	{
-		angleVert = ClampAngle(angleVert - ic.look.y, angleVertBounds.x, angleVertBounds.y);
-		angleHoz += ic.look.x;
+		angleVert = ClampAngle(angleVert - _states.look.y * _states.lookSensitivity / 2, angleVertBounds.x, angleVertBounds.y);
+		angleHoz += _states.look.x * _states.lookSensitivity;
 		// also turn camera when player moves to the side 
-		angleHoz += ic.move.x * 1.5f;
+		angleHoz += _states.move.x * 1.5f;
 
 		Vector3 directionHoz = Quaternion.AngleAxis(angleHoz, Vector3.up) * Vector3.forward;
 		Vector3 directionHozLeft = Vector3.Cross(directionHoz, Vector3.up);

@@ -42,12 +42,12 @@ public class MovementController : MonoBehaviour {
     }
 
     void FixedUpdate() {
-		CheckIfGrounded();
-		CheckIfRunningIntoWall();
-		StepUp();
-		Jump();
-		Rotate();
-		Move();
+		CheckIfGrounded(); // x
+		CheckIfRunningIntoWall(); // x
+		StepUp(); // x
+		Jump(); // x
+		Rotate(); // x
+		Move(); // x
 		Climb();
 		
 

@@ -21,8 +21,12 @@ public class MountainPlayerController : MonoBehaviour
     private Vector3 _initPlayerPos;
     private SoundPlayer _sp;
     float _prevArrowScale = 0.0f;
-
     bool _canPlaySound = false;
+    private PlayerInputActions _pia;
+    private Vector2 _moveVector;
+    private Vector2 _camVector;
+    private bool _jumpTrigger = false;
+    public float rotationOff = 180f;
 
     void Start()
     {
@@ -30,6 +34,15 @@ public class MountainPlayerController : MonoBehaviour
         _initPlayerPos = transform.position;
         _originalParent = transform.parent;
         _rb = GetComponent<Rigidbody2D>();
+
+        _pia = NewInputController.Instance.GetPlayerInputActions();
+
+        // Movement lambdas
+        _pia.Minigames.Move.performed += ctx => _moveVector = ctx.ReadValue<Vector2>();
+        _pia.Minigames.Move.canceled += ctx => _moveVector = Vector2.zero;
+
+        _pia.Minigames.Select.performed += ctx => _jumpTrigger = true;
+        _pia.Minigames.Select.canceled += ctx => _jumpTrigger = false;
 
         StartCoroutine(IPreventStartSounds());
     }
@@ -39,13 +52,76 @@ public class MountainPlayerController : MonoBehaviour
         while (!Input.GetMouseButtonUp(0))
         {
             _isDragging = false;
-            yield return null;            
+            yield return null;
         }
 
         _canPlaySound = true;
     }
 
     void Update()
+    {
+        if (NewInputController.Instance.GetCurrentInputDevice() == InputType.KeyboardMouse)
+        {
+            MouseControls();
+        }
+
+        else
+        {
+            GamepadControls();
+        }
+    }
+
+    void GamepadControls()
+    {
+        Vector2 invertedMoveVector = -1 * _moveVector;
+        float arrowScale = invertedMoveVector.magnitude * 5f;
+        if (arrowScale > 4.5f)
+        {
+            arrowScale = 5;
+        }
+
+        if (arrowScale > 0.05f)
+        {
+            _arrowObj.SetActive(true);
+
+            float angle = Mathf.Atan2(_moveVector.y, _moveVector.x) * Mathf.Rad2Deg;
+
+            // Set rotation, scale, position
+            _arrowObj.transform.rotation = Quaternion.Euler(0, 0, angle + 90f);
+            _arrowObj.GetComponent<SpriteRenderer>().size = new Vector2(1f, -1 * arrowScale);
+            _arrowObj.transform.localPosition = new Vector3(invertedMoveVector.x * (arrowScale / 2), invertedMoveVector.y * (arrowScale / 2), 0f);
+
+            if (_prevArrowScale < arrowScale)
+            {
+                _sp.PlayRapidSound(0);
+            }
+
+            _prevArrowScale = arrowScale;
+        }
+
+        else
+        {
+            _arrowObj.SetActive(false);
+        }
+
+        // Handle launch
+        if (_isGrounded && arrowScale > 0.05f && _jumpTrigger)
+        {
+            _isDragging = false;
+            _rb.velocity = invertedMoveVector * 10.0f;
+            _curPlatform = null;
+            _prevArrowScale = 0.0f;
+
+            _sp.PlaySound(1);
+        }
+
+        if (_jumpTrigger)
+        {
+            _jumpTrigger = false;
+        }
+    }
+
+    void MouseControls()
     {
         // Get the current mouse position as a vector2
         Vector3 curMousePos = Input.mousePosition;
@@ -130,7 +206,7 @@ public class MountainPlayerController : MonoBehaviour
 
             if (this.gameObject.activeInHierarchy)
             {
-                StartCoroutine(DelayedUnparent());   
+                StartCoroutine(DelayedUnparent());
             }
         }
     }
@@ -139,5 +215,15 @@ public class MountainPlayerController : MonoBehaviour
     {
         yield return null; // Wait for one frame
         transform.SetParent(_originalParent);
+    }
+
+    public void GotFruit()
+    {
+        NewInputController.Instance.SetMenuMode();
+    }
+
+    void OnEnable()
+    {
+        NewInputController.Instance.SetMinigameMode();
     }
 }

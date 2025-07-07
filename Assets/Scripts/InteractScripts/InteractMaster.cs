@@ -12,10 +12,9 @@ public class InteractMaster : MonoBehaviour
 {
     public static InteractMaster Instance { get; private set; }
     [SerializeField] private InteractText _interactText;
-    [SerializeField] private KeyCode _interactKey = KeyCode.E;
     [SerializeField] private InteractableStack<InteractableObject> _interactables = new();
-    private bool _isInteractable = false;
-
+    [SerializeField] private bool _isInteractable = false;
+    bool _hasDialogue = false;
 
     void Awake()
     {
@@ -73,13 +72,13 @@ public class InteractMaster : MonoBehaviour
         if (_isInteractable)
         {
             InteractableObject io = _interactables.Peek();
-            _interactText.SetPos(_interactables.Peek().transform.position);
 
-            // Handle interact input
-            if (Input.GetKeyDown(_interactKey))
+            if (!io)
             {
-                io.Interact();
+                return;
             }
+
+            _interactText.SetPos(_interactables.Peek().transform.position);
 
             // Disable if the gameobjcet is inactinve
             if (io.gameObject.activeInHierarchy == false)
@@ -88,5 +87,32 @@ public class InteractMaster : MonoBehaviour
             }
 
         }
+    }
+
+    public void TryInteract()
+    {
+        if (!_isInteractable || _hasDialogue)
+        {
+            return;
+        }
+
+        InteractableObject io = _interactables.Peek();
+
+        if (io == null)
+        {
+            return;
+        }
+
+        io.Interact();
+    }
+
+    public void SetInteractableState(bool state)
+    {
+        _isInteractable = state;
+    }
+
+    public void SetHasDialogue(bool state)
+    {
+        _hasDialogue = state;
     }
 }

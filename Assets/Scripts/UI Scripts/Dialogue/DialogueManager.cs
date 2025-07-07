@@ -22,6 +22,10 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private TMP_Text _bodyText;
     [SerializeField] private Image _img;
 
+    [Space(10)]
+    [SerializeField] private UnityEvent _onDisplayDialogue;
+    [SerializeField] private UnityEvent _onFinishDialogue;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -80,11 +84,13 @@ public class DialogueManager : MonoBehaviour
     public void DisplayNextSentence()
     {
         // Check for complete dialogue
-        if (_sentences.Count == 0)
+        if (_sentences.Count == 0 || _curDialogue == null)
         {
             EndDialogue();
             return;
         }
+
+        _onDisplayDialogue.Invoke();
 
         // Get next sentence
         DialogueUnit _curSentence = _sentences.Dequeue();
@@ -125,8 +131,11 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
+        _onFinishDialogue.Invoke();
+
         _curDialogue.onDialogueComplete?.Invoke();
         _anim.SetBool("IsOpen", false);
-        //StopAllCoroutines();
+
+        _curDialogue = null;
     }
 }

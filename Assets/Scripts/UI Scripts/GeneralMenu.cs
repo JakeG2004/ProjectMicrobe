@@ -26,7 +26,10 @@ public class GeneralMenu : MonoBehaviour
         _sp = GetComponent<SoundPlayer>();
         _bget = GetComponent<BoolGameEventTrigger>();
 
-        _panel.SetActive(false);
+        if (_panel != null)
+        {
+            _panel.SetActive(false);
+        }
     }
 
     // Toggles the menu, publicly accessible
@@ -36,28 +39,34 @@ public class GeneralMenu : MonoBehaviour
         _isActive = !_isActive;
 
         // Set the 3d controls
-        Set3DControls(!_isActive);
+        SetMouseVisibility(_isActive);
 
         // Set the panel
-        _panel.SetActive(_isActive);
+        if (_panel != null)
+        {
+            _panel?.SetActive(_isActive);    
+        }
+        
 
         // Handle the audio
         if (_isActive)
         {
             _sp.PlaySound(0);
+            NewInputController.Instance.SetMenuMode();
         }
 
         else
         {
             _sp.PlaySound(1);
+            NewInputController.Instance.Set3DMode();
         }
 
         // State tracker
         _bget?.TriggerEvent(_isActive);
     }
 
-    void Set3DControls(bool state)
+    void SetMouseVisibility(bool state)
     {
-        _mcm?.SetControlState(!state);
+        _mcm?.SetMouseState(state);
     }
 }

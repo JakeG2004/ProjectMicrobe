@@ -16,7 +16,7 @@ public class LightSwarmFollowPlayer : MonoBehaviour {
 		if(other.CompareTag("Player")) follow = false;
 	}
 	void Start() {
-		player = GM.player;
+		player = GameObject.FindGameObjectWithTag("Player").transform;
 	}
 
 	void Update()  {

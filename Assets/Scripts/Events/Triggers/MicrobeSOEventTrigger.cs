@@ -17,7 +17,7 @@ public class MicrobeSOEventTrigger : MonoBehaviour
 {
     [SerializeField] private MicrobeGameEventSO _event;
     [SerializeField] private TMP_Text _microbeName;
-    private MicrobeSO _thisMicrobeSO;
+    [SerializeField] private MicrobeSO _thisMicrobeSO;
     public void TriggerGeneralEvent(MicrobeSO item)
     {
         if (_event == null)

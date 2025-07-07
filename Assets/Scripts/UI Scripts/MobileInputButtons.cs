@@ -1,4 +1,4 @@
-using UnityEngine;
+/*using UnityEngine;
 
 public class MobileInputButtons : MonoBehaviour {
 
@@ -28,4 +28,4 @@ public class MobileInputButtons : MonoBehaviour {
 	public void ZoomOut() {
 		ic.Zoom(false);
 	}
-}
+}*/

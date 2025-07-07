@@ -18,6 +18,12 @@ public class CoconutGameManager : MonoBehaviour
     [SerializeField] private UnityEvent _OnTimerEndEvent;
     [SerializeField] private UnityEvent _OnGoalReachedEvent;
     private int _curScore = 0;
+    private SoundPlayer _sp;
+
+    void Awake()
+    {
+        _sp = GetComponent<SoundPlayer>();
+    }
 
     void OnEnable()
     {
@@ -25,6 +31,8 @@ public class CoconutGameManager : MonoBehaviour
 
         _scoreText.text = "Score: 0";
         _timeText.text = $"Time: {_totalTime}";
+
+        DestroyCoconuts();
 
         for (int i = 0; i < 4; i++)
         {
@@ -61,8 +69,11 @@ public class CoconutGameManager : MonoBehaviour
         _timeText.text = "Timer: 0";
         _OnTimerEndEvent.Invoke();
 
+        NewInputController.Instance.SetMenuMode();
+
         if (_curScore >= _goalScore)
         {
+            _sp.PlaySound(0);
             _OnGoalReachedEvent.Invoke();
         }
     }

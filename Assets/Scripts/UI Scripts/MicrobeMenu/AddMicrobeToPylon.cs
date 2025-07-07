@@ -82,9 +82,9 @@ public class AddMicrobeToPylon : MonoBehaviour
         {
             _microbeName.text = "No Microbe!";
             _numToAdd.text = "0";
-            _numToAdd.interactable = false;
-            _slider.interactable = false;
-            _button.interactable = false;
+            // _numToAdd.interactable = false;
+            // _slider.interactable = false;
+            // _button.interactable = false;
 
             return;
         }

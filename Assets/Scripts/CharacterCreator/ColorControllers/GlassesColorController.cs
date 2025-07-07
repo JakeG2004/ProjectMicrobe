@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GlassesColorController : MonoBehaviour
+public class GlassesColorController : BaseToggleGroupController
 {
     public enum AccessoryType
     {
@@ -11,40 +11,31 @@ public class GlassesColorController : MonoBehaviour
         Goggles,
         None,
     }
-
-    private Toggle _tg;
-    [SerializeField] private ColorTuple _lensColor;
-    [SerializeField] private ColorTuple _bodyColor;
+    [SerializeField] private ColorTupleSO _lensColor;
     [SerializeField] private AccessoryType _accesoryType;
     [SerializeField] private GameObject[] _glassesStyles;
 
-    void Start()
+    protected override void Start()
     {
+        base.Start();
+
         _glassesStyles = CosmeticContainer.Instance?.GetGlassesStyles();
-
-        _tg = GetComponent<Toggle>();
-
-        if (!_tg)
-        {
-            Debug.Log("Failed to get Toggle");
-        }
-
-        GetComponent<Image>().color = _bodyColor.r;
-        _tg.onValueChanged.AddListener(OnToggleValueChanged);
     }
 
-    private void OnToggleValueChanged(bool isOn)
+    protected override void OnTurnOn()
     {
-        if (isOn)
-        {
-            AssignColors();
-            EnableGOs();
-        }
+        EnableGOs();
+        AssignColors();
     }
 
     public void AssignColors()
     {
         if (!_tg || !_tg.isOn)
+        {
+            return;
+        }
+
+        if (_colorTuple == null || _lensColor == null)
         {
             return;
         }
@@ -60,12 +51,12 @@ public class GlassesColorController : MonoBehaviour
                 // Set body colors
                 if (mat.name.Contains("m_Ari_ClothGlasses") || mat.name.Contains("m_Ari_ClothGoggles"))
                 {
-                    mat.SetColor("_TintR", _bodyColor.r);
-                    mat.SetColor("_TintG", _bodyColor.g);
-                    mat.SetColor("_TintB", _bodyColor.b);
+                    mat.SetColor("_TintR", _colorTuple.r);
+                    mat.SetColor("_TintG", _colorTuple.g);
+                    mat.SetColor("_TintB", _colorTuple.b);
                     continue;
                 }
-                
+
                 // Set lens colors
                 if (mat.name.Contains("m_Ari_Glass_Lens"))
                 {
@@ -81,24 +72,24 @@ public class GlassesColorController : MonoBehaviour
     private void EnableGOs()
     {
         foreach (GameObject go in _glassesStyles)
+        {
+            // Handle none
+            if (_accesoryType == AccessoryType.None)
             {
-                // Handle none
-                if (_accesoryType == AccessoryType.None)
-                {
-                    go.SetActive(false);
-                }
-                
-                // Handle glasses
-                if (go.name == "Glasses")
-                {
-                    go.SetActive(_accesoryType == AccessoryType.Glasses);
-                }
-
-                // Handle goggles
-                if (go.name == "Goggles")
-                {
-                    go.SetActive(_accesoryType == AccessoryType.Goggles);
-                }
+                go.SetActive(false);
             }
+
+            // Handle glasses
+            if (go.name == "Glasses")
+            {
+                go.SetActive(_accesoryType == AccessoryType.Glasses);
+            }
+
+            // Handle goggles
+            if (go.name == "Goggles")
+            {
+                go.SetActive(_accesoryType == AccessoryType.Goggles);
+            }
+        }
     }
 }

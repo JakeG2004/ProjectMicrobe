@@ -58,6 +58,17 @@ public class CCIndexManager : MonoBehaviour
             if (i == val)
             {
                 curChild.isOn = true;
+
+                // Find the outline, and highlight
+                foreach (Transform child in curChild.transform)
+                {
+                    if (child.gameObject.name == "Outline")
+                    {
+                        GameObject outline = child.gameObject;
+                        outline.SetActive(true);
+                        outline.GetComponent<Image>().color = Color.yellow;
+                    }
+                }
             }
         }
     }

@@ -40,6 +40,7 @@ public class LevelLoader : MonoBehaviour
     {
         yield return null;
         SaveSystem.Instance.LoadState();
+        NewInputController.Instance.EmitCurDevice();
     }
 
     public void LoadLevel(string levelName)

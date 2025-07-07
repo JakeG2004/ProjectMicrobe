@@ -27,13 +27,13 @@ public class TriggerableEvent : MonoBehaviour
 
     public void ActivateEvent()
     {
-        if(_activated && _oneShot)
+        if (_activated && _oneShot)
         {
             return;
         }
 
         _activated = true;
 
-        _event?.Invoke();
+        _event.Invoke();
     }
 }

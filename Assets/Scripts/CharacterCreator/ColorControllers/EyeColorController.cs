@@ -3,55 +3,44 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EyeColorController : MonoBehaviour
+public class EyeColorController : BaseToggleGroupController
 {
-    private Toggle _tg;
-    [SerializeField] private ColorTuple _colors;
-
     private GameObject _eyes;
 
-    void Start()
+    protected override void Start()
     {
-        _tg = GetComponent<Toggle>();
-
-        if (!_tg)
-        {
-            Debug.Log("Failed to get Toggle");
-        }
-
-        _tg.onValueChanged.AddListener(OnToggleValueChanged);
+        base.Start();
 
         _eyes = CosmeticContainer.Instance.GetEyes();
+    }
 
+    protected override void SetColorBlock()
+    {
         // Create a color block given the new colors
         ColorBlock buttonColors = new();
         buttonColors.colorMultiplier = 1.0f;
-        buttonColors.disabledColor = (_colors.r / 4f) + new Color (0f, 0f, 0f, 1f);
+        buttonColors.disabledColor = (_colorTuple.r / 4f) + new Color(0f, 0f, 0f, 1f);
         buttonColors.fadeDuration = 0.1f;
-        buttonColors.highlightedColor = _colors.r + new Color(0.1f, 0.1f, 0.1f, 1f);
-        buttonColors.normalColor = _colors.r;
-        buttonColors.pressedColor = _colors.g;
-        buttonColors.selectedColor = _colors.r;
+        buttonColors.highlightedColor = _colorTuple.r + new Color(0.1f, 0.1f, 0.1f, 1f);
+        buttonColors.normalColor = _colorTuple.r;
+        buttonColors.pressedColor = _colorTuple.g;
+        buttonColors.selectedColor = _colorTuple.r;
 
         // Handle base color being black, fall back to secondary color
-        if (_colors.r == Color.black)
+        if (_colorTuple.r == Color.black)
         {
-            buttonColors.highlightedColor = _colors.g + new Color(0.1f, 0.1f, 0.1f, 1f);
-            buttonColors.normalColor = _colors.g;
-            buttonColors.pressedColor = _colors.r;
-            buttonColors.selectedColor = _colors.g;
+            buttonColors.highlightedColor = _colorTuple.g + new Color(0.1f, 0.1f, 0.1f, 1f);
+            buttonColors.normalColor = _colorTuple.g;
+            buttonColors.pressedColor = _colorTuple.r;
+            buttonColors.selectedColor = _colorTuple.g;
         }
 
-        // Assign the color block
-            _tg.colors = buttonColors;
+        _tg.colors = buttonColors;
     }
 
-    private void OnToggleValueChanged(bool isOn)
+    protected override void OnTurnOn()
     {
-        if (isOn)
-        {
-            AssignColorToMaterial();
-        }
+        AssignColorToMaterial();
     }
 
     public void AssignColorToMaterial()
@@ -67,9 +56,9 @@ public class EyeColorController : MonoBehaviour
         {
             if (mat.name.Contains("m_Ari_Eye"))
             {
-                mat.SetColor("_TintR", _colors.r);
-                mat.SetColor("_TintG", _colors.g);
-                mat.SetColor("_TintB", _colors.b);
+                mat.SetColor("_TintR", _colorTuple.r);
+                mat.SetColor("_TintG", _colorTuple.g);
+                mat.SetColor("_TintB", _colorTuple.b);
             }
         }
     }
