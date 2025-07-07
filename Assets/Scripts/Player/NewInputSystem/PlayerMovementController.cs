@@ -258,6 +258,11 @@ public class PlayerMovementController : MonoBehaviour
             return;
         }
 
+        if (!_rb)
+        {
+            return;
+        }
+        
         // Handle normal jump
         _rb.velocity += new Vector3(0, _vals.jumpForce, 0);
     }

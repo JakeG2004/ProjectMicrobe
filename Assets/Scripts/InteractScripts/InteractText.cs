@@ -8,10 +8,18 @@ public class InteractText : MonoBehaviour
 {
     [SerializeField] private TMP_Text _interactText;
     private Animator _anim;
+    private GameObject _interactPrompt;
+
+    void Awake()
+    {
+        _anim = GetComponent<Animator>();
+        _interactPrompt = transform.GetChild(0).gameObject;
+    }
 
     void Start()
     {
         _anim = GetComponent<Animator>();
+        _interactPrompt.SetActive(false);
     }
 
     public void SetText(string text)
@@ -26,6 +34,8 @@ public class InteractText : MonoBehaviour
 
     public void ShowText(InteractableObject io)
     {
+        _interactPrompt.SetActive(true);
+        
         StopAllCoroutines();
         SetPos(io.gameObject.transform.position);
         //SetText(io.GetInteractText());
