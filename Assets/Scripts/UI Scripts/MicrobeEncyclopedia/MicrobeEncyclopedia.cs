@@ -22,8 +22,8 @@ public class MicrobeEncyclopedia : GeneralMenu
 
     public void HideInfo()
     {
-        _microbeContainer.SetActive(true);
-        _microbeInfoContainer.SetActive(false);
+        //_microbeContainer.SetActive(true);
+        //_microbeInfoContainer.SetActive(false);
     }
 
     public void ShowInfo(MicrobeSO microbe)
