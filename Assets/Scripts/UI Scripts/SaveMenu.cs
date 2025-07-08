@@ -44,4 +44,9 @@ public class SaveMenu : MonoBehaviour
     {
         SaveSystem.Instance.SaveState();
     }
+
+    public void DeleteSave()
+    {
+        SaveSystem.Instance.DeleteSave();
+    }
 }

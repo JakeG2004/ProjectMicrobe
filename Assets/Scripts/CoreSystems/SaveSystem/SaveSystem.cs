@@ -772,4 +772,22 @@ public class SaveSystem : MonoBehaviour
             }
         }
     }
+
+    public bool HasSave()
+    {
+        return File.Exists(_savePath);
+    }
+
+    public bool IsDefaultSave()
+    {
+        return (_currentState.playerCosmetics.Count == 0);
+    }
+
+    public void DeleteSave()
+    {
+        if (File.Exists(_savePath))
+        {
+            File.Delete(_savePath);
+        }
+    }
 }
