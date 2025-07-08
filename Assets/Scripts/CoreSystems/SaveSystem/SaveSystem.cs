@@ -62,6 +62,11 @@ public class SaveSystem : MonoBehaviour
     // Saves the current state of the game, optionally getting the player
     public void SaveState()
     {
+        SaveTo(_savePath);
+    }
+
+    public void SaveTo(string path)
+    {
         // Get the cosmetics off the player if the player exists
         if (GameObject.FindGameObjectWithTag("Player"))
         {
@@ -76,17 +81,22 @@ public class SaveSystem : MonoBehaviour
 
         // Write it to a file and announce it
         string saveJson = JsonUtility.ToJson(_currentState);
-        File.WriteAllText(_savePath, saveJson);
+        File.WriteAllText(path, saveJson);
         Debug.Log("Saved State");
     }
 
     // Loads the state from the save
     public void LoadState()
     {
+        LoadFrom(_savePath);
+    }
+
+    public void LoadFrom(string path)
+    {
         // If the file exists, load it
-        if (File.Exists(_savePath))
+        if (File.Exists(path))
         {
-            string loadJson = File.ReadAllText(_savePath);
+            string loadJson = File.ReadAllText(path);
             _currentState = JsonUtility.FromJson<SaveObject>(loadJson);
 
             // Load the cosmetics if the player is there
@@ -115,7 +125,7 @@ public class SaveSystem : MonoBehaviour
     private void CreateNewSave()
     {
         _currentState = new SaveObject();
-        
+
         // Write it to a file and announce it
         string saveJson = JsonUtility.ToJson(_currentState);
         File.WriteAllText(_savePath, saveJson);
