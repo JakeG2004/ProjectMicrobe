@@ -39,4 +39,9 @@ public class SaveMenu : MonoBehaviour
 
         SaveSystem.Instance.LoadFrom(paths[0]);
     }
+
+    public void SaveGame()
+    {
+        SaveSystem.Instance.SaveState();
+    }
 }
