@@ -798,8 +798,12 @@ public class SaveSystem : MonoBehaviour
     {
         if (File.Exists(_savePath))
         {
+            // Delete from disk
             Debug.Log("SAVE SYSTEM: Deleting save");
             File.Delete(_savePath);
+
+            // Delete from memory
+            CreateNewSave();
         }
     }
 }
