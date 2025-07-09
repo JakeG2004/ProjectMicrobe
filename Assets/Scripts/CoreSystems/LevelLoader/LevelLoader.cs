@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LevelLoader : MonoBehaviour
 {
     public static LevelLoader Instance {get; private set;}
+    [SerializeField] private GameObject _loadingScreen;
 
     void Awake()
     {
@@ -21,6 +23,11 @@ public class LevelLoader : MonoBehaviour
         }
 
         SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void Start()
+    {
+        _loadingScreen.SetActive(false);
     }
 
     void OnDestroy()
@@ -40,23 +47,79 @@ public class LevelLoader : MonoBehaviour
     {
         yield return null;
         SaveSystem.Instance.LoadState();
-        NewInputController.Instance.EmitCurDevice();
+        NewInputController.Instance?.EmitCurDevice();
     }
 
     public void LoadLevel(string levelName)
     {
         SaveSystem.Instance.SaveState();
-        SceneManager.LoadScene(levelName);
+        StartCoroutine(StartLoad(levelName));
+        //SceneManager.LoadScene(levelName);
     }
 
     public void LoadLevelNoSave(string levelName)
     {
-        SceneManager.LoadScene(levelName);
+        StartCoroutine(StartLoad(levelName));
+        //SceneManager.LoadScene(levelName);
+    }
+
+    private IEnumerator StartLoad(string levelName)
+    {
+        _loadingScreen.SetActive(true);
+        yield return null; // Ensure UI has a frame to render
+
+        yield return StartCoroutine(FadeLoadingScreen(1f, 0.5f));
+
+        AsyncOperation op = SceneManager.LoadSceneAsync(levelName);
+        op.allowSceneActivation = false; // Wait until fade is complete
+
+        // Optionally, wait for scene to be 90% loaded
+        while (op.progress < 0.9f)
+        {
+            yield return null;
+        }
+
+        // Now that loading screen is opaque, activate the scene
+        op.allowSceneActivation = true;
+
+        // Wait until scene is fully activated
+        while (!op.isDone)
+        {
+            yield return null;
+        }
+
+        /*op = Resources.UnloadUnusedAssets();
+        // Wait until scene is fully activated
+        while (!op.isDone)
+        {
+            yield return null;
+        }*/
+
+        yield return StartCoroutine(FadeLoadingScreen(0f, 0.5f));
+        _loadingScreen.SetActive(false);
+    }
+
+
+    private IEnumerator FadeLoadingScreen(float targetValue, float duration)
+    {
+        CanvasGroup cg = _loadingScreen.transform.GetChild(0).gameObject.GetComponent<CanvasGroup>();
+        float startVal = cg.alpha;
+
+        float elapsedTime = 0.0f;
+
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            cg.alpha = Mathf.Lerp(startVal, targetValue, elapsedTime / duration);
+            yield return null;
+        }
+
+        cg.alpha = targetValue;
     }
 
     public void ReloadLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        LoadLevelNoSave(SceneManager.GetActiveScene().name);
     }
 
     public void QuitGame()

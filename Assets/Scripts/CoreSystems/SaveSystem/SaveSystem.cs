@@ -233,11 +233,16 @@ public class SaveSystem : MonoBehaviour
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
 
+        if (player == null)
+        {
+            return;
+        }
+
         CarriedMicrobes cm = player.GetComponent<CarriedMicrobes>();
         CarriedPylon cp = player.GetComponent<CarriedPylon>();
 
         // Early return if references not found
-        if (player == null || cm == null || cp == null)
+        if (cm == null || cp == null)
         {
             return;
         }
