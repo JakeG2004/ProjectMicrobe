@@ -213,6 +213,12 @@ public class SaveSystem : MonoBehaviour
     public void SavePlayerBackpack()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+        if (player == null)
+        {
+            return;
+        }
+
         CarriedPylon cp = player.GetComponent<CarriedPylon>();
         CarriedMicrobes cm = player.GetComponent<CarriedMicrobes>();
 
@@ -792,6 +798,7 @@ public class SaveSystem : MonoBehaviour
     {
         if (File.Exists(_savePath))
         {
+            Debug.Log("SAVE SYSTEM: Deleting save");
             File.Delete(_savePath);
         }
     }

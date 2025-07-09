@@ -7,7 +7,7 @@
 * [ ] 2/3 more islands / levels
   * [ ] Different climates -> different microbes?
   * [ ] Have to discover microbes?
-* [ ] Main menu
+* [x] Main menu
 
 ## NPCs
 * [ ] Go through dialogue and readjust
@@ -24,6 +24,7 @@
   * [ ] If adding more music, make sure that the tracks may be split for different sound fonts
     * [ ] Does this exist online?
 * [ ] Control rebinding
+* [x] Loading Screen
 
 ## Functionality
 * Further optimization (scripts, mesh merging)

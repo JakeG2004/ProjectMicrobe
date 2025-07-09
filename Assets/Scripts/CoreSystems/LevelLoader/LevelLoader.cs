@@ -8,10 +8,11 @@ public class LevelLoader : MonoBehaviour
 {
     public static LevelLoader Instance {get; private set;}
     [SerializeField] private GameObject _loadingScreen;
+    private CanvasGroup _cg;
 
     void Awake()
     {
-        if(Instance != null && Instance != this)
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
         }
@@ -23,11 +24,14 @@ public class LevelLoader : MonoBehaviour
         }
 
         SceneManager.sceneLoaded += OnSceneLoaded;
+
+        _cg = _loadingScreen.transform.GetChild(0).gameObject.GetComponent<CanvasGroup>();
     }
 
     void Start()
     {
         _loadingScreen.SetActive(false);
+        _cg.alpha = 0;
     }
 
     void OnDestroy()
@@ -88,13 +92,6 @@ public class LevelLoader : MonoBehaviour
             yield return null;
         }
 
-        /*op = Resources.UnloadUnusedAssets();
-        // Wait until scene is fully activated
-        while (!op.isDone)
-        {
-            yield return null;
-        }*/
-
         yield return StartCoroutine(FadeLoadingScreen(0f, 0.5f));
         _loadingScreen.SetActive(false);
     }
@@ -102,19 +99,18 @@ public class LevelLoader : MonoBehaviour
 
     private IEnumerator FadeLoadingScreen(float targetValue, float duration)
     {
-        CanvasGroup cg = _loadingScreen.transform.GetChild(0).gameObject.GetComponent<CanvasGroup>();
-        float startVal = cg.alpha;
+        float startVal = _cg.alpha;
 
         float elapsedTime = 0.0f;
 
         while (elapsedTime < duration)
         {
             elapsedTime += Time.deltaTime;
-            cg.alpha = Mathf.Lerp(startVal, targetValue, elapsedTime / duration);
+            _cg.alpha = Mathf.Lerp(startVal, targetValue, elapsedTime / duration);
             yield return null;
         }
 
-        cg.alpha = targetValue;
+        _cg.alpha = targetValue;
     }
 
     public void ReloadLevel()
