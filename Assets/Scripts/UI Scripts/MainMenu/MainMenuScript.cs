@@ -28,12 +28,12 @@ public class MainMenuScript : MonoBehaviour
         // Directly load the level if a save exists, otherwise go to character creator
         if (!SaveSystem.Instance.IsDefaultSave())
         {
-            LevelLoader.Instance.LoadLevelNoSave("TutorialScene");
+            LevelLoader.Instance.LoadLevel("TutorialScene");
         }
 
         else
         {
-            LevelLoader.Instance.LoadLevelNoSave("CharacterCreator");
+            LevelLoader.Instance.LoadLevel("CharacterCreator");
         }
     }
 
