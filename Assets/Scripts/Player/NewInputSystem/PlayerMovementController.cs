@@ -86,13 +86,13 @@ public class PlayerMovementController : MonoBehaviour
         _states.submersion = Mathf.Clamp01(transform.position.y * -0.5f);
     }
 
-	void GetTurn()
+    void GetTurn()
     {
-		float vertAngle = NormalizeAngle(_cam.eulerAngles.x) / -60f;
-		_states.turn.y = Mathf.Clamp(Mathf.Lerp(_states.turn.y, vertAngle, 5f * Time.deltaTime), -1f, 1f);
-		// hoz turn towards camera direction. max turn adjustment when cam angle is 20+ degrees from player forward
-		_states.turn.x = Mathf.Lerp(_states.turn.x, Mathf.Clamp(_states.turnAngle / 20f, -1f, 1f), 8f * Time.fixedDeltaTime);
-	}
+        float vertAngle = NormalizeAngle(_cam.eulerAngles.x) / -60f;
+        _states.turn.y = Mathf.Clamp(Mathf.Lerp(_states.turn.y, vertAngle, 5f * Time.deltaTime), -1f, 1f);
+        // hoz turn towards camera direction. max turn adjustment when cam angle is 20+ degrees from player forward
+        _states.turn.x = Mathf.Lerp(_states.turn.x, Mathf.Clamp(_states.turnAngle / 20f, -1f, 1f), 8f * Time.fixedDeltaTime);
+    }
 
     private void Climb()
     {
@@ -172,10 +172,10 @@ public class PlayerMovementController : MonoBehaviour
         // forward direction if 15 degrees up from camera forward
         Vector3 forwardDir = Vector3.RotateTowards(_cam.forward, Vector3.up, Mathf.Deg2Rad * 15f, 0f);
 
-		if (_runningIntoWall)
+        if (_runningIntoWall)
         {
             _states.smoothedMove *= new Vector3(0.2f, 1f, 0.2f);
-		}
+        }
 
         // unnormalized direction vector
         Vector3 moveDir = (_states.smoothedMove.magnitude > 0.1f) ? (_states.smoothedMove.y * forwardDir + _states.smoothedMove.x * _cam.right) : forwardDir;
@@ -209,7 +209,7 @@ public class PlayerMovementController : MonoBehaviour
 
         // Calculate target movement speed
         Vector3 moveTarget = moveDir * moveSpeed;
-        if(_states.isSprinting)
+        if (_states.isSprinting)
         {
             moveTarget *= _vals.sprintMod;
         }
@@ -262,7 +262,7 @@ public class PlayerMovementController : MonoBehaviour
         {
             return;
         }
-        
+
         // Handle normal jump
         _rb.velocity += new Vector3(0, _vals.jumpForce, 0);
     }
@@ -311,14 +311,14 @@ public class PlayerMovementController : MonoBehaviour
         return new Vector3(vec.x, 0, vec.z);
     }
 
-	// Convert given anlge to range -180 to 180
-	float NormalizeAngle(float angle)
+    // Convert given anlge to range -180 to 180
+    float NormalizeAngle(float angle)
     {
-		angle %= 360;
-		if (angle > 180)
-			angle -= 360;
-		return angle;
-	}
+        angle %= 360;
+        if (angle > 180)
+            angle -= 360;
+        return angle;
+    }
 
     public PlayerStates GetStates()
     {
@@ -328,6 +328,12 @@ public class PlayerMovementController : MonoBehaviour
     public void SetMovementState(bool state)
     {
         _playerCanMove = state;
+    }
+
+    public void SetClimbPos(Transform ladder)
+    {
+        Vector3 newRot = ladder.eulerAngles;
+        transform.Rotate(newRot);
     }
 }
 

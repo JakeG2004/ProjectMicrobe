@@ -80,7 +80,7 @@ public class CCUIVals
 {
     public float hairIndex = 8;
     public int hairPrimary = 3;
-    public int hairSecondary = 12;
+    public int hairSecondary = 2;
     public int eyes = 1;
     public int skin = 1;
     public int glasses = 10;

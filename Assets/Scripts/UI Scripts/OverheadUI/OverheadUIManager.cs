@@ -12,20 +12,28 @@ public class OverheadUIManager : MonoBehaviour
 
     void Start()
     {
-        ShowStep(0);
-
         _pia = NewInputController.Instance.GetPlayerInputActions();
+
+        _pia.Player.Time.started += ctx => HideWaitPrompt();
+    }
+
+    public void ShowControls()
+    {
+        ShowStep(0);
 
         _pia.Player.Look.performed += ctx => OnInputStep(0);
         _pia.Player.Movement.performed += ctx => OnInputStep(1);
         _pia.Player.Zoom.performed += ctx => OnInputStep(2);
         _pia.Player.Jump.started += ctx => OnInputStep(3);
-
-        _pia.Player.Time.started += ctx => HideWaitPrompt();
     }
 
     void ShowStep(int index)
     {
+        if (_controlIndicators == null)
+        {
+            return;
+        }
+        
         for (int i = 0; i < _controlIndicators.Length; i++)
         {
             _controlIndicators[i].SetActive(i == index);
@@ -47,6 +55,11 @@ public class OverheadUIManager : MonoBehaviour
 
     public void HideAll()
     {
+        if (_controlIndicators == null)
+        {
+            return;
+        }
+        
         foreach (var indicator in _controlIndicators)
             indicator.SetActive(false);
     }
@@ -58,6 +71,11 @@ public class OverheadUIManager : MonoBehaviour
 
     public void HideWaitPrompt()
     {
+        if (_waitIndicator == null)
+        {
+            return;
+        }
+
         _waitIndicator.SetActive(false);
     }
 }

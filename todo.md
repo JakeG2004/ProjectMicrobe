@@ -1,17 +1,17 @@
 # TODO
 
 ## Scenes
-* [ ] Intro scene
-  * [ ] Teach movement
-  * [ ] Explain "story"
+* [x] Intro scene
+  * [x] Teach movement
+  * [x] Explain "story"
 * [ ] 2/3 more islands / levels
   * [ ] Different climates -> different microbes?
   * [ ] Have to discover microbes?
 * [x] Main menu
 
 ## NPCs
-* [ ] Go through dialogue and readjust
-  * [ ] Characterize
+* [x] Go through dialogue and readjust
+  * [x] Characterize
 * [ ] More NPCs
   * [ ] For the different islands
 * [ ] More minigames
@@ -22,7 +22,7 @@
   * [x] In settings menu?
 * [ ] More music / sfx
   * [ ] If adding more music, make sure that the tracks may be split for different sound fonts
-    * [ ] Does this exist online?
+* [ ] Does this exist online?
 * [ ] Control rebinding
 * [x] Loading Screen
 

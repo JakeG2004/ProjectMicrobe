@@ -4,9 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using SFB;
+using UnityEngine.UI;
+using TMPro;
 
 public class SaveMenu : MonoBehaviour
 {
+    [SerializeField] private TMP_Text _savingTextbox;
+
     public void ExportSave()
     {
         var extensions = new[]
@@ -43,10 +47,29 @@ public class SaveMenu : MonoBehaviour
     public void SaveGame()
     {
         SaveSystem.Instance.SaveState();
+        StartCoroutine(SaveGameText(0.5f));
     }
 
     public void DeleteSave()
     {
         SaveSystem.Instance.DeleteSave();
+    }
+
+    private IEnumerator SaveGameText(float delay)
+    {
+        _savingTextbox.text = "Saving";
+
+        for (int i = 0; i < 3; i++)
+        {
+            _savingTextbox.text += ".";
+            yield return new WaitForSeconds(delay);
+        }
+
+        _savingTextbox.text = "Game Saved!";
+    }
+
+    void OnEnable()
+    {
+        _savingTextbox.text = "Save Game";
     }
 }
