@@ -9,6 +9,11 @@ public class AddMicrobeToCM : MonoBehaviour
     public static AddMicrobeToCM Instance { get; private set; }
 
     [SerializeField] private MicrobeSO _microbeSO;
+
+    [Space(10)]
+    [SerializeField] private Image _microbeBody;
+    [SerializeField] private Image _microbeFace;
+
     private float _population = 0;
     private AddMicrobeToggler _srcToggle;
 
@@ -66,7 +71,11 @@ public class AddMicrobeToCM : MonoBehaviour
         TMP_Text _microbeName = GetComponent<TMP_Text>();
         _microbeName.text = _microbeSO.microbeName + ": " + _population.ToString();
         _srcToggle?.SetPopulation(_population);
-        //Debug.Log($"Set the population to {_population}");
+
+        _microbeBody.sprite = _microbeSO.microbeBody;
+        _microbeBody.color = _microbeSO.color;
+
+        _microbeFace.sprite = _microbeSO.microbeFace;
     }
 
     void OnEnable()
