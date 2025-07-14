@@ -16,13 +16,14 @@
   * [ ] More minigames
 
 ## QOL
-* [ ] Add icons to microbe vats
+* [x] Add icons to microbe vats
 * [x] Export / Import save
   * [x] In settings menu?
 * [ ] More music / sfx
   * [ ] If adding more music, make sure that the tracks may be split for different sound fonts
   * [ ] Does this exist online?
 * [ ] Control rebinding
+* [x] Look Sensitivity
 * [x] Loading Screen
 * [x] Ladder Snapping
 * [x] Encyclopedia Revamp

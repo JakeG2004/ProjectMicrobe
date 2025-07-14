@@ -71,6 +71,7 @@ public class SaveSystem : MonoBehaviour
         if (GameObject.FindGameObjectWithTag("Player"))
         {
             _currentState.playerCosmetics = SaveCosmetics();
+            SaveLookSensitivity();
         }
 
         // Perform the save functions
@@ -103,6 +104,7 @@ public class SaveSystem : MonoBehaviour
             if (GameObject.FindGameObjectWithTag("Player"))
             {
                 LoadCosmetics();
+                LoadLookSensitivity();
             }
 
             // Load the other things
@@ -144,6 +146,26 @@ public class SaveSystem : MonoBehaviour
     public void SaveName(string name)
     {
         _currentState.name = name;
+    }
+
+
+    // ====================
+    // ===== SETTINGS =====
+    // ====================
+
+    public void SaveLookSensitivity()
+    {
+        _currentState.controlsData.lookSensitivity = PlayerMovementController.Instance.GetLookSensitivity();
+    }
+
+    public float GetLookSensitivity()
+    {
+        return _currentState.controlsData.lookSensitivity;
+    }
+
+    public void LoadLookSensitivity()
+    {
+        PlayerMovementController.Instance.SetLookSensitivity(_currentState.controlsData.lookSensitivity);
     }
 
     // Save the volume

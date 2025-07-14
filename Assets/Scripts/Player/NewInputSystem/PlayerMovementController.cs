@@ -330,6 +330,16 @@ public class PlayerMovementController : MonoBehaviour
         _playerCanMove = state;
     }
 
+    public void SetLookSensitivity(float val)
+    {
+        _lookSensitivity = val;
+    }
+
+    public float GetLookSensitivity()
+    {
+        return _lookSensitivity;
+    }
+
     // Sets the rotation and position of the player to correspond with the ladder
     public void SetClimbPos(Transform ladder)
     {

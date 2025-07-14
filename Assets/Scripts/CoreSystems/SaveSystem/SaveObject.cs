@@ -11,6 +11,7 @@ public class SaveObject
     public CCUIVals ccVals = new CCUIVals();
     public List<RegionData> regionData = new List<RegionData>();
     public VolumeData volumeData = new VolumeData();
+    public ControlsData controlsData = new ControlsData();
     public List<ObjectiveGroupItem> objectives = new List<ObjectiveGroupItem>();
     public PlayerBackpack backpack = new PlayerBackpack();
 }
@@ -60,6 +61,12 @@ public class VolumeData
 }
 
 [System.Serializable]
+public class ControlsData
+{
+    public float lookSensitivity = 3f;
+}
+
+[System.Serializable]
 public class ObjectiveGroupItem
 {
     public string name;
@@ -87,26 +94,4 @@ public class CCUIVals
     public int upperBody = 2;
     public int lowerBody = 14;
     public int hat = 0;
-
-    /*
-    BASIC ARI LOOK:
-        "hairIndex": 0,
-        "hairPrimary": 3,
-        "hairSecondary": 12,
-        "eyes": 1,
-        "skin": 1,
-        "glasses": 10,
-        "upperBody": 2,
-        "lowerBody": 14
-
-    ANOTHER SENSIBLE DEFAULT:
-        "hairIndex": 0
-        "hairPrimary": 16
-        "hairSecondary": 2
-        "eyes": 0
-        "skin": 2
-        "glasses": 0
-        "upperBody": 7
-        "lowerBody": 5
-    */
 }
