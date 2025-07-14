@@ -6,6 +6,11 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "MicrobeSO", menuName = "ScriptableObjects/PopEngine/MicrobeSO")]
 public class MicrobeSO : ScriptableObject
 {
+    public Sprite microbeBody;
+    public Sprite microbeFace;
+    public Color color;
+
+    [Space(10)]
     // Basics for growth equations
     public string microbeName;
     public float population;

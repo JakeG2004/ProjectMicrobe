@@ -13,8 +13,7 @@
 * [x] Go through dialogue and readjust
   * [x] Characterize
 * [ ] More NPCs
-  * [ ] For the different islands
-* [ ] More minigames
+  * [ ] More minigames
 
 ## QOL
 * [ ] Add icons to microbe vats
@@ -22,9 +21,11 @@
   * [x] In settings menu?
 * [ ] More music / sfx
   * [ ] If adding more music, make sure that the tracks may be split for different sound fonts
-* [ ] Does this exist online?
+  * [ ] Does this exist online?
 * [ ] Control rebinding
 * [x] Loading Screen
+* [x] Ladder Snapping
+* [x] Encyclopedia Revamp
 
 ## Functionality
 * Further optimization (scripts, mesh merging)

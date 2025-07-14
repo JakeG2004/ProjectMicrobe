@@ -9,7 +9,6 @@ public class PlayerMovementController : MonoBehaviour
 
     [SerializeField] private PlayerControlVals _vals;
     [SerializeField] private LayerMask _collisionMask;
-
     [SerializeField] private float _gcRadius = 0.5f;
 
     private Rigidbody _rb;
@@ -19,6 +18,7 @@ public class PlayerMovementController : MonoBehaviour
     private float _lookSensitivity = 3.0f;
     private bool _playerCanMove = true;
     private bool _runningIntoWall = false;
+    private Coroutine _curCoroutine;
 
     void Awake()
     {
@@ -330,10 +330,50 @@ public class PlayerMovementController : MonoBehaviour
         _playerCanMove = state;
     }
 
+    // Sets the rotation and position of the player to correspond with the ladder
     public void SetClimbPos(Transform ladder)
     {
+        if (_curCoroutine != null)
+        {
+            return;
+        }
+
+        // Set rotation
         Vector3 newRot = ladder.eulerAngles;
-        transform.Rotate(newRot);
+        newRot.x = (newRot.x + 90f) % 360;
+
+        // Set position
+        Vector3 newPos = ladder.position + ladder.up * 0.2f;
+        newPos.y = transform.position.y;
+
+        // Call the subroutine
+        _curCoroutine = StartCoroutine(SnapToLadder(newPos, newRot));
+    }
+
+    // Positions the player to a reasonable pos and rotation to climb the ladder over the course of .1 seconds
+    private IEnumerator SnapToLadder(Vector3 targetPos, Vector3 targetRot)
+    {
+        float elapsedTime = 0.0f;
+        float totalTime = 0.1f;
+
+        Vector3 initPos = transform.position;
+        Vector3 initRot = transform.eulerAngles;
+
+        while (elapsedTime < totalTime)
+        {
+            elapsedTime += Time.deltaTime;
+            float ratio = elapsedTime / totalTime;
+
+            transform.position = Vector3.Lerp(initPos, targetPos, ratio);
+            transform.eulerAngles = Vector3.Lerp(initRot, targetRot, ratio);
+
+            yield return null;
+        }
+
+        transform.position = targetPos;
+        transform.eulerAngles = targetRot;
+
+        _curCoroutine = null;
     }
 }
 

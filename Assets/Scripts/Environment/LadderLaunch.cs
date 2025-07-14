@@ -1,6 +1,7 @@
 using UnityEngine;
 
-public class LadderLaunch : MonoBehaviour {
+public class LadderLaunch : MonoBehaviour
+{
 
 	PlayerStates _ps;
 
@@ -23,12 +24,15 @@ public class LadderLaunch : MonoBehaviour {
 			_ps.isClimbing = false;
 		}
 	}
+
+	/*private void OnDrawGizmos()
+	{
+		// Set color
+		Gizmos.color = Color.red;
+
+		Vector3 forwardPosition = transform.position + transform.up * 5.0f;
+
+		// Draw thje sphere
+		Gizmos.DrawSphere(forwardPosition, 1.0f);
+	}*/
 }
-
-
-
-/*
-void OnTriggerStay(Collider other) {
-		if (other.CompareTag("Player")) ic.climbing = true;
-	}
-*/
