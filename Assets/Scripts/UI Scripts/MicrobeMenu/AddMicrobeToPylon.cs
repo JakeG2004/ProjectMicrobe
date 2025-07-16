@@ -53,7 +53,18 @@ public class AddMicrobeToPylon : MonoBehaviour
 
     public void SetAddVal(float val)
     {
-        _numToAdd.text = val.ToString();
+        string numText = val.ToString();
+
+        // Get index of decimal point. Returns -1 if no match found
+        int periodIndex = numText.IndexOf('.');
+        if (periodIndex == -1 || periodIndex + 3 > numText.Length)
+        {
+            _numToAdd.text = numText;
+            return;
+        }
+
+        numText = numText.Substring(0, periodIndex + 3);
+        _numToAdd.text = numText;
     }
 
     public void SetSliderVal(string amt)

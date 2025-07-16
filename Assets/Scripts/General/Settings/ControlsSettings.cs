@@ -15,6 +15,7 @@ public class ControlsSettings : MonoBehaviour
     public void SetLookSensitivity(float val)
     {
         PlayerMovementController.Instance.SetLookSensitivity(val);
+        SaveSystem.Instance.SaveLookSensitivity();
     }
 
     void OnEnable()

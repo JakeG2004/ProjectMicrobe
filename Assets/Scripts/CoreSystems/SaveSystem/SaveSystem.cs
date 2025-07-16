@@ -80,6 +80,17 @@ public class SaveSystem : MonoBehaviour
         SavePlayerBackpack();
         SaveCCValues();
 
+        WriteCurrentState(path);
+    }
+
+    // Abstraction to write whatever is in the current state to the file, does not collect any new data.
+    public void WriteCurrentState()
+    {
+        WriteCurrentState(_savePath);
+    }
+
+    public void WriteCurrentState(string path)
+    {
         // Write it to a file and announce it
         string saveJson = JsonUtility.ToJson(_currentState);
         File.WriteAllText(path, saveJson);

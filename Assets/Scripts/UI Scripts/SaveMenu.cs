@@ -10,6 +10,8 @@ using TMPro;
 public class SaveMenu : MonoBehaviour
 {
     [SerializeField] private TMP_Text _savingTextbox;
+    [SerializeField] private TMP_Text _deleteTextbox;
+    private bool _pressedDelete = false;
 
     public void ExportSave()
     {
@@ -52,6 +54,15 @@ public class SaveMenu : MonoBehaviour
 
     public void DeleteSave()
     {
+        if (!_pressedDelete)
+        {
+            _deleteTextbox.text = "Press Again to Confirm";
+            _pressedDelete = true;
+            return;
+        }
+
+        _pressedDelete = false;
+        _deleteTextbox.text = "Deleted Save!";
         SaveSystem.Instance.DeleteSave();
     }
 
@@ -81,5 +92,12 @@ public class SaveMenu : MonoBehaviour
         }
 
         _savingTextbox.text = "Save Game";
+
+        _pressedDelete = false;
+
+        if (_savingTextbox == null)
+        {
+            _deleteTextbox.text = "Delete Save";   
+        }
     }
 }

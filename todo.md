@@ -23,31 +23,15 @@
   * Post-processing
 
 ## Playtest Feedback
-* Carla compressed dialogue
-* Nice numbers on add microbe to pylon screen
-* Resource for help always
+* Carla compressed dialogue (I like it as is, maybe change context to make more sense?)
+* Resource for help always (Tablet)
 * More balanced approach for bug minigame
 * Start graphs at maxed out state?
   * Would make more sense, but also doesn't show motion
-* Hats dont work
-* Some doors have improper corner collision
-* Master volume from main menu didnt save after Character Creator
-* Can fall through ceiling window in scientist room
-* Camera can clip into map
-* No collision on boat propeller
-* Adding labels to microbe Vats
-* Look sensitivity doesn't save (?)
-* Ladder snapping not perfect
-* Still able to reach unstable state in mountain pylon
-* Swipe scrolling messes with click UI
-* Explain that microbe populations are measure in (thousands, hundred thousands, millions?)
-* Coyote time
-* Add encyclopedia access globally
+* Hats not implemented
+* Ladder snapping not perfect (WORKIN ON IT)
+* Still able to reach unstable state in mountain pylon (POTENTIALLY FIXED)
+* Swipe scrolling messes with click UI (UNABLE TO REPRODUCE)
+* Add encyclopedia access globally (Tablet)
 * Lots of movement between island and boat
-* "There's are" om Exposition dialogue
-* Help menu can get covered
-* Can phase into people while talking to them
-* Can phase through items on the ship
-* Enforce that the correct mcirobe is gotten before dialogue may continue
-
-```
+  * [x] Got rid of "return to the scientist" missions at the starts of the sections. Potentially re-add

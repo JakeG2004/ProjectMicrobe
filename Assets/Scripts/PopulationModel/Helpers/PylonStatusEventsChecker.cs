@@ -23,7 +23,7 @@ public class PylonStatusEventsChecker : MonoBehaviour
 
     // Vars for calculating health
     private float _envHealth = 0.0f;
-    private const int HEALTH_SAMPLE_SIZE = 10;
+    private const int HEALTH_SAMPLE_SIZE = 20;
     private float[] _healthHist = new float[HEALTH_SAMPLE_SIZE];
     private int _curHealthIdx = 0;
 

@@ -17,7 +17,7 @@ public class PlayerMovementController : MonoBehaviour
     private Vector3 _smoothedLookDir = Vector3.forward;
     private float _lookSensitivity = 3.0f;
     private bool _playerCanMove = true;
-    private bool _runningIntoWall = false;
+    [SerializeField] private bool _runningIntoWall = false;
     private Coroutine _curCoroutine;
 
     void Awake()
@@ -88,6 +88,11 @@ public class PlayerMovementController : MonoBehaviour
 
     void GetTurn()
     {
+        if (_states.isClimbing)
+        {
+            return;
+        }
+
         float vertAngle = NormalizeAngle(_cam.eulerAngles.x) / -60f;
         _states.turn.y = Mathf.Clamp(Mathf.Lerp(_states.turn.y, vertAngle, 5f * Time.deltaTime), -1f, 1f);
         // hoz turn towards camera direction. max turn adjustment when cam angle is 20+ degrees from player forward
@@ -111,7 +116,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private void StepUp()
     {
-        if (_runningIntoWall)
+        if (_runningIntoWall || _states.isClimbing)
         {
             return;
         }
@@ -126,6 +131,11 @@ public class PlayerMovementController : MonoBehaviour
 
     private void Rotate()
     {
+        if (_states.isClimbing)
+        {
+            return;
+        }
+        
         Vector3 targetLookDir;
 
         // If moving, look in direction of input
@@ -169,6 +179,11 @@ public class PlayerMovementController : MonoBehaviour
 
     private void Move()
     {
+        if (_states.isClimbing)
+        {
+            return;
+        }
+        
         // forward direction if 15 degrees up from camera forward
         Vector3 forwardDir = Vector3.RotateTowards(_cam.forward, Vector3.up, Mathf.Deg2Rad * 15f, 0f);
 
@@ -184,7 +199,6 @@ public class PlayerMovementController : MonoBehaviour
 
         // unnormalized direction vector
         Vector3 moveDir = (_states.smoothedMove.magnitude > 0.1f) ? (_states.smoothedMove.y * forwardDir + _states.smoothedMove.x * _cam.right) : forwardDir;
-        moveDir.y = 0;
 
         // Reset controls to be effectively zero when player not allowed to move
         if (!_playerCanMove)
@@ -358,6 +372,13 @@ public class PlayerMovementController : MonoBehaviour
         Vector3 newRot = ladder.eulerAngles;
         newRot.x = (newRot.x + 90f) % 360;
 
+        // If coming in from the right, adjust rotation to account. Never rotate more that 180 degrees
+        if (transform.rotation.x - newRot.x > 180)
+        {
+            Debug.Log("test");
+            newRot.x -= 360;
+        }
+
         // Set position
         Vector3 newPos = ladder.position + ladder.up * 0.2f;
         newPos.y = transform.position.y;
@@ -390,6 +411,7 @@ public class PlayerMovementController : MonoBehaviour
         transform.eulerAngles = targetRot;
 
         _curCoroutine = null;
+
     }
 
     // void OnDrawGizmos()

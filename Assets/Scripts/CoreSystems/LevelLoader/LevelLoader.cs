@@ -61,10 +61,11 @@ public class LevelLoader : MonoBehaviour
         //SceneManager.LoadScene(levelName);
     }
 
+    // Writes the current state of the save file as well to save things like volume, controls, etc.
     public void LoadLevelNoSave(string levelName)
     {
+        SaveSystem.Instance.WriteCurrentState();
         StartCoroutine(StartLoad(levelName));
-        //SceneManager.LoadScene(levelName);
     }
 
     private IEnumerator StartLoad(string levelName)
