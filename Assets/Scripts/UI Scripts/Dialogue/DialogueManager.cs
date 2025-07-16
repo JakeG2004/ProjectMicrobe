@@ -17,7 +17,6 @@ public class DialogueManager : MonoBehaviour
     private Queue<DialogueUnit> _sentences;
     private Animator _anim;
     private Dialogue _curDialogue;
-    private SoundPlayer _sp;
     [SerializeField] private TMP_Text _nameText;
     [SerializeField] private TMP_Text _bodyText;
     [SerializeField] private Image _img;
@@ -25,6 +24,7 @@ public class DialogueManager : MonoBehaviour
     [Space(10)]
     [SerializeField] private UnityEvent _onDisplayDialogue;
     [SerializeField] private UnityEvent _onFinishDialogue;
+    private AudioClip _dialogueSound;
 
     // Start is called before the first frame update
     void Start()
@@ -41,7 +41,6 @@ public class DialogueManager : MonoBehaviour
 
         _sentences = new();
         _anim = GetComponent<Animator>();
-        _sp = GetComponent<SoundPlayer>();
     }
 
     // Starts the dialogue using the dialogue box
@@ -67,7 +66,7 @@ public class DialogueManager : MonoBehaviour
             _sentences.Enqueue(sentence);
         }
 
-        _sp.SetSound(0, _dso.dialogueSound);
+        _dialogueSound = _dso.dialogueSound;
 
         // Set the image to be the image in the Dialogue unit if its not null, disable if null
         _img.enabled = (_dso.img != null);
@@ -105,13 +104,13 @@ public class DialogueManager : MonoBehaviour
     private IEnumerator TypeSentence(string sentence)
     {
         // Play the continue sound
-        GetComponent<SoundPlayer>().PlaySound(1);
+        SoundManager.PlaySound(SoundType.MENU_OPEN);
 
         _bodyText.text = "";
         foreach (char letter in sentence.ToCharArray())
         {
             _bodyText.text += letter;
-            _sp.PlayRapidSound(0);
+            SoundManager.PlayRapidSound(_dialogueSound);
 
             if (_anim.GetBool("IsOpen") == false)
             {

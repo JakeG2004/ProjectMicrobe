@@ -36,6 +36,12 @@ public class PlayerMovementController : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
         _cam = Camera.main.transform;
         _states = GetComponent<PlayerStates>();
+    }
+
+    void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
 
         // Add our generated input sytem actions
         PlayerInputActions playerInputActions = NewInputController.Instance.GetPlayerInputActions();
@@ -56,12 +62,6 @@ public class PlayerMovementController : MonoBehaviour
 
         // zoom lambda
         playerInputActions.Player.Zoom.performed += ctx => _states.zoom = Mathf.Clamp01(_states.zoom + Mathf.Sign(ctx.ReadValue<float>()) * _vals.scrollAmt);
-    }
-
-    void Start()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
     }
 
     void FixedUpdate()
@@ -174,11 +174,17 @@ public class PlayerMovementController : MonoBehaviour
 
         if (_runningIntoWall)
         {
+            if (_states.smoothedMove.y > 0)
+            {
+                _states.smoothedMove.y = 0;
+            }
+
             _states.smoothedMove *= new Vector3(0.2f, 1f, 0.2f);
         }
 
         // unnormalized direction vector
         Vector3 moveDir = (_states.smoothedMove.magnitude > 0.1f) ? (_states.smoothedMove.y * forwardDir + _states.smoothedMove.x * _cam.right) : forwardDir;
+        moveDir.y = 0;
 
         // Reset controls to be effectively zero when player not allowed to move
         if (!_playerCanMove)
@@ -385,6 +391,14 @@ public class PlayerMovementController : MonoBehaviour
 
         _curCoroutine = null;
     }
+
+    // void OnDrawGizmos()
+    // {
+    //     Vector3 drawPos = transform.position + (transform.forward * 2f);
+    // 
+    //     Gizmos.color = Color.red;
+    //     Gizmos.DrawSphere(drawPos, 1f);
+    // }
 }
 
 

@@ -19,7 +19,6 @@ public class MountainPlayerController : MonoBehaviour
     private Vector3 _offset = Vector3.zero;
     private Transform _originalParent;
     private Vector3 _initPlayerPos;
-    private SoundPlayer _sp;
     float _prevArrowScale = 0.0f;
     bool _canPlaySound = false;
     private PlayerInputActions _pia;
@@ -30,7 +29,6 @@ public class MountainPlayerController : MonoBehaviour
 
     void Start()
     {
-        _sp = GetComponent<SoundPlayer>();
         _initPlayerPos = transform.position;
         _originalParent = transform.parent;
         _rb = GetComponent<Rigidbody2D>();
@@ -93,7 +91,7 @@ public class MountainPlayerController : MonoBehaviour
 
             if (_prevArrowScale < arrowScale)
             {
-                _sp.PlayRapidSound(0);
+                SoundManager.PlaySound(SoundType.EIGHT_BIT_BASS);
             }
 
             _prevArrowScale = arrowScale;
@@ -112,7 +110,7 @@ public class MountainPlayerController : MonoBehaviour
             _curPlatform = null;
             _prevArrowScale = 0.0f;
 
-            _sp.PlaySound(1);
+            SoundManager.PlaySound(SoundType.EIGHT_BIT_JUMP);
         }
 
         if (_jumpTrigger)
@@ -143,7 +141,7 @@ public class MountainPlayerController : MonoBehaviour
 
             if (_prevArrowScale < arrowScale)
             {
-                _sp.PlayRapidSound(0);
+                SoundManager.PlaySound(SoundType.EIGHT_BIT_BASS);
             }
 
             _prevArrowScale = arrowScale;
@@ -169,7 +167,7 @@ public class MountainPlayerController : MonoBehaviour
             _curPlatform = null;
             _prevArrowScale = 0.0f;
 
-            _sp.PlaySound(1);
+            //_sp.PlaySound(1);
         }
     }
 

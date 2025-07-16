@@ -16,14 +16,11 @@ public class GeneralMenu : MonoBehaviour
 
     // Component references
     protected MenuControlsManager _mcm;
-    protected AudioSource _as;
-    protected SoundPlayer _sp;
     protected BoolGameEventTrigger _bget;
 
     protected virtual void Start()
     {
         _mcm = GetComponent<MenuControlsManager>();
-        _sp = GetComponent<SoundPlayer>();
         _bget = GetComponent<BoolGameEventTrigger>();
 
         if (_panel != null)
@@ -51,13 +48,13 @@ public class GeneralMenu : MonoBehaviour
         // Handle the audio
         if (_isActive)
         {
-            _sp.PlaySound(0);
+            SoundManager.PlaySound(SoundType.MENU_OPEN);
             NewInputController.Instance.SetMenuMode();
         }
 
         else
         {
-            _sp.PlaySound(1);
+            SoundManager.PlaySound(SoundType.MENU_CLOSED);
             NewInputController.Instance.Set3DMode();
         }
 

@@ -57,6 +57,11 @@ public class SaveMenu : MonoBehaviour
 
     private IEnumerator SaveGameText(float delay)
     {
+        if (_savingTextbox == null)
+        {
+            yield break;
+        }
+
         _savingTextbox.text = "Saving";
 
         for (int i = 0; i < 3; i++)
@@ -70,6 +75,11 @@ public class SaveMenu : MonoBehaviour
 
     void OnEnable()
     {
+        if (_savingTextbox == null)
+        {
+            return;
+        }
+
         _savingTextbox.text = "Save Game";
     }
 }

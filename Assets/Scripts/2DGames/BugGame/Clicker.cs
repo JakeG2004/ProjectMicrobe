@@ -32,11 +32,9 @@ public class Clicker : MonoBehaviour
     private PlayerInputActions _pia;
     private Rigidbody2D _rb;
     private Vector2 _moveVector;
-    private SoundPlayer _sp;
 
     void Awake()
     {
-        _sp = GetComponent<SoundPlayer>();
         _rb = GetComponent<Rigidbody2D>();
     }
 
@@ -83,11 +81,7 @@ public class Clicker : MonoBehaviour
         col.gameObject.GetComponent<RandomBugMovement>().ResetBug();
         GetComponent<IntGameEventTrigger>().TriggerEvent(1);
 
-        if (_sp == null)
-        {
-            Debug.Log("test");
-        }
-        _sp.PlayRapidSound(0);
+        SoundManager.PlaySound(SoundType.EIGHT_BIT_COLLECTED);
     }
 
     public void Click()

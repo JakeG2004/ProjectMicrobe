@@ -1,40 +1,53 @@
 # TODO
 
 ## Scenes
-* [x] Intro scene
-  * [x] Teach movement
-  * [x] Explain "story"
 * [ ] 2/3 more islands / levels
   * [ ] Different climates -> different microbes?
   * [ ] Have to discover microbes?
-* [x] Main menu
 
 ## NPCs
-* [x] Go through dialogue and readjust
-  * [x] Characterize
 * [ ] More NPCs
   * [ ] More minigames
 
 ## QOL
-* [x] Add icons to microbe vats
-* [x] Export / Import save
-  * [x] In settings menu?
-* [ ] More music / sfx
+* [ ] More music / sfx - looking like midi tracks arent easy to find royalty free
   * [ ] If adding more music, make sure that the tracks may be split for different sound fonts
   * [ ] Does this exist online?
 * [ ] Control rebinding
-* [x] Look Sensitivity
-* [x] Loading Screen
-* [x] Ladder Snapping
-* [x] Encyclopedia Revamp
 
 ## Functionality
 * Further optimization (scripts, mesh merging)
-* [x] Graphics settings
-  * [x] Resolution
-  * [x] Window mode
   * Shadow quality
-  * [x] V-Sync
   * Target frame rate
   * Anti-Aliasing
   * Post-processing
+
+## Playtest Feedback
+* Carla compressed dialogue
+* Nice numbers on add microbe to pylon screen
+* Resource for help always
+* More balanced approach for bug minigame
+* Start graphs at maxed out state?
+  * Would make more sense, but also doesn't show motion
+* Hats dont work
+* Some doors have improper corner collision
+* Master volume from main menu didnt save after Character Creator
+* Can fall through ceiling window in scientist room
+* Camera can clip into map
+* No collision on boat propeller
+* Adding labels to microbe Vats
+* Look sensitivity doesn't save (?)
+* Ladder snapping not perfect
+* Still able to reach unstable state in mountain pylon
+* Swipe scrolling messes with click UI
+* Explain that microbe populations are measure in (thousands, hundred thousands, millions?)
+* Coyote time
+* Add encyclopedia access globally
+* Lots of movement between island and boat
+* "There's are" om Exposition dialogue
+* Help menu can get covered
+* Can phase into people while talking to them
+* Can phase through items on the ship
+* Enforce that the correct mcirobe is gotten before dialogue may continue
+
+```

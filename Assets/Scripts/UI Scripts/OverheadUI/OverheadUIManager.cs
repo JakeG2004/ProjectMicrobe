@@ -36,6 +36,11 @@ public class OverheadUIManager : MonoBehaviour
         
         for (int i = 0; i < _controlIndicators.Length; i++)
         {
+            if (_controlIndicators[i] == null)
+            {
+                continue;
+            }
+            
             _controlIndicators[i].SetActive(i == index);
         }
     }
