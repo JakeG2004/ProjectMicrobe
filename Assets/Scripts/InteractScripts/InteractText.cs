@@ -38,7 +38,7 @@ public class InteractText : MonoBehaviour
         
         StopAllCoroutines();
         SetPos(io.gameObject.transform.position);
-        //SetText(io.GetInteractText());
+        SetText(io.GetInteractText());
 
         foreach (Transform child in _interactText.transform)
         {
