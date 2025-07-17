@@ -15,7 +15,6 @@ public class MicrobeEncyclopedia : GeneralMenu
     {
         base.Start();
         _exitButton = _exitButtonText.transform.parent.GetComponent<Button>();
-        Debug.Log(_exitButton);
     }
 
     public void ToggleMenuNormal()

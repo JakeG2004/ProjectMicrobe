@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c34f73d90a0c165b8372af24e2f39a5, type: 3}
   m_Name: PlayerStates
   m_EditorClassIdentifier: 
+  movementVals: {fileID: 11400000, guid: e94544175a565b33488d6b12fb6a68b2, type: 2}
   isClimbing: 0
   isJumping: 0
-  isGrounded: 0
+  isGrounded: 1
   longDrop: 0
-  isSprinting: 0
+  isSprinting: 1
   runningIntoWall: 0
   isBeingCarried: 0
   playerCanMove: 1

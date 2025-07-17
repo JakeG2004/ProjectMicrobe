@@ -5,6 +5,10 @@
 
 using UnityEngine;
 
+[RequireComponent(typeof(PlayerMovement))]
+[RequireComponent(typeof(PlayerInputHandler))]
+[RequireComponent(typeof(PlayerClimbing))]
+[RequireComponent(typeof(PlayerCarry))]
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance { get; private set; }
@@ -15,11 +19,10 @@ public class PlayerController : MonoBehaviour
 
     [Space(10)]
     [Header("Dependencies")]
-    [SerializeField] private PlayerInputHandler _inputHandler;
-    [SerializeField] private PlayerMovement _playerMovement;
-    [SerializeField] private PlayerClimbing _playerClimbing;
-    [SerializeField] private PlayerCarry _playerCarry;
-    [SerializeField] private PlayerAnimationController _animationController;
+    private PlayerInputHandler _inputHandler;
+    private PlayerMovement _playerMovement;
+    private PlayerClimbing _playerClimbing;
+    private PlayerCarry _playerCarry;
 
     void Awake()
     {
@@ -35,6 +38,7 @@ public class PlayerController : MonoBehaviour
 
         GetComponentReferences();
     }
+
 
     // Subscribes to events
     void OnEnable()
@@ -103,6 +107,11 @@ public class PlayerController : MonoBehaviour
         return _states;
     }
 
+    public PlayerMovementValsSO GetVals()
+    {
+        return _vals;
+    }
+
     public void StartCarry(GameObject drone)
     {
         if (_playerCarry != null)
@@ -136,12 +145,19 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void EndClimb()
+    {
+        if (_playerClimbing != null)
+        {
+            _playerClimbing.EndClimb();
+        }
+    }
+
     private void GetComponentReferences()
     {
         if (_inputHandler == null) _inputHandler = GetComponent<PlayerInputHandler>();
         if (_playerMovement == null) _playerMovement = GetComponent<PlayerMovement>();
         if (_playerClimbing == null) _playerClimbing = GetComponent<PlayerClimbing>();
         if (_playerCarry == null) _playerCarry = GetComponent<PlayerCarry>();
-        if (_animationController == null) _animationController = GetComponent<PlayerAnimationController>();
     }
 }

@@ -5,24 +5,25 @@
 
 using UnityEngine;
 
+[RequireComponent(typeof(PlayerController))]
 public class PlayerInputHandler : MonoBehaviour
 {
-    [SerializeField] private PlayerStatesSO _states;
-    [SerializeField] private float _lookSensitivity = 3f;
-
+    private PlayerStatesSO _states;
     private PlayerInputActions _playerInputActions;
 
     // Events that other components can subscribe to
     public event System.Action OnJumpStarted;
     public event System.Action OnSprintToggled;
 
+    void Awake()
+    {
+        _states = GetComponent<PlayerController>().GetStates();
+    }
+
     void Start()
     {
         _playerInputActions = NewInputController.Instance.GetPlayerInputActions();
-    }
 
-    void OnEnable()
-    {
         _playerInputActions.Player.Enable();
         BindInputActions();
         Cursor.lockState = CursorLockMode.Locked;
@@ -63,18 +64,18 @@ public class PlayerInputHandler : MonoBehaviour
         _playerInputActions.Player.Movement.performed -= ctx => _states.move = ctx.ReadValue<Vector2>();
         _playerInputActions.Player.Movement.canceled -= ctx => _states.move = Vector2.zero;
         _playerInputActions.Player.Sprint.started -= ctx => OnSprintToggled?.Invoke();
-        _playerInputActions.Player.Look.performed -= ctx => _states.look = ctx.ReadValue<Vector2>() * _lookSensitivity;
+        _playerInputActions.Player.Look.performed -= ctx => _states.look = ctx.ReadValue<Vector2>();
         _playerInputActions.Player.Look.canceled -= ctx => _states.look = Vector2.zero;
         _playerInputActions.Player.Zoom.performed -= ctx => _states.zoom = Mathf.Clamp01(_states.zoom + Mathf.Sign(ctx.ReadValue<float>()) * _states.movementVals.scrollAmt);
     }
 
     public void SetLookSensitivity(float val)
     {
-        _lookSensitivity = val;
+        _states.movementVals.lookSensitivity = val;
     }
 
     public float GetLookSensitivity()
     {
-        return _lookSensitivity;
+        return _states.movementVals.lookSensitivity;
     }
 }

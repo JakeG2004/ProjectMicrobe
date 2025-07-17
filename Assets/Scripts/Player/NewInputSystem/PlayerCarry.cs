@@ -5,10 +5,11 @@
 
 using UnityEngine;
 
+[RequireComponent(typeof(PlayerController))]
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerCarry : MonoBehaviour
 {
-    [SerializeField] private PlayerStatesSO _states;
+    private PlayerStatesSO _states;
 
     private Rigidbody _rb;
     private GameObject _drone;
@@ -16,6 +17,8 @@ public class PlayerCarry : MonoBehaviour
     void Awake()
     {
         _rb = GetComponent<Rigidbody>();
+
+        _states = GetComponent<PlayerController>().GetStates();
     }
 
     void FixedUpdate()

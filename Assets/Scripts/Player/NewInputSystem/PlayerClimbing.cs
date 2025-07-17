@@ -7,10 +7,11 @@ using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(PlayerController))]
 public class PlayerClimbing : MonoBehaviour
 {
-    [SerializeField] private PlayerStatesSO _states;
-    [SerializeField] private PlayerMovementValsSO _vals;
+    private PlayerStatesSO _states;
+    private PlayerMovementValsSO _vals;
 
     private Rigidbody _rb;
     private Coroutine _snapToLadderCoroutine;
@@ -18,6 +19,9 @@ public class PlayerClimbing : MonoBehaviour
     void Awake()
     {
         _rb = GetComponent<Rigidbody>();
+
+        _states = GetComponent<PlayerController>().GetStates();
+        _vals = GetComponent<PlayerController>().GetVals();
     }
 
     void FixedUpdate()
@@ -33,8 +37,9 @@ public class PlayerClimbing : MonoBehaviour
             return;
         }
 
-        _states.isClimbing = false;
-        _rb.velocity = new Vector3(0, _vals.ladderEjectForce, 0);
+        _rb.velocity = new Vector3(0f, _vals.ladderEjectForce, 0f);
+
+        EndClimb();
     }
 
     public void ApplyClimbMovement()

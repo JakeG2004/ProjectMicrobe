@@ -26,7 +26,7 @@ public class PlayerStatesSO : ScriptableObject
     [Header("Movement Vectors")]
     public Vector2 move = Vector2.zero;
     public Vector2 smoothedMove = Vector2.zero;
-    public Vector2 turn = Vector2.zero; /* FIGURE OUT WHERE THIS IS USED */
+    public Vector2 turn = Vector2.zero;
     public Vector2 look = Vector2.zero;
 
     [Space(10)]
@@ -37,5 +37,4 @@ public class PlayerStatesSO : ScriptableObject
     [Header("Animation / Visual")]
     public float turnAngle = 0.0f;
     public float zoom = 1.0f;
-    public float lookSensitivity = 3f;
 }

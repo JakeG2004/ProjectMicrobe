@@ -6,21 +6,25 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(PlayerController))]
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private PlayerStatesSO _states;
-    [SerializeField] private PlayerMovementValsSO _vals;
     [SerializeField] private LayerMask _collisionMask;
     [SerializeField] private float _gcRadius = 0.5f;
 
     private Rigidbody _rb;
     private Transform _cam;
     private Vector3 _smoothedLookDir = Vector3.forward;
+    private PlayerStatesSO _states;
+    private PlayerMovementValsSO _vals;
 
     void Awake()
     {
         _rb = GetComponent<Rigidbody>();
         _cam = Camera.main.transform;
+        
+        _states = GetComponent<PlayerController>().GetStates();
+        _vals = GetComponent<PlayerController>().GetVals();
     }
 
     void FixedUpdate()
@@ -133,7 +137,7 @@ public class PlayerMovement : MonoBehaviour
 
         // Flatten and normalize the vector
         targetLookDir = ProjectOnXZPlane(targetLookDir.normalized);
-        _smoothedLookDir = Vector3.Slerp(_smoothedLookDir, targetLookDir, TurnAngleBasedOnSubmersion());
+        _smoothedLookDir = Vector3.Slerp(_smoothedLookDir, targetLookDir, _vals.turnSpeed);
 
         _states.turnAngle = Vector3.SignedAngle(transform.forward, _smoothedLookDir, Vector3.up);
 
@@ -159,8 +163,12 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 forwardDir = Vector3.RotateTowards(_cam.forward, Vector3.up, Mathf.Deg2Rad * _vals.cameraAngle, 0f);
 
-        // Break this into if statements
-        Vector3 moveDir = (_states.smoothedMove.magnitude > 0.1f) ? (_states.smoothedMove.y * forwardDir + _states.smoothedMove.x * _cam.right) : forwardDir;
+        // Calculate the direction of movement
+        Vector3 moveDir = Vector3.zero;
+        if (_states.smoothedMove.magnitude > 0.1f)
+        {
+            moveDir = _states.smoothedMove.y * forwardDir + _states.smoothedMove.x * _cam.right;
+        }
 
         if (_states.runningIntoWall && _states.smoothedMove.y > 0)
         {
@@ -190,6 +198,7 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 moveTarget = moveDir * moveSpeed;
 
+        // Handle sprinting
         if (_states.isSprinting)
         {
             moveTarget *= _vals.sprintMod;

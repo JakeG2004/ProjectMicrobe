@@ -115,24 +115,24 @@ public class SaveSystem : MonoBehaviour
             if (GameObject.FindGameObjectWithTag("Player"))
             {
                 LoadCosmetics();
-                Debug.Log("Loaded cosmetics");
+                // Debug.Log("Loaded cosmetics");
                 LoadLookSensitivity();
-                Debug.Log("Loaded Look Sensitivity");
+                // Debug.Log("Loaded Look Sensitivity");
             }
 
             // Load the other things
             LoadVolume();
-            Debug.Log("Loaded volume");
+            // Debug.Log("Loaded volume");
             LoadRegions();
-            Debug.Log("Loaded regions");
+            // Debug.Log("Loaded regions");
             LoadObjectives();
-            Debug.Log("Loaded objetives");
+            // Debug.Log("Loaded objetives");
             LoadPlayerBackpack();
-            Debug.Log("Loaded backpack");
+            // Debug.Log("Loaded backpack");
             LoadCCValues();
-            Debug.Log("Loaded CC");
+            // Debug.Log("Loaded CC");
             SetCCUnlockableStates();
-            Debug.Log("Loaded unlockables");
+            // Debug.Log("Loaded unlockables");
 
             // Alert the player
             Debug.Log("SAVE SYSTEM: Loaded state");
@@ -174,14 +174,14 @@ public class SaveSystem : MonoBehaviour
 
     public void SaveLookSensitivity()
     {
-        PlayerMovementController pmc = PlayerMovementController.Instance;
+        PlayerController pc = PlayerController.Instance;
 
-        if (pmc == null)
+        if (pc == null)
         {
             return;
         }
 
-        _currentState.controlsData.lookSensitivity = pmc.GetLookSensitivity();
+        _currentState.controlsData.lookSensitivity = pc.GetLookSensitivity();
     }
 
     public float GetLookSensitivity()

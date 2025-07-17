@@ -6,14 +6,14 @@ public class LadderLaunch : MonoBehaviour
 	{
 		if (other.CompareTag("Player"))
 		{
-			PlayerMovementController.Instance.SetClimbPos(transform);
+			PlayerController.Instance.SetClimbPos(transform);
 		}
 	}
 	void OnTriggerExit(Collider other)
 	{
 		if (other.CompareTag("Player"))
 		{
-			PlayerMovementController.Instance.SetClimbPos(null);
+			PlayerController.Instance.EndClimb();
 		}
 	}
 

@@ -22,6 +22,8 @@ public class PlayerMovementValsSO : ScriptableObject
     public float scrollAmt = 0.25f;
     public float inputSmoothingSpeed = 15f;
     public float cameraAngle = 15f;
+    public float turnSpeed = 0.2f;
+    public float lookSensitivity = 3f;
 
     [Space(10)]
     [Header("Movement Parameters")]

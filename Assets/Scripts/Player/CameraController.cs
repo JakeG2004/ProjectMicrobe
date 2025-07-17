@@ -97,8 +97,8 @@ public class CameraController : MonoBehaviour
 	}
 	void RotateCameraDirection()
 	{
-		angleVert = ClampAngle(angleVert - _states.look.y * _states.lookSensitivity / 2, angleVertBounds.x, angleVertBounds.y);
-		angleHoz += _states.look.x * _states.lookSensitivity;
+		angleVert = ClampAngle(angleVert - _states.look.y * _states.movementVals.lookSensitivity / 2, angleVertBounds.x, angleVertBounds.y);
+		angleHoz += _states.look.x * _states.movementVals.lookSensitivity;
 		// also turn camera when player moves to the side 
 		angleHoz += _states.move.x * 1.5f;
 
