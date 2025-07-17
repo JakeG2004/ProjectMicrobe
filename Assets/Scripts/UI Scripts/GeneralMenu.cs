@@ -62,6 +62,29 @@ public class GeneralMenu : MonoBehaviour
         _bget?.TriggerEvent(_isActive);
     }
 
+    public virtual void ToggleMenuVisibility()
+    {
+        // Toggle the Active State
+        _isActive = !_isActive;
+
+        // Set the panel
+        if (_panel != null)
+        {
+            _panel?.SetActive(_isActive);    
+        }
+        
+        // Handle the audio
+        if (_isActive)
+        {
+            SoundManager.PlaySound(SoundType.MENU_OPEN);
+        }
+
+        else
+        {
+            SoundManager.PlaySound(SoundType.MENU_CLOSED);
+        }
+    }
+
     void SetMouseVisibility(bool state)
     {
         _mcm?.SetMouseState(state);
