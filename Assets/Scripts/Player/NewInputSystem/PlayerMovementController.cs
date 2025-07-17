@@ -7,18 +7,18 @@ public class PlayerMovementController : MonoBehaviour
 {
     public static PlayerMovementController Instance { get; private set; }
 
-    [SerializeField] private PlayerControlVals _vals;
+    [SerializeField] private PlayerStatesSO _states;
+    [SerializeField] private PlayerMovementValsSO _vals;
     [SerializeField] private LayerMask _collisionMask;
     [SerializeField] private float _gcRadius = 0.5f;
 
     private Rigidbody _rb;
     private Transform _cam;
-    private PlayerStates _states;
     private Vector3 _smoothedLookDir = Vector3.forward;
     private float _lookSensitivity = 3.0f;
-    private bool _playerCanMove = true;
-    [SerializeField] private bool _runningIntoWall = false;
     private Coroutine _curCoroutine;
+    private GameObject _drone;
+    private Transform _carryOffset;
 
     void Awake()
     {
@@ -35,7 +35,6 @@ public class PlayerMovementController : MonoBehaviour
         // Get components
         _rb = GetComponent<Rigidbody>();
         _cam = Camera.main.transform;
-        _states = GetComponent<PlayerStates>();
     }
 
     void Start()
@@ -66,6 +65,13 @@ public class PlayerMovementController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (_states.isBeingCarried)
+        {
+            transform.position = _drone.transform.position;
+            transform.eulerAngles = _drone.transform.eulerAngles;
+            return; 
+        }
+
         _states.smoothedMove = Vector2.Lerp(_states.smoothedMove, _states.move, _vals.inputSmoothingSpeed * Time.fixedDeltaTime);
         if (_states.move.magnitude < 0.1f && _states.smoothedMove.magnitude < 0.1f)
         {
@@ -116,7 +122,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private void StepUp()
     {
-        if (_runningIntoWall || _states.isClimbing)
+        if (_states.runningIntoWall || _states.isClimbing)
         {
             return;
         }
@@ -187,7 +193,7 @@ public class PlayerMovementController : MonoBehaviour
         // forward direction if 15 degrees up from camera forward
         Vector3 forwardDir = Vector3.RotateTowards(_cam.forward, Vector3.up, Mathf.Deg2Rad * 15f, 0f);
 
-        if (_runningIntoWall)
+        if (_states.runningIntoWall)
         {
             if (_states.smoothedMove.y > 0)
             {
@@ -201,7 +207,7 @@ public class PlayerMovementController : MonoBehaviour
         Vector3 moveDir = (_states.smoothedMove.magnitude > 0.1f) ? (_states.smoothedMove.y * forwardDir + _states.smoothedMove.x * _cam.right) : forwardDir;
 
         // Reset controls to be effectively zero when player not allowed to move
-        if (!_playerCanMove)
+        if (!_states.playerCanMove)
         {
             _states.move = Vector2.zero;
         }
@@ -261,7 +267,7 @@ public class PlayerMovementController : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext ctx)
     {
-        if (!_playerCanMove || !_states.isGrounded)
+        if (!_states.playerCanMove || !_states.isGrounded)
         {
             return;
         }
@@ -292,7 +298,7 @@ public class PlayerMovementController : MonoBehaviour
         float radius = 0.1f;
         Vector3 startPos = transform.position + transform.forward * 0.3f + transform.up * 0.8f;
         Vector3 endPos = transform.position + transform.forward * 0.3f + transform.up * 1.8f;
-        _runningIntoWall = Physics.CheckCapsule(startPos, endPos, radius, ~_collisionMask, QueryTriggerInteraction.Ignore);
+        _states.runningIntoWall = Physics.CheckCapsule(startPos, endPos, radius, ~_collisionMask, QueryTriggerInteraction.Ignore);
     }
 
     private void CheckIfGrounded()
@@ -340,14 +346,14 @@ public class PlayerMovementController : MonoBehaviour
         return angle;
     }
 
-    public PlayerStates GetStates()
+    public PlayerStatesSO GetStates()
     {
         return _states;
     }
 
     public void SetMovementState(bool state)
     {
-        _playerCanMove = state;
+        _states.playerCanMove = state;
     }
 
     public void SetLookSensitivity(float val)
@@ -363,6 +369,13 @@ public class PlayerMovementController : MonoBehaviour
     // Sets the rotation and position of the player to correspond with the ladder
     public void SetClimbPos(Transform ladder)
     {
+        if (ladder == null)
+        {
+            _states.isClimbing = false;
+        }
+
+        _states.isClimbing = true;
+
         if (_curCoroutine != null)
         {
             return;
@@ -375,7 +388,6 @@ public class PlayerMovementController : MonoBehaviour
         // If coming in from the right, adjust rotation to account. Never rotate more that 180 degrees
         if (transform.rotation.x - newRot.x > 180)
         {
-            Debug.Log("test");
             newRot.x -= 360;
         }
 
@@ -385,6 +397,23 @@ public class PlayerMovementController : MonoBehaviour
 
         // Call the subroutine
         _curCoroutine = StartCoroutine(SnapToLadder(newPos, newRot));
+    }
+
+    public void StartCarry(GameObject drone)
+    {
+        _states.isBeingCarried = true;
+
+        _rb.isKinematic = true;
+        _rb.constraints = RigidbodyConstraints.None;
+        _drone = drone;
+    }
+
+    public void EndCarry()
+    {
+        _states.isBeingCarried = false;
+
+        _rb.isKinematic = false;
+        _rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
     }
 
     // Positions the player to a reasonable pos and rotation to climb the ladder over the course of .1 seconds
@@ -421,27 +450,4 @@ public class PlayerMovementController : MonoBehaviour
     //     Gizmos.color = Color.red;
     //     Gizmos.DrawSphere(drawPos, 1f);
     // }
-}
-
-
-[System.Serializable]
-public class PlayerControlVals
-{
-    [SerializeField] public float jumpForce = 8f;
-    [SerializeField] public float ladderEjectForce = 10f;
-
-    [Space(10)]
-    [SerializeField] public float swimSpeed = 4f;
-    [SerializeField] public float swimAcceleration = 2f;
-
-    [Space(10)]
-    [SerializeField] public float landSpeed = 6f;
-    [SerializeField] public float landAcceleration = 5f;
-    [SerializeField] public float sprintMod = 1.5f;
-
-    [Space(10)]
-    [SerializeField] public float scrollAmt = 0.25f;
-
-    [Space(10)]
-    [SerializeField] public float inputSmoothingSpeed = 15f;
 }

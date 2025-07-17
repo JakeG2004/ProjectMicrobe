@@ -2,26 +2,18 @@ using UnityEngine;
 
 public class LadderLaunch : MonoBehaviour
 {
-
-	PlayerStates _ps;
-
-	void Start()
-	{
-		_ps = PlayerMovementController.Instance.GetStates();
-	}
 	void OnTriggerEnter(Collider other)
 	{
 		if (other.CompareTag("Player"))
 		{
 			PlayerMovementController.Instance.SetClimbPos(transform);
-			_ps.isClimbing = true;
 		}
 	}
 	void OnTriggerExit(Collider other)
 	{
 		if (other.CompareTag("Player"))
 		{
-			_ps.isClimbing = false;
+			PlayerMovementController.Instance.SetClimbPos(null);
 		}
 	}
 

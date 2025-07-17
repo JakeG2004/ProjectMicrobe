@@ -8,8 +8,7 @@ public class CameraController : MonoBehaviour
 	Transform cam;
 	[SerializeField] Transform character;
 	[SerializeField] LayerMask mask;
-
-	PlayerStates _states;
+	[SerializeField] private PlayerStatesSO _states;
 
 	float zoom = 4f;
 	float zoomGoal = 4f;
@@ -49,10 +48,6 @@ public class CameraController : MonoBehaviour
 			lookPos = character.position + Vector3.up * lookPosYOffest;
 		}
 		filter = GetComponent<AudioLowPassFilter>();
-	}
-	void Start()
-	{
-		_states = PlayerMovementController.Instance.GetStates();
 	}
 
 	void Update()

@@ -1,16 +1,15 @@
 using UnityEngine;
 
-public class AnimationController : MonoBehaviour {
-
+public class AnimationController : MonoBehaviour 
+{
+    [SerializeField] private PlayerStatesSO _states;
     public Animator ac;
-    private PlayerStates _states;
 	private Rigidbody _rb;
 
 	private float moveVal = 0.0f;
 
 	void Awake()
 	{
-		_states = GetComponent<PlayerStates>();
 		_rb = GetComponent<Rigidbody>();
 	}
 
