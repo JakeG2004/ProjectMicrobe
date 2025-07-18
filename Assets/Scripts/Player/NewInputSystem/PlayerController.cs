@@ -5,10 +5,10 @@
 
 using UnityEngine;
 
-[RequireComponent(typeof(PlayerMovement))]
-[RequireComponent(typeof(PlayerInputHandler))]
-[RequireComponent(typeof(PlayerClimbing))]
-[RequireComponent(typeof(PlayerCarry))]
+// [RequireComponent(typeof(PlayerMovement))]
+// [RequireComponent(typeof(PlayerInputHandler))]
+// [RequireComponent(typeof(PlayerClimbing))]
+// [RequireComponent(typeof(PlayerCarry))]
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance { get; private set; }
