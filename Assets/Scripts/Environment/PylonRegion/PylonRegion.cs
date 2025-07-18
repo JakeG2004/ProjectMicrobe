@@ -9,6 +9,7 @@ public class PylonRegion : MonoBehaviour
     [SerializeField] private GameObject _regionPylon;
     [SerializeField] private UnityEvent _getPylonEvent;
     [SerializeField] private GameObject _pylonPrefab;
+    [SerializeField] private Transform _droneLandingPoint;
     private Dictionary<GameObject, Vector3> _plantScales = new();
 
     void Start()
@@ -47,5 +48,10 @@ public class PylonRegion : MonoBehaviour
     public GameObject GetPylonPrefab()
     {
         return _pylonPrefab;
+    }
+
+    public Transform GetDronePoint()
+    {
+        return _droneLandingPoint;
     }
 }
