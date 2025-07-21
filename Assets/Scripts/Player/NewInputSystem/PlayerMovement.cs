@@ -161,6 +161,11 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
+        if (_states.runningIntoWall && _states.move.y > 0)
+        {
+            _states.move.y = 0;
+        }
+
         Vector3 forwardDir = Vector3.RotateTowards(_cam.forward, Vector3.up, Mathf.Deg2Rad * _vals.cameraAngle, 0f);
 
         // Calculate the direction of movement

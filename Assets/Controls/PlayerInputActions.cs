@@ -98,6 +98,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Tablet"",
+                    ""type"": ""Button"",
+                    ""id"": ""64ba0abb-f268-4d83-9c0b-39fa41944155"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -313,7 +322,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""2D Vector"",
                     ""id"": ""a9963de2-b80b-4e6e-8893-6e0efeb46b43"",
-                    ""path"": ""2DVector"",
+                    ""path"": ""2DVector(mode=2)"",
                     ""interactions"": """",
                     ""processors"": ""ScaleVector2"",
                     ""groups"": """",
@@ -560,6 +569,28 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Time"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1766a19b-50d0-4385-9d06-f797b3a9e2b6"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""Tablet"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ac121de9-acf7-404b-997f-1c9ff92af81a"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Tablet"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1397,6 +1428,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player_Menu = m_Player.FindAction("Menu", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_Time = m_Player.FindAction("Time", throwIfNotFound: true);
+        m_Player_Tablet = m_Player.FindAction("Tablet", throwIfNotFound: true);
         // Minigames
         m_Minigames = asset.FindActionMap("Minigames", throwIfNotFound: true);
         m_Minigames_Move = m_Minigames.FindAction("Move", throwIfNotFound: true);
@@ -1484,6 +1516,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Menu;
     private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_Time;
+    private readonly InputAction m_Player_Tablet;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -1496,6 +1529,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @Menu => m_Wrapper.m_Player_Menu;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @Time => m_Wrapper.m_Player_Time;
+        public InputAction @Tablet => m_Wrapper.m_Player_Tablet;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1529,6 +1563,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Time.started += instance.OnTime;
             @Time.performed += instance.OnTime;
             @Time.canceled += instance.OnTime;
+            @Tablet.started += instance.OnTablet;
+            @Tablet.performed += instance.OnTablet;
+            @Tablet.canceled += instance.OnTablet;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1557,6 +1594,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Time.started -= instance.OnTime;
             @Time.performed -= instance.OnTime;
             @Time.canceled -= instance.OnTime;
+            @Tablet.started -= instance.OnTablet;
+            @Tablet.performed -= instance.OnTablet;
+            @Tablet.canceled -= instance.OnTablet;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1790,6 +1830,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnMenu(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnTime(InputAction.CallbackContext context);
+        void OnTablet(InputAction.CallbackContext context);
     }
     public interface IMinigamesActions
     {

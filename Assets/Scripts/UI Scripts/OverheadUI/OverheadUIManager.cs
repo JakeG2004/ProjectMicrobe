@@ -7,6 +7,7 @@ public class OverheadUIManager : MonoBehaviour
 {
     [SerializeField] private GameObject[] _controlIndicators;
     [SerializeField] private GameObject _waitIndicator;
+    [SerializeField] private GameObject _tabletIndicator;
     private PlayerInputActions _pia;
     private int _stepIndex = 0;
 
@@ -33,14 +34,14 @@ public class OverheadUIManager : MonoBehaviour
         {
             return;
         }
-        
+
         for (int i = 0; i < _controlIndicators.Length; i++)
         {
             if (_controlIndicators[i] == null)
             {
                 continue;
             }
-            
+
             _controlIndicators[i].SetActive(i == index);
         }
     }
@@ -64,7 +65,7 @@ public class OverheadUIManager : MonoBehaviour
         {
             return;
         }
-        
+
         foreach (var indicator in _controlIndicators)
             indicator.SetActive(false);
     }
@@ -82,5 +83,20 @@ public class OverheadUIManager : MonoBehaviour
         }
 
         _waitIndicator.SetActive(false);
+    }
+
+    public void ShowTabletPrompt()
+    {
+        _tabletIndicator.SetActive(true);
+    }
+
+    public void HideTabletPrompt()
+    {
+        if (_tabletIndicator == null)
+        {
+            return;
+        }
+
+        _tabletIndicator.SetActive(false);
     }
 }

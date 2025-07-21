@@ -15,17 +15,19 @@ public class DroneManager : MonoBehaviour
     [Header("Drone Objects")]
     [SerializeField] private NavMeshAgent _droneLead;
     [SerializeField] private GameObject _drone;
+    [SerializeField] private GameObject _droneInteract;
 
     [Header("Start and End Transformations")]
     [SerializeField] private Transform _homeBase;
 
-    private Transform _player;
+    private Queue<Flight> _flightQueue = new();
+    private PlayerCarry _pc;
+    private bool _isInFlight = false;
 
     // Settings
     private const float _CEILING_HEIGHT = 20f;
     private const float _Y_SMOOTHING = .75f;
     private const float _X_SMOOTHING = .9f;
-    private Queue<Flight> _flightQueue = new();
 
     void Awake()
     {
@@ -40,18 +42,20 @@ public class DroneManager : MonoBehaviour
         }
     }
 
-    public void TestDrone()
-    {
-        StartFlight(GameObject.FindGameObjectWithTag("Player").transform.position, _homeBase.position);
-    }
     void Start()
     {
-        _player = GameObject.FindGameObjectWithTag("Player")?.transform;
+        _pc = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCarry>();
     }
 
     // Constructs a flight path based start position and end position
     public void StartFlight(Vector3 curPlayerPos, Vector3 destinationPos)
     {
+        if (_isInFlight)
+        {
+            StopAllCoroutines();
+        }
+
+        Debug.Log("Start flight called");
         _flightQueue.Clear();
 
         _flightQueue.Enqueue(new Flight(curPlayerPos, FlightType.PICKUP));
@@ -59,6 +63,12 @@ public class DroneManager : MonoBehaviour
         _flightQueue.Enqueue(new Flight(_homeBase.position, FlightType.RETURN));
 
         StartCoroutine(FlightManager());
+    }
+
+    public void GetOnDrone()
+    {
+        _pc.StartCarry(_drone);
+        _droneInteract.SetActive(false);
     }
 
     private IEnumerator FlightManager()
@@ -86,9 +96,16 @@ public class DroneManager : MonoBehaviour
             yield return null;
         }
 
+        _isInFlight = true;
+
         // Follow the drone during flight
         while (_droneLead.remainingDistance > 0.1f)
         {
+            if (Vector3.Distance(_drone.transform.position, _droneLead.transform.position) > 60f)
+            {
+                _drone.transform.position = _droneLead.transform.position;
+            }
+
             Vector3 targetPos = _droneLead.transform.position;
 
             // Check for ceiling above the drone lead
@@ -128,6 +145,7 @@ public class DroneManager : MonoBehaviour
         {
             // Player getting picked up by the drone
             case FlightType.PICKUP:
+                _droneInteract.SetActive(true);
                 PlayerStatesSO states = PlayerController.Instance.GetStates();
                 while (!states.isBeingCarried)
                 {
@@ -143,6 +161,7 @@ public class DroneManager : MonoBehaviour
 
             // Drone returns to the home base
             case FlightType.RETURN:
+                _isInFlight = false;
                 break;
         }
     }

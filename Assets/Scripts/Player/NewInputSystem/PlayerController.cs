@@ -39,6 +39,13 @@ public class PlayerController : MonoBehaviour
         GetComponentReferences();
     }
 
+    void Start()
+    {
+        _states.isSprinting = false;
+        _states.isBeingCarried = false;
+        _states.longDrop = false;
+    }
+
 
     // Subscribes to events
     void OnEnable()
@@ -65,6 +72,11 @@ public class PlayerController : MonoBehaviour
         if (_states.isClimbing)
         {
             _playerClimbing.JumpFromClimb();
+        }
+
+        else if (_states.isBeingCarried)
+        {
+            _playerCarry.EndCarry();    
         }
 
         else

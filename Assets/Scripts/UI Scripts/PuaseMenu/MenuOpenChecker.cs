@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class MenuOpenChecker : MonoBehaviour
 {
     [SerializeField] private UnityEvent _onMenuOpenEvent;
-    private bool _menuCanOpen = true;
+    [SerializeField] private bool _menuCanOpen = true;
 
     public void SetMenuState(bool state)
     {

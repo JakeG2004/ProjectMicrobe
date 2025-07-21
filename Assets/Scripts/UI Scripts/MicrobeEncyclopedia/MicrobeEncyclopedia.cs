@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class MicrobeEncyclopedia : GeneralMenu
 {
-   
+
     [Space(10)]
     [SerializeField] private TMP_Text _exitButtonText;
     private Button _exitButton;
@@ -33,5 +33,10 @@ public class MicrobeEncyclopedia : GeneralMenu
         _exitButton.onClick.AddListener(ToggleMenuVisibility);
 
         ToggleMenu();
+    }
+
+    public void SelectOnBack(Button src)
+    {
+        _exitButton.onClick.AddListener(() => src.Select());
     }
 }

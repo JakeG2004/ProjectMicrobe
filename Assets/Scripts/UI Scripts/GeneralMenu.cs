@@ -70,9 +70,9 @@ public class GeneralMenu : MonoBehaviour
         // Set the panel
         if (_panel != null)
         {
-            _panel?.SetActive(_isActive);    
+            _panel?.SetActive(_isActive);
         }
-        
+
         // Handle the audio
         if (_isActive)
         {
@@ -83,6 +83,8 @@ public class GeneralMenu : MonoBehaviour
         {
             SoundManager.PlaySound(SoundType.MENU_CLOSED);
         }
+
+        _bget.TriggerEvent(_isActive);
     }
 
     void SetMouseVisibility(bool state)

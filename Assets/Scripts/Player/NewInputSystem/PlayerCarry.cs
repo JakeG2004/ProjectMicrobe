@@ -10,7 +10,6 @@ using UnityEngine;
 public class PlayerCarry : MonoBehaviour
 {
     private PlayerStatesSO _states;
-
     private Rigidbody _rb;
     private GameObject _drone;
 
@@ -32,6 +31,9 @@ public class PlayerCarry : MonoBehaviour
 
     public void StartCarry(GameObject drone)
     {
+        _states.move = Vector2.zero;
+        _states.isJumping = false;
+        _states.longDrop = false;
         _states.isBeingCarried = true;
 
         // Allow the rb to be fully manipulated by the carrying body
