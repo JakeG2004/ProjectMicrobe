@@ -42,6 +42,7 @@ public class PylonMonitorManager : MonoBehaviour
         {
             string envName = psec.gameObject.GetComponent<MicrobePopSim>().GetEnvSO().envName;
             pylonDatas.Add(envName, psec.GetEnvHealth());
+            Debug.Log($"{envName}, {psec.GetEnvHealth()}");
         }
 
         return pylonDatas;
