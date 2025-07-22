@@ -50,7 +50,7 @@ public class CameraController : MonoBehaviour
 		filter = GetComponent<AudioLowPassFilter>();
 	}
 
-	void Update()
+	void LateUpdate()
 	{
 		if (character == null || _states == null)
 		{

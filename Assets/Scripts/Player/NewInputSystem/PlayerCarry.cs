@@ -20,7 +20,7 @@ public class PlayerCarry : MonoBehaviour
         _states = GetComponent<PlayerController>().GetStates();
     }
 
-    void FixedUpdate()
+    void LateUpdate()
     {
         if (_states.isBeingCarried && _drone != null)
         {

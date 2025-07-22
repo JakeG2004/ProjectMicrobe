@@ -15,7 +15,8 @@ public class DroneManager : MonoBehaviour
     [Header("Drone Objects")]
     [SerializeField] private NavMeshAgent _droneLead;
     [SerializeField] private GameObject _drone;
-    [SerializeField] private GameObject _droneInteract;
+    [SerializeField] private GameObject _droneMountInteract;
+    [SerializeField] private GameObject _droneDeliveryInteract;
 
     [Header("Start and End Transformations")]
     [SerializeField] private Transform _homeBase;
@@ -23,6 +24,8 @@ public class DroneManager : MonoBehaviour
     private Queue<Flight> _flightQueue = new();
     private PlayerCarry _pc;
     private bool _isInFlight = false;
+    private bool _playerPickedUpDelivery = false;
+    private List<MicrobeSO> _curDelivery = new();
 
     // Settings
     private const float _CEILING_HEIGHT = 20f;
@@ -47,6 +50,23 @@ public class DroneManager : MonoBehaviour
         _pc = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCarry>();
     }
 
+    public void ShipMicrobesToPlayer(List<MicrobeSO> microbes)
+    {
+        if (_isInFlight)
+        {
+            return;
+        }
+
+        _flightQueue.Clear();
+
+        _flightQueue.Enqueue(new Flight(_pc.gameObject.transform.position, FlightType.DELIVERY));
+        _flightQueue.Enqueue(new Flight(_homeBase.position, FlightType.RETURN));
+
+        _curDelivery = microbes;
+        _playerPickedUpDelivery = false;
+        StartCoroutine(FlightManager());
+    }
+
     // Constructs a flight path based start position and end position
     public void StartFlight(Vector3 curPlayerPos, Vector3 destinationPos)
     {
@@ -68,7 +88,7 @@ public class DroneManager : MonoBehaviour
     public void GetOnDrone()
     {
         _pc.StartCarry(_drone);
-        _droneInteract.SetActive(false);
+        _droneMountInteract.SetActive(false);
     }
 
     private IEnumerator FlightManager()
@@ -145,12 +165,14 @@ public class DroneManager : MonoBehaviour
         {
             // Player getting picked up by the drone
             case FlightType.PICKUP:
-                _droneInteract.SetActive(true);
+                _droneMountInteract.SetActive(true);
                 PlayerStatesSO states = PlayerController.Instance.GetStates();
                 while (!states.isBeingCarried)
                 {
-                    yield return null;
+                    yield return new WaitForSeconds(0.1f);
                 }
+
+                _droneMountInteract.SetActive(false);
 
                 break;
 
@@ -163,14 +185,37 @@ public class DroneManager : MonoBehaviour
             case FlightType.RETURN:
                 _isInFlight = false;
                 break;
+
+            // Drone is delivering a package
+            case FlightType.DELIVERY:
+                _droneDeliveryInteract.SetActive(true);
+                while (!_playerPickedUpDelivery)
+                {
+                    yield return new WaitForSeconds(0.1f);
+                }
+
+                _playerPickedUpDelivery = true;
+                _droneDeliveryInteract.SetActive(false);
+                break;
         }
+    }
+
+    public void SetPlayerDeliveryStatus(bool state)
+    {
+        _playerPickedUpDelivery = state;    
+    }
+
+    public List<MicrobeSO> GetCurrentDelivery()
+    {
+        return _curDelivery;
     }
 
     public enum FlightType
     {
         PICKUP,
         DROPOFF,
-        RETURN
+        RETURN,
+        DELIVERY,
     };
 
     private struct Flight
