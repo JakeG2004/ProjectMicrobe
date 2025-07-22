@@ -15,7 +15,6 @@ public class DroneCaller : MonoBehaviour
 
     public void CallDrone()
     {
-        Debug.Log("call drone called");
         Vector3 currentPos = transform.position;
         DroneManager.Instance.StartFlight(_player.position, _targetTransform.position);
     }

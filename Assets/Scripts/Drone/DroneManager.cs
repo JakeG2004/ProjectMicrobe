@@ -75,7 +75,6 @@ public class DroneManager : MonoBehaviour
             StopAllCoroutines();
         }
 
-        Debug.Log("Start flight called");
         _flightQueue.Clear();
 
         _flightQueue.Enqueue(new Flight(curPlayerPos, FlightType.PICKUP));
