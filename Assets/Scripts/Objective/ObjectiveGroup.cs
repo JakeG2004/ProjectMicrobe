@@ -10,6 +10,7 @@ using UnityEngine;
 public class ObjectiveGroup : MonoBehaviour
 {
     [SerializeField] private string _groupName;
+    [SerializeField] private int _objGroupIdx = 0;
     private List<string> _completedObjectives = new();
     private string _currentObjective;
     private bool _objGroupComplete = false;
@@ -57,6 +58,11 @@ public class ObjectiveGroup : MonoBehaviour
                 curObj.LoadPrereqs();
             }
         }
+    }
+
+    public int GetGroupIdx()
+    {
+        return _objGroupIdx;
     }
 
     public void SetGroupComplete(bool state)

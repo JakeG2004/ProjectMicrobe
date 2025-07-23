@@ -325,7 +325,7 @@ public class SaveSystem : MonoBehaviour
     public void SaveObjectives()
     {
         // Get all of the objective groups
-        ObjectiveGroup[] objGroups = Object.FindObjectsOfType<ObjectiveGroup>();
+        ObjectiveGroup[] objGroups = Object.FindObjectsByType<ObjectiveGroup>(FindObjectsSortMode.None);
 
         // Iterate through every objective group
         foreach (ObjectiveGroup objGroup in objGroups)
@@ -367,6 +367,7 @@ public class SaveSystem : MonoBehaviour
     {
         // Get all of the objective groups
         ObjectiveGroup[] objGroups = Object.FindObjectsOfType<ObjectiveGroup>();
+        System.Array.Sort(objGroups, (a, b) => a.GetGroupIdx().CompareTo(b.GetGroupIdx()));
 
         foreach (ObjectiveGroupItem ogi in _currentState.objectives)
         {
