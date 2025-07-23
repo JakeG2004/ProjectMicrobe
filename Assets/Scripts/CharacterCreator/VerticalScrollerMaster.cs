@@ -33,7 +33,7 @@ public class VerticalScrollerMaster : MonoBehaviour
         float viewportHeight = _scrollRect.viewport.rect.height;
 
         // Distance from top of content to the target's top
-        float itemTop = -target.anchoredPosition.y;
+        float itemTop = -(target.anchoredPosition.y) - (target.rect.height / 2);
         itemTop -= _content.GetComponent<VerticalLayoutGroup>().padding.top;
 
 

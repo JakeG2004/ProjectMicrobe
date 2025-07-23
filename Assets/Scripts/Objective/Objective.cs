@@ -14,24 +14,31 @@ using UnityEngine.Events;
 public class Objective : MonoBehaviour
 {
     [SerializeField] private ObjectiveChannelsSO _objectiveChannelsSO;
-    [Space(10)]
 
+    [Space(10)]
     [SerializeField] protected Objective _nextObjective;
-    [Space(10)]
 
+    [Space(10)]
     [SerializeField] protected string _objectiveText;
-    [Space(10)]
 
+    [Space(10)]
     [SerializeField] protected bool _isFirstObjective = false;
-    [Space(10)]
 
+    [Space(10)]
+    [Header("Objective Group Fields")]
     [SerializeField] protected Transform _targetObject;
     [SerializeField] protected ObjectiveGroup _objectiveGroup;
 
+    [Space(10)]
+    [Header("Unity Events")]
     [SerializeField] protected UnityEvent _onActivate;
     [SerializeField] protected UnityEvent _onComplete;
     [SerializeField] protected UnityEvent _onFail;
     [SerializeField] protected UnityEvent _onLoadPrereqs;
+
+    [Space(10)]
+    [TextArea(2, 10)]
+    [SerializeField] protected string _description;
 
     protected bool _isActivated = false;
     protected bool _isComplete = false;
@@ -74,6 +81,7 @@ public class Objective : MonoBehaviour
         _isActivated = true;
         _isComplete = true;
         _objectiveGroup.MarkComplete(this.gameObject.name);
+        _objectiveChannelsSO.objectiveSkippedSO.Raise(this);
         LoadPrereqs();
     }
 
@@ -172,6 +180,16 @@ public class Objective : MonoBehaviour
     public string GetObjectiveText()
     {
         return _objectiveText;
+    }
+
+    public ObjectiveGroup GetObjectiveGroup()
+    {
+        return _objectiveGroup;
+    }
+
+    public string GetDescriptionText()
+    {
+        return _description;
     }
 
     public bool IsActivated()

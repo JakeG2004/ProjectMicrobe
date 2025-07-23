@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class LevelLoader : MonoBehaviour
 {
     public static LevelLoader Instance {get; private set;}
+    public event System.Action OnSceneUnload;
     [SerializeField] private GameObject _loadingScreen;
     private CanvasGroup _cg;
 
@@ -74,6 +75,8 @@ public class LevelLoader : MonoBehaviour
         yield return null; // Ensure UI has a frame to render
 
         yield return StartCoroutine(FadeLoadingScreen(1f, 0.5f));
+
+        OnSceneUnload?.Invoke();
 
         AsyncOperation op = SceneManager.LoadSceneAsync(levelName);
         op.allowSceneActivation = false; // Wait until fade is complete

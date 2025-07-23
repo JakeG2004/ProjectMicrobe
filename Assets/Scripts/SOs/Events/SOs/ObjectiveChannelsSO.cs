@@ -15,4 +15,5 @@ public class ObjectiveChannelsSO : ScriptableObject
     public ObjectiveGameEventSO objectiveAddChannelSO;
     public ObjectiveGameEventSO objectiveCompleteChannelSO;
     public ObjectiveGameEventSO objectiveFailedChannelSO;
+    public ObjectiveGameEventSO objectiveSkippedSO;
 }
