@@ -11,12 +11,14 @@ using TMPro;
 public class OrderMicrobesManager : MonoBehaviour
 {
     [SerializeField] private TMP_Text _microbeText;
+    [SerializeField] private TMP_Text _orderButtonText;
     private List<MicrobeSO> _curMicrobeList = new();
 
     // Resets the main text to say the default things on enable
     void OnEnable()
     {
         _curMicrobeList.Clear();
+        _orderButtonText.text = "Place Order";
         UpdateText();
     }
 
@@ -47,6 +49,8 @@ public class OrderMicrobesManager : MonoBehaviour
         {
             return;    
         }
+
+        _orderButtonText.text = "Order Placed!";
 
         DroneManager.Instance.ShipMicrobesToPlayer(_curMicrobeList);
     }

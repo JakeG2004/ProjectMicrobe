@@ -7,16 +7,37 @@ using UnityEngine.EventSystems;
 public class VerticalScrollSlave : MonoBehaviour, ISelectHandler
 {
     [SerializeField] private GameObject _parentPanel;
-    VerticalScrollerMaster _vsm;
+    [SerializeField] private VerticalScrollerMaster _vsm;
 
     void Start()
     {
-        _vsm = VerticalScrollerMaster.Instance;
+        FindVerticalScrollMaster();
+
         _vsm.AddItem(_parentPanel);
     }
 
     public void OnSelect(BaseEventData eventData)
     {
         _vsm.ScrollTo(_parentPanel);
+    }
+
+    public void FindVerticalScrollMaster(int maxLevels = 5)
+    {
+        Transform current = transform.parent;
+        int levels = 0;
+
+        while (current != null && levels < maxLevels)
+        {
+            _vsm = current.GetComponent<VerticalScrollerMaster>();
+            if (_vsm != null)
+                return;
+
+            current = current.parent;
+            levels++;
+        }
+
+        // Optionally fall back to singleton or scene-wide search
+        if (_vsm == null)
+            _vsm = VerticalScrollerMaster.Instance ?? FindObjectOfType<VerticalScrollerMaster>();
     }
 }

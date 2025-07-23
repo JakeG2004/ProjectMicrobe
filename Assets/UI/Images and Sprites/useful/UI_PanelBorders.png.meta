@@ -63,7 +63,7 @@ TextureImporter:
       213: -5659852113394286554
     second: UI_BorderA_BottomBar_L
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -80,11 +80,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
-  ignoreMasterTextureLimit: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -123,6 +124,8 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -134,6 +137,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -146,6 +150,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -158,6 +163,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -170,6 +176,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -182,6 +189,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -344,7 +352,7 @@ TextureImporter:
         height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 28, y: 28, z: 28, w: 28}
+      border: {x: 20, y: 22, z: 21, w: 21}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -553,7 +561,7 @@ TextureImporter:
         width: 29
         height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 27, y: 20, z: 0, w: 20}
       outline: []
       physicsShape: []
@@ -576,27 +584,26 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      UI_PannelChunk_Asym1: -4051909453039046414
-      UI_BorderB_TopHardCut: 982446490474546585
       UI_BorderA_Bottom: -3147772609647727858
-      UI_BorderC_Float: -2089783446681052273
+      UI_BorderA_BottomBar_L: -5659852113394286554
       UI_BorderA_BottomBar_R: -2961661486817862327
-      UI_BorderB_Tab: -3350744339922819279
-      UI_BorderA_Bottom_R: -5091108625099019968
-      UI_BorderC_FloatTop: -6628507550950547853
-      UI_BorderB_TopFlat: 3351493967486060472
-      UI_BorderB_Top: 6121085215911129781
+      UI_BorderA_Bottom_Bar: -546380006284718905
       UI_BorderA_Bottom_L: 7006711892511391407
+      UI_BorderA_Bottom_R: -5091108625099019968
       UI_BorderA_Top: -2361403255389313478
       UI_BorderB_Bottom: -4702052683974980538
-      UI_BorderB_TopLeftSide: -221776787230713845
-      UI_BorderA_Bottom_Bar: -546380006284718905
-      UI_BorderA_BottomBar_L: -5659852113394286554
+      UI_BorderB_Tab: -3350744339922819279
       UI_BorderB_TabLeft: 1329599369963558682
+      UI_BorderB_Top: 6121085215911129781
+      UI_BorderB_TopFlat: 3351493967486060472
+      UI_BorderB_TopHardCut: 982446490474546585
+      UI_BorderB_TopLeftSide: -221776787230713845
+      UI_BorderC_Float: -2089783446681052273
+      UI_BorderC_FloatTop: -6628507550950547853
       UI_PannelChunk_Asym0: -1266512701533112556
-  spritePackingTag: 
+      UI_PannelChunk_Asym1: -4051909453039046414
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

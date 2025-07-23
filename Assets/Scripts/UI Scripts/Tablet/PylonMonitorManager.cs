@@ -6,6 +6,7 @@ public class PylonMonitorManager : MonoBehaviour
 {
     [SerializeField] private GameObject _pylonEntryPrefab;
     [SerializeField] private Transform _entriesParent;
+    [SerializeField] private GameObject _noPylonsObj;
     void OnEnable()
     {
         DestroyPylonEntries();
@@ -13,8 +14,11 @@ public class PylonMonitorManager : MonoBehaviour
 
         if (pylonDatas.Count == 0)
         {
+            _noPylonsObj.SetActive(true);
             return;
         }
+
+        _noPylonsObj.SetActive(false);
 
         foreach (var kvp in pylonDatas)
         {
