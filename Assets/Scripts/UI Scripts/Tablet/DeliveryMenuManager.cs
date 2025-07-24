@@ -10,7 +10,12 @@ public class DeliveryMenuManager : MonoBehaviour
     private const float ADD_AMT = 5;
     private IndividualMicrobeCtrl[] _allMicrobeControls;
     private List<MicrobeSO> _microbes = new();
+    private StringGameEventTrigger _gotMicrobeTrigger;
 
+    void Awake()
+    {
+        _gotMicrobeTrigger = GetComponent<StringGameEventTrigger>();
+    }
 
     // Subscribe to the button click events
     void OnEnable()
@@ -43,6 +48,7 @@ public class DeliveryMenuManager : MonoBehaviour
             {
                 MicrobeSO curMicrobe = _microbes[i];
                 _microbeEntries[i].onClick.AddListener(() => AddMicrobeToPlayer(curMicrobe));
+                _microbeEntries[i].onClick.AddListener(() => _gotMicrobeTrigger.TriggerEvent(curMicrobe.microbeName));
                 microbeText.text = curMicrobe.microbeName;
             }
 

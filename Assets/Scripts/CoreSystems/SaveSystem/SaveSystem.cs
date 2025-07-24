@@ -110,7 +110,7 @@ public class SaveSystem : MonoBehaviour
         {
             string loadJson = File.ReadAllText(path);
             _currentState = JsonUtility.FromJson<SaveObject>(loadJson);
-
+            
             // Load the cosmetics if the player is there
             if (GameObject.FindGameObjectWithTag("Player"))
             {
@@ -838,6 +838,16 @@ public class SaveSystem : MonoBehaviour
                     break;
             }
         }
+    }
+
+    public void SetGameComplete()
+    {
+        _currentState.hasCompletedGame = true;
+    }
+
+    public bool GameIsComplete()
+    {
+        return _currentState.hasCompletedGame;
     }
 
     public bool HasSave()

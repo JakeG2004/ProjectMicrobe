@@ -11,6 +11,7 @@ public class SaveMenu : MonoBehaviour
 {
     [SerializeField] private TMP_Text _savingTextbox;
     [SerializeField] private TMP_Text _deleteTextbox;
+    [SerializeField] private GameObject _star;
     private bool _pressedDelete = false;
 
     public void ExportSave()
@@ -97,7 +98,12 @@ public class SaveMenu : MonoBehaviour
 
         if (_savingTextbox == null)
         {
-            _deleteTextbox.text = "Delete Save";   
+            _deleteTextbox.text = "Delete Save";
         }
+    }
+
+    public void CheckStarState()
+    {
+        _star.SetActive(SaveSystem.Instance.GameIsComplete());
     }
 }

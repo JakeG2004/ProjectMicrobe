@@ -22,6 +22,18 @@
   * Anti-Aliasing
   * Post-processing
 
+## Game Demo TODO
+* Get video made
+  * Show off complete game
+* [x] Add ending to first island
+* [Controls images]
+  * Keyboard
+    * sprint
+    * Pause
+  * Gameapd
+    * sprint
+    * Pause
+
 ## Playtest Feedback
 * Carla compressed dialogue (I like it as is, maybe change context to make more sense?)
 * Resource for help always (Tablet)
@@ -32,6 +44,6 @@
 * Ladder snapping not perfect (WORKIN ON IT)
 * Still able to reach unstable state in mountain pylon (POTENTIALLY FIXED)
 * Swipe scrolling messes with click UI (UNABLE TO REPRODUCE)
-* Add encyclopedia access globally (Tablet)
-* Lots of movement between island and boat
+* [x] Add encyclopedia access globally (Tablet)
+* [x] Lots of movement between island and boat
   * [x] Got rid of "return to the scientist" missions at the starts of the sections. Potentially re-add

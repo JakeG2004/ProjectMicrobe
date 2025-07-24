@@ -11,6 +11,7 @@ using UnityEngine.UI;
 public class ControlsSettings : MonoBehaviour
 {
     [SerializeField] private Slider _lookSlider;
+    [SerializeField] private BoolGameEventListener _controlsListener;
 
     public void SetLookSensitivity(float val)
     {
@@ -21,5 +22,6 @@ public class ControlsSettings : MonoBehaviour
     void OnEnable()
     {
         _lookSlider.value = SaveSystem.Instance.GetLookSensitivity();
+        _controlsListener.OnEventRaised(NewInputController.Instance.GetCurrentInputDevice() == InputType.Controller);
     }
 }

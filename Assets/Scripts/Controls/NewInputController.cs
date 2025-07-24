@@ -51,18 +51,21 @@ public class NewInputController : MonoBehaviour
     {
         _pia.Player.Enable();
         _pia.Minigames.Disable();
+        _pia.UI.Disable();
     }
 
     public void SetMenuMode()
     {
         _pia.Player.Disable();
         _pia.Minigames.Disable();
+        _pia.UI.Enable();
     }
 
     public void SetMinigameMode()
     {
         _pia.Player.Disable();
         _pia.Minigames.Enable();
+        _pia.UI.Disable();
     }
 
     public InputType GetCurrentInputDevice()
@@ -103,6 +106,19 @@ public class NewInputController : MonoBehaviour
     public void EmitCurDevice()
     {
         Set3DMode();
+        if (_curDevice == InputType.Controller)
+        {
+            _onGamepad.Invoke();
+        }
+
+        else
+        {
+            _onMouseKeyboard.Invoke();
+        }
+    }
+
+    public void EmitCurDeviceNo3D()
+    {
         if (_curDevice == InputType.Controller)
         {
             _onGamepad.Invoke();

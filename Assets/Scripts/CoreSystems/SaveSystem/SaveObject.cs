@@ -14,6 +14,7 @@ public class SaveObject
     public ControlsData controlsData = new ControlsData();
     public List<ObjectiveGroupItem> objectives = new List<ObjectiveGroupItem>();
     public PlayerBackpack backpack = new PlayerBackpack();
+    public bool hasCompletedGame = false;
 }
 
 [System.Serializable]
