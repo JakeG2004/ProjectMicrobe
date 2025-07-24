@@ -26,7 +26,7 @@
 * Get video made
   * Show off complete game
 * [x] Add ending to first island
-* [Controls images]
+* [x] Controls images
   * Keyboard
     * sprint
     * Pause
@@ -36,13 +36,13 @@
 
 ## Playtest Feedback
 * Carla compressed dialogue (I like it as is, maybe change context to make more sense?)
-* Resource for help always (Tablet)
+* [x] Resource for help always (Tablet)
 * More balanced approach for bug minigame
 * Start graphs at maxed out state?
   * Would make more sense, but also doesn't show motion
 * Hats not implemented
-* Ladder snapping not perfect (WORKIN ON IT)
-* Still able to reach unstable state in mountain pylon (POTENTIALLY FIXED)
+* [x] Ladder snapping not perfect (WORKIN ON IT)
+* [x] Still able to reach unstable state in mountain pylon (POTENTIALLY FIXED)
 * Swipe scrolling messes with click UI (UNABLE TO REPRODUCE)
 * [x] Add encyclopedia access globally (Tablet)
 * [x] Lots of movement between island and boat

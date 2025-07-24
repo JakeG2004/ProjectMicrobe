@@ -125,6 +125,7 @@ public class DroneManager : MonoBehaviour
                 _drone.transform.position = _droneLead.transform.position;
             }
 
+            Vector3 targetRot = _droneLead.transform.eulerAngles;
             Vector3 targetPos = _droneLead.transform.position;
 
             // Check for ceiling above the drone lead
@@ -142,6 +143,7 @@ public class DroneManager : MonoBehaviour
 
             // Smoothly interpolate the drone toward the target
             _drone.transform.position = Vector3.Lerp(_drone.transform.position, targetPos, _X_SMOOTHING * Time.deltaTime);
+            _drone.transform.eulerAngles = Vector3.Lerp(_drone.transform.eulerAngles, targetRot, _X_SMOOTHING * Time.deltaTime);
 
             yield return null;
         }
