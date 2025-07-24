@@ -110,7 +110,7 @@ public class SaveSystem : MonoBehaviour
         {
             string loadJson = File.ReadAllText(path);
             _currentState = JsonUtility.FromJson<SaveObject>(loadJson);
-            
+
             // Load the cosmetics if the player is there
             if (GameObject.FindGameObjectWithTag("Player"))
             {
@@ -182,6 +182,11 @@ public class SaveSystem : MonoBehaviour
         }
 
         _currentState.controlsData.lookSensitivity = pc.GetLookSensitivity();
+    }
+
+    public void SaveLookSensitivity(float val)
+    {
+        _currentState.controlsData.lookSensitivity = val;
     }
 
     public float GetLookSensitivity()

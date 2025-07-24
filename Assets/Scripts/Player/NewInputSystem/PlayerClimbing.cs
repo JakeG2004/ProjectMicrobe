@@ -61,6 +61,10 @@ public class PlayerClimbing : MonoBehaviour
 
     public void SetClimbPos(Transform ladder)
     {
+        _rb.velocity = Vector2.zero;
+        _states.move = Vector2.zero;
+        _states.smoothedMove = Vector2.zero;
+
         // Stop any existing snap coroutine
         if (_snapToLadderCoroutine != null)
         {
@@ -93,13 +97,16 @@ public class PlayerClimbing : MonoBehaviour
         Quaternion initRot = transform.rotation;
         Quaternion finalRot = Quaternion.Euler(targetRot);
 
+        // Set the state
+        _states.isClimbing = true;
+
         while (elapsedTime < totalTime)
         {
             elapsedTime += Time.deltaTime;
             float ratio = elapsedTime / totalTime;
 
-            transform.position = Vector3.Lerp(initPos, targetPos, ratio);
-            transform.rotation = Quaternion.Slerp(initRot, finalRot, ratio);
+            _rb.MovePosition(Vector3.Lerp(initPos, targetPos, ratio));
+            _rb.MoveRotation(Quaternion.Slerp(initRot, finalRot, ratio));
 
             yield return null;
         }
@@ -107,9 +114,6 @@ public class PlayerClimbing : MonoBehaviour
         // Snap to final pos
         transform.position = targetPos;
         transform.rotation = finalRot;
-
-        // Set the state
-        _states.isClimbing = true;
 
         // Update the rigidbody
         _rb.velocity = Vector3.zero;

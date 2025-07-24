@@ -118,7 +118,6 @@ public class PlayerMovement : MonoBehaviour
     {
         if (_states.isClimbing)
         {
-            _smoothedLookDir = ProjectOnXZPlane(_cam.forward);
             return;
         }
 
