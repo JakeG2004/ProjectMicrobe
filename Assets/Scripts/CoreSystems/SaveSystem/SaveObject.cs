@@ -15,7 +15,7 @@ public class SaveObject
     public List<ObjectiveGroupItem> objectives = new List<ObjectiveGroupItem>();
     public PlayerBackpack backpack = new PlayerBackpack();
     public bool hasCompletedGame = false;
-    public int qualityLevel = 1;
+    public int qualityLevel = (int)QualityTiers.HIGH;
 }
 
 [System.Serializable]

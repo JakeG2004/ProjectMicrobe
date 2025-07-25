@@ -126,4 +126,11 @@ public class ResItem
 {
     [SerializeField] public int horizontal;
     [SerializeField] public int vertical;
-}
+};
+
+public enum QualityTiers
+{
+    HIGH,
+    MEDIUM,
+    LOW
+};
