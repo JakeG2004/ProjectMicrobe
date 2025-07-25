@@ -33,6 +33,7 @@ public class NPCMoveController : MonoBehaviour {
 	void FixedUpdate() {
 		if (!_canMove)
 		{
+			rb.velocity = Vector2.zero;
 			FacePlayer();
 			anim.SetFloat("Move", 0);
 			anim.SetFloat("Idle", 1);

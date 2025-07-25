@@ -11,12 +11,17 @@ using TMPro;
 
 public class GraphicsSettings : MonoBehaviour
 {
+    [Header("Fullscreen and Vsync")]
     [SerializeField] private Toggle _fullscreenTg;
     [SerializeField] private Toggle _vsyncTg;
+
+    [Header("Resolution")]
+    [SerializeField] private List<ResItem> _resolutions = new();
     [SerializeField] private TMP_Text _resText;
 
-    [Space(10)]
-    [SerializeField] private List<ResItem> _resolutions = new();
+    [Header("Quality")]
+    [SerializeField] private TMP_Text _qualityText;
+
     private int _curResIdx;
     void Start()
     {
@@ -55,6 +60,7 @@ public class GraphicsSettings : MonoBehaviour
         _resolutions.Add(newRes);
         _curResIdx = _resolutions.Count - 1;
 
+        UpdateQualityPresetText();
         UpdateResText();
     }
 
@@ -93,6 +99,25 @@ public class GraphicsSettings : MonoBehaviour
         ResItem curRes = _resolutions[_curResIdx];
 
         _resText.text = $"{curRes.horizontal} x {curRes.vertical}";
+    }
+
+    // The QualitySettings.*Level is backwards because the presets are indexed high = 0, low = 2
+    public void DecreaseQualityPreset()
+    {
+        QualitySettings.IncreaseLevel(true);
+        UpdateQualityPresetText();
+    }
+
+    public void IncreaseQualityPreset()
+    {
+        QualitySettings.DecreaseLevel(true);
+        UpdateQualityPresetText();
+    }
+
+    private void UpdateQualityPresetText()
+    {
+        _qualityText.text = QualitySettings.names[QualitySettings.GetQualityLevel()];
+        SaveSystem.Instance.SaveQualityLevel(QualitySettings.GetQualityLevel());
     }
 }
 

@@ -100,7 +100,7 @@ public class PlayerMovement : MonoBehaviour
     // Sets the velocity for step up if the player encounters a slope
     private void HandleSteppingUp()
     {
-        if (_states.runningIntoWall || _states.isClimbing)
+        if (_states.runningIntoWall || _states.isClimbing || _states.move.magnitude < 0.1f)
         {
             return;
         }
