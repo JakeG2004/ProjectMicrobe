@@ -1,8 +1,6 @@
 using UnityEngine;
 
-public class GM : MonoBehaviour
-{
-
+public class GM : MonoBehaviour {
 	[HideInInspector] public static Transform player;
 	[HideInInspector] public static Transform cam;
 	[HideInInspector] public static InputController playerInput;

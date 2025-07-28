@@ -1,9 +1,16 @@
 using UnityEngine;
 
+<<<<<<< Updated upstream
 public class AnimationController : MonoBehaviour 
 {
     [SerializeField] private PlayerStatesSO _states;
     public Animator ac;
+=======
+public class AnimationController : MonoBehaviour {
+
+    [HideInInspector] public Animator ac;
+    private PlayerStates _states;
+>>>>>>> Stashed changes
 	private Rigidbody _rb;
 
 	private float moveVal = 0.0f;
