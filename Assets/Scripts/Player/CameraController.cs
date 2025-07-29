@@ -60,10 +60,7 @@ public class CameraController : MonoBehaviour
 		SetLookPos();
 		Zoom();
 
-		if (_mouseTracking)
-		{
-			RotateCameraDirection();
-		}
+		RotateCameraDirection();
 
 		PositionCamera();
 		LowPassFilterIfSubmerged();

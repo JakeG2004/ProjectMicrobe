@@ -48,19 +48,8 @@ public class PlayerMovementController : MonoBehaviour
         // Bind functions
         playerInputActions.Player.Jump.started += Jump;
 
-        // Movement lambdas
-        playerInputActions.Player.Movement.performed += ctx => _states.move = ctx.ReadValue<Vector2>();
-        playerInputActions.Player.Movement.canceled += ctx => _states.move = Vector2.zero;
-
         // Sprint lambda to toggle
         playerInputActions.Player.Sprint.started += ctx => _states.isSprinting = !_states.isSprinting;
-
-        // Look lambdas
-        playerInputActions.Player.Look.performed += ctx => _states.look = ctx.ReadValue<Vector2>() * _lookSensitivity;
-        playerInputActions.Player.Look.canceled += ctx => _states.look = Vector2.zero;
-
-        // zoom lambda
-        playerInputActions.Player.Zoom.performed += ctx => _states.zoom = Mathf.Clamp01(_states.zoom + Mathf.Sign(ctx.ReadValue<float>()) * _vals.scrollAmt);
     }
 
     void FixedUpdate()

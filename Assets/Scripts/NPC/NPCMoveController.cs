@@ -148,13 +148,23 @@ public class NPCMoveController : MonoBehaviour {
 		_canMove = state;
 	}
 
-	// Smoothly rotate towards the player
+	// Smoothly rotate towards the player on the Y-axis only
 	public void FacePlayer()
 	{
 		Transform target = GameObject.FindGameObjectWithTag("Player").transform;
-		Quaternion targetRotation = Quaternion.LookRotation(target.position - transform.position);
-		transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 4.0f);
+
+		// Get direction to player, ignoring the Y-axis difference
+		Vector3 direction = target.position - transform.position;
+		direction.y = 0f; // Flatten the direction on the Y-axis
+
+		// Only rotate if the direction is not zero
+		if (direction != Vector3.zero)
+		{
+			Quaternion targetRotation = Quaternion.LookRotation(direction);
+			transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 4.0f);
+		}
 	}
+
 	
 	void OnDrawGizmos() {
 		// visual of checksphere

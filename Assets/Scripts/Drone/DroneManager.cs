@@ -54,7 +54,7 @@ public class DroneManager : MonoBehaviour
     {
         if (_isInFlight)
         {
-            return;
+            StopAllCoroutines();
         }
 
         _flightQueue.Clear();
@@ -179,7 +179,7 @@ public class DroneManager : MonoBehaviour
 
             // Player getting dropped off by the drone
             case FlightType.DROPOFF:
-                PlayerController.Instance.EndCarry();
+                //PlayerController.Instance.EndCarry();
                 break;
 
             // Drone returns to the home base

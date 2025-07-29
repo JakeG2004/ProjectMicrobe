@@ -15,17 +15,17 @@ public class OverheadUIManager : MonoBehaviour
     {
         _pia = NewInputController.Instance.GetPlayerInputActions();
 
-        _pia.Player.Time.started += ctx => HideWaitPrompt();
+        GeneralController.Instance.OnTimeDown += (() => HideWaitPrompt());
     }
 
     public void ShowControls()
     {
         ShowStep(0);
 
-        _pia.Player.Look.performed += ctx => OnInputStep(0);
-        _pia.Player.Movement.performed += ctx => OnInputStep(1);
-        _pia.Player.Zoom.performed += ctx => OnInputStep(2);
-        _pia.Player.Jump.started += ctx => OnInputStep(3);
+        PlayerInputHandler.Instance.OnJumpDown += (() => OnInputStep(3));
+        GeneralController.Instance.OnLookPerformed += (() => OnInputStep(0));
+        GeneralController.Instance.OnMovePerformed += (() => OnInputStep(1));
+        GeneralController.Instance.OnZoomPerformed += (() => OnInputStep(2));
     }
 
     void ShowStep(int index)

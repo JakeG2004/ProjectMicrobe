@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     private PlayerMovement _playerMovement;
     private PlayerClimbing _playerClimbing;
     private PlayerCarry _playerCarry;
+    private PlayerDroneController _droneController;
 
     void Awake()
     {
@@ -44,6 +45,7 @@ public class PlayerController : MonoBehaviour
         _states.isSprinting = false;
         _states.isBeingCarried = false;
         _states.longDrop = false;
+        _states.isFlying = false;
     }
 
 
@@ -52,8 +54,9 @@ public class PlayerController : MonoBehaviour
     {
         if (_inputHandler != null)
         {
-            _inputHandler.OnJumpStarted += HandleJump;
+            _inputHandler.OnJumpDown += HandleJump;
             _inputHandler.OnSprintToggled += HandleSprintToggle;
+            _inputHandler.OnDroneToggled += HandleDroneToggle;
         }
     }
 
@@ -62,8 +65,9 @@ public class PlayerController : MonoBehaviour
     {
         if (_inputHandler != null)
         {
-            _inputHandler.OnJumpStarted -= HandleJump;
+            _inputHandler.OnJumpDown -= HandleJump;
             _inputHandler.OnSprintToggled -= HandleSprintToggle;
+            _inputHandler.OnDroneToggled -= HandleDroneToggle;
         }
     }
 
@@ -72,11 +76,6 @@ public class PlayerController : MonoBehaviour
         if (_states.isClimbing)
         {
             _playerClimbing.JumpFromClimb();
-        }
-
-        else if (_states.isBeingCarried)
-        {
-            _playerCarry.EndCarry();    
         }
 
         else
@@ -88,6 +87,11 @@ public class PlayerController : MonoBehaviour
     private void HandleSprintToggle()
     {
         _states.isSprinting = !_states.isSprinting;
+    }
+
+    private void HandleDroneToggle()
+    {
+        _states.isFlying = !_states.isFlying;
     }
 
     // Public methods for other systems to interact with player movement
@@ -124,30 +128,6 @@ public class PlayerController : MonoBehaviour
         return _vals;
     }
 
-    public void StartCarry(GameObject drone)
-    {
-        if (_playerCarry != null)
-        {
-            _playerCarry.StartCarry(drone);
-        }
-
-        // Disable other movement
-        if (_playerMovement != null) _playerMovement.enabled = false;
-        if (_playerClimbing != null) _playerClimbing.enabled = false;
-    }
-
-    public void EndCarry()
-    {
-        if (_playerCarry != null)
-        {
-            _playerCarry.EndCarry();
-        }
-
-        // Re-enable movement
-        if (_playerMovement != null) _playerMovement.enabled = true;
-        if (_playerClimbing != null) _playerClimbing.enabled = true;
-    }
-
     // Ladder interaction
     public void SetClimbPos(Transform ladder)
     {
@@ -171,5 +151,6 @@ public class PlayerController : MonoBehaviour
         if (_playerMovement == null) _playerMovement = GetComponent<PlayerMovement>();
         if (_playerClimbing == null) _playerClimbing = GetComponent<PlayerClimbing>();
         if (_playerCarry == null) _playerCarry = GetComponent<PlayerCarry>();
+        if (_droneController == null) _droneController = GetComponent<PlayerDroneController>();
     }
 }

@@ -50,14 +50,16 @@
   * General
     * [x] Colors on dialogue progress indicator
     * [x] NPCs slide around still
-    * Objective tracker doesnt always start on top
-    * Player merges into drone
-    * Camera doesnt follow player smoothly during drone
+    * [ ] Objective tracker doesnt always start on top
+    * [ ] Player merges into drone - DRONE SYSTEM CHANGING
+    * [ ] Camera doesnt follow player smoothly during drone - DRONE SYSTEM CHANGING
     * [x] Step up should only go when player has movement vector applied
-    * Drone can get stuck when given several conflicting instructions
-    * Minigame cam doesnt work
+    * [ ] Drone can get stuck when given several conflicting instructions
+    * [x] Minigame cam doesnt work
     * [x] Objective descriptions need to autosize
-    * In general, add filler dialogue after story dialogue given
+    * [x] In general, add filler dialogue after story dialogue given
+    * [x] When in game prompt, player can still move
+    * [x] NPCs rotate towards player on all axis
 
 ## Playtest Feedback
 * Carla compressed dialogue (I like it as is, maybe change context to make more sense?)

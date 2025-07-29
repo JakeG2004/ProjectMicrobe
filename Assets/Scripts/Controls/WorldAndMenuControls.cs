@@ -17,10 +17,11 @@ public class WorldAndMenuControls : MonoBehaviour
     {
         _pia = NewInputController.Instance.GetPlayerInputActions();
 
-        _pia.Player.Menu.started += ctx => _onMenuPressed.Invoke();
         _pia.Player.Interact.started += ctx => _onInteractPressed.Invoke();
-        _pia.Player.Time.started += ctx => _onTimePressed.Invoke();
-        _pia.Player.Tablet.started += ctx => _onTabletPressed.Invoke();
+
+        GeneralController.Instance.OnMenuDown += (() => _onMenuPressed.Invoke());
+        GeneralController.Instance.OnTimeDown += (() => _onTimePressed.Invoke());
+        GeneralController.Instance.OnTabletDown += (() => _onTabletPressed.Invoke());
 
         _pia.Minigames.Back.started += ctx => _on2dMenuBackPressed.Invoke();
     }

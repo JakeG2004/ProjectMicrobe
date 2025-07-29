@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (_states.isBeingCarried)
+        if (_states.isFlying)
         {
             // Defer to player carry controller
             return;
@@ -231,6 +231,7 @@ public class PlayerMovement : MonoBehaviour
     // Called by PlayerInputHandler Event
     public void Jump()
     {
+        
         if (!_states.playerCanMove || !_states.isGrounded)
         {
             return;

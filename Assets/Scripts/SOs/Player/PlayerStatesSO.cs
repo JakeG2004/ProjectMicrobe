@@ -18,6 +18,7 @@ public class PlayerStatesSO : ScriptableObject
     public bool isGrounded = false;
     public bool longDrop = false;
     public bool isSprinting = false;
+    public bool isFlying = false;
     public bool runningIntoWall = false;
     public bool isBeingCarried = false;
     public bool playerCanMove = true;
@@ -28,6 +29,10 @@ public class PlayerStatesSO : ScriptableObject
     public Vector2 smoothedMove = Vector2.zero;
     public Vector2 turn = Vector2.zero;
     public Vector2 look = Vector2.zero;
+
+    [Space(10)]
+    [Header("Drone Vectors")]
+    public float verticalMove = 0;
 
     [Space(10)]
     [Header("Environmental Factors")]

@@ -14,10 +14,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   swimSpeed: 4
   swimAcceleration: 2
+  maxSwimTurnSpeed: 10
+  swimSpeedTurnScaler: 5
   landSpeed: 6
   landAcceleration: 5
   sprintMod: 1.5
   jumpForce: 8
+  droneXSpeed: 25
+  droneYSpeed: 10
+  droneTiltAmt: 15
+  droneDrag: 0.7
   ladderEjectForce: 10
   scrollAmt: 0.25
   inputSmoothingSpeed: 15
+  cameraAngle: 15
+  turnSpeed: 0.2
+  lookSensitivity: 3
+  longDropVelocity: -9
+  wallRunningForwardOffset: 0.3
+  wallRunningUpOffsetStart: 0.8
+  wallRunningUpOffsetEnd: 1.8
+  wallRunningRadius: 0.1
+  stepUpForwardOffset: 0.1
+  stepUpUpOffset: 0.3
+  stepUpValue: 0.1

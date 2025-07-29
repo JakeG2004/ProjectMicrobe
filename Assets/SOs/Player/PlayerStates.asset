@@ -17,7 +17,8 @@ MonoBehaviour:
   isJumping: 0
   isGrounded: 1
   longDrop: 0
-  isSprinting: 0
+  isSprinting: 1
+  isFlying: 1
   runningIntoWall: 0
   isBeingCarried: 0
   playerCanMove: 1
@@ -25,6 +26,7 @@ MonoBehaviour:
   smoothedMove: {x: 0, y: 0}
   turn: {x: 0, y: 0}
   look: {x: 0, y: 0}
+  verticalMove: 0
   submersion: 0
-  turnAngle: 0.01978234
+  turnAngle: 0
   zoom: 1

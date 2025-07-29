@@ -51,6 +51,8 @@ public class NewInputController : MonoBehaviour
     {
         _pia.Player.Enable();
         _pia.Minigames.Disable();
+        _pia.Drone.Disable();
+        _pia.BaseControls.Enable();
         _pia.UI.Disable();
     }
 
@@ -58,15 +60,30 @@ public class NewInputController : MonoBehaviour
     {
         _pia.Player.Disable();
         _pia.Minigames.Disable();
+        _pia.Drone.Disable();
+        _pia.BaseControls.Disable();
         _pia.UI.Enable();
     }
 
     public void SetMinigameMode()
     {
         _pia.Player.Disable();
+        _pia.BaseControls.Disable();
+        _pia.Drone.Disable();
         _pia.Minigames.Enable();
         _pia.UI.Disable();
     }
+
+    public void SetDroneMode()
+    {
+        _pia.Player.Disable();
+        _pia.BaseControls.Enable();
+        _pia.Drone.Enable();
+        _pia.Minigames.Disable();
+        _pia.UI.Disable();
+    }
+
+
 
     public InputType GetCurrentInputDevice()
     {
