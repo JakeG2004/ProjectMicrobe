@@ -10,6 +10,7 @@ public class NewInputController : MonoBehaviour
     [SerializeField] private UnityEvent _onGamepad;
     private PlayerInputActions _pia;
     private InputType _curDevice = InputType.Unknown;
+    private ControlMap _curMap = ControlMap.PLAYER;
 
     void Awake()
     {
@@ -54,6 +55,8 @@ public class NewInputController : MonoBehaviour
         _pia.Drone.Disable();
         _pia.BaseControls.Enable();
         _pia.UI.Disable();
+
+        _curMap = ControlMap.PLAYER;
     }
 
     public void SetMenuMode()
@@ -63,6 +66,8 @@ public class NewInputController : MonoBehaviour
         _pia.Drone.Disable();
         _pia.BaseControls.Disable();
         _pia.UI.Enable();
+
+        _curMap = ControlMap.UI;
     }
 
     public void SetMinigameMode()
@@ -72,6 +77,8 @@ public class NewInputController : MonoBehaviour
         _pia.Drone.Disable();
         _pia.Minigames.Enable();
         _pia.UI.Disable();
+
+        _curMap = ControlMap.MINIGAME;
     }
 
     public void SetDroneMode()
@@ -81,6 +88,8 @@ public class NewInputController : MonoBehaviour
         _pia.Drone.Enable();
         _pia.Minigames.Disable();
         _pia.UI.Disable();
+
+        _curMap = ControlMap.DRONE;
     }
 
 
@@ -88,6 +97,11 @@ public class NewInputController : MonoBehaviour
     public InputType GetCurrentInputDevice()
     {
         return _curDevice;
+    }
+
+    public ControlMap GetControlMap()
+    {
+        return _curMap;
     }
 
     private void UpdateInputDevice(UnityEngine.InputSystem.InputAction.CallbackContext ctx)
@@ -153,4 +167,12 @@ public enum InputType
     KeyboardMouse,
     Controller,
     Unknown,
+};
+
+public enum ControlMap
+{
+    PLAYER,
+    DRONE,
+    UI,
+    MINIGAME,
 };

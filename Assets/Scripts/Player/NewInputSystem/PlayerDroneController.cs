@@ -55,6 +55,11 @@ public class PlayerDroneController : MonoBehaviour
 
     private void SetDroneActivationState(bool state)
     {
+        if (state && _states.submersion > 0.5f)
+        {
+            return;
+        }
+
         _isCurrentlyFlying = state;
         _rb.useGravity = !_isCurrentlyFlying;
         _states.isFlying = _isCurrentlyFlying;
@@ -154,7 +159,7 @@ public class PlayerDroneController : MonoBehaviour
             Quaternion targetRot = yawRot * tiltRot;
 
             // Lerp from the current rotaiton to the target rotation
-            transform.rotation = Quaternion.Lerp(transform.rotation, targetRot, _vals.droneDrag * 2 * Time.deltaTime);
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRot, _vals.droneDrag * (1 / _vals.droneTurnSpeed) * Time.deltaTime);
         }
     }
 

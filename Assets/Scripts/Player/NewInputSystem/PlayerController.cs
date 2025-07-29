@@ -92,6 +92,11 @@ public class PlayerController : MonoBehaviour
     private void HandleDroneToggle()
     {
         _states.isFlying = !_states.isFlying;
+
+        if ((_states.isFlying && _states.submersion > 0.5f) || _states.isClimbing)
+        {
+            _states.isFlying = false;
+        }
     }
 
     // Public methods for other systems to interact with player movement
