@@ -11,6 +11,7 @@ public class NewInputController : MonoBehaviour
     private PlayerInputActions _pia;
     private InputType _curDevice = InputType.Unknown;
     private ControlMap _curMap = ControlMap.PLAYER;
+    private ControlMap _prevMap = ControlMap.PLAYER;
 
     void Awake()
     {
@@ -67,7 +68,22 @@ public class NewInputController : MonoBehaviour
         _pia.BaseControls.Disable();
         _pia.UI.Enable();
 
+        _prevMap = _curMap;
         _curMap = ControlMap.UI;
+    }
+
+    public void ExitMenuMode()
+    {
+        switch (_prevMap)
+        {
+            case ControlMap.PLAYER:
+                Set3DMode();
+                break;
+
+            case ControlMap.DRONE:
+                SetDroneMode();
+                break;
+        }
     }
 
     public void SetMinigameMode()

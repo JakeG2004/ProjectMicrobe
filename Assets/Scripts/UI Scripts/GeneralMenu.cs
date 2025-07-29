@@ -55,7 +55,7 @@ public class GeneralMenu : MonoBehaviour
         else
         {
             SoundManager.PlaySound(SoundType.MENU_CLOSED);
-            NewInputController.Instance.Set3DMode();
+            NewInputController.Instance.ExitMenuMode();
         }
 
         // State tracker
