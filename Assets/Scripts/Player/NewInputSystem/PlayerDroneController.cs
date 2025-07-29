@@ -154,10 +154,9 @@ public class PlayerDroneController : MonoBehaviour
             Quaternion targetRot = yawRot * tiltRot;
 
             // Lerp from the current rotaiton to the target rotation
-            transform.rotation = Quaternion.Lerp(transform.rotation, targetRot, _vals.droneDrag);
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRot, _vals.droneDrag * 2 * Time.deltaTime);
         }
     }
-
 
     private Vector3 CalculateForwardDirection()
     {
