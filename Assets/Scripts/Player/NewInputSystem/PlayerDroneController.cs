@@ -123,11 +123,11 @@ public class PlayerDroneController : MonoBehaviour
             newVel.z = Mathf.Lerp(newVel.z, 0, _vals.droneDrag * Time.deltaTime);
         }
 
-        SetDronePitch(newVel);
+        SetDronePitch();
         _rb.velocity = newVel;
     }
 
-    private void SetDronePitch(Vector3 newVel)
+    private void SetDronePitch()
     {
         float verticalSpeed = _rb.velocity.y;
         Vector3 horizontalVel = new Vector3(_rb.velocity.x, 0, _rb.velocity.z);
@@ -143,8 +143,6 @@ public class PlayerDroneController : MonoBehaviour
         // The vertical contribution should not overshoot — keep it symmetric
         float combinedPitch = basePitch + (horizontalPitch * hWeight) + (Mathf.Abs(verticalPitch) * vWeight);
         combinedPitch = Mathf.Clamp(combinedPitch, 0.8f, 2.0f); // optional
-
-        Debug.Log(combinedPitch);
 
         _loop.SetPitch(combinedPitch);
     }

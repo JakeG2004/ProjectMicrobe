@@ -154,7 +154,20 @@ public class SoundManager : MonoBehaviour
         {
             audioSource.clip = intro;
             audioSource.Play();
-            yield return new WaitForSeconds(intro.length);
+
+            // Wait for the clip to get almost finished before switching.
+            // We do this so that it'll work the same regardless of pitch, and will not have any downtime between clips
+            int numSamples = audioSource.clip.samples;
+            while (audioSource.timeSamples < (numSamples * .95))
+            {
+                yield return null;
+            }
+        }
+
+        // Prevent null issues and prevent audio from playing when started and rapidly stopped
+        if (handle == null || audioSource == null || handle.isStopping)
+        {
+            yield break;
         }
 
         // Play the loop
@@ -165,6 +178,11 @@ public class SoundManager : MonoBehaviour
         // Wait for stop
         while (true)
         {
+            if (audioSource == null)
+            {
+                yield break;
+            }
+            
             if (!audioSource.loop)
             {
                 break;
@@ -273,18 +291,18 @@ public class LoopingSoundHandle
     public float targetPitch = 10.0f;
     public bool IsPitchLerping { get; set; } = false;
 
-    private bool _isStopping = false;
+    public bool isStopping { get; set; } = false;
 
     // Signals to the sound manager to stop the looping sound
     public void Stop()
     {
         // Exit if already stopping or no owner
-        if (_isStopping || owner == null)
+        if (isStopping || owner == null)
         {
             return;
         }
 
-        _isStopping = true;
+        isStopping = true;
         owner.StartCoroutine(owner.StopLoopingSoundCoroutine(this));
     }
 
