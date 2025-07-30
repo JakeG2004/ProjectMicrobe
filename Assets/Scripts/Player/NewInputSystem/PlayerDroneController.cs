@@ -13,6 +13,7 @@ public class PlayerDroneController : MonoBehaviour
     private Rigidbody _rb;
     private Transform _cam;
     private Vector3 _smoothedLookDir = Vector3.forward;
+    private LoopingSoundHandle _loop;
 
     void Awake()
     {
@@ -65,15 +66,22 @@ public class PlayerDroneController : MonoBehaviour
         _states.isFlying = _isCurrentlyFlying;
         _drone.SetDroneDeployed(_isCurrentlyFlying);
 
-        // Set control mode
+        // State-specific things
         if (state)
         {
             NewInputController.Instance.SetDroneMode();
+            _loop = SoundManager.PlayLoopingSoundWithIntroAndOutro(SoundType.DRONE_TAKEOFF, SoundType.DRONE_FLIGHT, SoundType.DRONE_LANDING);
+            _loop.IsLerpingPitch(true);
         }
 
         else
         {
             NewInputController.Instance.Set3DMode();
+            if (_loop != null)
+            {
+                _loop.Stop();
+                _loop = null;
+            }
         }
     }
 
@@ -115,7 +123,30 @@ public class PlayerDroneController : MonoBehaviour
             newVel.z = Mathf.Lerp(newVel.z, 0, _vals.droneDrag * Time.deltaTime);
         }
 
+        SetDronePitch(newVel);
         _rb.velocity = newVel;
+    }
+
+    private void SetDronePitch(Vector3 newVel)
+    {
+        float verticalSpeed = _rb.velocity.y;
+        Vector3 horizontalVel = new Vector3(_rb.velocity.x, 0, _rb.velocity.z);
+        float horizontalSpeed = horizontalVel.magnitude;
+
+        float horizontalPitch = Mathf.InverseLerp(0f, _vals.droneXSpeed, horizontalSpeed);  // 0 to 1
+        float verticalPitch = Mathf.InverseLerp(-_vals.droneYSpeed, _vals.droneYSpeed, verticalSpeed); // -1 to 1
+
+        float basePitch = 0.9f;
+        float hWeight = 0.35f;
+        float vWeight = 0.5f;
+
+        // The vertical contribution should not overshoot — keep it symmetric
+        float combinedPitch = basePitch + (horizontalPitch * hWeight) + (Mathf.Abs(verticalPitch) * vWeight);
+        combinedPitch = Mathf.Clamp(combinedPitch, 0.8f, 2.0f); // optional
+
+        Debug.Log(combinedPitch);
+
+        _loop.SetPitch(combinedPitch);
     }
 
     private void HandleRotation()

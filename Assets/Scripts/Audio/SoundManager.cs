@@ -23,6 +23,9 @@ public enum SoundType
     EIGHT_BIT_COLLECTED,
     EIGHT_BIT_BASS,
     EIGHT_BIT_JUMP,
+    DRONE_TAKEOFF,
+    DRONE_FLIGHT,
+    DRONE_LANDING,
 }
 
 [RequireComponent(typeof(AudioSource)), ExecuteInEditMode]
@@ -48,7 +51,7 @@ public class SoundManager : MonoBehaviour
         {
             if (Application.isPlaying)
             {
-                DontDestroyOnLoad(this.gameObject);   
+                DontDestroyOnLoad(this.gameObject);
             }
             Instance = this;
         }
@@ -119,6 +122,88 @@ public class SoundManager : MonoBehaviour
         SoundManager.Instance.StartCoroutine(SoundManager.Instance.CullAfterFinished(tmpAudioSrc));
     }
 
+    // Creates, starts, and returns a looping audio which can be stopped externally
+    public static LoopingSoundHandle PlayLoopingSoundWithIntroAndOutro(AudioClip intro, AudioClip loop, AudioClip outro, float volume = 1)
+    {
+        LoopingSoundHandle handle = new LoopingSoundHandle();
+        handle.owner = Instance;
+        handle.outro = outro;
+        handle.coroutine = Instance.StartCoroutine(Instance.PlayLoopingSoundCoroutine(handle, intro, loop, volume));
+
+        return handle;
+    }
+
+    public static LoopingSoundHandle PlayLoopingSoundWithIntroAndOutro(SoundType intro, SoundType loop, SoundType outro, float volume = 1)
+    {
+        return PlayLoopingSoundWithIntroAndOutro(Instance.GetRandomClip(intro), Instance.GetRandomClip(loop), Instance.GetRandomClip(outro), volume);
+    }
+
+    private IEnumerator PlayLoopingSoundCoroutine(LoopingSoundHandle handle, AudioClip intro, AudioClip loop, float volume)
+    {
+        GameObject newSrcObj = new GameObject("LoopingAudioSource");
+        handle.gameObject = newSrcObj;
+
+        AudioSource audioSource = newSrcObj.AddComponent<AudioSource>();
+        handle.source = audioSource;
+
+        audioSource.outputAudioMixerGroup = _mixer;
+        audioSource.volume = volume;
+
+        // Plays the intro to the loop
+        if (intro != null)
+        {
+            audioSource.clip = intro;
+            audioSource.Play();
+            yield return new WaitForSeconds(intro.length);
+        }
+
+        // Play the loop
+        audioSource.clip = loop;
+        audioSource.loop = true;
+        audioSource.Play();
+
+        // Wait for stop
+        while (true)
+        {
+            if (!audioSource.loop)
+            {
+                break;
+            }
+
+            yield return null;
+        }
+    }
+
+    public IEnumerator StopLoopingSoundCoroutine(LoopingSoundHandle handle)
+    {
+        if (handle == null || handle.source == null)
+        {
+            yield break;
+        }
+
+        handle.source.loop = false;
+
+        // Stop pitch lerping if active
+        if (handle.pitchCoroutine != null)
+        {
+            StopCoroutine(handle.pitchCoroutine);
+            handle.pitchCoroutine = null;
+        }
+
+        if (handle.outro != null)
+        {
+            handle.source.clip = handle.outro;
+            handle.source.Play();
+            yield return new WaitForSeconds(handle.outro.length);
+        }
+
+        if (handle.gameObject != null)
+        {
+            handle.source = null;
+            Destroy(handle.gameObject);
+        }
+    }
+
     // Culls an audio source after it finishes its job
     private IEnumerator CullAfterFinished(AudioSource tmpAudioSrc)
     {
@@ -136,6 +221,21 @@ public class SoundManager : MonoBehaviour
         _canPlaySound = false;
         yield return new WaitForSeconds(0.05f);
         _canPlaySound = true;
+    }
+
+    public IEnumerator LerpPitch(LoopingSoundHandle handle)
+    {
+        if (handle.source == null)
+            yield break;
+
+        while (handle.source != null && (handle.source.loop || handle.source.isPlaying))
+        {
+            handle.source.pitch = Mathf.Lerp(handle.source.pitch, handle.targetPitch, 0.9f);
+            yield return null;
+        }
+
+        handle.IsPitchLerping = false;
+        handle.pitchCoroutine = null;
     }
 
     // Populates the list of sounds when script added to an object
@@ -160,4 +260,55 @@ public struct SoundList
     [SerializeField] private AudioClip[] sounds;
 
     public AudioClip[] Sounds { get => sounds; }
+}
+
+public class LoopingSoundHandle
+{
+    public GameObject gameObject;
+    public AudioSource source;
+    public Coroutine coroutine;
+    public Coroutine pitchCoroutine;
+    public SoundManager owner;
+    public AudioClip outro;
+    public float targetPitch = 10.0f;
+    public bool IsPitchLerping { get; set; } = false;
+
+    private bool _isStopping = false;
+
+    // Signals to the sound manager to stop the looping sound
+    public void Stop()
+    {
+        // Exit if already stopping or no owner
+        if (_isStopping || owner == null)
+        {
+            return;
+        }
+
+        _isStopping = true;
+        owner.StartCoroutine(owner.StopLoopingSoundCoroutine(this));
+    }
+
+    public void IsLerpingPitch(bool state)
+    {
+        IsPitchLerping = state;
+
+        if (state)
+        {
+            pitchCoroutine = owner.StartCoroutine(owner.LerpPitch(this));
+        }
+    }
+
+    public void SetPitch(float newPitch)
+    {
+        if (source == null || owner == null)
+            return;
+
+        if (!IsPitchLerping)
+        {
+            source.pitch = newPitch;
+            return;
+        }
+
+        targetPitch = newPitch;   
+    }
 }
