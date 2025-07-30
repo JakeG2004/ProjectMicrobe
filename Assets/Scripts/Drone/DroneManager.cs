@@ -26,11 +26,13 @@ public class DroneManager : MonoBehaviour
     private bool _isInFlight = false;
     private bool _playerPickedUpDelivery = false;
     private List<MicrobeSO> _curDelivery = new();
+    private LoopingSoundHandle _loop;
+    private Vector3 _velocity;
 
     // Settings
     private const float _CEILING_HEIGHT = 20f;
-    private const float _Y_SMOOTHING = .75f;
-    private const float _X_SMOOTHING = .9f;
+    private const float _Y_SMOOTHING = .3f;
+    private const float _X_SMOOTHING = .6f;
 
     void Awake()
     {
@@ -48,6 +50,9 @@ public class DroneManager : MonoBehaviour
     void Start()
     {
         _pc = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCarry>();
+
+        _loop = SoundManager.PlayLoopingSoundWithIntroAndOutro(SoundType.DRONE_TAKEOFF, SoundType.DRONE_FLIGHT, SoundType.DRONE_LANDING, _drone.transform, 1.5f);
+        _loop.SetPitch(0.6f);
     }
 
     public void ShipMicrobesToPlayer(List<MicrobeSO> microbes)
@@ -90,6 +95,26 @@ public class DroneManager : MonoBehaviour
         _droneMountInteract.SetActive(false);
     }
 
+    private void ManageDroneSound()
+    {
+        float verticalSpeed = _velocity.y;
+        Vector3 horizontalVel = new Vector3(_velocity.x, 0, _velocity.z);
+        float horizontalSpeed = horizontalVel.magnitude;
+
+        float horizontalPitch = Mathf.InverseLerp(0f, _droneLead.speed, _droneLead.velocity.magnitude);  // 0 to 1
+        float verticalPitch = Mathf.InverseLerp(-_droneLead.speed, _droneLead.speed, _droneLead.velocity.magnitude); // -1 to 1
+
+        float basePitch = 0.65f;
+        float hWeight = 0.35f;
+        float vWeight = 0.5f;
+
+        // The vertical contribution should not overshoot — keep it symmetric
+        float combinedPitch = basePitch + (horizontalPitch * hWeight) + (Mathf.Abs(verticalPitch) * vWeight);
+        combinedPitch = Mathf.Clamp(combinedPitch, 0.4f, 1f); // optional
+
+        _loop.SetPitch(combinedPitch);
+    }
+
     private IEnumerator FlightManager()
     {
         // Early return if no queue
@@ -116,6 +141,7 @@ public class DroneManager : MonoBehaviour
         }
 
         _isInFlight = true;
+        _loop.IsLerpingPitch(true);
 
         // Follow the drone during flight
         while (_droneLead.remainingDistance > 0.1f)
@@ -143,7 +169,10 @@ public class DroneManager : MonoBehaviour
 
             // Smoothly interpolate the drone toward the target
             _drone.transform.position = Vector3.Lerp(_drone.transform.position, targetPos, _X_SMOOTHING * Time.deltaTime);
-            _drone.transform.eulerAngles = Vector3.Lerp(_drone.transform.eulerAngles, targetRot, _X_SMOOTHING * Time.deltaTime);
+            //_drone.transform.eulerAngles = Vector3.Lerp(_drone.transform.eulerAngles, targetRot, _X_SMOOTHING * Time.deltaTime);
+
+            _velocity = _droneLead.velocity;
+            ManageDroneSound();
 
             yield return null;
         }
@@ -153,7 +182,12 @@ public class DroneManager : MonoBehaviour
         // Land the drone at the destination
         while (Vector3.Distance(_drone.transform.position, landPos) > 0.5f)
         {
-            _drone.transform.position = Vector3.Lerp(_drone.transform.position, landPos, _Y_SMOOTHING * Time.deltaTime);
+            Vector3 newPos = Vector3.Lerp(_drone.transform.position, landPos, _Y_SMOOTHING * Time.deltaTime);
+            _velocity = newPos - _drone.transform.position;
+            _drone.transform.position = newPos;
+
+            ManageDroneSound();
+            
             yield return null;
         }
 

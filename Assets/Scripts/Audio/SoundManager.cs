@@ -170,7 +170,7 @@ public class SoundManager : MonoBehaviour
             // Wait for the clip to get almost finished before switching.
             // We do this so that it'll work the same regardless of pitch, and will not have any downtime between clips
             int numSamples = audioSource.clip.samples;
-            while (audioSource.timeSamples < (numSamples * .95))
+            while (audioSource != null && audioSource.timeSamples < (numSamples * .95))
             {
                 yield return null;
             }
