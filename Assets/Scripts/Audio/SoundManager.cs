@@ -115,6 +115,7 @@ public class SoundManager : MonoBehaviour
 
         // Add audio source and play it
         AudioSource tmpAudioSrc = tmpObj.AddComponent<AudioSource>();
+        tmpAudioSrc.spatialBlend = 1;
         tmpAudioSrc.outputAudioMixerGroup = SoundManager.Instance._mixer;
         tmpAudioSrc.PlayOneShot(SoundManager.Instance.GetRandomClip(sound));
 
@@ -123,24 +124,29 @@ public class SoundManager : MonoBehaviour
     }
 
     // Creates, starts, and returns a looping audio which can be stopped externally
-    public static LoopingSoundHandle PlayLoopingSoundWithIntroAndOutro(AudioClip intro, AudioClip loop, AudioClip outro, float volume = 1)
+    public static LoopingSoundHandle PlayLoopingSoundWithIntroAndOutro(AudioClip intro, AudioClip loop, AudioClip outro,  Transform parentObj = null, float minDist = 1, float volume = 1)
     {
         LoopingSoundHandle handle = new LoopingSoundHandle();
         handle.owner = Instance;
         handle.outro = outro;
-        handle.coroutine = Instance.StartCoroutine(Instance.PlayLoopingSoundCoroutine(handle, intro, loop, volume));
+        handle.coroutine = Instance.StartCoroutine(Instance.PlayLoopingSoundCoroutine(handle, intro, loop, parentObj, minDist, volume));
 
         return handle;
     }
 
-    public static LoopingSoundHandle PlayLoopingSoundWithIntroAndOutro(SoundType intro, SoundType loop, SoundType outro, float volume = 1)
+    public static LoopingSoundHandle PlayLoopingSoundWithIntroAndOutro(SoundType intro, SoundType loop, SoundType outro, Transform parentObj = null, float minDist = 1, float volume = 1)
     {
-        return PlayLoopingSoundWithIntroAndOutro(Instance.GetRandomClip(intro), Instance.GetRandomClip(loop), Instance.GetRandomClip(outro), volume);
+        return PlayLoopingSoundWithIntroAndOutro(Instance.GetRandomClip(intro), Instance.GetRandomClip(loop), Instance.GetRandomClip(outro), parentObj, minDist, volume);
     }
 
-    private IEnumerator PlayLoopingSoundCoroutine(LoopingSoundHandle handle, AudioClip intro, AudioClip loop, float volume)
+    private IEnumerator PlayLoopingSoundCoroutine(LoopingSoundHandle handle, AudioClip intro, AudioClip loop, Transform parentObj, float minDist, float volume)
     {
         GameObject newSrcObj = new GameObject("LoopingAudioSource");
+        if (parentObj != null)
+        {
+            newSrcObj.transform.parent = parentObj;
+            newSrcObj.transform.localPosition = Vector3.zero;
+        }
         handle.gameObject = newSrcObj;
 
         AudioSource audioSource = newSrcObj.AddComponent<AudioSource>();
@@ -148,6 +154,12 @@ public class SoundManager : MonoBehaviour
 
         audioSource.outputAudioMixerGroup = _mixer;
         audioSource.volume = volume;
+
+        if (parentObj != null)
+        {
+            audioSource.spatialBlend = 1;
+            audioSource.minDistance = minDist;
+        }
 
         // Plays the intro to the loop
         if (intro != null)
@@ -182,7 +194,7 @@ public class SoundManager : MonoBehaviour
             {
                 yield break;
             }
-            
+
             if (!audioSource.loop)
             {
                 break;
