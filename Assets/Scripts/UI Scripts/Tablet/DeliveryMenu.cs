@@ -11,7 +11,7 @@ public class DeliveryMenu : GeneralMenu
 
         if (!_isActive)
         {
-            DroneManager.Instance.SetPlayerDeliveryStatus(true);
+            GetComponent<VoidGameEventTrigger>().TriggerEvent();
         }
     }
 }
