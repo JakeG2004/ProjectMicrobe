@@ -31,6 +31,11 @@ public class TimerManager : MonoBehaviour
 
     public void StopTimer()
     {
+        if (_timerCoroutine == null)
+        {
+            return;
+        }
+        
         _isTiming = false;
         StopCoroutine(_timerCoroutine);
         StartCoroutine(HideTimer());
@@ -62,7 +67,7 @@ public class TimerManager : MonoBehaviour
     {
         string time = _timerText.text;
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 5; i++)
         {
             _timerText.text = "";
             yield return new WaitForSeconds(0.5f);

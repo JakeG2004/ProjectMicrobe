@@ -14,16 +14,29 @@ public class DroneCourseManager : MonoBehaviour
     void Awake()
     {
         _timeEvent = GetComponent<BoolGameEventTrigger>();
+        ConstructRingList();
     }
 
-    void OnEnable()
+    public void ActivateCourse()
     {
+        _curRingIdx = 0;
         DirectionArrowScript.Instance?.StorePosition();
-        ConstructRingList();
-        SetActiveRings();
+        SetCurRing(_rings[_curRingIdx]);
+    }
+
+    public void DeactivateCourse()
+    {
+        UnsubscribeFromRings();
+        CompleteCourse();
     }
 
     void OnDisable()
+    {
+        UnsubscribeFromRings();
+        CompleteCourse();
+    }
+
+    private void UnsubscribeFromRings()
     {
         foreach (DroneCourseRing ring in _rings)
         {
@@ -43,8 +56,6 @@ public class DroneCourseManager : MonoBehaviour
             _rings.Add(child.GetComponentInChildren<DroneCourseRing>(true));
             child.gameObject.SetActive(false);
         }
-
-        SetCurRing(_rings[_curRingIdx]);
     }
 
     private void SetCurRing(DroneCourseRing ring)
