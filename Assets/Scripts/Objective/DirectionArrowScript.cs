@@ -14,8 +14,9 @@ public class DirectionArrowScript : MonoBehaviour
     [SerializeField] private bool _hideOnCollision = false;
     private List<GameObject> _collidingObjs;
     private MeshRenderer _rend;
+    private Transform _oldDir;
 
-    void Start()
+    void Awake()
     {
         if (Instance == null)
         {
@@ -56,7 +57,7 @@ public class DirectionArrowScript : MonoBehaviour
         {
             RemoveTarget();
         }
-        
+
         _target = newTarget;
     }
 
@@ -73,5 +74,15 @@ public class DirectionArrowScript : MonoBehaviour
     void OnTriggerExit(Collider col)
     {
         _collidingObjs.Remove(col.gameObject);
+    }
+
+    public void StorePosition()
+    {
+        _oldDir = _target;
+    }
+
+    public void RestorePosition()
+    {
+        _target = _oldDir;
     }
 }
