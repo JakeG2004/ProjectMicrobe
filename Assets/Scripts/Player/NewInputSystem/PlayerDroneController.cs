@@ -70,7 +70,7 @@ public class PlayerDroneController : MonoBehaviour
         if (state)
         {
             NewInputController.Instance.SetDroneMode();
-            _loop = SoundManager.PlayLoopingSoundWithIntroAndOutro(SoundType.DRONE_TAKEOFF, SoundType.DRONE_FLIGHT, SoundType.DRONE_LANDING, transform, 5);
+            _loop = SoundManager.PlayLoopingSoundWithIntroAndOutro(SoundType.DRONE_TAKEOFF, SoundType.DRONE_FLIGHT, SoundType.DRONE_LANDING, transform, 5, 0.75f);
             _loop.IsLerpingPitch(true);
         }
 

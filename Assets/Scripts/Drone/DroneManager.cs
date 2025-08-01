@@ -51,7 +51,7 @@ public class DroneManager : MonoBehaviour
     {
         _pc = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCarry>();
 
-        _loop = SoundManager.PlayLoopingSoundWithIntroAndOutro(SoundType.DRONE_TAKEOFF, SoundType.DRONE_FLIGHT, SoundType.DRONE_LANDING, _drone.transform, 1.5f);
+        _loop = SoundManager.PlayLoopingSoundWithIntroAndOutro(SoundType.DRONE_TAKEOFF, SoundType.DRONE_FLIGHT, SoundType.DRONE_LANDING, _drone.transform, 1f);
         _loop.SetPitch(0.6f);
     }
 

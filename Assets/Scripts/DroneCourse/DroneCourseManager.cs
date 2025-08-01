@@ -9,11 +9,13 @@ public class DroneCourseManager : MonoBehaviour
     private DroneCourseRing _curRing = null;
     private int _curRingIdx = 0;
     private BoolGameEventTrigger _timeEvent;
-    private static int NUM_RINGS_ACTIVE = 10;
+    private VoidGameEventTrigger _completionEvent;
+    private static int NUM_RINGS_ACTIVE = 15;
 
     void Awake()
     {
         _timeEvent = GetComponent<BoolGameEventTrigger>();
+        _completionEvent = GetComponent<VoidGameEventTrigger>();
         ConstructRingList();
     }
 
@@ -79,7 +81,7 @@ public class DroneCourseManager : MonoBehaviour
         // Initialize the queue
         if (_curRingIdx == 0 && _ringQueue.Count == 0)
         {
-            for (int i = 0; i < Mathf.Floor(NUM_RINGS_ACTIVE / 2); i++)
+            for (int i = 0; i < Mathf.Floor(NUM_RINGS_ACTIVE / 2) && _curRingIdx + i < _rings.Count; i++)
             {
                 _rings[_curRingIdx + i].ShowRing();
                 _ringQueue.Enqueue(_rings[_curRingIdx + i]);
@@ -149,7 +151,7 @@ public class DroneCourseManager : MonoBehaviour
         {
             if (ring.gameObject.activeInHierarchy)
             {
-                ring.HideRing();   
+                ring.HideRing();
             }
         }
 
@@ -157,5 +159,6 @@ public class DroneCourseManager : MonoBehaviour
 
         DirectionArrowScript.Instance.RestorePosition();
         _timeEvent?.TriggerEvent(false);
+        _completionEvent?.TriggerEvent();
     }
 }

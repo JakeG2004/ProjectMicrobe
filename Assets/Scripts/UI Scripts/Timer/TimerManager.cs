@@ -62,7 +62,7 @@ public class TimerManager : MonoBehaviour
         return _curTime;
     }
 
-    // Flashes the time 3 times before hiding the whole thing
+    // Flashes the time a few times before hiding the whole thing
     private IEnumerator HideTimer()
     {
         string time = _timerText.text;
