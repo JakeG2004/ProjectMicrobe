@@ -8,11 +8,25 @@ using System.Collections.Generic;
 using UnityEngine;
 public class ObjectivesManager : MonoBehaviour
 {
+    public static ObjectivesManager Instance;
     private Queue<Objective> _objQ;
     private Objective _curObj;
     private Objective _oldObj;
     private bool _firstObjective = true;
     [SerializeField] private ObjectiveEntryScript _oes;
+
+    void Awake()
+    {
+        if (Instance != this && Instance != null)
+        {
+            Destroy(this.gameObject);
+        }
+
+        else
+        {
+            Instance = this;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -54,7 +68,7 @@ public class ObjectivesManager : MonoBehaviour
             DirectionArrowScript.Instance.RemoveTarget();
             return;
         }
-        
+
         // Handle empty queue
         if (_firstObjective)
         {
@@ -62,5 +76,10 @@ public class ObjectivesManager : MonoBehaviour
         }
 
         _oes.SwitchObjective(.75f, _curObj);
+    }
+
+    public Objective GetCurrentObjective()
+    {
+        return _curObj;
     }
 }

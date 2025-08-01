@@ -52,6 +52,7 @@ public class OrderMicrobesManager : MonoBehaviour
 
         _orderButtonText.text = "Order Placed!";
 
+        GetComponent<VoidGameEventTrigger>().TriggerEvent();
         DroneManager.Instance.ShipMicrobesToPlayer(_curMicrobeList);
     }
 

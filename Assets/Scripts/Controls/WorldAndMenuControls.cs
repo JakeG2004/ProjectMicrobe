@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,18 +12,57 @@ public class WorldAndMenuControls : MonoBehaviour
     [SerializeField] private UnityEvent _onInteractPressed;
     [SerializeField] private UnityEvent _onTimePressed;
     [SerializeField] private UnityEvent _on2dMenuBackPressed;
+
     private PlayerInputActions _pia;
+
+    // Delegate fields for unsubscribing
+    private Action _menuDelegate;
+    private Action _timeDelegate;
+    private Action _tabletDelegate;
 
     void Start()
     {
         _pia = NewInputController.Instance.GetPlayerInputActions();
 
-        _pia.Player.Interact.started += ctx => _onInteractPressed.Invoke();
+        _pia.Player.Interact.started += OnInteract;
+        _pia.Minigames.Back.started += On2DMenuBack;
 
-        GeneralController.Instance.OnMenuDown += (() => _onMenuPressed.Invoke());
-        GeneralController.Instance.OnTimeDown += (() => _onTimePressed.Invoke());
-        GeneralController.Instance.OnTabletDown += (() => _onTabletPressed.Invoke());
+        // Assign delegates to fields so we can unsubscribe later
+        _menuDelegate = HandleMenuPressed;
+        _timeDelegate = HandleTimePressed;
 
-        _pia.Minigames.Back.started += ctx => _on2dMenuBackPressed.Invoke();
+        GeneralController.Instance.OnMenuDown += _menuDelegate;
+        GeneralController.Instance.OnTimeDown += _timeDelegate;
     }
+
+    private void OnDisable()
+    {
+        _pia.Player.Interact.started -= OnInteract;
+        _pia.Minigames.Back.started -= On2DMenuBack;
+
+        if (GeneralController.Instance != null)
+        {
+            GeneralController.Instance.OnMenuDown -= _menuDelegate;
+            GeneralController.Instance.OnTimeDown -= _timeDelegate;
+
+            if (_tabletDelegate != null)
+                GeneralController.Instance.OnTabletDown -= _tabletDelegate;
+        }
+    }
+
+    public void UnlockTablet()
+    {
+        if (_tabletDelegate == null)
+        {
+            _tabletDelegate = HandleTabletPressed;
+            GeneralController.Instance.OnTabletDown += _tabletDelegate;
+        }
+    }
+
+    // === Named Methods for Delegates ===
+    private void OnInteract(InputAction.CallbackContext ctx) => _onInteractPressed.Invoke();
+    private void On2DMenuBack(InputAction.CallbackContext ctx) => _on2dMenuBackPressed.Invoke();
+    private void HandleMenuPressed() => _onMenuPressed.Invoke();
+    private void HandleTimePressed() => _onTimePressed.Invoke();
+    private void HandleTabletPressed() => _onTabletPressed.Invoke();
 }

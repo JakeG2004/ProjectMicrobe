@@ -23,6 +23,7 @@ public class Objective : MonoBehaviour
 
     [Space(10)]
     [SerializeField] protected bool _isFirstObjective = false;
+    [SerializeField] protected bool _isComplete = false;
 
     [Space(10)]
     [Header("Objective Group Fields")]
@@ -41,7 +42,6 @@ public class Objective : MonoBehaviour
     [SerializeField] protected string _description;
 
     protected bool _isActivated = false;
-    protected bool _isComplete = false;
     protected bool _isFailed = false;
     protected bool _isOneShot = true;
     protected ObjectiveEntryScript _objEntry;

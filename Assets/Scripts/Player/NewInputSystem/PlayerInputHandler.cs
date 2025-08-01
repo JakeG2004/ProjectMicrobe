@@ -54,7 +54,6 @@ public class PlayerInputHandler : MonoBehaviour
     private void BindInputActions()
     {
         _playerInputActions.Player.Jump.started += ctx => OnJumpDown?.Invoke();
-        _playerInputActions.Player.Drone.started += ctx => OnDroneToggled?.Invoke();
         _playerInputActions.Player.Sprint.started += ctx => OnSprintToggled?.Invoke();
     }
 
@@ -64,6 +63,11 @@ public class PlayerInputHandler : MonoBehaviour
         _playerInputActions.Player.Jump.started -= ctx => OnJumpDown?.Invoke();
         _playerInputActions.Player.Drone.started -= ctx => OnDroneToggled?.Invoke();
         _playerInputActions.Player.Sprint.started -= ctx => OnSprintToggled?.Invoke();
+    }
+
+    public void UnlockDrone()
+    {
+        _playerInputActions.Player.Drone.started += ctx => OnDroneToggled?.Invoke();
     }
 
     public void SetLookSensitivity(float val)

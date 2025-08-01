@@ -11,11 +11,11 @@ public class DirectionArrowScript : MonoBehaviour
 {
     public static DirectionArrowScript Instance { get; private set; }
     [SerializeField] private Transform _target;
-    [SerializeField] private bool _hideOnCollision = false;
     private List<GameObject> _collidingObjs;
     private MeshRenderer _rend;
+    private Transform _oldDir;
 
-    void Start()
+    void Awake()
     {
         if (Instance == null)
         {
@@ -40,7 +40,7 @@ public class DirectionArrowScript : MonoBehaviour
         }
 
         // Show based on the toggle and collisiosn
-        _rend.enabled = (!_hideOnCollision || (_collidingObjs.Count == 0 && _hideOnCollision));
+        _rend.enabled = true;
 
         // Look at the target
         transform.LookAt(_target);
@@ -49,14 +49,14 @@ public class DirectionArrowScript : MonoBehaviour
         transform.rotation *= Quaternion.Euler(0, 90, 0);
     }
 
-    // Public function to change the target to a new one
+    // Public function to change the target to a new onefdsa
     public void ChangeTarget(Transform newTarget)
     {
         if (!newTarget)
         {
             RemoveTarget();
         }
-        
+
         _target = newTarget;
     }
 
@@ -73,5 +73,15 @@ public class DirectionArrowScript : MonoBehaviour
     void OnTriggerExit(Collider col)
     {
         _collidingObjs.Remove(col.gameObject);
+    }
+
+    public void StorePosition()
+    {
+        _oldDir = _target;
+    }
+
+    public void RestorePosition()
+    {
+        _target = _oldDir;
     }
 }
