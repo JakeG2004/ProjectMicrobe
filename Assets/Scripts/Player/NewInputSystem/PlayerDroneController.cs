@@ -15,21 +15,25 @@ public class PlayerDroneController : MonoBehaviour
     private Vector3 _smoothedLookDir = Vector3.forward;
     private LoopingSoundHandle _loop;
 
+    // Delegates
+    private System.Action _deactivateDroneHandler;
     void Awake()
     {
         _states = GetComponent<PlayerController>().GetStates();
         _rb = GetComponent<Rigidbody>();
         _cam = Camera.main.transform;
+
+        _deactivateDroneHandler = () => SetDroneActivationState(false);
     }
 
 	void Start()
 	{
-        DroneInputHandler.Instance.OnDismountPressed += (() => SetDroneActivationState(false));
+        DroneInputHandler.Instance.OnDismountPressed += _deactivateDroneHandler;
 	}
 
     void OnDisable()
     {
-        DroneInputHandler.Instance.OnDismountPressed -= (() => SetDroneActivationState(false));
+        DroneInputHandler.Instance.OnDismountPressed -= _deactivateDroneHandler;
     }
 
     void FixedUpdate()
