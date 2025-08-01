@@ -17,6 +17,11 @@ public class PlayerInputHandler : MonoBehaviour
     public event System.Action OnSprintToggled;
     public event System.Action OnDroneToggled;
 
+    public void Init(PlayerStatesSO states)
+    {
+        _states = states;
+    }
+
     void Awake()
     {
         if (Instance != this && Instance != null)

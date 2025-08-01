@@ -26,6 +26,8 @@ public enum SoundType
     DRONE_TAKEOFF,
     DRONE_FLIGHT,
     DRONE_LANDING,
+    FOOTSTEP_SOFT,
+    FOOTSTEP_HARD,
 }
 
 [RequireComponent(typeof(AudioSource)), ExecuteInEditMode]

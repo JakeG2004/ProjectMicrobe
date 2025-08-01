@@ -30,6 +30,11 @@ public class FootIK : MonoBehaviour {
     Quaternion rightRotAnim, rightRotIK;
     bool initialsed = false;
 
+    public void Init(LayerMask newMask)
+    {
+        mask = newMask;
+    }
+
     void Start() {
         anim = GetComponent<Animator>();
         footOffset = Vector3.up * 0.1f;

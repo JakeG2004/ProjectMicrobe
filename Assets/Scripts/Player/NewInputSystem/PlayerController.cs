@@ -18,6 +18,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PlayerMovementValsSO _vals;
 
     [Space(10)]
+    [Header("Passthrough variables")]
+    [SerializeField] private LayerMask _collisionMask;
+    [SerializeField] private float _gcRadius = 0.5f;
+
+    [Space(10)]
     [Header("Dependencies")]
     private PlayerInputHandler _inputHandler;
     private PlayerMovement _playerMovement;
@@ -38,6 +43,7 @@ public class PlayerController : MonoBehaviour
         }
 
         GetComponentReferences();
+        AddNonReferenceComponents();
     }
 
     void Start()
@@ -99,6 +105,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void UnlockDrone()
+    {
+        _inputHandler.UnlockDrone();
+    }
+
     // Public methods for other systems to interact with player movement
     public void SetMovementState(bool state)
     {
@@ -150,12 +161,34 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // Creates / gets component references during gameplay
     private void GetComponentReferences()
     {
-        if (_inputHandler == null) _inputHandler = GetComponent<PlayerInputHandler>();
-        if (_playerMovement == null) _playerMovement = GetComponent<PlayerMovement>();
-        if (_playerClimbing == null) _playerClimbing = GetComponent<PlayerClimbing>();
-        if (_playerCarry == null) _playerCarry = GetComponent<PlayerCarry>();
-        if (_droneController == null) _droneController = GetComponent<PlayerDroneController>();
+        _inputHandler = gameObject.AddComponent<PlayerInputHandler>();
+        _inputHandler.Init(_states);
+
+
+        _playerMovement = gameObject.AddComponent<PlayerMovement>();
+        _playerMovement.Init(_states, _vals, _gcRadius, _collisionMask);
+
+        _playerClimbing = gameObject.AddComponent<PlayerClimbing>();
+        _playerClimbing.Init(_states, _vals);
+
+        _droneController = GetComponent<PlayerDroneController>();
+    }
+
+    // Adds components to the player that are not needed by this script, but are required nonetheless
+    private void AddNonReferenceComponents()
+    {
+        gameObject.AddComponent<PlayerSoundController>();
+        gameObject.AddComponent<CarriedMicrobes>();
+        gameObject.AddComponent<CarriedPylon>();
+        gameObject.AddComponent<DroneInputHandler>();
+
+        FootIK footIK = gameObject.AddComponent<FootIK>();
+        footIK.Init(_collisionMask);
+
+        AnimationController animController = gameObject.AddComponent<AnimationController>();
+        animController.Init(_states);
     }
 }

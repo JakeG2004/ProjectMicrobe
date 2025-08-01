@@ -8,6 +8,11 @@ public class AnimationController : MonoBehaviour
 
 	private float moveVal = 0.0f;
 
+	public void Init(PlayerStatesSO states)
+	{
+		_states = states;
+	}
+
 	void Awake()
 	{
 		_rb = GetComponent<Rigidbody>();

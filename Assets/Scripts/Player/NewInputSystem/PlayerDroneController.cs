@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(DroneInputHandler))]
 public class PlayerDroneController : MonoBehaviour
 {
     [Header("Controls and States")]
@@ -24,6 +23,8 @@ public class PlayerDroneController : MonoBehaviour
         _cam = Camera.main.transform;
 
         _deactivateDroneHandler = () => SetDroneActivationState(false);
+
+
     }
 
 	void Start()

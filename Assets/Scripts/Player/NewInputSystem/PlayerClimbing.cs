@@ -16,6 +16,12 @@ public class PlayerClimbing : MonoBehaviour
     private Rigidbody _rb;
     private Coroutine _snapToLadderCoroutine;
 
+    public void Init(PlayerStatesSO states, PlayerMovementValsSO vals)
+    {
+        _states = states;
+        _vals = vals;
+    }
+
     void Awake()
     {
         _rb = GetComponent<Rigidbody>();

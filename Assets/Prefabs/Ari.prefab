@@ -591,17 +591,8 @@ GameObject:
   - component: {fileID: 5963815200987020923}
   - component: {fileID: 6826076843693471832}
   - component: {fileID: 7674221256564764831}
-  - component: {fileID: 1003551936819757953}
-  - component: {fileID: 5661251883307752110}
-  - component: {fileID: 518634798770640118}
   - component: {fileID: 5498269020969181446}
-  - component: {fileID: 4743972265443134330}
-  - component: {fileID: 2040846585560011235}
-  - component: {fileID: 1170126661389865458}
-  - component: {fileID: 3627797222351554939}
-  - component: {fileID: 3122091917922788951}
   - component: {fileID: 4466378030436378610}
-  - component: {fileID: 1482535790653382633}
   m_Layer: 3
   m_Name: Ari
   m_TagString: Player
@@ -720,62 +711,6 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &1003551936819757953
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2193967628850272424}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 067448109bcee6341b5603cb1593ae9a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _states: {fileID: 11400000, guid: 3831e6f2aeb12247dbf75de354d7b151, type: 2}
-  ac: {fileID: 5963815200987020923}
---- !u!114 &5661251883307752110
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2193967628850272424}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 883f6fda7b758754589a6eb6d71d04b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mask:
-    serializedVersion: 2
-    m_Bits: 88
---- !u!114 &518634798770640118
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2193967628850272424}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7556e474f7cb6114da9017408dc1b038, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  impact: 0
-  footSoundsSoft:
-  - {fileID: 8300000, guid: 7bc83f05470032e438379b41eea78ed6, type: 3}
-  - {fileID: 8300000, guid: 804d7344df9d23541b411c8ff6279c1c, type: 3}
-  - {fileID: 8300000, guid: e7644c64de3f72d498d4ac0d86f20de2, type: 3}
-  - {fileID: 8300000, guid: 451416fdd923bc649aa97b20763c33d0, type: 3}
-  - {fileID: 8300000, guid: 8d93c0dbc93853d4cb922b0a72f5c30b, type: 3}
-  - {fileID: 8300000, guid: 4bec5cea0adf3af47b7b277b84c2e2c2, type: 3}
-  - {fileID: 8300000, guid: 14843f9c1b9f3b9429dbc1cfa12c333c, type: 3}
-  - {fileID: 8300000, guid: e7b8a67dd60a02944aea3b25644e563f, type: 3}
-  - {fileID: 8300000, guid: 48669883c78fb6546b7e925b1b7de279, type: 3}
-  footSoundsHard:
-  - {fileID: 8300000, guid: 274711cfc38dc6843a2d00ae8b9ce534, type: 3}
-  - {fileID: 8300000, guid: d981459d096387247b0fca3954432e0b, type: 3}
-  - {fileID: 8300000, guid: 938f8f5bc30b3bf4c823062466b3efb5, type: 3}
 --- !u!82 &5498269020969181446
 AudioSource:
   m_ObjectHideFlags: 0
@@ -872,69 +807,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &4743972265443134330
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2193967628850272424}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4663b2b5d0a7110da49d0987017b7cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _microbes: []
---- !u!114 &2040846585560011235
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2193967628850272424}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7152288167fbc10c83891044eacee95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _hasPylon: 0
-  _validRegion: 0
---- !u!114 &1170126661389865458
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2193967628850272424}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f4489aed1ebfc62d8abd2c31035df44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &3627797222351554939
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2193967628850272424}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abba5536ad0248b8d94a26ee9abee643, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &3122091917922788951
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2193967628850272424}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a44a1746a2c8dc6b88d999e66ad8d2b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &4466378030436378610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -949,22 +821,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _states: {fileID: 11400000, guid: 3831e6f2aeb12247dbf75de354d7b151, type: 2}
   _vals: {fileID: 11400000, guid: e94544175a565b33488d6b12fb6a68b2, type: 2}
---- !u!114 &1482535790653382633
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2193967628850272424}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72fc3b34a050382778af62ebf1695554, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   _collisionMask:
     serializedVersion: 2
-    m_Bits: 88
-  _gcRadius: 0.2
+    m_Bits: 0
+  _gcRadius: 0.5
 --- !u!1 &2262952538408957318
 GameObject:
   m_ObjectHideFlags: 0
@@ -3691,7 +3551,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _target: {fileID: 0}
-  _hideOnCollision: 0
 --- !u!65 &640391501504490383
 BoxCollider:
   m_ObjectHideFlags: 0

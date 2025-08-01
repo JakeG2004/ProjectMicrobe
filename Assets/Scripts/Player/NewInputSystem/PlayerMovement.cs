@@ -18,6 +18,14 @@ public class PlayerMovement : MonoBehaviour
     private PlayerStatesSO _states;
     private PlayerMovementValsSO _vals;
 
+    public void Init(PlayerStatesSO states, PlayerMovementValsSO vals, float gcRadius, LayerMask collisionMask)
+    {
+        _collisionMask = collisionMask;
+        _gcRadius = gcRadius;
+        _states = states;
+        _vals = vals;
+    }
+
     void Awake()
     {
         _rb = GetComponent<Rigidbody>();

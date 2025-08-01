@@ -10,13 +10,8 @@ public class PlayerSoundController : MonoBehaviour {
 	bool groundedR = false;
 	[SerializeField] float impact = 0f;
 
-	AudioSource source;
-	[SerializeField] AudioClip[] footSoundsSoft;
-	[SerializeField] AudioClip[] footSoundsHard;
-
     void Start() {
 		anim = GetComponent<Animator>();
-		source = GetComponent<AudioSource>();
     }
 
     void Update() {
@@ -39,11 +34,11 @@ public class PlayerSoundController : MonoBehaviour {
 	}
 	void RandomSoundBasedOnImpact(float impactStrength) {
 		if (impactStrength > 0.5f) {
-			source.PlayOneShot(footSoundsHard[Random.Range(0, footSoundsHard.Length)]);
+			SoundManager.PlaySound(SoundType.FOOTSTEP_HARD);
 			//Debug.DrawRay(anim.GetIKPosition(AvatarIKGoal.LeftFoot), Vector3.up, Color.red, 0.5f);
 		}
 		else {
-			source.PlayOneShot(footSoundsSoft[Random.Range(0, footSoundsSoft.Length)]);
+			SoundManager.PlaySound(SoundType.FOOTSTEP_SOFT);
 			//Debug.DrawRay(anim.GetIKPosition(AvatarIKGoal.LeftFoot), Vector3.up, Color.yellow, 0.5f);
 		}
 	}
