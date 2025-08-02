@@ -4,52 +4,18 @@ using UnityEngine;
 
 public class Clicker : MonoBehaviour
 {
-    /*private int _numBugsClicked = 0;
-    private SoundPlayer _sp;
-
-    void Start()
-    {
-        _sp = GetComponent<SoundPlayer>();
-    }*/
-
-    /*
-        public void Click()
-        {
-            gameObject.SetActive(true);
-            StopAllCoroutines();
-            StartCoroutine(ITurnOffClicker());
-        }
-
-        private IEnumerator ITurnOffClicker()
-        {
-            yield return new WaitForSeconds(0.1f);
-            GetComponent<IntGameEventTrigger>().TriggerEvent(_numBugsClicked);
-            _numBugsClicked = 0;
-            gameObject.SetActive(false);
-        }*/
-
+    [SerializeField] private PlayerStatesSO _states;
     [SerializeField] private float _moveSpeed = 10.0f;
-    private PlayerInputActions _pia;
     private Rigidbody2D _rb;
-    private Vector2 _moveVector;
 
     void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
     }
 
-    void Start()
-    {
-        _pia = NewInputController.Instance.GetPlayerInputActions();
-
-        // Movement lambdas
-        _pia.Minigames.Move.performed += ctx => _moveVector = ctx.ReadValue<Vector2>();
-        _pia.Minigames.Move.canceled += ctx => _moveVector = Vector2.zero;
-    }
-
     void Update()
     {
-        _rb.velocity = _moveVector * _moveSpeed;
+        _rb.velocity = _states.minigameMove * _moveSpeed;
 
         Vector3 newTransform = transform.localPosition;
 

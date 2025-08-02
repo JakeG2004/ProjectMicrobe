@@ -4,28 +4,18 @@ using UnityEngine;
 
 public class CoconutPlayerController : MonoBehaviour
 {
+    [SerializeField] private PlayerStatesSO _states;
     [SerializeField] private float _moveSpeed = 5.0f;
-    private PlayerInputActions _pia;
     private Rigidbody2D _rb;
-    private Vector2 _moveVector;
 
     void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
     }
 
-    void Start()
-    {
-        _pia = NewInputController.Instance.GetPlayerInputActions();
-
-        // Movement lambdas
-        _pia.Minigames.Move.performed += ctx => _moveVector = ctx.ReadValue<Vector2>();
-        _pia.Minigames.Move.canceled += ctx => _moveVector = Vector2.zero;
-    }
-
     void Update()
     {
-        _rb.velocity = new Vector2(_moveVector.x * _moveSpeed, 0f);
+        _rb.velocity = new Vector2(_states.minigameMove.x * _moveSpeed, 0f);
 
         if (Mathf.Abs(transform.localPosition.x) > 3.5f)
         {

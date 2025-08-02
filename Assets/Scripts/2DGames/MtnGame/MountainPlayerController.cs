@@ -8,6 +8,7 @@ using System.Collections;
 
 public class MountainPlayerController : MonoBehaviour
 {
+    [SerializeField] private PlayerStatesSO _states;
     [SerializeField] private GameObject _arrowObj;
     [SerializeField] private GameObject _prize;
     private bool _isDragging = false;
@@ -21,11 +22,10 @@ public class MountainPlayerController : MonoBehaviour
     private Vector3 _initPlayerPos;
     float _prevArrowScale = 0.0f;
     bool _canPlaySound = false;
-    private PlayerInputActions _pia;
-    private Vector2 _moveVector;
     private Vector2 _camVector;
     private bool _jumpTrigger = false;
     public float rotationOff = 180f;
+    private NewInputController _controller;
 
     void Start()
     {
@@ -33,17 +33,23 @@ public class MountainPlayerController : MonoBehaviour
         _originalParent = transform.parent;
         _rb = GetComponent<Rigidbody2D>();
 
-        _pia = NewInputController.Instance.GetPlayerInputActions();
+        _controller = NewInputController.Instance;
 
-        // Movement lambdas
-        _pia.Minigames.Move.performed += ctx => _moveVector = ctx.ReadValue<Vector2>();
-        _pia.Minigames.Move.canceled += ctx => _moveVector = Vector2.zero;
-
-        _pia.Minigames.Select.performed += ctx => _jumpTrigger = true;
-        _pia.Minigames.Select.canceled += ctx => _jumpTrigger = false;
+        _controller.minigameInput.OnSelectPressed += HandleJumpDown;
+        _controller.minigameInput.OnSelectCanceled += HandleJumpUp;
 
         StartCoroutine(IPreventStartSounds());
     }
+
+    void OnDisable()
+    {
+        _controller.minigameInput.OnSelectPressed -= HandleJumpDown;
+        _controller.minigameInput.OnSelectCanceled -= HandleJumpUp;
+    }
+
+    private void HandleJumpDown() => _jumpTrigger = true;
+    private void HandleJumpUp() => _jumpTrigger = false;
+
 
     private IEnumerator IPreventStartSounds()
     {
@@ -71,7 +77,7 @@ public class MountainPlayerController : MonoBehaviour
 
     void GamepadControls()
     {
-        Vector2 invertedMoveVector = -1 * _moveVector;
+        Vector2 invertedMoveVector = -1 * _states.minigameMove;
         float arrowScale = invertedMoveVector.magnitude * 5f;
         if (arrowScale > 4.5f)
         {
@@ -82,7 +88,7 @@ public class MountainPlayerController : MonoBehaviour
         {
             _arrowObj.SetActive(true);
 
-            float angle = Mathf.Atan2(_moveVector.y, _moveVector.x) * Mathf.Rad2Deg;
+            float angle = Mathf.Atan2(_states.minigameMove.y, _states.minigameMove.x) * Mathf.Rad2Deg;
 
             // Set rotation, scale, position
             _arrowObj.transform.rotation = Quaternion.Euler(0, 0, angle + 90f);

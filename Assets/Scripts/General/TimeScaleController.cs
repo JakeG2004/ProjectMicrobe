@@ -10,10 +10,27 @@ using UnityEngine.Events;
 
 public class TimeScaleController : MonoBehaviour
 {
-    private float _elapsedTime = 0.0f;
     [SerializeField] private float _updatePeriod = 15.0f;
-    private int _curTimeIdx = 0;
     [SerializeField] private UnityEvent<float> _onChangeUpdatePeriod;
+    private float _elapsedTime = 0.0f;
+    private int _curTimeIdx = 0;
+    private NewInputController _controller;
+
+    void Start()
+    {
+        _controller = NewInputController.Instance;
+        _controller.generalInput.OnTimeDown += ChangeTimeScale;
+    }
+
+    void OnDisable()
+    {
+        if (_controller == null)
+        {
+            return;
+        }
+        
+        _controller.generalInput.OnTimeDown -= ChangeTimeScale;
+    }
 
     // Pylon update periods
     void Update()

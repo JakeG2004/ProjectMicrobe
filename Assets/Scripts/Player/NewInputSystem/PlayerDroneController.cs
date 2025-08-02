@@ -13,6 +13,7 @@ public class PlayerDroneController : MonoBehaviour
     private Transform _cam;
     private Vector3 _smoothedLookDir = Vector3.forward;
     private LoopingSoundHandle _loop;
+    private NewInputController _controller;
 
     // Delegates
     private System.Action _deactivateDroneHandler;
@@ -23,18 +24,18 @@ public class PlayerDroneController : MonoBehaviour
         _cam = Camera.main.transform;
 
         _deactivateDroneHandler = () => SetDroneActivationState(false);
-
-
     }
 
 	void Start()
 	{
-        DroneInputHandler.Instance.OnDismountPressed += _deactivateDroneHandler;
+        _controller = NewInputController.Instance;
+
+        _controller.droneInput.OnDismountPressed += _deactivateDroneHandler;
 	}
 
     void OnDisable()
     {
-        DroneInputHandler.Instance.OnDismountPressed -= _deactivateDroneHandler;
+        _controller.droneInput.OnDismountPressed -= _deactivateDroneHandler;
     }
 
     void FixedUpdate()

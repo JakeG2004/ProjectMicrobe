@@ -10,19 +10,19 @@ public class OverheadUIManager : MonoBehaviour
     [SerializeField] private GameObject _droneControlIndicators;
     [SerializeField] private GameObject _waitIndicator;
     [SerializeField] private GameObject _tabletIndicator;
-    private PlayerInputActions _pia;
     private int _stepIndex = 0;
     private readonly Dictionary<string, System.Action> _inputStepHandlers = new();
+    private NewInputController _controller;
 
 
     void Start()
     {
-        _pia = NewInputController.Instance.GetPlayerInputActions();
+        _controller = NewInputController.Instance;
 
-        GeneralController.Instance.OnTimeDown += HideWaitPrompt;
+        _controller.generalInput.OnTimeDown += HideWaitPrompt;
 
-        PlayerInputHandler.Instance.OnDroneToggled += ProgressDronePrompt;
-        DroneInputHandler.Instance.OnVerticalMovePressed += HideDronePrompt;
+        _controller.playerInput.OnDroneToggled += ProgressDronePrompt;
+        _controller.droneInput.OnVerticalMovePressed += HideDronePrompt;
     }
 
     // Uses a dictionary to store references to our lambda functions
@@ -36,30 +36,30 @@ public class OverheadUIManager : MonoBehaviour
         _inputStepHandlers["Zoom"] = () => OnInputStep(2);
         _inputStepHandlers["Jump"] = () => OnInputStep(3);
 
-        PlayerInputHandler.Instance.OnJumpDown += _inputStepHandlers["Jump"];
-        GeneralController.Instance.OnLookPerformed += _inputStepHandlers["Look"];
-        GeneralController.Instance.OnZoomPerformed += _inputStepHandlers["Zoom"];
-        GeneralController.Instance.OnMovePerformed += _inputStepHandlers["Move"];
+        _controller.playerInput.OnJumpDown += _inputStepHandlers["Jump"];
+        _controller.generalInput.OnLookPerformed += _inputStepHandlers["Look"];
+        _controller.generalInput.OnZoomPerformed += _inputStepHandlers["Zoom"];
+        _controller.generalInput.OnMovePerformed += _inputStepHandlers["Move"];
     }
 
     // Unsubscribes from the events
     void OnDisable()
     {
         if (_inputStepHandlers.TryGetValue("Jump", out var jump))
-            PlayerInputHandler.Instance.OnJumpDown -= jump;
+            _controller.playerInput.OnJumpDown -= jump;
 
         if (_inputStepHandlers.TryGetValue("Look", out var look))
-            GeneralController.Instance.OnLookPerformed -= look;
+            _controller.generalInput.OnLookPerformed -= look;
 
         if (_inputStepHandlers.TryGetValue("Move", out var move))
-            GeneralController.Instance.OnMovePerformed -= move;
+            _controller.generalInput.OnMovePerformed -= move;
 
         if (_inputStepHandlers.TryGetValue("Zoom", out var zoom))
-            GeneralController.Instance.OnZoomPerformed -= zoom;
+            _controller.generalInput.OnZoomPerformed -= zoom;
 
-        PlayerInputHandler.Instance.OnDroneToggled -= ProgressDronePrompt;
-        DroneInputHandler.Instance.OnVerticalMovePressed -= HideDronePrompt;
-        GeneralController.Instance.OnTimeDown -= HideWaitPrompt;
+        _controller.playerInput.OnDroneToggled -= ProgressDronePrompt;
+        _controller.droneInput.OnVerticalMovePressed -= HideDronePrompt;
+        _controller.generalInput.OnTimeDown -= HideWaitPrompt;
     }
 
     void ShowStep(int index)

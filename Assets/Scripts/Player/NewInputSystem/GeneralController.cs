@@ -2,44 +2,36 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class GeneralController : MonoBehaviour
+public class GeneralInputController
 {
-    public static GeneralController Instance;
-
-    [SerializeField] private PlayerStatesSO _states;
+    private PlayerStatesSO _states;
     private PlayerInputActions _playerInputActions;
 
     // Subscribable events
-    public event Action OnMenuDown;
-    public event Action OnTimeDown;
-    public event Action OnTabletDown;
-    public event Action OnLookPerformed;
-    public event Action OnZoomPerformed;
-    public event Action OnMovePerformed;
+    public Action OnMenuDown;
+    public Action OnTimeDown;
+    public Action OnTabletDown;
+    public Action OnMovePerformed;
+    public Action OnLookPerformed;
+    public Action OnZoomPerformed;
 
-    void Awake()
+    public GeneralInputController(PlayerStatesSO states, PlayerInputActions pia)
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            Instance = this;
-        }
-    }
+        _states = states;
 
-    void Start()
-    {
-        _playerInputActions = NewInputController.Instance.GetPlayerInputActions();
-        _playerInputActions.BaseControls.Enable();
+        _playerInputActions = pia;
         BindInputActions();
     }
 
-    void OnDisable()
+    public void Dispose()
     {
         UnbindInputActions();
         _playerInputActions.BaseControls.Disable();
+    }
+
+    public void UnlockTablet()
+    {
+        _playerInputActions.BaseControls.Tablet.started += HandleTablet;
     }
 
     // === Named Methods ===
@@ -89,7 +81,6 @@ public class GeneralController : MonoBehaviour
 
         _playerInputActions.BaseControls.Menu.started += HandleMenu;
         _playerInputActions.BaseControls.Time.started += HandleTime;
-        _playerInputActions.BaseControls.Tablet.started += HandleTablet;
     }
 
     private void UnbindInputActions()

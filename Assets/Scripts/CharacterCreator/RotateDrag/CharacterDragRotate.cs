@@ -13,16 +13,11 @@ public class CharacterDragRotate : MonoBehaviour
     public float rotationSpeed = 35f;
     private bool isDragging = false;
     private Vector3 lastMousePosition;
-    private PlayerInputActions _pia;
-    private Vector2 _stickVal;
+    private NewInputController _controller;
     void Start()
     {
-        _pia = new();
-        _pia.UI.Enable();
-
-        // right stick
-        _pia.UI.RightStick.performed += ctx => _stickVal = ctx.ReadValue<Vector2>();
-        _pia.UI.RightStick.canceled += ctx => _stickVal = Vector2.zero;
+        _controller = NewInputController.Instance;
+        _controller.
     }
 
     void OnMouseDown()
@@ -56,7 +51,7 @@ public class CharacterDragRotate : MonoBehaviour
 
     public void RotateAriStick()
     {
-        float delta = _stickVal.x * 5f;
+        float delta = _states.minigameMove.x * 5f;
         Rotate(delta);
     }
 }

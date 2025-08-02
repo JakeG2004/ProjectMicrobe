@@ -48,22 +48,15 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        _inputHandler = NewInputController.Instance.playerInput;
+        _inputHandler.OnJumpDown += HandleJump;
+        _inputHandler.OnSprintToggled += HandleSprintToggle;
+        _inputHandler.OnDroneToggled += HandleDroneToggle;
+
         _states.isSprinting = false;
         _states.isBeingCarried = false;
         _states.longDrop = false;
         _states.isFlying = false;
-    }
-
-
-    // Subscribes to events
-    void OnEnable()
-    {
-        if (_inputHandler != null)
-        {
-            _inputHandler.OnJumpDown += HandleJump;
-            _inputHandler.OnSprintToggled += HandleSprintToggle;
-            _inputHandler.OnDroneToggled += HandleDroneToggle;
-        }
     }
 
     // Unsubscribes from events
@@ -103,11 +96,6 @@ public class PlayerController : MonoBehaviour
         {
             _states.isFlying = false;
         }
-    }
-
-    public void UnlockDrone()
-    {
-        _inputHandler.UnlockDrone();
     }
 
     // Public methods for other systems to interact with player movement
@@ -164,10 +152,6 @@ public class PlayerController : MonoBehaviour
     // Creates / gets component references during gameplay
     private void GetComponentReferences()
     {
-        _inputHandler = gameObject.AddComponent<PlayerInputHandler>();
-        _inputHandler.Init(_states);
-
-
         _playerMovement = gameObject.AddComponent<PlayerMovement>();
         _playerMovement.Init(_states, _vals, _gcRadius, _collisionMask);
 
@@ -183,7 +167,6 @@ public class PlayerController : MonoBehaviour
         gameObject.AddComponent<PlayerSoundController>();
         gameObject.AddComponent<CarriedMicrobes>();
         gameObject.AddComponent<CarriedPylon>();
-        gameObject.AddComponent<DroneInputHandler>();
 
         FootIK footIK = gameObject.AddComponent<FootIK>();
         footIK.Init(_collisionMask);

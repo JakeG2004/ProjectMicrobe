@@ -14,7 +14,8 @@ public class InteractMaster : MonoBehaviour
     [SerializeField] private InteractText _interactText;
     [SerializeField] private InteractableStack<InteractableObject> _interactables = new();
     [SerializeField] private bool _isInteractable = false;
-    bool _hasDialogue = false;
+    private bool _hasDialogue = false;
+    private NewInputController _controller;
 
     void Awake()
     {
@@ -27,6 +28,17 @@ public class InteractMaster : MonoBehaviour
         {
             Instance = this;
         }
+    }
+
+    void Start()
+    {
+        _controller = NewInputController.Instance;
+        _controller.playerInput.OnInteractDown += HandleInteract;
+    }
+
+    void OnDisable()
+    {
+        _controller.playerInput.OnInteractDown -= HandleInteract;
     }
 
     public void AddInteract(InteractableObject io)
@@ -104,6 +116,12 @@ public class InteractMaster : MonoBehaviour
         }
 
         io.Interact();
+    }
+
+    public void HandleInteract()
+    {
+        TryInteract();
+        DialogueManager.Instance.DisplayNextSentence();
     }
 
     public void SetInteractableState(bool state)

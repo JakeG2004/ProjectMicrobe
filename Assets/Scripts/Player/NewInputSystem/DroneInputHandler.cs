@@ -3,61 +3,66 @@
 // Author:  Jake Gendreau
 // Date:    7/28/25
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(PlayerController))]
-public class DroneInputHandler : MonoBehaviour
+public class DroneInputHandler
 {
-    public static DroneInputHandler Instance;
     private PlayerStatesSO _states;
     private PlayerInputActions _pia;
 
-    // Events
-    public event System.Action OnVerticalMovePressed;
-    public event System.Action OnVerticalMoveCanceled;
-    public event System.Action OnDismountPressed;
+    // Subscribable events
+    public event Action OnVerticalMovePressed;
+    public event Action OnVerticalMoveCanceled;
+    public event Action OnDismountPressed;
 
-    void Awake()
+    public DroneInputHandler(PlayerStatesSO states, PlayerInputActions pia)
     {
-        if (Instance != this && Instance != null)
-        {
-            Destroy(this.gameObject);
-        }
-
-        else
-        {
-            Instance = this;
-        }
-    }
-
-    void Start()
-    {
-        _states = GetComponent<PlayerController>().GetStates();
-        _pia = NewInputController.Instance.GetPlayerInputActions();
+        _states = states;
+        _pia = pia;
 
         _pia.Drone.Disable();
         BindInputActions();
     }
 
-    void OnDisable()
+    public void Dispose()
     {
         _pia.Drone.Disable();
         UnbindInputActions();
     }
 
+    private void HandleVerticalMove(InputAction.CallbackContext ctx)
+    {
+        _states.verticalMove = ctx.ReadValue<float>();
+        OnVerticalMovePressed?.Invoke();
+    }
+
+    private void HandleVerticalMoveCancelled(InputAction.CallbackContext ctx)
+    {
+        _states.verticalMove = 0;
+        OnVerticalMoveCanceled?.Invoke();
+    }
+
+    private void HandleDismountPressed(InputAction.CallbackContext ctx)
+    {
+        _states.isFlying = false;
+        OnDismountPressed?.Invoke();
+    }
+
     private void BindInputActions()
     {
-        _pia.Drone.VerticalMove.performed += ctx => { _states.verticalMove = ctx.ReadValue<float>(); OnVerticalMovePressed?.Invoke(); };
-        _pia.Drone.VerticalMove.canceled += ctx => { _states.verticalMove = 0; OnVerticalMoveCanceled?.Invoke(); };
-        _pia.Drone.Dismount.started += ctx => { _states.isFlying = false; OnDismountPressed?.Invoke(); };
+        _pia.Drone.VerticalMove.performed += HandleVerticalMove;
+        _pia.Drone.VerticalMove.canceled += HandleVerticalMoveCancelled;
+        _pia.Drone.Dismount.started += HandleDismountPressed;
     }
 
     private void UnbindInputActions()
     {
-        _pia.Drone.VerticalMove.performed -= ctx => { _states.verticalMove = ctx.ReadValue<float>(); OnVerticalMovePressed?.Invoke(); };
-        _pia.Drone.VerticalMove.canceled -= ctx => { _states.verticalMove = 0; OnVerticalMoveCanceled?.Invoke(); };
-        _pia.Drone.Dismount.started -= ctx => { _states.isFlying = false; OnDismountPressed?.Invoke(); };
+        _pia.Drone.VerticalMove.performed -= HandleVerticalMove;
+        _pia.Drone.VerticalMove.canceled -= HandleVerticalMoveCancelled;
+        _pia.Drone.Dismount.started -= HandleDismountPressed;
     }
 }

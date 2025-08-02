@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,12 +7,21 @@ using UnityEngine.Events;
 public class NewInputController : MonoBehaviour
 {
     public static NewInputController Instance { get; private set; }
+    [SerializeField] private PlayerStatesSO _states;
     [SerializeField] private UnityEvent _onMouseKeyboard;
     [SerializeField] private UnityEvent _onGamepad;
+
+    // Control type references
     private PlayerInputActions _pia;
     private InputType _curDevice = InputType.Unknown;
     private ControlMap _curMap = ControlMap.PLAYER;
     private ControlMap _prevMap = ControlMap.PLAYER;
+
+    // Reference scripts
+    public PlayerInputHandler playerInput;
+    public DroneInputHandler droneInput;
+    public GeneralInputController generalInput;
+    public MinigameInputHandler minigameInput;
 
     void Awake()
     {
@@ -26,8 +36,10 @@ public class NewInputController : MonoBehaviour
             DontDestroyOnLoad(this.gameObject);
         }
 
-        _pia = new();
-        Set3DMode();
+        if (_pia == null)
+        {
+            _pia = new();
+        }
 
         // Hook into relevant actions to detect input device
         foreach (var map in _pia.asset.actionMaps)
@@ -37,12 +49,9 @@ public class NewInputController : MonoBehaviour
                 action.performed += UpdateInputDevice;
             }
         }
-    }
 
-    //void Update()
-    //{
-    //    Debug.Log($"UI: {_pia.UI.enabled}\nPlayer: {_pia.Player.enabled}\nMinigames: {_pia.Minigames.enabled}");
-    //}
+        GetComponentReferences();
+    }
 
     public PlayerInputActions GetPlayerInputActions()
     {
@@ -150,6 +159,14 @@ public class NewInputController : MonoBehaviour
         }
     }
 
+    private void GetComponentReferences()
+    {
+        generalInput = new GeneralInputController(_states, _pia);
+        playerInput = new PlayerInputHandler(_states, _pia);
+        droneInput = new DroneInputHandler(_states, _pia);
+        minigameInput = new MinigameInputHandler(_states, _pia);
+    }
+
     public void EmitCurDevice()
     {
         Set3DMode();
@@ -175,6 +192,11 @@ public class NewInputController : MonoBehaviour
         {
             _onMouseKeyboard.Invoke();
         }
+    }
+
+    public void UnlockDrone()
+    {
+        playerInput.UnlockDrone();
     }
 }
 

@@ -31,6 +31,10 @@ public class PlayerStatesSO : ScriptableObject
     public Vector2 look = Vector2.zero;
 
     [Space(10)]
+    [Header("2D Controls")]
+    public Vector2 minigameMove = Vector2.zero;
+
+    [Space(10)]
     [Header("Drone Vectors")]
     public float verticalMove = 0;
 
