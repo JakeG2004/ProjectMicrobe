@@ -48,6 +48,8 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        NewInputController.Instance.Set3DMode();
+        
         _inputHandler = NewInputController.Instance.playerInput;
         _inputHandler.OnJumpDown += HandleJump;
         _inputHandler.OnSprintToggled += HandleSprintToggle;

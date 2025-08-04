@@ -22,6 +22,8 @@ public class MainMenuScript : MonoBehaviour
 
     void Start()
     {
+        NewInputController.Instance.SetMenuMode();
+        
         // Make a random microbe
         _microbeIcon.sprite = _microbeBodies[Random.Range(0, _microbeBodies.Count)];
         Color[] colors = { Color.red, Color.blue, Color.green, Color.yellow, Color.cyan, Color.magenta };

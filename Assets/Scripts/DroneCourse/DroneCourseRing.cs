@@ -7,6 +7,12 @@ public class DroneCourseRing : MonoBehaviour
     public System.Action OnPlayerPassthrough;
     [SerializeField] private bool _isActive = false;
     [SerializeField] private bool _isComplete = false;
+    private Vector3 _scale;
+
+    void Awake()
+    {
+        _scale = transform.parent.localScale;
+    }
 
     // Gets collision with player, marks ring as complete
     private void OnTriggerEnter(Collider other)
@@ -27,6 +33,13 @@ public class DroneCourseRing : MonoBehaviour
         _isActive = true;
         DirectionArrowScript.Instance?.ChangeTarget(transform);
         SetRingColor(Color.cyan);
+    }
+
+    public void ResetRing()
+    {
+        _isActive = false;
+        _isComplete = false;
+        SetRingColorImmediate(Color.red);
     }
 
     public void ShowRing()
@@ -70,6 +83,23 @@ public class DroneCourseRing : MonoBehaviour
         _isComplete = true;
     }
 
+    private void SetRingColorImmediate(Color color)
+    {
+        Renderer parentRenderer = transform.parent.GetComponent<Renderer>();
+        Material[] mats = parentRenderer.materials;
+        Material lightMat;
+
+        foreach (Material mat in mats)
+        {
+            if (mat.name.Contains("Light_White"))
+            {
+                lightMat = mat;
+                mat.SetColor("_EmissionColor", color);
+                return;
+            }
+        }
+    }
+
     // Smoothly transitions from current color to target color
     private IEnumerator LerpColor(Material mat, Color color)
     {
@@ -93,7 +123,7 @@ public class DroneCourseRing : MonoBehaviour
     private IEnumerator SetRingScale(float scale)
     {
         // Set initial scale
-        Vector3 initScale = transform.parent.localScale;
+        Vector3 initScale = _scale;
         Vector3 targetScale = initScale * scale;
 
         // Scale of these things is non-uniform, we we get the scale then shrink them

@@ -32,12 +32,19 @@ public class InteractMaster : MonoBehaviour
 
     void Start()
     {
+        LevelLoader.Instance.OnSceneUnload += RemoveAllEntries;
+
         _controller = NewInputController.Instance;
         _controller.playerInput.OnInteractDown += HandleInteract;
     }
 
     void OnDisable()
     {
+        if (!_controller)
+        {
+            return;
+        }
+
         _controller.playerInput.OnInteractDown -= HandleInteract;
     }
 
@@ -64,6 +71,16 @@ public class InteractMaster : MonoBehaviour
             // Move to the next one if there are more
             if (_interactables.Count > 0)
             {
+                InteractableObject nextObj = _interactables.Peek();
+                if (nextObj == null)
+                {
+                    _interactables.Pop();
+                    // Otherwise, hide and turn off interaction
+                    _interactText.HideText();
+                    _isInteractable = false;
+                    return;
+                }
+
                 _interactText.ShowText(_interactables.Peek());
                 return;
             }
@@ -132,5 +149,16 @@ public class InteractMaster : MonoBehaviour
     public void SetHasDialogue(bool state)
     {
         _hasDialogue = state;
+    }
+
+    public void RemoveAllEntries()
+    {
+        // Remove all the entries
+        _interactables.Clear();
+
+        // Hide the curent entry
+        _interactText.HideText();
+        _isInteractable = false;
+        return;
     }
 }

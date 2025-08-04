@@ -13,11 +13,17 @@ public class CharacterDragRotate : MonoBehaviour
     public float rotationSpeed = 35f;
     private bool isDragging = false;
     private Vector3 lastMousePosition;
-    private NewInputController _controller;
+    [SerializeField] private PlayerStatesSO _states;
+    private MenuControlsManager _mcm;
+
+    void Awake()
+    {
+        _mcm = GetComponent<MenuControlsManager>();
+    }
+
     void Start()
     {
-        _controller = NewInputController.Instance;
-        _controller.
+        NewInputController.Instance.SetMenuMode();
     }
 
     void OnMouseDown()

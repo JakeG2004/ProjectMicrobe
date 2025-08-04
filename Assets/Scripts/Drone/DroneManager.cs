@@ -22,7 +22,7 @@ public class DroneManager : MonoBehaviour
     [SerializeField] private Transform _homeBase;
 
     private Queue<Flight> _flightQueue = new();
-    private PlayerCarry _pc;
+    private Transform _player;
     private bool _isInFlight = false;
     private bool _playerPickedUpDelivery = false;
     private List<MicrobeSO> _curDelivery = new();
@@ -49,7 +49,7 @@ public class DroneManager : MonoBehaviour
 
     void Start()
     {
-        _pc = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCarry>();
+        _player = GameObject.FindGameObjectWithTag("Player").transform;
 
         _loop = SoundManager.PlayLoopingSoundWithIntroAndOutro(SoundType.DRONE_TAKEOFF, SoundType.DRONE_FLIGHT, SoundType.DRONE_LANDING, _drone.transform, 1f);
         _loop.SetPitch(0.6f);
@@ -64,7 +64,7 @@ public class DroneManager : MonoBehaviour
 
         _flightQueue.Clear();
 
-        _flightQueue.Enqueue(new Flight(_pc.gameObject.transform.position, FlightType.DELIVERY));
+        _flightQueue.Enqueue(new Flight(_player.position, FlightType.DELIVERY));
         _flightQueue.Enqueue(new Flight(_homeBase.position, FlightType.RETURN));
 
         _curDelivery = microbes;
@@ -91,7 +91,7 @@ public class DroneManager : MonoBehaviour
 
     public void GetOnDrone()
     {
-        _pc.StartCarry(_drone);
+        //_pc.StartCarry(_drone);
         _droneMountInteract.SetActive(false);
     }
 

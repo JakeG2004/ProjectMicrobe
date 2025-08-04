@@ -23,6 +23,7 @@ public class DroneCourseManager : MonoBehaviour
     {
         _curRingIdx = 0;
         DirectionArrowScript.Instance?.StorePosition();
+        ResetRingStates();
         SetCurRing(_rings[_curRingIdx]);
     }
 
@@ -100,7 +101,7 @@ public class DroneCourseManager : MonoBehaviour
         {
             DroneCourseRing nextRing = GetNextRing();
             nextRing.ShowRing();
-            _ringQueue.Enqueue(nextRing);   
+            _ringQueue.Enqueue(nextRing);
         }
     }
 
@@ -160,5 +161,13 @@ public class DroneCourseManager : MonoBehaviour
         DirectionArrowScript.Instance.RestorePosition();
         _timeEvent?.TriggerEvent(false);
         _completionEvent?.TriggerEvent();
+    }
+
+    private void ResetRingStates()
+    {
+        foreach (DroneCourseRing ring in _rings)
+        {
+            ring.ResetRing();
+        }
     }
 }

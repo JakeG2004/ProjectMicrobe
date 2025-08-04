@@ -14,7 +14,7 @@ public class NewInputController : MonoBehaviour
     // Control type references
     private PlayerInputActions _pia;
     private InputType _curDevice = InputType.Unknown;
-    private ControlMap _curMap = ControlMap.PLAYER;
+    [SerializeField] private ControlMap _curMap = ControlMap.PLAYER;
     private ControlMap _prevMap = ControlMap.PLAYER;
 
     // Reference scripts
@@ -22,6 +22,8 @@ public class NewInputController : MonoBehaviour
     public DroneInputHandler droneInput;
     public GeneralInputController generalInput;
     public MinigameInputHandler minigameInput;
+    public UIInputHandler uiInput;
+    private MenuControlsManager _mcm;
 
     void Awake()
     {
@@ -71,6 +73,8 @@ public class NewInputController : MonoBehaviour
 
     public void SetMenuMode()
     {
+        _mcm.SetMouseState(true);
+
         _pia.Player.Disable();
         _pia.Minigames.Disable();
         _pia.Drone.Disable();
@@ -83,6 +87,8 @@ public class NewInputController : MonoBehaviour
 
     public void ExitMenuMode()
     {
+        _mcm.SetMouseState(false);
+        
         switch (_prevMap)
         {
             case ControlMap.PLAYER:
@@ -165,11 +171,14 @@ public class NewInputController : MonoBehaviour
         playerInput = new PlayerInputHandler(_states, _pia);
         droneInput = new DroneInputHandler(_states, _pia);
         minigameInput = new MinigameInputHandler(_states, _pia);
+        uiInput = new UIInputHandler(_states, _pia);
+
+        _mcm = GetComponent<MenuControlsManager>();
     }
 
     public void EmitCurDevice()
     {
-        Set3DMode();
+        //Set3DMode();
         if (_curDevice == InputType.Controller)
         {
             _onGamepad.Invoke();

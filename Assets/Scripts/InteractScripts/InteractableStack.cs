@@ -63,4 +63,18 @@ public class InteractableStack<T>
     {
         return _stack.Contains(value);
     }
+
+    public void Clear()
+    {
+        _stack.Clear();
+        Count = _stack.Count;
+    }
+
+    public void RemoveNulls()
+    {
+        // Remove all nulls and update count
+        _stack.RemoveAll(item => item == null);
+        Count = _stack.Count;
+    }
+
 }

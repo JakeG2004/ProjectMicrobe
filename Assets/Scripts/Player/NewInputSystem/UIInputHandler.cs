@@ -12,16 +12,17 @@ using UnityEngine.InputSystem;
 public class UIInputHandler
 {
     private PlayerStatesSO _states;
+    private PlayerInputActions _pia;
 
     // Subscribable events
     public event Action OnRightStickMove;
 
-    public DroneInputHandler(PlayerStatesSO states, PlayerInputActions pia)
+    public UIInputHandler(PlayerStatesSO states, PlayerInputActions pia)
     {
         _states = states;
         _pia = pia;
 
-        _pia.Drone.Disable();
+        _pia.UI.Enable();
         BindInputActions();
     }
 
@@ -33,18 +34,25 @@ public class UIInputHandler
 
     private void HandleRightStickPerformed(InputAction.CallbackContext ctx)
     {
-        _states.minigameMove = ctx.ReadValue<float>();
+        _states.minigameMove = ctx.ReadValue<Vector2>();
         OnRightStickMove?.Invoke();
+    }
+
+    private void HandleRightStickCanceled(InputAction.CallbackContext ctx)
+    {
+        _states.minigameMove = Vector2.zero;
     }
 
 
     private void BindInputActions()
     {
         _pia.UI.RightStick.performed += HandleRightStickPerformed;
+        _pia.UI.RightStick.canceled += HandleRightStickCanceled;
     }
 
     private void UnbindInputActions()
     {
         _pia.UI.RightStick.performed -= HandleRightStickPerformed;
+        _pia.UI.RightStick.canceled -= HandleRightStickCanceled;
     }
 }
