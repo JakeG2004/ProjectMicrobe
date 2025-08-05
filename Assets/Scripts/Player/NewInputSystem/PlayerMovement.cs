@@ -75,6 +75,10 @@ public class PlayerMovement : MonoBehaviour
     private void GetSubmergence()
     {
         _states.submersion = Mathf.Clamp01(transform.position.y * -0.5f);
+        if (_states.submersion > 0f)
+        {
+            _states.isJumping = false;
+        }
     }
 
     // Sets the isGrounded flag if the player is on solid ground

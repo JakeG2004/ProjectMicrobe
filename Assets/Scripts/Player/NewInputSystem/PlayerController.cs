@@ -55,10 +55,7 @@ public class PlayerController : MonoBehaviour
         _inputHandler.OnSprintToggled += HandleSprintToggle;
         _inputHandler.OnDroneToggled += HandleDroneToggle;
 
-        _states.isSprinting = false;
-        _states.isBeingCarried = false;
-        _states.longDrop = false;
-        _states.isFlying = false;
+        _states.ResetValues();
     }
 
     // Unsubscribes from events

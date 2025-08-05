@@ -51,15 +51,13 @@ public class PlayerClimbing : MonoBehaviour
 
     public void ApplyClimbMovement()
     {
-        if (!_states.isClimbing || _states.isJumping)
+        if (!_states.isClimbing)
         {
             return;
         }
 
         // Apply upward velocity to "climb" and reduce movement speed in all other directions
         _rb.velocity = new Vector3(_rb.velocity.x * 0.1f, _vals.jumpForce, _rb.velocity.z * 0.1f);
-
-        Debug.Log(_rb.velocity);
 
         // If submerged, adjust position to move up more easily
         if (_states.submersion > 0f)

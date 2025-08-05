@@ -46,4 +46,32 @@ public class PlayerStatesSO : ScriptableObject
     [Header("Animation / Visual")]
     public float turnAngle = 0.0f;
     public float zoom = 1.0f;
+
+    // Resets values to defaults
+    public void ResetValues()
+    {
+        // Reset bools
+        isClimbing = false;
+        isJumping = false;
+        isGrounded = false;
+        longDrop = false;
+        isSprinting = false;
+        isFlying = false;
+        runningIntoWall = false;
+        isBeingCarried = false;
+        playerCanMove = true;
+
+        // Reset vector2s
+        move = Vector2.zero;
+        smoothedMove = Vector2.zero;
+        turn = Vector2.zero;
+        look = Vector2.zero;
+        minigameMove = Vector2.zero;
+
+        // Reset floats
+        verticalMove = 0;
+        submersion = 0f;
+        turnAngle = 0.0f;
+        zoom = 1.0f;   
+    }
 }

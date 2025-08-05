@@ -38,12 +38,9 @@ public class AnimationController : MonoBehaviour
 		_ac.SetBool("Flying", _states.isFlying);
 
 		// Handle jump
-		if (_states.isJumping)
+		if (_states.isJumping && !_wasJumping)
 		{
-			if (!_wasJumping)
-			{
-				_ac.SetTrigger("Jump");
-			}
+			_ac.SetTrigger("Jump");
 		}
 		_wasJumping = _states.isJumping;
 	}
