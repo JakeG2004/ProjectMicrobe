@@ -23,7 +23,7 @@ public class MainMenuScript : MonoBehaviour
     void Start()
     {
         NewInputController.Instance.SetMenuMode();
-        
+
         // Make a random microbe
         _microbeIcon.sprite = _microbeBodies[Random.Range(0, _microbeBodies.Count)];
         Color[] colors = { Color.red, Color.blue, Color.green, Color.yellow, Color.cyan, Color.magenta };
@@ -32,6 +32,8 @@ public class MainMenuScript : MonoBehaviour
 
         // Set gold star to indicate whether game is complete or not
         CheckStar();
+
+        MusicManager.SwitchToType(MusicType.TITLE, MusicGenre.ORCHESTRAL);
     }
 
     public void CheckStar()
