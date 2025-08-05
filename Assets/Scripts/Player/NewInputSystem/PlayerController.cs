@@ -134,10 +134,12 @@ public class PlayerController : MonoBehaviour
     // Ladder interaction
     public void SetClimbPos(Transform ladder)
     {
-        if (_playerClimbing != null)
+        if (_playerClimbing == null || _states.isFlying)
         {
-            _playerClimbing.SetClimbPos(ladder);
+            return;
         }
+        
+        _playerClimbing.SetClimbPos(ladder);
     }
 
     public void EndClimb()
