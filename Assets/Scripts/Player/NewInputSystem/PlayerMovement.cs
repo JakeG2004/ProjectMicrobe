@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         _cam = Camera.main.transform;
-        
+
         _states = GetComponent<PlayerController>().GetStates();
         _vals = GetComponent<PlayerController>().GetVals();
     }
@@ -50,10 +50,16 @@ public class PlayerMovement : MonoBehaviour
             _states.smoothedMove = Vector2.zero;
         }
 
-        CheckEnvironmentalConditions();
+        // Handle the bug where the play would randomly be pushed upwards on some terrain. Player cannot move up unless they are jumping
+        if (!_states.isClimbing && !_states.isJumping && _rb.velocity.y > 0)
+        {
+            _rb.velocity -= new Vector3(0, _rb.velocity.y, 0);
+        }
+
         HandleRotation();
         HandleMovement();
         HandleSteppingUp();
+        CheckEnvironmentalConditions();
     }
 
     // Checks several environmental conditions at once - cleans up code
@@ -83,6 +89,13 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 checkOffset = Vector3.up * _gcRadius;
         _states.isGrounded = Physics.CheckSphere(transform.position + checkOffset, _gcRadius, ~_collisionMask, QueryTriggerInteraction.Ignore);
+
+        if (_states.isGrounded && _rb.velocity.y < 0.1f)
+        {
+            _states.isJumping = false;
+            _states.longDrop = false;
+        }
+
     }
 
     // Sets the long drop flag if the player has been falling for sufficient time
@@ -114,7 +127,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         Vector3 checkPos = transform.position + transform.forward * _vals.stepUpForwardOffset + transform.up * _vals.stepUpUpOffset;
-        if (Physics.CheckSphere(checkPos, _gcRadius, ~_collisionMask, QueryTriggerInteraction.Ignore))
+        if (Physics.CheckSphere(checkPos, 0.1f, ~_collisionMask, QueryTriggerInteraction.Ignore))
         {
             _rb.position += Vector3.up * _vals.stepUpValue;
             _states.isGrounded = true;
@@ -219,8 +232,11 @@ public class PlayerMovement : MonoBehaviour
         // Lerp from current velocity to target velocity
         Vector3 moveSmooth = Vector3.Lerp(ProjectOnXZPlane(_rb.velocity), ProjectOnXZPlane(moveTarget), _vals.landAcceleration);
 
+        // Prevent issues when walking around the weird terrain of the ship
+        float yVel = _rb.velocity.y;
+
         // We re-add the vertical velocity because it gets flattened
-        _rb.velocity = moveSmooth + Vector3.up * _rb.velocity.y;
+        _rb.velocity = moveSmooth + Vector3.up * yVel;
     }
 
     // Swimming movement
@@ -239,7 +255,7 @@ public class PlayerMovement : MonoBehaviour
     // Called by PlayerInputHandler Event
     public void Jump()
     {
-        
+
         if (!_states.playerCanMove || !_states.isGrounded)
         {
             return;
@@ -252,5 +268,10 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 ProjectOnXZPlane(Vector3 vec)
     {
         return new Vector3(vec.x, 0, vec.z);
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(transform.position + transform.forward * _vals.stepUpForwardOffset + transform.up * _vals.stepUpUpOffset, .1f);
     }
 }

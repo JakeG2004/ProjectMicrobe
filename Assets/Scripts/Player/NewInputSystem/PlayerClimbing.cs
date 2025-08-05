@@ -43,6 +43,7 @@ public class PlayerClimbing : MonoBehaviour
             return;
         }
 
+        _states.isJumping = true;
         _rb.velocity = new Vector3(0f, _vals.ladderEjectForce, 0f);
 
         EndClimb();
@@ -57,6 +58,8 @@ public class PlayerClimbing : MonoBehaviour
 
         // Apply upward velocity to "climb" and reduce movement speed in all other directions
         _rb.velocity = new Vector3(_rb.velocity.x * 0.1f, _vals.jumpForce, _rb.velocity.z * 0.1f);
+
+        Debug.Log(_rb.velocity);
 
         // If submerged, adjust position to move up more easily
         if (_states.submersion > 0f)
@@ -136,6 +139,7 @@ public class PlayerClimbing : MonoBehaviour
             return;
         }
 
+        _states.isJumping = true;
         _states.isClimbing = false;
         _rb.useGravity = true;
     }
