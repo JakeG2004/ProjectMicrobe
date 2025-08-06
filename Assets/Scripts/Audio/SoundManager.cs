@@ -317,6 +317,11 @@ public class SoundManager : MonoBehaviour
 
             foreach (AudioSource curAudio in _curSounds)
             {
+                if (curAudio == null)
+                {
+                    continue;
+                }
+                
                 curAudio.volume = (1 - ratio);
             }
 

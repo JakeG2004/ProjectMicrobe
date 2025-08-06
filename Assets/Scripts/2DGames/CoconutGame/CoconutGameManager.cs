@@ -73,7 +73,7 @@ public class CoconutGameManager : MonoBehaviour
 
         if (_curScore >= _goalScore)
         {
-            _sp.PlaySound(0);
+            //SoundManager.PlaySound()
             _OnGoalReachedEvent.Invoke();
         }
     }
