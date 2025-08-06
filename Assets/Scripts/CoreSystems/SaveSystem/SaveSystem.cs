@@ -82,7 +82,6 @@ public class SaveSystem : MonoBehaviour
     {
         string saveJson = JsonUtility.ToJson(_currentState);
         File.WriteAllText(path, saveJson);
-        Debug.Log("SAVE SYSTEM: Saved State");
     }
 
     // ===========================
@@ -104,8 +103,6 @@ public class SaveSystem : MonoBehaviour
 
             UpdateManagerReferences();
 
-            Debug.Log("SAVE SYSTEM: Loaded state");
-
             // Load data with the managers
             _settingsManager.LoadVolume();
             _settingsManager.LoadLookSensitivity();
@@ -125,7 +122,6 @@ public class SaveSystem : MonoBehaviour
             return;
         }
 
-        Debug.Log("SAVE SYSTEM: Failed to find file");
         CreateNewSave();
     }
 
@@ -137,7 +133,6 @@ public class SaveSystem : MonoBehaviour
     {
         if (File.Exists(_savePath))
         {
-            Debug.Log("SAVE SYSTEM: Deleting Save");
             File.Delete(_savePath);
             CreateNewSave();
         }
@@ -157,7 +152,6 @@ public class SaveSystem : MonoBehaviour
         _currentState = new SaveObject();
         string saveJson = JsonUtility.ToJson(_currentState);
         File.WriteAllText(_savePath, saveJson);
-        Debug.Log("SAVE SYSTEM: Created new save");
         LoadState();
     }
 
