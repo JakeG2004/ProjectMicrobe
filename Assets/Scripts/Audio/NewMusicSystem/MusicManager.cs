@@ -95,6 +95,12 @@ public class MusicManager : MonoBehaviour
     {
         Instance.StopAllCoroutines();
 
+        if (type == Instance._currentType)
+        {
+            SwitchToGenre(genre);
+            return;
+        }
+
         AudioSource currentSource = Instance._sources[(int)Instance._currentGenre];
         AudioSource targetSource = Instance._sources[(int)genre];
 
@@ -145,6 +151,11 @@ public class MusicManager : MonoBehaviour
     // Fades out the current audio, switches the audio to the target, then fades in the new audio
     private IEnumerator FadeOutInAudio(AudioSource fadeOut, AudioSource fadeIn, AudioClip targetClip)
     {
+        if (fadeOut.clip == targetClip)
+        {
+            yield break;
+        }
+        
         if (fadeOut.isPlaying)
         {
             // Fade out audio
