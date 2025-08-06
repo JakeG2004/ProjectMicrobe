@@ -66,6 +66,7 @@ public class SoundManager : MonoBehaviour
     void Start()
     {
         LevelLoader.Instance.OnSceneUnload += FadeOutAllSounds;
+        LevelLoader.Instance.OnSceneLoad += TurnOnSounds;
         _curSounds.Add(_as);
     }
 
@@ -74,6 +75,13 @@ public class SoundManager : MonoBehaviour
     {
         StopAllCoroutines();
         StartCoroutine(FadeOutSounds());
+    }
+
+    // Called on level load, resets volume
+    private void TurnOnSounds()
+    {
+        _canPlaySound = true;
+        _as.volume = 1f;
     }
 
     // Gets a random audio clip from the specified pool
