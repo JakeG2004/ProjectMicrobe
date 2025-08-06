@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
+// List of music types (themes)
 public enum MusicType
 {
     TITLE,
@@ -10,6 +11,7 @@ public enum MusicType
     DRONE
 }
 
+// List of music genres
 public enum MusicGenre
 {
     ORCHESTRAL,
@@ -62,22 +64,20 @@ public class MusicManager : MonoBehaviour
         LevelLoader.Instance.OnSceneUnload += StartLoadingScreenMusic;
     }
 
+    // Function to switch the genre to chill for loading screens
     private void StartLoadingScreenMusic()
     {
         SwitchToGenre(MusicGenre.CHILL);
     }
 
-    public void Test()
-    {
-        SwitchToGenre(MusicGenre.EIGHT_BIT);
-    }
-
+    // Fades the current audio out, whatever that may be
     private void FadeAudioOut()
     {
         AudioSource currentSource = Instance._sources[(int)Instance._currentGenre];
         Instance.StartCoroutine(Instance.FadeAudio(0, _fadeTime / 2, currentSource));
     }
-    
+
+    // Adds the Audio Sources to the gameobject during runtime
     private void AddSources()
     {
         int numGenres = System.Enum.GetNames(typeof(MusicGenre)).Length;
@@ -109,7 +109,7 @@ public class MusicManager : MonoBehaviour
     public static void SwitchToGenre(MusicGenre genre)
     {
         Instance.StopAllCoroutines();
-        
+
         if (Instance._currentGenre == genre)
         {
             return;
@@ -125,6 +125,7 @@ public class MusicManager : MonoBehaviour
         Instance.StartCoroutine(Instance.CrossfadeGenre(currentSource, targetSource, targetClip));
     }
 
+    // Fades the audio of the current source to a target volume 
     private IEnumerator FadeAudio(float targetVol, float fadeTime, AudioSource fadeSrc)
     {
         float startVol = fadeSrc.volume;
@@ -148,7 +149,7 @@ public class MusicManager : MonoBehaviour
         {
             // Fade out audio
             yield return Instance.StartCoroutine(Instance.FadeAudio(0, _fadeTime / 2, fadeOut));
-            fadeOut.Pause(); 
+            fadeOut.Pause();
         }
 
 
@@ -186,60 +187,61 @@ public class MusicManager : MonoBehaviour
         fadeIn.volume = 1f;
     }
 
-#if UNITY_EDITOR
-private void OnEnable()
-{
-    string[] names = System.Enum.GetNames(typeof(MusicType));
-    string[] genres = System.Enum.GetNames(typeof(MusicGenre));
-    System.Array.Resize(ref _musicList, names.Length);
-
-    // Add new entries as needed
-    for (int i = 0; i < names.Length; i++)
+    // Creates the pre-filled editor arrays
+    #if UNITY_EDITOR
+    private void OnEnable()
     {
-        _musicList[i].name = names[i];
+        string[] names = System.Enum.GetNames(typeof(MusicType));
+        string[] genres = System.Enum.GetNames(typeof(MusicGenre));
+        System.Array.Resize(ref _musicList, names.Length);
 
-        if (_musicList[i].clips == null)
-            _musicList[i].clips = new List<Song>();
-
-        for (int j = 0; j < genres.Length; j++)
+        // Add new entries as needed
+        for (int i = 0; i < names.Length; i++)
         {
-            string genreName = genres[j];
+            _musicList[i].name = names[i];
 
-            // Only add if it doesn't already exist
-            if (!_musicList[i].clips.Exists(song => song.name == genreName))
+            if (_musicList[i].clips == null)
+                _musicList[i].clips = new List<Song>();
+
+            for (int j = 0; j < genres.Length; j++)
             {
-                Song newSong = new Song
+                string genreName = genres[j];
+
+                // Only add if it doesn't already exist
+                if (!_musicList[i].clips.Exists(song => song.name == genreName))
                 {
-                    name = genreName,
-                    clip = null
-                };
+                    Song newSong = new Song
+                    {
+                        name = genreName,
+                        clip = null
+                    };
 
-                _musicList[i].clips.Add(newSong);
+                    _musicList[i].clips.Add(newSong);
+                }
             }
         }
-    }
 
-    // Remove no longer needed entries
-    for (int i = 0; i < _musicList.Length; i++)
-    {
-        MusicSet set = _musicList[i];
-
-        if (set.clips == null)
-            continue;
-
-        // Remove any clips whose names don't match a valid genre
-        for (int j = set.clips.Count - 1; j >= 0; j--)
+        // Remove no longer needed entries
+        for (int i = 0; i < _musicList.Length; i++)
         {
-            if (!System.Array.Exists(genres, g => g == set.clips[j].name))
-            {
-                set.clips.RemoveAt(j);
-            }
-        }
+            MusicSet set = _musicList[i];
 
-        _musicList[i] = set; // Needed because MusicSet is a struct
+            if (set.clips == null)
+                continue;
+
+            // Remove any clips whose names don't match a valid genre
+            for (int j = set.clips.Count - 1; j >= 0; j--)
+            {
+                if (!System.Array.Exists(genres, g => g == set.clips[j].name))
+                {
+                    set.clips.RemoveAt(j);
+                }
+            }
+
+            _musicList[i] = set; // Needed because MusicSet is a struct
+        }
     }
-}
-#endif
+    #endif
 }
 
 [System.Serializable]

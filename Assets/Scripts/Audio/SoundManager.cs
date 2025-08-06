@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
+// List of sound pools that can be played
 public enum SoundType
 {
     MENU_OPEN,
@@ -68,36 +69,11 @@ public class SoundManager : MonoBehaviour
         _curSounds.Add(_as);
     }
 
+    // Called on level unload, fades out all sound effects
     private void FadeOutAllSounds()
     {
         StopAllCoroutines();
         StartCoroutine(FadeOutSounds());
-    }
-
-    private IEnumerator FadeOutSounds()
-    {
-        float elapsedTime = 0f;
-        float totalTime = 0.5f;
-
-        while (elapsedTime < totalTime)
-        {
-            elapsedTime += Time.deltaTime;
-            float ratio = elapsedTime / totalTime;
-
-            foreach (AudioSource curAudio in _curSounds)
-            {
-                curAudio.volume = (1 - ratio);
-            }
-
-            yield return null;
-        }
-
-        foreach (AudioSource curAudio in _curSounds)
-        {
-            curAudio.volume = 0;
-        }
-
-        _curSounds.Clear();
     }
 
     // Gets a random audio clip from the specified pool
@@ -167,7 +143,7 @@ public class SoundManager : MonoBehaviour
     }
 
     // Creates, starts, and returns a looping audio which can be stopped externally
-    public static LoopingSoundHandle PlayLoopingSoundWithIntroAndOutro(AudioClip intro, AudioClip loop, AudioClip outro,  Transform parentObj = null, float minDist = 1, float volume = 1)
+    public static LoopingSoundHandle PlayLoopingSoundWithIntroAndOutro(AudioClip intro, AudioClip loop, AudioClip outro, Transform parentObj = null, float minDist = 1, float volume = 1)
     {
         LoopingSoundHandle handle = new LoopingSoundHandle();
         handle.owner = Instance;
@@ -179,11 +155,13 @@ public class SoundManager : MonoBehaviour
         return handle;
     }
 
+    // Create a looping sound based on args
     public static LoopingSoundHandle PlayLoopingSoundWithIntroAndOutro(SoundType intro, SoundType loop, SoundType outro, Transform parentObj = null, float minDist = 1, float volume = 1)
     {
         return PlayLoopingSoundWithIntroAndOutro(Instance.GetRandomClip(intro), Instance.GetRandomClip(loop), Instance.GetRandomClip(outro), parentObj, minDist, volume);
     }
 
+    // Starts a looping sound coroutine
     private IEnumerator PlayLoopingSoundCoroutine(LoopingSoundHandle handle, AudioClip intro, AudioClip loop, Transform parentObj, float minDist, float volume)
     {
         GameObject newSrcObj = new GameObject("LoopingAudioSource");
@@ -251,6 +229,7 @@ public class SoundManager : MonoBehaviour
         _curSounds.Remove(audioSource);
     }
 
+    // Stops a sound from looping, puts it into its exit state
     public IEnumerator StopLoopingSoundCoroutine(LoopingSoundHandle handle)
     {
         if (handle == null || handle.source == null)
@@ -281,7 +260,7 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    // Culls an audio source after it finishes its job
+    // Culls an audio source after it finishes playing
     private IEnumerator CullAfterFinished(AudioSource tmpAudioSrc)
     {
         while (tmpAudioSrc.isPlaying)
@@ -293,7 +272,7 @@ public class SoundManager : MonoBehaviour
         Destroy(tmpAudioSrc.gameObject);
     }
 
-    // Forces sounds to wait between playing
+    // Forces sounds to wait before playing
     private IEnumerator DelaySound()
     {
         _canPlaySound = false;
@@ -301,6 +280,7 @@ public class SoundManager : MonoBehaviour
         _canPlaySound = true;
     }
 
+    // Lerps the pitch of a looping sound (i.e. drone pitch)
     public IEnumerator LerpPitch(LoopingSoundHandle handle)
     {
         if (handle.source == null)
@@ -315,9 +295,36 @@ public class SoundManager : MonoBehaviour
         handle.IsPitchLerping = false;
         handle.pitchCoroutine = null;
     }
+    
+    // Handles fading out every sound that is being played for level unload
+    private IEnumerator FadeOutSounds()
+    {
+        float elapsedTime = 0f;
+        float totalTime = 0.5f;
+
+        while (elapsedTime < totalTime)
+        {
+            elapsedTime += Time.deltaTime;
+            float ratio = elapsedTime / totalTime;
+
+            foreach (AudioSource curAudio in _curSounds)
+            {
+                curAudio.volume = (1 - ratio);
+            }
+
+            yield return null;
+        }
+
+        foreach (AudioSource curAudio in _curSounds)
+        {
+            curAudio.volume = 0;
+        }
+
+        _curSounds.Clear();
+    }
 
     // Populates the list of sounds when script added to an object
-#if UNITY_EDITOR
+    #if UNITY_EDITOR
     private void OnEnable()
     {
         string[] names = Enum.GetNames(typeof(SoundType));
@@ -328,7 +335,7 @@ public class SoundManager : MonoBehaviour
             _soundList[i].name = names[i];
         }
     }
-#endif
+    #endif
 }
 
 [System.Serializable]
@@ -366,6 +373,7 @@ public class LoopingSoundHandle
         owner.StartCoroutine(owner.StopLoopingSoundCoroutine(this));
     }
 
+    // Sets whether pitch should be lerped to
     public void IsLerpingPitch(bool state)
     {
         IsPitchLerping = state;
@@ -376,6 +384,7 @@ public class LoopingSoundHandle
         }
     }
 
+    // Sets the target pitch if lerping, or immediately sets it
     public void SetPitch(float newPitch)
     {
         if (source == null || owner == null)
@@ -387,6 +396,6 @@ public class LoopingSoundHandle
             return;
         }
 
-        targetPitch = newPitch;   
+        targetPitch = newPitch;
     }
 }
