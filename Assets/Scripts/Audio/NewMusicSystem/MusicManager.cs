@@ -28,7 +28,7 @@ public class MusicManager : MonoBehaviour
     [SerializeField] private MusicSet[] _musicList;
 
     [Space(10)]
-    [SerializeField] private float _fadeTime = 1f;
+    [SerializeField] private float _fadeTime = .5f;
 
     private static MusicManager Instance;
     private List<AudioSource> _sources = new();

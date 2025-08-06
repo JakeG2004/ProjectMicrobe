@@ -15,7 +15,6 @@ public class NewInputController : MonoBehaviour
     private PlayerInputActions _pia;
     private InputType _curDevice = InputType.Unknown;
     [SerializeField] private ControlMap _curMap = ControlMap.PLAYER;
-    private ControlMap _prevMap = ControlMap.PLAYER;
 
     // Reference scripts
     public PlayerInputHandler playerInput;
@@ -24,6 +23,7 @@ public class NewInputController : MonoBehaviour
     public MinigameInputHandler minigameInput;
     public UIInputHandler uiInput;
     private MenuControlsManager _mcm;
+    private Stack<ControlMap> _prevMaps = new();
 
     void Awake()
     {
@@ -62,6 +62,8 @@ public class NewInputController : MonoBehaviour
 
     public void Set3DMode()
     {
+        _mcm.SetMouseState(false);
+
         _pia.Player.Enable();
         _pia.Minigames.Disable();
         _pia.Drone.Disable();
@@ -81,28 +83,37 @@ public class NewInputController : MonoBehaviour
         _pia.BaseControls.Disable();
         _pia.UI.Enable();
 
-        _prevMap = _curMap;
+        // Prevent menu controls from stacking and prevent access from returning to the player
+        if (_curMap != ControlMap.UI)
+        {
+            _prevMaps.Push(_curMap);
+        }
+        
         _curMap = ControlMap.UI;
     }
 
     public void ExitMenuMode()
     {
-        _mcm.SetMouseState(false);
-        
-        switch (_prevMap)
+        switch (_prevMaps.Pop())
         {
             case ControlMap.PLAYER:
                 Set3DMode();
+
                 break;
 
             case ControlMap.DRONE:
                 SetDroneMode();
+                break;
+
+            case ControlMap.UI:
                 break;
         }
     }
 
     public void SetMinigameMode()
     {
+        _mcm.SetMouseState(true);
+
         _pia.Player.Disable();
         _pia.BaseControls.Disable();
         _pia.Drone.Disable();
@@ -114,6 +125,8 @@ public class NewInputController : MonoBehaviour
 
     public void SetDroneMode()
     {
+        _mcm.SetMouseState(false);
+
         _pia.Player.Disable();
         _pia.BaseControls.Enable();
         _pia.Drone.Enable();

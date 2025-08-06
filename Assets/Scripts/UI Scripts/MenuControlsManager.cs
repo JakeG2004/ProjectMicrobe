@@ -15,7 +15,11 @@ public class MenuControlsManager : MonoBehaviour
     {
         _mc.SetMovementState(!_isActive);
         SetCameraTracking(!_isActive);
-        SetMouseState(_isActive);
+
+        if (NewInputController.Instance.GetCurrentInputDevice() == InputType.KeyboardMouse)
+        {
+            SetMouseState(_isActive);   
+        }
     }
 
     public void SetMouseState(bool _isActive)
