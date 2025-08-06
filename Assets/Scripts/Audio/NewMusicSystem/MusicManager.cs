@@ -31,6 +31,7 @@ public class MusicManager : MonoBehaviour
     private static MusicManager Instance;
     private List<AudioSource> _sources = new();
     private MusicGenre _currentGenre = MusicGenre.ORCHESTRAL;
+    private MusicType _currentType = MusicType.TITLE;
 
     private void Awake()
     {
@@ -58,7 +59,12 @@ public class MusicManager : MonoBehaviour
 
     void Start()
     {
-        LevelLoader.Instance.OnSceneUnload += FadeAudioOut;
+        LevelLoader.Instance.OnSceneUnload += StartLoadingScreenMusic;
+    }
+
+    private void StartLoadingScreenMusic()
+    {
+        SwitchToGenre(MusicGenre.CHILL);
     }
 
     public void Test()
@@ -87,18 +93,23 @@ public class MusicManager : MonoBehaviour
     // Switches from the current music type to the specified type and genre
     public static void SwitchToType(MusicType type, MusicGenre genre)
     {
+        Instance.StopAllCoroutines();
+
         AudioSource currentSource = Instance._sources[(int)Instance._currentGenre];
         AudioSource targetSource = Instance._sources[(int)genre];
 
         AudioClip targetClip = Instance._musicList[(int)type].clips[(int)genre].clip;
         Instance._currentGenre = genre;
+        Instance._currentType = type;
 
         Instance.StartCoroutine(Instance.FadeOutInAudio(currentSource, targetSource, targetClip));
     }
 
-    // Switches the genre of music specified. Track remains the same.
+    // Switches the genre of music specified. Type remains the same
     public static void SwitchToGenre(MusicGenre genre)
     {
+        Instance.StopAllCoroutines();
+        
         if (Instance._currentGenre == genre)
         {
             return;
@@ -107,7 +118,7 @@ public class MusicManager : MonoBehaviour
         AudioSource currentSource = Instance._sources[(int)Instance._currentGenre];
         AudioSource targetSource = Instance._sources[(int)genre];
 
-        AudioClip targetClip = Instance._musicList[(int)Instance._currentGenre].clips[(int)genre].clip;
+        AudioClip targetClip = Instance._musicList[(int)Instance._currentType].clips[(int)genre].clip;
 
         Instance._currentGenre = genre;
 
@@ -133,9 +144,13 @@ public class MusicManager : MonoBehaviour
     // Fades out the current audio, switches the audio to the target, then fades in the new audio
     private IEnumerator FadeOutInAudio(AudioSource fadeOut, AudioSource fadeIn, AudioClip targetClip)
     {
-        // Fade out audio
-        yield return Instance.StartCoroutine(Instance.FadeAudio(0, _fadeTime / 2, fadeOut));
-        fadeOut.Pause();
+        if (fadeOut.isPlaying)
+        {
+            // Fade out audio
+            yield return Instance.StartCoroutine(Instance.FadeAudio(0, _fadeTime / 2, fadeOut));
+            fadeOut.Pause(); 
+        }
+
 
         // Establish the new current audio
         fadeIn.clip = targetClip;

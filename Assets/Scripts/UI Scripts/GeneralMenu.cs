@@ -43,19 +43,21 @@ public class GeneralMenu : MonoBehaviour
         {
             _panel?.SetActive(_isActive);    
         }
-        
+
 
         // Handle the audio
         if (_isActive)
         {
             SoundManager.PlaySound(SoundType.MENU_OPEN);
             NewInputController.Instance.SetMenuMode();
+            MusicManager.SwitchToGenre(MusicGenre.CHILL);
         }
 
         else
         {
             SoundManager.PlaySound(SoundType.MENU_CLOSED);
             NewInputController.Instance.ExitMenuMode();
+            MusicManager.SwitchToGenre(MusicGenre.ORCHESTRAL);
         }
 
         // State tracker

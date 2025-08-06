@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class DroneCourseManager : MonoBehaviour
 {
     [SerializeField] private List<DroneCourseRing> _rings = new();
+    [SerializeField] private UnityEvent _passedThroughFirstRing;
+    [SerializeField] private UnityEvent _passedThroughFinalRing;
     private Queue<DroneCourseRing> _ringQueue = new();
     private DroneCourseRing _curRing = null;
     private int _curRingIdx = 0;
@@ -133,12 +136,14 @@ public class DroneCourseManager : MonoBehaviour
         if (_curRingIdx == 0)
         {
             _timeEvent.TriggerEvent(true);
+            _passedThroughFirstRing.Invoke();
         }
 
         _curRingIdx++;
 
         if (_curRingIdx >= _rings.Count)
         {
+            _passedThroughFinalRing.Invoke();
             CompleteCourse();
             return;
         }

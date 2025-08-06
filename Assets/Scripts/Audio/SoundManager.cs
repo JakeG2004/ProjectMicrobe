@@ -40,6 +40,7 @@ public class SoundManager : MonoBehaviour
     private static SoundManager Instance;
     private AudioSource _as;
     private bool _canPlaySound = true;
+    private List<AudioSource> _curSounds = new();
 
     private void Awake()
     {
@@ -59,6 +60,44 @@ public class SoundManager : MonoBehaviour
         }
 
         _as = GetComponent<AudioSource>();
+    }
+
+    void Start()
+    {
+        LevelLoader.Instance.OnSceneUnload += FadeOutAllSounds;
+        _curSounds.Add(_as);
+    }
+
+    private void FadeOutAllSounds()
+    {
+        StopAllCoroutines();
+        StartCoroutine(FadeOutSounds());
+    }
+
+    private IEnumerator FadeOutSounds()
+    {
+        float elapsedTime = 0f;
+        float totalTime = 0.5f;
+
+        while (elapsedTime < totalTime)
+        {
+            elapsedTime += Time.deltaTime;
+            float ratio = elapsedTime / totalTime;
+
+            foreach (AudioSource curAudio in _curSounds)
+            {
+                curAudio.volume = (1 - ratio);
+            }
+
+            yield return null;
+        }
+
+        foreach (AudioSource curAudio in _curSounds)
+        {
+            curAudio.volume = 0;
+        }
+
+        _curSounds.Clear();
     }
 
     // Gets a random audio clip from the specified pool
@@ -121,6 +160,8 @@ public class SoundManager : MonoBehaviour
         tmpAudioSrc.outputAudioMixerGroup = SoundManager.Instance._mixer;
         tmpAudioSrc.PlayOneShot(SoundManager.Instance.GetRandomClip(sound));
 
+        Instance._curSounds.Add(tmpAudioSrc);
+
         // Cull the audiosource after it's finished
         SoundManager.Instance.StartCoroutine(SoundManager.Instance.CullAfterFinished(tmpAudioSrc));
     }
@@ -132,6 +173,8 @@ public class SoundManager : MonoBehaviour
         handle.owner = Instance;
         handle.outro = outro;
         handle.coroutine = Instance.StartCoroutine(Instance.PlayLoopingSoundCoroutine(handle, intro, loop, parentObj, minDist, volume));
+
+        Instance._curSounds.Add(handle.source);
 
         return handle;
     }
@@ -204,6 +247,8 @@ public class SoundManager : MonoBehaviour
 
             yield return null;
         }
+
+        _curSounds.Remove(audioSource);
     }
 
     public IEnumerator StopLoopingSoundCoroutine(LoopingSoundHandle handle)
@@ -244,6 +289,7 @@ public class SoundManager : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
 
+        _curSounds.Remove(tmpAudioSrc);
         Destroy(tmpAudioSrc.gameObject);
     }
 

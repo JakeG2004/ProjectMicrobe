@@ -75,6 +75,9 @@ public class DialogueManager : MonoBehaviour
         // Set the name text
         _nameText.text = _dso.dialogueName;
 
+        // Set the music to be chill
+        MusicManager.SwitchToGenre(MusicGenre.CHILL);
+
         // Start the dialogue
         DisplayNextSentence();
     }
@@ -129,6 +132,8 @@ public class DialogueManager : MonoBehaviour
         {
             return;
         }
+
+        MusicManager.SwitchToGenre(MusicGenre.ORCHESTRAL);
 
         _onFinishDialogue.Invoke();
 
