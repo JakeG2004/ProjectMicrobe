@@ -105,37 +105,44 @@ namespace AndroidUltimatePlugin.Helpers.Editor
         {
             _goCount++;
             Component[] components = g.GetComponents<Component>();
+
             for (int i = 0; i < components.Length; i++)
             {
                 _componentsCount++;
+
                 if (components[i] == null)
                 {
                     _missingCount++;
-                    string s = g.name;
+
+                    string path = g.name;
                     Transform t = g.transform;
                     while (t.parent != null)
                     {
-                        var parent = t.parent;
-                        s = parent.name + "/" + s;
-                        t = parent;
+                        t = t.parent;
+                        path = t.name + "/" + path;
                     }
 
-                    Debug.Log(s + " has an empty script attached in position: " + i, g);
+                    Debug.Log($"{path} has a missing script at position {i}", g);
 
                     if (deleteEmptyScripts)
                     {
-                        Destroy(components[i]);
-                        Debug.Log("Destroying empty script...");
+                        int removed = GameObjectUtility.RemoveMonoBehavioursWithMissingScript(g);
+                        if (removed > 0)
+                        {
+                            Debug.Log($"Removed {removed} missing script(s) from {g.name}", g);
+                            EditorUtility.SetDirty(g);
+                        }
                     }
                 }
             }
 
-            // Now recurse through each child GO (if there are any):
-            foreach (Transform childT in g.transform)
+            // Recurse through children
+            foreach (Transform child in g.transform)
             {
-                //Debug.Log("Searching " + childT.name  + " " );
-                FindInGO(childT.gameObject);
+                FindInGO(child.gameObject);
             }
         }
+
+
     }
 }
