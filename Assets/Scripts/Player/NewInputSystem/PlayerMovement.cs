@@ -117,11 +117,9 @@ public class PlayerMovement : MonoBehaviour
     // Sets the runningintowall flag if the player is running into the wall
     private void CheckIfRunningIntoWall()
     {
-        Vector3 checkPosCenter = transform.position + (transform.forward * .5f) + transform.up;
-        Vector3 checkPosRight = checkPosCenter + transform.right * .5f;
-        Vector3 checkPosLeft = checkPosCenter - transform.right * .5f;
-
-        _states.runningIntoWall = Physics.CheckCapsule(checkPosRight, checkPosLeft, 0.5f, ~_collisionMask, QueryTriggerInteraction.Ignore);
+        Vector3 startPos = transform.position + transform.forward * _vals.wallForwardModifier + transform.up * _vals.wallUpModifier + transform.right * _vals.wallHorizontalModifier;
+        Vector3 endPos = transform.position + transform.forward * _vals.wallForwardModifier + transform.up * _vals.wallUpModifier - transform.right * _vals.wallHorizontalModifier;
+        _states.runningIntoWall = Physics.CheckCapsule(startPos, endPos, _vals.wallCheckRadius, ~_collisionMask, QueryTriggerInteraction.Ignore);
     }
 
     // Sets the velocity for step up if the player encounters a slope
@@ -187,21 +185,23 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        if (_states.runningIntoWall && _states.move.y > 0)
+        // Make a local copy of move input so we don't overwrite actual input state
+        Vector2 localMoveInput = _states.move;
+
+        if (_states.runningIntoWall && localMoveInput.y > 0)
         {
-            _states.move.y = 0;
+            localMoveInput.y = 0;
         }
 
         Vector3 forwardDir = Vector3.RotateTowards(_cam.forward, Vector3.up, Mathf.Deg2Rad * _vals.cameraAngle, 0f);
 
-        // Calculate the direction of movement
         Vector3 moveDir = Vector3.zero;
-        if (_states.smoothedMove.magnitude > 0.1f)
+        if (localMoveInput.magnitude > 0.1f)
         {
-            moveDir = _states.smoothedMove.y * forwardDir + _states.smoothedMove.x * _cam.right;
+            moveDir = localMoveInput.y * forwardDir + localMoveInput.x * _cam.right;
         }
 
-        if (_states.runningIntoWall && _states.smoothedMove.y > 0)
+        if (_states.runningIntoWall)
         {
             moveDir.y = 0;
             moveDir.x *= 0.2f;
@@ -212,7 +212,6 @@ public class PlayerMovement : MonoBehaviour
         {
             HandleSwimMovement(moveDir);
         }
-
         else
         {
             HandleLandMovement(moveDir);
@@ -275,17 +274,4 @@ public class PlayerMovement : MonoBehaviour
     {
         return new Vector3(vec.x, 0, vec.z);
     }
-
-    void OnDrawGizmos()
-    {
-        Vector3 checkPosCenter = transform.position + transform.forward + transform.up;
-        Vector3 checkPosRight = checkPosCenter + transform.right * .5f;
-        Vector3 checkPosLeft = checkPosCenter - transform.right * .5f;
-
-        Gizmos.color = Color.red;
-        Gizmos.DrawSphere(checkPosCenter, 0.5f);
-        Gizmos.DrawSphere(checkPosLeft, 0.5f);
-        Gizmos.DrawSphere(checkPosRight, 0.5f);
-    }
-
 }

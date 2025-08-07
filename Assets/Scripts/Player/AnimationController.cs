@@ -20,10 +20,26 @@ public class AnimationController : MonoBehaviour
 		_ac = GetComponent<Animator>();
 	}
 
-	void FixedUpdate()
+	void LateUpdate()
 	{
-		// Lerp towards the movement speed from the preious frame so that animation blending gets a chance
-		moveVal = Mathf.Lerp(moveVal, _states.smoothedMove.magnitude * (_states.isSprinting ? 2f : 1f), 0.3f);
+		// Get horizontal velocity magnitude (ignoring Y)
+		Vector3 horizontalVelocity = new Vector3(_rb.velocity.x, 0, _rb.velocity.z);
+		float rawVelocityMag = horizontalVelocity.magnitude;
+
+		// Set a threshold for what counts as "not moving"
+		const float velocityThreshold = 0.1f;
+
+		float targetMoveVal = _states.smoothedMove.magnitude * (_states.isSprinting ? 2f : 1f);
+
+		// Prevent small jitters from triggering movement animations
+		if (rawVelocityMag < velocityThreshold)
+		{
+			moveVal = Mathf.Lerp(moveVal, 0f, 0.3f);
+		}
+		else
+		{
+			moveVal = Mathf.Lerp(moveVal, targetMoveVal, 0.3f);
+		}
 
 		// Handle animation floats
 		_ac.SetFloat("Move", moveVal);

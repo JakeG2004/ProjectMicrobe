@@ -38,11 +38,11 @@ public class PlayerMovementValsSO : ScriptableObject
     public float longDropVelocity = -9f;
 
     [Space(10)]
-    [Header("Wall Running Vals")]
-    public float wallRunningForwardOffset = 0.3f;
-    public float wallRunningUpOffsetStart = 0.8f;
-    public float wallRunningUpOffsetEnd = 1.8f;
-    public float wallRunningRadius = 0.1f;
+    [Header("Wall Collision Vals")]
+    public float wallForwardModifier = 0.2f;
+    public float wallUpModifier = 1f;
+    public float wallHorizontalModifier = 0.25f;
+    public float wallCheckRadius = 0.1f;
 
     [Space(10)]
     [Header("Step Up Vals")]
