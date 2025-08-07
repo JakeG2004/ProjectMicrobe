@@ -55,6 +55,12 @@ public class NewInputController : MonoBehaviour
         GetComponentReferences();
     }
 
+    public void ResetToDefault()
+    {
+        playerInput.Reset();
+        generalInput.Reset();
+    }
+
     public PlayerInputActions GetPlayerInputActions()
     {
         return _pia;

@@ -178,7 +178,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4835544779592032}
   - component: {fileID: 65153765259237596}
-  - component: {fileID: 114253956917337336}
   m_Layer: 0
   m_Name: Horizontal_Doors_Kit
   m_TagString: Untagged
@@ -222,20 +221,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 4, y: 3.043087, z: 2.9509094}
   m_Center: {x: 0, y: 1.5315435, z: -0.011218938}
---- !u!114 &114253956917337336
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1008069073726856}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55bdc53e072ca4143a2004ca33085fb7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  door1: {fileID: 114863985218814332}
-  door2: {fileID: 114083350332835914}
 --- !u!1 &1008657368873544
 GameObject:
   m_ObjectHideFlags: 0
@@ -6826,7 +6811,6 @@ GameObject:
   - component: {fileID: 23845628580209306}
   - component: {fileID: 65451829605392002}
   - component: {fileID: 82158493579288808}
-  - component: {fileID: 114083350332835914}
   m_Layer: 0
   m_Name: Door_Right
   m_TagString: Untagged
@@ -7018,22 +7002,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &114083350332835914
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1388268850323444}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d94a21dd9acac4f8a9aa77608ddafdbf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  translateValue: -1.3
-  easeTime: 0.5
-  ease: 2
-  waitTime: 4
 --- !u!1 &1392962724287168
 GameObject:
   m_ObjectHideFlags: 0
@@ -11712,7 +11680,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4615728847183540}
   - component: {fileID: 65315212623209636}
-  - component: {fileID: 114701847710178172}
   m_Layer: 0
   m_Name: Horizontal_Doors_Kit
   m_TagString: Untagged
@@ -11756,20 +11723,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 4, y: 3.043087, z: 2.9509094}
   m_Center: {x: 0, y: 1.5315435, z: -0.011218938}
---- !u!114 &114701847710178172
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1656306953417264}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55bdc53e072ca4143a2004ca33085fb7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  door1: {fileID: 114047684400474622}
-  door2: {fileID: 114627148264201666}
 --- !u!1 &1657783858269012
 GameObject:
   m_ObjectHideFlags: 0
@@ -12613,7 +12566,6 @@ GameObject:
   - component: {fileID: 33480209686613470}
   - component: {fileID: 23737310771755818}
   - component: {fileID: 82276465104186446}
-  - component: {fileID: 114863985218814332}
   - component: {fileID: 65278269767325744}
   m_Layer: 0
   m_Name: Door_Left
@@ -12785,22 +12737,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &114863985218814332
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1689993078520390}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d94a21dd9acac4f8a9aa77608ddafdbf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  translateValue: -1.3
-  easeTime: 0.5
-  ease: 2
-  waitTime: 4
 --- !u!65 &65278269767325744
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15215,7 +15151,6 @@ GameObject:
   - component: {fileID: 33519248426096198}
   - component: {fileID: 23676578597825366}
   - component: {fileID: 82840703939361056}
-  - component: {fileID: 114047684400474622}
   - component: {fileID: 65884013226952048}
   m_Layer: 0
   m_Name: Door_Left
@@ -15387,22 +15322,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &114047684400474622
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1814479778986312}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d94a21dd9acac4f8a9aa77608ddafdbf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  translateValue: -1.3
-  easeTime: 0.5
-  ease: 2
-  waitTime: 4
 --- !u!65 &65884013226952048
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17383,7 +17302,6 @@ GameObject:
   - component: {fileID: 23718575457172898}
   - component: {fileID: 65222202980803092}
   - component: {fileID: 82646346627609654}
-  - component: {fileID: 114627148264201666}
   m_Layer: 0
   m_Name: Door_Right
   m_TagString: Untagged
@@ -17575,22 +17493,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &114627148264201666
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1948040892857584}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d94a21dd9acac4f8a9aa77608ddafdbf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  translateValue: -1.3
-  easeTime: 0.5
-  ease: 2
-  waitTime: 4
 --- !u!1 &1948134321778478
 GameObject:
   m_ObjectHideFlags: 0

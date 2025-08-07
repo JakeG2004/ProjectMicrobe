@@ -65,6 +65,7 @@ public class SaveMenu : MonoBehaviour
         _pressedDelete = false;
         _deleteTextbox.text = "Deleted Save!";
         SaveSystem.Instance.DeleteSave();
+        NewInputController.Instance.ResetToDefault();
     }
 
     private IEnumerator SaveGameText(float delay)

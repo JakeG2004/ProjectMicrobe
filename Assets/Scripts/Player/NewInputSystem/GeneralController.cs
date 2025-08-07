@@ -23,6 +23,11 @@ public class GeneralInputController
         BindInputActions();
     }
 
+    public void Reset()
+    {
+        _playerInputActions.BaseControls.Tablet.started -= HandleTablet;
+    }
+
     public void Dispose()
     {
         UnbindInputActions();

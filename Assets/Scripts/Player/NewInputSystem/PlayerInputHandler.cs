@@ -36,6 +36,11 @@ public class PlayerInputHandler
         Cursor.visible = true;
     }
 
+    public void Reset()
+    {
+        _playerInputActions.Player.Drone.started -= HandleDrone;
+    }
+
     public void UnlockDrone()
     {
         _playerInputActions.Player.Drone.started += HandleDrone;
