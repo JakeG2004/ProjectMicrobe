@@ -328,11 +328,6 @@ public class SoundManager : MonoBehaviour
             yield return null;
         }
 
-        foreach (AudioSource curAudio in _curSounds)
-        {
-            curAudio.volume = 0;
-        }
-
         _curSounds.Clear();
     }
 
