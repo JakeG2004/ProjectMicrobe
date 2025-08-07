@@ -14,6 +14,7 @@ public class PlayerDroneController : MonoBehaviour
     private Vector3 _smoothedLookDir = Vector3.forward;
     private LoopingSoundHandle _loop;
     private NewInputController _controller;
+    private float _originalCamFOV;
 
     // Delegates
     private System.Action _deactivateDroneHandler;
@@ -54,6 +55,7 @@ public class PlayerDroneController : MonoBehaviour
 
         else if (_states.isFlying)
         {
+            Camera.main.fieldOfView = _originalCamFOV + (_rb.velocity.magnitude * _vals.droneFOVScale);
             GetSubmergence();
             HandleDroneMovement();
             HandleRotation();
@@ -75,6 +77,7 @@ public class PlayerDroneController : MonoBehaviour
         // State-specific things
         if (state)
         {
+            _originalCamFOV = Camera.main.fieldOfView;
             NewInputController.Instance.SetDroneMode();
             _loop = SoundManager.PlayLoopingSoundWithIntroAndOutro(SoundType.DRONE_TAKEOFF, SoundType.DRONE_FLIGHT, SoundType.DRONE_LANDING, transform, 5, 0.75f);
             _loop.IsLerpingPitch(true);
@@ -82,6 +85,7 @@ public class PlayerDroneController : MonoBehaviour
 
         else
         {
+            Camera.main.fieldOfView = _originalCamFOV;
             NewInputController.Instance.Set3DMode();
             if (_loop != null)
             {

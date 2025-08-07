@@ -70,8 +70,9 @@ public class CameraController : MonoBehaviour
 	void SetLookPos()
 	{
 		Vector3 lookGoal = character.position + Vector3.up * lookPosYOffest;
-		lookPos = Vector3.Lerp(lookPos, lookGoal, Time.deltaTime * 5f);
+		lookPos = Vector3.Lerp(lookPos, lookGoal, Time.unscaledDeltaTime * 10f); // faster interpolation
 	}
+
 	public void SetLookPosExternal()
 	{
 		lookPos = character.position + Vector3.up * lookPosYOffest;
@@ -82,7 +83,7 @@ public class CameraController : MonoBehaviour
 	{
 		zoomGoal = Mathf.Lerp(zoomBounds.x, zoomBounds.y, _states.zoom);
 		CameraColision();
-		zoom = Mathf.Lerp(zoom, Mathf.Min(zoomGoal, zoomCollision), Time.deltaTime * 5f);
+		zoom = Mathf.Lerp(zoom, Mathf.Min(zoomGoal, zoomCollision), Time.unscaledDeltaTime * 10f);
 	}
 	void CameraColision()
 	{
@@ -94,8 +95,10 @@ public class CameraController : MonoBehaviour
 	}
 	void RotateCameraDirection()
 	{
-		angleVert = ClampAngle(angleVert - _states.look.y * _states.movementVals.lookSensitivity / 2, angleVertBounds.x, angleVertBounds.y);
-		angleHoz += _states.look.x * _states.movementVals.lookSensitivity;
+		Vector2 modifiedLook = _states.look * (NewInputController.Instance.GetCurrentInputDevice() == InputType.KeyboardMouse ? 1.5f : 1f);
+		
+		angleVert = ClampAngle(angleVert - modifiedLook.y * _states.movementVals.lookSensitivity / 2, angleVertBounds.x, angleVertBounds.y);
+		angleHoz += modifiedLook.x * _states.movementVals.lookSensitivity;
 		// also turn camera when player moves to the side 
 		angleHoz += _states.move.x * 1.5f;
 
@@ -109,6 +112,8 @@ public class CameraController : MonoBehaviour
 		Vector3 posGoal = lookPos + directionGoal * zoom;
 		Vector3 posSmooth = Vector3.Lerp(cam.position, posGoal, Time.deltaTime * 10f);
 		directionSmooth = (posSmooth - lookPos).normalized;
+
+		directionSmooth = Vector3.Slerp(directionSmooth, directionGoal, Time.deltaTime * 10f);
 
 		//Debug.DrawRay(lookPos, directionSmooth, Color.blue);
 		cam.position = lookPos + directionSmooth * zoom;

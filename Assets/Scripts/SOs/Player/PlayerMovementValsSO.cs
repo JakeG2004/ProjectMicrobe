@@ -23,6 +23,7 @@ public class PlayerMovementValsSO : ScriptableObject
     public float droneTiltAmt = 15f;
     public float droneTurnSpeed = 0.5f;
     public float droneDrag = 0.7f;
+    public float droneFOVScale = 0.75f;
 
     [Space(10)]
     [Header("Miscellaneous")]
