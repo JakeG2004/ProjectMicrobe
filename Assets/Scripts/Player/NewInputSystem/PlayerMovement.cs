@@ -117,9 +117,11 @@ public class PlayerMovement : MonoBehaviour
     // Sets the runningintowall flag if the player is running into the wall
     private void CheckIfRunningIntoWall()
     {
-        Vector3 startPos = transform.position + transform.forward * _vals.wallRunningForwardOffset + transform.up * _vals.wallRunningUpOffsetStart;
-        Vector3 endPos = transform.position + transform.forward * _vals.wallRunningForwardOffset + transform.up * _vals.wallRunningUpOffsetEnd;
-        _states.runningIntoWall = Physics.CheckCapsule(startPos, endPos, _vals.wallRunningRadius, ~_collisionMask, QueryTriggerInteraction.Ignore);
+        Vector3 checkPosCenter = transform.position + (transform.forward * .5f) + transform.up;
+        Vector3 checkPosRight = checkPosCenter + transform.right * .5f;
+        Vector3 checkPosLeft = checkPosCenter - transform.right * .5f;
+
+        _states.runningIntoWall = Physics.CheckCapsule(checkPosRight, checkPosLeft, 0.5f, ~_collisionMask, QueryTriggerInteraction.Ignore);
     }
 
     // Sets the velocity for step up if the player encounters a slope
@@ -276,6 +278,14 @@ public class PlayerMovement : MonoBehaviour
 
     void OnDrawGizmos()
     {
-        Gizmos.DrawSphere(transform.position + transform.forward * _vals.stepUpForwardOffset + transform.up * _vals.stepUpUpOffset, .1f);
+        Vector3 checkPosCenter = transform.position + transform.forward + transform.up;
+        Vector3 checkPosRight = checkPosCenter + transform.right * .5f;
+        Vector3 checkPosLeft = checkPosCenter - transform.right * .5f;
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(checkPosCenter, 0.5f);
+        Gizmos.DrawSphere(checkPosLeft, 0.5f);
+        Gizmos.DrawSphere(checkPosRight, 0.5f);
     }
+
 }

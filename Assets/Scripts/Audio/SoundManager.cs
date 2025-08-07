@@ -95,7 +95,7 @@ public class SoundManager : MonoBehaviour
     public static void PlaySound(SoundType sound, float volume = 1)
     {
         AudioClip randomClip = SoundManager.Instance.GetRandomClip(sound);
-        Instance._as.PlayOneShot(randomClip, volume);
+        Instance._as?.PlayOneShot(randomClip, volume);
     }
 
     // Plays a specific audio clip in 2d space
