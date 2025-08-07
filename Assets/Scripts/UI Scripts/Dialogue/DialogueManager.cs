@@ -25,6 +25,8 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private UnityEvent _onDisplayDialogue;
     [SerializeField] private UnityEvent _onFinishDialogue;
     private AudioClip _dialogueSound;
+    private float _charactersPerSecond = 60f;
+    private bool _isTyping = false;
 
     // Start is called before the first frame update
     void Start()
@@ -85,6 +87,13 @@ public class DialogueManager : MonoBehaviour
     // Displays the next sentence in the queue
     public void DisplayNextSentence()
     {
+        // Skip to the end of the sentence if button is pressed during dialogue
+        if (_isTyping)
+        {
+            _isTyping = false;
+            return;
+        }
+
         // Check for complete dialogue
         if (_sentences.Count == 0 || _curDialogue == null)
         {
@@ -106,23 +115,42 @@ public class DialogueManager : MonoBehaviour
     // Types the sentence one character at a time
     private IEnumerator TypeSentence(string sentence)
     {
-        // Play the continue sound
+        _isTyping = true;
+
         SoundManager.PlaySound(SoundType.MENU_OPEN);
 
         _bodyText.text = "";
-        foreach (char letter in sentence.ToCharArray())
+        float delay = 1f / _charactersPerSecond;
+        float timer = 0f;
+        int charIndex = 0;
+
+        while (charIndex < sentence.Length)
         {
-            _bodyText.text += letter;
-            SoundManager.PlayRapidSound(_dialogueSound);
+            timer += Time.unscaledDeltaTime;
+
+            if (_isTyping == false)
+            {
+                _bodyText.text = sentence;
+                yield break;
+            }
+
+            while (timer >= delay && charIndex < sentence.Length)
+            {
+                _bodyText.text += sentence[charIndex];
+                SoundManager.PlayRapidSound(_dialogueSound);
+                charIndex++;
+                timer -= delay;
+            }
 
             if (_anim.GetBool("IsOpen") == false)
             {
                 yield break;
             }
 
-            // Show characters at 60 / sec
-            yield return new WaitForSeconds(.016f);
+            yield return null; // wait for next frame
         }
+
+        _isTyping = false;
     }
 
     // Ends the dialogue
