@@ -27,12 +27,12 @@ public class PlayerDroneController : MonoBehaviour
         _deactivateDroneHandler = () => SetDroneActivationState(false);
     }
 
-	void Start()
-	{
+    void Start()
+    {
         _controller = NewInputController.Instance;
 
         _controller.droneInput.OnDismountPressed += _deactivateDroneHandler;
-	}
+    }
 
     void OnDisable()
     {
@@ -55,10 +55,12 @@ public class PlayerDroneController : MonoBehaviour
 
         else if (_states.isFlying)
         {
-            Camera.main.fieldOfView = _originalCamFOV + (_rb.velocity.magnitude * _vals.droneFOVScale);
             GetSubmergence();
             HandleDroneMovement();
             HandleRotation();
+
+            float targetFOV = _originalCamFOV + (_rb.velocity.magnitude * _vals.droneFOVScale);
+            Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, targetFOV, 0.5f);
         }
     }
 
