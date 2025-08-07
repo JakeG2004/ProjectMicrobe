@@ -30,8 +30,9 @@ public class PlayerDroneController : MonoBehaviour
     void Start()
     {
         _controller = NewInputController.Instance;
-
         _controller.droneInput.OnDismountPressed += _deactivateDroneHandler;
+
+        _originalCamFOV = Camera.main.fieldOfView;
     }
 
     void OnDisable()
@@ -79,7 +80,7 @@ public class PlayerDroneController : MonoBehaviour
         // State-specific things
         if (state)
         {
-            _originalCamFOV = Camera.main.fieldOfView;
+            StopAllCoroutines();
             NewInputController.Instance.SetDroneMode();
             _loop = SoundManager.PlayLoopingSoundWithIntroAndOutro(SoundType.DRONE_TAKEOFF, SoundType.DRONE_FLIGHT, SoundType.DRONE_LANDING, transform, 5, 0.75f);
             _loop.IsLerpingPitch(true);
@@ -87,7 +88,7 @@ public class PlayerDroneController : MonoBehaviour
 
         else
         {
-            Camera.main.fieldOfView = _originalCamFOV;
+            StartCoroutine(LerpFOVBackToOriginal());
             NewInputController.Instance.Set3DMode();
             if (_loop != null)
             {
@@ -225,5 +226,21 @@ public class PlayerDroneController : MonoBehaviour
     private Vector3 ProjectOnXZPlane(Vector3 inVec)
     {
         return new Vector3(inVec.x, 0, inVec.z);
+    }
+
+    private IEnumerator LerpFOVBackToOriginal()
+    {
+        float elapsedTime = 0f;
+        float startFOV = Camera.main.fieldOfView;
+
+        while (elapsedTime < 0.25f)
+        {
+            elapsedTime += Time.deltaTime;
+
+            Camera.main.fieldOfView = Mathf.Lerp(startFOV, _originalCamFOV, elapsedTime * 4f);
+            yield return null;
+        }
+
+        Camera.main.fieldOfView = _originalCamFOV;
     }
 }
