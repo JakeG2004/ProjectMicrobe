@@ -5,6 +5,7 @@ namespace AndroidUltimatePlugin.Helpers.Editor
 {
     public class FindMissingScriptsRecursively : EditorWindow
     {
+        static bool deleteEmptyScripts = false;
         static int _goCount = 0, _componentsCount = 0, _missingCount = 0;
 
         [MenuItem("Tools/FindMissingScriptsRecursively")]
@@ -15,6 +16,10 @@ namespace AndroidUltimatePlugin.Helpers.Editor
 
         public void OnGUI()
         {
+            deleteEmptyScripts = EditorGUILayout.Toggle("Delete missing scripts", deleteEmptyScripts);
+
+            EditorGUILayout.Space();
+
             if (GUILayout.Button("Find Missing Scripts in selected GameObjects"))
             {
                 FindInSelected();
@@ -116,6 +121,12 @@ namespace AndroidUltimatePlugin.Helpers.Editor
                     }
 
                     Debug.Log(s + " has an empty script attached in position: " + i, g);
+
+                    if (deleteEmptyScripts)
+                    {
+                        Destroy(components[i]);
+                        Debug.Log("Destroying empty script...");
+                    }
                 }
             }
 
