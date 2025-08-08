@@ -32,6 +32,7 @@ public class MusicManager : MonoBehaviour
 
     private static MusicManager Instance;
     private List<AudioSource> _sources = new();
+    private AudioSource _fadeSource;
     private MusicGenre _currentGenre = MusicGenre.ORCHESTRAL;
     private MusicType _currentType = MusicType.TITLE;
 
@@ -88,6 +89,10 @@ public class MusicManager : MonoBehaviour
             _sources[i].outputAudioMixerGroup = MusicManager.Instance._mixer;
             _sources[i].loop = true;
         }
+
+        _fadeSource = gameObject.AddComponent<AudioSource>();
+        _fadeSource.outputAudioMixerGroup = MusicManager.Instance._mixer;
+        _fadeSource.loop = true;
     }
 
     // Switches from the current music type to the specified type and genre
@@ -155,22 +160,36 @@ public class MusicManager : MonoBehaviour
         {
             yield break;
         }
-        
+
         if (fadeOut.isPlaying)
         {
-            // Fade out audio
-            yield return Instance.StartCoroutine(Instance.FadeAudio(0, _fadeTime / 2, fadeOut));
+            _fadeSource.clip = targetClip;
+            _fadeSource.volume = 0;
+            _fadeSource.timeSamples = 0;
+
+            float elapsedTime = 0f;
+            while (elapsedTime < _fadeTime)
+            {
+                float ratio = elapsedTime / _fadeTime;
+
+                _fadeSource.volume = ratio;
+                fadeOut.volume = 1 - ratio;
+
+                yield return null;
+            }
+
             fadeOut.Pause();
         }
 
+        // turn off fadeSource
+        _fadeSource.volume = 0;
+        _fadeSource.Pause();
 
         // Establish the new current audio
         fadeIn.clip = targetClip;
-        fadeIn.volume = 0f;
+        fadeIn.volume = 1f;
+        fadeIn.timeSamples = _fadeSource.timeSamples;
         fadeIn.Play();
-
-        // Fade in the new audio
-        yield return Instance.StartCoroutine(Instance.FadeAudio(1, _fadeTime / 2, fadeIn));
     }
 
     // Transitions between two genres by fading one out and fading another in
