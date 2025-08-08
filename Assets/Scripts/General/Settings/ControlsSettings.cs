@@ -23,6 +23,7 @@ public class ControlsSettings : MonoBehaviour
     public void SetSprintToggle(bool state)
     {
         PlayerController.Instance.SetSprintToggle(state);
+        SaveSystem.Instance.SaveSprintToggle(state);
     }
 
     void OnEnable()

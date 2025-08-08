@@ -163,6 +163,7 @@ public class SaveSystem : MonoBehaviour
     public void SaveLookSensitivity(float val) => _settingsManager.SaveLookSensitivity(val);
     public void SaveVolume(Vector3 vol) => _settingsManager.SaveVolume(vol);
     public bool GetSprintToggle() => _settingsManager.GetSprintToggle();
+    public void SaveSprintToggle(bool state) => _settingsManager.SaveSprintToggle(state);
     public bool GameIsComplete() => _currentState.hasCompletedGame;
     public void SetGameComplete() => _currentState.hasCompletedGame = true;
     public void SaveQualityLevel(int lvl) => _currentState.qualityLevel = lvl;
