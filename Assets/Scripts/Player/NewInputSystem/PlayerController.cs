@@ -89,6 +89,7 @@ public class PlayerController : MonoBehaviour
         if (_states.sprintIsToggle)
         {
             HandleSprintToggle();
+            return;
         }
 
         _states.isSprinting = true;
