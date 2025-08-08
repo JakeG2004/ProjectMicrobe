@@ -11,6 +11,7 @@ using UnityEngine.UI;
 public class ControlsSettings : MonoBehaviour
 {
     [SerializeField] private Slider _lookSlider;
+    [SerializeField] private Toggle _sprintToggleButton;
     [SerializeField] private BoolGameEventListener _controlsListener;
 
     public void SetLookSensitivity(float val)
@@ -19,9 +20,15 @@ public class ControlsSettings : MonoBehaviour
         PlayerController.Instance?.SetLookSensitivity(val);
     }
 
+    public void SetSprintToggle(bool state)
+    {
+        PlayerController.Instance.SetSprintToggle(state);
+    }
+
     void OnEnable()
     {
         _lookSlider.value = SaveSystem.Instance.GetLookSensitivity();
+        _sprintToggleButton.isOn = SaveSystem.Instance.GetSprintToggle();
         _controlsListener.OnEventRaised(NewInputController.Instance.GetCurrentInputDevice() == InputType.Controller);
     }
 }

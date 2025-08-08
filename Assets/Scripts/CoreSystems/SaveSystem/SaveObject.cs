@@ -66,6 +66,7 @@ public class VolumeData
 public class ControlsData
 {
     public float lookSensitivity = 3f;
+    public bool sprintIsToggle = true;
 }
 
 [System.Serializable]

@@ -22,6 +22,7 @@ public class PlayerStatesSO : ScriptableObject
     public bool runningIntoWall = false;
     public bool isBeingCarried = false;
     public bool playerCanMove = true;
+    public bool sprintIsToggle = true;
 
     [Space(10)]
     [Header("Movement Vectors")]
@@ -60,6 +61,7 @@ public class PlayerStatesSO : ScriptableObject
         runningIntoWall = false;
         isBeingCarried = false;
         playerCanMove = true;
+        sprintIsToggle = true;
 
         // Reset vector2s
         move = Vector2.zero;

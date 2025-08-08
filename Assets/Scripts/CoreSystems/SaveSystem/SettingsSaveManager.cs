@@ -26,7 +26,7 @@ public class SettingsSaveManager
     }
 
     // Saves the look sensitivity by pulling from the player controller
-    public void SaveLookSensitivity()
+    public void SaveSettings()
     {
         PlayerController pc = PlayerController.Instance;
 
@@ -36,6 +36,7 @@ public class SettingsSaveManager
         }
 
         _currentState.controlsData.lookSensitivity = pc.GetLookSensitivity();
+        _currentState.controlsData.sprintIsToggle = pc.GetSprintToggle();
     }
 
     // Saves the look sensitivity directly
@@ -44,23 +45,36 @@ public class SettingsSaveManager
         _currentState.controlsData.lookSensitivity = val;
     }
 
+    public void SaveSprintToggle(bool state)
+    {
+        _currentState.controlsData.sprintIsToggle = state;
+    }
+
     // Gets the numerical value of the look sensitivity
     public float GetLookSensitivity()
     {
         return _currentState.controlsData.lookSensitivity;
     }
 
-    // Loads the look sensitivity to the player movement controller
-    public void LoadLookSensitivity()
+    public bool GetSprintToggle()
     {
-        PlayerMovementController pmc = PlayerMovementController.Instance;
+        return _currentState.controlsData.sprintIsToggle;
+    }
 
-        if (pmc == null)
+    // Loads the look sensitivity to the player movement controller
+    public void LoadSettings()
+    {
+        PlayerController pc = PlayerController.Instance;
+
+        if (pc == null)
         {
             return;
         }
 
-        pmc.SetLookSensitivity(_currentState.controlsData.lookSensitivity);
+        pc.SetLookSensitivity(_currentState.controlsData.lookSensitivity);
+        pc.SetSprintToggle(_currentState.controlsData.sprintIsToggle);
+
+        LoadVolume();
     }
 
     // Saves the volume given the vector3

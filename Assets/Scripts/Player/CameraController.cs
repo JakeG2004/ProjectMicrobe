@@ -3,8 +3,6 @@ using System.Collections;
 
 public class CameraController : MonoBehaviour
 {
-
-	#region variables
 	Transform cam;
 	[SerializeField] Transform character;
 	[SerializeField] LayerMask mask;
@@ -30,24 +28,22 @@ public class CameraController : MonoBehaviour
 	private bool _aboveWater = false;
 
 	[SerializeField] private bool _mouseTracking = true;
-	#endregion
-
 
 	void Awake()
 	{
 		cam = Camera.main ? Camera.main.transform : transform;
-		GM.cam = cam;
 
 		if (!character)
 		{
 			character = GameObject.FindGameObjectWithTag("Player").transform;
 		}
 
-		if (character)
-		{
-			lookPos = character.position + Vector3.up * lookPosYOffest;
-		}
 		filter = GetComponent<AudioLowPassFilter>();
+	}
+
+	void Start()
+	{
+		lookPos = character.position + Vector3.up * lookPosYOffest;
 	}
 
 	void LateUpdate()
@@ -57,7 +53,7 @@ public class CameraController : MonoBehaviour
 			return;
 		}
 
-		SetLookPos();
+		CalculateLookGoal();
 		Zoom();
 
 		RotateCameraDirection();
@@ -67,34 +63,43 @@ public class CameraController : MonoBehaviour
 	}
 
 
-	void SetLookPos()
+	// Calculates the target look position for the camera
+	void CalculateLookGoal()
 	{
 		Vector3 lookGoal = character.position + Vector3.up * lookPosYOffest;
-		lookPos = Vector3.Lerp(lookPos, lookGoal, Time.unscaledDeltaTime * 10f); // faster interpolation
+		lookPos = Vector3.Lerp(lookPos, lookGoal, Time.unscaledDeltaTime * 10f);
 	}
 
-	public void SetLookPosExternal()
-	{
-		lookPos = character.position + Vector3.up * lookPosYOffest;
-		Debug.Log("Moving Camera Look Position!");
-	}
-
+	// Calculates how zoomed the camera should be
 	void Zoom()
 	{
+		// Restrict the zoom to the specified limits
 		zoomGoal = Mathf.Lerp(zoomBounds.x, zoomBounds.y, _states.zoom);
+
+		// Calculate camera collision
 		CameraColision();
+
+		// Move the zoom towards a specified point, the min of zoom goal or zoom collision
 		zoom = Mathf.Lerp(zoom, Mathf.Min(zoomGoal, zoomCollision), Time.unscaledDeltaTime * 10f);
 	}
+
+	// Handles the zoom when the camera is colliding
 	void CameraColision()
 	{
-		if (Physics.Raycast(lookPos, directionSmooth, out RaycastHit hit, zoomGoal, ~mask))
+		// Use a spherecast to check where the camera will collide, and set it to be in front of that collision
+		if (Physics.SphereCast(lookPos, 0.3f, directionSmooth, out RaycastHit hit, zoomGoal, ~mask))
 		{
 			zoomCollision = Mathf.Max(Vector3.Distance(lookPos, hit.point) - 0.1f, 0.8f);
 		}
+
+		// Otherwise, the zoom collision is the furtheset zoom
 		else zoomCollision = zoomBounds.y;
 	}
+
+	// Handles manual rotation from the player
 	void RotateCameraDirection()
 	{
+		// Modify the look vector so that mouse movement feels more snappy at default settings
 		Vector2 modifiedLook = _states.look * (NewInputController.Instance.GetCurrentInputDevice() == InputType.KeyboardMouse ? 1.5f : 1f);
 		
 		angleVert = ClampAngle(angleVert - modifiedLook.y * _states.movementVals.lookSensitivity / 2, angleVertBounds.x, angleVertBounds.y);
@@ -107,9 +112,13 @@ public class CameraController : MonoBehaviour
 		directionGoal = Quaternion.AngleAxis(angleVert, directionHozLeft) * directionHoz;
 		//Debug.DrawRay(lookPos, cameraDirection, Color.red);
 	}
+
+	// Positions the camera in 3d space
 	void PositionCamera()
 	{
 		Vector3 posGoal = lookPos + directionGoal * zoom;
+
+		// Smoothly move towards the target position
 		Vector3 posSmooth = Vector3.Lerp(cam.position, posGoal, Time.deltaTime * 10f);
 		directionSmooth = (posSmooth - lookPos).normalized;
 
@@ -123,9 +132,17 @@ public class CameraController : MonoBehaviour
 	{
 		do
 		{
-			if (angle < -360) angle += 360;
-			if (angle > 360) angle -= 360;
+			if (angle < -360)
+			{
+				angle += 360;
+			}
+
+			if (angle > 360)
+			{
+				angle -= 360;
+			}
 		} while (angle < -360 || angle > 360);
+
 		return Mathf.Clamp(angle, min, max);
 	}
 	void LowPassFilterIfSubmerged()

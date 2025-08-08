@@ -63,7 +63,7 @@ public class SaveSystem : MonoBehaviour
         UpdateManagerReferences();
 
         // Get data from the managers
-        _settingsManager.SaveLookSensitivity();
+        _settingsManager.SaveSettings();
         _cosmeticsManager.SaveCosmetics();
         _cosmeticsManager.SaveCCValues();
         _backpackManager.SavePlayerBackpack();
@@ -104,8 +104,7 @@ public class SaveSystem : MonoBehaviour
             UpdateManagerReferences();
 
             // Load data with the managers
-            _settingsManager.LoadVolume();
-            _settingsManager.LoadLookSensitivity();
+            _settingsManager.LoadSettings();
             _cosmeticsManager.LoadCosmetics();
             _cosmeticsManager.LoadCCValues();
             _cosmeticsManager.SetCCUnlockableStates();
@@ -163,6 +162,7 @@ public class SaveSystem : MonoBehaviour
     public float GetLookSensitivity() => _settingsManager.GetLookSensitivity();
     public void SaveLookSensitivity(float val) => _settingsManager.SaveLookSensitivity(val);
     public void SaveVolume(Vector3 vol) => _settingsManager.SaveVolume(vol);
+    public bool GetSprintToggle() => _settingsManager.GetSprintToggle();
     public bool GameIsComplete() => _currentState.hasCompletedGame;
     public void SetGameComplete() => _currentState.hasCompletedGame = true;
     public void SaveQualityLevel(int lvl) => _currentState.qualityLevel = lvl;

@@ -32,11 +32,6 @@ public class VerticalScrollerMaster : MonoBehaviour
         float contentHeight = content.rect.height;
         float viewportHeight = _scrollRect.viewport.rect.height;
 
-        // Distance from top of content to the target's top
-        float itemTop = -(target.anchoredPosition.y) - (target.rect.height / 2);
-        itemTop -= _content.GetComponent<VerticalLayoutGroup>().padding.top;
-
-
         // Calculate scrollable height (how far the scroll can move)
         float scrollableHeight = contentHeight - viewportHeight;
 
@@ -44,6 +39,29 @@ public class VerticalScrollerMaster : MonoBehaviour
         {
             _scrollRect.verticalNormalizedPosition = 1f; // Nothing to scroll
             return;
+        }
+
+        float itemTop = 0f;
+
+        if (_content.GetComponent<VerticalLayoutGroup>())
+        {
+            // Distance from top of content to the target's top
+            itemTop = -(target.anchoredPosition.y) - (target.rect.height / 2);
+            itemTop -= _content.GetComponent<VerticalLayoutGroup>().padding.top;
+        }
+
+        else if (_content.TryGetComponent(out GridLayoutGroup grid))
+        {
+            int index = go.transform.GetSiblingIndex();
+
+            float cellHeight = grid.cellSize.y;
+            float spacingY = grid.spacing.y;
+            int columns = grid.constraintCount;
+
+            int row = index / columns;
+
+            itemTop = row * (cellHeight) - (cellHeight / 2);
+            itemTop -= grid.padding.top;
         }
 
         // 1 - (top distance / scrollable height) puts item at the top

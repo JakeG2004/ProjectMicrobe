@@ -52,7 +52,8 @@ public class PlayerController : MonoBehaviour
         
         _inputHandler = NewInputController.Instance.playerInput;
         _inputHandler.OnJumpDown += HandleJump;
-        _inputHandler.OnSprintToggled += HandleSprintToggle;
+        _inputHandler.OnSprintPressed += HandleSprintPressed;
+        _inputHandler.OnSprintCancelled += HandleSprintCancelled;
         _inputHandler.OnDroneToggled += HandleDroneToggle;
 
         _states.ResetValues();
@@ -64,7 +65,8 @@ public class PlayerController : MonoBehaviour
         if (_inputHandler != null)
         {
             _inputHandler.OnJumpDown -= HandleJump;
-            _inputHandler.OnSprintToggled -= HandleSprintToggle;
+            _inputHandler.OnSprintPressed -= HandleSprintPressed;
+            _inputHandler.OnSprintCancelled -= HandleSprintCancelled;
             _inputHandler.OnDroneToggled -= HandleDroneToggle;
         }
     }
@@ -80,6 +82,26 @@ public class PlayerController : MonoBehaviour
         {
             _playerMovement.Jump();
         }
+    }
+
+    private void HandleSprintPressed()
+    {
+        if (_states.sprintIsToggle)
+        {
+            HandleSprintToggle();
+        }
+
+        _states.isSprinting = true;
+    }
+
+    private void HandleSprintCancelled()
+    {
+        if (_states.sprintIsToggle)
+        {
+            return;
+        }
+
+        _states.isSprinting = false;
     }
 
     private void HandleSprintToggle()
@@ -105,20 +127,22 @@ public class PlayerController : MonoBehaviour
 
     public void SetLookSensitivity(float val)
     {
-        if (_inputHandler != null)
-        {
-            _inputHandler.SetLookSensitivity(val);
-        }
+        _states.movementVals.lookSensitivity = val;
     }
 
     public float GetLookSensitivity()
     {
-        if (_inputHandler != null)
-        {
-            return _inputHandler.GetLookSensitivity();
-        }
+        return _states.movementVals.lookSensitivity;
+    }
 
-        return 0f;
+    public void SetSprintToggle(bool state)
+    {
+        _states.sprintIsToggle = state;
+    }
+
+    public bool GetSprintToggle()
+    {
+        return _states.sprintIsToggle;
     }
 
     public PlayerStatesSO GetStates()

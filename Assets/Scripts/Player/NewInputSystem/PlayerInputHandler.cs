@@ -14,7 +14,8 @@ public class PlayerInputHandler
 
     // Subscribable events
     public Action OnJumpDown;
-    public Action OnSprintToggled;
+    public Action OnSprintPressed;
+    public Action OnSprintCancelled;
     public Action OnDroneToggled;
     public Action OnInteractDown;
 
@@ -46,18 +47,9 @@ public class PlayerInputHandler
         _playerInputActions.Player.Drone.started += HandleDrone;
     }
 
-    public void SetLookSensitivity(float val)
-    {
-        _states.movementVals.lookSensitivity = val;
-    }
-
-    public float GetLookSensitivity()
-    {
-        return _states.movementVals.lookSensitivity;
-    }
-
     private void HandleJump(InputAction.CallbackContext ctx) => OnJumpDown?.Invoke();
-    private void HandleSprint(InputAction.CallbackContext ctx) => OnSprintToggled?.Invoke();
+    private void HandleSprintPressed(InputAction.CallbackContext ctx) => OnSprintPressed?.Invoke();
+    private void HandleSprintCancelled(InputAction.CallbackContext ctx) => OnSprintCancelled?.Invoke();
     private void HandleDrone(InputAction.CallbackContext ctx) => OnDroneToggled?.Invoke();
     private void HandleInteract(InputAction.CallbackContext ctx) => OnInteractDown?.Invoke();
 
@@ -65,7 +57,8 @@ public class PlayerInputHandler
     private void BindInputActions()
     {
         _playerInputActions.Player.Jump.started += HandleJump;
-        _playerInputActions.Player.Sprint.started += HandleSprint;
+        _playerInputActions.Player.Sprint.started += HandleSprintPressed;
+        _playerInputActions.Player.Sprint.canceled += HandleSprintCancelled;
         _playerInputActions.Player.Interact.started += HandleInteract;
     }
 
@@ -74,6 +67,7 @@ public class PlayerInputHandler
     {
         _playerInputActions.Player.Jump.started -= HandleJump;
         _playerInputActions.Player.Drone.started -= HandleDrone;
-        _playerInputActions.Player.Sprint.started -= HandleJump;
+        _playerInputActions.Player.Sprint.started -= HandleSprintPressed;
+        _playerInputActions.Player.Sprint.canceled -= HandleSprintCancelled;
     }
 }

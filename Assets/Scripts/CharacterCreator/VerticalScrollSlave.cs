@@ -13,6 +13,11 @@ public class VerticalScrollSlave : MonoBehaviour, ISelectHandler
     {
         FindVerticalScrollMaster();
 
+        if (_parentPanel == null)
+        {
+            _parentPanel = this.gameObject;
+        }
+
         _vsm.AddItem(_parentPanel);
     }
 
