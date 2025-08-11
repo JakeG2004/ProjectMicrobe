@@ -57,9 +57,4 @@ public class VolumeSettings : MonoBehaviour
 
         SaveSystem.Instance.SaveVolume(new Vector3(masterVol, musicVol, sfxVol));
     }
-
-    // Sensible defaults:
-    // master - .7
-    // music - .4
-    // sfx - 1
 }
