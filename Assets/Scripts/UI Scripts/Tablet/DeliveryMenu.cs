@@ -11,6 +11,7 @@ public class DeliveryMenu : GeneralMenu
 
         if (!_isActive)
         {
+            GetComponent<PlayerPylonManager>().GivePylon();
             GetComponent<VoidGameEventTrigger>().TriggerEvent();
         }
     }

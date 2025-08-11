@@ -8,13 +8,15 @@ public class CollisionEvent : MonoBehaviour
     [SerializeField] private string _targetTag;
     [SerializeField] private UnityEvent _onEnter;
     [SerializeField] private UnityEvent _onExit;
+    [SerializeField] private bool _oneShot = false;
+    private bool activated = false;
 
     // --- 3D ---
     void OnCollisionEnter(Collision col)
     {
         if (col.gameObject.CompareTag(_targetTag))
         {
-            _onEnter.Invoke();
+            Enter();
         }
     }
 
@@ -22,7 +24,7 @@ public class CollisionEvent : MonoBehaviour
     {
         if (col.gameObject.CompareTag(_targetTag))
         {
-            _onExit.Invoke();
+            Exit();
         }
     }
 
@@ -30,7 +32,7 @@ public class CollisionEvent : MonoBehaviour
     {
         if (other.gameObject.CompareTag(_targetTag))
         {
-            _onEnter.Invoke();
+            Enter();
         }
     }
 
@@ -38,7 +40,7 @@ public class CollisionEvent : MonoBehaviour
     {
         if (other.gameObject.CompareTag(_targetTag))
         {
-            _onExit.Invoke();
+            Exit();
         }
     }
 
@@ -47,7 +49,7 @@ public class CollisionEvent : MonoBehaviour
     {
         if (col.gameObject.CompareTag(_targetTag))
         {
-            _onEnter.Invoke();
+            Enter();
         }
     }
 
@@ -55,7 +57,7 @@ public class CollisionEvent : MonoBehaviour
     {
         if (col.gameObject.CompareTag(_targetTag))
         {
-            _onExit.Invoke();
+            Exit();
         }
     }
 
@@ -63,7 +65,7 @@ public class CollisionEvent : MonoBehaviour
     {
         if (other.gameObject.CompareTag(_targetTag))
         {
-            _onEnter.Invoke();
+            Enter();
         }
     }
 
@@ -71,7 +73,28 @@ public class CollisionEvent : MonoBehaviour
     {
         if (other.gameObject.CompareTag(_targetTag))
         {
-            _onExit.Invoke();
+            Exit();
         }
+    }
+
+    private void Enter()
+    {
+        if (_oneShot && activated)
+        {
+            return;
+        }
+
+        activated = true;
+        _onEnter.Invoke();
+    }
+
+    private void Exit()
+    {
+        if (_oneShot && activated)
+        {
+            return;
+        }
+
+        _onExit.Invoke();
     }
 }

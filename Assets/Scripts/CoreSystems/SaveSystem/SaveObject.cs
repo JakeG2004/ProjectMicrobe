@@ -85,6 +85,7 @@ public class PlayerBackpack
     public bool hasPylon;
 }
 
+// These values create the base Ari that has been used as reference
 [System.Serializable]
 public class CCUIVals
 {
