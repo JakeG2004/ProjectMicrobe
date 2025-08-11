@@ -149,17 +149,17 @@ public class MusicManager : MonoBehaviour
         float startVol = fadeSrc.volume;
         float elapsedTime = 0f;
 
+        // Fill the clip if one is provided
         if (targetClip != null)
         {
             fadeSrc.clip = targetClip;
         }
 
+        // Play the audio source if the volume is set to zero
         if (targetVol > 0)
         {
             fadeSrc.Play();
         }
-
-        Debug.Log(fadeSrc.isPlaying);
 
         while (elapsedTime < fadeTime)
         {
@@ -170,6 +170,7 @@ public class MusicManager : MonoBehaviour
             yield return null;
         }
 
+        // Stop the audiosource if its target volume is 0
         fadeSrc.volume = targetVol;
         if (targetVol == 0)
         {
