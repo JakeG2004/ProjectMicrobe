@@ -32,8 +32,6 @@ public class MainMenuScript : MonoBehaviour
 
         // Set gold star to indicate whether game is complete or not
         CheckStar();
-
-        MusicManager.SwitchToType(MusicType.TITLE, MusicGenre.ORCHESTRAL);
     }
 
     public void CheckStar()

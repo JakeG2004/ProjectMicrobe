@@ -75,7 +75,7 @@ public class MusicManager : MonoBehaviour
     private void FadeAudioOut()
     {
         AudioSource currentSource = Instance._sources[(int)Instance._currentGenre];
-        Instance.StartCoroutine(Instance.FadeAudio(0, _fadeTime / 2, currentSource));
+        Instance.StartCoroutine(Instance.FadeAudio(null, 0, _fadeTime / 2, currentSource));
     }
 
     // Adds the Audio Sources to the gameobject during runtime
@@ -121,26 +121,46 @@ public class MusicManager : MonoBehaviour
     {
         Instance.StopAllCoroutines();
 
-        if (Instance._currentGenre == genre)
+        AudioSource currentSource = Instance._sources[(int)Instance._currentGenre];
+        AudioSource targetSource = Instance._sources[(int)genre];
+
+        if (Instance._currentGenre == genre && currentSource.isPlaying)
         {
             return;
         }
-
-        AudioSource currentSource = Instance._sources[(int)Instance._currentGenre];
-        AudioSource targetSource = Instance._sources[(int)genre];
 
         AudioClip targetClip = Instance._musicList[(int)Instance._currentType].clips[(int)genre].clip;
 
         Instance._currentGenre = genre;
 
-        Instance.StartCoroutine(Instance.CrossfadeGenre(currentSource, targetSource, targetClip));
+        if (currentSource == targetSource)
+        {
+            Instance.StartCoroutine(Instance.FadeAudio(targetClip, 1, Instance._fadeTime, targetSource));
+        }
+        else
+        {
+            Instance.StartCoroutine(Instance.CrossfadeGenre(currentSource, targetSource, targetClip));
+        }
     }
 
     // Fades the audio of the current source to a target volume 
-    private IEnumerator FadeAudio(float targetVol, float fadeTime, AudioSource fadeSrc)
+    private IEnumerator FadeAudio(AudioClip targetClip, float targetVol, float fadeTime, AudioSource fadeSrc)
     {
         float startVol = fadeSrc.volume;
         float elapsedTime = 0f;
+
+        if (targetClip != null)
+        {
+            fadeSrc.clip = targetClip;
+        }
+
+        if (targetVol > 0)
+        {
+            fadeSrc.Play();
+        }
+
+        Debug.Log(fadeSrc.isPlaying);
+
         while (elapsedTime < fadeTime)
         {
             elapsedTime += Time.deltaTime;
@@ -151,6 +171,10 @@ public class MusicManager : MonoBehaviour
         }
 
         fadeSrc.volume = targetVol;
+        if (targetVol == 0)
+        {
+            fadeSrc.Pause();
+        }
     }
 
     // Fades out the current audio, switches the audio to the target, then fades in the new audio
@@ -166,10 +190,12 @@ public class MusicManager : MonoBehaviour
             _fadeSource.clip = targetClip;
             _fadeSource.volume = 0;
             _fadeSource.timeSamples = 0;
+            _fadeSource.Play();
 
             float elapsedTime = 0f;
             while (elapsedTime < _fadeTime)
             {
+                elapsedTime += Time.deltaTime;
                 float ratio = elapsedTime / _fadeTime;
 
                 _fadeSource.volume = ratio;
@@ -177,9 +203,9 @@ public class MusicManager : MonoBehaviour
 
                 yield return null;
             }
-
-            fadeOut.Pause();
         }
+
+        fadeOut.Pause();
 
         // turn off fadeSource
         _fadeSource.volume = 0;
