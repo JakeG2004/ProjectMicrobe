@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80250b2c40646c109b295bcf5a928e3d, type: 3}
+  m_Name: BottomIsland
+  m_EditorClassIdentifier: 
+  initialResources:
+  - resourceName: Oxygen
+    amount: 0
+  - resourceName: Nitrogen
+    amount: 0
+  - resourceName: Lead
+    amount: 3
+  - resourceName: Sulfur Dioxide
+    amount: 5
+  - resourceName: Nitrate
+    amount: 0
+  - resourceName: Carbon Dioxide
+    amount: 0
+  resourceRefresh:
+  - resourceName: Lead
+    amount: 2
+  - resourceName: Carbon Dioxide
+    amount: 5
+  initialMicrobes:
+  - microbe: {fileID: 11400000, guid: f2c460b91f42ea6429cfaa0d93203ff8, type: 2}
+    population: 0
+  - microbe: {fileID: 11400000, guid: 63594733e7aa8914ea78c31c4153fbdf, type: 2}
+    population: 0
+  - microbe: {fileID: 11400000, guid: 2d0b83d9658cce0678dfee0fa75ea374, type: 2}
+    population: 0
+  - microbe: {fileID: 11400000, guid: e75cc02b116e38c69b5cb2c444e56560, type: 2}
+    population: 0
+  - microbe: {fileID: 11400000, guid: 50cfa95e1c6198142a450c83f9b15245, type: 2}
+    population: 0
+  - microbe: {fileID: 11400000, guid: 9021a24973ccc32ce882031d5b48c5be, type: 2}
+    population: 0
+  envName: Island Pylon
+  stableMycorrhisVar: 20
+  stableMycorrhisAmt: 1
