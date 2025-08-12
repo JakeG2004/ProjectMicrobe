@@ -25,7 +25,7 @@ public class DroneManager : MonoBehaviour
     private Transform _player;
     private bool _isInFlight = false;
     private bool _playerPickedUpDelivery = false;
-    private List<MicrobeSO> _curDelivery = new();
+    private MicrobeDelivery _curDelivery = new();
     private LoopingSoundHandle _loop;
     private Vector3 _velocity;
 
@@ -55,7 +55,7 @@ public class DroneManager : MonoBehaviour
         _loop.SetPitch(0.6f);
     }
 
-    public void ShipMicrobesToPlayer(List<MicrobeSO> microbes)
+    public void ShipMicrobesToPlayer(MicrobeDelivery delivery)
     {
         if (_isInFlight)
         {
@@ -67,7 +67,7 @@ public class DroneManager : MonoBehaviour
         _flightQueue.Enqueue(new Flight(_player.position, FlightType.DELIVERY));
         _flightQueue.Enqueue(new Flight(_homeBase.position, FlightType.RETURN));
 
-        _curDelivery = microbes;
+        _curDelivery = delivery;
         _playerPickedUpDelivery = false;
         StartCoroutine(FlightManager());
     }
@@ -240,7 +240,7 @@ public class DroneManager : MonoBehaviour
         _playerPickedUpDelivery = state;    
     }
 
-    public List<MicrobeSO> GetCurrentDelivery()
+    public MicrobeDelivery GetCurrentDelivery()
     {
         return _curDelivery;
     }

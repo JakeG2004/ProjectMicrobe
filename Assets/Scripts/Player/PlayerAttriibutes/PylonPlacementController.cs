@@ -42,52 +42,48 @@ public class PylonPlacementController : MonoBehaviour
             return;
         }
 
-        // Set the object to have the camera's y rotation but no other rotation
-        Quaternion _newRot = Camera.main.transform.rotation;
-        _newRot.Set(0, _newRot.y, 0, _newRot.w);
-        transform.rotation = _newRot;
+        // Get camera y-rotation only
+        Quaternion camRotation = Camera.main.transform.rotation;
+        Quaternion newRot = Quaternion.Euler(0f, camRotation.eulerAngles.y, 0f);
+        transform.rotation = newRot;
 
-        // Vertical raycast point
-        Vector3 _vRayOrigin;
+        // Raycast forward to find a point to check ground below
+        int mask = ~LayerMask.GetMask("Player", "PylonRegion", "AlwaysOnTop", "Ignore Raycast");
 
-        // Our raycast hits
-        RaycastHit _xHit;
-        RaycastHit _yHit;
+        RaycastHit forwardHit;
 
-        // Layermask to ignore player
-        int mask = ~LayerMask.GetMask("Player", "PylonRegion");
+        Vector3 forwardOrigin = transform.position;
+        Vector3 forwardDir = transform.forward;
 
-        bool gotHit = false;
+        Vector3 verticalRayOrigin;
 
-        // Send a raycast forward. On hit
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out _xHit, _xRayDist, mask))
+        if (Physics.Raycast(forwardOrigin, forwardDir, out forwardHit, _xRayDist, mask))
         {
-            _vRayOrigin = _xHit.point;
+            verticalRayOrigin = forwardHit.point + Vector3.up * 2.0f;  // Start above the hit point
         }
-
-        // On miss
         else
         {
-            _vRayOrigin = transform.position + (_xRayDist * transform.TransformDirection(Vector3.forward));
+            verticalRayOrigin = forwardOrigin + forwardDir * _xRayDist + Vector3.up * 2.0f;  // Start above max distance point
         }
 
-        // Send the raycast downward first, then upward
-        // NOTE: This is a short-circuiting expression. Equivalent to
-        // if(raycast down) ...
-        // else if (raycast up)
-        if (Physics.Raycast(_vRayOrigin, -Vector3.up, out _yHit, _yRayDist, mask) ||
-        Physics.Raycast(_vRayOrigin, Vector3.up, out _yHit, _yRayDist, mask))
+        RaycastHit groundHit;
+
+        // Cast downward from above the expected ground level
+        if (Physics.Raycast(verticalRayOrigin, Vector3.down, out groundHit, _yRayDist + 2.0f, mask))
         {
-            // Set position (subtract small amount to ensure collision with ground)
-            _pylonObject.position = _yHit.point + new Vector3(0, _yOffset, 0);
+            // Set position with small offset upwards to avoid clipping
+            _pylonObject.position = groundHit.point + Vector3.up * _yOffset;
 
-            // Rotate by user defined amount
-            _pylonObject.rotation = Quaternion.Euler(0, _newRot.eulerAngles.y + _objectRotation, 0);
+            // Align rotation to slope normal + user rotation offset
+            _pylonObject.rotation = Quaternion.Euler(0, newRot.eulerAngles.y + _objectRotation, 0);
 
-            gotHit = true;
+            _pylonObject.gameObject.SetActive(true);
         }
-
-        // set enabled based on whether there was a y hit
-        _pylonObject.gameObject.SetActive(gotHit && _cp.IsPlaceable());
+        else
+        {
+            // No ground found — hide the pylon object
+            _pylonObject.gameObject.SetActive(false);
+        }
     }
+
 }

@@ -6,31 +6,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class OrderMicrobesManager : MonoBehaviour
 {
     [SerializeField] private TMP_Text _microbeText;
     [SerializeField] private TMP_Text _orderButtonText;
-    private List<MicrobeSO> _curMicrobeList = new();
+    [SerializeField] private Toggle _pylonToggle;
+    private MicrobeDelivery _curDelivery = new();
 
     // Resets the main text to say the default things on enable
     void OnEnable()
     {
-        _curMicrobeList.Clear();
+        _curDelivery.curMicrobeList.Clear();
         _orderButtonText.text = "Place Order";
+        _pylonToggle.isOn = false;
         UpdateText();
     }
 
     // Adds a microbe to the list
     public void AddMicrobeToList(MicrobeSO newMicrobe)
     {
-        if (_curMicrobeList.Count >= 3 || _curMicrobeList.Contains(newMicrobe))
+        if (_curDelivery.curMicrobeList.Count >= 3 || _curDelivery.curMicrobeList.Contains(newMicrobe))
         {
             return;
         }
 
-        _curMicrobeList.Add(newMicrobe);
+        _curDelivery.curMicrobeList.Add(newMicrobe);
 
         UpdateText();
     }
@@ -38,22 +41,24 @@ public class OrderMicrobesManager : MonoBehaviour
     // Removes a microbe from the list
     public void RemoveMicrobeFromList(MicrobeSO newMicrobe)
     {
-        _curMicrobeList.Remove(newMicrobe);
+        _curDelivery.curMicrobeList.Remove(newMicrobe);
 
         UpdateText();
     }
 
     public void PlaceOrder()
     {
-        if (_curMicrobeList.Count == 0)
+        if (_curDelivery.curMicrobeList.Count == 0 && !_pylonToggle.isOn)
         {
-            return;    
+            return;
         }
 
         _orderButtonText.text = "Order Placed!";
 
+        _curDelivery.hasPylon = _pylonToggle.isOn;
+
         GetComponent<VoidGameEventTrigger>().TriggerEvent();
-        DroneManager.Instance.ShipMicrobesToPlayer(_curMicrobeList);
+        DroneManager.Instance.ShipMicrobesToPlayer(_curDelivery);
     }
 
     // Updates the text entries regarding the current microbe list
@@ -61,13 +66,13 @@ public class OrderMicrobesManager : MonoBehaviour
     {
         string microbeString = "";
 
-        int numEntries = _curMicrobeList.Count;
+        int numEntries = _curDelivery.curMicrobeList.Count;
         for (int i = 0; i < 3; i++)
         {
             string microbeName = "No Microbe.";
             if (i + 1 <= numEntries)
             {
-                microbeName = _curMicrobeList[i].microbeName;
+                microbeName = _curDelivery.curMicrobeList[i].microbeName;
             }
 
             microbeString += $"{i + 1}: {microbeName}\n\n";
@@ -75,4 +80,11 @@ public class OrderMicrobesManager : MonoBehaviour
 
         _microbeText.text = microbeString;
     }
+}
+
+//
+public class MicrobeDelivery
+{
+    public List<MicrobeSO> curMicrobeList = new();
+    public bool hasPylon = false;
 }

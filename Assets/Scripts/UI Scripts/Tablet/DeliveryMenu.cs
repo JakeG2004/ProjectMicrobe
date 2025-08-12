@@ -9,9 +9,16 @@ public class DeliveryMenu : GeneralMenu
     {
         base.ToggleMenu();
 
-        if (!_isActive)
+        if (_isActive)
         {
-            GetComponent<PlayerPylonManager>().GivePylon();
+            if (DroneManager.Instance.GetCurrentDelivery().hasPylon)
+            {
+                GetComponent<PlayerPylonManager>().GivePylon();
+            }
+        }
+
+        else
+        {
             GetComponent<VoidGameEventTrigger>().TriggerEvent();
         }
     }

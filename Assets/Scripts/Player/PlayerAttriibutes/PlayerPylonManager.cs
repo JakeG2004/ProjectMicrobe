@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PlayerPylonManager : MonoBehaviour
+public class PlayerPylonManager : BoolGameEventTrigger
 {
     private CarriedPylon _cp;
     [SerializeField] private UnityEvent _onTakePylon;
+    [SerializeField] private UnityEvent _onGetPylon;
 
     void Start()
     {
@@ -16,6 +17,7 @@ public class PlayerPylonManager : MonoBehaviour
     public void GivePylon()
     {
         _cp.SetHasPylon(true);
+        _onGetPylon.Invoke();
     }
 
     public void TakePylon()

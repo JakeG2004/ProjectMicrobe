@@ -62,7 +62,10 @@ public class MusicManager : MonoBehaviour
 
     void Start()
     {
-        LevelLoader.Instance.OnSceneUnload += StartLoadingScreenMusic;
+        if (Application.isPlaying)
+        {
+            LevelLoader.Instance.OnSceneUnload += StartLoadingScreenMusic;   
+        }
     }
 
     // Function to switch the genre to chill for loading screens

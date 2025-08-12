@@ -21,7 +21,10 @@ public class DeliveryMenuManager : MonoBehaviour
     void OnEnable()
     {
         _allMicrobeControls = Object.FindObjectsOfType<IndividualMicrobeCtrl>();
-        _microbes = DroneManager.Instance.GetCurrentDelivery();
+
+        MicrobeDelivery delivery = DroneManager.Instance.GetCurrentDelivery();
+
+        _microbes = delivery.curMicrobeList;
 
         SetDeliveryPanel();
     }
