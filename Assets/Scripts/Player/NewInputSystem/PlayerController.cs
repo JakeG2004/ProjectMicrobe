@@ -114,9 +114,17 @@ public class PlayerController : MonoBehaviour
     {
         _states.isFlying = !_states.isFlying;
 
-        if ((_states.isFlying && _states.submersion > 0.5f) || _states.isClimbing)
+        if ((_states.isFlying && _states.submersion >= 0.9f) || _states.isClimbing)
         {
             _states.isFlying = false;
+        }
+
+        if (_states.isFlying && _states.submersion < 0.9f && _states.submersion > 0.1f)
+        {
+            Vector3 newVel = GetComponent<Rigidbody>().velocity;
+            newVel.y = 5f;
+            GetComponent<Rigidbody>().velocity = newVel;
+            _states.isFlying = true;
         }
     }
 

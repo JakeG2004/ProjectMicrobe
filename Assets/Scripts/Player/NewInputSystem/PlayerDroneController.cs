@@ -67,8 +67,9 @@ public class PlayerDroneController : MonoBehaviour
 
     private void SetDroneActivationState(bool state)
     {
-        if (state && _states.submersion > 0.5f)
+        if (state && _states.submersion > 0.9f)
         {
+            _states.isFlying = false;
             return;
         }
 
@@ -105,7 +106,7 @@ public class PlayerDroneController : MonoBehaviour
         moveDir = new Vector3(moveDir.x, 0, moveDir.z).normalized;
 
         // Get off drone if too much water
-        if (_states.submersion > 0.5f)
+        if (_states.submersion > 0.9f)
         {
             SetDroneActivationState(false);
             return;
