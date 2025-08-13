@@ -143,8 +143,11 @@ public class DroneManager : MonoBehaviour
         _isInFlight = true;
         _loop.IsLerpingPitch(true);
 
-        // Follow the drone during flight
-        while (_droneLead.remainingDistance > 0.1f)
+        Vector2 droneLeadXZ = Vector2.zero;
+        Vector2 droneXZ = Vector2.zero;
+
+        // Follow the drone during flightf dsa
+        while (_droneLead.remainingDistance > 0.1f || Vector2.Distance(droneLeadXZ, droneXZ) > 10f)
         {
             if (Vector3.Distance(_drone.transform.position, _droneLead.transform.position) > 60f)
             {
@@ -169,28 +172,63 @@ public class DroneManager : MonoBehaviour
 
             // Smoothly interpolate the drone toward the target
             _drone.transform.position = Vector3.Lerp(_drone.transform.position, targetPos, _X_SMOOTHING * Time.deltaTime);
-            //_drone.transform.eulerAngles = Vector3.Lerp(_drone.transform.eulerAngles, targetRot, _X_SMOOTHING * Time.deltaTime);
+
+            // Determine tilt from velocity
+            Vector3 localVelocity = _drone.transform.InverseTransformDirection(_droneLead.velocity);
+
+            // Max tilt in degrees
+            float maxTilt = 15f;
+
+            // Pitch: tilt forward/backward based on forward velocity (negative so forward = nose down)
+            float pitch = -Mathf.Clamp(-localVelocity.z, -_droneLead.speed, _droneLead.speed) / _droneLead.speed * maxTilt;
+
+            // Roll: tilt side-to-side based on sideways velocity
+            float roll = Mathf.Clamp(-localVelocity.x, -_droneLead.speed, _droneLead.speed) / _droneLead.speed * maxTilt;
+
+            // Keep yaw from the lead
+            float yaw = _droneLead.transform.eulerAngles.y;
+
+            // Smooth tilt application
+            Quaternion targetRotation = Quaternion.Euler(pitch, yaw, roll);
+            _drone.transform.rotation = Quaternion.Lerp(_drone.transform.rotation, targetRotation, _X_SMOOTHING * Time.deltaTime);
+
 
             _velocity = _droneLead.velocity;
             ManageDroneSound();
+
+            droneLeadXZ = new Vector2(_droneLead.transform.position.x, _droneLead.transform.position.z);
+            droneXZ = new Vector2(_drone.transform.position.x, _drone.transform.position.z);
 
             yield return null;
         }
 
         Vector3 landPos = _droneLead.transform.position + new Vector3(0, 2, 0);
+        Vector3 initialPos = _drone.transform.position;
+        Quaternion initialRotation = _drone.transform.rotation;
+        Quaternion destRotation = Quaternion.Euler(0, 0, 0);
 
-        // Land the drone at the destination
-        while (Vector3.Distance(_drone.transform.position, landPos) > 0.5f)
+        float elapsedTime = 0f;
+        float duration = 2f; // seconds to land
+
+        while (elapsedTime < duration)
         {
-            Vector3 newPos = Vector3.Lerp(_drone.transform.position, landPos, _Y_SMOOTHING * Time.deltaTime);
+            float t = elapsedTime / duration;
+            t = Mathf.SmoothStep(0f, 1f, t); // ease in/out
+            Vector3 newPos = Vector3.Lerp(initialPos, landPos, t);
+
+            _drone.transform.rotation = Quaternion.Lerp(initialRotation, destRotation, t);
+
             _velocity = newPos - _drone.transform.position;
             _drone.transform.position = newPos;
 
             ManageDroneSound();
-            
+
+            elapsedTime += Time.deltaTime;
             yield return null;
         }
 
+        // Ensure it lands exactly
+        _drone.transform.position = landPos;
         yield return StartCoroutine(HandlePickupDropoff(flightType));
     }
 

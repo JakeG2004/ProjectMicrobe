@@ -861,6 +861,7 @@ GameObject:
   - component: {fileID: 5661115677385649335}
   - component: {fileID: 3487695838441400029}
   - component: {fileID: 2495447557149216355}
+  - component: {fileID: 1706512183828038493}
   m_Layer: 3
   m_Name: Interact
   m_TagString: Untagged
@@ -968,6 +969,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1706512183828038493}
+        m_TargetAssemblyTypeName: SoundPlayer, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 91caab599f032f52e83843b74af4c702, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &5661115677385649335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1007,9 +1020,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a902e56cee29af578ae8d755bccd3b0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _event: {fileID: 0}
   _onTakePylon:
     m_PersistentCalls:
       m_Calls: []
+  _onGetPylon:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1706512183828038493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5837487763207297232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1dcda03e34f8552984ba9921bbf8d69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6302638538223191006
 GameObject:
   m_ObjectHideFlags: 0
