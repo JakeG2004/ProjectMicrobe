@@ -10176,6 +10176,8 @@ GameObject:
   - component: {fileID: 530402900517178277}
   - component: {fileID: 3862604478810851283}
   - component: {fileID: 4547914654994019425}
+  - component: {fileID: 2359158151440259564}
+  - component: {fileID: 5905187046779464888}
   m_Layer: 0
   m_Name: MicrobePylon
   m_TagString: Pylon
@@ -10489,6 +10491,46 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _event: {fileID: 11400000, guid: 16ce0196746960222aaad1d46bdd4e27, type: 2}
+--- !u!114 &2359158151440259564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5981207602307649226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1dcda03e34f8552984ba9921bbf8d69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5905187046779464888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5981207602307649226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b503676c540dc3af49be99a7d4574ed7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2359158151440259564}
+        m_TargetAssemblyTypeName: SoundPlayer, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 0ffbdd5cb6a389143bb05d1b8f7c1102, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _eventType: 1
 --- !u!1 &5990425929586624647
 GameObject:
   m_ObjectHideFlags: 0

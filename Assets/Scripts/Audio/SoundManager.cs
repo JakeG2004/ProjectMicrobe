@@ -65,8 +65,12 @@ public class SoundManager : MonoBehaviour
 
     void Start()
     {
-        LevelLoader.Instance.OnSceneUnload += FadeOutAllSounds;
-        LevelLoader.Instance.OnSceneLoad += TurnOnSounds;
+        if (Application.isPlaying)
+        {
+            LevelLoader.Instance.OnSceneUnload += FadeOutAllSounds;
+            LevelLoader.Instance.OnSceneLoad += TurnOnSounds;            
+        }
+
         _curSounds.Add(_as);
     }
 

@@ -28,7 +28,7 @@ public class OrderMicrobesManager : MonoBehaviour
     // Adds a microbe to the list
     public void AddMicrobeToList(MicrobeSO newMicrobe)
     {
-        if (_curDelivery.curMicrobeList.Count >= 3 || _curDelivery.curMicrobeList.Contains(newMicrobe))
+        if (_curDelivery.curMicrobeList.Count >= 3)
         {
             return;
         }

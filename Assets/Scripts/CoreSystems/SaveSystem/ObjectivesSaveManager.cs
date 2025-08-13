@@ -64,9 +64,10 @@ public class ObjectivesSaveManager
         ObjectiveGroup[] objGroups = Object.FindObjectsOfType<ObjectiveGroup>();
         System.Array.Sort(objGroups, (a, b) => a.GetGroupIdx().CompareTo(b.GetGroupIdx()));
 
-        foreach (ObjectiveGroupItem ogi in _currentState.objectives)
+
+        foreach (ObjectiveGroup objGroup in objGroups)
         {
-            foreach (ObjectiveGroup objGroup in objGroups)
+            foreach (ObjectiveGroupItem ogi in _currentState.objectives)
             {
                 if (objGroup.GetName() == ogi.name)
                 {
