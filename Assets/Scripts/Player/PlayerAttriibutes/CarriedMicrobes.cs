@@ -6,6 +6,7 @@ public class CarriedMicrobes : MonoBehaviour
 {
     const int MAX_MICROBES = 3;
     [SerializeField] private List<StringFloatPair> _microbes = new List<StringFloatPair>();
+    [HideInInspector] public bool backpackFull = false;
 
     // Adds a new microbe to the player's backpack, handing amounts and duplicate entries
     public void AddMicrobe(StringFloatPair newMicrobe)
@@ -23,6 +24,14 @@ public class CarriedMicrobes : MonoBehaviour
         // Handle the case of too many microbes and adding a new one
         if (_microbes.Count >= MAX_MICROBES && addingNewMicrobe)
         {
+            backpackFull = true;
+
+            if (NotificationPanelManager.Instance.IsAnimating())
+            {
+                return;
+            }
+
+            NotificationPanelManager.Instance.ShowPanelForSeconds("Backpack Full");
             return;
         }
 

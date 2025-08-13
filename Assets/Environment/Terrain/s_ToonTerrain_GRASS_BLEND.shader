@@ -17,6 +17,9 @@
         [TCP2Header(Custom Blending)]
         _CustomBlendFactor ("Custom Blend Factor (Layers 2 & 3 Influence)", Range(0, 1)) = 0.0
         [TCP2Color(HDR)] _GreenToBrownColor ("Green To Brown Color", Color) = (0.3,0.2,0.1,1) // NEW PROPERTY for remapping green
+
+        _PinkBlendFactor ("Pink Blend Factor (Layers 4 Influence)", Range(0, 1)) = 0.0
+        [TCP2Color(HDR)] _PinkToBrownColor ("Pink To Brown Color", Color) = (0,0.6,0.1,1) // NEW PROPERTY for remapping pink
         [TCP2Separator]
 
         [TCP2TextureSingleLine] _NoTileNoiseTex ("Non-repeating Tiling Noise Texture", 2D) = "black" {}
@@ -202,7 +205,7 @@
         sampler2D _Splat1;
         sampler2D _Splat2;
         sampler2D _Splat3;
-        TCP2_TEX2D_NO_SAMPLER(_Splat4);
+        sampler2D _Splat4;
         TCP2_TEX2D_NO_SAMPLER(_Splat5);
         TCP2_TEX2D_NO_SAMPLER(_Splat6);
         TCP2_TEX2D_NO_SAMPLER(_Splat7);
@@ -227,7 +230,9 @@
 
         float _RampSmoothing;
         float _CustomBlendFactor;
+        float _PinkBlendFactor;
         fixed4 _GreenToBrownColor; // NEW DECLARATION
+        fixed4 _PinkToBrownColor;
 
         // Non-repeating tiling
         sampler2D _NoTileNoiseTex;
@@ -369,6 +374,7 @@
 			// Capture original albedo values for Layers 2 and 3 *before* remapping.
 			float4 original_layer2_albedo = tex2D_noTile(_Splat2, input.texcoord0.xy * _Splat2_ST.xy + _Splat2_ST.zw).rgba;
 			float4 original_layer3_albedo = tex2D_noTile(_Splat3, input.texcoord0.xy * _Splat3_ST.xy + _Splat3_ST.zw).rgba;
+            float4 original_layer4_albedo = tex2D_noTile(_Splat4, input.texcoord0.xy * _Splat4_ST.xy + _Splat4_ST.zw).rgba;
 
 			// Define __layer0Albedo and __layer1Albedo (they are not remapped)
 			float4 __layer0Albedo = ( tex2D_noTile(_Splat0, input.texcoord0.xy * _Splat0_ST.xy + _Splat0_ST.zw).rgba );
@@ -383,10 +389,13 @@
 			half greenStrengthL3 = original_layer3_albedo.g;
 			half remap_L3_factor = saturate(greenStrengthL3 * _CustomBlendFactor * 2.0); // Adjust 2.0 multiplier for intensity
 			half4 __layer3Albedo = lerp(original_layer3_albedo, _GreenToBrownColor * GetLuminance(original_layer3_albedo.rgb), remap_L3_factor);
+
+			half pinkStrengthL4 = original_layer4_albedo.r;
+			half remap_L4_factor = saturate(pinkStrengthL4 * _PinkBlendFactor * 2.0); // Adjust 2.0 multiplier for intensity
+			half4 __layer4Albedo = lerp(original_layer4_albedo, _PinkToBrownColor * GetLuminance(original_layer4_albedo.rgb), remap_L4_factor);
 			// --- END OF CUSTOMIZATION: Capture original albedo and remap ---
 
 			// Define albedo for layers 4-7 as before
-			float4 __layer4Albedo = ( TCP2_TEX2D_SAMPLE(_Splat4, _Mask4, input.texcoord0.xy * _Splat4_ST.xy + _Splat4_ST.zw).rgba );
 			float4 __layer5Albedo = ( TCP2_TEX2D_SAMPLE(_Splat5, _Mask4, input.texcoord0.xy * _Splat5_ST.xy + _Splat5_ST.zw).rgba );
 			float4 __layer6Albedo = ( TCP2_TEX2D_SAMPLE(_Splat6, _Mask4, input.texcoord0.xy * _Splat6_ST.xy + _Splat6_ST.zw).rgba );
 			float4 __layer7Albedo = ( TCP2_TEX2D_SAMPLE(_Splat7, _Mask4, input.texcoord0.xy * _Splat7_ST.xy + _Splat7_ST.zw).rgba );

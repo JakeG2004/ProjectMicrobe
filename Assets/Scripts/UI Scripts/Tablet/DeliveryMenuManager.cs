@@ -84,7 +84,14 @@ public class DeliveryMenuManager : MonoBehaviour
         newMicrobe.name = microbe.microbeName;
         newMicrobe.amount = ADD_AMT;
 
-        GameObject.FindGameObjectWithTag("Player").GetComponent<CarriedMicrobes>().AddMicrobe(newMicrobe);
+        CarriedMicrobes cm = GameObject.FindGameObjectWithTag("Player").GetComponent<CarriedMicrobes>();
+
+        cm.AddMicrobe(newMicrobe);
+
+        if (cm.backpackFull)
+        {
+            return;
+        }
 
         // Update the backpack panel to show the new amount of _microbes
         foreach (IndividualMicrobeCtrl imc in _allMicrobeControls)
