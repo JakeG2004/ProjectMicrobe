@@ -10,6 +10,9 @@ using UnityEngine.Events;
 
 public class RegionPlantGrower : MonoBehaviour
 {
+    [SerializeField] private bool _alsoChangePink = false;
+
+    [Space(10)]
     // UNITY EVENTS
     [SerializeField] private UnityEvent _onStartGrowth;
     [SerializeField] private UnityEvent _onGrowthComplete;
@@ -115,6 +118,11 @@ public class RegionPlantGrower : MonoBehaviour
             {
                 tb.SetBlendFactor(growthRatio);
                 tb.SetDetailDensity(growthRatio);
+
+                if (_alsoChangePink)
+                {
+                    tb.SetPinkBlendFactor(1 - growthRatio);
+                }
             }
 
             yield return null;

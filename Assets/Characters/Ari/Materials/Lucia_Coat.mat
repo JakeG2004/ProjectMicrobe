@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: m_Ari_HairLongBraid
-  m_Shader: {fileID: 4800000, guid: 6a12b940b5ffa0c40acdc0818eb92cfd, type: 3}
+  m_Name: Lucia_Coat
+  m_Shader: {fileID: 4800000, guid: 8d4765e7650e4f840b8cbcafc26dab39, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -23,12 +23,8 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _AnisoTex:
-        m_Texture: {fileID: 2800000, guid: 9116d7d18c3345e41bce9ea7c47e4475, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: 5dda9b41a76fb324fa8c844694a3c4f7, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -48,14 +44,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 9db839f9d45aa0343ae0069f090076ec, type: 3}
+        m_Texture: {fileID: 2800000, guid: bc1c1778b7d7bbf49bd8c9a21d7df1e7, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MetallicSmooth:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -68,19 +60,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Ramp:
-        m_Texture: {fileID: 2800000, guid: aa15e20fb29b52446a7e996e5ca2027b, type: 3}
+        m_Texture: {fileID: 2800000, guid: 63cd7d7af0020be4389b99a78f7c358c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AnisoOffset: -0.606
-    - _AnisoOffset2: 0.006
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _Gloss: 0.368
-    - _Gloss2: 0.597
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -88,29 +76,15 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _Reflection: 0.75
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _Specularity: 0.582
-    - _Specularity2: 0.582
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
-    - _value: 0
     m_Colors:
-    - _Color: {r: 0.8666667, g: 0.42352942, b: 0.34901962, a: 1}
-    - _ColorA: {r: 0.6698113, g: 0.23566632, b: 0.18009077, a: 0.5019608}
-    - _ColorB: {r: 0.4245283, g: 0.14819282, b: 0.10212708, a: 0.5019608}
-    - _ColorC: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Highlight: {r: 0.4, g: 0.54901963, b: 0.6509804, a: 1}
-    - _HighlightA: {r: 0.5, g: 0.035, b: 0.5, a: 0.6}
-    - _HighlightB: {r: 0.255, g: 0.085, b: 0.5, a: 0.69803923}
-    - _HighlightColor: {r: 1, g: 1, b: 1, a: 1}
-    - _HighlightColor2: {r: 1, g: 0.3488756, b: 0, a: 1}
-    - _HighlightColorA: {r: 1, g: 0.285713, b: 0, a: 0.7019608}
-    - _HighlightColorB: {r: 1, g: 0.7605663, b: 0.25943398, a: 0.7019608}
-    - _TintB: {r: 0.19215685, g: 0.8926542, b: 1, a: 1}
-    - _TintG: {r: 1, g: 1, b: 1, a: 1}
-    - _TintR: {r: 0.11873728, g: 0.034403324, b: 0.0009177905, a: 1}
+    - _TintB: {r: 0.501849, g: 0.3607843, b: 1, a: 1}
+    - _TintG: {r: 0.71430594, g: 0.17041463, b: 0.38106063, a: 1}
+    - _TintR: {r: 0.8742166, g: 0.81401473, b: 0.81401473, a: 1}
   m_BuildTextureStacks: []

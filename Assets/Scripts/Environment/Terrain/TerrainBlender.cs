@@ -5,8 +5,10 @@ public class TerrainBlender : MonoBehaviour
     [SerializeField] private Terrain _terrain;
     // 0 for brown, 1 for green
     [SerializeField] private float _blendFactor = 0.0f;
+    [SerializeField] private float _pinkBlendFactor = 1f;
     [SerializeField] private float _detailDensity = 0.1f;
     private const string _blendFactorPropertyName = "_CustomBlendFactor";
+    private const string _pinkBlendFactorPropertyName = "_PinkBlendFactor";
     private Material _terrainMat;
 
     void Start()
@@ -36,9 +38,10 @@ public class TerrainBlender : MonoBehaviour
         }
 
         bool blendFactorChanged = _terrainMat.GetFloat(_blendFactorPropertyName) != _blendFactor;
+        bool pinkBlendFactorChanged = _terrainMat.GetFloat(_pinkBlendFactorPropertyName) != _pinkBlendFactor;
         bool detailDensityChanged = _terrain.detailObjectDensity != _detailDensity;
 
-        if (blendFactorChanged || detailDensityChanged)
+        if (blendFactorChanged || detailDensityChanged || pinkBlendFactorChanged)
         {
             UpdateTerrainProperties();
         }
@@ -50,10 +53,11 @@ public class TerrainBlender : MonoBehaviour
         {
             return;
         }
-        
+
         if (_terrainMat != null)
         {
             _terrainMat.SetFloat(_blendFactorPropertyName, 1 - _blendFactor);
+            _terrainMat.SetFloat(_pinkBlendFactorPropertyName, 1 - _pinkBlendFactor);
         }
 
         if (_terrain != null)
@@ -65,6 +69,12 @@ public class TerrainBlender : MonoBehaviour
     public void SetBlendFactor(float val)
     {
         _blendFactor = Mathf.Clamp01(val);
+        UpdateTerrainProperties();
+    }
+
+    public void SetPinkBlendFactor(float val)
+    {
+        _pinkBlendFactor = Mathf.Clamp01(val);
         UpdateTerrainProperties();
     }
 

@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialResources:
   - resourceName: Oxygen
-    amount: 6
+    amount: 0
   - resourceName: Nitrogen
-    amount: 6
+    amount: 0
   - resourceName: Lead
     amount: 0
   - resourceName: Sulfur Dioxide
@@ -26,13 +26,13 @@ MonoBehaviour:
   - resourceName: Carbon Dioxide
     amount: 0
   resourceRefresh:
-  - resourceName: Oxygen
-    amount: 6
+  - resourceName: Sulfur Dioxide
+    amount: 5
   initialMicrobes:
   - microbe: {fileID: 11400000, guid: 63594733e7aa8914ea78c31c4153fbdf, type: 2}
-    population: 1
+    population: 0
   - microbe: {fileID: 11400000, guid: f2c460b91f42ea6429cfaa0d93203ff8, type: 2}
-    population: 2
+    population: 0
   - microbe: {fileID: 11400000, guid: 2d0b83d9658cce0678dfee0fa75ea374, type: 2}
     population: 0
   - microbe: {fileID: 11400000, guid: 50cfa95e1c6198142a450c83f9b15245, type: 2}
@@ -41,6 +41,8 @@ MonoBehaviour:
     population: 0
   - microbe: {fileID: 11400000, guid: 9021a24973ccc32ce882031d5b48c5be, type: 2}
     population: 0
-  envName: Guide Island 3
+  - microbe: {fileID: 11400000, guid: dfb8caad6dfc9035dbf45a16c8a939c3, type: 2}
+    population: 3
+  envName: Pink Island
   stableMycorrhisVar: 20
   stableMycorrhisAmt: 1
