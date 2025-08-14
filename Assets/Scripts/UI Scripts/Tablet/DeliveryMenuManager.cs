@@ -22,7 +22,12 @@ public class DeliveryMenuManager : MonoBehaviour
     {
         _allMicrobeControls = Object.FindObjectsOfType<IndividualMicrobeCtrl>();
 
-        MicrobeDelivery delivery = DroneManager.Instance.GetCurrentDelivery();
+        MicrobeDelivery delivery = DroneManager.Instance?.GetCurrentDelivery();
+
+        if (delivery == null)
+        {
+            return;
+        }
 
         _microbes = delivery.curMicrobeList;
 

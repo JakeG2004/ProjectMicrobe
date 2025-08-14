@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -11,7 +12,7 @@ public class SwipeMenuManager : MonoBehaviour
         Vertical
     };
 
-    [SerializeField] private RectTransform[] _scrollObjects;
+    [SerializeField] private List<SwipeableObject> _scrollObjects = new();
     [SerializeField] private Button _prevButton;
     [SerializeField] private Button _nextButton;
     [SerializeField] private SlideType _slideType = SlideType.Horizontal;
@@ -22,7 +23,7 @@ public class SwipeMenuManager : MonoBehaviour
 
     void Start()
     {
-        if (_scrollObjects.Length <= 0)
+        if (_scrollObjects.Count <= 0)
         {
             Debug.Log("0 scroll objects");
             return;
@@ -32,9 +33,9 @@ public class SwipeMenuManager : MonoBehaviour
         {
             spacing = GetComponent<RectTransform>().rect.height;
 
-            for (int i = 0; i < _scrollObjects.Length; i++)
+            for (int i = 0; i < _scrollObjects.Count; i++)
             {
-                _scrollObjects[i].anchoredPosition = new Vector2(_scrollObjects[i].anchoredPosition.x, -(spacing * i));
+                _scrollObjects[i].scrollObj.anchoredPosition = new Vector2(_scrollObjects[i].scrollObj.anchoredPosition.x, -(spacing * i));
             }
         }
 
@@ -42,9 +43,9 @@ public class SwipeMenuManager : MonoBehaviour
         {
             spacing = GetComponent<RectTransform>().rect.width;
 
-            for (int i = 0; i < _scrollObjects.Length; i++)
+            for (int i = 0; i < _scrollObjects.Count; i++)
             {
-                _scrollObjects[i].anchoredPosition = new Vector2(spacing * i, _scrollObjects[i].anchoredPosition.y);
+                _scrollObjects[i].scrollObj.anchoredPosition = new Vector2(spacing * i, _scrollObjects[i].scrollObj.anchoredPosition.y);
             }
         }
 
@@ -54,7 +55,7 @@ public class SwipeMenuManager : MonoBehaviour
     // Go to the next menu
     public void NextMenu()
     {
-        if (_curObject >= _scrollObjects.Length - 1)
+        if (_curObject >= _scrollObjects.Count - 1)
             return;
 
         _curObject++;
@@ -78,31 +79,68 @@ public class SwipeMenuManager : MonoBehaviour
     private void UpdateButtons()
     {
         // Toggle interactibles
-        _nextButton.interactable = _curObject < _scrollObjects.Length - 1;
+        _nextButton.interactable = _curObject < _scrollObjects.Count - 1;
         _prevButton.interactable = _curObject > 0;
+
 
         // Set previous button title
         string prevButtonName = "";
         if (_curObject > 0)
         {
-            prevButtonName = _scrollObjects[_curObject - 1].gameObject.name;
+            prevButtonName = _scrollObjects[_curObject - 1].scrollObj.gameObject.name;
         }
 
         // Set next button title
         string nextButtonName = "";
-        if (_curObject < _scrollObjects.Length - 1)
+        if (_curObject < _scrollObjects.Count - 1)
         {
-            nextButtonName = _scrollObjects[_curObject + 1].gameObject.name;
+            nextButtonName = _scrollObjects[_curObject + 1].scrollObj.gameObject.name;
         }
 
         _prevButton.GetComponentInChildren<TMP_Text>().text = prevButtonName;
         _nextButton.GetComponentInChildren<TMP_Text>().text = nextButtonName;
 
-
-        TriggerableEvent te = _scrollObjects[_curObject].gameObject.GetComponent<TriggerableEvent>();
-        if (te != null)
+        // Trigger the triggerable event (in case of weird navigation that isn't auto handled)
+        if (_scrollObjects[_curObject].scrollObj.gameObject.TryGetComponent<TriggerableEvent>(out var te))
         {
-            te.ActivateEvent();    
+            te.ActivateEvent();
+        }
+
+        // Get the expected selectables from the menu
+        Selectable curMinSelectable = _scrollObjects[_curObject].minSelectable;
+        Selectable curMaxSelectable = _scrollObjects[_curObject].maxSelectable;
+
+        if (curMinSelectable == null && curMaxSelectable == null)
+        {
+            return;
+        }
+
+        // Set the selectables to be the same if one is null
+        curMinSelectable = curMinSelectable == null ? curMaxSelectable : curMinSelectable;
+        curMaxSelectable = curMaxSelectable == null ? curMinSelectable : curMaxSelectable;
+
+        // Handle assignment in horizontal
+        if (_slideType == SlideType.Horizontal)
+        {
+            Navigation nextNav = _nextButton.navigation;
+            nextNav.selectOnLeft = curMaxSelectable;
+            _nextButton.navigation = nextNav;
+
+            Navigation prevNav = _prevButton.navigation;
+            prevNav.selectOnRight = curMinSelectable;
+            _prevButton.navigation = prevNav;
+        }
+
+        // Handle assignment in vertical
+        else if (_slideType == SlideType.Vertical)
+        {
+            Navigation nextNav = _nextButton.navigation;
+            nextNav.selectOnUp = curMaxSelectable;
+            _nextButton.navigation = nextNav;
+
+            Navigation prevNav = _prevButton.navigation;
+            prevNav.selectOnDown = curMinSelectable;
+            _prevButton.navigation = prevNav;
         }
     }
 
@@ -127,43 +165,43 @@ public class SwipeMenuManager : MonoBehaviour
     {
         _curObject = 0;
 
-        Vector2[] startPositions = new Vector2[_scrollObjects.Length];
-        Vector2[] endPositions = new Vector2[_scrollObjects.Length];
+        Vector2[] startPositions = new Vector2[_scrollObjects.Count];
+        Vector2[] endPositions = new Vector2[_scrollObjects.Count];
 
         // Create the end positions for each entry in the slide menu
-        for (int i = 0; i < _scrollObjects.Length; i++)
+        for (int i = 0; i < _scrollObjects.Count; i++)
         {
-            startPositions[i] = _scrollObjects[i].anchoredPosition;
+            startPositions[i] = _scrollObjects[i].scrollObj.anchoredPosition;
 
-            if(_slideType == SlideType.Horizontal)
+            if (_slideType == SlideType.Horizontal)
             {
                 endPositions[i] = new Vector2(spacing * (i - _curObject), startPositions[i].y);
             }
 
-            if(_slideType == SlideType.Vertical)
+            if (_slideType == SlideType.Vertical)
             {
                 endPositions[i] = new Vector2(startPositions[i].x, -(spacing * (i - _curObject)));
             }
-        }      
+        }
 
         // Snap them all to their final destinations
-        for (int i = 0; i < _scrollObjects.Length; i++)
+        for (int i = 0; i < _scrollObjects.Count; i++)
         {
-            _scrollObjects[i].anchoredPosition = endPositions[i];
-        }  
+            _scrollObjects[i].scrollObj.anchoredPosition = endPositions[i];
+        }
     }
 
     // Smoothly slide between menu entries horizontally
     IEnumerator SlideBetweenMenusHorizontal(float time, int direction)
     {
         float elapsed = 0f;
-        Vector2[] startPositions = new Vector2[_scrollObjects.Length];
-        Vector2[] endPositions = new Vector2[_scrollObjects.Length];
+        Vector2[] startPositions = new Vector2[_scrollObjects.Count];
+        Vector2[] endPositions = new Vector2[_scrollObjects.Count];
 
         // Create the end positions for each entry in the slide menu
-        for (int i = 0; i < _scrollObjects.Length; i++)
+        for (int i = 0; i < _scrollObjects.Count; i++)
         {
-            startPositions[i] = _scrollObjects[i].anchoredPosition;
+            startPositions[i] = _scrollObjects[i].scrollObj.anchoredPosition;
             endPositions[i] = new Vector2(spacing * (i - _curObject), startPositions[i].y);
         }
 
@@ -176,32 +214,34 @@ public class SwipeMenuManager : MonoBehaviour
             // Apply direction-based easing
             float easedT = EaseInOut(t);
 
-            for (int i = 0; i < _scrollObjects.Length; i++)
+            for (int i = 0; i < _scrollObjects.Count; i++)
             {
-                _scrollObjects[i].anchoredPosition = Vector2.Lerp(startPositions[i], endPositions[i], easedT);
+                _scrollObjects[i].scrollObj.anchoredPosition = Vector2.Lerp(startPositions[i], endPositions[i], easedT);
             }
 
             yield return null;
         }
 
         // Snap them all to their final destinations
-        for (int i = 0; i < _scrollObjects.Length; i++)
+        for (int i = 0; i < _scrollObjects.Count; i++)
         {
-            _scrollObjects[i].anchoredPosition = endPositions[i];
+            _scrollObjects[i].scrollObj.anchoredPosition = endPositions[i];
         }
+
+        UpdateButtons();
     }
 
     // Smoothly slide between menu entries vertically
     IEnumerator SlideBetweenMenusVertical(float time, int direction)
     {
         float elapsed = 0f;
-        Vector2[] startPositions = new Vector2[_scrollObjects.Length];
-        Vector2[] endPositions = new Vector2[_scrollObjects.Length];
+        Vector2[] startPositions = new Vector2[_scrollObjects.Count];
+        Vector2[] endPositions = new Vector2[_scrollObjects.Count];
 
         // Create the end positions for each entry in the slide menu
-        for (int i = 0; i < _scrollObjects.Length; i++)
+        for (int i = 0; i < _scrollObjects.Count; i++)
         {
-            startPositions[i] = _scrollObjects[i].anchoredPosition;
+            startPositions[i] = _scrollObjects[i].scrollObj.anchoredPosition;
             endPositions[i] = new Vector2(startPositions[i].x, -(spacing * (i - _curObject)));
         }
 
@@ -214,19 +254,20 @@ public class SwipeMenuManager : MonoBehaviour
             // Apply direction-based easing
             float easedT = EaseInOut(t);
 
-            for (int i = 0; i < _scrollObjects.Length; i++)
+            for (int i = 0; i < _scrollObjects.Count; i++)
             {
-                _scrollObjects[i].anchoredPosition = Vector2.Lerp(startPositions[i], endPositions[i], easedT);
+                _scrollObjects[i].scrollObj.anchoredPosition = Vector2.Lerp(startPositions[i], endPositions[i], easedT);
             }
 
             yield return null;
         }
 
         // Snap them all to their final destinations
-        for (int i = 0; i < _scrollObjects.Length; i++)
+        for (int i = 0; i < _scrollObjects.Count; i++)
         {
-            _scrollObjects[i].anchoredPosition = endPositions[i];
+            _scrollObjects[i].scrollObj.anchoredPosition = endPositions[i];
         }
+
     }
 
     // Provide smoothing for the transitions
@@ -246,4 +287,12 @@ public class SwipeMenuManager : MonoBehaviour
     {
         ResetToInitialPosition();
     }
+}
+
+[System.Serializable]
+public class SwipeableObject
+{
+    public RectTransform scrollObj;
+    public Selectable minSelectable;
+    public Selectable maxSelectable;
 }
