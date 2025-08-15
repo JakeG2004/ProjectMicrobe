@@ -38,6 +38,8 @@ public class GraphicsSettings : MonoBehaviour
         _fullscreenTg.isOn = Screen.fullScreen;
         _vsyncTg.isOn = (QualitySettings.vSyncCount != 0);
 
+        UpdateQualityPresetText();
+
         int height = Screen.height;
         int width = Screen.width;
 
@@ -60,7 +62,6 @@ public class GraphicsSettings : MonoBehaviour
         _resolutions.Add(newRes);
         _curResIdx = _resolutions.Count - 1;
 
-        UpdateQualityPresetText();
         UpdateResText();
     }
 
