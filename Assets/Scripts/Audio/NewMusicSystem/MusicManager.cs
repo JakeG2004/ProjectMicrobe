@@ -140,6 +140,7 @@ public class MusicManager : MonoBehaviour
         {
             Instance.StartCoroutine(Instance.FadeAudio(targetClip, 1, Instance._fadeTime, targetSource));
         }
+
         else
         {
             Instance.StartCoroutine(Instance.CrossfadeGenre(currentSource, targetSource, targetClip));
@@ -175,6 +176,7 @@ public class MusicManager : MonoBehaviour
 
         // Stop the audiosource if its target volume is 0
         fadeSrc.volume = targetVol;
+
         if (targetVol == 0)
         {
             fadeSrc.Pause();
@@ -209,6 +211,7 @@ public class MusicManager : MonoBehaviour
             }
         }
 
+        fadeOut.volume = 0;
         fadeOut.Pause();
 
         // turn off fadeSource
@@ -243,7 +246,9 @@ public class MusicManager : MonoBehaviour
             yield return null;
         }
 
+        fadeOut.volume = 0f;
         fadeOut.Pause();
+
         fadeIn.volume = 1f;
     }
 

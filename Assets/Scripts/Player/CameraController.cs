@@ -26,6 +26,7 @@ public class CameraController : MonoBehaviour
 	AudioLowPassFilter filter;
 
 	private bool _aboveWater = false;
+	private NewInputController _controller;
 
 	[SerializeField] private bool _mouseTracking = true;
 
@@ -44,6 +45,8 @@ public class CameraController : MonoBehaviour
 	void Start()
 	{
 		lookPos = character.position + Vector3.up * lookPosYOffest;
+
+		_controller = NewInputController.Instance;
 	}
 
 	void LateUpdate()
@@ -99,8 +102,13 @@ public class CameraController : MonoBehaviour
 	// Handles manual rotation from the player
 	void RotateCameraDirection()
 	{
+		if (_states == null || _controller == null)
+		{
+			return;
+		}
+		
 		// Modify the look vector so that mouse movement feels more snappy at default settings
-		Vector2 modifiedLook = _states.look * (NewInputController.Instance.GetCurrentInputDevice() == InputType.KeyboardMouse ? 1.5f : 1f);
+		Vector2 modifiedLook = _states.look * (_controller.GetCurrentInputDevice() == InputType.KeyboardMouse ? 1.5f : 1f);
 		
 		angleVert = ClampAngle(angleVert - modifiedLook.y * _states.movementVals.lookSensitivity / 2, angleVertBounds.x, angleVertBounds.y);
 		angleHoz += modifiedLook.x * _states.movementVals.lookSensitivity;

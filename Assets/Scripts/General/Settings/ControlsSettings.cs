@@ -28,8 +28,13 @@ public class ControlsSettings : MonoBehaviour
 
     void OnEnable()
     {
-        _lookSlider.value = SaveSystem.Instance.GetLookSensitivity();
-        _sprintToggleButton.isOn = SaveSystem.Instance.GetSprintToggle();
+        SaveSystem ss = SaveSystem.Instance;
+        if (ss != null)
+        {
+            _lookSlider.value = ss.GetLookSensitivity();
+            _sprintToggleButton.isOn = ss.GetSprintToggle();
+        }
+
         _controlsListener.OnEventRaised(NewInputController.Instance.GetCurrentInputDevice() == InputType.Controller);
     }
 }
