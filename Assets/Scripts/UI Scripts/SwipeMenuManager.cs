@@ -12,6 +12,9 @@ public class SwipeMenuManager : MonoBehaviour
         Vertical
     };
 
+    [SerializeField] private SwipeMenuNavManager _navMgr;
+
+    [Space(10)]
     [SerializeField] private List<SwipeableObject> _scrollObjects = new();
     [SerializeField] private Button _prevButton;
     [SerializeField] private Button _nextButton;
@@ -142,6 +145,11 @@ public class SwipeMenuManager : MonoBehaviour
             prevNav.selectOnDown = curMinSelectable;
             _prevButton.navigation = prevNav;
         }
+
+        if (_navMgr != null)
+        {
+            _navMgr.SetOtherMenuNav(this, curMinSelectable);
+        }
     }
 
     // Start a slide either to the left or to the right
@@ -188,6 +196,49 @@ public class SwipeMenuManager : MonoBehaviour
         for (int i = 0; i < _scrollObjects.Count; i++)
         {
             _scrollObjects[i].scrollObj.anchoredPosition = endPositions[i];
+        }
+    }
+
+    public void SetNav(Navigation newNav)
+    {
+        // Set the prev / next buttons
+        Navigation prevNav = _prevButton.navigation;
+        prevNav.selectOnDown = newNav.selectOnDown == null ? prevNav.selectOnDown : newNav.selectOnDown;
+        prevNav.selectOnLeft = newNav.selectOnLeft == null ? prevNav.selectOnLeft : newNav.selectOnLeft;
+        prevNav.selectOnRight = newNav.selectOnRight == null ? prevNav.selectOnRight : newNav.selectOnRight;
+        prevNav.selectOnUp = newNav.selectOnUp == null ? prevNav.selectOnUp : newNav.selectOnUp;
+        _prevButton.navigation = prevNav;
+
+        Navigation nextNav = _nextButton.navigation;
+        nextNav.selectOnDown = newNav.selectOnDown == null ? nextNav.selectOnDown : newNav.selectOnDown;
+        nextNav.selectOnLeft = newNav.selectOnLeft == null ? nextNav.selectOnLeft : newNav.selectOnLeft;
+        nextNav.selectOnRight = newNav.selectOnRight == null ? nextNav.selectOnRight : newNav.selectOnRight;
+        nextNav.selectOnUp = newNav.selectOnUp == null ? nextNav.selectOnUp : newNav.selectOnUp;
+        _nextButton.navigation = nextNav;
+
+        foreach (SwipeableObject swipeObj in _scrollObjects)
+        {
+            // Set the minimum navigation
+            if (swipeObj.minSelectable != null)
+            {
+                Navigation minNav = swipeObj.minSelectable.navigation;
+                minNav.selectOnDown = newNav.selectOnDown == null ? minNav.selectOnDown : newNav.selectOnDown;
+                minNav.selectOnLeft = newNav.selectOnLeft == null ? minNav.selectOnLeft : newNav.selectOnLeft;
+                minNav.selectOnRight = newNav.selectOnRight == null ? minNav.selectOnRight : newNav.selectOnRight;
+                minNav.selectOnUp = newNav.selectOnUp == null ? minNav.selectOnUp : newNav.selectOnUp;
+                swipeObj.minSelectable.navigation = minNav;
+            }
+
+            // Set the maximum navigation
+            if (swipeObj.maxSelectable != null)
+            {
+                Navigation maxNav = swipeObj.maxSelectable.navigation;
+                maxNav.selectOnDown = newNav.selectOnDown == null ? maxNav.selectOnDown : newNav.selectOnDown;
+                maxNav.selectOnLeft = newNav.selectOnLeft == null ? maxNav.selectOnLeft : newNav.selectOnLeft;
+                maxNav.selectOnRight = newNav.selectOnRight == null ? maxNav.selectOnRight : newNav.selectOnRight;
+                maxNav.selectOnUp = newNav.selectOnUp == null ? maxNav.selectOnUp : newNav.selectOnUp;
+                swipeObj.maxSelectable.navigation = maxNav;
+            }
         }
     }
 
