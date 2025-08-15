@@ -18,7 +18,7 @@ public class MenuControlsManager : MonoBehaviour
 
         if (NewInputController.Instance.GetCurrentInputDevice() == InputType.KeyboardMouse)
         {
-            SetMouseState(_isActive);   
+            SetMouseState(_isActive);
         }
     }
 

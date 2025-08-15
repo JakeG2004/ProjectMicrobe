@@ -6,6 +6,7 @@ public class NPCMoveController : MonoBehaviour {
 	[SerializeField] LayerMask collisionMask;
 	[SerializeField] float wanderRadius = 10f; // sphere bounds around start position
 	[SerializeField] bool randomIdleAction = true;
+	[SerializeField] private bool _debug = false;
 
 	Rigidbody rb;
 	Animator anim;
@@ -167,6 +168,11 @@ public class NPCMoveController : MonoBehaviour {
 
 	
 	void OnDrawGizmos() {
+		if (!_debug)
+		{
+			return;
+		}
+		
 		// visual of checksphere
 		Gizmos.color = Color.red;
 		float radius = 0.3f;

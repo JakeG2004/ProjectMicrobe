@@ -46,7 +46,7 @@ public class IndividualMicrobeCtrl : MonoBehaviour
     public void RemoveMicrobe()
     {
         _cm.RemoveMicrobe(_cm.GetMicrobe(_microbeIndex)?.name);
-        foreach(var im in Object.FindObjectsOfType<IndividualMicrobeCtrl>())
+        foreach (var im in Object.FindObjectsOfType<IndividualMicrobeCtrl>())
         {
             im.UpdateInfo();
         }

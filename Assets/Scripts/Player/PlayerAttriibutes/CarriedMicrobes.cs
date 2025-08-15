@@ -64,6 +64,7 @@ public class CarriedMicrobes : MonoBehaviour
             if (microbe.name == microbeName)
             {
                 _microbes.Remove(microbe);
+                backpackFull = false;
                 return;
             }
         }
