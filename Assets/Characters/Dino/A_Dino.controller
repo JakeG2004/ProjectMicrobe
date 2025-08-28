@@ -12,6 +12,9 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: 4167819179498759566}
     m_Position: {x: 330, y: 100, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 4446760652241887674}
+    m_Position: {x: 365, y: 165, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -22,13 +25,39 @@ AnimatorStateMachine:
   m_ExitPosition: {x: 800, y: 120, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: 4167819179498759566}
+--- !u!1102 &-2473221244728549671
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: s_DinoBlink
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: 38ba01d06926bd24aa5a89662063b4cf, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
 --- !u!91 &9100000
 AnimatorController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: A_Scorp
+  m_Name: A_Dino
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Speed
@@ -36,7 +65,7 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -71,7 +100,7 @@ BlendTree:
   m_Name: Blend Tree
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 76f9d76f9d3431e4bb288224028e7635, type: 2}
+    m_Motion: {fileID: 7400000, guid: 890bb850e37c6c54c9ef267f3eada473, type: 2}
     m_Threshold: 0
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
@@ -79,7 +108,7 @@ BlendTree:
     m_DirectBlendParameter: Speed
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 6000c07992b78314d8bd24ef65a68758, type: 2}
+    m_Motion: {fileID: 7400000, guid: 231c53beda57c85479a789dc899cbedf, type: 2}
     m_Threshold: 0.5
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
@@ -87,7 +116,7 @@ BlendTree:
     m_DirectBlendParameter: Speed
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 059ed246a18d65744befa672f26d5c8b, type: 2}
+    m_Motion: {fileID: 7400000, guid: 1534b97770300d54e93a8d440e619980, type: 2}
     m_Threshold: 1
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1.5
@@ -111,8 +140,8 @@ AnimatorStateMachine:
   m_Name: Add
   m_ChildStates:
   - serializedVersion: 1
-    m_State: {fileID: 7108041803151669785}
-    m_Position: {x: 260, y: 110, z: 0}
+    m_State: {fileID: -2473221244728549671}
+    m_Position: {x: 316, y: 98, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -122,7 +151,7 @@ AnimatorStateMachine:
   m_EntryPosition: {x: 50, y: 120, z: 0}
   m_ExitPosition: {x: 800, y: 120, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
-  m_DefaultState: {fileID: 7108041803151669785}
+  m_DefaultState: {fileID: -2473221244728549671}
 --- !u!1102 &4167819179498759566
 AnimatorState:
   serializedVersion: 6
@@ -149,14 +178,14 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &7108041803151669785
+--- !u!1102 &4446760652241887674
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: s_Scorp_Blink
+  m_Name: s_DinoBlink
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -169,7 +198,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: efb3532288626104fa4be02f1a666500, type: 2}
+  m_Motion: {fileID: 7400000, guid: 38ba01d06926bd24aa5a89662063b4cf, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
