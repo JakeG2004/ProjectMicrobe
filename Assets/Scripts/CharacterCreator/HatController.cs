@@ -28,22 +28,15 @@ public class HatController : BaseToggleGroupController
     {
         base.OnToggleValueChanged(isOn);
         
-        // Earlly return and check for no hat, turn on hair
+        // Early return and check for no hat, turn on hair
         if (isOn && _hatName == "")
         {
             foreach (GameObject hat in _hats)
             {
-                hat.SetActive(false);
                 _hairSlider.UpdateCosmetic(_hairSlider.GetVal());
             }
 
             return;
-        }
-
-        // Disable all hair
-        foreach (GameObject hair in _hairStyles)
-        {
-            hair.SetActive(false);
         }
 
         // Turn all other hats off, turn on the target hat
@@ -66,10 +59,7 @@ public class HatController : BaseToggleGroupController
 
     public void TurnOffAllHats()
     {
-        foreach (GameObject hat in _hats)
-        {
-            hat.SetActive(false);
-        }
+        
     }
 
     public void SyncInitialState()

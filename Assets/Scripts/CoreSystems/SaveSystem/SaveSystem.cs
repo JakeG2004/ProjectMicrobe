@@ -159,6 +159,8 @@ public class SaveSystem : MonoBehaviour
     // =====================
 
     public void UnlockCosmetic(string cosmeticName) => _cosmeticsManager.UnlockCosmetic(cosmeticName);
+    public int GetHairIndex() => (int)Mathf.Round(_currentState.ccVals.hairIndex);
+    public void SetHairIndex(int idx) => _currentState.ccVals.hairIndex = idx;
     public float GetLookSensitivity() => _settingsManager.GetLookSensitivity();
     public void SaveLookSensitivity(float val) => _settingsManager.SaveLookSensitivity(val);
     public void SaveVolume(Vector3 vol) => _settingsManager.SaveVolume(vol);

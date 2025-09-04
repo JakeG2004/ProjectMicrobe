@@ -3,6 +3,8 @@
 // Author:  Jake Gendreau
 // Date:    6/18/25
 
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,6 +15,7 @@ public class CosmeticController : MonoBehaviour
     [SerializeField] private CosmeticType _selectedCosmeticType;
     [SerializeField] private GameObject[] _cosmeticOptions;
     [SerializeField] private bool _includeNone = false;
+    private List<HatPositionManager> _hats = new();
     private Slider _slider;
     private float _curVal;
 
@@ -27,6 +30,12 @@ public class CosmeticController : MonoBehaviour
         }
 
         _slider.maxValue = _includeNone ? _cosmeticOptions.Length : _cosmeticOptions.Length - 1;
+
+        foreach (GameObject hat in CosmeticContainer.Instance.GetHats())
+        {
+            _hats.Add(hat.GetComponent<HatPositionManager>());
+        }
+
         UpdateCosmetic(0);
     }
 
@@ -66,6 +75,15 @@ public class CosmeticController : MonoBehaviour
         for (int i = 0; i < _cosmeticOptions.Length; i++)
         {
             _cosmeticOptions[i].SetActive(i == idx);
+        }
+
+        if (_selectedCosmeticType == CosmeticType.Hair)
+        {
+            SaveSystem.Instance.SetHairIndex(idx);
+            foreach (HatPositionManager hat in _hats)
+            {
+                hat.UpdateHatPos();
+            }
         }
     }
 

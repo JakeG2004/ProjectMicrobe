@@ -76,13 +76,28 @@ public class CosmeticsSaveManager
 
             // get the renderer of the child
             Renderer renderer = child.GetComponent<Renderer>();
+            HatPositionManager hatPosMgr = child.GetComponent<HatPositionManager>();
 
             // skip if no renderer
-            if (!renderer)
+            if (!renderer && !hatPosMgr)
             {
                 continue;
             }
 
+            // Early exit for hats with no renderer
+            if (!renderer)
+            {
+                // Create new cosmetic entry and add it to the list
+                cosmetics.Add(new CosmeticEntry
+                {
+                    name = child.name,
+                    enabled = child.activeSelf,
+                    materials = null
+                });
+
+                continue;
+            }
+            
             // create material data list
             List<MaterialData> mats = new List<MaterialData>();
 
@@ -152,6 +167,12 @@ public class CosmeticsSaveManager
                 }
 
                 child.SetActive(cosmetic.enabled);
+
+                // Skip the current loop if we are loading something with no materials or no renderer
+                if (cosmetic.materials == null || renderer == null)
+                {
+                    continue;
+                }
 
                 // Set the material colors how they should be
                 int materialCount = Mathf.Min(renderer.materials.Length, cosmetic.materials.Count);
