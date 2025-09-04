@@ -59,7 +59,10 @@ public class HatController : BaseToggleGroupController
 
     public void TurnOffAllHats()
     {
-        
+        foreach (GameObject hat in _hats)
+        {
+            hat.SetActive(false);
+        }
     }
 
     public void SyncInitialState()
