@@ -21,11 +21,6 @@ public class HatPositionManager : MonoBehaviour
         UpdateHatPos();
     }
 
-    public void OnDisable()
-    {
-        print("Test");
-    }
-
     private void Update()
     {
         // Position the hat at the head, applying the offset correctly
