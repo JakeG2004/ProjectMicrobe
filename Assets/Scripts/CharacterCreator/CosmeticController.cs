@@ -36,7 +36,7 @@ public class CosmeticController : MonoBehaviour
             _hats.Add(hat.GetComponent<HatPositionManager>());
         }
 
-        UpdateCosmetic(0);
+        UpdateCosmetic((float)SaveSystem.Instance.GetHairIndex());
     }
 
     private void LoadCosmeticOptions()

@@ -29,8 +29,8 @@ public class ToggleScroller : MonoBehaviour, ISelectHandler, IPointerDownHandler
     {
         _sto.ScrollTo(_scrollVal);
 
-        // Set the toggle's state and trigger its value changed event
-        if (_tg != null && !_tg.isOn)
+        // Set the toggle's state and trigger its value changed event if the toggle is interactable (not locked)
+        if (_tg != null && !_tg.isOn && _tg.interactable)
         {
             _tg.isOn = true;
         }
