@@ -183,7 +183,8 @@ public class MountainPlayerController : MonoBehaviour
         _canPlaySound = false;
         StartCoroutine(IPreventStartSounds());
 
-        _rb.velocity = Vector2.zero;
+        if(_rb) _rb.velocity = Vector2.zero;
+        
         transform.SetParent(_originalParent);
         transform.position = _initPlayerPos;
         _prize.SetActive(true);
