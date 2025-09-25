@@ -181,13 +181,23 @@ public class MountainPlayerController : MonoBehaviour
     {
         _isDragging = false;
         _canPlaySound = false;
+        _prize.SetActive(true);
         StartCoroutine(IPreventStartSounds());
 
         if(_rb) _rb.velocity = Vector2.zero;
+
+        // Early return if running before start()
+        if (_originalParent == null)
+        {
+            return;
+        }
+
+        //Rebind controls
+        _controller.minigameInput.OnSelectPressed += HandleJumpDown;
+        _controller.minigameInput.OnSelectCanceled += HandleJumpUp;
         
-        transform.SetParent(_originalParent);
+        transform.SetParent(_originalParent, true);
         transform.position = _initPlayerPos;
-        _prize.SetActive(true);
     }
 
     void OnCollisionEnter2D(Collision2D col)
