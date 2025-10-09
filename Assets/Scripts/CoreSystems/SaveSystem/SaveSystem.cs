@@ -161,14 +161,19 @@ public class SaveSystem : MonoBehaviour
     public void UnlockCosmetic(string cosmeticName) => _cosmeticsManager.UnlockCosmetic(cosmeticName);
     public int GetHairIndex() => (int)Mathf.Round(_currentState.ccVals.hairIndex);
     public void SetHairIndex(int idx) => _currentState.ccVals.hairIndex = idx;
+
     public float GetLookSensitivity() => _settingsManager.GetLookSensitivity();
     public void SaveLookSensitivity(float val) => _settingsManager.SaveLookSensitivity(val);
     public void SaveVolume(Vector3 vol) => _settingsManager.SaveVolume(vol);
+
     public bool GetSprintToggle() => _settingsManager.GetSprintToggle();
     public void SaveSprintToggle(bool state) => _settingsManager.SaveSprintToggle(state);
+
     public bool GameIsComplete() => _currentState.hasCompletedGame;
     public void SetGameComplete() => _currentState.hasCompletedGame = true;
+
     public void SaveQualityLevel(int lvl) => _currentState.qualityLevel = lvl;
+    
     public bool HasSave() => File.Exists(_savePath);
     public bool IsDefaultSave() => (_currentState.playerCosmetics.Count == 0);
     public void SaveName(string name) => _currentState.name = name;
