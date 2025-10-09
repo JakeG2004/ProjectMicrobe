@@ -92,13 +92,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4645945934105857590}
+  - component: {fileID: 6246507098328122071}
   m_Layer: 3
   m_Name: _Horns
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4645945934105857590
 Transform:
   m_ObjectHideFlags: 0
@@ -115,3 +116,18 @@ Transform:
   - {fileID: 7542359554370618960}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6246507098328122071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7813590983816846264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e800175a227e6b5579d9dff102052910, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hat: {fileID: 0}
+  _head: {fileID: 0}
+  _singlePosition: 0

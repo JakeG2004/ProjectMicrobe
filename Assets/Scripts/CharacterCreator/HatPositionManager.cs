@@ -6,6 +6,9 @@ public class HatPositionManager : MonoBehaviour
 {
     [SerializeField] private Transform _hat;
     [SerializeField] private Transform _head;
+
+    [SerializeField] private bool _singlePosition = false;
+
     private Transform _targetTransform;
     private Transform _originalTransform;
 
@@ -90,6 +93,12 @@ public class HatPositionManager : MonoBehaviour
             case HairStyle.BALD:
                 targetTransName = "X_Bald";
                 break;
+        }
+
+        if(_singlePosition)
+        {
+            _hat.parent = _head;
+            return;
         }
 
         // Get the transform based on the name
