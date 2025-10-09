@@ -51,6 +51,7 @@ public class HatController : BaseToggleGroupController
 
                 else
                 {
+                    hat.GetComponent<HatPositionManager>().ResetHat();
                     hat.SetActive(false);
                 }
             }

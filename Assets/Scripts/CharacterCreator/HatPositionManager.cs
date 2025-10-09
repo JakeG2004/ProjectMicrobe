@@ -7,6 +7,12 @@ public class HatPositionManager : MonoBehaviour
     [SerializeField] private Transform _hat;
     [SerializeField] private Transform _head;
     private Transform _targetTransform;
+    private Transform _originalTransform;
+
+    void Awake()
+    {
+        _originalTransform = _hat.parent;
+    }
 
     void Start()
     {
@@ -16,16 +22,16 @@ public class HatPositionManager : MonoBehaviour
         }
     }
 
+    // When a hat is enabled, set it correctly
     private void OnEnable()
     {
         UpdateHatPos();
     }
 
-    private void Update()
+    // When a hat is reset, set its parent back to its original
+    public void ResetHat()
     {
-        // Position the hat at the head, applying the offset correctly
-        _hat.position = _head.TransformPoint(_targetTransform.localPosition);
-        _hat.rotation = _head.rotation * _targetTransform.localRotation;
+        _hat.parent = _originalTransform;
     }
 
     public void UpdateHatPos()
@@ -96,7 +102,13 @@ public class HatPositionManager : MonoBehaviour
             }
         }
 
+        // Set the new parent
+        _hat.parent = _head;
+
+        // Set the new offsets
+        _hat.localPosition = _targetTransform.localPosition;
         _hat.localScale = _targetTransform.localScale;
+        _hat.rotation = _targetTransform.rotation;
     }
 
     // ORDER MATTERS PLEASE DONT CHANGE
