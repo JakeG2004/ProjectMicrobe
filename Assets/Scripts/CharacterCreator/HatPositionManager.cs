@@ -37,6 +37,12 @@ public class HatPositionManager : MonoBehaviour
     // When a hat is reset, set its parent back to its original and turn off flattened hair
     public void ResetHat()
     {
+        // Exit early if reset hat is called prior to initialization
+        if (_targetTransform == null)
+        {
+            return;
+        }
+
         _hat.parent = _originalTransform;
         _targetTransform.gameObject.SetActive(false);
 
@@ -160,7 +166,7 @@ public class HatPositionManager : MonoBehaviour
         foreach(Transform child in transform.parent)
         {
             // Skip any objects whose name doesn't start with "Hair" or aren't active
-            if(!child.gameObject.activeSelf || child.gameObject.name.Remove(4) != "Hair")
+            if (!child.gameObject.activeSelf || child.gameObject.name.Substring(0, 4) != "Hair")
             {
                 continue;
             }
