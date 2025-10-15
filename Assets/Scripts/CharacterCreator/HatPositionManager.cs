@@ -15,6 +15,8 @@ public class HatPositionManager : MonoBehaviour
     private GameObject _flattenedHair;
     private GameObject _realHair;
 
+    private string _hairName = "";
+
     void Awake()
     {
         _originalTransform = _hat.parent;
@@ -78,38 +80,47 @@ public class HatPositionManager : MonoBehaviour
             // Get the name of the target transform
             case HairStyle.CURLS:
                 targetTransName = "X_Curls";
+                _hairName = "HairCurls";
                 break;
 
             case HairStyle.DOWN:
                 targetTransName = "X_Down";
+                _hairName = "HairDown";
                 break;
 
             case HairStyle.SHAG:
                 targetTransName = "X_Shag";
+                _hairName = "HairShag";
                 break;
 
             case HairStyle.SPIKEY:
                 targetTransName = "X_Spikey";
+                _hairName = "HairSpikey";
                 break;
 
             case HairStyle.LONG_BRAID:
                 targetTransName = "X_LongBraid";
+                _hairName = "HairLongBraid";
                 break;
 
             case HairStyle.PONYTAIL:
                 targetTransName = "X_Ponytail";
+                _hairName = "Hair Ponytail";
                 break;
 
             case HairStyle.FLOPPY:
                 targetTransName = "X_Floppy";
+                _hairName = "Hair Floppy";
                 break;
 
             case HairStyle.POOF:
                 targetTransName = "X_Poof";
+                _hairName = "Hair Poof";
                 break;
 
             case HairStyle.LOOSE_BUN:
                 targetTransName = "X_LooseBun";
+                _hairName = "Hair Loose Bun";
                 break;
 
             case HairStyle.BALD:
@@ -119,7 +130,16 @@ public class HatPositionManager : MonoBehaviour
 
         if(_singlePosition)
         {
+            Vector3 _hatOffset = _hat.localPosition;
+            Quaternion _hatRotation = _hat.localRotation;
+            Vector3 _hatScale = _hat.localScale;
+
             _hat.parent = _head;
+            _hat.gameObject.SetActive(true);
+
+            _hat.localPosition = _hatOffset;
+            _hat.localRotation = _hatRotation;
+            _hat.localScale = _hatScale;
             return;
         }
 
@@ -148,16 +168,19 @@ public class HatPositionManager : MonoBehaviour
         // Set the new parent
         _hat.parent = _head;
 
-        // Set the new offsets
-        _hat.localPosition = _targetTransform.localPosition;
-        _hat.localScale = _targetTransform.localScale;
-        _hat.rotation = _targetTransform.rotation;
+        if(_targetTransform != null)
+        {
+            // Set the new offsets
+            _hat.localPosition = _targetTransform.localPosition;
+            _hat.localScale = _targetTransform.localScale;
+            _hat.rotation = _targetTransform.rotation;   
+        }
     }
 
     private void SetHairActiveState(bool state)
     {
         if(state)
-        {
+        {  
             _realHair.SetActive(true);
             _realHair = null;
             return;
@@ -166,7 +189,7 @@ public class HatPositionManager : MonoBehaviour
         foreach(Transform child in transform.parent)
         {
             // Skip any objects whose name doesn't start with "Hair" or aren't active
-            if (!child.gameObject.activeSelf || child.gameObject.name.Substring(0, 4) != "Hair")
+            if (child.gameObject.name != _hairName)
             {
                 continue;
             }
