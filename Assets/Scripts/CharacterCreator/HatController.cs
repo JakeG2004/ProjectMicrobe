@@ -27,7 +27,7 @@ public class HatController : BaseToggleGroupController
     protected override void OnToggleValueChanged(bool isOn)
     {
         base.OnToggleValueChanged(isOn);
-        
+
         // Early return and check for no hat, turn on hair
         if (isOn && _hatName == "")
         {

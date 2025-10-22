@@ -173,7 +173,7 @@ public class HatPositionManager : MonoBehaviour
             // Set the new offsets
             _hat.localPosition = _targetTransform.localPosition;
             _hat.localScale = _targetTransform.localScale;
-            _hat.rotation = _targetTransform.rotation;   
+            _hat.localRotation = _targetTransform.localRotation;   
         }
     }
 

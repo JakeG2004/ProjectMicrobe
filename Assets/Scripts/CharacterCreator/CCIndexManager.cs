@@ -57,7 +57,8 @@ public class CCIndexManager : MonoBehaviour
 
             if (i == val)
             {
-                curChild.isOn = true;
+                //curChild.isOn = true;
+                curChild.SetIsOnWithoutNotify(true);
 
                 // Find the outline, and highlight
                 foreach (Transform child in curChild.transform)
