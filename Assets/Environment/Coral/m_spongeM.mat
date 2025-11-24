@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: m_SquidEye
-  m_Shader: {fileID: 4800000, guid: b948967b70fe39e469ed13ede212bdfc, type: 3}
+  m_Name: m_spongeM
+  m_Shader: {fileID: 4800000, guid: 1ce7bd9d9c7cc5f4bac081fb555cbb50, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -24,11 +24,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: e1c104dde564b344dbb08f39cbc83a4b, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Cube:
-        m_Texture: {fileID: 8900000, guid: 60f1fa9c7c55e934e8b0296eff890207, type: 3}
+        m_Texture: {fileID: 2800000, guid: 87939e728e48a064184c07e5b7d9fd74, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -48,11 +44,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 6667281e3138ee443986b8ab1be1990e, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MatCap:
-        m_Texture: {fileID: 2800000, guid: 7cda336848415ef48b86c7eaee7b127c, type: 3}
+        m_Texture: {fileID: 2800000, guid: 00c226be726d44c4cb9ed27ea951446a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -68,11 +60,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Ramp:
-        m_Texture: {fileID: 2800000, guid: 0a87bc70ac32f4d4491d368bc999e9db, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _WindMask:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 63cd7d7af0020be4389b99a78f7c358c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
@@ -92,16 +80,8 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
-    - _WindSpeed: 2.5
-    - _WindStrength: 0.025
     - _ZWrite: 1
-    - __dummy__: 0
     m_Colors:
-    - _Color: {r: 0.03788147, g: 0, b: 0.21383637, a: 0.654902}
+    - _Color: {r: 0.69182384, g: 0.42858264, b: 0.5243068, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FresColor: {r: 0, g: 0.36070555, b: 0.8509804, a: 1}
-    - _TintB: {r: 0.4354059, g: 0.4496221, b: 0.5345911, a: 1}
-    - _TintG: {r: 0.5031446, g: 0.4018834, b: 0.3338475, a: 1}
-    - _TintR: {r: 0.48056382, g: 0.7798742, b: 0.100549765, a: 1}
-    - _WindDirection: {r: 1, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

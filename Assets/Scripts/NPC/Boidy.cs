@@ -25,14 +25,16 @@ public class Boidy : MonoBehaviour {
     [SerializeField] private bool _spawnOnStart = true;
     [SerializeField] float spawnVerticalStretch = .3f;     // Flatten spawn area into a spheroid (height / width)
     [SerializeField] private bool _showGizmos = false;
+	[SerializeField] Vector2 moveSpeedRange = Vector2.up;
     readonly float turnSpeed = 360f;                // Rotation speed (degrees per second)
     readonly float neighborDistanceGoal = 3f;		// Ideal distance between neighbors
     readonly float obstacleAvoidanceRadius = 8f;    // Range at which boids start avoiding obstacles
     readonly float neighborCheckTime = 0.2f;        // Time interval for updating nearest neighbors
 
+	float noiseMoveRandomStartOffset = 0f;
     float timer = 1f;                               // Timer for neighbor updates
     Vector3 randomOffset = Vector3.zero;            // Shared random movement force
-    Transform[] boids;                              // All spawned boids
+    [HideInInspector] public Transform[] boids;                              // All spawned boids
     Transform[] neighbors;                          // The nearest neighbor of each boid
     float[] neighborDistances;                      // Distance between each boid and it's neighbor
     float[] moveSpeeds;                             // Movement speed of each boid
@@ -42,8 +44,9 @@ public class Boidy : MonoBehaviour {
         neighbors = new Transform[boidCount];
         neighborDistances = new float[boidCount];
         moveSpeeds = new float[boidCount];
+		noiseMoveRandomStartOffset = Random.Range(0f, 100f);
 
-        if (_spawnOnStart)
+		if (_spawnOnStart)
         {
             SpawnBoids();   
         }
@@ -67,7 +70,7 @@ public class Boidy : MonoBehaviour {
             // Apply random scale, speed, and material variance
             float scale = Random.Range(0.5f, 1.5f);
             boid.transform.localScale = Vector3.one * scale;
-            moveSpeeds[i] = Random.Range(4f, 10f);
+            moveSpeeds[i] = Random.Range(moveSpeedRange.x, moveSpeedRange.y);
             RandomizeMaterialValues(boid);
 
             _numBoids++;
@@ -103,11 +106,12 @@ public class Boidy : MonoBehaviour {
     }
 
 	void RandomizeMaterialValues(GameObject obj) {
-		Material mat = obj.GetComponent<Renderer>().material;
+		Material mat = obj.GetComponentInChildren<Renderer>().material;
+		// GetComponent<Renderer>().material;
 		mat.SetColor("_TintR", ColorMuddy());
 		mat.SetColor("_TintG", ColorMuddy());
 		mat.SetColor("_TintB", ColorMuddy());
-		mat.SetColor("_TintA", ColorWarmBright());
+		// mat.SetColor("_TintA", ColorWarmBright());
 	}
 	Color ColorMuddy() {
 		return new Color(Random.value, Random.value, Random.value);
@@ -185,7 +189,7 @@ public class Boidy : MonoBehaviour {
     }
 
     Vector3 OscillatingNoise(float frequency) {
-        float t = Time.time * frequency;
+        float t = (Time.time + noiseMoveRandomStartOffset) * frequency;
         return new Vector3(Mathf.Sin(t), Mathf.Cos(t * 2.718f), Mathf.Sin(t * 1.618f));
     }
 
