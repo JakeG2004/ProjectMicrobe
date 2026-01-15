@@ -182,4 +182,6 @@ public class SaveSystem : MonoBehaviour
     public bool HasSave() => File.Exists(_savePath);
     public bool IsDefaultSave() => (_currentState.playerCosmetics.Count == 0);
     public void SaveName(string name) => _currentState.name = name;
+
+    public void SetPlayerPos() => _playerPositionManager.LoadPlayerPostion();
 }

@@ -333,6 +333,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DroneRig
       objectReference: {fileID: 0}
+    - target: {fileID: 8476650470404666558, guid: ff2e005909cdd1b4fb22918e56e9a38a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3c8efba4a44334e8fb04831e0d8a8f65, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -479,31 +483,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2279992145856458051, guid: ba865e1a76b00a169aacdeb68ee49d74, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -125.43
+      value: -119.0912
       objectReference: {fileID: 0}
     - target: {fileID: 2279992145856458051, guid: ba865e1a76b00a169aacdeb68ee49d74, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 12.22
+      value: 11.614678
       objectReference: {fileID: 0}
     - target: {fileID: 2279992145856458051, guid: ba865e1a76b00a169aacdeb68ee49d74, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -92.45
+      value: -83.064995
       objectReference: {fileID: 0}
     - target: {fileID: 2279992145856458051, guid: ba865e1a76b00a169aacdeb68ee49d74, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.89019704
       objectReference: {fileID: 0}
     - target: {fileID: 2279992145856458051, guid: ba865e1a76b00a169aacdeb68ee49d74, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: 0.024536688
       objectReference: {fileID: 0}
     - target: {fileID: 2279992145856458051, guid: ba865e1a76b00a169aacdeb68ee49d74, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.4548603
       objectReference: {fileID: 0}
     - target: {fileID: 2279992145856458051, guid: ba865e1a76b00a169aacdeb68ee49d74, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0.007020394
       objectReference: {fileID: 0}
     - target: {fileID: 2279992145856458051, guid: ba865e1a76b00a169aacdeb68ee49d74, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -527,7 +531,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4466378030436378610, guid: ba865e1a76b00a169aacdeb68ee49d74, type: 3}
       propertyPath: _gcRadius
-      value: 0.15
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4466378030436378610, guid: ba865e1a76b00a169aacdeb68ee49d74, type: 3}
       propertyPath: _collisionMask.m_Bits
@@ -537,7 +541,8 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 112
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 640391501504490383, guid: ba865e1a76b00a169aacdeb68ee49d74, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 2279992145856458051, guid: ba865e1a76b00a169aacdeb68ee49d74, type: 3}

@@ -27,6 +27,7 @@ public class LevelLoader : MonoBehaviour
 
         SceneManager.sceneLoaded += OnSceneLoaded;
 
+
         _cg = _loadingScreen.transform.GetChild(0).gameObject.GetComponent<CanvasGroup>();
     }
 
@@ -43,9 +44,6 @@ public class LevelLoader : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // Debug.Log($"Level {scene.name} has been loaded!");
-        
-        // Short delay to prevent race conditions
         StartCoroutine(DelayedLoadState());
     }
 
@@ -60,7 +58,7 @@ public class LevelLoader : MonoBehaviour
     {
         SaveSystem.Instance.SaveState();
         StartCoroutine(StartLoad(levelName));
-        //SceneManager.LoadScene(levelName);
+
     }
 
     // Writes the current state of the save file as well to save things like volume, controls, etc.

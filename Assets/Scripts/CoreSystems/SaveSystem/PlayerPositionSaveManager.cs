@@ -24,6 +24,7 @@ public class PlayerPositionSaveManager
         // Null check
         if (player == null)
         {
+            Debug.Log("Failed to get player");
             return;
         }
 
