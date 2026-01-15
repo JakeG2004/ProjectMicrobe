@@ -44,8 +44,10 @@ public class PlayerPositionSaveManager
             return;
         }
 
-        player.transform.position = Float3ToVector3(_currentState.playerData.position);
-        player.transform.eulerAngles = Float3ToVector3(_currentState.playerData.rotation);
+        Rigidbody rb = player.GetComponent<Rigidbody>();
+
+        rb.position = Float3ToVector3(_currentState.playerData.position);
+        rb.rotation = Quaternion.Euler(Float3ToVector3(_currentState.playerData.rotation));
 
         Debug.Log("Set player pos!");
     }
