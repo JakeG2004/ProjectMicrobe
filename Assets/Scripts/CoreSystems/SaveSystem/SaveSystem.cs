@@ -21,6 +21,7 @@ public class SaveSystem : MonoBehaviour
     private BackpackSaveManager _backpackManager;
     private ObjectivesSaveManager _objectivesManager;
     private RegionSaveManager _regionManager;
+    private PlayerPositionSaveManager _playerPositionManager;
 
     // Singleton pattern
     void Awake()
@@ -45,6 +46,7 @@ public class SaveSystem : MonoBehaviour
         _backpackManager = new BackpackSaveManager(_currentState);
         _objectivesManager = new ObjectivesSaveManager(_currentState);
         _regionManager = new RegionSaveManager(_currentState);
+        _playerPositionManager = new PlayerPositionSaveManager(_currentState);
     }
 
     // ==========================
@@ -69,6 +71,7 @@ public class SaveSystem : MonoBehaviour
         _backpackManager.SavePlayerBackpack();
         _objectivesManager.SaveObjectives();
         _regionManager.SaveRegions();
+        _playerPositionManager.SavePlayerPosition();
 
         WriteCurrentState(path);
     }
@@ -111,6 +114,7 @@ public class SaveSystem : MonoBehaviour
             _backpackManager.LoadPlayerBackpack();
             _objectivesManager.LoadObjectives();
             _regionManager.LoadRegions();
+            _playerPositionManager.LoadPlayerPostion();
 
             // Set the graphics preset only if it doesnt match
             if (QualitySettings.GetQualityLevel() != _currentState.qualityLevel)
@@ -144,6 +148,7 @@ public class SaveSystem : MonoBehaviour
         _objectivesManager.UpdateState(_currentState);
         _regionManager.UpdateState(_currentState);
         _settingsManager.UpdateState(_currentState);
+        _playerPositionManager.UpdateState(_currentState);
     }
 
     public void CreateNewSave()

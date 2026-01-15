@@ -16,6 +16,14 @@ public class SaveObject
     public PlayerBackpack backpack = new PlayerBackpack();
     public bool hasCompletedGame = false;
     public int qualityLevel = (int)QualityTiers.HIGH;
+    public PlayerPosition playerData = new PlayerPosition();
+}
+
+[System.Serializable]
+public class PlayerPosition
+{
+    public float[] position;
+    public float[] rotation;
 }
 
 [System.Serializable]
