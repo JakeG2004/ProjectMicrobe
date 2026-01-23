@@ -72,6 +72,16 @@ public class MicrobeMenu : GeneralMenu
         UpdateCharts(_dontGraphTheseResources);
     }
 
+    public LineChart GetMicrobeChart()
+    {
+        return _microbesChart;
+    }
+    
+    public LineChart GetResourceChart()
+    {
+        return _resourcesChart;
+    }
+
     public void UpdateCharts(List<string> dontGraphTheseResources)
     {
         _dontGraphTheseResources = dontGraphTheseResources;
