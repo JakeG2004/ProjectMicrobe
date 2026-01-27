@@ -73,21 +73,24 @@ public class ExportGraphs : MonoBehaviour
 
     private IEnumerator ShowLegend(LineChart chart)
     {
-        var legend = chart.EnsureChartComponent<Legend>();
-        legend.show = true;
-
-        legend.location.align = XCharts.Runtime.Location.Align.BottomCenter;
-
-        chart.RefreshChart();
-
-        yield return new WaitForEndOfFrame();
+        yield return SetLegendVisibility(chart, true);
     }
 
     private IEnumerator HideLegend(LineChart chart)
     {
-        var legend = chart.EnsureChartComponent<Legend>();
-        legend.show = false;
+        yield return SetLegendVisibility(chart, false);
+    }
 
+    private IEnumerator SetLegendVisibility(LineChart chart, bool state)
+    {
+        var legend = chart.EnsureChartComponent<Legend>();
+        legend.show = state;
+
+        if (state)
+        {
+            legend.location.align = XCharts.Runtime.Location.Align.BottomCenter;
+        }
+        
         chart.RefreshChart();
 
         yield return new WaitForEndOfFrame();
