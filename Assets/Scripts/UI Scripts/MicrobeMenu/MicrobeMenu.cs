@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using XCharts.Runtime;
+using UnityEngine.UI;
 
 public class MicrobeMenu : GeneralMenu
 {
@@ -70,6 +71,22 @@ public class MicrobeMenu : GeneralMenu
 
         // Update the charts
         UpdateCharts(_dontGraphTheseResources);
+    }
+
+    public void DisableScrollMask()
+    {
+        SetScrollMask(false);
+    }
+
+    public void EnableScrollMask()
+    {
+        SetScrollMask(true);
+    }
+    
+    private void SetScrollMask(bool state)
+    {
+        Mask mask = transform.GetChild(0).GetChild(0).GetComponent<Mask>();
+        mask.enabled = state;
     }
 
     public LineChart GetMicrobeChart()
