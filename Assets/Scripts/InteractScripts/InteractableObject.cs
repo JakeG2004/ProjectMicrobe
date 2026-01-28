@@ -10,12 +10,12 @@ using UnityEngine.Events;
 
 public class InteractableObject : MonoBehaviour
 {
-    [SerializeField] private string _interactText = "Press E";
+    [SerializeField] protected string _interactText = "Press E";
 
     [Space(10)]
-    [SerializeField] private UnityEvent _onInteract;
+    [SerializeField] protected UnityEvent _onInteract;
 
-    public void Interact()
+    public virtual void Interact()
     {
         _onInteract.Invoke();
     }
@@ -23,6 +23,11 @@ public class InteractableObject : MonoBehaviour
     public string GetInteractText()
     {
         return _interactText;
+    }
+
+    protected void SetInteractText(string newText)
+    {
+        _interactText = newText;
     }
 
     void OnCollisionEnter(Collision col)
