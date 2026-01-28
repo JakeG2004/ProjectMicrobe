@@ -139,7 +139,7 @@ public class NPCMoveController : MonoBehaviour {
 		anim.SetFloat("Move", realMoveSpeed / 2.8f);
 	}
 	void RandomiseIdleAction() {
-		int index = Random.Range(0, 7);
+		int index = Random.Range(0, 4);
 		anim.SetFloat("Idle", (float)index);
 	}
 
