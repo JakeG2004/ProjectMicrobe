@@ -11,6 +11,7 @@ public class PylonRegion : MonoBehaviour
     [SerializeField] private GameObject _pylonPrefab;
     [SerializeField] private Transform _droneLandingPoint;
     private Dictionary<GameObject, Vector3> _plantScales = new();
+    private bool _canPlacePylon = false;
 
     void Start()
     {
@@ -32,12 +33,21 @@ public class PylonRegion : MonoBehaviour
     {
         _regionPylon = pylon;
         _getPylonEvent?.Invoke();
+    }
 
+    public void SetCanPlacePylon(bool state)
+    {
+        _canPlacePylon = state;
     }
 
     public bool HasPylon()
     {
         return (_regionPylon != null);
+    }
+
+    public bool CanPlacePylon()
+    {
+        return (_canPlacePylon && !HasPylon());
     }
 
     public GameObject GetPylon()

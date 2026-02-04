@@ -31,7 +31,7 @@ public class CarriedPylon : MonoBehaviour
 
     public bool IsPlaceable()
     {
-        return (_hasPylon && _validRegion && !_curRegion.HasPylon());
+        return (_hasPylon && _validRegion && _curRegion.CanPlacePylon());
     }
 
     // For detecting whether the player is in a pylon placeable region

@@ -32,9 +32,12 @@ public class Objective : MonoBehaviour
 
     [Space(10)]
     [Header("Unity Events")]
+    [Tooltip("Used exclusively for activation")]
     [SerializeField] protected UnityEvent _onActivate;
+    [Tooltip("Used on activation or on load")]
+    [SerializeField] protected UnityEvent _onActivateOrLoad;
     [SerializeField] protected UnityEvent _onComplete;
-    [SerializeField] protected UnityEvent _onFail;
+    [Tooltip("Used exclusively on loading")]
     [SerializeField] protected UnityEvent _onLoadPrereqs;
 
     [Space(10)]
@@ -72,6 +75,7 @@ public class Objective : MonoBehaviour
         _isActivated = true;
 
         _onActivate?.Invoke();
+        _onActivateOrLoad?.Invoke();
         _objectiveChannelsSO.objectiveAddChannelSO.Raise(this);
         _objectiveGroup.SetCurrentObjective(this.gameObject.name);
     }
@@ -87,6 +91,7 @@ public class Objective : MonoBehaviour
 
     public void LoadPrereqs()
     {
+        _onActivateOrLoad.Invoke();
         _onLoadPrereqs.Invoke();
     }
 
@@ -123,7 +128,7 @@ public class Objective : MonoBehaviour
         _isComplete = true;
         _isFailed = true;
 
-        _onFail?.Invoke();
+        //_onFail?.Invoke();
         _objectiveChannelsSO.objectiveFailedChannelSO.Raise(this);
         ActivateNextObjective();
     }
