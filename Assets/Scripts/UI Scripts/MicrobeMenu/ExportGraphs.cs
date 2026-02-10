@@ -15,8 +15,7 @@ public class ExportGraphs : MonoBehaviour
     // Use an asynchronous process to force things to happen in order
     private IEnumerator SaveGraphsCoroutine()
     {
-        LineChart microbeChart = MicrobeMenu.Instance.GetMicrobeChart();
-        LineChart resourcesChart = MicrobeMenu.Instance.GetResourceChart();
+        List<BaseChart> charts = MicrobeMenu.Instance.GetCharts();
 
         yield return null;
 
@@ -29,19 +28,35 @@ public class ExportGraphs : MonoBehaviour
 
         string folderPath = folders[0];
 
-        string microbePath = Path.Combine(folderPath, "microbeChart.png");
-        string resourcePath = Path.Combine(folderPath, "resourceChart.png");
-
         // Get the shared grandparent to child the graphs to
-        Transform grandparent = microbeChart.transform.parent.parent;
+        Transform grandparent = charts[0].transform.parent.parent;
+
+        // Keep track of and disable charts so they dont interfere
+        List<bool> chartEnabledStates = new();
+        foreach (BaseChart chart in charts)
+        {
+            chartEnabledStates.Add(chart.gameObject.activeSelf);
+            chart.gameObject.SetActive(false);
+        }
 
         // Save the graphs
-        yield return MoveAndSaveGraph(microbeChart, grandparent, microbePath);
-        yield return MoveAndSaveGraph(resourcesChart, grandparent, resourcePath);
+        foreach (BaseChart chart in charts)
+        {
+            string path = Path.Combine(folderPath, chart.gameObject.name + ".png");
+            yield return MoveAndSaveGraph(chart, grandparent, path);
+        }
+
+        // Reset all of the chart enabled states
+        for (int i = 0; i < charts.Count; i++)
+        {
+            charts[i].gameObject.SetActive(chartEnabledStates[i]);
+        }
     }
 
-    private IEnumerator MoveAndSaveGraph(LineChart chart, Transform grandparent, string savePath)
+    private IEnumerator MoveAndSaveGraph(BaseChart chart, Transform grandparent, string savePath)
     {
+        chart.gameObject.SetActive(true);
+
         // Store the original parent and position since we have to move the graph
         Transform originalParent = chart.transform.parent;
         Vector3 originalPos = chart.transform.localPosition;
@@ -67,21 +82,23 @@ public class ExportGraphs : MonoBehaviour
         chart.transform.SetAsFirstSibling();
         chart.transform.localPosition = originalPos;
 
+        chart.gameObject.SetActive(false);
+
         // Wait for UI to update
         yield return new WaitForEndOfFrame();
     }
 
-    private IEnumerator ShowLegend(LineChart chart)
+    private IEnumerator ShowLegend(BaseChart chart)
     {
         yield return SetLegendVisibility(chart, true);
     }
 
-    private IEnumerator HideLegend(LineChart chart)
+    private IEnumerator HideLegend(BaseChart chart)
     {
         yield return SetLegendVisibility(chart, false);
     }
 
-    private IEnumerator SetLegendVisibility(LineChart chart, bool state)
+    private IEnumerator SetLegendVisibility(BaseChart chart, bool state)
     {
         var legend = chart.EnsureChartComponent<Legend>();
         legend.show = state;

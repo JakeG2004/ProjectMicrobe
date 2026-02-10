@@ -184,4 +184,7 @@ public class SaveSystem : MonoBehaviour
     public void SaveName(string name) => _currentState.name = name;
 
     public void SetPlayerPos() => _playerPositionManager.LoadPlayerPostion();
+
+    public void SaveDifficultyIdx(int idx) => _currentState.difficulty = idx;
+    public int LoadDifficultyIdx() => _currentState.difficulty;
 }
