@@ -17,6 +17,7 @@ public class SaveObject
     public bool hasCompletedGame = false;
     public int qualityLevel = (int)QualityTiers.HIGH;
     public PlayerPosition playerData = new PlayerPosition();
+    public int difficulty = 2;
 }
 
 [System.Serializable]

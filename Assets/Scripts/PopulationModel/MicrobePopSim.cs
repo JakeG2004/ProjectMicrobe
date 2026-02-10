@@ -435,8 +435,7 @@ public class MicrobePopSim : MonoBehaviour
     public Vector2 GetMycorrhisStats()
     {
         // Add the nitrate to the current step of the array
-        _mycorrhisArray[_curStep % STABILITY_ARR_SIZE] = GetMicrobePopulation("F. Mycorrhis");
-
+        _mycorrhisArray[_curStep % STABILITY_ARR_SIZE] = GetMicrobePopulation("<i>F. mycorrhis</i>");
         float mycorrhisMean = 0.0f;
 
         // Get the mean

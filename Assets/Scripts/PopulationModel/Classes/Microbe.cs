@@ -10,7 +10,7 @@ public class Microbe
     public float population;
     public float growthRate;
     public Dictionary<string, float> competitors;
-    public float dampingForce = 0.2f;
+    public float dampingForce = 0.5f;
     // Require high competition to dampen
     public float dampingThreshold = 0.65f;
 
@@ -49,6 +49,8 @@ public class Microbe
     // Computes population growth using the Lotka-Volterra Model
     public float ComputeGrowth()
     {
+        dampingForce = MicrobeDampingChanger.Instance.GetDamping();
+        
         // Calculate carrying capacity
         float minK = float.MaxValue;
         foreach (var res in kResources)
@@ -75,18 +77,12 @@ public class Microbe
             competitionEffect += Mathf.Max(0, competitor.Value);
         }
 
-        //float meanComp = competitionEffect / (competitors.Count * 2);
-
         // Use the inverse of the lotka volterra models to find stable states
-
         // Force to push competing species to a stable state
         float damping = 1.0f;
         if (competitionEffect - population > dampingThreshold)
         {
             float equilibrium = population / competitionEffect;
-            //float equilibrium = minK / (1 + competitionEffect);
-            //float deviation = Mathf.Abs(population - equilibrium);
-            //damping = Mathf.Exp(-dampingForce * deviation);
             if (population > equilibrium)
             {
                 float deviation = population - equilibrium;
@@ -112,8 +108,6 @@ public class Microbe
         }
 
         return growth * damping;
-        //return Mathf.Lerp(growth, meanComp, dampingForce);
-
     }
 
 

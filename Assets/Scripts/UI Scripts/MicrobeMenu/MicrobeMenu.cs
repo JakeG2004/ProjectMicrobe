@@ -12,8 +12,10 @@ public class MicrobeMenu : GeneralMenu
     [Space(20)]
     // Graphing variables
     [SerializeField] private List<string> _dontGraphTheseResources = new();
-    [SerializeField] private LineChart _microbesChart;
-    [SerializeField] private LineChart _resourcesChart;
+    [SerializeField] private LineChart _microbesLineChart;
+    [SerializeField] private BarChart _microbesBarChart;
+    [SerializeField] private LineChart _resourcesLineChart;
+    [SerializeField] private BarChart _resourcesBarChart;
     [SerializeField] private LegendManager _microbeLegend;
     [SerializeField] private LegendManager _envLegend;
     [SerializeField] private int _graphEntries = 10;
@@ -44,11 +46,12 @@ public class MicrobeMenu : GeneralMenu
         
         base.Start();
 
-        InitChart(_microbesChart, "Microbe Populations");
-        InitChart(_resourcesChart, "Resource Amounts");
+        InitChart(_microbesLineChart, "Microbe Populations");
+        InitChart(_microbesBarChart, "Microbe Populations");
+        InitChart(_resourcesLineChart, "Resource Amounts");
     }
 
-    void InitChart(LineChart chart, string name)
+    void InitChart(BaseChart chart, string name)
     {
         // Set chart parameters
         chart.EnsureChartComponent<Title>().show = true;
@@ -63,6 +66,16 @@ public class MicrobeMenu : GeneralMenu
         // Show axis
         xAxis.show = true;
         yAxis.show = true;
+    }
+
+    // Toggles between line chart and bar chart
+    public void SwitchGraphStyle()
+    {
+        _microbesBarChart.gameObject.SetActive(!_microbesBarChart.gameObject.activeSelf);
+        _microbesLineChart.gameObject.SetActive(!_microbesLineChart.gameObject.activeSelf);
+
+        _resourcesBarChart.gameObject.SetActive(!_resourcesBarChart.gameObject.activeSelf);
+        _resourcesLineChart.gameObject.SetActive(!_resourcesLineChart.gameObject.activeSelf);
     }
 
     public override void ToggleMenu()
@@ -82,21 +95,27 @@ public class MicrobeMenu : GeneralMenu
     {
         SetScrollMask(true);
     }
-    
+
     private void SetScrollMask(bool state)
     {
         Mask mask = transform.GetChild(0).GetChild(0).GetComponent<Mask>();
         mask.enabled = state;
     }
+    
+    public List<BaseChart> GetCharts()
+    {
+        List<BaseChart> charts = new List<BaseChart> { _microbesLineChart, _microbesBarChart, _resourcesLineChart, _resourcesBarChart };
+        return charts;
+    }
 
     public LineChart GetMicrobeChart()
     {
-        return _microbesChart;
+        return _microbesLineChart;
     }
     
     public LineChart GetResourceChart()
     {
-        return _resourcesChart;
+        return _resourcesLineChart;
     }
 
     public void UpdateCharts(List<string> dontGraphTheseResources)
@@ -105,16 +124,72 @@ public class MicrobeMenu : GeneralMenu
 
         if (_isActive)
         {
-            SetMicrobeChartData();
-            SetResourcesChartData(dontGraphTheseResources);
+            SetMicrobeLineChartData();
+            SetResourcesLineChartData(dontGraphTheseResources);
+            SetMicrobeBarChartData();
+            SetResourcesBarChartData(dontGraphTheseResources);
             SetEnvHealthSlider();
         }
     }
 
-    public void SetMicrobeChartData()
+    private void SetMicrobeBarChartData()
     {
         // Variables for setting the legends
-        ThemeStyle theme = _microbesChart.theme;
+        ThemeStyle theme = _microbesBarChart.theme;
+
+        // Clear the chart
+        _microbesBarChart.RemoveData();
+
+        // Iterate through each microbe
+        foreach (Microbe microbe in _curPylon.GetMicrobes())
+        {
+            if (microbe.population <= 0)
+            {
+                continue;
+            }
+
+            // Add a line for the microbe
+            _microbesBarChart.AddSerie<Bar>(microbe.microbeName);
+
+            int numElements = microbe.popHistory.Count;
+            if (numElements > 0)
+            {
+                // Set its value to the last item in the population list
+                _microbesBarChart.AddData(microbe.microbeName, microbe.popHistory[numElements - 1]);
+            }
+        }
+    }
+    
+    private void SetResourcesBarChartData(List<string> _dontGraphTheseResources)
+    {
+        ThemeStyle theme = _microbesBarChart.theme;
+
+        _resourcesBarChart.RemoveData();
+
+        int curIdx = 0;
+
+        foreach (var res in _curPylon.GetEnv().resourceHistory)
+        {
+            if (_dontGraphTheseResources.Contains(res.Key) || res.Value[res.Value.Count - 1] <= 0)
+            {
+                curIdx++;
+                continue;
+            }
+
+            // Add line for resource
+            Serie newSerie = _resourcesBarChart.AddSerie<Bar>(res.Key);
+            newSerie.itemStyle.color = theme.colorPalette[curIdx];
+
+            _resourcesBarChart.AddData(res.Key, res.Value[res.Value.Count - 1]);
+
+            curIdx++;
+        }
+    }
+
+    public void SetMicrobeLineChartData()
+    {
+        // Variables for setting the legends
+        ThemeStyle theme = _microbesLineChart.theme;
 
         // Destroy the existing legend entries
         _microbeLegend.DestroyEntries();
@@ -124,13 +199,18 @@ public class MicrobeMenu : GeneralMenu
         float max = 0.0f;
 
         // Clear the chart
-        _microbesChart.RemoveData();
+        _microbesLineChart.RemoveData();
 
         // Iterate through each microbe
         foreach (Microbe microbe in _curPylon.GetMicrobes())
         {
+            if (microbe.population <= 0)
+            {
+                continue;
+            }
+
             // Add a line for the microbe
-            _microbesChart.AddSerie<Line>(microbe.microbeName);
+            _microbesLineChart.AddSerie<Line>(microbe.microbeName);
 
             // Add an entry to the legend
             _microbeLegend.AddEntry(theme.colorPalette[curIndex], microbe.microbeName);
@@ -143,7 +223,7 @@ public class MicrobeMenu : GeneralMenu
             {
                 for (int i = numElements - _graphEntries; i < numElements; i++)
                 {
-                    _microbesChart.AddData(microbe.microbeName, microbe.popHistory[i]);
+                    _microbesLineChart.AddData(microbe.microbeName, microbe.popHistory[i]);
                     if (microbe.popHistory[i] > max)
                     {
                         max = microbe.popHistory[i];
@@ -155,7 +235,7 @@ public class MicrobeMenu : GeneralMenu
             {
                 foreach (float pop in microbe.popHistory)
                 {
-                    _microbesChart.AddData(microbe.microbeName, pop);
+                    _microbesLineChart.AddData(microbe.microbeName, pop);
                     if (pop > max)
                     {
                         max = pop;
@@ -164,18 +244,19 @@ public class MicrobeMenu : GeneralMenu
             }
         }
 
-        _microbesChart.EnsureChartComponent<YAxis>().max = max;
+        _microbesLineChart.EnsureChartComponent<YAxis>().max = max;
+        _microbesLineChart.EnsureChartComponent<YAxis>().min = 0;
     }
 
-    public void SetResourcesChartData(List<string> _dontGraphTheseResources)
+    public void SetResourcesLineChartData(List<string> _dontGraphTheseResources)
     {
-        ThemeStyle theme = _microbesChart.theme;
+        ThemeStyle theme = _microbesLineChart.theme;
 
         int curIndex = 0;
 
         _envLegend.DestroyEntries();
 
-        _resourcesChart.RemoveData();
+        _resourcesLineChart.RemoveData();
 
         float max = 0.0f;
 
@@ -190,7 +271,7 @@ public class MicrobeMenu : GeneralMenu
             curIndex++;
 
             // Add line for resource
-            _resourcesChart.AddSerie<Line>(res.Key);
+            _resourcesLineChart.AddSerie<Line>(res.Key);
 
             int numElements = res.Value.Count;
             if (numElements > _graphEntries)
@@ -209,7 +290,7 @@ public class MicrobeMenu : GeneralMenu
                         max = val;
                     }
 
-                    _resourcesChart.AddData(res.Key, val);
+                    _resourcesLineChart.AddData(res.Key, val);
                 }
             }
 
@@ -222,7 +303,7 @@ public class MicrobeMenu : GeneralMenu
                     {
                         val = 0.0f;
                     }
-                    _resourcesChart.AddData(res.Key, val);
+                    _resourcesLineChart.AddData(res.Key, val);
 
                     if (resAmt > max)
                     {
@@ -237,7 +318,8 @@ public class MicrobeMenu : GeneralMenu
             max = 50;
         }
 
-        _resourcesChart.EnsureChartComponent<YAxis>().max = max;
+        _resourcesLineChart.EnsureChartComponent<YAxis>().max = max;
+        _resourcesLineChart.EnsureChartComponent<YAxis>().min = 0;
     }
 
     public void SetCurrentPylon(GameObject pylon)
