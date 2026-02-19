@@ -5,6 +5,7 @@ using UnityEngine;
 public class ShowcaseManager : MonoBehaviour
 {
     public ShowcaseManager Instance { get; private set; }
+    private CosmeticUnlocker _cosmeticUnlocker;
 
     [System.Serializable]
     private struct ShowcaseObject
@@ -26,6 +27,8 @@ public class ShowcaseManager : MonoBehaviour
         {
             Instance = this;
         }
+
+        _cosmeticUnlocker = gameObject.GetComponent<CosmeticUnlocker>();
     }
 
     // Starts showcase on a specific object based on name
@@ -42,6 +45,7 @@ public class ShowcaseManager : MonoBehaviour
             // Enable object, start its rotation
             obj.showcaseObj.gameObject.SetActive(true);
             obj.showcaseObj.StartRotation();
+            _cosmeticUnlocker.UnlockCosmetic(objName);
 
             return;
         }

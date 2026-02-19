@@ -8,7 +8,7 @@ public class MicrobeDampingChanger : MonoBehaviour
 
     [SerializeField] private float _damping = 0.25f;
     private int _curIdx = 2;
-    private float[] _dampingVals = { 0f, .25f, .5f, .75f, 1f };
+    private float[] _dampingVals = { .2f, .25f, .3f, .35f, 0.5f };
     private string[] _dampingNames = { "X-Hard", "Hard", "Medium", "Easy", "X-Easy" };
 
     void Awake()

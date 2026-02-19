@@ -140,16 +140,20 @@ public class MicrobeMenu : GeneralMenu
         // Clear the chart
         _microbesBarChart.RemoveData();
 
+        int curIdx = 0;
+
         // Iterate through each microbe
         foreach (Microbe microbe in _curPylon.GetMicrobes())
         {
             if (microbe.population <= 0)
             {
+                curIdx++;
                 continue;
             }
 
             // Add a line for the microbe
-            _microbesBarChart.AddSerie<Bar>(microbe.microbeName);
+            Serie serie = _microbesBarChart.AddSerie<Bar>(microbe.microbeName);
+            serie.itemStyle.color = theme.colorPalette[curIdx];
 
             int numElements = microbe.popHistory.Count;
             if (numElements > 0)
@@ -157,6 +161,8 @@ public class MicrobeMenu : GeneralMenu
                 // Set its value to the last item in the population list
                 _microbesBarChart.AddData(microbe.microbeName, microbe.popHistory[numElements - 1]);
             }
+
+            curIdx++;
         }
     }
     
@@ -204,11 +210,6 @@ public class MicrobeMenu : GeneralMenu
         // Iterate through each microbe
         foreach (Microbe microbe in _curPylon.GetMicrobes())
         {
-            if (microbe.population <= 0)
-            {
-                continue;
-            }
-
             // Add a line for the microbe
             _microbesLineChart.AddSerie<Line>(microbe.microbeName);
 

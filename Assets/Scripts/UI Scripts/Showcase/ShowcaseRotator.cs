@@ -11,16 +11,9 @@ public class ShowcaseRotator : MonoBehaviour
     [Space(10)]
     [Header("Axis Rotation Speeds (seconds per full cycle)")]
     [SerializeField] private Vector3 _rotateSpeed = new Vector3(1, 1, 1);
-
-    private Vector3 _initialRot;
-
-    void Start()
-    {
-        _initialRot = transform.localEulerAngles;
-    }
-
     public void StartRotation()
     {
+        StopRotation();
         if (_xAxis) StartCoroutine(RotateAxis(Vector3.right, _rotateSpeed.x));
         if (_yAxis) StartCoroutine(RotateAxis(Vector3.up, _rotateSpeed.y));
         if (_zAxis) StartCoroutine(RotateAxis(Vector3.forward, _rotateSpeed.z));
