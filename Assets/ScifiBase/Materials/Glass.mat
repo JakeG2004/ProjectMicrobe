@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Glass
-  m_Shader: {fileID: 4800000, guid: 92da57c1e22e174488d47563302d2b01, type: 3}
+  m_Shader: {fileID: 4800000, guid: 417e88e472ab96249b772280b60343df, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -60,6 +60,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Ramp:
+        m_Texture: {fileID: 2800000, guid: 63cd7d7af0020be4389b99a78f7c358c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
     - _BumpScale: 1
@@ -73,16 +77,22 @@ Material:
     - _Mode: 3
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _ReflectionIntensity: 1.12
+    - _RimAlpha: 0.42
+    - _RimSoftness: 0
+    - _ShadowAlpha: 0.577
     - _Shininess: 0.567
     - _SmoothnessTextureChannel: 0
     - _Spec: 0.33
+    - _SpecThreshold: 0.999
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 0
     m_Colors:
-    - _Color: {r: 0, g: 0.8348112, b: 1, a: 0.3372549}
+    - _Color: {r: 0, g: 0.3137255, b: 0.4784314, a: 0.3372549}
     - _Emission: {r: 0, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _SpecColor: {r: 1, g: 1, b: 1, a: 0}
+    - _RimColor: {r: 0.011764707, g: 0.078431375, b: 0.11764707, a: 0.8}
+    - _SpecColor: {r: 1, g: 0.9725491, b: 0.76470596, a: 1}
   m_BuildTextureStacks: []
