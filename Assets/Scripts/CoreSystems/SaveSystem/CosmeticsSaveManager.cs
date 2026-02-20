@@ -150,8 +150,15 @@ public class CosmeticsSaveManager
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
 
+        // Extra search for saving the cosmetics of the player out of the Character Creator since that Ari has a different tag.
         if (!player)
         {
+            player = GameObject.FindGameObjectWithTag("DummyPlayer");
+        }
+
+        if (!player)
+        {
+            Debug.Log("Found no player");
             return;
         }
 

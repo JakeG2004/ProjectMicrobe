@@ -24,7 +24,6 @@ public class PlayerPositionSaveManager
         // Null check
         if (player == null)
         {
-            Debug.Log("Failed to get player");
             return;
         }
 
@@ -40,7 +39,6 @@ public class PlayerPositionSaveManager
         // Null check
         if (player == null)
         {
-            Debug.Log("Failed to find player");
             return;
         }
 
@@ -48,8 +46,6 @@ public class PlayerPositionSaveManager
 
         rb.position = Float3ToVector3(_currentState.playerData.position);
         rb.rotation = Quaternion.Euler(Float3ToVector3(_currentState.playerData.rotation));
-
-        Debug.Log("Set player pos!");
     }
 
     // Helper functions to convert between float arrays and vectors
