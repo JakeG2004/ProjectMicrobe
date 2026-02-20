@@ -23,7 +23,7 @@ public class SaveObject
 [System.Serializable]
 public class PlayerPosition
 {
-    public float[] position;
+    public float[] position = {-118.13f, 13.23f, -83.33f};
     public float[] rotation;
 }
 
