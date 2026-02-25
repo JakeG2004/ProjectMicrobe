@@ -9,6 +9,8 @@ public class Microbe
     public string microbeName;
     public float population;
     public float growthRate;
+    public float evolutionWidth;
+    public bool isVolatile;
     public Dictionary<string, float> competitors;
     public float dampingForce = 0.5f;
     // Require high competition to dampen
@@ -28,11 +30,13 @@ public class Microbe
     public List<float> kHistory = new List<float>();
 
     // Assigns initial values to the microbe
-    public Microbe(string initName, float initPop, float initGrowthRate, 
-                    Dictionary<string, float> initCompetitors, 
-                    Dictionary<string, float> initRequiredResources, 
-                    Dictionary<string, float> initProducedResources, 
-                    Dictionary<string, Toxin> initToxins)
+    public Microbe(string initName, float initPop, float initGrowthRate,
+                    Dictionary<string, float> initCompetitors,
+                    Dictionary<string, float> initRequiredResources,
+                    Dictionary<string, float> initProducedResources,
+                    Dictionary<string, Toxin> initToxins,
+                    bool volatileState,
+                    float evolveWidth)
     {
         // Basics for growth equation
         microbeName = initName;
@@ -44,6 +48,9 @@ public class Microbe
         requiredResources = initRequiredResources;
         producedResources = initProducedResources;
         toxins = initToxins;
+
+        isVolatile = volatileState;
+        evolutionWidth = evolveWidth;
     }
 
     // Computes population growth using the Lotka-Volterra Model
@@ -63,7 +70,7 @@ public class Microbe
         if (minK <= 0.01f)
         {
             // Complete extinction if small enough
-            if (population <= 2)
+            if (population <= 0.5)
                 return -population;
 
             // Otherwise, cut population in half
@@ -311,26 +318,26 @@ public class Microbe
         }
 
         // Find the carry capacity
-        foreach(var res in envResources)
+        foreach (var res in envResources)
         {
             // Get the consumption of each resource
             float resourceConsumption = 0.0f;
             requiredResources.TryGetValue(res.Key, out resourceConsumption);
 
             // Add the key to kResources if it doesnt already exist, init to inf
-            if(!kResources.TryGetValue(res.Key, out float value))
+            if (!kResources.TryGetValue(res.Key, out float value))
             {
                 kResources.Add(res.Key, float.MaxValue);
             }
 
             // If there is no population, k = 0
-            if(population == 0)
+            if (population == 0)
             {
                 kResources[res.Key] = 0.0f;
             }
 
             // Microbe doesn't use this resource, so no limit
-            else if(resourceConsumption == 0.0f)
+            else if (resourceConsumption == 0.0f)
             {
                 kResources[res.Key] = float.MaxValue;
             }
@@ -344,21 +351,105 @@ public class Microbe
 
         // Find the minimum of the carry capacities and add it to history
         float minK = float.MaxValue;
-        foreach(var res in requiredResources)
+        foreach (var res in requiredResources)
         {
-            if(!kResources.TryGetValue(res.Key, out float value))
+            if (!kResources.TryGetValue(res.Key, out float value))
             {
                 minK = 0;
                 break;
             }
 
-            if(kResources[res.Key] < minK)
+            if (kResources[res.Key] < minK)
             {
                 minK = kResources[res.Key];
             }
         }
 
         kHistory.Add(minK);
+    }
+
+    // Use sliding window to adjust consumption and production based on percent change from previous population
+    public void DoEvolution(float popChange)
+    {
+        if (population == 0)
+        {
+            return;
+        }
+
+        float percentChange = Mathf.Abs(popChange / population);
+
+        Debug.Log(microbeName + " percent change: " + percentChange);
+
+        // Population increase
+        // Decrease production and increase consumption
+        if (popChange > 0)
+        {
+            // Find the new production
+            float newProductionWindowMin = 1 - (evolutionWidth + percentChange);
+            float newProductionWindowMax = 1 + (evolutionWidth - percentChange);
+
+            // Find the new consumption
+            float newConsumptionWindowMin = 1 - (evolutionWidth - percentChange);
+            float newConsumptionWindowMax = 1 + (evolutionWidth + percentChange);
+
+            AssignNewDictValues(newProductionWindowMin, newProductionWindowMax, newConsumptionWindowMin, newConsumptionWindowMax);
+        }
+
+        // Population decrease
+        // Increase production and decrease consumption
+        else if (popChange < 0)
+        {
+            // Find the new production
+            float newProductionWindowMin = 1 - (evolutionWidth - percentChange);
+            float newProductionWindowMax = 1 + (evolutionWidth + percentChange);
+
+            // Find the new consumption
+            float newConsumptionWindowMin = 1 - (evolutionWidth + percentChange);
+            float newConsumptionWindowMax = 1 + (evolutionWidth - percentChange);
+
+            AssignNewDictValues(newProductionWindowMin, newProductionWindowMax, newConsumptionWindowMin, newConsumptionWindowMax);
+        }
+    }
+    
+    private void AssignNewDictValues(float prodMin, float prodMax, float conMin, float conMax)
+    {
+        // Have bounds so that the sliding windows don't collapse
+        float minProdCon = 0.5f;
+
+        prodMin = prodMin < minProdCon ? minProdCon : prodMin;
+        prodMax = prodMax <= prodMin ? prodMin + minProdCon : prodMax;
+
+        conMin = conMin < minProdCon ? minProdCon : conMin;
+        conMax = conMax <= conMin ? conMin + minProdCon : conMax;
+
+        Dictionary<string, float> newProd = new();
+        Dictionary<string, float> newReq = new();
+
+        // Assign the new production values
+        foreach (var kvp in producedResources)
+        {
+            float newProductionScale = Random.Range(prodMin, prodMax);
+            float newProdAmt = producedResources[kvp.Key] * newProductionScale;
+
+            // Safety feature to prevent cheaters from taking all of the resources
+            newProd[kvp.Key] = newProdAmt < minProdCon ? minProdCon : newProdAmt;
+            Debug.Log(microbeName + " new Production: " + newProd[kvp.Key]);
+        }
+
+        // Assign the new consumption values
+        foreach (var kvp in requiredResources)
+        {
+            float newConsumptionScale = Random.Range(conMin, conMax);
+            float newConAmt = requiredResources[kvp.Key] * newConsumptionScale;
+
+            // Prevent cheaters fromt aking all resources
+            newReq[kvp.Key] = newConAmt < minProdCon ? minProdCon : newConAmt;
+            Debug.Log(microbeName + " new Consumption: " + newReq[kvp.Key]);
+        }
+
+        // Assign the new dictionaries
+        producedResources = newProd;
+        requiredResources = newReq;
     }
 
     public Microbe Clone()
@@ -383,7 +474,9 @@ public class Microbe
             initCompetitors: clonedCompetitors,
             initRequiredResources: clonedRequiredResources,
             initProducedResources: clonedProducedResources,
-            initToxins: clonedToxins
+            initToxins: clonedToxins,
+            volatileState: isVolatile,
+            evolveWidth: evolutionWidth
         );
 
         // Deep copy kResources, popHistory, and kHistory
@@ -397,13 +490,15 @@ public class Microbe
     public static Microbe CreateMicrobeFromSO(MicrobeSO microbeSO)
     {
         Microbe newMicrobe = new Microbe(
-            initName:microbeSO.microbeName,
-            initPop:microbeSO.population,
-            initGrowthRate:microbeSO.growthRate,
-            initCompetitors:new Dictionary<string, float>(),
-            initRequiredResources:ResourceConverter.ConvertToDictionary(microbeSO.requiredResources),
-            initProducedResources:ResourceConverter.ConvertToDictionary(microbeSO.producedResources),
-            initToxins:ToxinConverter.ConvertToDictionary(microbeSO.toxins)
+            initName: microbeSO.microbeName,
+            initPop: microbeSO.population,
+            initGrowthRate: microbeSO.growthRate,
+            initCompetitors: new Dictionary<string, float>(),
+            initRequiredResources: ResourceConverter.ConvertToDictionary(microbeSO.requiredResources),
+            initProducedResources: ResourceConverter.ConvertToDictionary(microbeSO.producedResources),
+            initToxins: ToxinConverter.ConvertToDictionary(microbeSO.toxins),
+            volatileState: microbeSO.isVolatile,
+            evolveWidth: microbeSO.evolutionWidth
         );
         return newMicrobe;
     }

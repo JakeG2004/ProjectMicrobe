@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e21f121e1a197558691ed0c71a796a54, type: 3}
+  m_Name: EvolvingMicrobe2
+  m_EditorClassIdentifier: 
+  microbeBody: {fileID: -615191483, guid: 0bb008e864a762f4199c0219785ed1ec, type: 3}
+  microbeFace: {fileID: 505012016, guid: 0bb008e864a762f4199c0219785ed1ec, type: 3}
+  color: {r: 0.49504128, g: 0.1764706, b: 0.8784314, a: 1}
+  isVolatile: 1
+  evolutionWidth: 0.3
+  microbeName: Evolving Microbe 2
+  population: 1
+  growthRate: 0.4
+  requiredResources:
+  - resourceName: Resource2
+    amount: 1
+  producedResources:
+  - resourceName: Resource1
+    amount: 1
+  - resourceName: Sulfur Dioxide
+    amount: 0.1
+  toxins: []
+  description: <i>B. trilaxa</i> is a new bacteria. Not much is known about it

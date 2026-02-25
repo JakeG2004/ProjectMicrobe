@@ -63,7 +63,7 @@ public class MicrobePopSim : MonoBehaviour
 
     // Advance the simulation by a single step
     public void AdvanceSimulation()
-    {
+    {   
         // Early return if sufficient conditions not met
         if (CheckEarlySimReturn())
         {
@@ -121,10 +121,7 @@ public class MicrobePopSim : MonoBehaviour
         }
 
         // Find the corresponding microbe and increase its population
-        //_microbes.Add(newMicrobe);
         SetMicrobePopulation(newMicrobe.name, GetMicrobePopulation(newMicrobe.name) + newMicrobe.amount);
-
-        Debug.Log(GetMicrobePopulation(newMicrobe.name));
     }
 
     // Removes a microbe fromt the simulation
@@ -204,11 +201,6 @@ public class MicrobePopSim : MonoBehaviour
     // Set up the microbes from MicrobeSO list
     private void InitMicrobes()
     {
-        // Give warning if no microbe SOs
-        /*if (_microbeSOs.Count == 0)
-        {
-            Debug.LogWarning("No Microbe SOs!");
-        }*/
 
         // Convert the microbeSOs into a new Microbe and add it to the list
         foreach (MicrobeSO mso in _microbeSOs)
@@ -288,6 +280,8 @@ public class MicrobePopSim : MonoBehaviour
             // Calculate the new microbe population
             float popChange = microbe.ComputeGrowth();
             microbe.UpdatePopulation(popChange);
+
+            microbe.DoEvolution(popChange);
         }
     }
 

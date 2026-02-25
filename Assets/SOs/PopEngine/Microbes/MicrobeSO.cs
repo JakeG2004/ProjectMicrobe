@@ -11,6 +11,10 @@ public class MicrobeSO : ScriptableObject
     public Color color;
 
     [Space(10)]
+    public bool isVolatile = false;
+    public float evolutionWidth = 0.25f;
+
+    [Space(10)]
     // Basics for growth equations
     public string microbeName;
     public float population;
@@ -21,7 +25,7 @@ public class MicrobeSO : ScriptableObject
     public List<ResourceAmount> producedResources = new List<ResourceAmount>();
     public List<ToxinAmount> toxins = new List<ToxinAmount>();
 
-    [TextArea(5,10)]
+    [TextArea(5, 10)]
     public string description;
 }
 
