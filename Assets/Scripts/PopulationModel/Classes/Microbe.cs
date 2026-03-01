@@ -371,7 +371,7 @@ public class Microbe
     // Use sliding window to adjust consumption and production based on percent change from previous population
     public void DoEvolution(float popChange)
     {
-        if (population == 0)
+        if (population == 0 || !isVolatile)
         {
             return;
         }
