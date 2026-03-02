@@ -19,6 +19,8 @@ public class Microbe
     // Resources and toxins
     public Dictionary<string, float> requiredResources;
     public Dictionary<string, float> producedResources;
+    private Dictionary<string, float> _initReqRes;
+    private Dictionary<string, float> _initProdRes;
     public Dictionary<string, Toxin> toxins;
     public float toxicityMultiplier;
 
@@ -47,6 +49,10 @@ public class Microbe
         // Resources and toxins
         requiredResources = initRequiredResources;
         producedResources = initProducedResources;
+
+        _initProdRes = initProducedResources;
+        _initReqRes = initRequiredResources;
+
         toxins = initToxins;
 
         isVolatile = volatileState;
@@ -371,14 +377,17 @@ public class Microbe
     // Use sliding window to adjust consumption and production based on percent change from previous population
     public void DoEvolution(float popChange)
     {
-        if (population == 0)
+        if (population == 0 || !isVolatile)
         {
+            // Reset consumption and requirement on extinction
+            producedResources = _initProdRes;
+            requiredResources = _initReqRes;
             return;
         }
 
         float percentChange = Mathf.Abs(popChange / population);
+        Debug.Log(microbeName + "Percent Change: " + percentChange);
 
-        Debug.Log(microbeName + " percent change: " + percentChange);
 
         // Population increase
         // Decrease production and increase consumption
@@ -433,7 +442,7 @@ public class Microbe
 
             // Safety feature to prevent cheaters from taking all of the resources
             newProd[kvp.Key] = newProdAmt < minProdCon ? minProdCon : newProdAmt;
-            Debug.Log(microbeName + " new Production: " + newProd[kvp.Key]);
+            Debug.Log(microbeName + " " + kvp.Key + " Production: " + newProd[kvp.Key]);
         }
 
         // Assign the new consumption values
@@ -444,7 +453,7 @@ public class Microbe
 
             // Prevent cheaters fromt aking all resources
             newReq[kvp.Key] = newConAmt < minProdCon ? minProdCon : newConAmt;
-            Debug.Log(microbeName + " new Consumption: " + newReq[kvp.Key]);
+            Debug.Log(microbeName + " " + kvp.Key + " Consumption: " + newReq[kvp.Key]);
         }
 
         // Assign the new dictionaries

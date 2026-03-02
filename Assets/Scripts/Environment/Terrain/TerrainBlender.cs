@@ -7,6 +7,7 @@ public class TerrainBlender : MonoBehaviour
     [SerializeField] private float _blendFactor = 0.0f;
     [SerializeField] private float _pinkBlendFactor = 1f;
     [SerializeField] private float _detailDensity = 0.1f;
+    private float _initialDetailDensity = 0.1f;
     private const string _blendFactorPropertyName = "_CustomBlendFactor";
     private const string _pinkBlendFactorPropertyName = "_PinkBlendFactor";
     private Material _terrainMat;
@@ -27,7 +28,9 @@ public class TerrainBlender : MonoBehaviour
             return;
         }
 
+        _initialDetailDensity = _detailDensity;
         UpdateTerrainProperties();
+        SetDetailDensity(_detailDensity);
     }
 
     void Update()
@@ -80,8 +83,8 @@ public class TerrainBlender : MonoBehaviour
 
     public void SetDetailDensity(float val)
     {
-        // Normalize to [.1, .65]
-        _detailDensity = .1f + (((val - 0f) * (.65f - .1f)) / (.65f - 0f));
+        // Normalize to [initialVal, .65]
+        _detailDensity = _initialDetailDensity + (((val - _initialDetailDensity) * (.65f - _initialDetailDensity)) / (.65f - _initialDetailDensity));
         UpdateTerrainProperties();
     }
 
