@@ -119,7 +119,7 @@ public class LevelLoader : MonoBehaviour
 
     public void ReloadLevel()
     {
-        LoadLevelNoSave(SceneManager.GetActiveScene().name);
+        LoadLevel(SceneManager.GetActiveScene().name);
     }
 
     public void QuitGame()

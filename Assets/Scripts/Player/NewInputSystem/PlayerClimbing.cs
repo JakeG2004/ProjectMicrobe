@@ -38,11 +38,6 @@ public class PlayerClimbing : MonoBehaviour
     // Jumps off the ladder early
     public void JumpFromClimb()
     {
-        if (!_states.isClimbing)
-        {
-            return;
-        }
-
         _states.isJumping = true;
         _rb.velocity = new Vector3(0f, _vals.ladderEjectForce, 0f);
 
@@ -122,6 +117,12 @@ public class PlayerClimbing : MonoBehaviour
         transform.position = targetPos;
         transform.rotation = finalRot;
 
+        if(_states.isGrounded || _states.isJumping)
+        {
+            _snapToLadderCoroutine = null;
+            yield break;
+        }
+
         // Update the rigidbody
         _rb.velocity = Vector3.zero;
         _rb.useGravity = false;
@@ -132,11 +133,6 @@ public class PlayerClimbing : MonoBehaviour
 
     public void EndClimb()
     {
-        if (!_states.isClimbing)
-        {
-            return;
-        }
-
         _states.isJumping = true;
         _states.isClimbing = false;
         _rb.useGravity = true;
