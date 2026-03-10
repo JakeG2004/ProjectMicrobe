@@ -76,6 +76,38 @@ public class RegionSaveManager
             string name = microbe.microbeName;
             float population = microbe.population;
 
+            if (name == "<i>A. primus</i>")
+            {
+                List<StringFloatPair> newPrimusConsumption = new();
+
+                foreach (var kvp in microbe.requiredResources)
+                {
+                    StringFloatPair newEntry = new();
+                    newEntry.name = kvp.Key;
+                    newEntry.amount = kvp.Value;
+
+                    newPrimusConsumption.Add(newEntry);
+                }
+
+                region.primusConsumption = newPrimusConsumption;
+            }
+            
+            if(name == "<i>A. unicus</i>")
+            {
+                List<StringFloatPair> newUnicusConsumption = new();
+
+                foreach (var kvp in microbe.requiredResources)
+                {
+                    StringFloatPair newEntry = new();
+                    newEntry.name = kvp.Key;
+                    newEntry.amount = kvp.Value;
+
+                    newUnicusConsumption.Add(newEntry);
+                }
+
+                region.unicusConsumption = newUnicusConsumption;
+            }
+
             bool foundMicrobe = false;
             foreach (StringFloatPair data in region.microbes)
             {
@@ -182,6 +214,9 @@ public class RegionSaveManager
                     {
                         sim.QueueMicrobePop(mnpp);
                     }
+
+                    sim.QueueMicrobeStats("<i>A. primus</i>", region.primusConsumption);
+                    sim.QueueMicrobeStats("<i>A. unicus</i>", region.unicusConsumption);
 
                     // Set resources
                     foreach (StringFloatPair sfp in region.resources)

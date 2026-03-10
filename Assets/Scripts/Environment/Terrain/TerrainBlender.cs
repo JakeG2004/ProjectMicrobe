@@ -84,7 +84,7 @@ public class TerrainBlender : MonoBehaviour
     public void SetDetailDensity(float val)
     {
         // Normalize to [initialVal, .65]
-        _detailDensity = _initialDetailDensity + (((val - _initialDetailDensity) * (.65f - _initialDetailDensity)) / (.65f - _initialDetailDensity));
+        _detailDensity = Mathf.Lerp(_initialDetailDensity, 0.65f, val);
         UpdateTerrainProperties();
     }
 

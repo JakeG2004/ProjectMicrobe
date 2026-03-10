@@ -34,6 +34,7 @@ public class MicrobePopSim : MonoBehaviour
     // ===== SAVE SYSTEM INTERACTION =====
     private List<StringFloatPair> _microbeQueue = new();
     private List<StringFloatPair> _resourcesQueue = new();
+    private Dictionary<string, List<StringFloatPair>> _microbeStats = new();
 
 
     // ===== UNITY EVENTS =====
@@ -207,6 +208,17 @@ public class MicrobePopSim : MonoBehaviour
         {
             Microbe newMicrobe = Microbe.CreateMicrobeFromSO(mso);
             _microbes.Add(newMicrobe);
+
+            foreach(var kvp in _microbeStats)
+            {
+                if(kvp.Key == newMicrobe.microbeName)
+                {
+                    foreach(StringFloatPair sfp in kvp.Value)
+                    {
+                        newMicrobe.requiredResources[sfp.name] = sfp.amount;
+                    }
+                }
+            }
         }
 
         foreach (StringFloatPair mnpp in _microbeQueue)
@@ -281,7 +293,7 @@ public class MicrobePopSim : MonoBehaviour
             float popChange = microbe.ComputeGrowth();
             microbe.UpdatePopulation(popChange);
 
-            microbe.DoEvolution(popChange);
+            microbe.DoEvolution(popChange, _env.resources);
         }
     }
 
@@ -555,5 +567,10 @@ public class MicrobePopSim : MonoBehaviour
     public void SetAdvanceOnStart(bool state)
     {
         _advanceOnStart = state;
+    }
+
+    public void QueueMicrobeStats(string microbeName, List<StringFloatPair> conList)
+    {
+        _microbeStats.Add(microbeName, conList);
     }
 }

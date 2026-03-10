@@ -54,6 +54,8 @@ public class RegionData
     public List<StringFloatPair> resources = new();
     public float[] healthHistory;
     public float[] mycorrhisArray;
+    public List<StringFloatPair> primusConsumption = new();
+    public List<StringFloatPair> unicusConsumption = new();
 }
 
 [System.Serializable]

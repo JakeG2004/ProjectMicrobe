@@ -374,8 +374,8 @@ public class Microbe
         kHistory.Add(minK);
     }
 
-    // Use sliding window to adjust consumption and production based on percent change from previous population
-    public void DoEvolution(float popChange)
+    // TODO: Use fitness metric with old sliding window evolution
+    public void DoEvolution(float popChange, Dictionary<string, float> envResources)
     {
         if (population == 0 || !isVolatile)
         {
@@ -385,80 +385,40 @@ public class Microbe
             return;
         }
 
-        float percentChange = Mathf.Abs(popChange / population);
-        Debug.Log(microbeName + "Percent Change: " + percentChange);
-
-
-        // Population increase
-        // Decrease production and increase consumption
-        if (popChange > 0)
+        Dictionary<string, float> newReqRes = new();
+        foreach (var kvp in envResources)
         {
-            // Find the new production
-            float newProductionWindowMin = 1 - (evolutionWidth + percentChange);
-            float newProductionWindowMax = 1 + (evolutionWidth - percentChange);
+            string curResource = kvp.Key;
+            if (!requiredResources.ContainsKey(curResource))
+            {
+                continue;
+            }
 
-            // Find the new consumption
-            float newConsumptionWindowMin = 1 - (evolutionWidth - percentChange);
-            float newConsumptionWindowMax = 1 + (evolutionWidth + percentChange);
+            float curResourceConsumption = requiredResources[curResource];
 
-            AssignNewDictValues(newProductionWindowMin, newProductionWindowMax, newConsumptionWindowMin, newConsumptionWindowMax);
+            // Inverse fitness means low consumption -> less fit, high consumption -> more fit.
+            float invFitness = Mathf.Clamp01((curResourceConsumption * population) / kvp.Value);
+
+            float windowPlacement = Mathf.Abs(popChange) / population;
+            //windowPlacement = windowPlacement > 0.5 ? windowPlacement : 0;
+
+            if (popChange < 0)
+            {
+                windowPlacement = 1 - windowPlacement;
+            }
+
+            if (popChange > 0)
+            {
+                windowPlacement = 1 + windowPlacement;
+            }
+
+            float newConsumption = curResourceConsumption * (Random.Range(windowPlacement - (evolutionWidth * invFitness), windowPlacement + (evolutionWidth * invFitness)));
+            newConsumption = newConsumption < evolutionWidth ? evolutionWidth : newConsumption;
+
+            newReqRes[kvp.Key] = newConsumption;
         }
 
-        // Population decrease
-        // Increase production and decrease consumption
-        else if (popChange < 0)
-        {
-            // Find the new production
-            float newProductionWindowMin = 1 - (evolutionWidth - percentChange);
-            float newProductionWindowMax = 1 + (evolutionWidth + percentChange);
-
-            // Find the new consumption
-            float newConsumptionWindowMin = 1 - (evolutionWidth + percentChange);
-            float newConsumptionWindowMax = 1 + (evolutionWidth - percentChange);
-
-            AssignNewDictValues(newProductionWindowMin, newProductionWindowMax, newConsumptionWindowMin, newConsumptionWindowMax);
-        }
-    }
-    
-    private void AssignNewDictValues(float prodMin, float prodMax, float conMin, float conMax)
-    {
-        // Have bounds so that the sliding windows don't collapse
-        float minProdCon = 0.5f;
-
-        prodMin = prodMin < minProdCon ? minProdCon : prodMin;
-        prodMax = prodMax <= prodMin ? prodMin + minProdCon : prodMax;
-
-        conMin = conMin < minProdCon ? minProdCon : conMin;
-        conMax = conMax <= conMin ? conMin + minProdCon : conMax;
-
-        Dictionary<string, float> newProd = new();
-        Dictionary<string, float> newReq = new();
-
-        // Assign the new production values
-        foreach (var kvp in producedResources)
-        {
-            float newProductionScale = Random.Range(prodMin, prodMax);
-            float newProdAmt = producedResources[kvp.Key] * newProductionScale;
-
-            // Safety feature to prevent cheaters from taking all of the resources
-            newProd[kvp.Key] = newProdAmt < minProdCon ? minProdCon : newProdAmt;
-            Debug.Log(microbeName + " " + kvp.Key + " Production: " + newProd[kvp.Key]);
-        }
-
-        // Assign the new consumption values
-        foreach (var kvp in requiredResources)
-        {
-            float newConsumptionScale = Random.Range(conMin, conMax);
-            float newConAmt = requiredResources[kvp.Key] * newConsumptionScale;
-
-            // Prevent cheaters fromt aking all resources
-            newReq[kvp.Key] = newConAmt < minProdCon ? minProdCon : newConAmt;
-            Debug.Log(microbeName + " " + kvp.Key + " Consumption: " + newReq[kvp.Key]);
-        }
-
-        // Assign the new dictionaries
-        producedResources = newProd;
-        requiredResources = newReq;
+        requiredResources = newReqRes;
     }
 
     public Microbe Clone()

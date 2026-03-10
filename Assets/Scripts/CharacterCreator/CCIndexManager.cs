@@ -49,21 +49,20 @@ public class CCIndexManager : MonoBehaviour
 
     public void SetToggleGroupValue(int val)
     {
-        for (int i = 0; i < _toggleGroup.gameObject.transform.childCount; i++)
+        for (int i = 0; i < _toggleGroup.transform.childCount; i++)
         {
-            Toggle curChild = _toggleGroup.gameObject.transform.GetChild(i).gameObject.GetComponent<Toggle>();
+            Toggle curChild = _toggleGroup.transform.GetChild(i).GetComponent<Toggle>();
 
-            curChild.isOn = false;
+            // Disable without firing events
+            curChild.SetIsOnWithoutNotify(false);
 
             if (i == val)
             {
-                //curChild.isOn = true;
                 curChild.SetIsOnWithoutNotify(true);
 
-                // Find the outline, and highlight
                 foreach (Transform child in curChild.transform)
                 {
-                    if (child.gameObject.name == "Outline")
+                    if (child.name == "Outline")
                     {
                         GameObject outline = child.gameObject;
                         outline.SetActive(true);
