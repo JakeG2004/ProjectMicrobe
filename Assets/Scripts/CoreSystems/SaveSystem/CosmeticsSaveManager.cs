@@ -286,7 +286,6 @@ public class CosmeticsSaveManager
             switch (ccMgr.GetValType())
             {
                 case "HairSlider":
-                    Debug.Log("Hair Value: " + _currentState.ccVals.hairIndex);
                     // If a hat is selected
                     if (_currentState.ccVals.hat != 0)
                     {
@@ -310,42 +309,34 @@ public class CosmeticsSaveManager
                     }
 
                 case "HairPrimary":
-                    Debug.Log("H1 Value: " + _currentState.ccVals.hairPrimary);
                     ccMgr.SetToggleGroupValue(_currentState.ccVals.hairPrimary);
                     break;
 
                 case "HairSecondary":
-                    Debug.Log("H2 Value: " + _currentState.ccVals.hairSecondary);
                     ccMgr.SetToggleGroupValue(_currentState.ccVals.hairSecondary);
                     break;
 
                 case "EyeColor":
-                    Debug.Log("Eye Value: " + _currentState.ccVals.eyes);
                     ccMgr.SetToggleGroupValue(_currentState.ccVals.eyes);
                     break;
 
                 case "SkinColor":
-                    Debug.Log("Skin Value: " + _currentState.ccVals.skin);
                     ccMgr.SetToggleGroupValue(_currentState.ccVals.skin);
                     break;
 
                 case "GlassesColor":
-                    Debug.Log("Glasses Value: " + _currentState.ccVals.glasses);
                     ccMgr.SetToggleGroupValue(_currentState.ccVals.glasses);
                     break;
 
                 case "UpperBody":
-                    Debug.Log("UB Value: " + _currentState.ccVals.upperBody);
                     ccMgr.SetToggleGroupValue(_currentState.ccVals.upperBody);
                     break;
 
                 case "LowerBody":
-                    Debug.Log("LB Value: " + _currentState.ccVals.lowerBody);
                     ccMgr.SetToggleGroupValue(_currentState.ccVals.lowerBody);
                     break;
 
                 case "Hat":
-                    Debug.Log("Hat Value: " + _currentState.ccVals.hat);
                     ccMgr.SetToggleGroupValue(_currentState.ccVals.hat);
                     break;
 
