@@ -5,25 +5,48 @@ using UnityEngine.UI;
 
 public class MinimapController : MinimapIconSOListener
 {
+    [Header("UI References")]
     [SerializeField] private RectTransform _mapImage;
     [SerializeField] private RectTransform _playerIndicator;
     [SerializeField] private GameObject _minimapIconPrefab;
+
+    [Header("Settings")]
     [SerializeField] private List<MinimapIcon> _minimapIcons;
     [SerializeField] private float _maxMapDistance = 85f;
 
     private Transform _player;
+
+    // Transformation matrices for coordinate mapping
     private float[] _mapConstants = { -2.2330f, 0.01936f, 1.385f, -0.02380f, -2.2503f, -680.72f };
     private float[] _iconConstants = { 2.2515697f, -0.01267084f, 14.025911f, 0.002689249f, 2.1984585f, 662.21553f };
 
     void Start()
     {
-        _player = GameObject.FindGameObjectWithTag("Player").transform;
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj != null)
+        {
+            _player = playerObj.transform;
+        }
     }
 
     void Update()
     {
+        if (_player == null) return;
+
         UpdateMap();
         UpdateIcons();
+    }
+
+    /// <summary>
+    /// Updates the position of the map based on the player position.
+    /// Also updates the rotation of the player indicator.
+    /// </summary>
+    private void UpdateMap()
+    {
+        _mapImage.anchoredPosition = WorldToMap(_player.position, _mapConstants);
+
+        // Account for the 45 degree rotation in the indicator sprite
+        _playerIndicator.eulerAngles = new Vector3(0, 0, -_player.eulerAngles.y + 45);
     }
 
     private void UpdateIcons()
@@ -34,22 +57,14 @@ public class MinimapController : MinimapIconSOListener
         }
     }
 
-    // Updates the position of the map based on the player position.
-    // Also updates the rotation of the player indicator
-    private void UpdateMap()
-    {
-        _mapImage.anchoredPosition = WorldToMap(_player.position, _mapConstants);
-
-        // Account for the 45 degree rotation in the indicator sprite
-        _playerIndicator.eulerAngles = new Vector3(0, 0, -_player.eulerAngles.y + 45);
-    }
-
-    // Updates the position of an icon based on its world object position
+    /// <summary>
+    /// Updates the position of an icon based on its world object position.
+    /// Clamps the icon to the edge if it exceeds _maxMapDistance.
+    /// </summary>
     private void UpdateIconPos(MinimapIcon icon)
     {
         Vector3 iconPos = icon.transform.position;
         Vector3 playerPos = _player.position;
-
         Vector3 dir = iconPos - playerPos;
         dir.y = 0f;
 
@@ -65,16 +80,19 @@ public class MinimapController : MinimapIconSOListener
         icon.SetUIPosition(WorldToMap(iconPos, _iconConstants));
     }
 
-    // Translates world object positions to map positions
+    /// <summary>
+    /// Translates world object positions to map positions using affine transformation constants.
+    /// </summary>
     private Vector2 WorldToMap(Vector3 pos, float[] constants)
     {
         float mapX = constants[0] * pos.x + constants[1] * pos.z + constants[2];
         float mapY = constants[3] * pos.x + constants[4] * pos.z + constants[5];
-
         return new Vector2(mapX, mapY);
     }
 
-    // Inherited from the MinimapIconSOListener. Triggers whenever a minimap icon is added
+    /// <summary>
+    /// Inherited from the MinimapIconSOListener. Triggers whenever a minimap icon is added.
+    /// </summary>
     public override void OnEventRaised(MinimapIcon icon)
     {
         if (!_minimapIcons.Contains(icon))
@@ -83,14 +101,14 @@ public class MinimapController : MinimapIconSOListener
             GameObject newIcon = Instantiate(_minimapIconPrefab, _mapImage);
             newIcon.GetComponent<Image>().sprite = icon.GetIconSprite();
 
-            // Update the reference for the ui object in the icon
+            // Update the reference for the UI object in the icon
             icon.SetUIElement(newIcon.transform);
 
             // Add it to the list
             _minimapIcons.Add(icon);
         }
     }
-    
+
     public void RemoveIconFromMinimap(MinimapIcon icon)
     {
         _minimapIcons.Remove(icon);

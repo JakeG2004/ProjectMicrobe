@@ -30,7 +30,7 @@ public class TerrainBlender : MonoBehaviour
 
         _initialDetailDensity = _detailDensity;
         UpdateTerrainProperties();
-        SetDetailDensity(_detailDensity);
+        SetDetailDensity(_initialDetailDensity);
     }
 
     void Update()
