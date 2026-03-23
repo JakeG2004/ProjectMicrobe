@@ -16,7 +16,7 @@ public class PylonRegion : MonoBehaviour
     void Start()
     {
         // Disable the collider on start, this will be enabled when region unlocked
-        GetComponent<SphereCollider>().enabled = false;
+        GetComponent<Collider>().enabled = false;
     }
 
     public EnvironmentSO GetEnvSO()

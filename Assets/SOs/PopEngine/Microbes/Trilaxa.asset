@@ -15,6 +15,8 @@ MonoBehaviour:
   microbeBody: {fileID: -615191483, guid: 0bb008e864a762f4199c0219785ed1ec, type: 3}
   microbeFace: {fileID: 505012016, guid: 0bb008e864a762f4199c0219785ed1ec, type: 3}
   color: {r: 0.3106321, g: 0.8784314, b: 0.1764706, a: 1}
+  isVolatile: 0
+  evolutionWidth: 0.25
   microbeName: <i>B. trilaxa</i>
   population: 1
   growthRate: 0.4
@@ -29,6 +31,6 @@ MonoBehaviour:
     toxin:
       toxicity: 1
       minSafeDensity: 0
-      maxSafeDensity: 0.6
-      lethalDensity: 0.7
+      maxSafeDensity: 0.1
+      lethalDensity: 0.2
   description: <i>B. trilaxa</i> is a new bacteria. Not much is known about it
