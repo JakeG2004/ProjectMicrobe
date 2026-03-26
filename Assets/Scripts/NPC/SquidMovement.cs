@@ -24,8 +24,9 @@ public class SquidMovement : MonoBehaviour {
 	Vector3 randomOffset = Vector3.zero;            // random movement force
 	Quaternion prevRot = Quaternion.identity;
 	float smoothAngularRot = 0f;					// used for animation controller speed
-	Vector3 smoothAngularVel = Vector3.zero;		// used for animation controller turns
+	Vector3 smoothAngularVel = Vector3.zero;        // used for animation controller turns
 	Vector3 prevAngularVelocityAxis = Vector3.up;
+	[SerializeField] private Transform _upperPlane; 
 
 	void Start() {
 		squidAnim = squidObject.GetComponent<Animator>();
@@ -97,6 +98,11 @@ public class SquidMovement : MonoBehaviour {
 
 		// 9. Move forward at a fixed speed
 		squid.position += squid.up * moveSpeed * Time.deltaTime;
+
+		if(transform.position.y >= _upperPlane.position.y)
+        {
+			transform.position = new Vector3(transform.position.x, _upperPlane.position.y, transform.position.z);
+        }
 	}
 
 	Vector3 OscillatingNoise(float frequency) {
