@@ -143,27 +143,32 @@ public class Boidy : MonoBehaviour {
         }
     }
 
-    void MoveBoids() {
+    void MoveBoids()
+    {
         float turn = turnSpeed * Time.deltaTime;
         randomOffset = OscillatingNoise(0.2f);
 
-        for (int i = 0; i < _numBoids; i++) {
+        for (int i = 0; i < _numBoids; i++)
+        {
             Transform boid = boids[i];
-            
+
             // 1. Shared random movment
             Vector3 moveDirection = randomOffset;
 
             // 2. Adjust movement based on nearest neighbor
-            if (neighbors[i] != null) {
+            if (neighbors[i] != null)
+            {
                 Vector3 towardNeighbor = (neighbors[i].position - boid.position).normalized;
                 moveDirection += towardNeighbor * (neighborDistances[i] - neighborDistanceGoal);
             }
 
             // 3. Avoid obstacles within a set radius
-            foreach (Transform obstacle in obstacles) {
+            foreach (Transform obstacle in obstacles)
+            {
                 Vector3 towardObstacle = obstacle.position - boid.position;
                 float obstacleDistance = towardObstacle.magnitude;
-                if (obstacleDistance < obstacleAvoidanceRadius) {
+                if (obstacleDistance < obstacleAvoidanceRadius)
+                {
                     moveDirection += towardObstacle * (obstacleDistance - obstacleAvoidanceRadius);
                 }
             }
@@ -172,7 +177,8 @@ public class Boidy : MonoBehaviour {
             Vector3 towardSpawner = transform.position - boid.position;
             towardSpawner.y *= 1 / spawnVerticalStretch; // Adjust for flattened spawn shape
             float spawnerDistance = towardSpawner.magnitude;
-            if (spawnerDistance > spawnRadius) {
+            if (spawnerDistance > spawnRadius)
+            {
                 moveDirection += towardSpawner * (spawnerDistance - spawnRadius);
             }
 
@@ -186,6 +192,21 @@ public class Boidy : MonoBehaviour {
             // 7. Move forward at a fixed speed
             boid.position += boid.forward * moveSpeeds[i] * Time.deltaTime;
         }
+    }
+    
+    public void ResetBoidPositions(Vector3 newPos)
+    {
+        foreach (Transform boid in boids)
+        {
+            boid.transform.parent = this.gameObject.transform;
+        }
+
+        transform.position = newPos;
+
+        //foreach (Transform boid in boids)
+        //{
+        //    boid.transform.parent = this.transform.parent;
+       // }
     }
 
     Vector3 OscillatingNoise(float frequency) {
